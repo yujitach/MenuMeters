@@ -7,6 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3383C1741B69B72600915D5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1731B69B72600915D5D /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3383C1771B69B72600915D5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1761B69B72600915D5D /* main.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		3383C1791B69B72600915D5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
+		3383C1821B69B88500915D5D /* MenuMeterPowerMate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBBF750463514700A804AF /* MenuMeterPowerMate.m */; };
+		3383C1831B69B88800915D5D /* MenuMeterWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */; };
+		3383C1841B69B88C00915D5D /* MenuMeterCPUStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAF103D4BB9200A87BC9 /* MenuMeterCPUStats.m */; };
+		3383C1851B69B89100915D5D /* MenuMeterUptime.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAF503D4BB9D00A87BC9 /* MenuMeterUptime.m */; };
+		3383C1861B69B97E00915D5D /* MenuMeterCPUView.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAE903D4BB7D00A87BC9 /* MenuMeterCPUView.m */; };
+		3383C1871B69BACA00915D5D /* SystemUIPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40DB50E03D2631100A87BC9 /* SystemUIPlugin.framework */; };
+		3383C1881B69BF7700915D5D /* MenuMeterCPUExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAEC03D4BB8600A87BC9 /* MenuMeterCPUExtra.m */; };
+		3383C18B1B69C75A00915D5D /* MenuMeterMemStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F12E203D48A1C00A87BC9 /* MenuMeterMemStats.m */; };
+		3383C18C1B69C75F00915D5D /* MenuMeterMemExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F12DF03D48A1300A87BC9 /* MenuMeterMemExtra.m */; };
+		3383C18D1B69C76200915D5D /* MenuMeterMemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F12DB03D48A0800A87BC9 /* MenuMeterMemView.m */; };
+		3383C18E1B69C77100915D5D /* MenuMeterNetPPP.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B6FA103D3BACD00A87BC9 /* MenuMeterNetPPP.m */; };
+		3383C18F1B69C77500915D5D /* MenuMeterNetStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162403D26AAA00A87BC9 /* MenuMeterNetStats.m */; };
+		3383C1901B69C77800915D5D /* MenuMeterNetConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162703D26AAA00A87BC9 /* MenuMeterNetConfig.m */; };
+		3383C1911B69C77B00915D5D /* MenuMeterNetExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162003D26AAA00A87BC9 /* MenuMeterNetExtra.m */; };
+		3383C1921B69C77E00915D5D /* MenuMeterNetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162203D26AAA00A87BC9 /* MenuMeterNetView.m */; };
+		3383C1931B69C78600915D5D /* MenuMeterDiskSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC96503D49AF700A87BC9 /* MenuMeterDiskSpace.m */; };
+		3383C1941B69C78800915D5D /* MenuMeterDiskIO.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC96203D49AF000A87BC9 /* MenuMeterDiskIO.m */; };
+		3383C1951B69C78B00915D5D /* MenuMeterDiskExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95D03D49AE400A87BC9 /* MenuMeterDiskExtra.m */; };
+		3383C1961B69C78E00915D5D /* MenuMeterDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95903D49AD900A87BC9 /* MenuMeterDiskView.m */; };
+		3383C1971B69D8D000915D5D /* ArrowsIdle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97303D49B6500A87BC9 /* ArrowsIdle.tiff */; };
+		3383C1981B69D8D000915D5D /* ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97403D49B6500A87BC9 /* ArrowsReadWrite.tiff */; };
+		3383C1991B69D8D000915D5D /* ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97503D49B6500A87BC9 /* ArrowsWrite.tiff */; };
+		3383C19A1B69D8D000915D5D /* ArrowsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97603D49B6500A87BC9 /* ArrowsRead.tiff */; };
+		3383C19B1B69D8D000915D5D /* Color ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97B03D49BD600A87BC9 /* Color ArrowsWrite.tiff */; };
+		3383C19C1B69D8D000915D5D /* Color ArrowsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97C03D49BD600A87BC9 /* Color ArrowsRead.tiff */; };
+		3383C19D1B69D8D000915D5D /* Color ArrowsIdle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97D03D49BD600A87BC9 /* Color ArrowsIdle.tiff */; };
+		3383C19E1B69D8D000915D5D /* Color ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97E03D49BD600A87BC9 /* Color ArrowsReadWrite.tiff */; };
+		3383C19F1B69D8D000915D5D /* Dark ArrowsIdle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42C6C861996D9BB005F87BD /* Dark ArrowsIdle.tiff */; };
+		3383C1A01B69D8D000915D5D /* Dark ArrowsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42C6C871996D9BB005F87BD /* Dark ArrowsRead.tiff */; };
+		3383C1A11B69D8D000915D5D /* Dark ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42C6C881996D9BB005F87BD /* Dark ArrowsReadWrite.tiff */; };
+		3383C1A21B69D8D000915D5D /* Dark ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42C6C891996D9BB005F87BD /* Dark ArrowsWrite.tiff */; };
+		3383C1A31B69D8D000915D5D /* Dark Color ArrowsIdle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42C6C941996DA77005F87BD /* Dark Color ArrowsIdle.tiff */; };
+		3383C1A41B69D8D000915D5D /* Dark Color ArrowsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42C6C951996DA77005F87BD /* Dark Color ArrowsRead.tiff */; };
+		3383C1A51B69D8D000915D5D /* Dark Color ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42C6C961996DA77005F87BD /* Dark Color ArrowsReadWrite.tiff */; };
+		3383C1A61B69D8D000915D5D /* Dark Color ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42C6C971996DA77005F87BD /* Dark Color ArrowsWrite.tiff */; };
+		3383C1A71B69D8D000915D5D /* LightsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC98303D49BDE00A87BC9 /* LightsWrite.tiff */; };
+		3383C1A81B69D8D000915D5D /* LightsIdle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC98403D49BDE00A87BC9 /* LightsIdle.tiff */; };
+		3383C1A91B69D8D000915D5D /* LightsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC98503D49BDE00A87BC9 /* LightsRead.tiff */; };
+		3383C1AA1B69D8D000915D5D /* LightsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC98603D49BDE00A87BC9 /* LightsReadWrite.tiff */; };
+		3383C1AB1B69D8D000915D5D /* Aqua LightsIdle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D45FEFCC0470257D00A87BC9 /* Aqua LightsIdle.tiff */; };
+		3383C1AC1B69D8D000915D5D /* Aqua LightsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D45FEFCD0470257D00A87BC9 /* Aqua LightsReadWrite.tiff */; };
+		3383C1AD1B69D8D000915D5D /* Aqua LightsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D45FEFCE0470257D00A87BC9 /* Aqua LightsWrite.tiff */; };
+		3383C1AE1B69D8D000915D5D /* Aqua LightsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D45FEFCF0470257D00A87BC9 /* Aqua LightsRead.tiff */; };
+		3383C1AF1B69D8D000915D5D /* Disk ArrowsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F30644C7E200047FDD /* Disk ArrowsRead.tiff */; };
+		3383C1B01B69D8D000915D5D /* Disk ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F40644C7E200047FDD /* Disk ArrowsReadWrite.tiff */; };
+		3383C1B11B69D8D000915D5D /* Disk ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F50644C7E200047FDD /* Disk ArrowsWrite.tiff */; };
+		3383C1C21B69DB0D00915D5D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1C11B69DB0D00915D5D /* MainMenu.xib */; };
+		3383C1E21B69DD2D00915D5D /* English.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DA1B69DD2D00915D5D /* English.lproj */; };
+		3383C1E31B69DD2D00915D5D /* French.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DB1B69DD2D00915D5D /* French.lproj */; };
+		3383C1E41B69DD2D00915D5D /* German.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DC1B69DD2D00915D5D /* German.lproj */; };
+		3383C1E51B69DD2D00915D5D /* Italian.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DD1B69DD2D00915D5D /* Italian.lproj */; };
+		3383C1E71B69DD2D00915D5D /* Japanese.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DF1B69DD2D00915D5D /* Japanese.lproj */; };
+		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
+		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
+		33BA36E91B69E74400B4220E /* MenuMeterDefaults.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4ECB2C805FE6F4000954E26 /* MenuMeterDefaults.bundle */; };
 		D403AD3C0E04E99C00348443 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403AD3B0E04E99C00348443 /* Foundation.framework */; };
 		D403ADE30E04F17900348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
@@ -159,14 +217,21 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D46DB6AD054E290E001EF699 /* PBXContainerItemProxy */ = {
+		3383C1C61B69DBBB00915D5D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D40DB4A703D25F2100A87BC9 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D4ECB2BB05FE6F3F00954E26;
 			remoteInfo = "Defaults Bundle";
 		};
-		D46DB6AE054E290E001EF699 /* PBXContainerItemProxy */ = {
+		33BA36E71B69E73B00B4220E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D40DB4A703D25F2100A87BC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4ECB2BB05FE6F3F00954E26;
+			remoteInfo = "Defaults Bundle";
+		};
+		D46DB6AD054E290E001EF699 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D40DB4A703D25F2100A87BC9 /* Project object */;
 			proxyType = 1;
@@ -246,6 +311,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3383C1701B69B72500915D5D /* MenuMetersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuMetersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3383C1721B69B72500915D5D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3383C1731B69B72600915D5D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3383C1761B69B72600915D5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3383C1781B69B72600915D5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3383C17D1B69B72600915D5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3383C1C11B69DB0D00915D5D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		3383C1DA1B69DD2D00915D5D /* English.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = English.lproj; sourceTree = "<group>"; };
+		3383C1DB1B69DD2D00915D5D /* French.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = French.lproj; sourceTree = "<group>"; };
+		3383C1DC1B69DD2D00915D5D /* German.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = German.lproj; sourceTree = "<group>"; };
+		3383C1DD1B69DD2D00915D5D /* Italian.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Italian.lproj; sourceTree = "<group>"; };
+		3383C1DF1B69DD2D00915D5D /* Japanese.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Japanese.lproj; sourceTree = "<group>"; };
+		3383C1E01B69DD2D00915D5D /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nl.lproj; sourceTree = "<group>"; };
+		3383C1E11B69DD2D00915D5D /* zh_CN.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zh_CN.lproj; sourceTree = "<group>"; };
 		D40138D504F7B1DD00A87BC9 /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/Installer.nib; sourceTree = "<group>"; };
 		D40138D604F7B1E100A87BC9 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D40271B8083D928600D09108 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -415,6 +494,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3383C16D1B69B72500915D5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3383C1871B69BACA00915D5D /* SystemUIPlugin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4ECB2C205FE6F3F00954E26 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -504,6 +591,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3383C1711B69B72500915D5D /* MenuMetersApp */ = {
+			isa = PBXGroup;
+			children = (
+				3383C1721B69B72500915D5D /* AppDelegate.h */,
+				3383C1731B69B72600915D5D /* AppDelegate.m */,
+				3383C1C11B69DB0D00915D5D /* MainMenu.xib */,
+				3383C1781B69B72600915D5D /* Assets.xcassets */,
+				33BA36D41B69E48300B4220E /* Resources */,
+				3383C17D1B69B72600915D5D /* Info.plist */,
+				3383C1751B69B72600915D5D /* Supporting Files */,
+			);
+			path = MenuMetersApp;
+			sourceTree = "<group>";
+		};
+		3383C1751B69B72600915D5D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3383C1761B69B72600915D5D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		33BA36D41B69E48300B4220E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3383C1DA1B69DD2D00915D5D /* English.lproj */,
+				3383C1DB1B69DD2D00915D5D /* French.lproj */,
+				3383C1DC1B69DD2D00915D5D /* German.lproj */,
+				3383C1DD1B69DD2D00915D5D /* Italian.lproj */,
+				3383C1DF1B69DD2D00915D5D /* Japanese.lproj */,
+				3383C1E01B69DD2D00915D5D /* nl.lproj */,
+				3383C1E11B69DD2D00915D5D /* zh_CN.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		D40DB4A303D25F2100A87BC9 = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +640,7 @@
 				D4EB673D04F5C6C800A87BC9 /* Package */,
 				D40DB4B803D2600C00A87BC9 /* System Frameworks */,
 				D40DB50803D262ED00A87BC9 /* System Private Frameworks */,
+				3383C1711B69B72500915D5D /* MenuMetersApp */,
 				D40DB4B003D25F6400A87BC9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -543,6 +667,7 @@
 				D4ECB3B605FE72E100954E26 /* MenuMeters.prefPane */,
 				D4ECB3C705FE735400954E26 /* InstallTool */,
 				D4ECB3E005FE736D00954E26 /* MenuMeters Installer.app */,
+				3383C1701B69B72500915D5D /* MenuMetersApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -936,6 +1061,24 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
+		3383C16F1B69B72500915D5D /* MenuMetersApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3383C1801B69B72600915D5D /* Build configuration list for PBXNativeTarget "MenuMetersApp" */;
+			buildPhases = (
+				3383C16C1B69B72500915D5D /* Sources */,
+				3383C16D1B69B72500915D5D /* Frameworks */,
+				3383C16E1B69B72500915D5D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33BA36E81B69E73B00B4220E /* PBXTargetDependency */,
+			);
+			name = MenuMetersApp;
+			productName = MenuMetersApp;
+			productReference = 3383C1701B69B72500915D5D /* MenuMetersApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D4ECB2BB05FE6F3F00954E26 /* Defaults Bundle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4AFB32A087726B20023B640 /* Build configuration list for PBXNativeTarget "Defaults Bundle" */;
@@ -967,7 +1110,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D4ECB2CE05FE700600954E26 /* PBXTargetDependency */,
+				3383C1C71B69DBBB00915D5D /* PBXTargetDependency */,
 			);
 			name = "Net Meter";
 			productInstallPath = "$(USER_LIBRARY_DIR)/Bundles";
@@ -1109,6 +1252,17 @@
 /* Begin PBXProject section */
 		D40DB4A703D25F2100A87BC9 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				TargetAttributes = {
+					3383C16F1B69B72500915D5D = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 95AQ7YKR5A;
+					};
+					D4ECB2BB05FE6F3F00954E26 = {
+						DevelopmentTeam = 95AQ7YKR5A;
+					};
+				};
+			};
 			buildConfigurationList = D4AFB342087726B20023B640 /* Build configuration list for PBXProject "MenuMeters" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -1122,6 +1276,12 @@
 				Italian,
 				cs,
 				zh_CN,
+				en,
+				fr,
+				de,
+				it,
+				"zh-Hans",
+				ja,
 			);
 			mainGroup = D40DB4A303D25F2100A87BC9;
 			productRefGroup = D40DB4B003D25F6400A87BC9 /* Products */;
@@ -1137,11 +1297,56 @@
 				D4ECB2EE05FE707A00954E26 /* Memory Meter */,
 				D4ECB2CD05FE700600954E26 /* Net Meter */,
 				D4ECB2BB05FE6F3F00954E26 /* Defaults Bundle */,
+				3383C16F1B69B72500915D5D /* MenuMetersApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3383C16E1B69B72500915D5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3383C1971B69D8D000915D5D /* ArrowsIdle.tiff in Resources */,
+				3383C1C21B69DB0D00915D5D /* MainMenu.xib in Resources */,
+				3383C1981B69D8D000915D5D /* ArrowsReadWrite.tiff in Resources */,
+				3383C1991B69D8D000915D5D /* ArrowsWrite.tiff in Resources */,
+				3383C1E21B69DD2D00915D5D /* English.lproj in Resources */,
+				3383C19A1B69D8D000915D5D /* ArrowsRead.tiff in Resources */,
+				3383C19B1B69D8D000915D5D /* Color ArrowsWrite.tiff in Resources */,
+				3383C19C1B69D8D000915D5D /* Color ArrowsRead.tiff in Resources */,
+				3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */,
+				3383C1E71B69DD2D00915D5D /* Japanese.lproj in Resources */,
+				3383C19D1B69D8D000915D5D /* Color ArrowsIdle.tiff in Resources */,
+				3383C1E41B69DD2D00915D5D /* German.lproj in Resources */,
+				3383C19E1B69D8D000915D5D /* Color ArrowsReadWrite.tiff in Resources */,
+				3383C19F1B69D8D000915D5D /* Dark ArrowsIdle.tiff in Resources */,
+				3383C1A01B69D8D000915D5D /* Dark ArrowsRead.tiff in Resources */,
+				3383C1A11B69D8D000915D5D /* Dark ArrowsReadWrite.tiff in Resources */,
+				3383C1A21B69D8D000915D5D /* Dark ArrowsWrite.tiff in Resources */,
+				3383C1A31B69D8D000915D5D /* Dark Color ArrowsIdle.tiff in Resources */,
+				3383C1A41B69D8D000915D5D /* Dark Color ArrowsRead.tiff in Resources */,
+				3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */,
+				3383C1A51B69D8D000915D5D /* Dark Color ArrowsReadWrite.tiff in Resources */,
+				3383C1A61B69D8D000915D5D /* Dark Color ArrowsWrite.tiff in Resources */,
+				3383C1A71B69D8D000915D5D /* LightsWrite.tiff in Resources */,
+				33BA36E91B69E74400B4220E /* MenuMeterDefaults.bundle in Resources */,
+				3383C1A81B69D8D000915D5D /* LightsIdle.tiff in Resources */,
+				3383C1A91B69D8D000915D5D /* LightsRead.tiff in Resources */,
+				3383C1AA1B69D8D000915D5D /* LightsReadWrite.tiff in Resources */,
+				3383C1E31B69DD2D00915D5D /* French.lproj in Resources */,
+				3383C1AB1B69D8D000915D5D /* Aqua LightsIdle.tiff in Resources */,
+				3383C1E51B69DD2D00915D5D /* Italian.lproj in Resources */,
+				3383C1AC1B69D8D000915D5D /* Aqua LightsReadWrite.tiff in Resources */,
+				3383C1AD1B69D8D000915D5D /* Aqua LightsWrite.tiff in Resources */,
+				3383C1AE1B69D8D000915D5D /* Aqua LightsRead.tiff in Resources */,
+				3383C1AF1B69D8D000915D5D /* Disk ArrowsRead.tiff in Resources */,
+				3383C1B01B69D8D000915D5D /* Disk ArrowsReadWrite.tiff in Resources */,
+				3383C1B11B69D8D000915D5D /* Disk ArrowsWrite.tiff in Resources */,
+				3383C1791B69B72600915D5D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4ECB2BF05FE6F3F00954E26 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1321,6 +1526,33 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3383C16C1B69B72500915D5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3383C1951B69C78B00915D5D /* MenuMeterDiskExtra.m in Sources */,
+				3383C1831B69B88800915D5D /* MenuMeterWorkarounds.m in Sources */,
+				3383C1771B69B72600915D5D /* main.m in Sources */,
+				3383C1821B69B88500915D5D /* MenuMeterPowerMate.m in Sources */,
+				3383C1881B69BF7700915D5D /* MenuMeterCPUExtra.m in Sources */,
+				3383C18C1B69C75F00915D5D /* MenuMeterMemExtra.m in Sources */,
+				3383C1841B69B88C00915D5D /* MenuMeterCPUStats.m in Sources */,
+				3383C1851B69B89100915D5D /* MenuMeterUptime.m in Sources */,
+				3383C18B1B69C75A00915D5D /* MenuMeterMemStats.m in Sources */,
+				3383C1931B69C78600915D5D /* MenuMeterDiskSpace.m in Sources */,
+				3383C1941B69C78800915D5D /* MenuMeterDiskIO.m in Sources */,
+				3383C1741B69B72600915D5D /* AppDelegate.m in Sources */,
+				3383C18E1B69C77100915D5D /* MenuMeterNetPPP.m in Sources */,
+				3383C18D1B69C76200915D5D /* MenuMeterMemView.m in Sources */,
+				3383C1911B69C77B00915D5D /* MenuMeterNetExtra.m in Sources */,
+				3383C1921B69C77E00915D5D /* MenuMeterNetView.m in Sources */,
+				3383C1901B69C77800915D5D /* MenuMeterNetConfig.m in Sources */,
+				3383C1961B69C78E00915D5D /* MenuMeterDiskView.m in Sources */,
+				3383C18F1B69C77500915D5D /* MenuMeterNetStats.m in Sources */,
+				3383C1861B69B97E00915D5D /* MenuMeterCPUView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D4ECB2C005FE6F3F00954E26 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1410,15 +1642,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3383C1C71B69DBBB00915D5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4ECB2BB05FE6F3F00954E26 /* Defaults Bundle */;
+			targetProxy = 3383C1C61B69DBBB00915D5D /* PBXContainerItemProxy */;
+		};
+		33BA36E81B69E73B00B4220E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4ECB2BB05FE6F3F00954E26 /* Defaults Bundle */;
+			targetProxy = 33BA36E71B69E73B00B4220E /* PBXContainerItemProxy */;
+		};
 		D4EB673F04F5C6D700A87BC9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D4ECB3CB05FE736D00954E26 /* Installer */;
 			targetProxy = D46DB6B0054E290E001EF699 /* PBXContainerItemProxy */;
-		};
-		D4ECB2CE05FE700600954E26 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D4ECB2BB05FE6F3F00954E26 /* Defaults Bundle */;
-			targetProxy = D46DB6AE054E290E001EF699 /* PBXContainerItemProxy */;
 		};
 		D4ECB2EF05FE707A00954E26 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1578,6 +1815,118 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3383C17E1B69B72600915D5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer: Yuji Tachikawa (K8NRS4BW2Y)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"ELCAPITAN=1",
+					"$(inherited)",
+				);
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MenuMetersApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yujitach.MenuMetersApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3383C17F1B69B72600915D5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer: Yuji Tachikawa (K8NRS4BW2Y)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"ELCAPITAN=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = MenuMetersApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yujitach.MenuMetersApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
 		D4AFB328087726B20023B640 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1588,8 +1937,15 @@
 		D4AFB32B087726B20023B640 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = Common/Resources/DefaultsBundleInfo.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = MenuMeterDefaults;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
@@ -1817,8 +2173,15 @@
 		D4CD204C0D88E34100481A51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = Common/Resources/DefaultsBundleInfo.plist;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = MenuMeterDefaults;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -1826,6 +2189,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3383C1801B69B72600915D5D /* Build configuration list for PBXNativeTarget "MenuMetersApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3383C17E1B69B72600915D5D /* Release */,
+				3383C17F1B69B72600915D5D /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D4AFB327087726B20023B640 /* Build configuration list for PBXNativeTarget "Install Tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

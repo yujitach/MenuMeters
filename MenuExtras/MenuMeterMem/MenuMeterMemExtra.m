@@ -612,7 +612,7 @@
 	[image lockFocus];
 
 	// Construct strings
-	NSMutableAttributedString *renderUString = [[[NSAttributedString alloc]
+	NSAttributedString *renderUString = [[[NSAttributedString alloc]
 													initWithString:[NSString stringWithFormat:@"%.0f%@",
 																		usedMB,
 																		[localizedStrings objectForKey:kMBLabel]]
@@ -621,7 +621,7 @@
 																		usedColor, NSForegroundColorAttributeName,
 																		nil]] autorelease];
 	// Construct and draw the free string
-	NSMutableAttributedString *renderFString = [[[NSAttributedString alloc]
+	NSAttributedString *renderFString = [[[NSAttributedString alloc]
 													initWithString:[NSString stringWithFormat:@"%.0f%@",
 																		freeMB,
 																		[localizedStrings objectForKey:kMBLabel]]
@@ -837,7 +837,7 @@
 	if ((pageIns + pageOuts) >= 1000) {
 		countString = @"1k+";
 	} else {
-		countString = [NSString stringWithFormat:@"%d", pageIns + pageOuts];
+		countString = [NSString stringWithFormat:@"%d", (int)(pageIns + pageOuts)];
 	}
 	NSAttributedString *renderString = [[[NSAttributedString alloc]
 											initWithString:countString

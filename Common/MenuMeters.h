@@ -28,7 +28,11 @@
 ///////////////////////////////////////////////////////////////
 
 // Bundle directory name of the preferences bundle
+#ifndef ELCAPITAN
 #define kPrefBundleName					@"MenuMeterDefaults.bundle"
+#else
+#define kPrefBundleName                 @"MenuMetersApp.app/Contents/Resources/MenuMeterDefaults.bundle"
+#endif
 
 // Bundle ID for the CPU menu extra
 #define kCPUMenuBundleID				@"com.ragingmenace.MenuMeterCPU"

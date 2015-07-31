@@ -506,7 +506,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)migratePrefFile {
-
+#ifndef ELCAPITAN
 	// Find the user's pref folder
     NSString *prefFolderPath = nil;
 	FSRef prefFolderFSRef;
@@ -533,7 +533,7 @@
 					   toPath:[prefFolderPath stringByAppendingPathComponent:newPath]
 					  handler:nil];
 	}
-
+#endif
 } // _migratePrefFile
 
 - (void)migratePrefsForward {

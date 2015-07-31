@@ -28,7 +28,7 @@
 //	Definitions for 64-bit from 10.9+ so we can still use old SDKs.
 //
 ///////////////////////////////////////////////////////////////
-
+#ifndef ELCAPITAN
 struct vm_statistics64 {
 	natural_t	free_count;
 	natural_t	active_count;
@@ -57,6 +57,7 @@ struct vm_statistics64 {
 } __attribute__((aligned(8)));
 typedef struct vm_statistics64	vm_statistics64_data_t;
 typedef integer_t	*host_info64_t;
+#endif
 typedef kern_return_t (*host_statistics64_Ptr)(host_t host_priv,
 											   host_flavor_t flavor,
 											   host_info64_t host_info64_out,
