@@ -434,6 +434,9 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
+#ifdef ELCAPITAN
+    [super configDisplay:kDiskMenuBundleID fromPrefs:ourPrefs];
+#endif
 
 	// Update prefs
 	[ourPrefs syncWithDisk];

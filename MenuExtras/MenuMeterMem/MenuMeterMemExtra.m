@@ -913,6 +913,9 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
+#ifdef ELCAPITAN
+    [super configDisplay:kMemMenuBundleID fromPrefs:ourPrefs];
+#endif
 
 	// Update prefs
 	[ourPrefs syncWithDisk];

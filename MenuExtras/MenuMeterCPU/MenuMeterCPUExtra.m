@@ -629,7 +629,9 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
-
+#ifdef ELCAPITAN
+    [super configDisplay:kCPUMenuBundleID fromPrefs:ourPrefs];
+#endif
 	// Update prefs
 	[ourPrefs syncWithDisk];
 

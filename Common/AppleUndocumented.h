@@ -16,12 +16,7 @@ int CoreMenuExtraRemoveMenuExtra(void *menuExtra, int whoCares);
 #define kAppleInterfaceThemeChangedNotification		@"AppleInterfaceThemeChangedNotification"
 
 // SystemUIPlugin
-@interface NSMenuExtra :
-#ifdef ELCAPITAN
-NSObject
-#else
-NSStatusItem
-#endif
+@interface NSMenuExtra : NSStatusItem
 {
     NSBundle *_bundle;
     NSMenu *_menu;
@@ -107,3 +102,7 @@ NSStatusItem
 - (void)mouseDown:(id)arg1;
 
 @end
+
+#ifdef ELCAPITAN
+#import "MenuMetersMenuExtraBase.h"
+#endif

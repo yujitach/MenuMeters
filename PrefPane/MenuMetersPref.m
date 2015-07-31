@@ -178,7 +178,17 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 				pathForResource:@"LogScale" ofType:@"tiff"]]];
 	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setTitle:[NSString stringWithFormat:@"  %@",
 				[[netScaleCalc itemAtIndex:kNetScaleCalcLog] title]]];
-
+    
+    NSString*appPath=[[NSBundle bundleForClass:[self class]] pathForResource:@"MenuMetersApp" ofType:@"app"];
+    [[NSWorkspace sharedWorkspace] launchApplication:appPath];
+    NSURL*appURL=[NSURL fileURLWithPath:appPath];
+    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
+    LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, (CFURLRef)appURL, NULL, NULL);
+    if (item)
+    {
+        CFRelease(item);
+    }
+    CFRelease(loginItems);
 } // mainViewDidLoad
 
 - (void)willSelect {
@@ -689,7 +699,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 ///////////////////////////////////////////////////////////////
 
 - (void)loadExtraAtURL:(NSURL *)extraURL withID:(NSString *)bundleID {
-
+#ifdef ELCAPITAN
+    [ourPrefs saveBoolPref:bundleID value:YES];
+    [ourPrefs syncWithDisk];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:bundleID
+                                                                   object:kPrefChangeNotification
+                                                                 userInfo:nil deliverImmediately:YES];
+    return;
+#endif
 	// Load the crack. With MenuCracker 2.x multiple loads are allowed, so
 	// we don't care if someone else has the MenuCracker 2.x bundle loaded.
 	// Plus, since MC 2.x does dodgy things with the load we can't actually
@@ -724,7 +741,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // loadExtraAtURL:withID:
 
 - (BOOL)isExtraWithBundleIDLoaded:(NSString *)bundleID {
-
+#ifdef ELCAPITAN
+    return [ourPrefs loadBoolPref:bundleID defaultValue:YES];
+#endif
 	void *anExtra = NULL;
 	if (!CoreMenuExtraGetMenuExtra((CFStringRef)bundleID, &anExtra) && anExtra) {
 		return YES;
@@ -735,7 +754,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // isExtraWithBundleIDLoaded
 
 - (void)removeExtraWithBundleID:(NSString *)bundleID {
-
+#ifdef ELCAPITAN
+    [ourPrefs saveBoolPref:bundleID value:NO];
+    [ourPrefs syncWithDisk];
+    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:bundleID
+                                                                   object:kPrefChangeNotification
+     userInfo:nil deliverImmediately:YES];
+    return;
+#endif
 	void *anExtra = NULL;
 	if (!CoreMenuExtraGetMenuExtra((CFStringRef)bundleID, &anExtra) && anExtra) {
 		CoreMenuExtraRemoveMenuExtra(anExtra, 0);
@@ -767,6 +793,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		// context
 		nil,
 		// msg
+                          @"%@",
 		[[NSBundle bundleForClass:[self class]]
 			localizedStringForKey:@"For instructions on enabling third-party menu extras please see the documentation."
 							value:nil

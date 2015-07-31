@@ -27,6 +27,12 @@
 
 @interface MenuMeterDefaults : NSObject
 
+#ifdef ELCAPITAN
+- (BOOL)loadBoolPref:(NSString *)prefName defaultValue:(BOOL)defaultValue;
+- (void)saveBoolPref:(NSString *)prefName value:(BOOL)value;
+#endif
+
+
 // Pref read/write
 - (void)syncWithDisk;
 

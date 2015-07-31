@@ -50,8 +50,10 @@
 - (int)loadBitFlagPref:(NSString *)prefName validFlags:(int)flags
 			  zeroValid:(BOOL)zeroValid defaultValue:(int)defaultValue;
 - (void)saveBitFlagPref:(NSString *)prefName value:(int)value;
+#ifndef ELCAPITAN
 - (BOOL)loadBoolPref:(NSString *)prefName defaultValue:(BOOL)defaultValue;
 - (void)saveBoolPref:(NSString *)prefName value:(BOOL)value;
+#endif
 - (NSColor *)loadColorPref:(NSString *)prefName defaultValue:(NSColor *)defaultValue;
 - (void)saveColorPref:(NSString *)prefname value:(NSColor *)value;
 - (NSString *)loadStringPref:(NSString *)prefName defaultValue:(NSString *)defaultValue;

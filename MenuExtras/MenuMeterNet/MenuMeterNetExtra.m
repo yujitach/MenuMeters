@@ -1481,6 +1481,9 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
+#ifdef ELCAPITAN
+    [super configDisplay:kNetMenuBundleID  fromPrefs:ourPrefs];
+#endif
 
 	// Update prefs
 	[ourPrefs syncWithDisk];
