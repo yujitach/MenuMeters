@@ -1,0 +1,179 @@
+// Processor title menu item (second title is used on multi-CPU systems)
+"Processor:" = "Prozessor:";
+"Processors:" = "Prozessoren:";
+
+// And the format string for the processor menu display (ex: "1 PowerPC 7450 @ 800MHz")
+// Note that CPU name information ("PowerPC 7450") cannot be localized, it is
+// provided by the system
+"%u %@ @ %@" = "%1$u %2$@ @ %3$@";
+
+// Uptime title menu item
+"Uptime:" = "Laufzeit:";
+
+// Uptime error (unavailable)
+"Unavailable" = "Nicht verfügbar";
+
+// Format strings for uptime (ex: "2 days 08:16:32")
+// Multiple day format
+"%ld days %02ld:%02ld:%02ld" = "%1$ld Tage %2$02ld:%3$02ld:%4$02ld Std.";
+// Single day format
+"%ld day %02ld:%02ld:%02ld" = "%1$ld Tag %2$02ld:%3$02ld:%4$02ld Std.";
+// Less than one day format
+"%02ld:%02ld:%02ld" = "%1$02ld:%2$02ld:%3$02ld";
+
+// Tasks and threads title
+"Tasks/Threads:" = "Prozesse/Threads:";
+
+// Format strings for tasks and threads
+"%d tasks, %d threads" = "%1$d Prozesse, %2$d Threads";
+
+// Load average title
+"Load Average (1m, 5m, 15m):" = "Durchschnittliche Auslastung (1 Min., 5 Min., 15 Min.):";
+
+// Load average format
+// Note that this only applies to the format of the string as a whole, not
+// the format of the load average floats themselves (load average floats are
+// automatically localized by NSNumberFormatter)
+"%@, %@, %@" = "%1$@, %2$@, %3$@";
+
+// Open Process Viewer/Open Console
+"Open Process Viewer" = "Prozess-Monitor öffnen";
+"Open Activity Monitor" = "Aktivitätsanzeige öffnen";
+"Open Console" = "Konsole öffnen";
+
+// Miscellaneous error strings
+
+// Displayed when CPU load, load average, or task count fails to return info
+"No info available" = "Nicht verfügbar";
+// Strings used for disk space free/used/total labels
+// Note that the actual disk space float format is automatically localized
+// by an NSNumberFormatter.
+"%@ Used" = "%1$@ Benutzt";
+"%@ Free" = "%1$@ Frei";
+"%@ Total" = "%1$@ Gesamt";
+
+// Unit labels
+"KB" = "KB";
+"MB" = "MB";
+"GB" = "GB";
+
+// Menubar display labels used in free/total mode
+"U:" = "B:";
+"F:" = "F:";
+
+// Unit labels
+"MB" = "MB";
+
+// Memory usage title menu item
+"Memory Usage:" = "Speicheraufteilung:";
+
+// Format string for memory usage. Float conversion to X.XX is
+// automatically localized by NSNumberFormatter and is therefore not exposed
+"%@ used, %@ free, %@ total" = "%1$@ Benutzt, %2$@ Frei, %3$@ Gesamt";
+
+// Memory page statistics title menu item
+"Memory Pages:" = "Speicherseiten:";
+
+// Format strings for memory statistics. Float conversion to X.XX is
+// automatically localized by NSNumberFormatter and is therefore not exposed
+"%@ active, %@ wired" = "%1$@ Aktiv, %2$@ Reserviert";
+"%@ inactive, %@ free" = "%1$@ Inaktiv, %2$@ Frei";
+"%@ compressed (%@)" = "%1$@ komprimiert (%2$@)";
+
+// VM statistics title menu item
+"VM Statistics:" = "VM-Statistiken:";
+
+// Format strings for VM statistics
+// Technically we should cover all permutations of 1 or more than 1
+// for each statistic, but in the real world users never have just
+// one pagein or copy-on-write, etc. so we can simplify to just
+// the plural forms
+"%@ pageins, %@ pageouts" = "%1$@ gelesene Seiten, %2$@ geschriebene Seiten";
+"%@ cache lookups, %@ cache hits (%@)" = "%1$@ Cache-Suchen, %2$@ Cache-Treffer (%3$@)";
+"%@ page faults, %@ copy-on-writes" = "%1$@ Seitenfehler, %2$@ Kopien-nach-Schreiben";
+
+// Swap file statistics title menu item
+"Swap Files:" = "Auslagerungsdateien:";
+
+// Swap file info formats. Here we do need to handle plurals since
+// values of 1 are likely
+// Basic swap file info (ex: "1 swap file in /private/var/vm/")
+"%@ swap file present in %@" = "%1$@ Auslagerungsdatei in %2$@ vorhanden";
+"%@ swap files present in %@" = "%1$@ Auslagerungsdateien in %2$@ vorhanden";
+// Basic swap file info with encryption
+"%@ encrypted swap file present in %@" = "%1$@ verschlüsselte Auslagerungsdatei in %2$@ vorhanden";
+"%@ encrypted swap files present in %@" = "%1$@ verschlüsselte Auslagerungsdateien in %2$@ vorhanden";
+// Maximum swap count info
+"%@ swap file at peak usage" = "Maximal %1$@ Auslagerungsdatei benutzt";
+"%@ swap files at peak usage" = "Maximal %1$@ Auslagerungsdateien benutzt";
+// Swap space info, as with free/used/total the float format and MB label
+// are handled automatically by NSFormatter
+"%@ total swap space" = "Auslagerungsdateien belegen %1$@";
+// Swap space including used info (Tiger only)
+"%@ total swap space (%@ used)" = "Auslagerungsdateien belegen %1$@ (%2$@ benutzt)";
+// Menubar display labels for throughput, Tx and Rx also used for Tx and Rx menu items
+"Tx:" = "Tx:";
+"Rx:" = "Rx:";
+
+// Unit labels
+"Gbps" = "Gbps";
+"Mbps" = "Mbps";
+"Kbps" = "Kbps";
+"B" = "B";
+"KB" = "KB";
+"MB" = "MB";
+"GB" = "GB";
+"B/s" = "B/s";
+"KB/s" = "KB/s";
+"MB/s" = "MB/s";
+"GB/s" = "GB/s";
+
+// PPP connection titles and states
+"PPP:" = "PPP:";
+"Not Connected" = "Nicht verbunden";
+"Connecting..." = "Verbindungsaufbau …";
+"Connected" = "Verbunden";
+"Connected %02d:%02d:%02d" = "Verbunden %1$02d:%2$02d:%3$02d";
+"Disconnecting..." = "Verbindungsabbau …";
+
+// TCP/IP menu titles
+"TCP/IP:" = "TCP/IP:";
+"IPv4:" = "IPv4:";
+"IPv6:" = "IPv6:";
+
+// Label for inactive TCP/IP interfaces
+"Inactive" = "Inaktiv";
+
+// AppleTalk menu title
+"AppleTalk:" = "AppleTalk:";
+
+// Format string for AppleTalk display info
+"Net: %@ Node: %@ Zone: %@" = "Netz: %1$@ Knoten: %2$@ Zone: %3$@";
+
+// Throughput menu title
+"Throughput:" = "Durchsatz:";
+
+// Peak throughput menu title
+"Peak Throughput:" = "Spitzendurchsatz:";
+
+// Traffic totals menu title
+"Traffic Totals:" = "Transfersummen:";
+
+// Traffic total format string. The Tx and Rx labels from above are automatically used
+// as the first param, and numbers are localized automatically by NSNumberFormatter
+// ex: "Tx: XX.XMB (XXX,XXX bytes)
+"%@ %@ (%@ bytes)" = "%1$@ %2$@ (%3$@ Bytes)";
+
+// Menu action title strings
+"Open Network Utility" = "Netzwerk-Dienstprogramm öffnen";
+"Open Network Preferences" = "Netzwerkeinstellungen öffnen";
+"Open Internet Connect" = "Internet-Verbindung öffnen";
+"Display primary interface" = "Primäre Netzwerkschnittstelle anzeigen";
+"Display this interface" = "Diese Netzwerkschnittstelle anzeigen";
+"Copy IPv4 address" = "IPv4-Adresse kopieren";
+"Copy IPv6 address" = "IPv6-Adresse kopieren";
+"Connect" = "Verbindung Aufbauen";
+"Disconnect" = "Verbindung Trennen";
+
+// Miscellaneous error strings
+"No Active Interfaces" = "Keine aktiven Schnittstellen";

@@ -1,0 +1,202 @@
+//	In the interest of improving localizability most strings in MenuMeters
+//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
+//	convention. If localization requires different ordering of the parameters you
+//	can reorder the items (leaving the %1$ notations in place) and NSString will
+//	put the items in the right order
+
+// Processor title menu item (second title is used on multi-CPU systems)
+"Processor:" = "处理器：";
+"Processors:" = "处理器：";
+
+// And the format string for the processor menu display (ex: "1 PowerPC 7450 @ 800MHz")
+// Note that CPU name information ("PowerPC 7450") cannot be localized, it is
+// provided by the system
+"%u %@ @ %@" = "%1$u %2$@ @ %3$@";
+
+// Uptime title menu item
+"Uptime:" = "正常运行时间：";
+
+// Uptime error (unavailable)
+"Unavailable" = "Unavailable";
+
+// Format strings for uptime (ex: "2 days 08:16:32")
+// Multiple day format
+"%ld days %02ld:%02ld:%02ld" = "%1$ld 日 %2$02ld:%3$02ld:%4$02ld";
+// Single day format
+"%ld day %02ld:%02ld:%02ld" = "%1$ld 日 %2$02ld:%3$02ld:%4$02ld";
+// Less than one day format
+"%02ld:%02ld:%02ld" = "%1$02ld:%2$02ld:%3$02ld";
+
+// Tasks and threads title
+"Tasks/Threads:" = "进程/线程：";
+
+// Format string for tasks and threads
+"%d tasks, %d threads" = "%1$d 进程， %2$d 线程";
+
+// Load average title
+"Load Average (1m, 5m, 15m):" = "平均载入(1m, 5m, 15m)：";
+
+// Load average format
+// Note that this only applies to the format of the string as a whole, not
+// the format of the load average floats themselves (load average floats are
+// automatically localized by NSNumberFormatter)
+"%@, %@, %@" = "%1$@， %2$@， %3$@";
+
+// Open Process Viewer/Open Console
+"Open Process Viewer" = "打开处理器显示器";
+"Open Activity Monitor" = "打开活动监视器";
+"Open Console" = "打开控制台";
+
+// Miscellaneous error strings
+
+// Displayed when CPU load, load average, or task count fails to return info
+"No info available" = "无可用信息";
+//	In the interest of improving localizability most strings in MenuMeters
+//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
+//	convention. If localization requires different ordering of the parameters you
+//	can reorder the items (leaving the %1$ notations in place) and NSString will
+//	put the items in the right order
+
+// Strings used for disk space free/used/total labels
+// Note that the actual disk space float format is automatically localized
+// by an NSNumberFormatter.
+"%@ Used" = "%1$@ 已使用";
+"%@ Free" = "%1$@ 可用";
+"%@ Total" = "%1$@ 总容量";
+
+// Unit labels
+"KB" = "KB";
+"MB" = "MB";
+"GB" = "GB";
+//	In the interest of improving localizability most strings in MenuMeters
+//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
+//	convention. If localization requires different ordering of the parameters you
+//	can reorder the items (leaving the %1$ notations in place) and NSString will
+//	put the items in the right order
+
+// Menubar display labels used in free/total mode
+"U:" = "用:";
+"F:" = "闲:";
+
+// Unit labels
+"MB" = "MB";
+
+// Memory usage title menu item
+"Memory Usage:" = "内存使用：";
+
+// Format string for memory usage. Float conversion to X.XX is
+// automatically localized by NSNumberFormatter and is therefore not exposed
+"%@ used, %@ free, %@ total" = "%1$@ 已使用， %2$@ 可用， %3$@ 总容量";
+
+// Memory page statistics title menu item
+"Memory Pages:" = "内存分页：";
+
+// Format strings for memory statistics. Float conversion to X.XX is
+// automatically localized by NSNumberFormatter and is therefore not exposed
+"%@ active, %@ wired" = "%1$@ 已激活， %2$@ 联动";
+"%@ inactive, %@ free" = "%1$@ 未激活， %2$@ 可用空间";
+"%@ compressed (%@)" = "%1$@ compressed (%2$@)";
+
+// VM statistics title menu item
+"VM Statistics:" = "VM 统计资料：";
+
+// Format strings for VM statistics
+// Technically we should cover all permutations of 1 or more than 1
+// for each statistic, but in the real world users never have just
+// one pagein or copy-on-write, etc. so we can simplify to just
+// the plural forms
+"%@ pageins, %@ pageouts" = "%1$@ 分页输入， %2$@ 分页输出";
+"%@ cache lookups, %@ cache hits (%@)" = "%1$@ 缓存查询， %2$@ 缓存命中 (%3$@)";
+"%@ page faults, %@ copy-on-writes" = "%1$@ 分页错误， %2$@ copy-on-writes";
+
+// Swap file statistics title menu item
+"Swap Files:" = "交换文件：";
+
+// Swap file info formats. Here we do need to handle plurals since
+// values of 1 are likely
+// Basic swap file info (ex: "1 swap file in /private/var/vm/")
+"%@ swap file present in %@" = "%1$@ 个交换文件滞留在 %2$@";
+"%@ swap files present in %@" = "%1$@ 个交换文件滞留在 %2$@";
+// Basic swap file info with encryption
+"%@ encrypted swap file present in %@" = "%1$@ 个已加密交换文件滞留在 %2$@";
+"%@ encrypted swap files present in %@" = "%1$@ 个已加密交换文件滞留在 %2$@";
+// Maximum swap count info
+"%@ swap file at peak usage" = "%1$@ 个交换文件在使用高峰";
+"%@ swap files at peak usage" = "%1$@ 个交换文件在使用高峰";
+// Swap space info, as with free/used/total the float format and MB label
+// are handled automatically by NSFormatter
+"%@ total swap space" = "%1$@ 合计交换空间";
+// Swap space including used info (Tiger only)
+"%@ total swap space (%@ used)" = "%1$@ 合计交换空间 (%2$@ 已使用)";
+//	In the interest of improving localizability most strings in MenuMeters
+//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
+//	convention. If localization requires different ordering of the parameters you
+//	can reorder the items (leaving the %1$ notations in place) and NSString will
+//	put the items in the right order
+
+// Menubar display labels for throughput, Tx and Rx also used for Tx and Rx menu items
+"Tx:" = "发：";
+"Rx:" = "收：";
+
+// Unit labels
+"Gbps" = "Gbps";
+"Mbps" = "Mbps";
+"Kbps" = "Kbps";
+"B" = "B";
+"KB" = "KB";
+"MB" = "MB";
+"GB" = "GB";
+"B/s" = "B/s";
+"KB/s" = "KB/s";
+"MB/s" = "MB/s";
+"GB/s" = "GB/s";
+
+// PPP connection titles and states
+"PPP:" = "PPP：";
+"Not Connected" = "未连接";
+"Connecting..." = "正在连接…";
+"Connected" = "已连接";
+"Connected %02d:%02d:%02d" = "已连接 %1$02d:%2$02d:%3$02d";
+"Disconnecting..." = "正在中断连接…";
+
+// TCP/IP menu titles
+"TCP/IP:" = "TCP/IP:";
+"IPv4:" = "IPv4:";
+"IPv6:" = "IPv6:";
+
+// Label for inactive TCP/IP interfaces
+"Inactive" = "未激活：";
+
+// AppleTalk menu title
+"AppleTalk:" = "AppleTalk：";
+
+// Format string for AppleTalk display info
+"Net: %@ Node: %@ Zone: %@" = "网络： %1$@ 节点： %2$@ 域： %3$@";
+
+// Throughput menu title
+"Throughput:" = "吞吐量：";
+
+// Peak throughput menu title
+"Peak Throughput:" = "尖峰吞吐量：";
+
+// Traffic totals menu title
+"Traffic Totals:" = "流量合计：";
+
+// Traffic total format string. The Tx and Rx labels from above are automatically used
+// as the first param, and numbers are localized automatically by NSNumberFormatter
+// ex: "Tx: XX.XMB (XXX,XXX bytes)
+"%@ %@ (%@ bytes)" = "%1$@ %2$@ (%3$@ bytes)";
+
+// Menu action title strings
+"Open Network Utility" = "打开网络实用程序";
+"Open Network Preferences" = "打开网络预置";
+"Open Internet Connect" = "打开 Internet 连接";
+"Display primary interface" = "显示主接口";
+"Display this interface" = "显示此接口";
+"Copy IPv4 address" = "拷贝 IPv4 地址";
+"Copy IPv6 address" = "拷贝 IPv6 地址";
+"Connect" = "连接";
+"Disconnect" = "中断连接";
+
+// Miscellaneous error strings
+"No Active Interfaces" = "无激活接口";
