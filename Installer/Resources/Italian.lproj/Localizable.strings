@@ -1,0 +1,29 @@
+// Update button (replaces install button when product is already installed)
+"Update" = "Aggiorna";
+
+// Window title, placeholder is for version string of version to be installed
+"%@ Installation" = "Installazione %@";
+
+// Strings for older OS version error dialog (title/message)
+"Unsupported Mac OS X version" = "Versione di Mac OS X non supportata";
+"MenuMeters can only be installed on Mac OS X 10.2 or later." =
+"MenuMeters può essere installato solo su Mac OS X 10.2 e successivi.";
+
+// Install/Update success/failure dialogs (title/message)
+"Installation Successful" = "Installazione Terminata con Successo";
+"MenuMeters was installed successfully. Open your System Preferences to start using MenuMeters." =
+"MenuMeters è stato installato con successo. Apri Preferenze di Sistema per iniziare ad utilizzare MenuMeters.";
+"Update Successful" = "Aggiornamento Ultimato con Successo";
+"MenuMeters was updated successfully. You must logout and relogin to use the new version of MenuMeters." =
+"MenuMeters è stato aggiornato con successo. Deve effetture logout e poi di nuovo login per utilizzare la nuova versione di MenuMeters.";
+"Installation Failure" = "Installazione Fallita";
+"MenuMeters could not be installed. Please see the Console log for errors." =
+"Non è stato possibile installare MenuMeters. Per errori controlla prego il resoconto in Console.";
+
+// Uninstall success/failure dialogs (title/message)
+"Uninstall Successful" = "Disinistallazione Terminata con Successo";
+"MenuMeters has been removed. You must logout to complete the uninstall." =
+"MenuMeters è stato rimosso. Devi effettuare logout per completare la disinstallazione.";
+"Uninstall Error" = "Errore di Disinstallazione";
+"MenuMeters could not be removed. Please see the Console log for errors." =
+"Non è stato possibile rimuovere MenuMeters. Per errori controlla prego il resoconto in Console.";

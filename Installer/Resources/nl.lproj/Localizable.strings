@@ -1,0 +1,26 @@
+// Update button (replaces install button when product is already installed)
+"Update" = "Update";
+
+// Strings older OS version
+"Unsupported Mac OS X version" = "Deze versie van Mac OSX wordt niet ondersteund";
+"MenuMeters can only be installed on Mac OS X 10.2 or later." =
+"MenuMeters kan alleen onder Mac OSX 10.2 of later worden geïnstalleerd.";
+
+// Install/Update success/failure
+"Installation Successful" = "De installatie is geslaagd";
+"MenuMeters was installed successfully. Open your System Preferences to start using MenuMeters." =
+"De installatie van MenuMeters is geslaagd. Open de Systeemvoorkeuren om MenuMeters te gebruiken";
+"Update Successful" = "Update geslaagd";
+"MenuMeters was updated successfully. You must logout and relogin to use the new version of MenuMeters." =
+"De update van MenuMeters is geslaagd. Om de nieuwe versie te gebruiken moet u uit- en weer inloggen";
+"Installation Failure" = "Fout bij de installatie";
+"MenuMeters could not be installed. Please see the Console log for errors." =
+"MenuMeters kon niet worden geïnstalleerd. Raadpleeg de Console voor een foutenrapport.";
+
+// Uninstall success/failure
+"Uninstall Successful" = "Verwijderen geslaagd";
+"MenuMeters has been removed. You must logout to complete the uninstall." =
+"MenuMeters is verwijderd. U moet uit- en weer inloggen om het proces te voltooien.";
+"Uninstall Error" = "Fout bij verwijderen";
+"MenuMeters could not be removed. Please see the Console log for errors." =
+"MenuMeters kon niet worden verwijderd. Raadpleeg de Console voor een foutenrapport.";

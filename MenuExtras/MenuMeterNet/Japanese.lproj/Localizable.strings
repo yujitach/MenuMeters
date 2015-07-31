@@ -1,0 +1,66 @@
+// Menubar display labels for throughput, Tx and Rx also used for Tx and Rx menu items
+"Tx:" = "out：";
+"Rx:" = "in：";
+
+// Unit labels
+"Gbps" = "Gbps";
+"Mbps" = "Mbps";
+"Kbps" = "Kbps";
+"B" = "B";
+"KB" = "KB";
+"MB" = "MB";
+"GB" = "GB";
+"B/s" = "B/s";
+"KB/s" = "KB/s";
+"MB/s" = "MB/s";
+"GB/s" = "GB/s";
+
+// PPP connection titles and states
+"PPP:" = "PPP:";
+"Not Connected" = "接続されていません";
+"Connecting..." = "接続中...";
+"Connected" = "接続されました";
+"Connected %02d:%02d:%02d" = "%1$02d:%2$02d:%3$02d に接続完了";
+"Disconnecting..." = "切断中...";
+
+// TCP/IP menu titles
+"TCP/IP:" = "TCP/IP:";
+"IPv4:" = "IPv4:";
+"IPv6:" = "IPv6:";
+
+// Label for inactive TCP/IP interfaces
+"Inactive" = "無効";
+
+// AppleTalk menu title
+"AppleTalk:" = "AppleTalk:";
+
+// Format string for AppleTalk display info
+"Net: %@ Node: %@ Zone: %@" = "ネット：%1$@、ノード：%2$@、ゾーン：%3$@";
+
+// Throughput menu title
+"Throughput:" = "通信速度：";
+
+// Peak throughput menu title
+"Peak Throughput:" = "通信速度(ピーク)：";
+
+// Traffic totals menu title
+"Traffic Totals:" = "トラフィック合計：";
+
+// Traffic total format string. The Tx and Rx labels from above are automatically used
+// as the first param, and numbers are localized automatically by NSNumberFormatter
+// ex: "Tx: XX.XMB (XXX,XXX bytes)
+"%@ %@ (%@ bytes)" = "%1$@ %2$@ (%3$@ バイト)";
+
+// Menu action title strings
+"Open Network Utility" = "ネットワークユーティリティを開く";
+"Open Network Preferences" = "ネットワーク環境設定を開く";
+"Open Internet Connect" = "インターネット接続を開く";
+"Display primary interface" = "プライマリネットワークポートを表示";
+"Display this interface" = "このネットワークポートを表示";
+"Copy IPv4 address" = "IPv4 アドレスをコピーする";
+"Copy IPv6 address" = "IPv6 アドレスをコピーする";
+"Connect" = "接続";
+"Disconnect" = "切断";
+
+// Miscellaneous error strings
+"No Active Interfaces" = "有効なネットワークポートがありません";

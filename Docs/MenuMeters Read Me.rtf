@@ -1,0 +1,195 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+\readonlydoc1\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\vieww12340\viewh8820\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640
+
+\f0\b\fs48 \cf0 MenuMeters\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs22 \cf0 Version 1.8.1, Copyright \'a9 2002-2014 Alex Harper (basilisk@foobox.net)\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+{\field{\*\fldinst{HYPERLINK "http://www.ragingmenace.com"}}{\fldrslt 
+\b\fs28 \cf0 http://www.ragingmenace.com}}\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs24 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs28 \cf0 Contents:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs22 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs24 \cf0 \'95 Introduction\
+\'95 How to install\
+\'95 How to uninstall\
+\'95 MenuCracker and MenuExtras\
+\'95 Legal / License\
+\'95 Contact the Author / Donations\
+\'95 Thanks
+\b0 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs36 \cf0 Introduction
+\fs28 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 MenuMeters is a set of CPU, memory, disk, and network monitoring tools for Mac OS X. Although there are numerous other programs which do the same thing, none had quite the feature set I was looking for. Most were windows that sat in a corner or on the desktop, which are inevitably obscured by document windows on a laptop's small screen. Those monitors which used the menubar mostly used the NSStatusItem API, which has the annoying tendency to totally reorder my menubar on every login.\
+\
+The MenuMeters monitors are true SystemUIServer plugins (also known as Menu Extras). This means they can be reordered using command-drag and remember their positions in the menubar across logins and restarts.\
+\
+\'95	The CPU Meter can display system load both as a total percentage, or broken out as user and system time. It can also graph user and system load and display the load as a "thermometer". The menu for the CPU Meter contains several pieces of information I like to have a single click away.\
+\
+\'95	The Disk Activity Meter displays disk activity to local disks on the system (anything that is a IOKit BlockStorage driver). It is hotplug aware, and will show activity on FireWire and USB disks as they are mounted. The Disk Meter menu shows volume space details for local drives (it does not display mounted network volumes for performance reasons).\
+\
+\'95	The Memory Meter can display current memory usage as either a pie chart, thermometer, history graph, or as used/free totals. The Memory Meter menu shows a breakdown of current memory usage and VM statistics. The Memory Meter can optionally display a paging indicator light.\
+\
+\'95	The Net Meter can display network throughput as arrows, bytes per second, and/or as a graph. Both the arrows and the graph are scaled using a user-selected scaling factor and calculation. Scaling can be done on the basis of actual link speed reported by the network interface or peak traffic and can use one of several scaling calculations. The Net Meter menu shows current interfaces and their status. Interface information is gathered from the SystemConfiguraton framework and thus is Mac OS X network location aware (to prevent interfaces from appearing in this menu see the FAQ).\
+\
+\
+MenuMeters comes without warranty or support. That said, if it causes you problems I'd like to hear about it so that I may be able to track down the bug. Even better, since this is open source, you can fix the bug yourself. Patches are accepted.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs36 \cf0 How to install
+\fs28 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 \
+Please note that MenuMeters is only supported on Mac OS X 10.3.9 or later.\
+\
+To install MenuMeters simply run the included installer application. The installer will update any prior MenuMeters installation if you are upgrading from an earlier version.\
+\
+If you are a first-time MenuMeters user, then once installation is complete you can simply open your System Preferences application and click on the MenuMeters icon to start using MenuMeters. If you are updating from an older version of MenuMeters, you must logout and relogin to load the new version of MenuMeters. UNIX-savvy users can 'kill -HUP' the SystemUIServer process, but remember this will restart/logout other Menu Extras.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs36 \cf0 How to uninstall\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 \
+If for some reason you decide MenuMeters is not for you, then you can use the MenuMeters installer's uninstall feature to remove MenuMeters from your system. Once you have uninstalled MenuMeters you must logout and relogin to complete the removal. This will remove MenuMeters and the included copy of MenuCracker from your system.\
+\
+If for some reason you wish to manually uninstall MenuMeters then delete either:\
+\
+\'95	/Library/PreferencePanes/MenuMeters.prefPane\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs10 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs24 \cf0 or\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs10 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs24 \cf0 \'95	/Users/<your username>/Library/PreferencePanes/MenuMeters.prefPane\
+\
+(You will only have one of the above; which one you have depends on the install type you chose during installation.)\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs36 \cf0 MenuCracker and MenuExtras\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 \
+In Mac OS X 10.2 Apple restricted the menu extra API to prevent third party developers from developing menu extras. This is a terrible shame, as menu extras have several major features over their lesser cousin the NSStatusItem. Notably, only menu extras can be command-dragged (Apple-key drag) to reorder their position on the menubar. Luckily several developers have produced packages which re-enable third party menu extras, allowing you to reclaim your menubar.\
+\
+MenuMeters incorporates MenuCracker, an open source project to enable third party menu extras. If needed MenuCracker will be automatically installed on your machine when you first activate MenuMeters from its System Preferences panel. The MenuCracker installation does not modify your system files in any way, and removing MenuMeters from your PreferencePanes folder along with a logout and relogin will remove MenuCracker entirely. More information on MenuCracker can be found at the MenuCracker project page ({\field{\*\fldinst{HYPERLINK "http://sourceforge.net/projects/menucracker/"}}{\fldrslt http://sourceforge.net/projects/menucracker/}}).\
+\
+If you already have a different method of enabling third party menu extras, such as Unsanity's Menu Extra Enabler ({\field{\*\fldinst{HYPERLINK "http://www.unsanity.com/"}}{\fldrslt http://www.unsanity.com/}}) MenuMeters will honor that preference and will not install MenuCracker.\
+\
+It is possible that in some future release of Mac OS X Apple will block or break MenuCracker and/or Menu Extra Enabler. If MenuMeters does not load on your machine or reports an error when activating the meters please contact the author and check for a newer version of MenuCracker or Menu Extra Enabler at the locations mentioned above. \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs36 \cf0 Legal / License\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 \
+MenuMeters and accompanying documentation are copyright \'a9 2003-2014 Alex Harper.\
+\
+MenuMeters is released under the GNU General Public License (GPL) version 2. See the "GNU General Public License.rtf" included with this distribution for license terms.\
+\
+The MenuMeters package also includes MenuCracker. MenuCracker is an independent project covered under the Artistic License. For MenuCracker license terms see the "Artistic License.rtf."\
+\
+Mac OS X and PowerBook are registered trademarks of Apple Computer. All other trademarks are the property of their respective owners.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs36 \cf0 Contact the Author / Donations\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 \
+Questions and comments about MenuMeters should be directed to Alex Harper (basilisk@foobox.net).\
+\
+Although distributed as open-source freeware, a great deal of effort has gone into the creation and maintenance of MenuMeters. If you find MenuMeters useful please consider showing your support by donating. Information on donations can be found at the MenuMeters product page ({\field{\*\fldinst{HYPERLINK "http://www.ragingmenace.com/software/menumeters/"}}{\fldrslt http://www.ragingmenace.com/software/menumeters/}}).\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs36 \cf0 Thanks\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 \
+MenuMeters could not exist without the source examples of a number of projects.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li140\fi-140
+\cf0 \'95 Frank Vercruesse - ASM - The first third party menu extra. Early versions were open source and provided great guidance.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs10 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li140\fi-140
+
+\fs24 \cf0 \'95 Konstantin Anoshkin - ClassicSpy - A menu extra that was both useful (its was in my menubar for a long time) and simple enough that I could learn the basics of the API from its source.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs10 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li140\fi-140
+
+\fs24 \cf0 \'95 nibs@arsware.org - Aquamon - Provided much of the inspiration and statistics gathering tools. Its a great tool to place many interesting statistics on your desktop. Unfortunately, I can never see my desktop so I wrote this instead.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs10 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720
+
+\fs24 \cf0 \'95 \CocoaLigature0 Brad Barnhorst - MultiMeter - Guided me through the places where AquaMon was confusing.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs10 \cf0 \CocoaLigature1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li140\fi-140
+
+\fs24 \cf0 \CocoaLigature0 \'95 \CocoaLigature1 Mike Piatek-Jimenez - \CocoaLigature0 X Resource Graph - Pointed me to a method (from \CocoaLigature1 gkrellm) to gather network stats without using kernel memory reads requiring setuid permissions.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720
+\cf0 \
+Additional thanks are owed to:\
+\
+\'95 CocaDevCentral ({\field{\*\fldinst{HYPERLINK "http://www.cocoadevcentral.com"}}{\fldrslt http://www.cocoadevcentral.com}}) - For numerous examples and ideas.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs10 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li720\fi-720
+
+\fs24 \cf0 \'95 James Bond - For reclaiming the menubar from Apple's block in Jaguar.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\fs10 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\li140\fi-140
+
+\fs24 \cf0 \'95 Jon and Chris - For answering my inane Mac OS X and Objective-C questions, and introducing me to the SystemConfiguration framework.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+\cf0 \
+\
+   }

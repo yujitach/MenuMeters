@@ -1,0 +1,66 @@
+// Menubar display labels for throughput, Tx and Rx also used for Tx and Rx menu items
+"Tx:" = "Tx:";
+"Rx:" = "Rx:";
+
+// Unit labels
+"Gbps" = "Gbps";
+"Mbps" = "Mbps";
+"Kbps" = "Kbps";
+"B" = "o";
+"KB" = "Ko";
+"MB" = "Mo";
+"GB" = "Go";
+"B/s" = "o/s";
+"KB/s" = "Ko/s";
+"MB/s" = "Mo/s";
+"GB/s" = "Go/s";
+
+// PPP connection titles and states
+"PPP:" = "PPP :";
+"Not Connected" = "Déconnecté";
+"Connecting..." = "Connexion...";
+"Connected" = "Connecté";
+"Connected %02d:%02d:%02d" = "Connecté depuis %1$02d:%2$02d:%3$02d";
+"Disconnecting..." = "Déconnexion...";
+
+// TCP/IP menu titles
+"TCP/IP:" = "TCP/IP :";
+"IPv4:" = "IPv4 :";
+"IPv6:" = "IPv6 :";
+
+// Label for inactive TCP/IP interfaces
+"Inactive" = "Inactive";
+
+// AppleTalk menu title
+"AppleTalk:" = "AppleTalk :";
+
+// Format string for AppleTalk display info
+"Net: %@ Node: %@ Zone: %@" = "Net : %1$@ Nœud : %2$@ Zone : %3$@";
+
+// Throughput menu title
+"Throughput:" = "Débit :";
+
+// Peak throughput menu title
+"Peak Throughput:" = "Débit montant maximal :";
+
+// Traffic totals menu title
+"Traffic Totals:" = "Trafic total :";
+
+// Traffic total format string. The Tx and Rx labels from above are automatically used
+// as the first param, and numbers are localized automatically by NSNumberFormatter
+// ex: "Tx: XX.XMB (XXX,XXX bytes)
+"%@ %@ (%@ bytes)" = "%1$@ %2$@ (%3$@ octets)";
+
+// Menu action title strings
+"Open Network Utility" = "Ouvrir Utilitaire de réseau";
+"Open Network Preferences" = "Ouvrir les préférences Réseau";
+"Open Internet Connect" = "Ouvrir Connexion à Internet";
+"Display this interface" = "Afficher cette interface";
+"Display primary interface" = "Afficher l'interface primaire";
+"Copy IPv4 address" = "Copier l'adresse IPv4";
+"Copy IPv6 address" = "Copier l'adresse IPv6";
+"Connect" = "Connexion";
+"Disconnect" = "Déconnexion";
+
+// Miscellaneous error strings
+"No Active Interfaces" = "Aucune interface active";

@@ -1,0 +1,87 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265
+\readonlydoc1\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\vieww12160\viewh9280\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640
+
+\f0\b\fs38 \cf0 MenuMeters Source ReadMe
+\fs48 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs22 \cf0 Copyright \'a9 2002-2014 Alex Harper (basilisk@foobox.net)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs28 \cf0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+{\field{\*\fldinst{HYPERLINK "http://www.ragingmenace.com"}}{\fldrslt 
+\fs26 \cf0 http://www.ragingmenace.com}}
+\b0\fs24 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs28 \cf0 About:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 This is the MenuMeters source code distribution. The source code distribution is intended for use by developers. End users who have accidentally downloaded this archive should instead download the MenuMeters binary distribution ({\field{\*\fldinst{HYPERLINK "http://www.ragingmenace.com/software/menumeters/"}}{\fldrslt http://www.ragingmenace.com/software/menumeters/}}).\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs28 \cf0 License:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 \
+MenuMeters is copyright \'a9 2002-2014 by Alex Harper and released under the GPL version 2. See the "GNU General Public License.rtf" included with this distribution for license terms.\
+\
+This source package also includes MenuCracker. MenuCracker is an independent project covered under the Artistic License. For MenuCracker license terms see the "Artistic License.rtf" included in the MenuCracker directory.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs28 \cf0 Building:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 MenuMeters is built using the Xcode 3.2 development tools. Older or newer versions of the Mac OS X development tools may not work. In particular, Xcode 4 does not work because it does not include the needed legacy SDK support.\
+\
+MenuMeters is compiled as a universal binary using Xcode 3.2 features to chose compilers and SDKs on per-architecture basis. For maximum compatibility MenuMeters is compiled with GCC 4.0 and the 10.4 SDK except where that SDK is not available (x86_64). 64-bit Intel uses GCC 4.0 and the 10.5 SDK.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs28 \cf0 Learning the MenuExtra API:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 If your goal is to learn the MenuExtra API then the MenuMeters source is probably a bad place to start. I was learning Objective-C while writing MenuMeters and make no claims that it is good example of how to build a MenuExtra. It works, but its probably not a stellar example of Objective-C design.\
+\
+A better place to start learning to write MenuExtras is the CocoaDevCentral NSMenuExtra tutorial ({\field{\*\fldinst{HYPERLINK "http://www.cocoadevcentral.com/articles/000078.php"}}{\fldrslt http://www.cocoadevcentral.com/articles/000078.php}}).\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs28 \cf0 Redistributing new versions:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 Under the GPL you are entitled to modify and redistribute MenuMeters as you see fit. However, before creating or distributing your own modified version of MenuMeters please consider contacting me for inclusion into the main version. I generally accept new features into MenuMeters and would like to keep a single "master" version of MenuMeters to prevent user confusion. From a personal perspective this is especially important to me as nothing is more frustrating than seeing derivative versions distributed when I would have been more than happy to accept the patches into the master source tree.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b\fs28 \cf0 Contributing patches:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720
+
+\b0\fs24 \cf0 Patches to MenuMeters should be sent to the email address at the top of this file. When contributing patches please send a complete source tree, not just 'diff' output. Diff output works well for minor changes, but getting major changes merged using patch can be a problem when those patches no longer cleanly apply to the current development tree (which is often very different than the last public source release).\
+\
+If you are planning to submit a patch please consider contacting me before beginning work. This way you might can be sure that I or someone else have not already fixed the bug or added the feature in the current development version. This also gives you the opportunity to verify that the patch will be accepted. Sometimes I ask that new features in contributed patches be changed to better fit with other changes and my plans in general for MenuMeters. Contacting me beforehand lets us work these issues out early.\
+\
+Be aware that I will ask patch authors to disclaim copyright on contributed patches and either place them in the public domain or assign copyright to me. I understand that this is a potentially contentious issue, but it is unfortunately necessary. Under U.S. copyright law, copyright is most easy to defend if there is a single copyright holder. For this reason the Free Software Foundation (FSF) recommends that copyright for any GPL project be assigned to single holder (see {\field{\*\fldinst{HYPERLINK "http://www.gnu.org/licenses/gpl-faq.html#AssignCopyright"}}{\fldrslt http://www.gnu.org/licenses/gpl-faq.html#AssignCopyright}}). Of course, patch contributors will receive full credit in the source and history file. My intention is not to claim credit for your work, just to protect my copyright.\
+\
+If for some reason you are not able to place your changes in the public domain, or feel your contribution is substantial enough to warrant its own copyright, please contact me and we can discuss alternatives.\
+\
+Finally, I like to give all patch contributors credit in both the source and History file for the project. Usually this is done using a format like "Feature X contributed by Bob Smith (bob at smith.com)." If you prefer not to have your email address listed, or wish to remain anonymous, please let me know when you send your patch in.\
+\
+}

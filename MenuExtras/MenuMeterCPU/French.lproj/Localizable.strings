@@ -1,0 +1,46 @@
+// Processor title menu item (second title is used on multi-CPU systems)
+"Processor:" = "Processeur :";
+"Processors:" = "Processeurs :";
+
+// And the format string for the processor menu display (ex: "1 PowerPC 7450 @ 800MHz")
+// Note that CPU name information ("PowerPC 7450") cannot be localized, it is
+// provided by the system
+"%u %@ @ %@" = "%1$u %2$@ @ %3$@";
+
+// Uptime title menu item
+"Uptime:" = "Uptime :";
+
+// Uptime error (unavailable)
+"Unavailable" = "Indisponible";
+
+// Multiple day format
+"%ld days %02ld:%02ld:%02ld" = "%1$ld jours %2$02ld:%3$02ld:%4$02ld";
+// Single day format
+"%ld day %02ld:%02ld:%02ld" = "%1$ld jour %2$02ld:%3$02ld:%4$02ld";
+// Less than one day format
+"%02ld:%02ld:%02ld" = "%1$02ld:%2$02ld:%3$02ld";
+
+// Tasks and threads title
+"Tasks/Threads:" = "Tâches/Fils :";
+
+// Format strings for tasks and threads
+"%d tasks, %d threads" = "%1$d tâches, %2$d fils";
+
+// Load average title
+"Load Average (1m, 5m, 15m):" = "Charge moyenne (1m, 5m, 15m) :";
+
+// Load average format
+// Note that this only applies to the format of the string as a whole, not
+// the format of the load average floats themselves (load average floats are
+// automatically localized by NSNumberFormatter)
+"%@, %@, %@" = "%1$@, %2$@, %3$@";
+
+// Open Process Viewer/Open Console
+"Open Process Viewer" = "Ouvrir Visualiseur d'opérations";
+"Open Activity Monitor" = "Ouvrir Moniteur d'activité";
+"Open Console" = "Ouvrir Console";
+
+// Miscellaneous error strings
+
+// Displayed when CPU load, load average, or task count fails to return info
+"No info available" = "Aucune info disponible";

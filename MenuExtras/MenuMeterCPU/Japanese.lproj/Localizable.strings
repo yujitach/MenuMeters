@@ -1,0 +1,47 @@
+// Processor title menu item (second title is used on multi-CPU systems)
+"Processor:" = "プロセッサ：";
+"Processors:" = "プロセッサ：";
+
+// And the format string for the processor menu display (ex: "1 PowerPC 7450 @ 800MHz")
+// Note that CPU name information ("PowerPC 7450") cannot be localized, it is
+// provided by the system
+"%u %@ @ %@" = "%1$u つの %2$@／%3$@";
+
+// Uptime title menu item
+"Uptime:" = "稼働時間：";
+
+// Uptime error (unavailable)
+"Unavailable" = "Unavailable";
+
+// Format strings for uptime (ex: "2 days 08:16:32")
+// Multiple day format
+"%ld days %02ld:%02ld:%02ld" = "%1$ld 日 %2$02ld 時間 %3$02ld 分 %4$02ld 秒";
+// Single day format
+"%ld day %02ld:%02ld:%02ld" = "%1$ld 日 %2$02ld 時間 %3$02ld 分 %4$02ld 秒";
+// Less than one day format
+"%02ld:%02ld:%02ld" = "%1$02ld 時間 %3$02ld 分 %4$02ld 秒";
+
+// Tasks and threads title
+"Tasks/Threads:" = "タスク／スレッド：";
+
+// Format strings for tasks and threads
+"%d tasks, %d threads" = "タスク数：%1$d、スレッド数：%2$d";
+
+// Load average title
+"Load Average (1m, 5m, 15m):" = "平均負荷：";
+
+// Load average format
+// Note that this only applies to the format of the string as a whole, not
+// the format of the load average floats themselves (load average floats are
+// automatically localized by NSNumberFormatter)
+"%@, %@, %@" = "1分間：%1$@、5分間：%2$@、15分間：%3$@";
+
+// Open Process Viewer/Open Console
+"Open Process Viewer" = "プロセスビューアを開く";
+"Open Activity Monitor" = "アクティビティモニタを開く";
+"Open Console" = "コンソールを開く";
+
+// Miscellaneous error strings
+
+// Displayed when CPU load, load average, or task count fails to return info
+"No info available" = "利用可能な情報がありません";

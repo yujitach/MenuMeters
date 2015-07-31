@@ -1,0 +1,10 @@
+UserInterfaceState.xcuserstate
+build
+*.pbxuser
+*.perspectivev3
+*.mode1v3
+*~
+*~.nib
+*~.xib 
+.DS_Store 
+xcuserdata/

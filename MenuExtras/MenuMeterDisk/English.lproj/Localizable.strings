@@ -1,0 +1,18 @@
+//	In the interest of improving localizability most strings in MenuMeters
+//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
+//	convention. If localization requires different ordering of the parameters you
+//	can reorder the items (leaving the %1$ notations in place) and NSString will
+//	put the items in the right order
+
+// Strings used for disk space free/used/total labels
+// Note that the actual disk space float format is automatically localized
+// by an NSNumberFormatter.
+"%@ Used" = "%1$@ Used";
+"%@ Free" = "%1$@ Free";
+"%@ Total" = "%1$@ Total";
+
+// Unit labels
+"KB" = "KB";
+"MB" = "MB";
+"GB" = "GB";
+

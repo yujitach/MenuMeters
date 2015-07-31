@@ -1,0 +1,12 @@
+// Strings used for disk space free/used/total labels
+// Note that the actual disk space float format is automatically localized
+// by an NSNumberFormatter.
+"%@ Used" = "使用領域：%1$@、";
+"%@ Free" = "空き領域：%1$@、";
+"%@ Total" = "容量：%1$@";
+
+// Unit labels
+"KB" = "KB";
+"MB" = "MB";
+"GB" = "GB";
+

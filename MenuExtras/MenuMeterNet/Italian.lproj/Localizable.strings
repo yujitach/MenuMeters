@@ -1,0 +1,72 @@
+//	In the interest of improving localizability most strings in MenuMeters
+//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
+//	convention. If localization requires different ordering of the parameters you
+//	can reorder the items (leaving the %1$ notations in place) and NSString will
+//	put the items in the right order
+
+// Menubar display labels for throughput, Tx and Rx also used for Tx and Rx menu items
+"Tx:" = "Tx:";
+"Rx:" = "Rx:";
+
+// Unit labels
+"Gbps" = "Gbps";
+"Mbps" = "Mbps";
+"Kbps" = "Kbps";
+"B" = "B";
+"KB" = "KB";
+"MB" = "MB";
+"GB" = "GB";
+"B/s" = "B/s";
+"KB/s" = "KB/s";
+"MB/s" = "MB/s";
+"GB/s" = "GB/s";
+
+// PPP connection titles and states
+"PPP:" = "PPP:";
+"Not Connected" = "Non Connesso";
+"Connecting..." = "Collego...";
+"Connected" = "Connesso";
+"Connected %02d:%02d:%02d" = "Connesso %1$02d:%2$02d:%3$02d";
+"Disconnecting..." = "Scollego...";
+
+// TCP/IP menu titles
+"TCP/IP:" = "TCP/IP:";
+"IPv4:" = "IPv4:";
+"IPv6:" = "IPv6:";
+
+// Label for inactive TCP/IP interfaces
+"Inactive" = "Inattiva";
+
+// AppleTalk menu title
+"AppleTalk:" = "AppleTalk:";
+
+// Format string for AppleTalk display info
+"Net: %@ Node: %@ Zone: %@" = "Rete: %1$@ Nodo: %2$@ Zona: %3$@";
+
+// Throughput menu title
+"Throughput:" = "Throughput:";
+
+// Peak throughput menu title
+"Peak Throughput:" = "Picco Throughput:";
+
+// Traffic totals menu title
+"Traffic Totals:" = "Totali Traffico:";
+
+// Traffic total format string. The Tx and Rx labels from above are automatically used
+// as the first param, and numbers are localized automatically by NSNumberFormatter
+// ex: "Tx: XX.XMB (XXX,XXX bytes)
+"%@ %@ (%@ bytes)" = "%1$@ %2$@ (%3$@ byte)";
+
+// Menu action title strings
+"Open Network Utility" = "Apri Utility Network";
+"Open Network Preferences" = "Apri Preferenze Network";
+"Open Internet Connect" = "Apri Connessione Internet";
+"Display primary interface" = "Mostra interfaccia primaria";
+"Display this interface" = "Mostra questa interfaccia";
+"Copy IPv4 address" = "Copia indirizzo IPv4";
+"Copy IPv6 address" = "Copia indirizzo IPv6";
+"Connect" = "Collega";
+"Disconnect" = "Scollega";
+
+// Miscellaneous error strings
+"No Active Interfaces" = "Nessuna Interfaccia Attiva";

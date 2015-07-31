@@ -1,0 +1,53 @@
+//	In the interest of improving localizability most strings in MenuMeters
+//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
+//	convention. If localization requires different ordering of the parameters you
+//	can reorder the items (leaving the %1$ notations in place) and NSString will
+//	put the items in the right order
+
+// Processor title menu item (second title is used on multi-CPU systems)
+"Processor:" = "Processor:";
+"Processors:" = "Processors:";
+
+// And the format string for the processor menu display (ex: "1 PowerPC 7450 @ 800MHz")
+// Note that CPU name information ("PowerPC 7450") cannot be localized, it is
+// provided by the system
+"%u %@ @ %@" = "%1$u %2$@ @ %3$@";
+
+// Uptime title menu item
+"Uptime:" = "Uptime:";
+
+// Uptime error (unavailable)
+"Unavailable" = "Unavailable";
+
+// Format strings for uptime (ex: "2 days 08:16:32")
+// Multiple day format
+"%ld days %02ld:%02ld:%02ld" = "%1$ld days %2$02ld:%3$02ld:%4$02ld";
+// Single day format
+"%ld day %02ld:%02ld:%02ld" = "%1$ld day %2$02ld:%3$02ld:%4$02ld";
+// Less than one day format
+"%02ld:%02ld:%02ld" = "%1$02ld:%2$02ld:%3$02ld";
+
+// Tasks and threads title
+"Tasks/Threads:" = "Tasks/Threads:";
+
+// Format string for tasks and threads
+"%d tasks, %d threads" = "%1$d tasks, %2$d threads";
+
+// Load average title
+"Load Average (1m, 5m, 15m):" = "Load Average (1m, 5m, 15m):";
+
+// Load average format
+// Note that this only applies to the format of the string as a whole, not
+// the format of the load average floats themselves (load average floats are
+// automatically localized by NSNumberFormatter)
+"%@, %@, %@" = "%1$@, %2$@, %3$@";
+
+// Open Process Viewer/Open Console
+"Open Process Viewer" = "Open Process Viewer";
+"Open Activity Monitor" = "Open Activity Monitor";
+"Open Console" = "Open Console";
+
+// Miscellaneous error strings
+
+// Displayed when CPU load, load average, or task count fails to return info
+"No info available" = "No info available";

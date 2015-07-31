@@ -1,0 +1,395 @@
+MenuMeters 1.8.1
+
+* [BUG] Suppress some warnings about use of Gestalt API on 10.10.
+* [BUG] Fix disk meter to crash when loaded first.
+* [BUG] Fix 10.4 compatibility.
+
+
+MenuMeters 1.8
+
+* [FEATURE] Support OS X 10.10 Yosemite dark menubar.
+* [BUG] Fix menu updates on 10.10 Yosemite.
+* [BUG] Fix update of CPU meter preferences when disk meter is unloaded.
+* [LOCALE] Reintroduce German localization. Thanks to David Andel (www.andel.info).
+* [LOCALE] Reintroduce Japanese localization. Thanks to motchy (motchy at kitcc.org).
+
+
+MenuMeters 1.7
+
+* [BUG] Add support for compressed memory for 10.9.
+* [LOCALE] Several localizations removed (no maintainer).
+
+MenuMeters 1.6.1
+
+* [BUG] Fix code signature for inner nested bundles, allowing load on 10.9
+	preview releases.
+
+MenuMeters 1.6
+
+* [FEATURE] Signed release for 10.8 Mountain Lion.
+
+MenuMeters 1.5.1
+
+* [BUG] Recognize exFAT volumes.
+
+MenuMeters 1.5
+
+* [FEATURE] Support OS X 10.7.
+
+MenuMeters 1.4.1
+
+* [BUG] Only open USB control of the PowerMate when that option is enabled.
+
+MenuMeters 1.4
+
+* [FEATURE] Snow Leopard compatible Universal Binary (ppc, i386, x86_64).
+* [FEATURE] Includes MenuCracker 2.x for Snow Leopard and for better long-term
+	compatibility with other menubar add-ons.
+* [FEATURE] Hide more inactive statistics on inactive network interfaces.
+* [FEATURE] Simplified Intel CPU naming ("Intel" not 80486).
+* [FEATURE] Support for IPv6 addresses in the network menu, based on patches
+	from Smith Kennedy.
+* [CHANGE] Major code cleanup, fixing a number of obscure bugs and probably
+	introducing some more.
+* [CHANGE] Changes to various menubar displays and text for readability and
+	general cleanup. Removed various tweaky options (like disabling
+	antialiasing) that haven't been relevant since very early OS X and aren't
+	worth the maintenance cost.
+* [CHANGE] Remove CPU menu option for 'nice' color, hasn't worked since Apple
+	API changed.
+* [CHANGE] Removed CPU menu thermal register statistic, hasn't worked since G3.
+* [CHANGE] Reordered memory pie chart to place wired at the start of the graph.
+* [CHANGE] Use base-10 disk space calculations on Snow Leopard (use hidden
+	pref DiskSpaceForceBaseTwo to override).
+* [BUG] Fixed NSNumberFormatter overflow for memory statistics.
+* [BUG] Fix preference reset when opening preference pane on Leopard and later.
+* [BUG] Fix support for the PowerMate regardless of driver version.
+* [BUG] Fix Connect and Disconnect commands for VPN and other complex
+	interfaces controlled by the PPP subsystem.
+* [BUG] Show disk space for mounted NTFS volumes.
+* [BUG] Fix slow disk unmount/eject on Tiger.
+* [BUG] CPU percent user/system split display includes nice'd process. This
+	matches current implementations of 'top'.
+* [BUG] Fixed NSNumberFormatter overflow for memory statistics.
+* [BUG] Fix network throughput on 10.6 with some new machine models.
+* [LOCALE] Simplified Chinese localization, thanks to Tintin (tintin.c
+	at gmail.com).
+
+MenuMeters 1.3
+
+* [FEATURE] Universal binary for PowerPC and Intel.
+* [FEATURE] Swap file usage and encryption status on 10.4 (Tiger). Based
+	on patches from Michael Nordmeyer (http://goodyworks.com).
+* [FEATURE] Update load average calculation to better match 'top', patch
+	by Michael Nordmeyer (http://goodyworks.com).
+* [FEATURE] Disk activity indicator with large color arrows on boot disk icon.
+	Based on patches from macrulez at softhome.net.
+* [BUG] Fix problem caused by Cisco VPN where the primary interface (the
+	VPN connection) can't be found in the interface list.
+* [BUG] Fix disk meter problem for volumes with UTF8 characters in the
+	name (iPods are a common example).
+
+MenuMeters 1.2.2
+
+* [BUG] Rebuild with gcc 3.3 for compatibility with 10.2.
+
+MenuMeters 1.2.1
+
+* [BUG] Fixes for menubar displays on machines themed with
+	ShapeShifter and similar tools.
+* [BUG] Fix custom swapfile path detection on 10.4.
+* [BUG] Fix live menu content updating on 10.4.
+* [LOCALE] Dutch localization recreated, thanks to Martijn van Exel
+	(mvexel at gmail.com).
+
+MenuMeters 1.2
+
+* [FEATURE] Net meter now supports "orientation" preference to
+	determine if transmit or receive is on top of display.
+* [FEATURE] New net meter graph style "Inverse Opposed" that
+	reverses the orientation of the "Opposed" mode graph.
+* [FEATURE] Net meter menu content now includes peak throughput for
+	the interface.
+* [FEATURE] Narrow throughput display to 4 digits in all cases.
+	Patch from Alex Eddy (arekkusu at mac.com).
+* [FEATURE] Option to remove zero traffic baseline from network
+	graph. Based on code from Alex Eddy (arekkusu at mac.com).
+* [FEATURE] Net meter display uses separate color for inactive
+	interfaces. Based on code from Da Woon Jung (quarkkiller at
+	yahoo.com).
+* [FEATURE] Disk activity indicator lights using color arrows on top
+	of the boot disk icon. Based on artwork from Nate Friedman
+	(natef at ForgottenNewbies.com).
+* [FEATURE] All history graphs allow a shorter (11 pixel) length.
+* [BUG] Due to user confusion, hide Memory pane color controls which
+	do not apply to current display mode.
+* [BUG] Fix RAM calculations on for machines with 4GB of RAM.
+* [BUG] Higher contrast "Aqua" disk activity lights. Thanks to Nik
+	Gervae (nik at linna.com).
+* [BUG] Better detection of G4 7457 processors. Patch from Alex Eddy
+	(arekkusu at mac.com).
+* [BUG] Fix minor drawing issues in CPU, memory and net graphs.
+* [BUG] Fix NSColorWell assertions when the active interface list
+	changed while System Preferences is open but the MenuMeters pane
+	is not selected.
+* [BUG] Fix handling of interface name on VPN (PPTP) interfaces.
+* [BUG] Fixed an installer authentication issue.
+* [LOCALE] Italian localization added, thanks to Marcello Teodori
+	(marcello.teodori at gmail.com).
+* [LOCALE] Dutch localization removed (no maintainer).
+
+MenuMeters 1.1.1
+
+* [BUG] Update to MenuCracker 1.3, fixes problems with home relative
+	installations on Panther.
+* [BUG] Fixed live menu update on Panther.
+* [BUG] Fixed peak scaling calculation when user adjusts sample
+	interval in the pref pane.
+* [BUG] Fixed RAM calculations on machines with more than 2GB.
+* [BUG] Corrected antialias control enable/disable in pref pane
+	Memory controls.
+* [BUG] Fix pixel offset in "opposed" mode received network graph.
+
+MenuMeters 1.1
+
+* [FEATURE] Added an installer to the project.
+* [FEATURE] Limited compatibility with Mac OS 10.3 Panther (7B49).
+	See the Known Issues section of the ReadMe for known
+	limitations. Please bear in mind that Panther is still
+	prerelease software.
+* [FEATURE] Basic PPP control (connect/disconnect) now supported in
+	the net meter for serial PPP and PPPoE interfaces.
+* [FEATURE] Disk menu now allows selection from the menu to either
+	open or eject/unmount the volume.
+* [FEATURE] CPU meter supports inverted glow/pulse for the Griffin
+	PowerMate (brighter glow/faster pulse as CPU usage drops).
+* [FEATURE] Memory meter now has usage history graph for active,
+	inactive and wired.
+* [FEATURE] Net meter can now scale via interface speed or peak
+	interface traffic. This offers better scaling for users with
+	high speed interfaces connected to slow external connections
+	(ex. 100Mbit Ethernet port connected to 1.5Kbps xDSL modem).
+* [FEATURE] Net meter now offers multiple scaling functions (linear,
+	square root, cube root, logarithmic).
+* [BUG] Net meter throughput display width adjusted.
+* [BUG] Fixed CPU temperature display enabling on some machines
+	which support temperature readings but were accidentally
+	disabled in the 1.0 release.
+* [BUG] Fix processor temperature titling on multiprocessor
+	machines.
+* [BUG] Fix update of the Mem meter paging indicator when the menu
+	is down.
+* [BUG] Disk meter menu now supports Audio CD (cddafs) and DVD (ufs)
+	filesystems.
+* [BUG] Fix control enable/disable bugs in preference pane.
+* [BUG] Fix lockup when displaying Mem meter menu content.
+* [BUG] Fix display of serial PPP interfaces when the interface was
+	selected as the preferred interface from the Net meter menu.
+
+MenuMeters 1.0
+
+* [FEATURE] Net meter now allows selection of displayed interface
+	from the menu and preference pane.
+* [FEATURE] CPU meter now supports the Griffin PowerMate. Thanks to
+	Tim Brown (timb at gograywolf.com) for his assistance getting
+	this done.
+* [FEATURE] Mem meter menu now displays information about swap
+	files, including swap files present, peak swap files (max seen
+	since the meter loaded), swap location (supports relocated swap)
+	and total swap space.
+* [FEATURE] Added Processor temperature info to the CPU menu where
+	supported. Note that many Mac models made between 2001-2003 do
+	not support processor temperature. Also note that the
+	temperature reported is only accurate to approximately +/- 20
+	degrees. This is a limitation of the processor, and not a
+	MenuMeters bug. Thanks to Mike Fischer (mike.fischer at
+	fi-works.de) for pointing out more of my math dyslexia in C to F
+	conversion.
+* [FEATURE] Net graph can now be rendered in three styles, standard
+	(same as previous releases), centered (graph radiates out from
+	center line), and opposed (graph projects up and down from top
+	and bottom edges of menubar).
+* [FEATURE] CPU meter graph and thermometer display now include
+	separate display color for nice'd processes.
+* [FEATURE] Net meter now allows copying TCP/IP address to clipboard.
+* [FEATURE] Net meter update interval can now be set as low as 0.5
+	seconds (same as CPU meter.
+* [FEATURE] Added bar-style (thermometer) display to the Memory
+	meter. Patches contributed by Bernhard Baehr (bernhard.baehr at
+	gmx.de).
+* [FEATURE] Added optional pagein/pageout indicator to the Memory
+	meter. Patches contributed by Bernhard Baehr (bernhard.baehr at
+	gmx.de).
+* [FEATURE] Added "Aqua" style disk LEDs to the disk activity meter.
+	Contributed by Matthew Williamson.
+* [FEATURE] Modified Memory meter to no longer include inactive
+	pages in its "used" total. This is debatably incorrect as those
+	pages are not "free" in the sense that vm_statistics_data_t
+	means free, but it does better match user expectations who
+	interpret the normal increase in inactive pages as a memory
+	leak. To make the distinction more clear also moved memory usage
+	into its own section of the Memory meter menu away from memory
+	page statistics.
+* [BUG] CPU percent user/system split display (small text) now
+	ignores nice'd process load in order to match the method used by
+	Darwin 'top'.
+* [BUG] All meters now use NSNumberFormatters to localize number
+	representations. This allows locale-based thousands and decimal
+	separators. Fix based on patches provided by Mike Fischer
+	(mike.fischer at fi-works.de).
+* [BUG] Substantial internal changes to better support localization.
+	Most format strings now exposed for localization. Menubar status
+	labels for the Mem meter used/free display ("U:", "F:") and Net
+	meter throughput display ("Tx:", "Rx:", "/s") are now
+	localizable.
+* [BUG] Preference panel UI changed to better follow Apple
+	guidelines and make localization easier.
+* [BUG] Preference file migrated from "MenuMeters.plist" to  proper
+	app domain "com.ragingmenace.MenuMeters.plist".
+* [BUG] Disk menu now uses NSWorkspace to open volumes instead of
+	/usr/bin/open. This results in a slight speed improvement.
+* [BUG] Workaround width/clipping issues when rendering
+	non-antialiased text to the menubar status display in the Mem
+	and Net meters.
+* [BUG] Dynamically adjust Mem meter used/free display width to
+	prevent clipping when the user has more than 1GB of RAM free.
+* [BUG] Improve detection of G4 7455 (Apollo) and G3 750fx (Sahara)
+	processors in the CPU name display in the CPU meter. Some 7455
+	machines will still be identified as 7450s, this appears to be
+	due to an Apple bug in gestaltNativeCPUtype. Since these same
+	machines return correct Gestalt values in Classic we'll have to
+	wait for Apple to fix it.
+* [BUG] Performed tweaks to order and default colors of items in the
+	memory pie graph. Graph now orders as active, wired, inactive,
+	which seems more logical.
+* [BUG] Fix CPU thermometer so that 100% load renders without blank
+	space. Also fix so low system loads are not clipped by
+	thermometer frame.
+* [BUG] Fix negative throughput totals in Net meter when kernel
+	internal net counters overflow. Caused by negative values from
+	NSNumber's doubleValue method for NSNumbers containing unsigned
+	long and unsigned long long values. See
+	http://cocoa.mamasam.com/Mac OSXDEV/2002/09/1/44232.php
+* [BUG] Fix bad system load total on multiprocessor machines using
+	the "Average all processors" option.
+* [BUG] Increased bounds checking paranoia.
+* [LOCALE] German localization added, thanks to Mike Fischer
+	(mike.fischer at fi-works.de).
+* [LOCALE] Dutch localization added, thanks to Martijn van Exel
+	(mvexel at xs4all.nl).
+
+MenuMeters 0.7
+
+* [FEATURE] Allow selection of large (menubar clock, 14pt), medium
+	(11pt), or small (split user/system load 9pt) text font sizes
+	for the percentage display in the CPU meter.
+* [FEATURE] Added preference to CPU meter to allow multiprocessor
+	machines to use a single display showing average of all
+	processors.
+* [FEATURE] Accepted Ben Jansen's patch to place throughput totals
+	in the net meter in GB/MB/KB totals, not just bytes.
+* [FEATURE] Added per interface throughput totals to the net meter
+	menu, enabling you to see throughput on more than just the
+	primary interface.
+* [FEATURE] Added limited support for live menu updated in the net
+	meter, specifically throughput and interface totals are now
+	updated. The remaining data cannot be live updated both for
+	performance reasons and because the menu might change length
+	(see prior notes in the 0.6 changelog).
+* [FEATURE] Added page fault and copy-on-write info to the Memory
+	meter.
+* [FEATURE] Added "Open Console" to the CPU menu.
+* [FEATURE] Added more drive info (device name, file system type) to
+	the disk menu.
+* [BUG] Workaround what looks to be an Apple bug when reading
+	outbound (upload) traffic on PPPoE interface. This appears to
+	have been the cause of folks reporting "doubled" throughput
+	totals. Fixed by using the underlying Ethernet interface
+	directly instead of the pppconfd values. Thanks to Roberto
+	Tremonti for the report and helping debug.
+* [BUG] Workaround issue on some machines where the first MenuMeter
+	from the right (first loaded) would fail because [NSBundle
+	bundleForClass:[self class]] returned the SystemUIServer bundle
+	instead of the menu extra. Thanks to Cédric Honegger and Tim
+	Brown for their assistance.
+* [BUG] Fix overflow problems for network stats in the net meters.
+	Thanks to Ben Jansen for the report.
+* [BUG] Fix unnecessary rewrite of pref file when no data has
+	changed.
+* [BUG] Make localization of disk icon set names easier.
+* [BUG/WORKAROUND] Document conflict between CPU.menu (from Apple
+	CHUD tools) and MenuCracker. Check the Known Issues section of
+	the ReadMe for details. Thanks to David Wood for his assistance.
+* [LOCALE] Japanese localization added, thanks to "(@_@)yooo"
+	(webmaster at xiv-view.com).
+
+MenuMeters 0.6
+
+* [FEATURE] By popular demand, the Net meter now allows you to hide
+	the activity arrows.
+* [FEATURE] Menubar status displays now update even when their
+	associated menu is down.
+* [FEATURE] Status related menu items for the CPU and Memory meters
+	are now updated even when the menu is down (uptime, for example,
+	keeps ticking). Also lowered the default memory display time to
+	10 seconds (from 15) to make this "live" update more obvious.
+	Note that leaving the menu down and updating will increase the
+	amount of CPU time used by SystemUIServer. The Net and Disk
+	menus cannot be made to dynamically update because they do not
+	have a fixed number of items. The Mac OS menu manager can't
+	handle dynamically resizing menus while they are displayed (not
+	really their fault, this is a very weird thing to do, and is
+	against Apple's usual guidelines for menu behavior).
+* [FEATURE] Added per-interface traffic totals to the Net config
+	menu for interfaces where those values are known. These values
+	are the cumulative totals maintained by the Mac OS X networking
+	layer and cannot be manually reset (though a reboot will reset
+	them).
+* [FEATURE] Enabled hiding of labels in the Memory meter status
+	display ("U:", "F:") and the Net meter throughput display
+	("Tx:", "Rx:"). This narrows the menu slightly for those who
+	need those extra pixels.
+* [FEATURE] Added a (very narrow) "thermometer" style CPU graph
+	which can be used alone or in conjunction with the other CPU
+	displays.
+* [FEATURE] Got rid of the "Apply", "Revert", etc. buttons in the
+	pref pane. Pane now updates the meters live.
+* [FEATURE] Net meter now allows users to set a lower bound of
+	1K/sec for throughput display.
+* [BUG] Corrected totally bogus throughput calculation in the net
+	meter affecting all update intervals except 1 second. Had the
+	math backwards, how embarrassing. Thanks to Henryk Richter for
+	the patch. Unless someone tells me different I'm going to assume
+	this is why some folks believed that the display was in bits per
+	second, not bytes per second (it has always been bytes per
+	second, it was just wrong).
+* [BUG] CPU meter now correctly shows load of "nice"-ed processes
+	such as the Seti@Home daemon. More bad math on my part. Thanks
+	to Tom Varga for the report.
+* [BUG] Net meter now correctly detects the speed of a serial PPP
+	interface and reports it both in the Net Meter menu config
+	description (when connected) and uses it for the scaling of the
+	Net meter arrows and graph.
+* [BUG] For PPP connections worked around an issue where sysctl did
+	not return received bytes for the ppp interface (always reported
+	0 bytes received). Corrected by talking directly to pppconfd for
+	status information.
+* [BUG] Menubar status displays for Net Meter (graph, arrows, and
+	throughput) are now calculated on the basis of throughput on the
+	primary network interface only. This was a deliberate limitation
+	of 0.5, but has now been removed.
+* [BUG] Net meter config menu should now catch PPP serial
+	connect/disconnect and update configuration info appropriately.
+* [BUG] Resized Net meter throughput to be as small as possible
+	while still being wide enough to hold four digit ("200.1KB/s"
+	for example) strings.
+* [BUG] Fixed problems with stale disk names in the Disk meter's
+	volume list. This was most noticeable when mounting/unmounting
+	CDs, all CDs would have the name of the first CD mounted
+	regardless of which CD was in the drive at the time. Bug looks
+	to be caused by NSFileManager problems in SystemUIServer,
+	workaround was to switch to Carbon volume info calls.
+* [BUG] Fixed title of the color arrow imageset in the Disk meter to
+	include a space ("Color Arrows" instead of "ColorArrows").
+* [LOCALE] French localization added, thanks to Matt Anton
+	(menumeters at syrius.org).
