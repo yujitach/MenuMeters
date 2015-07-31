@@ -67,7 +67,9 @@
     memStatusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 
     
-    timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+    timer=[NSTimer timerWithTimeInterval:1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+    [timer setTolerance:.3];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 }
 
 
