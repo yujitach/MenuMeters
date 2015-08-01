@@ -427,7 +427,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kCPUMenuBundleID]) {
 		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kCPUMenuBundleID
-																	   object:kPrefChangeNotification];
+																	   object:kPrefChangeNotification
+                 userInfo:nil deliverImmediately:YES];
 	}
 
 } // cpuPrefChange
@@ -463,7 +464,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kDiskMenuBundleID]) {
 		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kDiskMenuBundleID
-																	   object:kPrefChangeNotification];
+																	   object:kPrefChangeNotification
+                 userInfo:nil deliverImmediately:YES];
 	}
 
 } // diskPrefChange
@@ -557,7 +559,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kMemMenuBundleID]) {
 		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kMemMenuBundleID
-																	   object:kPrefChangeNotification];
+																	   object:kPrefChangeNotification
+                 userInfo:nil deliverImmediately:YES];
 	}
 
 } // memPrefChange
@@ -687,7 +690,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kNetMenuBundleID]) {
 		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kNetMenuBundleID
-																	   object:kPrefChangeNotification];
+																	   object:kPrefChangeNotification
+                 userInfo:nil deliverImmediately:YES];
 	}
 
 } // netPrefChange
