@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D399AC01-C273-49D6-BBBD-6C6CD787F3C7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MenuMeters</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>60B401BB920FC106298BB3249272E41401DA781C</key>
+		<string>https://github.com/yujitach/MenuMeters.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MenuMeters.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>60B401BB920FC106298BB3249272E41401DA781C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/yujitach/MenuMeters.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>60B401BB920FC106298BB3249272E41401DA781C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>60B401BB920FC106298BB3249272E41401DA781C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MenuMeters</string>
+		</dict>
+	</array>
+</dict>
+</plist>
