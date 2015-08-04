@@ -9,4 +9,4 @@ I'm making here a minimal modification so that it runs as a faceless app, puttin
 I contacted the author but haven't received the reply. To help people who's missing MenuMeters on El Capitan Beta, I decided to make the git repo public.
 
 # Usage:
-Clone the git repo, open MenuMeters.xcodeproj, and build the target *PrefPane*. This should install the pref pane in your *~/Library/PreferencePanes/*. (You might need to remove the older version of MenuMeters by yourself.) Then just launch the pref pane.
+Clone the git repo, open MenuMeters.xcodeproj, and build the target *PrefPane*. This should install the pref pane in your *~/Library/PreferencePanes/*. (You might need to remove the older version of MenuMeters by yourself.) Then just launch the System Preference app from your Dock. That's it!
