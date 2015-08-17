@@ -58,10 +58,17 @@
 #define kMenuCrackerURL				[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuCracker" ofType:@"menu" inDirectory:@""]]
 
 // Paths to the menu extras
+#ifdef ELCAPITAN
+#define kCPUMenuURL nil
+#define kDiskMenuURL nil
+#define kMemMenuURL nil
+#define kNetMenuURL nil
+#else
 #define kCPUMenuURL					[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuMeterCPU" ofType:@"menu" inDirectory:@""]]
 #define kDiskMenuURL				[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuMeterDisk" ofType:@"menu" inDirectory:@""]]
 #define kMemMenuURL					[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuMeterMem" ofType:@"menu" inDirectory:@""]]
 #define kNetMenuURL					[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuMeterNet" ofType:@"menu" inDirectory:@""]]
+#endif
 
 // How long to wait for Extras to add once CoreMenuExtraAddMenuExtra returns?
 #define kWaitForExtraLoadMicroSec		10000000
