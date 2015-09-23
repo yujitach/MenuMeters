@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>MenuMeters</string>
 	<key>CFBundleGetInfoString</key>
-	<string>MenuMeters 1.8.1, © 2002-2014 Alex Harper</string>
+	<string>MenuMeters El Capitan Port 1.9, ©2015 Y. Tachikawa</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ragingmenace.MenuMeters</string>
+	<string>com.yujitach.MenuMeters</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.8.1</string>
+	<string>1.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.8.1</string>
+	<string>1.9</string>
 	<key>NSMainNibFile</key>
 	<string>MenuMetersPref</string>
 	<key>NSPrefPaneIconFile</key>
