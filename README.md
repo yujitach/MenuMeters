@@ -6,7 +6,7 @@ As shown there (as of July 2015) the original version doesn't work on El Capitan
 The basic reason is that SystemUIServer doesn't load Menu Extras not signed by Apple. 
 I'm making here a minimal modification so that it runs as a faceless app, putting NSStatusItem's instead of NSMenuExtra's.
 
-I contacted the author but haven't received the reply. To help people who's missing MenuMeters on El Capitan Beta, I decided to make the git repo public. I also made a separate webpage at http://member.ipmu.jp/yuji.tachikawa/MenuMeters/ where you can just download the preference pane and use it.
+I contacted the author but haven't received the reply. To help people who's missing MenuMeters on El Capitan Beta, I decided to make the git repo public. I also made a separate webpage at http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/ where you can just download the preference pane and use it.
 
 # To hack:
 Clone the git repo, open MenuMeters.xcodeproj, and build the target *PrefPane*. This should install the pref pane in your *~/Library/PreferencePanes/*. (You might need to remove the older version of MenuMeters by yourself.) Then just launch the System Preference app from your Dock. That's it!
