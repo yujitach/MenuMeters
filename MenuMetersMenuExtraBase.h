@@ -16,7 +16,7 @@
     NSTimer*timer;
 }
 -(instancetype)initWithBundle:(NSBundle*)bundle;
-- (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs;
+- (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;
 @end
 
 #define NSMenuExtra MenuMetersMenuExtraBase

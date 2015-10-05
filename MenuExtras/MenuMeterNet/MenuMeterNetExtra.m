@@ -1482,7 +1482,7 @@
 
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
-    [super configDisplay:kNetMenuBundleID  fromPrefs:ourPrefs];
+    [super configDisplay:kNetMenuBundleID  fromPrefs:ourPrefs withTimerInterval:[ourPrefs netInterval]];
 #endif
 
 	// Update prefs

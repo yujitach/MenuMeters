@@ -19,12 +19,12 @@
     statusItem.menu=self.menu;
     statusItem.button.image=self.image;
 }
-- (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs
+- (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval
 {
     if([ourPrefs loadBoolPref:bundleID defaultValue:YES] && !statusItem){
         statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-        timer=[NSTimer timerWithTimeInterval:1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-        [timer setTolerance:.3];
+        timer=[NSTimer timerWithTimeInterval:interval target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        [timer setTolerance:.2*interval];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     }else if(![ourPrefs loadBoolPref:bundleID defaultValue:YES] && statusItem){
         [timer invalidate];

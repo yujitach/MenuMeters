@@ -914,7 +914,7 @@
 
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
-    [super configDisplay:kMemMenuBundleID fromPrefs:ourPrefs];
+    [super configDisplay:kMemMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs memInterval]];
 #endif
 
 	// Update prefs
