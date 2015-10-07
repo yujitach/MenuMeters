@@ -21,8 +21,11 @@
 }
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval
 {
-    if([ourPrefs loadBoolPref:bundleID defaultValue:YES] && !statusItem){
-        statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+    if([ourPrefs loadBoolPref:bundleID defaultValue:YES]){
+        if(!statusItem){
+            statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+        }
+        [timer invalidate];
         timer=[NSTimer timerWithTimeInterval:interval target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
         [timer setTolerance:.2*interval];
         [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
