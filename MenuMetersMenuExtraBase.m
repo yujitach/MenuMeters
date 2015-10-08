@@ -17,7 +17,11 @@
 -(void)timerFired:(id)notused
 {
     statusItem.menu=self.menu;
-    statusItem.button.image=self.image;
+    NSImage*canvas=[[NSImage alloc] initWithSize:NSMakeSize(self.length, self.view.frame.size.height)];
+    [canvas lockFocus];
+    [self.view drawRect:NSMakeRect(0, 0, canvas.size.width, canvas.size.height)];
+    [canvas unlockFocus];
+    statusItem.button.image=canvas;
 }
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval
 {
