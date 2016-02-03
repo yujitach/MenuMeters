@@ -136,15 +136,6 @@ __private_extern__ BOOL IsMenuMeterMenuBarDarkThemed(void) {
     if (interfaceStyle && [interfaceStyle isEqualToString:@"Dark"]) {
 		isDark = YES;
 	}
-	Class appearanceClass = NSClassFromString(@"NSAppearance");
-	if (appearanceClass && [appearanceClass respondsToSelector:@selector(currentAppearance)]) {
-		id currentAppearance = [appearanceClass performSelector:@selector(currentAppearance)];
-		if (currentAppearance && [currentAppearance respondsToSelector:@selector(name)]) {
-			if ([[currentAppearance name] hasPrefix:@"NSAppearanceNameVibrantDark"]) {
-				isDark = YES;
-			}
-		}
-	}
 	return isDark;
 } // IsMenuMeterMenuBarDarkThemed
 
