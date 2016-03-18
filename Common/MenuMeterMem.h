@@ -74,7 +74,8 @@ enum {
 	kMemDisplayPie							= 1,
 	kMemDisplayBar,
 	kMemDisplayGraph,
-	kMemDisplayNumber
+	kMemDisplayNumber,
+    kMemDisplayTotalBar
 };
 #define kMemDisplayDefault					kMemDisplayPie
 

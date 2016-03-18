@@ -340,6 +340,9 @@
 		case kMemDisplayBar:
 			[self renderBarIntoImage:currentImage];
 			break;
+        case kMemDisplayTotalBar:
+            [self renderTotalBarIntoImage:currentImage];
+            break;
 		case kMemDisplayGraph:
 			[self renderMemHistoryIntoImage:currentImage];
 	}
@@ -701,6 +704,47 @@
 
 } // renderBarIntoImage
 
+
+//  Bar mode memory view contributed by Bernhard Baehr
+- (void)renderTotalBarIntoImage:(NSImage *)image {
+    
+    // Load current stats
+    double totalMB = 1.0f, freeMB = 0, usedMB = 0;
+    NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
+    if (currentMemStats) {
+        totalMB = [[currentMemStats objectForKey:@"totalmb"] floatValue];
+        freeMB = [[currentMemStats objectForKey:@"freemb"] doubleValue];
+        usedMB = [[currentMemStats objectForKey:@"usedmb"] doubleValue];
+    }
+    if (freeMB < 0) freeMB = 0;
+    if (usedMB < 0) usedMB = 0;
+    
+    // Lock focus and draw
+    [image lockFocus];
+    float thermometerTotalHeight = (float)[image size].height - 3.0f;
+    
+    NSBezierPath *freePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+                                                                         thermometerTotalHeight * (freeMB / totalMB))];
+    NSBezierPath *usedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+                                                                           thermometerTotalHeight * (usedMB / totalMB))];
+    NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
+    [freeColor set];
+    [freePath fill];
+    [usedColor set];
+    [usedPath fill];
+    if (IsMenuMeterMenuBarDarkThemed()) {
+        [[NSColor darkGrayColor] set];
+    } else {
+        [fgMenuThemeColor set];
+    }
+    [framePath stroke];
+    
+    // Reset
+    [[NSColor blackColor] set];
+    [image unlockFocus];
+    
+} // renderTotalBarIntoImage
+
 - (void)renderMemHistoryIntoImage:(NSImage *)image {
 
 	// Construct paths
@@ -1012,6 +1056,7 @@
 			}
 			break;
 		case kMemDisplayBar:
+        case kMemDisplayTotalBar:
 			menuWidth = kMemThermometerDisplayWidth;
 			break;
 		case kMemDisplayGraph:

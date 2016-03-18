@@ -267,7 +267,7 @@
 - (int)memDisplayMode {
 	return [self loadIntPref:kMemDisplayModePref
 					lowBound:kMemDisplayPie
-				   highBound:kMemDisplayNumber
+				   highBound:kMemDisplayTotalBar
 				defaultValue:kMemDisplayDefault];
 } // memDisplayMode
 
