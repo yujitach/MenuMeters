@@ -1043,7 +1043,7 @@
     NSAttributedString *renderCPUString = [[[NSAttributedString alloc]
                                             initWithString:@"M\nE\nM"
                                             attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                        [NSFont systemFontOfSize:5.5f], NSFontAttributeName,
+                                                        [NSFont boldSystemFontOfSize:5.5f], NSFontAttributeName,
                                                         [NSColor blackColor], NSForegroundColorAttributeName,
                                                         nil]] autorelease];
     int viewHeight = [extraView frame].size.height;
