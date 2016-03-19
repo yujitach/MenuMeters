@@ -47,6 +47,7 @@
 	MenuMeterDefaults				*ourPrefs;
 	// Info gatherers
 	MenuMeterCPUStats				*cpuInfo;
+    NSImage                         *cpuLabel;
 	MenuMeterUptime					*uptimeInfo;
 	// PowerMate support
 	MenuMeterPowerMate				*powerMate;

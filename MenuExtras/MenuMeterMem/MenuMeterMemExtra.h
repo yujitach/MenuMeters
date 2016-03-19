@@ -56,6 +56,7 @@
 	NSColor							*freeColor, *usedColor,
 									*activeColor, *inactiveColor, *wireColor, *compressedColor,
 									*pageInColor, *pageOutColor;
+    NSImage                         *memLabel;
 	// Image cache for numbers label
 	NSImage							*numberLabelPrerender;
 	// Width of the menu item

@@ -269,6 +269,13 @@
 
 	// Loop by processor
 	float renderOffset = 0;
+    
+    [currentImage lockFocus];
+    [cpuLabel compositeToPoint:NSMakePoint(renderOffset, 0) operation:NSCompositeSourceOver];
+    [currentImage unlockFocus];
+    
+    renderOffset += cpuLabel.size.width;
+    
 	for (uint32_t cpuNum = 0; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
 
 		// Render graph if needed
@@ -728,9 +735,24 @@
 		percentWidth = (float)round([[splitSystemPercentCache lastObject] size].width) + kCPUPercentDisplayBorderWidth;
 	}
 
+    NSAttributedString *renderCPUString = [[[NSAttributedString alloc]
+                                           initWithString:@"C\nP\nU"
+                                           attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [NSFont systemFontOfSize:5.5f], NSFontAttributeName,
+                                                       [NSColor blackColor], NSForegroundColorAttributeName,
+                                                       nil]] autorelease];
+    int viewHeight = [extraView frame].size.height;
+    cpuLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderCPUString size].width, viewHeight)];
+    [cpuLabel lockFocus];
+    [renderCPUString drawAtPoint:NSMakePoint(0, 0)];
+    [cpuLabel unlockFocus];
+
 	// Fix our menu size to match our new config
 	menuWidth = 0;
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
+    
+    menuWidth += renderCPUString.size.width;
+
+    if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
 		menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : [cpuInfo numberOfCPUs]) * percentWidth);
 	}
 	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {

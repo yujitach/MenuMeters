@@ -36,11 +36,11 @@
 - (void)updateMenuContent;
 
 // Image renderers
-- (void)renderPieIntoImage:(NSImage *)image;
-- (void)renderNumbersIntoImage:(NSImage *)image;
-- (void)renderBarIntoImage:(NSImage *)image;
-- (void)renderMemHistoryIntoImage:(NSImage *)image;
-- (void)renderPageIndicatorIntoImage:(NSImage *)image;
+- (void)renderPieIntoImage:(NSImage *)image forProcessor:(float)offset;
+- (void)renderNumbersIntoImage:(NSImage *)image forProcessor:(float)offset;
+- (void)renderBarIntoImage:(NSImage *)image forProcessor:(float)offset;
+- (void)renderMemHistoryIntoImage:(NSImage *)image forProcessor:(float)offset;
+- (void)renderPageIndicatorIntoImage:(NSImage *)image forProcessor:(float)offset;
 
 // Timer callbacks
 - (void)updateMemDisplay:(NSTimer *)timer;
@@ -327,27 +327,35 @@
 	NSImage *currentImage = [[[NSImage alloc] initWithSize:NSMakeSize(menuWidth,
 																	  [extraView frame].size.height - 1)] autorelease];
 
+    float renderOffset = 0;
+    
+    [currentImage lockFocus];
+    [memLabel compositeToPoint:NSMakePoint(renderOffset, 0) operation:NSCompositeSourceOver];
+    [currentImage unlockFocus];
+    
+    renderOffset += memLabel.size.width;
+
 	// Don't render without data
 	if (![memHistory count]) return nil;
 
 	switch ([ourPrefs memDisplayMode]) {
 		case kMemDisplayPie:
-			[self renderPieIntoImage:currentImage];
+			[self renderPieIntoImage:currentImage forProcessor: renderOffset];
 			break;
 		case kMemDisplayNumber:
-			[self renderNumbersIntoImage:currentImage];
+			[self renderNumbersIntoImage:currentImage forProcessor: renderOffset];
 			break;
 		case kMemDisplayBar:
-			[self renderBarIntoImage:currentImage];
+			[self renderBarIntoImage:currentImage forProcessor: renderOffset];
 			break;
         case kMemDisplayTotalBar:
-            [self renderTotalBarIntoImage:currentImage];
+            [self renderTotalBarIntoImage:currentImage forProcessor: renderOffset];
             break;
 		case kMemDisplayGraph:
-			[self renderMemHistoryIntoImage:currentImage];
+			[self renderMemHistoryIntoImage:currentImage forProcessor: renderOffset];
 	}
 	if ([ourPrefs memPageIndicator]) {
-		[self renderPageIndicatorIntoImage:currentImage];
+		[self renderPageIndicatorIntoImage:currentImage forProcessor: renderOffset];
 	}
 
 	// Send it back for the view to render
@@ -500,7 +508,7 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)renderPieIntoImage:(NSImage *)image {
+- (void)renderPieIntoImage:(NSImage *)image forProcessor:(float)offset {
 
 	// Load current stats
 	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
@@ -525,7 +533,7 @@
 	[image lockFocus];
 	NSBezierPath *renderPath = nil;
 	float totalArc = 0;
-	NSPoint pieCenter = NSMakePoint(kMemPieDisplayWidth / 2, (float)[image size].height / 2);
+	NSPoint pieCenter = NSMakePoint(kMemPieDisplayWidth / 2 + offset, (float)[image size].height / 2);
 
 	// Draw wired
 	renderPath = [NSBezierPath bezierPath];
@@ -599,7 +607,7 @@
 
 } // renderPieIntoImage
 
-- (void)renderNumbersIntoImage:(NSImage *)image {
+- (void)renderNumbersIntoImage:(NSImage *)image forProcessor:(float)offset {
 
 	// Read in the RAM data
 	double freeMB = 0, usedMB = 0;
@@ -639,9 +647,9 @@
 	}
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
 	// No descenders so render lower
-	[renderUString drawAtPoint:NSMakePoint(textWidth - (float)round([renderUString size].width),
+	[renderUString drawAtPoint:NSMakePoint(offset + textWidth - (float)round([renderUString size].width),
 										   (float)floor([image size].height / 2) - 1)];
-	[renderFString drawAtPoint:NSMakePoint(textWidth - (float)round([renderFString size].width), -1)];
+	[renderFString drawAtPoint:NSMakePoint(offset + textWidth - (float)round([renderFString size].width), -1)];
 
 	// Unlock focus
 	[image unlockFocus];
@@ -649,7 +657,7 @@
 } // renderNumbersIntoImage
 
 //  Bar mode memory view contributed by Bernhard Baehr
-- (void)renderBarIntoImage:(NSImage *)image {
+- (void)renderBarIntoImage:(NSImage *)image forProcessor:(float)offset {
 
 	// Load current stats
 	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
@@ -674,15 +682,15 @@
 	[image lockFocus];
 	float thermometerTotalHeight = (float)[image size].height - 3.0f;
 
-	NSBezierPath *wirePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+	NSBezierPath *wirePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
 																		 thermometerTotalHeight * (wireMB / totalMB))];
-	NSBezierPath *activePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+	NSBezierPath *activePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
 																		   thermometerTotalHeight * ((wireMB + activeMB) / totalMB))];
-	NSBezierPath *compressedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+	NSBezierPath *compressedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
 																			   thermometerTotalHeight * ((wireMB + activeMB + compressedMB) / totalMB))];
-	NSBezierPath *inactivePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+	NSBezierPath *inactivePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
 																		   thermometerTotalHeight * ((wireMB + activeMB + compressedMB + inactiveMB) / totalMB))];
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
 	[inactiveColor set];
 	[inactivePath fill];
 	[compressedColor set];
@@ -706,7 +714,7 @@
 
 
 //  Bar mode memory view contributed by Bernhard Baehr
-- (void)renderTotalBarIntoImage:(NSImage *)image {
+- (void)renderTotalBarIntoImage:(NSImage *)image forProcessor:(float)offset {
     
     // Load current stats
     double totalMB = 1.0f, freeMB = 0, usedMB = 0;
@@ -723,11 +731,11 @@
     [image lockFocus];
     float thermometerTotalHeight = (float)[image size].height - 3.0f;
     
-    NSBezierPath *freePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+    NSBezierPath *freePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
                                                                          thermometerTotalHeight * (freeMB / totalMB))];
-    NSBezierPath *usedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+    NSBezierPath *usedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
                                                                            thermometerTotalHeight * (usedMB / totalMB))];
-    NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
+    NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
     [freeColor set];
     [freePath fill];
     [usedColor set];
@@ -745,7 +753,7 @@
     
 } // renderTotalBarIntoImage
 
-- (void)renderMemHistoryIntoImage:(NSImage *)image {
+- (void)renderMemHistoryIntoImage:(NSImage *)image forProcessor:(float)offset {
 
 	// Construct paths
 	NSBezierPath *wirePath =  [NSBezierPath bezierPath];
@@ -755,10 +763,10 @@
 	if (!(wirePath && activePath && inactivePath)) return;
 
 	// Position for initial offset
-	[wirePath moveToPoint:NSMakePoint(0, 0)];
-	[activePath moveToPoint:NSMakePoint(0, 0)];
-	[compressedPath moveToPoint:NSMakePoint(0, 0)];
-	[inactivePath moveToPoint:NSMakePoint(0, 0)];
+	[wirePath moveToPoint:NSMakePoint(offset, 0)];
+	[activePath moveToPoint:NSMakePoint(offset, 0)];
+	[compressedPath moveToPoint:NSMakePoint(offset, 0)];
+	[inactivePath moveToPoint:NSMakePoint(offset, 0)];
 
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
@@ -788,21 +796,21 @@
 		if (compressedMB > totalMB) { compressedMB = totalMB; };
 
 		// Update paths (adding baseline)
-		[inactivePath lineToPoint:NSMakePoint(renderPosition,
+		[inactivePath lineToPoint:NSMakePoint(offset + renderPosition,
 											  (inactiveMB + compressedMB + activeMB + wireMB) > totalMB ? totalMB : ((inactiveMB + compressedMB + activeMB + wireMB) / totalMB) * renderHeight)];
-		[compressedPath lineToPoint:NSMakePoint(renderPosition,
+		[compressedPath lineToPoint:NSMakePoint(offset + renderPosition,
 											  (compressedMB + activeMB + wireMB) > totalMB ? totalMB : ((compressedMB + activeMB + wireMB) / totalMB) * renderHeight)];
-		[activePath lineToPoint:NSMakePoint(renderPosition,
+		[activePath lineToPoint:NSMakePoint(offset + renderPosition,
 											(activeMB + wireMB) > totalMB ? totalMB : ((activeMB + wireMB) / totalMB) * renderHeight)];
-		[wirePath lineToPoint:NSMakePoint(renderPosition,
+		[wirePath lineToPoint:NSMakePoint(offset + renderPosition,
 										  wireMB / totalMB * renderHeight)];
 	}
 
 	// Return to lower edge (fill will close the graph)
-	[inactivePath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
-	[compressedPath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
-	[activePath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
-	[wirePath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
+	[inactivePath lineToPoint:NSMakePoint(offset + renderPosition - 1, 0)];
+	[compressedPath lineToPoint:NSMakePoint(offset + renderPosition - 1, 0)];
+	[activePath lineToPoint:NSMakePoint(offset + renderPosition - 1, 0)];
+	[wirePath lineToPoint:NSMakePoint(offset + renderPosition - 1, 0)];
 
 
 	// Render the graph
@@ -824,7 +832,7 @@
 
 // Paging indicator from Bernhard Baehr. Originally an overlay to the bar display, I liked
 // it so much I broke the display out so it could be used with any mode.
-- (void)renderPageIndicatorIntoImage:(NSImage *)image {
+- (void)renderPageIndicatorIntoImage:(NSImage *)image image:(float)offset {
 
 	// Read in the paging deltas
 	uint64_t pageIns = 0, pageOuts = 0;
@@ -842,9 +850,9 @@
 
 	// Set up the pageout path
 	NSBezierPath *arrow = [NSBezierPath bezierPath];
-	[arrow moveToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 0.5f, 1)];
-	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) + 4.5f, 5.0f)];
-	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 5.5f, 5.0f)];
+	[arrow moveToPoint:NSMakePoint(offset + kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 0.5f, 1)];
+	[arrow lineToPoint:NSMakePoint(offset + kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) + 4.5f, 5.0f)];
+	[arrow lineToPoint:NSMakePoint(offset + kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 5.5f, 5.0f)];
 	[arrow closePath];
 	// Draw
 	if (pageIns) {
@@ -860,9 +868,9 @@
 
 	// Set up the pagein path
 	arrow = [NSBezierPath bezierPath];
-	[arrow moveToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 0.5f, indicatorHeight - 1)];
-	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) + 4.5f, indicatorHeight - 5.0f)];
-	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 5.5f, indicatorHeight - 5.0f)];
+	[arrow moveToPoint:NSMakePoint(offset + kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 0.5f, indicatorHeight - 1)];
+	[arrow lineToPoint:NSMakePoint(offset + kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) + 4.5f, indicatorHeight - 5.0f)];
+	[arrow lineToPoint:NSMakePoint(offset + kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 5.5f, indicatorHeight - 5.0f)];
 	[arrow closePath];
 	// Draw
 	if (pageOuts) {
@@ -892,7 +900,7 @@
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
 	// Also draw low to ignore descenders
 	NSSize renderSize = [renderString size];
-	[renderString drawAtPoint:NSMakePoint(menuWidth - kMemPagingDisplayWidth +
+	[renderString drawAtPoint:NSMakePoint(offset + menuWidth - kMemPagingDisplayWidth +
 											roundf((kMemPagingDisplayWidth - (float)renderSize.width) / 2.0f),
 										  4.0f)];  // Just hardcode the vertical offset
 
@@ -1031,23 +1039,38 @@
 																		nil]] autorelease];
 		mbLength = (float)ceil([renderMBString size].width);
 	}
+    
+    NSAttributedString *renderCPUString = [[[NSAttributedString alloc]
+                                            initWithString:@"M\nE\nM"
+                                            attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                        [NSFont systemFontOfSize:5.5f], NSFontAttributeName,
+                                                        [NSColor blackColor], NSForegroundColorAttributeName,
+                                                        nil]] autorelease];
+    int viewHeight = [extraView frame].size.height;
+    memLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderCPUString size].width, viewHeight)];
+    [memLabel lockFocus];
+    [renderCPUString drawAtPoint:NSMakePoint(0, 0)];
+    [memLabel unlockFocus];
 
 	// Fix our menu size to match our config
 	menuWidth = 0;
+    
+    menuWidth += memLabel.size.width;
+    
 	switch ([ourPrefs memDisplayMode]) {
 		case kMemDisplayPie:
-			menuWidth = kMemPieDisplayWidth;
+			menuWidth += kMemPieDisplayWidth;
 			break;
 		case kMemDisplayNumber:
 			// Read in the total RAM, and change length to accomodate those with more RAM
 			if ([[[memStats memStats] objectForKey:@"totalmb"] unsignedLongLongValue] >= 10000) {
-				menuWidth = kMemNumberDisplayExtraLongWidth + mbLength;
+				menuWidth += kMemNumberDisplayExtraLongWidth + mbLength;
 				textWidth = kMemNumberDisplayExtraLongWidth + mbLength;
 			} else if ([[[memStats memStats] objectForKey:@"totalmb"] unsignedLongLongValue] >= 1000) {
-				menuWidth = kMemNumberDisplayLongWidth + mbLength;
+				menuWidth += kMemNumberDisplayLongWidth + mbLength;
 				textWidth = kMemNumberDisplayLongWidth + mbLength;
 			} else {
-				menuWidth = kMemNumberDisplayShortWidth + mbLength;
+				menuWidth += kMemNumberDisplayShortWidth + mbLength;
 				textWidth = kMemNumberDisplayShortWidth + mbLength;
 			}
 			if ([ourPrefs memUsedFreeLabel]) {
@@ -1057,10 +1080,10 @@
 			break;
 		case kMemDisplayBar:
         case kMemDisplayTotalBar:
-			menuWidth = kMemThermometerDisplayWidth;
+			menuWidth += kMemThermometerDisplayWidth;
 			break;
 		case kMemDisplayGraph:
-			menuWidth = [ourPrefs memGraphLength];
+			menuWidth += [ourPrefs memGraphLength];
 			break;
 	}
 	// Adjust width for paging indicator
