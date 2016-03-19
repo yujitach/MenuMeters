@@ -77,7 +77,7 @@ enum {
 	kMemDisplayNumber,
     kMemDisplayTotalBar
 };
-#define kMemDisplayDefault					kMemDisplayPie
+#define kMemDisplayDefault					kMemDisplayTotalBar
 
 // Used/Free label
 #define kMemUsedFreeLabelDefault			YES
