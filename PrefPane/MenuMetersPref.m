@@ -545,6 +545,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[memFreeUsedLabeling setEnabled:YES];
 		[memColorTab selectTabViewItemAtIndex:kMemUsedFreeColorTab];
 	}
+    
+    if(([memDisplayMode indexOfSelectedItem] + 1) == kMemDisplayTotalBar) {
+        [memFreeUsedLabeling setEnabled:NO];
+        [memColorTab selectTabViewItemAtIndex:kMemUsedFreeColorTab];
+    }
+    
 	if (([memDisplayMode indexOfSelectedItem] + 1) == kMemDisplayGraph) {
 		[memGraphWidth setEnabled:YES];
 		[memGraphWidthLabel setTextColor:[NSColor blackColor]];
