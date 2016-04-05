@@ -60,7 +60,7 @@ enum {
 	kCPUDisplayGraph						= 2,
 	kCPUDisplayThermometer					= 4
 };
-#define kCPUDisplayDefault					kCPUDisplayPercent
+#define kCPUDisplayDefault					kCPUDisplayThermometer
 
 // Percent display modes
 enum {
@@ -90,7 +90,7 @@ enum {
 #define kCPUGraphWidthDefault				33
 
 // Multiproc averaging
-#define kCPUAvgAllProcsDefault				NO
+#define kCPUAvgAllProcsDefault				YES
 
 // PowerMate
 #define kCPUPowerMateDefault				NO
