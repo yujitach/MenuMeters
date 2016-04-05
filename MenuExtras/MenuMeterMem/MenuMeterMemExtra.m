@@ -727,17 +727,15 @@
     if (freeMB < 0) freeMB = 0;
     if (usedMB < 0) usedMB = 0;
     
+    freeMB = 0;
+    
     // Lock focus and draw
     [image lockFocus];
     float thermometerTotalHeight = (float)[image size].height - 3.0f;
     
-    NSBezierPath *freePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
-                                                                         thermometerTotalHeight * (freeMB / totalMB))];
     NSBezierPath *usedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
                                                                            thermometerTotalHeight * (usedMB / totalMB))];
     NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
-    [freeColor set];
-    [freePath fill];
     [usedColor set];
     [usedPath fill];
     if (IsMenuMeterMenuBarDarkThemed()) {
