@@ -63,7 +63,7 @@ enum {
 	kNetDisplayThroughput					= 2,
 	kNetDisplayGraph						= 4
 };
-#define kNetDisplayDefault					kNetDisplayArrows
+#define kNetDisplayDefault					kNetDisplayArrows|kNetDisplayThroughput
 
 // Display orientation
 enum {
@@ -108,7 +108,7 @@ enum {
 #define kNetGraphStyleDefault				kNetGraphStyleStandard
 
 // Throughput label
-#define kNetThroughputLabelDefault			YES
+#define kNetThroughputLabelDefault			NO
 
 // Thoughput 1K bound
 #define kNetThroughput1KBoundDefault		NO
