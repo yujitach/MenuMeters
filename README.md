@@ -2,7 +2,7 @@
 
 Additional features over standart fork:
 
-* Short titles for MEM and CPU
+* Short titles for MEM and CPU metters
 
 # Screenshots
 
