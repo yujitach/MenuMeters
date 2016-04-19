@@ -6,7 +6,7 @@ Additional features over standart fork:
 
 # Screenshots
 
-(screenshot1.png)[./Docs/screenshot1.png]
+![screenshot1.png](./Docs/screenshot1.png)
 
 # Usage:
 If you just want to use it, please go to http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/ and download the binary there. Note: as written there, you might need to log out and log in (or maybe to reboot) once to enable the new version.
