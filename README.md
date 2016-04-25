@@ -3,6 +3,8 @@
 Additional features over standart fork:
 
 * Short titles for MEM and CPU metters
+* CPU Graph History
+* Temperature monitor
 
 # Screenshots
 
