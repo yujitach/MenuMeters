@@ -162,6 +162,13 @@
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
+    [extraMenu addItem:[NSMenuItem separatorItem]];
+
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    int height = [[NSFont menuFontOfSize:0] pointSize] * 2;
+    cpuGraphLength = extraMenu.size.width;
+    NSImage *currentImage = [[[NSImage alloc] initWithSize:NSMakeSize(cpuGraphLength, height)] autorelease];
+    [menuItem setImage:currentImage];
 	// And the "Open Process Viewer"/"Open Activity Monitor" and "Open Console" item
 	[extraMenu addItem:[NSMenuItem separatorItem]];
 	if (isPantherOrLater) {
@@ -282,7 +289,7 @@
 		if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
 			[self renderHistoryGraphIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
 			// Adjust render offset
-			renderOffset += [ourPrefs cpuGraphLength];
+			renderOffset += cpuGraphLength;
 		}
 		// Render percent if needed
 		if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
@@ -321,6 +328,12 @@
 	title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo loadAverage]];
 	if (title) LiveUpdateMenuItemTitle(extraMenu, kCPULoadInfoMenuIndex, title);
 
+    NSMenuItem *item = [extraMenu itemAtIndex:9];
+    NSImage *image = [item image];
+    image = [[[NSImage alloc] initWithSize:image.size] autorelease];
+    [self renderHistoryGraphIntoImage:image forProcessor:0 atOffset:0];
+    [item setImage:image];
+
 	// Send the menu back to SystemUIServer
 	return extraMenu;
 
@@ -333,6 +346,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)renderHistoryGraphIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
+    Boolean cpuAvgAllProcs = true;
 
 	// Construct paths
 	NSBezierPath *systemPath =  [NSBezierPath bezierPath];
@@ -346,8 +360,8 @@
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
 	float renderHeight = (float)[image size].height - 0.5f;  // Save space for baseline
- 	for (renderPosition = 0; renderPosition < [ourPrefs cpuGraphLength]; renderPosition++) {
-		// No data at this position?
+ 	for (renderPosition = 0; renderPosition < cpuGraphLength; renderPosition++) {
+		// No data at this position?
 		if (renderPosition >= [loadHistory count]) break;
 
 		// Grab data
@@ -360,7 +374,7 @@
 		// Get load at this position.
 		float system = [[[loadHistoryEntry objectAtIndex:processor] objectForKey:@"system"] floatValue];
 		float user = [[[loadHistoryEntry objectAtIndex:processor] objectForKey:@"user"] floatValue];
-		if ([ourPrefs cpuAvgAllProcs]) {
+		if (cpuAvgAllProcs) {
 			for (uint32_t cpuNum = 1; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
 				system += [[[loadHistoryEntry objectAtIndex:cpuNum] objectForKey:@"system"] floatValue];
 				user += [[[loadHistoryEntry objectAtIndex:cpuNum] objectForKey:@"user"] floatValue];
@@ -536,14 +550,11 @@
 	if (!currentLoad) return;
 
 	// Add to history (at least one)
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
-		if ([loadHistory count] >= [ourPrefs cpuGraphLength]) {
-			[loadHistory removeObjectsInRange:NSMakeRange(0, [loadHistory count] - [ourPrefs cpuGraphLength] + 1)];
-		}
-	} else {
-		[loadHistory removeAllObjects];
-	}
-	[loadHistory addObject:currentLoad];
+    if ([loadHistory count] >= cpuGraphLength) {
+        [loadHistory removeObjectsInRange:NSMakeRange(0, [loadHistory count] - cpuGraphLength + 1)];
+    }
+
+    [loadHistory addObject:currentLoad];
 
 	// Force the view to update
 	[extraView setNeedsDisplay:YES];

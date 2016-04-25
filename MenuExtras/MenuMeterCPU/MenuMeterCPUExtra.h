@@ -64,6 +64,9 @@
 	NSColor							*userColor,
 									*systemColor,
 									*fgMenuThemeColor;
+    
+    // length in pixels of cpu graph image (menuitem px width)
+    int                             cpuGraphLength;
 
 } // MenuMeterCPUExtra
 
