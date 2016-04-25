@@ -32,7 +32,7 @@
 #define kMemNumberDisplayShortWidth			20.0f
 #define kMemNumberDisplayLongWidth			26.0f
 #define kMemNumberDisplayExtraLongWidth		34.0f
-#define kMemThermometerDisplayWidth			11.0f
+#define kMemThermometerDisplayWidth			10.0f
 #define kMemPagingDisplayWidth				17.0f
 #define kMemPagingDisplayGapWidth			4.0f
 
@@ -74,9 +74,10 @@ enum {
 	kMemDisplayPie							= 1,
 	kMemDisplayBar,
 	kMemDisplayGraph,
-	kMemDisplayNumber
+	kMemDisplayNumber,
+    kMemDisplayTotalBar
 };
-#define kMemDisplayDefault					kMemDisplayPie
+#define kMemDisplayDefault					kMemDisplayTotalBar
 
 // Used/Free label
 #define kMemUsedFreeLabelDefault			YES

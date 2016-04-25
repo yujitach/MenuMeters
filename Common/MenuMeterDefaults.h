@@ -38,7 +38,6 @@
 
 // CPU menu prefs
 - (double)cpuInterval;
-- (int)cpuDisplayMode;
 - (int)cpuPercentDisplay;
 - (int)cpuGraphLength;
 - (BOOL)cpuAvgAllProcs;
@@ -47,7 +46,6 @@
 - (NSColor *)cpuSystemColor;
 - (NSColor *)cpuUserColor;
 - (void)saveCpuInterval:(double)interval;
-- (void)saveCpuDisplayMode:(int)mode;
 - (void)saveCpuPercentDisplay:(int)mode;
 - (void)saveCpuGraphLength:(int)length;
 - (void)saveCpuAvgAllProcs:(BOOL)average;

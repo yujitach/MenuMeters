@@ -49,7 +49,6 @@
 	IBOutlet NSTextField			*versionDisplay;
 	// CPU pane controls
 	IBOutlet NSButton				*cpuMeterToggle;
-	IBOutlet NSPopUpButton			*cpuDisplayMode;
 	IBOutlet NSTextField			*cpuIntervalDisplay;
 	IBOutlet NSSlider				*cpuInterval;
 	IBOutlet NSPopUpButton			*cpuPercentMode;

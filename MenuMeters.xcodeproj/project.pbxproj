@@ -67,6 +67,8 @@
 		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
 		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
 		33BA36E91B69E74400B4220E /* MenuMeterDefaults.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D4ECB2C805FE6F4000954E26 /* MenuMeterDefaults.bundle */; };
+		7BE1EA071CCE8B2A00CACD11 /* smc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BE1EA051CCE8B2A00CACD11 /* smc.c */; };
+		7BE1EA081CCE8B2A00CACD11 /* smc.c in Sources */ = {isa = PBXBuildFile; fileRef = 7BE1EA051CCE8B2A00CACD11 /* smc.c */; };
 		D403AD3C0E04E99C00348443 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403AD3B0E04E99C00348443 /* Foundation.framework */; };
 		D403ADE30E04F17900348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
@@ -303,6 +305,8 @@
 		3383C1DF1B69DD2D00915D5D /* Japanese.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Japanese.lproj; sourceTree = "<group>"; };
 		3383C1E01B69DD2D00915D5D /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nl.lproj; sourceTree = "<group>"; };
 		3383C1E11B69DD2D00915D5D /* zh_CN.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zh_CN.lproj; sourceTree = "<group>"; };
+		7BE1EA051CCE8B2A00CACD11 /* smc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = smc.c; path = MenuExtras/MenuMeterCPU/smc.c; sourceTree = "<group>"; };
+		7BE1EA061CCE8B2A00CACD11 /* smc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = smc.h; path = MenuExtras/MenuMeterCPU/smc.h; sourceTree = "<group>"; };
 		D40138D504F7B1DD00A87BC9 /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/Installer.nib; sourceTree = "<group>"; };
 		D40138D604F7B1E100A87BC9 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D40271B8083D928600D09108 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -812,6 +816,8 @@
 		D477AAD603D4B9DE00A87BC9 /* MenuMeterCPU */ = {
 			isa = PBXGroup;
 			children = (
+				7BE1EA051CCE8B2A00CACD11 /* smc.c */,
+				7BE1EA061CCE8B2A00CACD11 /* smc.h */,
 				D477AAE803D4BB7D00A87BC9 /* MenuMeterCPUView.h */,
 				D477AAE903D4BB7D00A87BC9 /* MenuMeterCPUView.m */,
 				D477AAED03D4BB8600A87BC9 /* MenuMeterCPUExtra.h */,
@@ -1514,6 +1520,7 @@
 				3383C1851B69B89100915D5D /* MenuMeterUptime.m in Sources */,
 				3383C18B1B69C75A00915D5D /* MenuMeterMemStats.m in Sources */,
 				3383C1931B69C78600915D5D /* MenuMeterDiskSpace.m in Sources */,
+				7BE1EA081CCE8B2A00CACD11 /* smc.c in Sources */,
 				3383C1941B69C78800915D5D /* MenuMeterDiskIO.m in Sources */,
 				3383C1741B69B72600915D5D /* AppDelegate.m in Sources */,
 				3383C18E1B69C77100915D5D /* MenuMeterNetPPP.m in Sources */,
@@ -1579,6 +1586,7 @@
 				D4ECB38205FE718D00954E26 /* MenuMeterCPUExtra.m in Sources */,
 				D4ECB38305FE718D00954E26 /* MenuMeterCPUStats.m in Sources */,
 				D4ECB38405FE718D00954E26 /* MenuMeterUptime.m in Sources */,
+				7BE1EA071CCE8B2A00CACD11 /* smc.c in Sources */,
 				D4ECB38505FE718D00954E26 /* MenuMeterPowerMate.m in Sources */,
 				D48A79F51018B051008E3207 /* MenuMeterWorkarounds.m in Sources */,
 			);

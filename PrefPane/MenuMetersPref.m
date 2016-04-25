@@ -363,9 +363,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuMeterToggle setState:([self isExtraWithBundleIDLoaded:kCPUMenuBundleID] ? NSOnState : NSOffState)];
 
 	// Save changes
-	if (sender == cpuDisplayMode) {
-		[ourPrefs saveCpuDisplayMode:(int)[cpuDisplayMode indexOfSelectedItem] + 1];
-	} else if (sender == cpuInterval) {
+    if (sender == cpuInterval) {
 		[ourPrefs saveCpuInterval:[cpuInterval doubleValue]];
 	} else if (sender == cpuPercentMode) {
 		[ourPrefs saveCpuPercentDisplay:(int)[cpuPercentMode indexOfSelectedItem]];
@@ -389,8 +387,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 
 	// Update controls
-	[cpuDisplayMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
-	[cpuDisplayMode selectItemAtIndex:[ourPrefs cpuDisplayMode] - 1];
 	[cpuInterval setDoubleValue:[ourPrefs cpuInterval]];
 	[cpuPercentMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];
@@ -404,22 +400,24 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuIntervalDisplay takeDoubleValueFrom:cpuInterval];
 
 	// Disable controls as needed
-	if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) {
+    int cpuDisplayMode = kCPUDisplayDefault;
+
+    if ((cpuDisplayMode + 1) & kCPUDisplayPercent) {
 		[cpuPercentMode setEnabled:YES];
 		[cpuPercentModeLabel setTextColor:[NSColor blackColor]];
 	} else {
 		[cpuPercentMode setEnabled:NO];
 		[cpuPercentModeLabel setTextColor:[NSColor lightGrayColor]];
 	}
-	if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayGraph) {
+	if ((cpuDisplayMode + 1) & kCPUDisplayGraph) {
 		[cpuGraphWidth setEnabled:YES];
 		[cpuGraphWidthLabel setTextColor:[NSColor blackColor]];
 	} else {
 		[cpuGraphWidth setEnabled:NO];
 		[cpuGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
 	}
-	if ((([cpuDisplayMode indexOfSelectedItem] + 1) & (kCPUDisplayGraph | kCPUDisplayThermometer)) ||
-		((([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) &&
+	if (((cpuDisplayMode + 1) & (kCPUDisplayGraph | kCPUDisplayThermometer)) ||
+		(((cpuDisplayMode + 1) & kCPUDisplayPercent) &&
 			([cpuPercentMode indexOfSelectedItem] == kCPUPercentDisplaySplit))) {
 		[cpuUserColor setEnabled:YES];
 		[cpuSystemColor setEnabled:YES];
@@ -545,6 +543,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[memFreeUsedLabeling setEnabled:YES];
 		[memColorTab selectTabViewItemAtIndex:kMemUsedFreeColorTab];
 	}
+    
+    if(([memDisplayMode indexOfSelectedItem] + 1) == kMemDisplayTotalBar) {
+        [memFreeUsedLabeling setEnabled:NO];
+        [memColorTab selectTabViewItemAtIndex:kMemUsedFreeColorTab];
+    }
+    
 	if (([memDisplayMode indexOfSelectedItem] + 1) == kMemDisplayGraph) {
 		[memGraphWidth setEnabled:YES];
 		[memGraphWidthLabel setTextColor:[NSColor blackColor]];
