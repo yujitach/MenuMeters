@@ -127,13 +127,6 @@
 				   defaultValue:kCPUUpdateIntervalDefault];
 } // cpuInterval
 
-- (int)cpuDisplayMode {
-	return [self loadBitFlagPref:kCPUDisplayModePref
-					  validFlags:(kCPUDisplayPercent | kCPUDisplayGraph | kCPUDisplayThermometer)
-					   zeroValid:NO
-					defaultValue:kCPUDisplayDefault];
-} // cpuDisplayMode
-
 - (int)cpuPercentDisplay {
 	return [self loadIntPref:kCPUPercentDisplayPref
 					lowBound:kCPUPercentDisplayLarge
@@ -174,10 +167,6 @@
 - (void)saveCpuInterval:(double)interval {
 	[self saveDoublePref:kCPUIntervalPref value:interval];
 } // saveCpuInterval
-
-- (void)saveCpuDisplayMode:(int)mode {
-	[self saveIntPref:kCPUDisplayModePref value:mode];
-} // saveCpuDisplayMode
 
 - (void)saveCpuPercentDisplay:(int)mode {
 	[self saveIntPref:kCPUPercentDisplayPref value:mode];

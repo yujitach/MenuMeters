@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="_window" destination="12" id="119"/>
                 <outlet property="cpuAvgProcs" destination="392" id="394"/>
-                <outlet property="cpuDisplayMode" destination="147" id="174"/>
                 <outlet property="cpuGraphWidth" destination="172" id="179"/>
                 <outlet property="cpuGraphWidthLabel" destination="401" id="547"/>
                 <outlet property="cpuInterval" destination="152" id="176"/>
@@ -309,28 +308,6 @@
                                                         <action selector="liveUpdateInterval:" target="-2" id="1001"/>
                                                     </connections>
                                                 </slider>
-                                                <popUpButton verticalHuggingPriority="750" id="147">
-                                                    <rect key="frame" x="249" y="516" width="286" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <popUpButtonCell key="cell" type="push" title="Percentage and Thermometer" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="359" id="1015">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="menu"/>
-                                                        <menu key="menu" title="OtherViews" id="146">
-                                                            <items>
-                                                                <menuItem title="Percentage" id="148"/>
-                                                                <menuItem title="Graph" id="145"/>
-                                                                <menuItem title="Graph and Percentage" id="149"/>
-                                                                <menuItem title="Thermometer" id="357"/>
-                                                                <menuItem title="Percentage and Thermometer" state="on" id="359"/>
-                                                                <menuItem title="Graph and Thermometer" id="360"/>
-                                                                <menuItem title="Graph, Percentage and Thermometer" id="358"/>
-                                                            </items>
-                                                        </menu>
-                                                    </popUpButtonCell>
-                                                    <connections>
-                                                        <action selector="cpuPrefChange:" target="-2" id="182"/>
-                                                    </connections>
-                                                </popUpButton>
                                                 <button id="144">
                                                     <rect key="frame" x="19" y="516" width="227" height="27"/>
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -350,7 +327,7 @@
                             <tabViewItem label="Disk" identifier="2" id="100">
                                 <view key="view" id="101">
                                     <rect key="frame" x="10" y="33" width="548" height="551"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="773">
                                             <rect key="frame" x="-3" y="-3" width="554" height="571"/>
@@ -730,7 +707,7 @@
                                                 <popUpButton verticalHuggingPriority="750" id="221">
                                                     <rect key="frame" x="273" y="516" width="262" height="26"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <popUpButtonCell key="cell" type="push" title="Used/Free Thermometer" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="ogn-pu-v18" id="1034">
+                                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="1034">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="223">
@@ -739,7 +716,7 @@
                                                                 <menuItem title="Usage Bar" id="219"/>
                                                                 <menuItem title="Usage History Graph" id="472"/>
                                                                 <menuItem title="Used/Free Totals" id="508"/>
-                                                                <menuItem title="Used/Free Thermometer" state="on" id="ogn-pu-v18"/>
+                                                                <menuItem title="Used/Free Thermometer" id="ogn-pu-v18"/>
                                                             </items>
                                                         </menu>
                                                     </popUpButtonCell>

@@ -284,15 +284,16 @@
     renderOffset += cpuLabel.size.width;
     
 	for (uint32_t cpuNum = 0; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
+        int cpuDisplayMode = kCPUDisplayDefault;
 
 		// Render graph if needed
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
+		if (cpuDisplayMode & kCPUDisplayGraph) {
 			[self renderHistoryGraphIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
 			// Adjust render offset
 			renderOffset += cpuGraphLength;
 		}
 		// Render percent if needed
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
+		if (cpuDisplayMode & kCPUDisplayPercent) {
 			if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
 				[self renderSplitPercentIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
 			} else {
@@ -300,7 +301,7 @@
 			}
 			renderOffset += percentWidth;
 		}
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) {
+		if (cpuDisplayMode & kCPUDisplayThermometer) {
 			[self renderThermometerIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
 			renderOffset += kCPUThermometerDisplayWidth;
 		}
@@ -434,7 +435,8 @@
 	NSImage *percentImage = [singlePercentCache objectAtIndex:roundf(totalLoad * 100.0f)];
 	if (!percentImage) return;
 	[image lockFocus];
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
+    int cpuDisplayMode = kCPUDisplayDefault;
+	if (cpuDisplayMode & kCPUDisplayGraph) {
 		// When graphing right align, we had trouble with doing this with NSParagraphStyle, so do it manually
 		[percentImage compositeToPoint:NSMakePoint(offset + percentWidth - ceilf((float)[percentImage size].width) - 1,
 												   (float)round(([image size].height - [percentImage size].height) / 2))
@@ -475,7 +477,8 @@
 	NSImage *userImage = [splitUserPercentCache objectAtIndex:roundf(user * 100.0f)];
 	if (!(systemImage && userImage)) return;
 	[image lockFocus];
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
+    int cpuDisplayMode = kCPUDisplayDefault;
+	if (cpuDisplayMode & kCPUDisplayGraph) {
 		// When graphing right align, we had trouble with doing this with NSParagraphStyle, so do it manually
 		[systemImage compositeToPoint:NSMakePoint(offset + percentWidth - [systemImage size].width - 1, 0)
 							 operation:NSCompositeSourceOver];
@@ -763,13 +766,15 @@
     
     menuWidth += renderCPUString.size.width;
 
-    if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
+    int cpuDisplayMode = kCPUDisplayDefault;
+
+    if (cpuDisplayMode & kCPUDisplayPercent) {
 		menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : [cpuInfo numberOfCPUs]) * percentWidth);
 	}
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
+	if (cpuDisplayMode & kCPUDisplayGraph) {
 		menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : [cpuInfo numberOfCPUs]) * [ourPrefs cpuGraphLength]);
 	}
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) {
+	if (cpuDisplayMode & kCPUDisplayThermometer) {
 		menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : [cpuInfo numberOfCPUs]) * kCPUThermometerDisplayWidth);
 	}
 	if (![ourPrefs cpuAvgAllProcs] && ([cpuInfo numberOfCPUs] > 1)) {
