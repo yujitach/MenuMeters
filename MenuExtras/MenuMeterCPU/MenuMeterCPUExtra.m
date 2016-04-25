@@ -22,6 +22,7 @@
 //
 
 #import "MenuMeterCPUExtra.h"
+#import "smc.h"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -69,6 +70,82 @@
 #define kOpenConsoleTitle					@"Open Console"
 #define kNoInfoErrorMessage					@"No info available"
 
+#define kMenuTempFormat                     @"    %d\U000000B0 %s"
+
+// https://github.com/Chris911/iStats/blob/master/lib/iStats/smc.rb
+//
+// http://jbot-42.github.io/Articles/smc.html
+const char* TEMPS[][2] = {
+    {"TA0P", "Ambient temperature"},
+    {"TA0p", "Ambient temperature"},
+    {"TA1P", "Ambient temperature"},
+    {"TA1p", "Ambient temperature"},
+    {"TA0S", "PCI Slot 1 Pos 1"},
+    {"TA1S", "PCI Slot 1 Pos 2"},
+    {"TA2S", "PCI Slot 2 Pos 1"},
+    {"TA3S", "PCI Slot 2 Pos 2"},
+    {"Tb0P", "BLC Proximity"},
+    {"TB0T", "Battery TS_MAX"},
+    {"TB1T", "Battery 1"},
+    {"TB2T", "Battery 2"},
+    {"TB3T", "Battery 3"},
+    {"TC0C", "CPU 0 Core"},
+    {"TC0D", "CPU 0 Die"},
+    {"TCXC", "PECI CPU"},
+    {"TCXc", "PECI CPU"},
+    {"TC0E", "CPU 0"},
+    {"TC0F", "CPU 0"},
+    {"TC0G", "CPU 0 ????"},
+    {"TC0H", "CPU 0 Heatsink"},
+    {"TC0J", "CPU 0 ??"},
+    {"TC0P", "CPU 0 Proximity"},
+    {"TC0c", ""},
+    {"TC0d", ""},
+    {"TC0p", ""},
+    {"TC1C", "Core 1"},
+    {"TC1c", ""},
+    {"TC2C", "Core 2"},
+    {"TC2c", ""},
+    {"TC3C", "Core 3"},
+    {"TC3c", ""},
+    {"TC4C", "Core 4"},
+    {"TC5C", "Core 5"},
+    {"TC6C", "Core 6"},
+    {"TC7C", "Core 7"},
+    {"TC8C", "Core 8"},
+    {"TCGC", "PECI GPU"},
+    {"TCGc", "PECI GPU"},
+    {"TCPG", ""},
+    {"TCSC", "PECI SA"},
+    {"TCSc", "PECI SA"},
+    {"TCSA", "PECI SA"},
+    {"TG0H", "GPU 0 Heatsink"},
+    {"TG0P", "GPU 0 Proximity"},
+    {"TG0D", "GPU 0 Die"},
+    {"TG1D", "GPU 1 Die"},
+    {"TG1H", "GPU 1 Heatsink"},
+    {"TH0P", "Harddisk 0 Proximity"},
+    {"Th1H", "NB/CPU/GPU HeatPipe 1 Proximity"},
+    {"TL0P", "LCD Proximity"},
+    {"TM0P", "Memory Slot Proximity"},
+    {"TM0S", "Memory Slot 1"},
+    {"Tm0p", "Misc (clock chip) Proximity"},
+    {"TO0P", "Optical Drive Proximity"},
+    {"Tp0P", "PowerSupply Proximity"},
+    {"TPCD", "Platform Controller Hub Die"},
+    {"TS0C", "Expansion slots"},
+    {"Ts0P", "Palm rest L"},
+    {"Ts0S", "Memory Bank Proximity"},
+    {"Ts1p", "Palm rest R"},
+    {"TW0P", "AirPort Proximity"},
+};
+
+const char* TEMPS_SHORT[][2] = {
+    {"TC0E", "CPU 0"},
+    {"TC0F", "CPU 0"},
+    {"TG0P", "GPU 0 Proximity"},
+    {"TG0D", "GPU 0 Die"},
+};
 
 ///////////////////////////////////////////////////////////////
 //
@@ -165,10 +242,56 @@
     [extraMenu addItem:[NSMenuItem separatorItem]];
 
     menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    kCPUHistoryMenuIndex = [extraMenu indexOfItem:menuItem];
     int height = [[NSFont menuFontOfSize:0] pointSize] * 2;
     cpuGraphLength = extraMenu.size.width;
     NSImage *currentImage = [[[NSImage alloc] initWithSize:NSMakeSize(cpuGraphLength, height)] autorelease];
     [menuItem setImage:currentImage];
+    [extraMenu addItem:[NSMenuItem separatorItem]];
+
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:@"Temperature:" value:nil table:nil] action:nil keyEquivalent:@""];
+    kCPUTempMenuIndex = [extraMenu indexOfItem:menuItem];
+    
+    SMCOpen();
+    {
+        NSMenu *temps = [[NSMenu alloc] init];
+        NSMenuItem *temp;
+        int max = sizeof(TEMPS) / sizeof(TEMPS[0]);
+        for(int i = 0; i < max; i++) {
+            double t = SMCGetTemperature((char*)TEMPS[i][0]);
+
+            if (t <= -127)
+                continue;
+
+            NSString *name = [NSString stringWithFormat:kMenuTempFormat, (int)t, TEMPS[i][1]];
+            temp = (NSMenuItem *)[temps addItemWithTitle:[bundle localizedStringForKey:name value:nil table:nil] action:nil keyEquivalent:@""];
+            [temp setTag: i];
+            [temp setEnabled:NO];
+        }
+
+        [menuItem setSubmenu:temps];
+    }
+    {
+        NSMenuItem *temp;
+        int max = sizeof(TEMPS_SHORT) / sizeof(TEMPS_SHORT[0]);
+        for(int i = 0; i < max; i++) {
+            double t = SMCGetTemperature((char*)TEMPS_SHORT[i][0]);
+            
+            if (t <= -127)
+                continue;
+
+            NSString *name = [NSString stringWithFormat:kMenuTempFormat, (int)t, TEMPS_SHORT[i][1]];
+            temp = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:name value:nil table:nil] action:nil keyEquivalent:@""];
+            [temp setTag: i];
+            [temp setEnabled:NO];
+        }
+    }
+    SMCClose();
+    
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    kCPURPMMenuIndex = [extraMenu indexOfItem:menuItem];
+    [menuItem setEnabled:NO];
+
 	// And the "Open Process Viewer"/"Open Activity Monitor" and "Open Console" item
 	[extraMenu addItem:[NSMenuItem separatorItem]];
 	if (isPantherOrLater) {
@@ -329,11 +452,54 @@
 	title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo loadAverage]];
 	if (title) LiveUpdateMenuItemTitle(extraMenu, kCPULoadInfoMenuIndex, title);
 
-    NSMenuItem *item = [extraMenu itemAtIndex:9];
+    NSMenuItem *item = [extraMenu itemAtIndex:kCPUHistoryMenuIndex];
     NSImage *image = [item image];
     image = [[[NSImage alloc] initWithSize:image.size] autorelease];
     [self renderHistoryGraphIntoImage:image forProcessor:0 atOffset:0];
     [item setImage:image];
+
+    SMCOpen();
+    {
+        NSInteger menuIndex = kCPUTempMenuIndex + 1;
+        int max = sizeof(TEMPS_SHORT) / sizeof(TEMPS_SHORT[0]);
+        for(int i = 0; i < max; i++) {
+            NSMenuItem *item = [extraMenu itemAtIndex: menuIndex];
+            if (item.separatorItem)
+                break;
+            NSInteger tag = item.tag;
+            double t = SMCGetTemperature((char*)TEMPS_SHORT[tag][0]);
+            NSString *name = [NSString stringWithFormat:kMenuTempFormat, (int)t, TEMPS_SHORT[tag][1]];
+            LiveUpdateMenuItemTitle(extraMenu, menuIndex, name);
+            menuIndex++;
+        }
+    }
+    {
+        NSMenuItem *item = [extraMenu itemAtIndex: kCPUTempMenuIndex];
+        NSMenu *temps = [item submenu];
+        NSInteger menuIndex = 0;
+        int max = sizeof(TEMPS) / sizeof(TEMPS[0]);
+        for(int i = 0; i < max; i++) {
+            if (i >= [temps numberOfItems])
+                break;
+            item = [temps itemAtIndex: menuIndex];
+            NSInteger tag = item.tag;
+            double t = SMCGetTemperature((char*)TEMPS[tag][0]);
+            NSString *name = [NSString stringWithFormat:kMenuTempFormat, (int)t, TEMPS[tag][1]];
+            LiveUpdateMenuItemTitle(temps, menuIndex, name);
+            menuIndex++;
+        }
+    }
+    {
+        NSMutableString *name = [[NSMutableString alloc] init];
+        [name appendString:@"    RPM"];
+        int max = SMCGetFanNumber("FNum");
+        for(int i = 0; i < max; i++) {
+            int speed = SMCGetFanSpeed(i);
+            [name appendFormat:@" / %d", speed];
+        }
+        LiveUpdateMenuItemTitle(extraMenu, kCPURPMMenuIndex, name);
+    }
+    SMCClose();
 
 	// Send the menu back to SystemUIServer
 	return extraMenu;

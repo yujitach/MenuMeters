@@ -67,6 +67,9 @@
     
     // length in pixels of cpu graph image (menuitem px width)
     int                             cpuGraphLength;
+    NSInteger                       kCPUHistoryMenuIndex;
+    NSInteger                       kCPUTempMenuIndex;
+    NSInteger                       kCPURPMMenuIndex;
 
 } // MenuMeterCPUExtra
 
