@@ -912,10 +912,6 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
-#ifdef ELCAPITAN
-    [super configDisplay:kMemMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs memInterval]];
-#endif
-
 	// Update prefs
 	[ourPrefs syncWithDisk];
 
@@ -1042,6 +1038,10 @@
 	// Flag us for redisplay
 	[extraView setNeedsDisplay:YES];
 
+#ifdef ELCAPITAN
+	[super configDisplay:kMemMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs memInterval]];
+#endif
+	
 } // configFromPrefs
 
 @end

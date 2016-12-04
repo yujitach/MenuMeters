@@ -16,33 +16,19 @@
 }
 -(void)timerFired:(id)notused
 {
-    NSImage *oldCanvas = statusItem.button.image;
-    NSImage *canvas = oldCanvas;
-    NSSize imageSize = NSMakeSize(self.length, self.view.frame.size.height);
-    NSSize oldImageSize = canvas.size;
-    if (imageSize.width != oldImageSize.width || imageSize.height != oldImageSize.height) {
-        canvas = [[NSImage alloc] initWithSize:imageSize];
-    }
-    
-    NSImage *image = self.image;
-    [canvas lockFocus];
-    [image drawAtPoint:CGPointZero fromRect:(CGRect) {.size = image.size} operation:NSCompositingOperationCopy fraction:1.0];
-    [canvas unlockFocus];
-    
-    if (canvas != oldCanvas) {
-        statusItem.button.image = canvas;
-    } else {
-        [statusItem.button setNeedsDisplay];
-    }
+    statusItem.button.image = self.image;
 }
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval
 {
     if([ourPrefs loadBoolPref:bundleID defaultValue:YES]){
-        if(!statusItem){
-            statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-            statusItem.menu = self.menu;
-            statusItem.menu.delegate = self;
+        if (statusItem) {
+            [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
         }
+
+        statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:self.length];
+        statusItem.menu = self.menu;
+        statusItem.menu.delegate = self;
+
         [timer invalidate];
         timer=[NSTimer timerWithTimeInterval:interval target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
         [timer setTolerance:.2*interval];
