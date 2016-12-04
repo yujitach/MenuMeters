@@ -30,6 +30,10 @@
 #import <mach/mach_error.h>
 #import "MenuMeterCPU.h"
 
+@interface MenuMeterCPULoad : NSObject
+@property(nonatomic) double system;
+@property(nonatomic) double user;
+@end
 
 @interface MenuMeterCPUStats : NSObject {
 

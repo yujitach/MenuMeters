@@ -351,15 +351,18 @@
 		}
 
 		// Get load at this position.
-		float system = [[[loadHistoryEntry objectAtIndex:processor] objectForKey:@"system"] floatValue];
-		float user = [[[loadHistoryEntry objectAtIndex:processor] objectForKey:@"user"] floatValue];
+        MenuMeterCPULoad *load = loadHistoryEntry[processor];
+        float system = load.system;
+        float user = load.user;
 		if ([ourPrefs cpuAvgAllProcs]) {
-			for (uint32_t cpuNum = 1; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
-				system += [[[loadHistoryEntry objectAtIndex:cpuNum] objectForKey:@"system"] floatValue];
-				user += [[[loadHistoryEntry objectAtIndex:cpuNum] objectForKey:@"user"] floatValue];
+            NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+			for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
+                MenuMeterCPULoad *load = loadHistoryEntry[cpuNum];
+                system += load.system;
+                user += load.user;
 			}
-			system /= [cpuInfo numberOfCPUs];
-			user /= [cpuInfo numberOfCPUs];
+			system /= numberOfCPUs;
+			user /= numberOfCPUs;
 		}
 		// Sanity and limit
 		if (system < 0) system = 0;
@@ -397,14 +400,15 @@
 	NSArray *currentLoad = [loadHistory lastObject];
 	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
-	float totalLoad = [[[currentLoad objectAtIndex:processor] objectForKey:@"system"] floatValue] +
-						[[[currentLoad objectAtIndex:processor] objectForKey:@"user"] floatValue];
+    MenuMeterCPULoad *load = currentLoad[processor];
+    float totalLoad = load.system + load.user;
 	if ([ourPrefs cpuAvgAllProcs]) {
-		for (uint32_t cpuNum = 1; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
-			totalLoad += [[[currentLoad objectAtIndex:cpuNum] objectForKey:@"system"] floatValue] +
-							[[[currentLoad objectAtIndex:cpuNum] objectForKey:@"user"] floatValue];
+        NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+		for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
+            MenuMeterCPULoad *load = currentLoad[cpuNum];
+            totalLoad += load.user + load.system;
 		}
-		totalLoad /= [cpuInfo numberOfCPUs];
+		totalLoad /= numberOfCPUs;
 	}
 	if (totalLoad > 1) totalLoad = 1;
 	if (totalLoad < 0) totalLoad = 0;
@@ -434,15 +438,18 @@
 	NSArray *currentLoad = [loadHistory lastObject];
 	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
-	float system = [[[currentLoad objectAtIndex:processor] objectForKey:@"system"] floatValue];
-	float user = [[[currentLoad objectAtIndex:processor] objectForKey:@"user"] floatValue];
+    MenuMeterCPULoad *load = currentLoad[processor];
+    float system = load.system;
+    float user = load.user;
 	if ([ourPrefs cpuAvgAllProcs]) {
-		for (uint32_t cpuNum = 1; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
-			system += [[[currentLoad objectAtIndex:cpuNum] objectForKey:@"system"] floatValue];
-			user += [[[currentLoad objectAtIndex:cpuNum] objectForKey:@"user"] floatValue];
+        NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+		for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
+            MenuMeterCPULoad *load = currentLoad[cpuNum];
+            system += load.system;
+            user += load.user;
 		}
-		system /= [cpuInfo numberOfCPUs];
-		user /= [cpuInfo numberOfCPUs];
+		system /= numberOfCPUs;
+		user /= numberOfCPUs;
 	}
 	if (system > 1) system = 1;
 	if (system < 0) system = 0;
@@ -478,15 +485,18 @@
 	NSArray *currentLoad = [loadHistory lastObject];
 	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
-	float system = [[[currentLoad objectAtIndex:processor] objectForKey:@"system"] floatValue];
-	float user = [[[currentLoad objectAtIndex:processor] objectForKey:@"user"] floatValue];
+    MenuMeterCPULoad *load = currentLoad[processor];
+    float system = load.system;
+    float user = load.user;
 	if ([ourPrefs cpuAvgAllProcs]) {
-		for (uint32_t cpuNum = 1; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
-			system += [[[currentLoad objectAtIndex:cpuNum] objectForKey:@"system"] floatValue];
-			user += [[[currentLoad objectAtIndex:cpuNum] objectForKey:@"user"] floatValue];
-		}
-		system /= [cpuInfo numberOfCPUs];
-		user /= [cpuInfo numberOfCPUs];
+        NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+        for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
+            MenuMeterCPULoad *load = currentLoad[cpuNum];
+            system += load.system;
+            user += load.user;
+        }
+        system /= numberOfCPUs;
+        user /= numberOfCPUs;
 	}
 	if (system > 1) system = 1;
 	if (system < 0) system = 0;
@@ -571,11 +581,12 @@
 	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
 	double totalLoad = 0;
-	for (uint32_t cpuNum = 0; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
-		totalLoad += [[[currentLoad objectAtIndex:cpuNum] objectForKey:@"system"] doubleValue] +
-						[[[currentLoad objectAtIndex:cpuNum] objectForKey:@"user"] doubleValue];
-	}
-	totalLoad /= [cpuInfo numberOfCPUs];
+    NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+    for (uint32_t cpuNum = 0; cpuNum < numberOfCPUs; cpuNum++) {
+        MenuMeterCPULoad *load = currentLoad[cpuNum];
+        totalLoad += load.system + load.user;
+    }
+    totalLoad /= numberOfCPUs;
 	if (totalLoad > 1) totalLoad = 1;
 	if (totalLoad < 0) totalLoad = 0;
 
