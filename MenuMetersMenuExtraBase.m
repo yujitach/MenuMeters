@@ -9,9 +9,31 @@
 #import "MenuMetersMenuExtraBase.h"
 
 @implementation MenuMetersMenuExtraBase
+-(instancetype)initWithBundle:(NSBundle*)bundle
+{
+    self=[super initWithBundle:bundle];
+    return self;
+}
 -(void)timerFired:(id)notused
 {
-    statusItem.button.image=[self image];
+    NSImage *oldCanvas = statusItem.button.image;
+    NSImage *canvas = oldCanvas;
+    NSSize imageSize = NSMakeSize(self.length, self.view.frame.size.height);
+    NSSize oldImageSize = canvas.size;
+    if (imageSize.width != oldImageSize.width || imageSize.height != oldImageSize.height) {
+        canvas = [[NSImage alloc] initWithSize:imageSize];
+    }
+    
+    NSImage *image = self.image;
+    [canvas lockFocus];
+    [image drawAtPoint:CGPointZero fromRect:(CGRect) {.size = image.size} operation:NSCompositingOperationCopy fraction:1.0];
+    [canvas unlockFocus];
+    
+    if (canvas != oldCanvas) {
+        statusItem.button.image = canvas;
+    } else {
+        [statusItem.button setNeedsDisplay];
+    }
 }
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval
 {
