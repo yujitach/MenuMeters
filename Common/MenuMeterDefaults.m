@@ -121,7 +121,6 @@
 ///////////////////////////////////////////////////////////////
 
 - (double)cpuInterval {
-    return 0.05f;
 	return [self loadDoublePref:kCPUIntervalPref
 					   lowBound:kCPUUpdateIntervalMin
 					  highBound:kCPUUpdateIntervalMax
@@ -378,7 +377,6 @@
 ///////////////////////////////////////////////////////////////
 
 - (double)netInterval {
-    return 0.05f;
 	return [self loadDoublePref:kNetIntervalPref
 					   lowBound:kNetUpdateIntervalMin
 					  highBound:kNetUpdateIntervalMax
