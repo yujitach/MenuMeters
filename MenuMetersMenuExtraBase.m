@@ -8,6 +8,8 @@
 
 #import "MenuMetersMenuExtraBase.h"
 
+static const int STATUS_BUTTON_PADDING = 8;
+
 @implementation MenuMetersMenuExtraBase
 -(instancetype)initWithBundle:(NSBundle*)bundle
 {
@@ -25,7 +27,7 @@
             [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
         }
 
-        statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:self.length];
+        statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:self.length+STATUS_BUTTON_PADDING];
         statusItem.menu = self.menu;
         statusItem.menu.delegate = self;
 
