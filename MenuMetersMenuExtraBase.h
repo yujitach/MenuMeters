@@ -15,7 +15,6 @@
     NSStatusItem*statusItem;
     NSTimer*timer;
 }
--(instancetype)initWithBundle:(NSBundle*)bundle;
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;
 
 @property(nonatomic, readonly) BOOL isMenuVisible;
