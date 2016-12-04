@@ -173,6 +173,8 @@
 	}
     [self setView:extraView];
 
+	throughputFont = [[NSFont systemFontOfSize:9.5f] retain];
+
 	// Localizable strings
 	localizedStrings = [[NSDictionary dictionaryWithObjectsAndKeys:
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTxLabel value:nil table:nil],
@@ -329,6 +331,7 @@
 	[inactiveThroughputLabel release];
 	[preferredInterfaceConfig release];
 	[updateMenuItems release];
+	[throughputFont release];
     [super dealloc];
 
 } // dealloc
@@ -1123,12 +1126,13 @@
 	if (!sampleIntervalNum && ([sampleIntervalNum doubleValue] > 0)) {
 		sampleInterval = [sampleIntervalNum doubleValue];
 	}
+	
 	NSString *txString = [self menubarThroughputStringForBytes:txValue inInterval:sampleInterval];
 	NSString *rxString = [self menubarThroughputStringForBytes:rxValue inInterval:sampleInterval];
 	NSAttributedString *renderTxString = [[[NSAttributedString alloc]
 												initWithString:txString
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																	[NSFont systemFontOfSize:9.5f],
+																	throughputFont,
 																	NSFontAttributeName,
 																	interfaceUp ? txColor : inactiveColor,
 																	NSForegroundColorAttributeName,
@@ -1136,7 +1140,7 @@
 	NSAttributedString *renderRxString = [[[NSAttributedString alloc]
 												initWithString:rxString
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																	[NSFont systemFontOfSize:9.5f],
+																	throughputFont,
 																	NSFontAttributeName,
 																	interfaceUp ? rxColor : inactiveColor,
 																	NSForegroundColorAttributeName,
@@ -1533,13 +1537,13 @@
 	NSAttributedString *renderTxString = [[[NSAttributedString alloc]
 											initWithString:[localizedStrings objectForKey:kTxLabel]
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+																throughputFont, NSFontAttributeName,
 																txColor, NSForegroundColorAttributeName,
 																nil]] autorelease];
 	NSAttributedString *renderRxString = [[[NSAttributedString alloc]
 											initWithString:[localizedStrings objectForKey:kRxLabel]
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+																throughputFont, NSFontAttributeName,
 																rxColor, NSForegroundColorAttributeName,
 																nil]] autorelease];
 	if ([renderTxString size].width > [renderRxString size].width) {
@@ -1562,13 +1566,13 @@
 	renderTxString = [[[NSAttributedString alloc]
 						initWithString:[localizedStrings objectForKey:kTxLabel]
 							attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+											throughputFont, NSFontAttributeName,
 											inactiveColor, NSForegroundColorAttributeName,
 											nil]] autorelease];
 	renderRxString = [[[NSAttributedString alloc]
 						initWithString:[localizedStrings objectForKey:kRxLabel]
 							attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+											throughputFont, NSFontAttributeName,
 											inactiveColor, NSForegroundColorAttributeName,
 											nil]] autorelease];
 	[inactiveThroughputLabel lockFocus];
@@ -1602,7 +1606,7 @@
 												initWithString:[NSString stringWithFormat:@"99.9%@",
 																	[localizedStrings objectForKey:kBytePerSecondLabel]]
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																	[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+																	throughputFont, NSFontAttributeName,
 																	nil]] autorelease];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
@@ -1611,7 +1615,7 @@
 							initWithString:[NSString stringWithFormat:@"99.9%@",
 												[localizedStrings objectForKey:kKBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-												[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+												throughputFont, NSFontAttributeName,
 												nil]] autorelease];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
@@ -1620,7 +1624,7 @@
 							initWithString:[NSString stringWithFormat:@"99.9%@",
 												[localizedStrings objectForKey:kMBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-												[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+												throughputFont, NSFontAttributeName,
 												nil]] autorelease];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
@@ -1629,7 +1633,7 @@
 							initWithString:[NSString stringWithFormat:@"99.9%@",
 												[localizedStrings objectForKey:kGBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-												[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+												throughputFont, NSFontAttributeName,
 												nil]] autorelease];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;

@@ -68,6 +68,7 @@
 	NSDictionary					*preferredInterfaceConfig;
 	// Cached dictionary of menu items that can be updated
 	NSMutableDictionary				*updateMenuItems;
+	NSFont							*throughputFont;
 
 } // MenuMeterNetExtra
 
