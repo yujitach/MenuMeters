@@ -872,7 +872,7 @@
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
 	float renderHeight = graphHeight - 0.5f;  // Save room for baseline
- 	for (renderPosition = 0; renderPosition < [ourPrefs netGraphLength]; renderPosition++) {
+	for (renderPosition = 0; renderPosition < [ourPrefs netGraphLength]; renderPosition++) {
 		// No data at this position?
 		if ((renderPosition >= [netHistoryData count]) ||
 			(renderPosition >= [netHistoryIntervals count])) break;
@@ -1104,9 +1104,9 @@
 - (void)renderThroughputIntoImage:(NSImage *)image {
 
 	// Get the primary stats
-    BOOL interfaceUp = [[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue];
 	double txValue = 0;
 	double rxValue = 0;
+	BOOL interfaceUp = [[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue];
 	if (interfaceUp) {
 		NSDictionary *primaryStats = [[netHistoryData lastObject] objectForKey:[preferredInterfaceConfig objectForKey:@"statname"]];
 		if (primaryStats) {

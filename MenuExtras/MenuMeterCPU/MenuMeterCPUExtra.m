@@ -181,12 +181,12 @@
 	[menuItem setTarget:self];
 
 	// Get our view
-    extraView = [[MenuMeterCPUView alloc] initWithFrame:[[self view] frame] menuExtra:self];
+	extraView = [[MenuMeterCPUView alloc] initWithFrame:[[self view] frame] menuExtra:self];
 	if (!extraView) {
 		[self release];
 		return nil;
 	}
-    [self setView:extraView];
+	[self setView:extraView];
 
 	// Register for pref changes
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
@@ -205,9 +205,9 @@
 	// Fake a timer call to construct initial values
 	[self updateCPUActivityDisplay:nil];
 
-    // And hand ourself back to SystemUIServer
+	// And hand ourself back to SystemUIServer
 	NSLog(@"MenuMeterCPU loaded.");
-    return self;
+	return self;
 
 } // initWithBundle
 
@@ -227,14 +227,14 @@
 																   object:kCPUMenuUnloadNotification];
 
 	// Let super do the rest
-    [super willUnload];
+	[super willUnload];
 
 } // willUnload
 
 - (void)dealloc {
 
 	[extraView release];
-    [extraMenu release];
+	[extraMenu release];
 	[updateTimer invalidate];  // Released by the runloop
 	[ourPrefs release];
 	[cpuInfo release];
@@ -247,7 +247,7 @@
 	[userColor release];
 	[systemColor release];
 	[fgMenuThemeColor release];
-    [super dealloc];
+	[super dealloc];
 
 } // dealloc
 
@@ -269,7 +269,7 @@
 
 	// Loop by processor
 	float renderOffset = 0;
-    int cpuDisplayModePrefs = [ourPrefs cpuDisplayMode];
+	int cpuDisplayModePrefs = [ourPrefs cpuDisplayMode];
 	for (uint32_t cpuNum = 0; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
 
 		// Render graph if needed
@@ -340,7 +340,7 @@
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
 	float renderHeight = (float)[image size].height - 0.5f;  // Save space for baseline
- 	for (renderPosition = 0; renderPosition < [ourPrefs cpuGraphLength]; renderPosition++) {
+	for (renderPosition = 0; renderPosition < [ourPrefs cpuGraphLength]; renderPosition++) {
 		// No data at this position?
 		if (renderPosition >= [loadHistory count]) break;
 
@@ -352,15 +352,15 @@
 		}
 
 		// Get load at this position.
-        MenuMeterCPULoad *load = loadHistoryEntry[processor];
-        float system = load.system;
-        float user = load.user;
+		MenuMeterCPULoad *load = loadHistoryEntry[processor];
+		float system = load.system;
+		float user = load.user;
 		if ([ourPrefs cpuAvgAllProcs]) {
-            NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+			NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
 			for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
-                MenuMeterCPULoad *load = loadHistoryEntry[cpuNum];
-                system += load.system;
-                user += load.user;
+				MenuMeterCPULoad *load = loadHistoryEntry[cpuNum];
+				system += load.system;
+				user += load.user;
 			}
 			system /= numberOfCPUs;
 			user /= numberOfCPUs;
@@ -401,13 +401,13 @@
 	NSArray *currentLoad = [loadHistory lastObject];
 	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
-    MenuMeterCPULoad *load = currentLoad[processor];
-    float totalLoad = load.system + load.user;
+	MenuMeterCPULoad *load = currentLoad[processor];
+	float totalLoad = load.system + load.user;
 	if ([ourPrefs cpuAvgAllProcs]) {
-        NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+		NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
 		for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
-            MenuMeterCPULoad *load = currentLoad[cpuNum];
-            totalLoad += load.user + load.system;
+			MenuMeterCPULoad *load = currentLoad[cpuNum];
+			totalLoad += load.user + load.system;
 		}
 		totalLoad /= numberOfCPUs;
 	}
@@ -439,15 +439,15 @@
 	NSArray *currentLoad = [loadHistory lastObject];
 	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
-    MenuMeterCPULoad *load = currentLoad[processor];
-    float system = load.system;
-    float user = load.user;
+	MenuMeterCPULoad *load = currentLoad[processor];
+	float system = load.system;
+	float user = load.user;
 	if ([ourPrefs cpuAvgAllProcs]) {
-        NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+		NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
 		for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
-            MenuMeterCPULoad *load = currentLoad[cpuNum];
-            system += load.system;
-            user += load.user;
+			MenuMeterCPULoad *load = currentLoad[cpuNum];
+			system += load.system;
+			user += load.user;
 		}
 		system /= numberOfCPUs;
 		user /= numberOfCPUs;
@@ -486,18 +486,18 @@
 	NSArray *currentLoad = [loadHistory lastObject];
 	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
-    MenuMeterCPULoad *load = currentLoad[processor];
-    float system = load.system;
-    float user = load.user;
+	MenuMeterCPULoad *load = currentLoad[processor];
+	float system = load.system;
+	float user = load.user;
 	if ([ourPrefs cpuAvgAllProcs]) {
-        NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
-        for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
-            MenuMeterCPULoad *load = currentLoad[cpuNum];
-            system += load.system;
-            user += load.user;
-        }
-        system /= numberOfCPUs;
-        user /= numberOfCPUs;
+		NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+		for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
+			MenuMeterCPULoad *load = currentLoad[cpuNum];
+			system += load.system;
+			user += load.user;
+		}
+		system /= numberOfCPUs;
+		user /= numberOfCPUs;
 	}
 	if (system > 1) system = 1;
 	if (system < 0) system = 0;
@@ -581,12 +581,12 @@
 	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
 	double totalLoad = 0;
-    NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
-    for (uint32_t cpuNum = 0; cpuNum < numberOfCPUs; cpuNum++) {
-        MenuMeterCPULoad *load = currentLoad[cpuNum];
-        totalLoad += load.system + load.user;
-    }
-    totalLoad /= numberOfCPUs;
+	NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+	for (uint32_t cpuNum = 0; cpuNum < numberOfCPUs; cpuNum++) {
+		MenuMeterCPULoad *load = currentLoad[cpuNum];
+		totalLoad += load.system + load.user;
+	}
+	totalLoad /= numberOfCPUs;
 	if (totalLoad > 1) totalLoad = 1;
 	if (totalLoad < 0) totalLoad = 0;
 

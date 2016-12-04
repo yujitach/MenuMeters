@@ -46,12 +46,10 @@
     statusItem.menu = self.menu;
     statusItem.menu.delegate = self;
 }
-
-- (void)menuWillOpen:(NSMenu *)menu {
+- (void)menuWillOpen:(NSMenu*)menu {
     _isMenuVisible = YES;
 }
-
-- (void)menuDidClose:(NSMenu *)menu {
+- (void)menuDidClose:(NSMenu*)menu {
     _isMenuVisible = NO;
 }
 

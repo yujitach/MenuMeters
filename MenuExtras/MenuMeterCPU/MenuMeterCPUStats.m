@@ -281,13 +281,13 @@
 		}
 		total = system + user + idle;
 
-        float normalize = (total < 1) ? 1 : (1.0 / total);
-
-        MenuMeterCPULoad *load = [[MenuMeterCPULoad alloc] init];
-        load.system = system * normalize;
-        load.user = user * normalize;
-        [loadInfo addObject:load];
-        [load release];
+		float normalize = (total < 1) ? 1 : (1.0 / total);
+		
+		MenuMeterCPULoad *load = [[MenuMeterCPULoad alloc] init];
+		load.system = system * normalize;
+		load.user = user * normalize;
+		[loadInfo addObject:load];
+		[load release];
 	}
 
 	// Copy the new data into previous
