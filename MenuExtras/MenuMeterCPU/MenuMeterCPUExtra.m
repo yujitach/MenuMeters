@@ -340,13 +340,15 @@
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
 	float renderHeight = (float)[image size].height - 0.5f;  // Save space for baseline
-	for (renderPosition = 0; renderPosition < [ourPrefs cpuGraphLength]; renderPosition++) {
+	int cpuGraphLength = [ourPrefs cpuGraphLength];
+	NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
+	for (renderPosition = 0; renderPosition < cpuGraphLength; renderPosition++) {
 		// No data at this position?
 		if (renderPosition >= [loadHistory count]) break;
 
 		// Grab data
 		NSArray *loadHistoryEntry = [loadHistory objectAtIndex:renderPosition];
-		if (!loadHistoryEntry || ([loadHistoryEntry count] < [cpuInfo numberOfCPUs])) {
+		if (!loadHistoryEntry || [loadHistoryEntry count] < numberOfCPUs) {
 			// Bad data, just skip
 			continue;
 		}
@@ -356,7 +358,6 @@
 		float system = load.system;
 		float user = load.user;
 		if ([ourPrefs cpuAvgAllProcs]) {
-			NSUInteger numberOfCPUs = [cpuInfo numberOfCPUs];
 			for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
 				MenuMeterCPULoad *load = loadHistoryEntry[cpuNum];
 				system += load.system;
