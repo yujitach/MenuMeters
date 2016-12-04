@@ -16,8 +16,11 @@
 }
 -(void)timerFired:(id)notused
 {
-    statusItem.menu=self.menu;
-    NSImage*canvas=[[NSImage alloc] initWithSize:NSMakeSize(self.length, self.view.frame.size.height)];
+//    if(_isMenuVisible) {
+//        statusItem.menu = self.menu;
+//        statusItem.menu.delegate = self;
+//    }
+    NSImage* canvas=[[NSImage alloc] initWithSize:NSMakeSize(self.length, self.view.frame.size.height)];
     [canvas lockFocus];
     [self.view drawRect:NSMakeRect(0, 0, canvas.size.width, canvas.size.height)];
     [canvas unlockFocus];
@@ -28,6 +31,8 @@
     if([ourPrefs loadBoolPref:bundleID defaultValue:YES]){
         if(!statusItem){
             statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+            statusItem.menu = self.menu;
+            statusItem.menu.delegate = self;
         }
         [timer invalidate];
         timer=[NSTimer timerWithTimeInterval:interval target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
@@ -39,4 +44,19 @@
         statusItem=nil;
     }
 }
+
+#pragma mark NSMenuDelegate
+- (void)menuNeedsUpdate:(NSMenu*)menu {
+    statusItem.menu = self.menu;
+    statusItem.menu.delegate = self;
+}
+
+- (void)menuWillOpen:(NSMenu *)menu {
+    _isMenuVisible = YES;
+}
+
+- (void)menuDidClose:(NSMenu *)menu {
+    _isMenuVisible = NO;
+}
+
 @end

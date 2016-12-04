@@ -269,16 +269,17 @@
 
 	// Loop by processor
 	float renderOffset = 0;
+    int cpuDisplayModePrefs = [ourPrefs cpuDisplayMode];
 	for (uint32_t cpuNum = 0; cpuNum < [cpuInfo numberOfCPUs]; cpuNum++) {
 
 		// Render graph if needed
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
+		if (cpuDisplayModePrefs & kCPUDisplayGraph) {
 			[self renderHistoryGraphIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
 			// Adjust render offset
 			renderOffset += [ourPrefs cpuGraphLength];
 		}
 		// Render percent if needed
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
+		if (cpuDisplayModePrefs & kCPUDisplayPercent) {
 			if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
 				[self renderSplitPercentIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
 			} else {
@@ -286,7 +287,7 @@
 			}
 			renderOffset += percentWidth;
 		}
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) {
+		if (cpuDisplayModePrefs & kCPUDisplayThermometer) {
 			[self renderThermometerIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
 			renderOffset += kCPUThermometerDisplayWidth;
 		}
@@ -552,8 +553,7 @@
 	[extraView setNeedsDisplay:YES];
 
 	// If the menu is down force it to update
-	if ([self isMenuDown] || 
-		([self respondsToSelector:@selector(isMenuDownForAX)] && [self isMenuDownForAX])) {
+	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
 	}
 

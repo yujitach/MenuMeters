@@ -349,14 +349,15 @@
 	// Don't render without data
 	if (![netHistoryData count]) return nil;
 
+    int netDisplayModePrefs = [ourPrefs netDisplayMode];
 	// Draw displays
-	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
+	if (netDisplayModePrefs & kNetDisplayGraph) {
 		[self renderGraphIntoImage:currentImage];
 	}
-	if ([ourPrefs netDisplayMode] & kNetDisplayArrows) {
+	if (netDisplayModePrefs & kNetDisplayArrows) {
 		[self renderActivityIntoImage:currentImage];
 	}
-	if ([ourPrefs netDisplayMode] & kNetDisplayThroughput) {
+	if (netDisplayModePrefs & kNetDisplayThroughput) {
 		[self renderThroughputIntoImage:currentImage];
 	}
 
@@ -1103,9 +1104,10 @@
 - (void)renderThroughputIntoImage:(NSImage *)image {
 
 	// Get the primary stats
+    BOOL interfaceUp = [[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue];
 	double txValue = 0;
 	double rxValue = 0;
-	if ([[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue]) {
+	if (interfaceUp) {
 		NSDictionary *primaryStats = [[netHistoryData lastObject] objectForKey:[preferredInterfaceConfig objectForKey:@"statname"]];
 		if (primaryStats) {
 			txValue = [[primaryStats objectForKey:@"deltaout"] doubleValue];
@@ -1128,7 +1130,7 @@
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																	[NSFont systemFontOfSize:9.5f],
 																	NSFontAttributeName,
-																	([[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue] ? txColor : inactiveColor),
+																	interfaceUp ? txColor : inactiveColor,
 																	NSForegroundColorAttributeName,
 																	nil]] autorelease];
 	NSAttributedString *renderRxString = [[[NSAttributedString alloc]
@@ -1136,7 +1138,7 @@
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																	[NSFont systemFontOfSize:9.5f],
 																	NSFontAttributeName,
-																	([[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue] ? rxColor : inactiveColor),
+																	interfaceUp ? rxColor : inactiveColor,
 																	NSForegroundColorAttributeName,
 																	nil]] autorelease];
 
@@ -1151,7 +1153,7 @@
 		if ([ourPrefs netDisplayMode] & kNetDisplayArrows) {
 			labelOffset += kNetArrowDisplayWidth + kNetDisplayGapWidth;
 		}
-		if ([[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue]) {
+		if (interfaceUp) {
 			[throughputLabel compositeToPoint:NSMakePoint(labelOffset, 0) operation:NSCompositeSourceOver];
 		} else {
 			[inactiveThroughputLabel compositeToPoint:NSMakePoint(labelOffset, 0) operation:NSCompositeSourceOver];
@@ -1214,7 +1216,7 @@
 	[extraView setNeedsDisplay:YES];
 
 	// If the menu is down force it to update
-	if ([self isMenuDown]) {
+	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
 	}
 

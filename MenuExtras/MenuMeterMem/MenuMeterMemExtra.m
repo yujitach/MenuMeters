@@ -883,8 +883,7 @@
 	[extraView setNeedsDisplay:YES];
 
 	// If the menu is down, update it
-	if ([self isMenuDown] || 
-		([self respondsToSelector:@selector(isMenuDownForAX)] && [self isMenuDownForAX])) {
+	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
 	}
 
