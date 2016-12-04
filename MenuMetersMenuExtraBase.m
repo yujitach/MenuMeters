@@ -16,10 +16,6 @@
 }
 -(void)timerFired:(id)notused
 {
-//    if(_isMenuVisible) {
-//        statusItem.menu = self.menu;
-//        statusItem.menu.delegate = self;
-//    }
     NSImage* canvas=[[NSImage alloc] initWithSize:NSMakeSize(self.length, self.view.frame.size.height)];
     [canvas lockFocus];
     [self.view drawRect:NSMakeRect(0, 0, canvas.size.width, canvas.size.height)];
