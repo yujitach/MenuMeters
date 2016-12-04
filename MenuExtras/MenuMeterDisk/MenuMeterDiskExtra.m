@@ -434,6 +434,10 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
+#ifdef ELCAPITAN
+    [super configDisplay:kDiskMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs diskInterval]];
+#endif
+
 	// Update prefs
 	[ourPrefs syncWithDisk];
 
@@ -574,10 +578,6 @@
 	// Flag us for redisplay
 	[extraView setNeedsDisplay:YES];
 
-#ifdef ELCAPITAN
-	[super configDisplay:kDiskMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs diskInterval]];
-#endif
-	
 } // configFromPrefs
 
 @end

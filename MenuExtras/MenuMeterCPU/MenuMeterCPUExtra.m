@@ -641,6 +641,9 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
+#ifdef ELCAPITAN
+    [super configDisplay:kCPUMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs cpuInterval]];
+#endif
 	// Update prefs
 	[ourPrefs syncWithDisk];
 
@@ -807,9 +810,6 @@
 	// Flag us for redisplay
 	[extraView setNeedsDisplay:YES];
 
-#ifdef ELCAPITAN
-	[super configDisplay:kCPUMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs cpuInterval]];
-#endif
 } // configFromPrefs
 
 @end

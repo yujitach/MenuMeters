@@ -1487,6 +1487,10 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
+#ifdef ELCAPITAN
+    [super configDisplay:kNetMenuBundleID  fromPrefs:ourPrefs withTimerInterval:[ourPrefs netInterval]];
+#endif
+
 	// Update prefs
 	[ourPrefs syncWithDisk];
 
@@ -1661,10 +1665,6 @@
 	// Flag us for redisplay
 	[extraView setNeedsDisplay:YES];
 
-#ifdef ELCAPITAN
-	[super configDisplay:kNetMenuBundleID  fromPrefs:ourPrefs withTimerInterval:[ourPrefs netInterval]];
-#endif
-	
 } // configFromPrefs
 
 ///////////////////////////////////////////////////////////////
