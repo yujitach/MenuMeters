@@ -32,7 +32,7 @@
     if (canvas != oldCanvas) {
         statusItem.button.image = canvas;
     } else {
-        [statusItem.button setNeedsDisplay];
+        [statusItem.button displayRectIgnoringOpacity:statusItem.button.bounds];
     }
 }
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval
