@@ -12,10 +12,11 @@
 
 @interface MenuMetersMenuExtraBase : NSMenuExtra <NSMenuDelegate>
 {
-    NSStatusItem*statusItem;
-    NSTimer*timer;
+    NSStatusItem* statusItem;
+    NSTimer* updateTimer;
 }
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;
+- (void)timerFired:(id)timer;
 
 @property(nonatomic, readonly) BOOL isMenuVisible;
 @end

@@ -39,11 +39,6 @@
 	// Menu Extra necessities
 	NSMenu 							*extraMenu;
     MenuMeterNetView 				*extraView;
-	// Is this Panther?
-	BOOL							isPantherOrLater,
-									isLeopardOrLater;
-	// The timer
-	NSTimer							*updateTimer;
 	// Pref object
 	MenuMeterDefaults				*ourPrefs;
 	// Info gatherers/controllers

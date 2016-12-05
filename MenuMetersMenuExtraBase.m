@@ -14,6 +14,11 @@
     self=[super initWithBundle:bundle];
     return self;
 }
+-(void)willUnload {
+    [updateTimer invalidate];
+    updateTimer = nil;
+    [super willUnload];
+}
 -(void)timerFired:(id)notused
 {
     NSImage *oldCanvas = statusItem.button.image;
@@ -43,12 +48,12 @@
             statusItem.menu = self.menu;
             statusItem.menu.delegate = self;
         }
-        [timer invalidate];
-        timer=[NSTimer timerWithTimeInterval:interval target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-        [timer setTolerance:.2*interval];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+        [updateTimer invalidate];
+        updateTimer=[NSTimer timerWithTimeInterval:interval target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        [updateTimer setTolerance:.2*interval];
+        [[NSRunLoop currentRunLoop] addTimer:updateTimer forMode:NSRunLoopCommonModes];
     }else if(![ourPrefs loadBoolPref:bundleID defaultValue:YES] && statusItem){
-        [timer invalidate];
+        [updateTimer invalidate];
         [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
         statusItem=nil;
     }

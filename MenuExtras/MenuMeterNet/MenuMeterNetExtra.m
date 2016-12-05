@@ -41,7 +41,6 @@
 - (void)renderThroughputIntoImage:(NSImage *)image;
 
 // Timer callbacks
-- (void)updateNetActivityDisplay:(NSTimer *)timer;
 - (void)updateMenuWhenDown;
 
 // Menu actions
@@ -124,10 +123,6 @@
 	if (!self) {
 		return nil;
 	}
-
-	// OS version check
-	isPantherOrLater = OSIsPantherOrLater();
-	isLeopardOrLater = OSIsLeopardOrLater();
 
 	// Load our pref bundle, we do this as a bundle because we are a plugin
 	// to SystemUIServer and as a result cannot have the same class loaded
@@ -277,9 +272,6 @@
 														  object:kPrefChangeNotification];
 	// And configure directly from prefs on first load
 	[self configFromPrefs:nil];
-
-	// Fake a timer call to config initial values
-	[self updateNetActivityDisplay:nil];
 
     // And hand ourself back to SystemUIServer
 	NSLog(@"MenuMeterNet loaded.");
@@ -669,8 +661,7 @@
 			// Add the submenu
 			[titleItem setSubmenu:interfaceSubmenu];
 			// PPP controller if needed and we can control the connection type on this OS version
-			if ([details objectForKey:@"pppstatus"] &&
-				([[details objectForKey:@"connectiontype"] isEqualToString:@"PPP"] || isPantherOrLater)) {
+			if ([details objectForKey:@"pppstatus"]) {
 				NSMenuItem *pppControlItem = nil;
 				switch ([(NSNumber *)[[details objectForKey:@"pppstatus"] objectForKey:@"status"] unsignedIntValue]) {
 					case PPP_IDLE:
@@ -793,7 +784,7 @@
 						  action:@selector(openNetworkPrefs:)
 				   keyEquivalent:@""] setTarget:self];
 	// Open Internet Connect if PPP
-	if (pppPresent && !isLeopardOrLater) {
+	if (pppPresent) {
 		[[extraMenu addItemWithTitle:[localizedStrings objectForKey:kOpenInternetConnectTitle]
 							  action:@selector(openInternetConnect:)
 					   keyEquivalent:@""] setTarget:self];
@@ -1182,7 +1173,7 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)updateNetActivityDisplay:(NSTimer *)timer {
+- (void)timerFired:(NSTimer *)timer {
 
 	// Get new config
 	[preferredInterfaceConfig release];
@@ -1216,16 +1207,13 @@
 	[lastSampleDate release];
 	lastSampleDate = [[NSDate date] retain];
 
-	// Force the view to update
-	[extraView setNeedsDisplay:YES];
-
 	// If the menu is down force it to update
 	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
 	}
 
-
-} // updateNetActivityDisplay
+	[super timerFired:timer];
+} // timerFired
 
 - (void)updateMenuWhenDown {
 
@@ -1429,32 +1417,26 @@
 - (void)pppConnect:(id)sender {
 
 	if ([sender representedObject]) {
-		// When we can, use the SC utility function.
-		if (isPantherOrLater) {
-			// SC connection
-			SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
-													kCFAllocatorDefault,
-													(CFStringRef)[sender representedObject],
-													NULL,
-													NULL);
-			// Undoc preference values
-			CFArrayRef connectionOptionList = CFPreferencesCopyValue((CFStringRef)[sender representedObject],
-																	 kAppleNetworkConnectDefaultsDomain,
-																	 kCFPreferencesCurrentUser,
-																	 kCFPreferencesCurrentHost);
-			if (connection) {
-				if (connectionOptionList && CFArrayGetCount(connectionOptionList)) {
-					SCNetworkConnectionStart(connection, CFArrayGetValueAtIndex(connectionOptionList, 0), TRUE);
-				} else {
-					SCNetworkConnectionStart(connection, NULL, TRUE);
-				}
+		// SC connection
+		SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
+												kCFAllocatorDefault,
+												(CFStringRef)[sender representedObject],
+												NULL,
+												NULL);
+		// Undoc preference values
+		CFArrayRef connectionOptionList = CFPreferencesCopyValue((CFStringRef)[sender representedObject],
+																 kAppleNetworkConnectDefaultsDomain,
+																 kCFPreferencesCurrentUser,
+																 kCFPreferencesCurrentHost);
+		if (connection) {
+			if (connectionOptionList && CFArrayGetCount(connectionOptionList)) {
+				SCNetworkConnectionStart(connection, CFArrayGetValueAtIndex(connectionOptionList, 0), TRUE);
+			} else {
+				SCNetworkConnectionStart(connection, NULL, TRUE);
 			}
-			if (connection) CFRelease(connection);
-			if (connectionOptionList) CFRelease(connectionOptionList);
-		} else {
-			// Direct control for 10.2
-			[pppControl connectServiceID:[sender representedObject]];
 		}
+		if (connection) CFRelease(connection);
+		if (connectionOptionList) CFRelease(connectionOptionList);
 	}
 
 } // pppConnect
@@ -1462,19 +1444,14 @@
 - (void)pppDisconnect:(id)sender {
 
 	if ([sender representedObject]) {
-		if (isPantherOrLater) {
-			SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
-												   kCFAllocatorDefault,
-												   (CFStringRef)[sender representedObject],
-												   NULL,
-												   NULL);
-			if (connection) {
-				SCNetworkConnectionStop(connection, TRUE);
-				CFRelease(connection);
-			}
-		} else {
-			// Direct control for 10.2
-			[pppControl disconnectServiceID:[sender representedObject]];
+		SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
+											   kCFAllocatorDefault,
+											   (CFStringRef)[sender representedObject],
+											   NULL,
+											   NULL);
+		if (connection) {
+			SCNetworkConnectionStop(connection, TRUE);
+			CFRelease(connection);
 		}
 	}
 
@@ -1645,27 +1622,12 @@
 		menuWidth += ((displayCount - 1) * kNetDisplayGapWidth);
 	}
 
-	// Restart the timer
-	[updateTimer invalidate];  // Runloop releases and retains the next one
-	if([ourPrefs loadBoolPref:kNetMenuBundleID defaultValue:YES]) {
-		updateTimer = [NSTimer scheduledTimerWithTimeInterval:[ourPrefs netInterval]
-													   target:self
-													 selector:@selector(updateNetActivityDisplay:)
-													 userInfo:nil
-													  repeats:YES];
-		// On newer OS versions we need to put the timer into EventTracking to update while the menus are down
-		if (isPantherOrLater) {
-			[[NSRunLoop currentRunLoop] addTimer:updateTimer
-										 forMode:NSEventTrackingRunLoopMode];
-		}
-		
-		// Resize the view
-		[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
-		[self setLength:menuWidth];
-		
-		// Flag us for redisplay
-		[extraView setNeedsDisplay:YES];
-	}
+	// Resize the view
+	[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
+	[self setLength:menuWidth];
+
+	// Force initial update
+	[self timerFired:nil];
 } // configFromPrefs
 
 ///////////////////////////////////////////////////////////////

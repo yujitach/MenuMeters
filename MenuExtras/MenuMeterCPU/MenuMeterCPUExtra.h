@@ -39,10 +39,6 @@
 	// Menu Extra necessities
 	NSMenu 							*extraMenu;
     MenuMeterCPUView 				*extraView;
-	// Is this Panther?
-	BOOL							isPantherOrLater;
-	// The timer
-	NSTimer							*updateTimer;
 	// Prefs object
 	MenuMeterDefaults				*ourPrefs;
 	// Info gatherers

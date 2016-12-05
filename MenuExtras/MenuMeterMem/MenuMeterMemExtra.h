@@ -37,10 +37,6 @@
 	// Menu Extra necessities
 	NSMenu 							*extraMenu;
     MenuMeterMemView 				*extraView;
-	// Is this Panther? Tiger?
-	BOOL							isPantherOrLater, isTigerOrLater;
-	// The timer
-	NSTimer							*updateTimer;
 	// Pref object
 	MenuMeterDefaults				*ourPrefs;
 	// Info gathers

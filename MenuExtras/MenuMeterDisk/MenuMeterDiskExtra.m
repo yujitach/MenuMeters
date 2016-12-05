@@ -34,8 +34,6 @@
 
 // Menu content
 - (NSArray *)diskSpaceMenuItemImages:(NSArray *)driveDetails;
-// Timer callback
-- (void)updateDiskActivityDisplay:(NSTimer *)timer;
 // Menu actions
 - (void)openOrEjectVolume:(id)sender;
 // Prefs
@@ -58,10 +56,6 @@
 	if (!self) {
 		return nil;
 	}
-
-	// Version check
-	isPantherOrLater = OSIsPantherOrLater();
-	isSnowLeopardOrLater = OSIsSnowLeopardOrLater();
 
 	// Load our pref bundle, we do this as a bundle because we are a plugin
 	// to SystemUIServer and as a result cannot have the same class loaded
@@ -87,7 +81,7 @@
 
 	// Calc disk space base 2 or 10 depending on system version unless the user
 	// has forced
-	if (![ourPrefs diskSpaceForceBaseTwo] && isSnowLeopardOrLater) {
+	if (![ourPrefs diskSpaceForceBaseTwo]) {
 		[diskSpaceMonitor setBaseTen:YES];
 	}
 
@@ -139,10 +133,6 @@
 
 - (void)willUnload {
 
-	// Stop the timer
-	[updateTimer invalidate];  // Released by the runloop
-	updateTimer = nil;
-
 	// Unregister pref change notifications
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
 															   name:nil
@@ -162,7 +152,6 @@
 	[extraMenu release];
 	[extraView release];
 	[ourPrefs release];
-	[updateTimer invalidate];  // Released by the runloop
 	[diskIOMonitor release];
 	[diskSpaceMonitor release];
 	[idleImage release];
@@ -361,7 +350,7 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)updateDiskActivityDisplay:(NSTimer *)timer {
+- (void)timerFired:(NSTimer *)timer {
 
 	// Have the monitor report state
 	DiskIOActivityType activity = [diskIOMonitor diskIOActivity];
@@ -370,11 +359,10 @@
 	if (activity != displayedActivity) {
 		// Store out the new status
 		displayedActivity = activity;
-		// Have the view update our display
-		[extraView setNeedsDisplay:YES];
 	}
+	[super timerFired:timer];
 
-} // updateDiskActivityDisplay
+} // timerFired
 
 ///////////////////////////////////////////////////////////////
 //
@@ -562,24 +550,8 @@
 						pathForResource:[imageSetNamePrefix stringByAppendingString:@"ReadWrite"] ofType:@"tiff"]];
 	}
 
-	// Restart the timer
-	[updateTimer invalidate];  // Runloop releases and retains the next one
-	
-	if([ourPrefs loadBoolPref:kDiskMenuBundleID defaultValue:YES]) {
-		updateTimer = [NSTimer scheduledTimerWithTimeInterval:[ourPrefs diskInterval]
-													   target:self
-													 selector:@selector(updateDiskActivityDisplay:)
-													 userInfo:nil
-													  repeats:YES];
-		// On newer OS versions we need to put the timer into EventTracking to update while the menus are down
-		if (isPantherOrLater) {
-			[[NSRunLoop currentRunLoop] addTimer:updateTimer
-										 forMode:NSEventTrackingRunLoopMode];
-		}
-		
-		// Flag us for redisplay
-		[extraView setNeedsDisplay:YES];
-	}
+	// Force initial update
+	[self timerFired:nil];
 } // configFromPrefs
 
 @end

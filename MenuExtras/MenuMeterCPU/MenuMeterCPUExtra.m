@@ -38,7 +38,6 @@
 - (void)renderThermometerIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset;
 
 // Timer callbacks
-- (void)updateCPUActivityDisplay:(NSTimer *)timer;
 - (void)updateMenuWhenDown;
 - (void)updatePowerMate;
 
@@ -84,9 +83,6 @@
 	if (!self) {
 		return nil;
 	}
-
-	// Panther check
-	isPantherOrLater = OSIsPantherOrLater();
 
 	// Load our pref bundle, we do this as a bundle because we are a plugin
 	// to SystemUIServer and as a result cannot have the same class loaded
@@ -164,16 +160,9 @@
 
 	// And the "Open Process Viewer"/"Open Activity Monitor" and "Open Console" item
 	[extraMenu addItem:[NSMenuItem separatorItem]];
-	if (isPantherOrLater) {
-		menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenActivityMonitorTitle value:nil table:nil]
-													  action:@selector(openActivityMonitor:)
-											   keyEquivalent:@""];
-	}
-	else {
-		menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenProcessViewerTitle value:nil table:nil]
-													  action:@selector(openProcessViewer:)
-											   keyEquivalent:@""];
-	}
+	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenActivityMonitorTitle value:nil table:nil]
+												  action:@selector(openActivityMonitor:)
+										   keyEquivalent:@""];
 	[menuItem setTarget:self];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenConsoleTitle value:nil table:nil]
 												  action:@selector(openConsole:)
@@ -202,9 +191,6 @@
 	// And configure directly from prefs on first load
 	[self configFromPrefs:nil];
 
-	// Fake a timer call to construct initial values
-	[self updateCPUActivityDisplay:nil];
-
 	// And hand ourself back to SystemUIServer
 	NSLog(@"MenuMeterCPU loaded.");
 	return self;
@@ -212,10 +198,6 @@
 } // initWithBundle
 
 - (void)willUnload {
-
-	// Stop the timer
-	[updateTimer invalidate];  // Released by the runloop
-	updateTimer = nil;
 
 	// Unregister pref change notifications
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
@@ -235,7 +217,6 @@
 
 	[extraView release];
 	[extraMenu release];
-	[updateTimer invalidate];  // Released by the runloop
 	[ourPrefs release];
 	[cpuInfo release];
 	[uptimeInfo release];
@@ -534,8 +515,7 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)updateCPUActivityDisplay:(NSTimer *)timer {
-
+- (void)timerFired:(NSTimer *)timerFired {
 	// Get the current load
 	NSArray *currentLoad = [cpuInfo currentLoad];
 	if (!currentLoad) return;
@@ -550,9 +530,6 @@
 	}
 	[loadHistory addObject:currentLoad];
 
-	// Force the view to update
-	[extraView setNeedsDisplay:YES];
-
 	// If the menu is down force it to update
 	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
@@ -562,8 +539,8 @@
 	if ([ourPrefs cpuPowerMate] && powerMate) {
 		[self updatePowerMate];
 	}
-
-} // updateCPUActivityDisplay
+	[super timerFired:timerFired];
+} // timerFired
 
 - (void)updateMenuWhenDown {
 
@@ -790,28 +767,12 @@
 		powerMate = nil;
 	}
 
-	// Restart the timer
-	[updateTimer invalidate];  // Runloop releases and retains the next one
-	
-	if([ourPrefs loadBoolPref:kCPUMenuBundleID defaultValue:YES]) {
-		updateTimer = [NSTimer scheduledTimerWithTimeInterval:[ourPrefs cpuInterval]
-													   target:self
-													 selector:@selector(updateCPUActivityDisplay:)
-													 userInfo:nil
-													  repeats:YES];
-		// On newer OS versions we need to put the timer into EventTracking to update while the menus are down
-		if (isPantherOrLater) {
-			[[NSRunLoop currentRunLoop] addTimer:updateTimer
-										 forMode:NSEventTrackingRunLoopMode];
-		}
-		
-		// Resize the view
-		[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
-		[self setLength:menuWidth];
-		
-		// Flag us for redisplay
-		[extraView setNeedsDisplay:YES];
-	}
+	// Resize the view
+	[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
+	[self setLength:menuWidth];
+
+	// Force initial update
+	[self timerFired:nil];
 } // configFromPrefs
 
 @end
