@@ -26,7 +26,7 @@
     
     NSImage *image = self.image;
     [canvas lockFocus];
-    [image drawAtPoint:CGPointZero fromRect:(CGRect) {.size = image.size} operation:NSCompositingOperationCopy fraction:1.0];
+    [image drawAtPoint:CGPointZero fromRect:(CGRect) {.size = image.size} operation:NSCompositeCopy fraction:1.0];
     [canvas unlockFocus];
     
     if (canvas != oldCanvas) {
