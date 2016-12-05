@@ -564,20 +564,22 @@
 
 	// Restart the timer
 	[updateTimer invalidate];  // Runloop releases and retains the next one
-	updateTimer = [NSTimer scheduledTimerWithTimeInterval:[ourPrefs diskInterval]
-												   target:self
-												 selector:@selector(updateDiskActivityDisplay:)
-												 userInfo:nil
-												  repeats:YES];
-	// On newer OS versions we need to put the timer into EventTracking to update while the menus are down
-	if (isPantherOrLater) {
-		[[NSRunLoop currentRunLoop] addTimer:updateTimer
-									 forMode:NSEventTrackingRunLoopMode];
+	
+	if([ourPrefs loadBoolPref:kDiskMenuBundleID defaultValue:YES]) {
+		updateTimer = [NSTimer scheduledTimerWithTimeInterval:[ourPrefs diskInterval]
+													   target:self
+													 selector:@selector(updateDiskActivityDisplay:)
+													 userInfo:nil
+													  repeats:YES];
+		// On newer OS versions we need to put the timer into EventTracking to update while the menus are down
+		if (isPantherOrLater) {
+			[[NSRunLoop currentRunLoop] addTimer:updateTimer
+										 forMode:NSEventTrackingRunLoopMode];
+		}
+		
+		// Flag us for redisplay
+		[extraView setNeedsDisplay:YES];
 	}
-
-	// Flag us for redisplay
-	[extraView setNeedsDisplay:YES];
-
 } // configFromPrefs
 
 @end

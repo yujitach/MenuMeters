@@ -1647,24 +1647,25 @@
 
 	// Restart the timer
 	[updateTimer invalidate];  // Runloop releases and retains the next one
-	updateTimer = [NSTimer scheduledTimerWithTimeInterval:[ourPrefs netInterval]
-												   target:self
-												 selector:@selector(updateNetActivityDisplay:)
-												 userInfo:nil
-												  repeats:YES];
-	// On newer OS versions we need to put the timer into EventTracking to update while the menus are down
-	if (isPantherOrLater) {
-		[[NSRunLoop currentRunLoop] addTimer:updateTimer
-									 forMode:NSEventTrackingRunLoopMode];
+	if([ourPrefs loadBoolPref:kNetMenuBundleID defaultValue:YES]) {
+		updateTimer = [NSTimer scheduledTimerWithTimeInterval:[ourPrefs netInterval]
+													   target:self
+													 selector:@selector(updateNetActivityDisplay:)
+													 userInfo:nil
+													  repeats:YES];
+		// On newer OS versions we need to put the timer into EventTracking to update while the menus are down
+		if (isPantherOrLater) {
+			[[NSRunLoop currentRunLoop] addTimer:updateTimer
+										 forMode:NSEventTrackingRunLoopMode];
+		}
+		
+		// Resize the view
+		[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
+		[self setLength:menuWidth];
+		
+		// Flag us for redisplay
+		[extraView setNeedsDisplay:YES];
 	}
-
-	// Resize the view
-	[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
-	[self setLength:menuWidth];
-
-	// Flag us for redisplay
-	[extraView setNeedsDisplay:YES];
-
 } // configFromPrefs
 
 ///////////////////////////////////////////////////////////////
