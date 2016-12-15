@@ -281,10 +281,6 @@
 
 - (void)willUnload {
 
-	// Stop the timer
-	[updateTimer invalidate];  // Released by the runloop
-	updateTimer = nil;
-
 	// Unregister pref change notifications
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
 															   name:nil
@@ -303,7 +299,6 @@
 
 	[extraView release];
     [extraMenu release];
-	[updateTimer invalidate];  // Released by the runloop
 	[ourPrefs release];
 	[netConfig release];
 	[netStats release];
