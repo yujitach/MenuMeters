@@ -32,6 +32,7 @@
 - (void)saveBoolPref:(NSString *)prefName value:(BOOL)value;
 #endif
 
++ (MenuMeterDefaults*)sharedMenuMeterDefaults;
 
 // Pref read/write
 - (void)syncWithDisk;

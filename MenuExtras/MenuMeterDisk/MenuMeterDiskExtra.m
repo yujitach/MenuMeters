@@ -56,13 +56,7 @@
 	if (!self) {
 		return nil;
 	}
-
-	// Load our pref bundle, we do this as a bundle because we are a plugin
-	// to SystemUIServer and as a result cannot have the same class loaded
-	// from every meter. Using a shared bundle each loads fixes this.
-	NSString *prefBundlePath = [[[bundle bundlePath] stringByDeletingLastPathComponent]
-									stringByAppendingPathComponent:kPrefBundleName];
-	ourPrefs = [[[[NSBundle bundleWithPath:prefBundlePath] principalClass] alloc] init];
+    ourPrefs = [MenuMeterDefaults sharedMenuMeterDefaults];
 	if (!ourPrefs) {
 		NSLog(@"MenuMeterDisk unable to connect to preferences. Abort.");
 		[self release];

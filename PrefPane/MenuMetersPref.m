@@ -719,7 +719,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
                                                                    object:kPrefChangeNotification
                                                                  userInfo:nil deliverImmediately:YES];
     return;
-#endif
+#else
 	// Load the crack. With MenuCracker 2.x multiple loads are allowed, so
 	// we don't care if someone else has the MenuCracker 2.x bundle loaded.
 	// Plus, since MC 2.x does dodgy things with the load we can't actually
@@ -750,7 +750,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if (![self isExtraWithBundleIDLoaded:bundleID]) {
 		[self showMenuExtraErrorSheet];
 	}
-
+#endif
 } // loadExtraAtURL:withID:
 
 - (BOOL)isExtraWithBundleIDLoaded:(NSString *)bundleID {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0820"
-   version = "1.7">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D4ECB39105FE72E100954E26"
-               BuildableName = "MenuMeters.prefPane"
-               BlueprintName = "PrefPane"
+               BlueprintIdentifier = "D4EB673A04F5B18100A87BC9"
+               BuildableName = "Package"
+               BlueprintName = "Package"
                ReferencedContainer = "container:MenuMeters.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,7 +33,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -42,51 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "cp -Rf ${CONFIGURATION_BUILD_DIR}/MenuMeters.prefPane ~/Library/PreferencePanes">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "D4ECB39105FE72E100954E26"
-                     BuildableName = "MenuMeters.prefPane"
-                     BlueprintName = "PrefPane"
-                     ReferencedContainer = "container:MenuMeters.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
-      <PathRunnable
-         runnableDebuggingMode = "0"
-         BundleIdentifier = "com.apple.systempreferences"
-         FilePath = "/Applications/System Preferences.app">
-      </PathRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4ECB39105FE72E100954E26"
-            BuildableName = "MenuMeters.prefPane"
-            BlueprintName = "PrefPane"
+            BlueprintIdentifier = "D4EB673A04F5B18100A87BC9"
+            BuildableName = "Package"
+            BlueprintName = "Package"
             ReferencedContainer = "container:MenuMeters.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "~/Library/PreferencePanes/MenuMeters.prefPane"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OBJC_DISABLE_GC"
-            value = "YES"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -99,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D4ECB39105FE72E100954E26"
-            BuildableName = "MenuMeters.prefPane"
-            BlueprintName = "PrefPane"
+            BlueprintIdentifier = "D4EB673A04F5B18100A87BC9"
+            BuildableName = "Package"
+            BlueprintName = "Package"
             ReferencedContainer = "container:MenuMeters.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
