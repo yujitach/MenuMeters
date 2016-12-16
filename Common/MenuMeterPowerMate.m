@@ -48,13 +48,13 @@
 
 static void DeviceMatched(void *ref, io_iterator_t iterator) {
 
-	if (ref) [(MenuMeterPowerMate *)ref deviceMatched:iterator];
+	if (ref) [(__bridge MenuMeterPowerMate *)ref deviceMatched:iterator];
 
 } // DeviceMatched
 
 static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
-	if (ref) [(MenuMeterPowerMate *)ref deviceTerminated:iterator];
+	if (ref) [(__bridge MenuMeterPowerMate *)ref deviceTerminated:iterator];
 
 } // DeviceTerminated
 
@@ -115,17 +115,14 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	// Connect to IOKit and setup our notification source
 	kern_return_t err = IOMasterPort(MACH_PORT_NULL, &masterPort);
 	if ((err != KERN_SUCCESS) || !masterPort) {
-		[self release];
 		return nil;
 	}
 	notifyPort = IONotificationPortCreate(masterPort);
 	if (!notifyPort) {
-		[self release];
 		return nil;
 	}
 	notifyRunSource = IONotificationPortGetRunLoopSource(notifyPort);
 	if (!notifyRunSource) {
-		[self release];
 		return nil;
 	}
 	CFRunLoopAddSource(CFRunLoopGetCurrent(), notifyRunSource, kCFRunLoopDefaultMode);
@@ -133,7 +130,6 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	// Construct a matching dict
 	CFMutableDictionaryRef matchingDict = IOServiceMatching("IOUSBDevice");
 	if (!matchingDict) {
-		[self release];
 		return nil;
 	}
 	// ID info here from Griffin sample code. Keep this pure CF so GC behavior
@@ -150,32 +146,29 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	CFMutableDictionaryRef terminatedDict = CFDictionaryCreateMutableCopy(kCFAllocatorDefault, 0, matchingDict);
 	if (!terminatedDict) {
 		CFRelease(matchingDict);
-		[self release];
 		return nil;
 	}
 
 	// Install notifications for Powermate devices
 	err = IOServiceAddMatchingNotification(notifyPort,  kIOMatchedNotification,
 										   matchingDict,
-										   DeviceMatched, self, &deviceMatchedIterator);
+										   DeviceMatched, (__bridge void *)(self), &deviceMatchedIterator);
 	if (err != KERN_SUCCESS) {
 		CFRelease(matchingDict);
-		[self release];
 		return nil;
 	}
 	err = IOServiceAddMatchingNotification(notifyPort, kIOTerminatedNotification,
 										   terminatedDict,
-										   DeviceTerminated, self, &deviceTerminatedIterator);
+										   DeviceTerminated, (__bridge void *)(self), &deviceTerminatedIterator);
 	if (err != KERN_SUCCESS) {
 		CFRelease(matchingDict);
-		[self release];
 		return nil;
 	}
 	// Pump the iterators and trigger first matching if the device is already
 	// present. Run termnated first so that matched iterator leaves us
 	// in correct state.
-	DeviceTerminated(self, deviceTerminatedIterator);
-	DeviceMatched(self, deviceMatchedIterator);
+	DeviceTerminated((__bridge void *)(self), deviceTerminatedIterator);
+	DeviceMatched((__bridge void *)(self), deviceMatchedIterator);
 
 	return self;
 
@@ -192,7 +185,6 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	}
 	if (notifyPort) IONotificationPortDestroy(notifyPort);
 	if (masterPort) mach_port_deallocate(mach_task_self(), masterPort);
-	[super dealloc];
 
 } // dealloc
 

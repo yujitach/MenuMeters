@@ -57,10 +57,9 @@
 	// Set up localized strings
 	NSBundle *selfBundle = [NSBundle bundleForClass:[self class]];
 	if (!selfBundle) {
-		[self release];
 		return nil;
 	}
-	localizedStrings = [[NSDictionary dictionaryWithObjectsAndKeys:
+	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
 							[selfBundle localizedStringForKey:kUptimeUnavailable value:nil table:nil],
 							kUptimeUnavailable,
 							[selfBundle localizedStringForKey:kUptimeMultiDayFormat value:nil table:nil],
@@ -70,9 +69,8 @@
 							[selfBundle localizedStringForKey:kUptimeZeroDayFormat value:nil table:nil],
 							kUptimeZeroDayFormat,
 							nil
-						] retain];
+						];
 	if (!localizedStrings) {
-		[self release];
 		return nil;
 	}
 
@@ -81,12 +79,7 @@
 
 } // init
 
-- (void)dealloc {
-
-	[localizedStrings release];
-	[super dealloc];
-
-} // dealloc
+ // dealloc
 
 ///////////////////////////////////////////////////////////////
 //

@@ -109,14 +109,12 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 	// On Mavericks we must have host_statistics64
 	if (isMavericksOrLater && !host_statistics64_Impl) {
-		[self release];
 		return nil;
 	}
 
 	// Build the Mach host reference
 	selfHost = mach_host_self();
 	if (!selfHost) {
-		[self release];
 		return nil;
 	}
 
@@ -128,13 +126,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 } // init
 
-- (void)dealloc {
-
-	[swapPath release];
-	[swapPrefix release];
-	[super dealloc];
-
-} // dealloc
+ // dealloc
 
 
 ///////////////////////////////////////////////////////////////
@@ -367,23 +359,23 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	// is not published by dynamic_pager to sysctl. We can't get dynamic_pager's
 	// arg list directed using sysctl because its UID 0. So we have to do some
 	// parsing of ps -axww output to get the info.
-	NSTask *psTask = [[[NSTask alloc] init] autorelease];
+	NSTask *psTask = [[NSTask alloc] init];
 	[psTask setLaunchPath:@"/bin/ps"];
 	[psTask setArguments:[NSArray arrayWithObjects:@"-axww", nil]];
-	NSPipe *psPipe = [[[NSPipe alloc] init] autorelease];
+	NSPipe *psPipe = [[NSPipe alloc] init];
 	[psTask setStandardOutput:psPipe];
 	NSFileHandle *psHandle = [psPipe fileHandleForReading];
 
 	// Do the launch in an exception block. Old style block for 10.2 compatibility.
 	// Accumulate all results into a single string for parse.
-	NSMutableString *psOutput = [[@"" mutableCopy] autorelease];
+	NSMutableString *psOutput = [@"" mutableCopy];
 	NSMutableString *swapFullPath = [NSMutableString string];
 	BOOL taskLaunched = NO;
 	NS_DURING
 		[psTask launch];
 		while ([psTask isRunning]) {
-			[psOutput appendString:[[[NSString alloc] initWithData:[psHandle availableData]
-														   encoding:NSUTF8StringEncoding] autorelease]];
+			[psOutput appendString:[[NSString alloc] initWithData:[psHandle availableData]
+														   encoding:NSUTF8StringEncoding]];
 			usleep(250000);
 		}
 	NS_HANDLER
@@ -416,13 +408,13 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 	// Did we get it?
 	if (![swapFullPath isEqualToString:@""]) {
-		swapPath = [[swapFullPath stringByDeletingLastPathComponent] retain];
-		swapPrefix = [[swapFullPath lastPathComponent] retain];
+		swapPath = [swapFullPath stringByDeletingLastPathComponent];
+		swapPrefix = [swapFullPath lastPathComponent];
 	}
 	else {
 		NSLog(@"MenuMeterMemStats unable to locate dynamic_pager args. Assume default.");
-		swapPath = [kDefaultSwapPath retain];
-		swapPrefix = [kDefaultSwapPrefix retain];
+		swapPath = kDefaultSwapPath;
+		swapPrefix = kDefaultSwapPrefix;
 	}
 
 } // initializeSwapPath

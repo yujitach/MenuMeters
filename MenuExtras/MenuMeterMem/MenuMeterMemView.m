@@ -43,11 +43,7 @@
 
 } // initWithFrame
 
-- (void)dealloc {
-
-    [super dealloc];
-
-} // dealloc
+ // dealloc
 
 
 ///////////////////////////////////////////////////////////////

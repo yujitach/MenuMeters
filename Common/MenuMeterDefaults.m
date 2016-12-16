@@ -105,7 +105,6 @@
 	[self syncWithDisk];
 
 	// Super do its thing
-	[super dealloc];
 
 } // dealloc
 
@@ -552,14 +551,13 @@
 	BOOL didChange = NO;
 
 	// Load current preference version
-	NSNumber *prefVersionNum = (NSNumber *)CFPreferencesCopyValue((CFStringRef)kPrefVersionKey,
+	NSNumber *prefVersionNum = (NSNumber *)CFBridgingRelease(CFPreferencesCopyValue((CFStringRef)kPrefVersionKey,
 																  (CFStringRef)kMenuMeterDefaultsDomain,
 																  kCFPreferencesCurrentUser,
-																  kCFPreferencesAnyHost);
+																  kCFPreferencesAnyHost));
 	int prefVersion = -1;  // Use an illegal value
 	if (prefVersionNum) {
 		prefVersion = [prefVersionNum intValue];
-		CFRelease(prefVersionNum);
 	}
 
 	// Migrate prefs from versions before we supported pref fields (0.5 -> 0.6)
@@ -570,10 +568,10 @@
 		// Net preference changed meaning, 0 was valid (arrows only) now
 		// arrows are separate pref. We also reordered the flags to fix the menu
 		// layout
-		NSNumber *netModeNum = (NSNumber *)CFPreferencesCopyValue((CFStringRef)kNetDisplayModePref,
+		NSNumber *netModeNum = (NSNumber *)CFBridgingRelease(CFPreferencesCopyValue((CFStringRef)kNetDisplayModePref,
 																  (CFStringRef)kMenuMeterDefaultsDomain,
 																  kCFPreferencesCurrentUser,
-																  kCFPreferencesAnyHost);
+																  kCFPreferencesAnyHost));
 		int newValue = 0;
 		if (netModeNum) {
 			switch ([netModeNum intValue]) {
@@ -593,7 +591,6 @@
 					newValue = 1;
 			}
 			[self saveIntPref:kNetDisplayModePref value:newValue];
-			CFRelease(netModeNum);
 		} // end of kNetDisplayModePref migration
 	}
 
@@ -602,16 +599,15 @@
 		NSLog(@"MenuMeterDefaults performing preference migration from pref version 1 to pref version 2");
 		didChange = YES;
 		// Percent split pref became percent display mode
-		NSNumber *splitNum = (NSNumber *)CFPreferencesCopyValue(CFSTR("kCPUPercentDisplaySplit"),
+		NSNumber *splitNum = (NSNumber *)CFBridgingRelease(CFPreferencesCopyValue(CFSTR("kCPUPercentDisplaySplit"),
 																  (CFStringRef)kMenuMeterDefaultsDomain,
 																  kCFPreferencesCurrentUser,
-																  kCFPreferencesAnyHost);
+																  kCFPreferencesAnyHost));
 		if (splitNum && [splitNum intValue]) {
 			[self saveIntPref:kCPUPercentDisplayPref value:kCPUPercentDisplaySplit];
 		} else {
 			[self saveIntPref:kCPUPercentDisplayPref value:kCPUPercentDisplaySmall];
 		}
-		if (splitNum) CFRelease(splitNum);
 		// Kill the old
 		CFPreferencesSetValue(CFSTR("kCPUPercentDisplaySplit"), NULL,
 							  (CFStringRef)kMenuMeterDefaultsDomain,
@@ -635,15 +631,14 @@
 		}
 
 		// Fix the meaning of the Mem menu items
-		NSNumber *memModeNum = (NSNumber *)CFPreferencesCopyValue((CFStringRef)kMemDisplayModePref,
+		NSNumber *memModeNum = (NSNumber *)CFBridgingRelease(CFPreferencesCopyValue((CFStringRef)kMemDisplayModePref,
 																  (CFStringRef)kMenuMeterDefaultsDomain,
 																  kCFPreferencesCurrentUser,
-																  kCFPreferencesAnyHost);
+																  kCFPreferencesAnyHost));
 		if (memModeNum) {
 			if ([memModeNum intValue] == 2) {
 				[self saveIntPref:kMemDisplayModePref value:3];
 			}
-			CFRelease(memModeNum);
 		}
 	}
 
@@ -652,15 +647,14 @@
 		NSLog(@"MenuMeterDefaults performing preference migration from pref version 3 to pref version 4");
 		didChange = YES;
 		// Fix the meaning of the Mem menu items
-		NSNumber *memModeNum = (NSNumber *)CFPreferencesCopyValue((CFStringRef)kMemDisplayModePref,
+		NSNumber *memModeNum = (NSNumber *)CFBridgingRelease(CFPreferencesCopyValue((CFStringRef)kMemDisplayModePref,
 																  (CFStringRef)kMenuMeterDefaultsDomain,
 																  kCFPreferencesCurrentUser,
-																  kCFPreferencesAnyHost);
+																  kCFPreferencesAnyHost));
 		if (memModeNum) {
 			if ([memModeNum intValue] == 3) {
 				[self saveIntPref:kMemDisplayModePref value:4];
 			}
-			CFRelease(memModeNum);
 		}
 	}
 
@@ -775,10 +769,10 @@
 																   kCFPreferencesAnyHost);
 		if (preferredArchivedString) {
 			if (CFGetTypeID(preferredArchivedString) == CFDataGetTypeID()) {
-				NSString *preferredString = [NSUnarchiver unarchiveObjectWithData:(NSData *)preferredArchivedString];
+				NSString *preferredString = [NSUnarchiver unarchiveObjectWithData:(__bridge NSData *)preferredArchivedString];
 				if (preferredString && [preferredString isKindOfClass:[NSString class]]) {
 					CFPreferencesSetValue((CFStringRef)kNetPreferInterfacePref,
-										  preferredString,
+										  (CFStringRef)preferredString,
 										  (CFStringRef)kMenuMeterDefaultsDomain,
 										  kCFPreferencesCurrentUser,
 										  kCFPreferencesAnyHost);
@@ -813,9 +807,9 @@
 				highBound:(double)highBound defaultValue:(double)defaultValue {
 
 	double returnVal = defaultValue;
-	NSNumber *prefValue = (NSNumber *)CFPreferencesCopyValue((CFStringRef)prefName,
+	NSNumber *prefValue = (NSNumber *)CFBridgingRelease(CFPreferencesCopyValue((CFStringRef)prefName,
 															 (CFStringRef)kMenuMeterDefaultsDomain,
-															 kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+															 kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
 	if (prefValue && [prefValue isKindOfClass:[NSNumber class]]) {
 		returnVal = [prefValue doubleValue];
 		// Floating point comparison needs some margin of error. Scale up
@@ -828,14 +822,13 @@
 	} else {
 		[self saveDoublePref:prefName value:returnVal];
 	}
-	if (prefValue) CFRelease(prefValue);
 	return returnVal;
 
 } // _loadDoublePref
 
 - (void)saveDoublePref:(NSString *)prefName value:(double)value {
 	CFPreferencesSetValue((CFStringRef)prefName,
-						  [NSNumber numberWithDouble:value],
+						  (__bridge CFPropertyListRef _Nullable)([NSNumber numberWithDouble:value]),
 						  (CFStringRef)kMenuMeterDefaultsDomain,
 						  kCFPreferencesCurrentUser,
 						  kCFPreferencesAnyHost);
@@ -858,7 +851,7 @@
 
 - (void)saveIntPref:(NSString *)prefname value:(int)value {
 	CFPreferencesSetValue((CFStringRef)prefname,
-						  [NSNumber numberWithInt:value],
+						  (__bridge CFPropertyListRef _Nullable)([NSNumber numberWithInt:value]),
 						  (CFStringRef)kMenuMeterDefaultsDomain,
 						  kCFPreferencesCurrentUser,
 						  kCFPreferencesAnyHost);
@@ -887,7 +880,7 @@
 
 - (void)saveBitFlagPref:(NSString *)prefName value:(int)value {
 	CFPreferencesSetValue((CFStringRef)prefName,
-						  [NSNumber numberWithInt:value],
+						  (__bridge CFPropertyListRef _Nullable)([NSNumber numberWithInt:value]),
 						  (CFStringRef)kMenuMeterDefaultsDomain,
 						  kCFPreferencesCurrentUser,
 						  kCFPreferencesAnyHost);
@@ -909,7 +902,7 @@
 
 - (void)saveBoolPref:(NSString *)prefName value:(BOOL)value {
 	CFPreferencesSetValue((CFStringRef)prefName,
-						  [NSNumber numberWithBool:value],
+						  (__bridge CFPropertyListRef _Nullable)([NSNumber numberWithBool:value]),
 						  (CFStringRef)kMenuMeterDefaultsDomain,
 						  kCFPreferencesCurrentUser,
 						  kCFPreferencesAnyHost);
@@ -922,7 +915,7 @@
 													(CFStringRef)kMenuMeterDefaultsDomain,
 													kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
 	if (archivedData && (CFGetTypeID(archivedData) == CFDataGetTypeID())) {
-		returnValue = [NSUnarchiver unarchiveObjectWithData:(NSData *)archivedData];
+		returnValue = [NSUnarchiver unarchiveObjectWithData:(__bridge NSData *)archivedData];
 		CFRelease(archivedData);
 	}
 	if (!returnValue) {
@@ -936,7 +929,7 @@
 - (void)saveColorPref:(NSString *)prefName value:(NSColor *)value {
 	if (value) {
 		CFPreferencesSetValue((CFStringRef)prefName,
-							  [NSArchiver archivedDataWithRootObject:value],
+							  (__bridge CFPropertyListRef _Nullable)([NSArchiver archivedDataWithRootObject:value]),
 							  (CFStringRef)kMenuMeterDefaultsDomain,
 							  kCFPreferencesCurrentUser,
 							  kCFPreferencesAnyHost);
@@ -950,21 +943,17 @@
 												   (CFStringRef)kMenuMeterDefaultsDomain,
 												   kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
 	if (prefValue && (CFGetTypeID(prefValue) == CFStringGetTypeID())) {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
-		returnValue = NSMakeCollectable(prefValue);
-#else
-		returnValue = (NSString *)prefValue;
-#endif
+		returnValue = (NSString *)CFBridgingRelease(prefValue);
 	} else {
 		[self saveStringPref:prefName value:returnValue];
 	}
-	return [returnValue autorelease];
+	return returnValue;
 
 } // _loadStringPref
 
 - (void)saveStringPref:(NSString *)prefName value:(NSString *)value {
 	CFPreferencesSetValue((CFStringRef)prefName,
-						  value,
+						  (CFStringRef)value,
 						  (CFStringRef)kMenuMeterDefaultsDomain,
 						  kCFPreferencesCurrentUser,
 						  kCFPreferencesAnyHost);

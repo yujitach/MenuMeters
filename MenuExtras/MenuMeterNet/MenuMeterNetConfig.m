@@ -48,7 +48,7 @@
 
 static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void *info) {
 
-	if (info) [(MenuMeterNetConfig *)info clearCaches];
+	if (info) [(__bridge MenuMeterNetConfig *)info clearCaches];
 
 } // scChangeCallback
 
@@ -68,17 +68,16 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 
 	// Get the PPP data puller
-	pppGatherer = [[MenuMeterNetPPP sharedPPP] retain];
+	pppGatherer = [MenuMeterNetPPP sharedPPP];
 	if (!pppGatherer) {
 		NSLog(@"MenuMeterNetConfig unable to establish pppconfd session.");
-		[self release];
 		return nil;
 	}
 
 	// Connect to SystemConfiguration
 	SCDynamicStoreContext scContext;
 	scContext.version = 0;
-	scContext.info = self;
+	scContext.info = (__bridge void * _Nullable)(self);
 	scContext.retain = NULL;
 	scContext.release = NULL;
 	scContext.copyDescription = NULL;
@@ -88,7 +87,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 									 &scContext);
 	if (!scSession) {
 		NSLog(@"MenuMeterNetConfig unable to establish configd session.");
-		[self release];
 		return nil;
 	}
 	if (!SCDynamicStoreSetNotificationKeys(scSession,
@@ -99,13 +97,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 										   (CFArrayRef)[NSArray arrayWithObjects:
 														@"State:/Network/Interface.*", nil])) {
 		NSLog(@"MenuMeterNetConfig unable to install notification keys.");
-		[self release];
 		return nil;
 	}
 	scRunSource = SCDynamicStoreCreateRunLoopSource(kCFAllocatorDefault, scSession, 0);
 	if (!scRunSource) {
 		NSLog(@"MenuMeterNetConfig unable to get notification keys run loop source.");
-		[self release];
 		return nil;
 	}
 	CFRunLoopAddSource(CFRunLoopGetCurrent(), scRunSource, kCFRunLoopDefaultMode);
@@ -114,7 +110,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	kern_return_t err = IOMasterPort(MACH_PORT_NULL, &masterPort);
 	if ((err != KERN_SUCCESS) || !masterPort) {
 		NSLog(@"MenuMeterNetConfig unable to establish IOKit port.");
-		[self release];
 		return nil;
 	}
 
@@ -131,19 +126,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 - (void)dealloc {
 
-	[pppGatherer release];
-	[cachedInterfaceDetails release];
-	[cachedPrimaryName release];
-	[cachedPrimaryService release];
-	[cachedServiceToName release];
-	[cachedNameToService release];
-	[cachedServiceSpeed release];
-	[cachedUnderlyingInterface release];
-	[cachedInterfaceUp release];
 	CFRunLoopRemoveSource(CFRunLoopGetCurrent(), scRunSource, kCFRunLoopDefaultMode);
 	CFRelease(scSession);
 	mach_port_deallocate(mach_task_self(), masterPort);
-	[super dealloc];
 
 } // dealloc
 
@@ -156,11 +141,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (NSString *)computerName {
 
 	CFStringRef name = SCDynamicStoreCopyComputerName(scSession, NULL);
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
-	return [NSMakeCollectable(name) autorelease];
-#else
-	return [(NSString *)name autorelease];
-#endif
+    return (NSString *)CFBridgingRelease(name);
 
 } // computerName
 
@@ -372,8 +353,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	} // end of interface iteration
 
 	// Update the cache
-	[cachedInterfaceDetails autorelease];
-	cachedInterfaceDetails = [interfaceDetailList retain];
+	cachedInterfaceDetails = interfaceDetailList;
 
 	// Send the details back
 	return interfaceDetailList;
@@ -388,10 +368,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Get the primary service number
 	NSDictionary *ipDict = [self sysconfigValueForKey:@"State:/Network/Global/IPv4"];
 	if ([ipDict objectForKey:@"PrimaryInterface"]) {
-		[cachedPrimaryName autorelease];
-		cachedPrimaryName = [[ipDict objectForKey:@"PrimaryInterface"] retain];
+		cachedPrimaryName = [ipDict objectForKey:@"PrimaryInterface"];
 	} else {
-		[cachedPrimaryName autorelease];
 		cachedPrimaryName = nil;
 	}
 	return cachedPrimaryName;
@@ -406,10 +384,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Get the primary service number
 	NSDictionary *ipDict = [self sysconfigValueForKey:@"State:/Network/Global/IPv4"];
 	if ([ipDict objectForKey:@"PrimaryService"]) {
-		[cachedPrimaryService autorelease];
-		cachedPrimaryService = [[ipDict objectForKey:@"PrimaryService"] retain];
+		cachedPrimaryService = [ipDict objectForKey:@"PrimaryService"];
 	} else {
-		[cachedPrimaryService autorelease];
 		cachedPrimaryService = nil;
 	}
 	return cachedPrimaryService;
@@ -424,7 +400,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if ([cachedServiceToName objectForKey:serviceID]) {
 		return [cachedServiceToName objectForKey:serviceID];
 	} else if (!cachedServiceToName) {
-		cachedServiceToName = [[NSMutableDictionary dictionary] retain];
+		cachedServiceToName = [NSMutableDictionary dictionary];
 	}
 
 	// Get interface details
@@ -453,7 +429,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if ([cachedNameToService objectForKey:interfaceName]) {
 		return [cachedNameToService objectForKey:interfaceName];
 	} else if (!cachedNameToService) {
-		cachedNameToService = [[NSMutableDictionary dictionary] retain];
+		cachedNameToService = [NSMutableDictionary dictionary];
 	}
 
 	// Get the dict block for services
@@ -493,7 +469,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if ([cachedServiceSpeed objectForKey:serviceID]) {
 		return [cachedServiceSpeed objectForKey:serviceID];
 	} else if (!cachedServiceSpeed) {
-		cachedServiceSpeed = [[NSMutableDictionary dictionary] retain];
+		cachedServiceSpeed = [NSMutableDictionary dictionary];
 	}
 
 	// This routine must return _something_ always. The problem is that in the case of ppp interface names we really
@@ -535,7 +511,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if ([cachedUnderlyingInterface objectForKey:serviceID]) {
 		return [cachedUnderlyingInterface objectForKey:serviceID];
 	} else if (!cachedUnderlyingInterface) {
-		cachedUnderlyingInterface = [[NSMutableDictionary dictionary] retain];
+		cachedUnderlyingInterface = [NSMutableDictionary dictionary];
 	}
 
 
@@ -578,7 +554,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if ([cachedInterfaceUp objectForKey:interfaceName]) {
 		return [[cachedInterfaceUp objectForKey:interfaceName] boolValue];
 	} else if (!cachedInterfaceUp) {
-		cachedInterfaceUp = [[NSMutableDictionary dictionary] retain];
+		cachedInterfaceUp = [NSMutableDictionary dictionary];
 	}
 
 	if ([interfaceName hasPrefix:@"en"]) {
@@ -637,19 +613,15 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		IOObjectRelease(iterator);
 		return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
 	}
-	NSNumber *linkSpeed = (NSNumber *)IORegistryEntryCreateCFProperty(controllerService,
+	NSNumber *linkSpeed = (NSNumber *)CFBridgingRelease(IORegistryEntryCreateCFProperty(controllerService,
 																	  CFSTR(kIOLinkSpeed),
 																	  kCFAllocatorDefault,
-																	  kNilOptions);
+																	  kNilOptions));
 	IOObjectRelease(controllerService);
 	IOObjectRelease(regEntry);
 	IOObjectRelease(iterator);
 	if (linkSpeed) {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
-		return [NSMakeCollectable(linkSpeed) autorelease];
-#else
-		return [linkSpeed autorelease];
-#endif
+        return linkSpeed;
 	}
 	if (linkSpeed && ([linkSpeed unsignedLongLongValue] > 0)) {
 		return linkSpeed;
@@ -661,32 +633,19 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 - (NSDictionary *)sysconfigValueForKey:(NSString *)key {
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
-	return [NSMakeCollectable(SCDynamicStoreCopyValue(scSession, (CFStringRef)key)) autorelease];
-#else
-	return [(NSDictionary *)SCDynamicStoreCopyValue(scSession, (CFStringRef)key) autorelease];
-#endif
-
+	return (NSDictionary *)CFBridgingRelease(SCDynamicStoreCopyValue(scSession, (CFStringRef)key));
 } // sysconfigValueForKey
 
 - (void)clearCaches {
 
 	// Drop all current cached values
-	[cachedInterfaceDetails release];
 	cachedInterfaceDetails = nil;
-	[cachedPrimaryName release];
 	cachedPrimaryName = nil;
-	[cachedPrimaryService release];
 	cachedPrimaryService = nil;
-	[cachedServiceToName release];
 	cachedServiceToName = nil;
-	[cachedNameToService release];
 	cachedNameToService = nil;
-	[cachedServiceSpeed release];
 	cachedServiceSpeed = nil;
-	[cachedUnderlyingInterface release];
 	cachedUnderlyingInterface = nil;
-	[cachedInterfaceUp release];
 	cachedInterfaceUp = nil;
 
 } // clearCaches

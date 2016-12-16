@@ -43,7 +43,7 @@
 
 static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 
-	if (ref) [(MenuMeterDiskIO *)ref blockDeviceChanged:iterator];
+	if (ref) [(__bridge MenuMeterDiskIO *)ref blockDeviceChanged:iterator];
 
 } // BlockDeviceChanged
 
@@ -66,17 +66,14 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 	// Connect to IOKit and setup our notification source
 	kern_return_t err = IOMasterPort(MACH_PORT_NULL, &masterPort);
 	if ((err != KERN_SUCCESS) || !masterPort) {
-		[self release];
 		return nil;
 	}
 	notifyPort = IONotificationPortCreate(masterPort);
 	if (!notifyPort) {
-		[self release];
 		return nil;
 	}
 	notifyRunSource = IONotificationPortGetRunLoopSource(notifyPort);
 	if (!notifyRunSource) {
-		[self release];
 		return nil;
 	}
 	CFRunLoopAddSource(CFRunLoopGetCurrent(), notifyRunSource, kCFRunLoopDefaultMode);
@@ -84,22 +81,20 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 	// Install notifications for block storage devices
 	err = IOServiceAddMatchingNotification(notifyPort,  kIOPublishNotification,
 										   IOServiceMatching(kIOBlockStorageDriverClass),
-										   BlockDeviceChanged, self, &blockDevicePublishedIterator);
+										   BlockDeviceChanged, (__bridge void *)(self), &blockDevicePublishedIterator);
 	if (err != KERN_SUCCESS) {
-		[self release];
 		return nil;
 	}
 	err = IOServiceAddMatchingNotification(notifyPort, kIOTerminatedNotification,
 										   IOServiceMatching(kIOBlockStorageDriverClass),
-										   BlockDeviceChanged, self, &blockDeviceTerminatedIterator);
+										   BlockDeviceChanged, (__bridge void *)(self), &blockDeviceTerminatedIterator);
 	if (err != KERN_SUCCESS) {
-		[self release];
 		return nil;
 	}
 
 	// Pump both iterators
-	BlockDeviceChanged(self, blockDevicePublishedIterator);
-	BlockDeviceChanged(self, blockDeviceTerminatedIterator);
+	BlockDeviceChanged((__bridge void *)(self), blockDevicePublishedIterator);
+	BlockDeviceChanged((__bridge void *)(self), blockDeviceTerminatedIterator);
 
 	// Seed our data
 	[self diskIOActivity];
@@ -118,7 +113,6 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 	}
 	if (notifyPort) IONotificationPortDestroy(notifyPort);
 	if (masterPort) mach_port_deallocate(mach_task_self(), masterPort);
-	[super dealloc];
 
 } // dealloc
 
@@ -147,26 +141,24 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 	while ((driveEntry = IOIteratorNext(blockDeviceIterator))) {
 
  		// Get the statistics for this drive
-		CFDictionaryRef statistics = IORegistryEntryCreateCFProperty(driveEntry,
+		NSDictionary* statistics = CFBridgingRelease(IORegistryEntryCreateCFProperty(driveEntry,
 																	 CFSTR(kIOBlockStorageDriverStatisticsKey),
 																	 kCFAllocatorDefault,
-																	 kNilOptions);
+																	 kNilOptions));
 		// If we got the statistics block for this device then we can add it to our totals
 		if (statistics) {
 			// Get total bytes read
-			NSNumber *statNumber = (NSNumber *)[(NSDictionary *)statistics objectForKey:
+			NSNumber *statNumber = (NSNumber *)[statistics objectForKey:
 													(NSString *)CFSTR(kIOBlockStorageDriverStatisticsBytesReadKey)];
 			if (statNumber) {
 				totalRead += [statNumber unsignedLongLongValue];
 			}
 			// Bytes written
-			statNumber = (NSNumber *)[(NSDictionary *)statistics objectForKey:
+			statNumber = (NSNumber *)[statistics objectForKey:
 													(NSString *)CFSTR(kIOBlockStorageDriverStatisticsBytesWrittenKey)];
 			if (statNumber) {
 				totalWrite += [statNumber unsignedLongLongValue];
 			}
-			// Release
-			CFRelease(statistics);
 		} // end of statistics read
 
 		// Release the drive

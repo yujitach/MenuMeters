@@ -67,23 +67,21 @@
 	}
 
 	// Gather the pretty name
-	cpuName = [[self cpuPrettyName] retain];
+	cpuName = [self cpuPrettyName];
 	if (!cpuName) {
-		[self release];
 		return nil;
 	}
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.
 	// We have to do this early so we can use the resulting format on the GHz processor string
-	NSNumberFormatter *tempFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+	NSNumberFormatter *tempFormatter = [[NSNumberFormatter alloc] init];
 	[tempFormatter setLocalizesFormat:YES];
 	[tempFormatter setFormat:@"0.00"];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-	twoDigitFloatFormatter = [[NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormatter]] retain];
+	twoDigitFloatFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormatter]];
 	if (!twoDigitFloatFormatter) {
-		[self release];
 		return nil;
 	}
 
@@ -92,19 +90,17 @@
 	int mib[2] = { CTL_HW, HW_CPU_FREQ };
 	size_t sysctlLength = sizeof(clockRate);
 	if (sysctl(mib, 2, &clockRate, &sysctlLength, NULL, 0)) {
-		[self release];
 		return nil;
 	}
 	if (clockRate > 1000000000) {
-		clockSpeed = [[NSString stringWithFormat:@"%@GHz",
+		clockSpeed = [NSString stringWithFormat:@"%@GHz",
 							[twoDigitFloatFormatter stringForObjectValue:
-								[NSNumber numberWithFloat:(float)clockRate / 1000000000]]] retain];
+								[NSNumber numberWithFloat:(float)clockRate / 1000000000]]];
 	}
 	else {
-		clockSpeed = [[NSString stringWithFormat:@"%dMHz", clockRate / 1000000] retain];
+		clockSpeed = [NSString stringWithFormat:@"%dMHz", clockRate / 1000000];
 	}
 	if (!clockSpeed) {
-		[self release];
 		return nil;
 	}
 
@@ -113,7 +109,6 @@
 	mib[0] = CTL_HW;
 	mib[1] = HW_NCPU;
 	if (sysctl(mib, 2, &cpuCount, &sysctlLength, NULL, 0)) {
-		[self release];
 		return nil;
 	}
 
@@ -128,7 +123,6 @@
 	kern_return_t err = host_processor_info(machHost, PROCESSOR_CPU_LOAD_INFO, &processorCount,
 											(processor_info_array_t *)&processorTickInfo, &processorInfoCount);
 	if (err != KERN_SUCCESS) {
-		[self release];
 		return nil;
 	}
 	priorCPUTicks = malloc(processorCount * sizeof(struct processor_cpu_load_info));
@@ -140,7 +134,7 @@
 	vm_deallocate(mach_task_self(), (vm_address_t)processorTickInfo, (vm_size_t)(processorInfoCount * sizeof(natural_t)));
 
 	// Localizable strings load
-	localizedStrings = [[NSDictionary dictionaryWithObjectsAndKeys:
+	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kProcessorNameFormat value:nil table:nil],
 							kProcessorNameFormat,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTaskThreadFormat value:nil table:nil],
@@ -149,9 +143,8 @@
 							kLoadAverageFormat,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kNoInfoErrorMessage value:nil table:nil],
 							kNoInfoErrorMessage,
-							nil] retain];
+							nil];
 	if (!localizedStrings) {
-		[self release];
 		return nil;
 	}
 
@@ -162,12 +155,7 @@
 
 - (void)dealloc {
 
-	[cpuName release];
-	[clockSpeed release];
 	if (priorCPUTicks) free(priorCPUTicks);
-	[localizedStrings release];
-	[twoDigitFloatFormatter release];
-	[super dealloc];
 
 } // dealloc
 
@@ -287,7 +275,6 @@
 		load.system = system * normalize;
 		load.user = user * normalize;
 		[loadInfo addObject:load];
-		[load release];
 	}
 
 	// Copy the new data into previous

@@ -72,7 +72,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 	}
 
 	// Load up our strings
-	localizedStrings = [[NSDictionary dictionaryWithObjectsAndKeys:
+	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kUsedSpaceFormat value:nil table:nil],
 							kUsedSpaceFormat,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kFreeSpaceFormat value:nil table:nil],
@@ -85,22 +85,20 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 							kMBLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kGBLabel value:nil table:nil],
 							kGBLabel,
-							nil] retain];
+							nil];
 	if (!localizedStrings) {
-		[self release];
 		return nil;
 	}
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.
-	NSNumberFormatter *tempFormat = [[[NSNumberFormatter alloc] init] autorelease];
+	NSNumberFormatter *tempFormat = [[NSNumberFormatter alloc] init];
 	[tempFormat setLocalizesFormat:YES];
 	[tempFormat setFormat:@"####0.00"];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-	spaceFormatter = [[NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]] retain];
+	spaceFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	if (!spaceFormatter) {
-		[self release];
 		return nil;
 	}
 
@@ -108,13 +106,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 } // init
 
-- (void)dealloc {
-
-	[localizedStrings release];
-	[spaceFormatter release];
-	[super dealloc];
-
-} // dealloc
+ // dealloc
 
 ///////////////////////////////////////////////////////////////
 //

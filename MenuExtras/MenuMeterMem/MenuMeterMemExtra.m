@@ -97,23 +97,20 @@
     ourPrefs = [MenuMeterDefaults sharedMenuMeterDefaults];
     if (!ourPrefs) {
 		NSLog(@"MenuMeterMem unable to connect to preferences. Abort.");
-		[self release];
 		return nil;
 	}
 
 	// Build our CPU statistics gatherer and history
 	memStats = [[MenuMeterMemStats alloc] init];
-	memHistory = [[NSMutableArray array] retain];
+	memHistory = [NSMutableArray array];
 	if (!(memStats && memHistory)) {
 		NSLog(@"MenuMeterMem unable to load data gatherer or storage. Abort.");
-		[self release];
 		return nil;
 	}
 
 	// Setup our menu
 	extraMenu = [[NSMenu alloc] initWithTitle:@""];
 	if (!extraMenu) {
-		[self release];
 		return nil;
 	}
 	// Disable menu autoenabling
@@ -169,13 +166,12 @@
 	// Get our view
     extraView = [[MenuMeterMemView alloc] initWithFrame:[[self view] frame] menuExtra:self];
 	if (!extraView) {
-		[self release];
 		return nil;
 	}
     [self setView:extraView];
 
 	// Load localized strings
-	localizedStrings = [[NSDictionary dictionaryWithObjectsAndKeys:
+	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kUsageFormat value:nil table:nil],
 							kUsageFormat,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kActiveWiredFormat value:nil table:nil],
@@ -208,28 +204,26 @@
 							kSwapSizeUsedFormat,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMBLabel value:nil table:nil],
 							kMBLabel,
-							nil] retain];
+							nil];
 	if (!localizedStrings) {
-		[self release];
 		return nil;
 	}
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.
-	NSNumberFormatter *tempFormat = [[[NSNumberFormatter alloc] init] autorelease];
+	NSNumberFormatter *tempFormat = [[NSNumberFormatter alloc] init];
 	[tempFormat setLocalizesFormat:YES];
 	[tempFormat setFormat:[NSString stringWithFormat:@"#,##0.0%@", [localizedStrings objectForKey:kMBLabel]]];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-	memFloatMBFormatter = [[NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]] retain];
+	memFloatMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	[tempFormat setFormat:[NSString stringWithFormat:@"#,##0%@", [localizedStrings objectForKey:kMBLabel]]];
-	memIntMBFormatter = [[NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]] retain];
+	memIntMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	[tempFormat setFormat:@"#,##0"];
-	prettyIntFormatter = [[NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]] retain];
+	prettyIntFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	[tempFormat setFormat:@"##0.0%"];
-	percentFormatter = [[NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]] retain];
+	percentFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	if (!(memFloatMBFormatter && memIntMBFormatter && prettyIntFormatter && percentFormatter)) {
-		[self release];
 		return nil;
 	}
 
@@ -269,33 +263,7 @@
 
 } // willUnload
 
-- (void)dealloc {
-
-	// Release the view and menu
-	[extraView release];
-    [extraMenu release];
-	[ourPrefs release];
-	[memStats release];
-	[localizedStrings release];
-	[memFloatMBFormatter release];
-	[memIntMBFormatter release];
-	[prettyIntFormatter release];
-	[percentFormatter release];
-	[freeColor release];
-	[usedColor release];
-	[activeColor release];
-	[inactiveColor release];
-	[wireColor release];
-	[compressedColor release];
-	[pageInColor release];
-	[pageOutColor release];
-	[numberLabelPrerender release];
-	[memHistory release];
-	[currentSwapStats release];
-	[fgMenuThemeColor release];
-	[super dealloc];
-
-} // dealloc
+ // dealloc
 
 ///////////////////////////////////////////////////////////////
 //
@@ -306,8 +274,8 @@
 - (NSImage *)image {
 
 	// Image to render into (and return to view)
-	NSImage *currentImage = [[[NSImage alloc] initWithSize:NSMakeSize(menuWidth,
-																	  [extraView frame].size.height - 1)] autorelease];
+	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize(menuWidth,
+																	  [extraView frame].size.height - 1)];
 
 	// Don't render without data
 	if (![memHistory count]) return nil;
@@ -351,8 +319,7 @@
 	}
 	NSDictionary *newSwapStats = [memStats swapStats];
 	if (newSwapStats) {
-		[currentSwapStats release];
-		currentSwapStats = [newSwapStats retain];
+		currentSwapStats = newSwapStats;
 	}
 
 	// Update the menu content
@@ -580,23 +547,23 @@
 	[image lockFocus];
 
 	// Construct strings
-	NSAttributedString *renderUString = [[[NSAttributedString alloc]
+	NSAttributedString *renderUString = [[NSAttributedString alloc]
 													initWithString:[NSString stringWithFormat:@"%.0f%@",
 																		usedMB,
 																		[localizedStrings objectForKey:kMBLabel]]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																		[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
 																		usedColor, NSForegroundColorAttributeName,
-																		nil]] autorelease];
+																		nil]];
 	// Construct and draw the free string
-	NSAttributedString *renderFString = [[[NSAttributedString alloc]
+	NSAttributedString *renderFString = [[NSAttributedString alloc]
 													initWithString:[NSString stringWithFormat:@"%.0f%@",
 																		freeMB,
 																		[localizedStrings objectForKey:kMBLabel]]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																		[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
 																		freeColor, NSForegroundColorAttributeName,
-																		nil]] autorelease];
+																		nil]];
 
 	// Draw the prerendered label
 	if ([ourPrefs memUsedFreeLabel]) {
@@ -807,12 +774,12 @@
 	} else {
 		countString = [NSString stringWithFormat:@"%d", (int)(pageIns + pageOuts)];
 	}
-	NSAttributedString *renderString = [[[NSAttributedString alloc]
+	NSAttributedString *renderString = [[NSAttributedString alloc]
 											initWithString:countString
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
 																fgMenuThemeColor, NSForegroundColorAttributeName,
-																nil]] autorelease];
+																nil]];
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
 	// Also draw low to ignore descenders
 	NSSize renderSize = [renderString size];
@@ -857,8 +824,7 @@
 
 	NSDictionary *newSwapStats = [memStats swapStats];
 	if (newSwapStats) {
-		[currentSwapStats release];
-		currentSwapStats = [newSwapStats retain];
+		currentSwapStats = newSwapStats;
 	}
 
 	// Update the menu content
@@ -884,32 +850,22 @@
 	[ourPrefs syncWithDisk];
 
 	// Handle menubar theme changes
-	[fgMenuThemeColor release];
-	fgMenuThemeColor = [MenuItemTextColor() retain];
+	fgMenuThemeColor = MenuItemTextColor();
 	
 	// Cache colors to skip archive cycle from prefs
-	[freeColor release];
-	freeColor = [[ourPrefs memFreeColor] retain];
-	[usedColor release];
-	usedColor = [[ourPrefs memUsedColor] retain];
-	[activeColor release];
-	activeColor = [[ourPrefs memActiveColor] retain];
-	[inactiveColor release];
-	inactiveColor = [[ourPrefs memInactiveColor] retain];
-	[wireColor release];
-	wireColor = [[ourPrefs memWireColor] retain];
-	[compressedColor release];
-	compressedColor = [[ourPrefs memCompressedColor] retain];
-	[pageInColor release];
-	pageInColor = [[ourPrefs memPageInColor] retain];
-	[pageOutColor release];
-	pageOutColor = [[ourPrefs memPageOutColor] retain];
+	freeColor = [ourPrefs memFreeColor];
+	usedColor = [ourPrefs memUsedColor];
+	activeColor = [ourPrefs memActiveColor];
+	inactiveColor = [ourPrefs memInactiveColor];
+	wireColor = [ourPrefs memWireColor];
+	compressedColor = [ourPrefs memCompressedColor];
+	pageInColor = [ourPrefs memPageInColor];
+	pageOutColor = [ourPrefs memPageOutColor];
 
 	// Since text rendering is so CPU intensive we minimize this by
 	// prerendering what we can if we need it
-	[numberLabelPrerender release];
 	numberLabelPrerender = nil;
-	NSAttributedString *renderUString = [[[NSAttributedString alloc]
+	NSAttributedString *renderUString = [[NSAttributedString alloc]
 											initWithString:[[NSBundle bundleForClass:[self class]]
 															   localizedStringForKey:kUsedLabel
 																			   value:nil
@@ -917,8 +873,8 @@
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
 																[ourPrefs memUsedColor], NSForegroundColorAttributeName,
-																nil]] autorelease];
-	NSAttributedString *renderFString = [[[NSAttributedString alloc]
+																nil]];
+	NSAttributedString *renderFString = [[NSAttributedString alloc]
 											initWithString:[[NSBundle bundleForClass:[self class]]
 																localizedStringForKey:kFreeLabel
 																				value:nil
@@ -926,7 +882,7 @@
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
 																[ourPrefs memFreeColor], NSForegroundColorAttributeName,
-																nil]] autorelease];
+																nil]];
 	if ([renderUString size].width > [renderFString size].width) {
 		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderUString size].width,
 																		[extraView frame].size.height - 1)];
@@ -943,11 +899,11 @@
 	// Figure out the length of "MB" localization
 	float mbLength = 0;
 	if ([ourPrefs memDisplayMode] == kMemDisplayNumber) {
-		NSAttributedString *renderMBString =  [[[NSAttributedString alloc]
+		NSAttributedString *renderMBString =  [[NSAttributedString alloc]
 													initWithString:[localizedStrings objectForKey:kMBLabel]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																		[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
-																		nil]] autorelease];
+																		nil]];
 		mbLength = (float)ceil([renderMBString size].width);
 	}
 

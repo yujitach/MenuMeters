@@ -141,7 +141,6 @@ static id gSharedPPP = nil;
 	struct sockaddr_un socketaddr = { 0, AF_LOCAL, kPPPSocketPath };
 	if (connect(pppconfdSocket, (struct sockaddr *)&socketaddr, (socklen_t)sizeof(socketaddr))) {
 		NSLog(@"MenuMeterNetPPP unable to establish socket for pppconfd. Abort.");
-		[self release];
 		return nil;
 	}
 
@@ -149,7 +148,6 @@ static id gSharedPPP = nil;
 	pppconfdHandle = [[NSFileHandle alloc] initWithFileDescriptor:pppconfdSocket];
 	if (!pppconfdHandle) {
 		NSLog(@"MenuMeterNetPPP unable to establish file handle for pppconfd. Abort.");
-		[self release];
 		return nil;
 	}
 
@@ -160,9 +158,7 @@ static id gSharedPPP = nil;
 
 - (void)dealloc {
 
-	[pppconfdHandle release];
 	close(pppconfdSocket);
-	[super dealloc];
 
 } // dealloc
 

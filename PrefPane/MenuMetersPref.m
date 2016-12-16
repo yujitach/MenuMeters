@@ -88,7 +88,7 @@ enum {
 
 static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void *info) {
 
-	if (info) [(MenuMetersPref *)info updateNetInterfaceMenu];
+	if (info) [(__bridge MenuMetersPref *)info updateNetInterfaceMenu];
 
 } // scChangeCallback
 
@@ -131,8 +131,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSMutableAttributedString *versionInfoString =
 		[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleGetInfoString"];
 	NSMutableAttributedString *linkedVersionString =
-		[[[NSMutableAttributedString alloc] initWithString:
-		  [NSString stringWithFormat:@"%@ (%@)", versionInfoString,webpageURL]] autorelease];
+		[[NSMutableAttributedString alloc] initWithString:
+		  [NSString stringWithFormat:@"%@ (%@)", versionInfoString,webpageURL]];
 	[linkedVersionString beginEditing];
 	[linkedVersionString setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [linkedVersionString length])];
 	[linkedVersionString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -159,7 +159,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuAvgProcs setEnabled:[self isMultiProcessor]];
 
 	// Set up a NSFormatter for use printing timers
-	NSNumberFormatter *intervalFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+	NSNumberFormatter *intervalFormatter = [[NSNumberFormatter alloc] init];
 	[intervalFormatter setLocalizesFormat:YES];
 	[intervalFormatter setFormat:@"###0.0"];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
@@ -192,7 +192,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [[NSWorkspace sharedWorkspace] launchApplication:appPath];
     NSURL*appURL=[NSURL fileURLWithPath:appPath];
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-    LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, (CFURLRef)appURL, NULL, NULL);
+    LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, (__bridge CFURLRef)appURL, NULL, NULL);
     if (item)
     {
         CFRelease(item);
@@ -203,7 +203,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (void)willSelect {
 
 	// Reread prefs on each load
-	[ourPrefs release];
 	ourPrefs = [[MenuMeterDefaults alloc] init];
 
 	// On machines without powermate disable the controls
@@ -265,7 +264,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[self disconnectSystemConfig];
 
 	// Release prefs so it can reconnect next load
-	[ourPrefs release];
 	ourPrefs = nil;
 
 } // didUnselect
@@ -754,32 +752,16 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // loadExtraAtURL:withID:
 
 - (BOOL)isExtraWithBundleIDLoaded:(NSString *)bundleID {
-#ifdef ELCAPITAN
     return [ourPrefs loadBoolPref:bundleID defaultValue:YES];
-#endif
-	void *anExtra = NULL;
-	if (!CoreMenuExtraGetMenuExtra((CFStringRef)bundleID, &anExtra) && anExtra) {
-		return YES;
-	} else {
-		return NO;
-	}
-
 } // isExtraWithBundleIDLoaded
 
 - (void)removeExtraWithBundleID:(NSString *)bundleID {
-#ifdef ELCAPITAN
     [ourPrefs saveBoolPref:bundleID value:NO];
     [ourPrefs syncWithDisk];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:bundleID
                                                                    object:kPrefChangeNotification
      userInfo:nil deliverImmediately:YES];
     return;
-#endif
-	void *anExtra = NULL;
-	if (!CoreMenuExtraGetMenuExtra((CFStringRef)bundleID, &anExtra) && anExtra) {
-		CoreMenuExtraRemoveMenuExtra(anExtra, 0);
-	}
-
 } // removeExtraWithBundleID
 
 - (void)showMenuExtraErrorSheet {
@@ -945,7 +927,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Create the callback context
 	SCDynamicStoreContext scContext;
 	scContext.version = 0;
-	scContext.info = self;
+	scContext.info = (__bridge void * _Nullable)(self);
 	scContext.retain = NULL;
 	scContext.release = NULL;
 	scContext.copyDescription = NULL;
@@ -1005,11 +987,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (NSDictionary *)sysconfigValueForKey:(NSString *)key {
 
 	if (!scSession) return nil;
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
-	return [NSMakeCollectable(SCDynamicStoreCopyValue(scSession, (CFStringRef)key)) autorelease];
-#else
-	return [(NSDictionary *)SCDynamicStoreCopyValue(scSession, (CFStringRef)key) autorelease];
-#endif
+	return (NSDictionary *)CFBridgingRelease(SCDynamicStoreCopyValue(scSession, (CFStringRef)key));
 
 } // sysconfigValueForKey
 

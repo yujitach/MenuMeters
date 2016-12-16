@@ -39,10 +39,9 @@
 	}
 
 	// Establish or connection to the PPP data gatherer
-	pppGatherer = [[MenuMeterNetPPP sharedPPP] retain];
+	pppGatherer = [MenuMeterNetPPP sharedPPP];
 	if (!pppGatherer) {
 		NSLog(@"MenuMeterNetStats unable to connect to PPP data gatherer. Abort.");
-		[self release];
 		return nil;
 	}
 
@@ -56,10 +55,7 @@
 - (void)dealloc {
 
 	// Free our sysctl buffer
-	[pppGatherer release];
 	if (sysctlBuffer) free(sysctlBuffer);
-	[lastData release];
-	[super dealloc];
 
 } // dealloc
 
@@ -264,8 +260,7 @@
 	}
 
 	// Store and return
-	[lastData release];
-	lastData = [newStats retain];
+	lastData = newStats;
 	return newStats;
 
 } // netStatsForInterval

@@ -90,24 +90,21 @@
     ourPrefs = [MenuMeterDefaults sharedMenuMeterDefaults];
 	if (!ourPrefs) {
 		NSLog(@"MenuMeterCPU unable to connect to preferences. Abort.");
-		[self release];
 		return nil;
 	}
 
 	// Data gatherers and storage
 	cpuInfo = [[MenuMeterCPUStats alloc] init];
 	uptimeInfo = [[MenuMeterUptime alloc] init];
-	loadHistory = [[NSMutableArray array] retain];
+	loadHistory = [NSMutableArray array];
 	if (!(cpuInfo && uptimeInfo && loadHistory)) {
 		NSLog(@"MenuMeterCPU unable to load data gatherers or storage. Abort.");
-		[self release];
 		return nil;
 	}
 
 	// Setup our menu
 	extraMenu = [[NSMenu alloc] initWithTitle:@""];
 	if (!extraMenu) {
-		[self release];
 		return nil;
 	}
 	// Disable menu autoenabling
@@ -170,7 +167,6 @@
 	// Get our view
 	extraView = [[MenuMeterCPUView alloc] initWithFrame:[[self view] frame] menuExtra:self];
 	if (!extraView) {
-		[self release];
 		return nil;
 	}
 	[self setView:extraView];
@@ -211,24 +207,7 @@
 
 } // willUnload
 
-- (void)dealloc {
-
-	[extraView release];
-	[extraMenu release];
-	[ourPrefs release];
-	[cpuInfo release];
-	[uptimeInfo release];
-	[powerMate release];
-	[singlePercentCache release];
-	[splitUserPercentCache release];
-	[splitSystemPercentCache release];
-	[loadHistory release];
-	[userColor release];
-	[systemColor release];
-	[fgMenuThemeColor release];
-	[super dealloc];
-
-} // dealloc
+ // dealloc
 
 ///////////////////////////////////////////////////////////////
 //
@@ -239,8 +218,8 @@
 - (NSImage *)image {
 
 	// Image to render into (and return to view)
-	NSImage *currentImage = [[[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-																	  [extraView frame].size.height - 1)] autorelease];
+	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
+																	  [extraView frame].size.height - 1)];
 	if (!currentImage) return nil;
 
 	// Don't render without data
@@ -623,30 +602,24 @@
 	[ourPrefs syncWithDisk];
 
 	// Handle menubar theme changes
-	[fgMenuThemeColor release];
-	fgMenuThemeColor = [MenuItemTextColor() retain];
+	fgMenuThemeColor = MenuItemTextColor();
 
 	// Cache colors to skip archiver
-	[userColor release];
-	userColor = [[ourPrefs cpuUserColor] retain];
-	[systemColor release];
-	systemColor = [[ourPrefs cpuSystemColor] retain];
+	userColor = [ourPrefs cpuUserColor];
+	systemColor = [ourPrefs cpuSystemColor];
 
 	// It turns out that text drawing is _much_ slower than compositing images together
 	// so we render several arrays of images, each representing a different percent value
 	// which we can then composite together. Testing showed this to be almost 2x
 	// faster than rendering the text every time through.
-	[singlePercentCache release];
 	singlePercentCache = nil;
-	[splitUserPercentCache release];
 	splitUserPercentCache = nil;
-	[splitSystemPercentCache release];
 	splitSystemPercentCache = nil;
 
 	if (([ourPrefs cpuPercentDisplay] == kCPUPercentDisplayLarge) ||
 		([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall)) {
 
-		singlePercentCache = [[NSMutableArray array] retain];
+		singlePercentCache = [NSMutableArray array];
 		float fontSize = 14;
 		if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
 			fontSize = 11;
@@ -658,11 +631,11 @@
 											NSForegroundColorAttributeName,
 											nil];
 		for (int i = 0; i <= 100; i++) {
-			NSAttributedString *cacheText = [[[NSAttributedString alloc]
+			NSAttributedString *cacheText = [[NSAttributedString alloc]
 												initWithString:[NSString stringWithFormat:@"%d%%", i]
-													attributes:textAttributes] autorelease];
-			NSImage *cacheImage = [[[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
-																			ceilf((float)[cacheText size].height))] autorelease];
+													attributes:textAttributes];
+			NSImage *cacheImage = [[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
+																			ceilf((float)[cacheText size].height))];
 			[cacheImage lockFocus];
 			[cacheText drawAtPoint:NSMakePoint(0, 0)];
 			[cacheImage unlockFocus];
@@ -671,7 +644,7 @@
 		// Calc the new width
 		percentWidth = (float)round([[singlePercentCache lastObject] size].width) + kCPUPercentDisplayBorderWidth;
 	} else if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
-		splitUserPercentCache = [[NSMutableArray array] retain];
+		splitUserPercentCache = [NSMutableArray array];
 		NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
 											[NSFont systemFontOfSize:9.5f],
 											NSFontAttributeName,
@@ -679,19 +652,19 @@
 											NSForegroundColorAttributeName,
 											nil];
 		for (int i = 0; i <= 100; i++) {
-			NSAttributedString *cacheText = [[[NSAttributedString alloc]
+			NSAttributedString *cacheText = [[NSAttributedString alloc]
 												initWithString:[NSString stringWithFormat:@"%d%%", i]
-													attributes:textAttributes] autorelease];
-			NSImage *cacheImage = [[[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
+													attributes:textAttributes];
+			NSImage *cacheImage = [[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
 																			// No descenders, so render lower
-																			[cacheText size].height - 1)] autorelease];
+																			[cacheText size].height - 1)];
 
 			[cacheImage lockFocus];
 			[cacheText drawAtPoint:NSMakePoint(0, -1)];  // No descenders in our text so render lower
 			[cacheImage unlockFocus];
 			[splitUserPercentCache addObject:cacheImage];
 		}
-		splitSystemPercentCache = [[NSMutableArray array] retain];
+		splitSystemPercentCache = [NSMutableArray array];
 		textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
 								[NSFont systemFontOfSize:9.5f],
 								NSFontAttributeName,
@@ -699,12 +672,12 @@
 								NSForegroundColorAttributeName,
 								nil];
 		for (int i = 0; i <= 100; i++) {
-			NSAttributedString *cacheText = [[[NSAttributedString alloc]
+			NSAttributedString *cacheText = [[NSAttributedString alloc]
 											  initWithString:[NSString stringWithFormat:@"%d%%", i]
-											  attributes:textAttributes] autorelease];
-			NSImage *cacheImage = [[[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
+											  attributes:textAttributes];
+			NSImage *cacheImage = [[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
 																			// No descenders, so render lower
-																			[cacheText size].height - 1)] autorelease];
+																			[cacheText size].height - 1)];
 
 			[cacheImage lockFocus];
 			[cacheText drawAtPoint:NSMakePoint(0, -1)];  // No descenders in our text so render lower
@@ -761,7 +734,6 @@
 		}
 	} else {
 		// Release control if the user wants it for something else
-		[powerMate release];
 		powerMate = nil;
 	}
 

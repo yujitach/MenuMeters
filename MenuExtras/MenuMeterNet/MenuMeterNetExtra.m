@@ -127,26 +127,23 @@
     ourPrefs = [MenuMeterDefaults sharedMenuMeterDefaults];
     if (!ourPrefs) {
 		NSLog(@"MenuMeterCPU unable to connect to preferences. Abort.");
-		[self release];
 		return nil;
 	}
 
 	// Build our data gatherers
 	netConfig = [[MenuMeterNetConfig alloc] init];
 	netStats = [[MenuMeterNetStats alloc] init];
-	pppControl = [[MenuMeterNetPPP sharedPPP] retain];
-	netHistoryData = [[NSMutableArray array] retain];
-	netHistoryIntervals = [[NSMutableArray array] retain];
+	pppControl = [MenuMeterNetPPP sharedPPP];
+	netHistoryData = [NSMutableArray array];
+	netHistoryIntervals = [NSMutableArray array];
 	if (!(netConfig && netStats && pppControl && netHistoryData)) {
 		NSLog(@"MenuMeterNet unable to load data gatherers/controllers. Abort.");
-		[self release];
 		return nil;
 	}
 
 	// Setup our menu
 	extraMenu = [[NSMenu alloc] initWithTitle:@""];
 	if (!extraMenu) {
-		[self release];
 		return nil;
 	}
 	// Disable menu autoenabling
@@ -158,15 +155,14 @@
 	// Get our view
     extraView = [[MenuMeterNetView alloc] initWithFrame:[[self view] frame] menuExtra:self];
 	if (!extraView) {
-		[self release];
 		return nil;
 	}
     [self setView:extraView];
 
-	throughputFont = [[NSFont systemFontOfSize:9.5f] retain];
+	throughputFont = [NSFont systemFontOfSize:9.5f];
 
 	// Localizable strings
-	localizedStrings = [[NSDictionary dictionaryWithObjectsAndKeys:
+	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTxLabel value:nil table:nil],
 							kTxLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kRxLabel value:nil table:nil],
@@ -245,20 +241,20 @@
 							kPPPConnectedWithTimeTitle,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kPPPDisconnectingTitle value:nil table:nil],
 							kPPPDisconnectingTitle,
-							nil] retain];
+							nil];
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.
-	NSNumberFormatter *tempFormat = [[[NSNumberFormatter alloc] init] autorelease];
+	NSNumberFormatter *tempFormat = [[NSNumberFormatter alloc] init];
 	[tempFormat setLocalizesFormat:YES];
 	[tempFormat setFormat:@"###0.0"];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-	bytesFormatter = [[NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]] retain];
-	tempFormat = [[[NSNumberFormatter alloc] init] autorelease];
+	bytesFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
+	tempFormat = [[NSNumberFormatter alloc] init];
 	[tempFormat setLocalizesFormat:YES];
 	[tempFormat setFormat:@"#,##0"];
-	prettyIntFormatter = [[NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]] retain];
+	prettyIntFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 
 	// Register for pref changes
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
@@ -290,33 +286,7 @@
 
 } // willUnload
 
-- (void)dealloc {
-
-	[extraView release];
-    [extraMenu release];
-	[ourPrefs release];
-	[netConfig release];
-	[netStats release];
-	[pppControl release];
-	[localizedStrings release];
-	[bytesFormatter release];
-	[prettyIntFormatter release];
-	[txColor release];
-	[rxColor release];
-	[inactiveColor release];
-	[lastSampleDate release];
-	[netHistoryData release];
-	[netHistoryIntervals release];
-	[upArrow release];
-	[downArrow release];
-	[throughputLabel release];
-	[inactiveThroughputLabel release];
-	[preferredInterfaceConfig release];
-	[updateMenuItems release];
-	[throughputFont release];
-    [super dealloc];
-
-} // dealloc
+ // dealloc
 
 ///////////////////////////////////////////////////////////////
 //
@@ -327,8 +297,8 @@
 - (NSImage *)image {
 
 	// Image to render into (and return to view)
-	NSImage *currentImage = [[[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-																	  [extraView frame].size.height - 1)] autorelease];
+	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
+																	  [extraView frame].size.height - 1)];
 	if (!currentImage) return nil;
 
 	// Don't render without data
@@ -355,8 +325,7 @@
 - (NSMenu *)menu {
 
 	// New cache
-	[updateMenuItems release];
-	updateMenuItems = [[NSMutableDictionary dictionary] retain];//
+	updateMenuItems = [NSMutableDictionary dictionary];//
 
 	// Empty the menu
 	while ([extraMenu numberOfItems]) {
@@ -364,7 +333,7 @@
 	}
 
 	// Hostname
-	NSString *hostname = [[netConfig computerName] retain];
+	NSString *hostname = [netConfig computerName];
 	if (hostname) {
 		[[extraMenu addItemWithTitle:hostname action:nil keyEquivalent:@""] setEnabled:NO];
 		[extraMenu addItem:[NSMenuItem separatorItem]];
@@ -645,7 +614,7 @@
 			}
 
 			// Now set up the submenu for this interface
-			NSMenu *interfaceSubmenu = [[[NSMenu alloc] initWithTitle:@""] autorelease];
+			NSMenu *interfaceSubmenu = [[NSMenu alloc] initWithTitle:@""];
 			// Disable menu autoenabling
 			[interfaceSubmenu setAutoenablesItems:NO];
 			// Add the submenu
@@ -1110,22 +1079,22 @@
 	
 	NSString *txString = [self menubarThroughputStringForBytes:txValue inInterval:sampleInterval];
 	NSString *rxString = [self menubarThroughputStringForBytes:rxValue inInterval:sampleInterval];
-	NSAttributedString *renderTxString = [[[NSAttributedString alloc]
+	NSAttributedString *renderTxString = [[NSAttributedString alloc]
 												initWithString:txString
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																	throughputFont,
 																	NSFontAttributeName,
 																	interfaceUp ? txColor : inactiveColor,
 																	NSForegroundColorAttributeName,
-																	nil]] autorelease];
-	NSAttributedString *renderRxString = [[[NSAttributedString alloc]
+																	nil]];
+	NSAttributedString *renderRxString = [[NSAttributedString alloc]
 												initWithString:rxString
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																	throughputFont,
 																	NSFontAttributeName,
 																	interfaceUp ? rxColor : inactiveColor,
 																	NSForegroundColorAttributeName,
-																	nil]] autorelease];
+																	nil]];
 
 	// Draw
 	[image lockFocus];
@@ -1166,8 +1135,7 @@
 - (void)timerFired:(NSTimer *)timer {
 
 	// Get new config
-	[preferredInterfaceConfig release];
-	preferredInterfaceConfig = [[netConfig interfaceConfigForInterfaceName:[ourPrefs netPreferInterface]] retain];
+	preferredInterfaceConfig = [netConfig interfaceConfigForInterfaceName:[ourPrefs netPreferInterface]];
 
 	// Get interval for the sample
 	NSTimeInterval currentSampleInterval = [ourPrefs netInterval];
@@ -1194,8 +1162,7 @@
 	[netHistoryIntervals addObject:[NSNumber numberWithDouble:currentSampleInterval]];
 
 	// Update for next sample
-	[lastSampleDate release];
-	lastSampleDate = [[NSDate date] retain];
+	lastSampleDate = [NSDate date];
 
 	// If the menu is down force it to update
 	if (self.isMenuVisible) {
@@ -1379,8 +1346,7 @@
 	// Sanity the name
 	NSDictionary *newConfig = [netConfig interfaceConfigForInterfaceName:interfaceName];
 	if (!newConfig) return;
-	[preferredInterfaceConfig release];
-	preferredInterfaceConfig = [newConfig retain];
+	preferredInterfaceConfig = newConfig;
 
 	// Update prefs
 	[ourPrefs saveNetPreferInterface:interfaceName];
@@ -1462,12 +1428,9 @@
 	[ourPrefs syncWithDisk];
 
 	// Cache colors to skip archiver
-	[txColor release];
-	txColor = [[ourPrefs netTransmitColor] retain];
-	[rxColor release];
-	rxColor = [[ourPrefs netReceiveColor] retain];
-	[inactiveColor release];
-	inactiveColor = [[ourPrefs netInactiveColor] retain];
+	txColor = [ourPrefs netTransmitColor];
+	rxColor = [ourPrefs netReceiveColor];
+	inactiveColor = [ourPrefs netInactiveColor];
 
 	// Generate arrow bezier path offset as needed for current display mode
 	float arrowOffset =  0;
@@ -1475,8 +1438,7 @@
 	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
 		arrowOffset = [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 	}
-	[upArrow release];
-	upArrow = [[NSBezierPath bezierPath] retain];
+	upArrow = [NSBezierPath bezierPath];
 	[upArrow moveToPoint:NSMakePoint(arrowOffset + (kNetArrowDisplayWidth / 2) + 0.5f, viewHeight - 3.5f)];
 	[upArrow lineToPoint:NSMakePoint(arrowOffset + 0.5f, viewHeight - 7.5f)];
 	[upArrow lineToPoint:NSMakePoint(arrowOffset + 2.5f, viewHeight - 7.5f)];
@@ -1486,8 +1448,7 @@
 	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 0.5f, viewHeight - 7.5f)];
 	[upArrow closePath];
 	[upArrow setLineWidth:0.6f];
-	[downArrow release];
-	downArrow = [[NSBezierPath bezierPath] retain];
+	downArrow = [NSBezierPath bezierPath];
 	[downArrow moveToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth / 2 + 0.5f, 2.5f)];
 	[downArrow lineToPoint:NSMakePoint(arrowOffset + 0.5f, 6.5f)];
 	[downArrow lineToPoint:NSMakePoint(arrowOffset + 2.5f, 6.5f)];
@@ -1499,20 +1460,18 @@
 	[downArrow setLineWidth:0.6f];
 
 	// Prerender throughput labels
-	[throughputLabel release];
-	[inactiveThroughputLabel release];
-	NSAttributedString *renderTxString = [[[NSAttributedString alloc]
+	NSAttributedString *renderTxString = [[NSAttributedString alloc]
 											initWithString:[localizedStrings objectForKey:kTxLabel]
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																throughputFont, NSFontAttributeName,
 																txColor, NSForegroundColorAttributeName,
-																nil]] autorelease];
-	NSAttributedString *renderRxString = [[[NSAttributedString alloc]
+																nil]];
+	NSAttributedString *renderRxString = [[NSAttributedString alloc]
 											initWithString:[localizedStrings objectForKey:kRxLabel]
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																throughputFont, NSFontAttributeName,
 																rxColor, NSForegroundColorAttributeName,
-																nil]] autorelease];
+																nil]];
 	if ([renderTxString size].width > [renderRxString size].width) {
 		throughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
 		inactiveThroughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
@@ -1530,18 +1489,18 @@
 		[renderRxString drawAtPoint:NSMakePoint(0, -1)];
 	}
 	[throughputLabel unlockFocus];
-	renderTxString = [[[NSAttributedString alloc]
+	renderTxString = [[NSAttributedString alloc]
 						initWithString:[localizedStrings objectForKey:kTxLabel]
 							attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 											throughputFont, NSFontAttributeName,
 											inactiveColor, NSForegroundColorAttributeName,
-											nil]] autorelease];
-	renderRxString = [[[NSAttributedString alloc]
+											nil]];
+	renderRxString = [[NSAttributedString alloc]
 						initWithString:[localizedStrings objectForKey:kRxLabel]
 							attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 											throughputFont, NSFontAttributeName,
 											inactiveColor, NSForegroundColorAttributeName,
-											nil]] autorelease];
+											nil]];
 	[inactiveThroughputLabel lockFocus];
 	// No descenders, render lower
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
@@ -1569,39 +1528,39 @@
 		if ([ourPrefs netThroughputLabel]) menuWidth += (float)ceil([throughputLabel size].width);
 		// Deal with localizable throughput suffix
 		float suffixMaxWidth = 0;
-		NSAttributedString *throughString = [[[NSAttributedString alloc]
+		NSAttributedString *throughString = [[NSAttributedString alloc]
 												initWithString:[NSString stringWithFormat:@"99.9%@",
 																	[localizedStrings objectForKey:kBytePerSecondLabel]]
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																	throughputFont, NSFontAttributeName,
-																	nil]] autorelease];
+																	nil]];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
-		throughString = [[[NSAttributedString alloc]
+		throughString = [[NSAttributedString alloc]
 							initWithString:[NSString stringWithFormat:@"99.9%@",
 												[localizedStrings objectForKey:kKBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
-												nil]] autorelease];
+												nil]];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
-		throughString = [[[NSAttributedString alloc]
+		throughString = [[NSAttributedString alloc]
 							initWithString:[NSString stringWithFormat:@"99.9%@",
 												[localizedStrings objectForKey:kMBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
-												nil]] autorelease];
+												nil]];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
-		throughString = [[[NSAttributedString alloc]
+		throughString = [[NSAttributedString alloc]
 							initWithString:[NSString stringWithFormat:@"99.9%@",
 												[localizedStrings objectForKey:kGBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
-												nil]] autorelease];
+												nil]];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
