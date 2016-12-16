@@ -113,10 +113,7 @@
 			continue;
 		}
 		// Build the interface name to string so we can key off it
-		// (using NSData here because initWithBytes is 10.3 and later)
-		NSString *interfaceName = [[[NSString alloc]
-										initWithData:[NSData dataWithBytes:sdl->sdl_data length:sdl->sdl_nlen]
-									encoding:NSASCIIStringEncoding] autorelease];
+		NSString *interfaceName = [[NSString alloc] initWithBytes:sdl->sdl_data length:sdl->sdl_nlen encoding:NSASCIIStringEncoding];
 		if (!interfaceName) {
 			currentData += ifmsg->ifm_msglen;
 			continue;

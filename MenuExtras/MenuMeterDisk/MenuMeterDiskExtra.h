@@ -40,10 +40,6 @@
     MenuMeterDiskView 				*extraView;
 	// Pref object
 	MenuMeterDefaults				*ourPrefs;
-	// Are we on Panther?
-	BOOL							isPantherOrLater, isSnowLeopardOrLater;
-	// The timer
-	NSTimer							*updateTimer;
 	// Info gatherers
 	MenuMeterDiskIO					*diskIOMonitor;
 	MenuMeterDiskSpace				*diskSpaceMonitor;

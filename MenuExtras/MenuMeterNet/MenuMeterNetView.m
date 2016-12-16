@@ -63,8 +63,7 @@
     if (image) {
 		// Live updating even when menu is down handled by making the extra
 		// draw the background if needed.
-		if ([netMenuExtra isMenuDown] || 
-			([netMenuExtra respondsToSelector:@selector(isMenuDownForAX)] && [netMenuExtra isMenuDownForAX])) {
+		if (netMenuExtra.isMenuVisible) {
 			[netMenuExtra drawMenuBackground:YES];
 		}
 		// Net image is is height - 1 to skip edge of menubar

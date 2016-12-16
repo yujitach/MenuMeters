@@ -24,6 +24,9 @@
 #import "MenuMeterCPUStats.h"
 
 
+@implementation MenuMeterCPULoad
+@end
+
 ///////////////////////////////////////////////////////////////
 //
 //	Private methods
@@ -278,15 +281,13 @@
 		}
 		total = system + user + idle;
 
-		// Sanity
-		if (total < 1) {
-			total = 1;
-		}
-
-		[loadInfo addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-								[NSNumber numberWithFloat:((float)system / (float)total)], @"system",
-								[NSNumber numberWithFloat:((float)user / (float)total)], @"user",
-								nil]];
+		float normalize = (total < 1) ? 1 : (1.0 / total);
+		
+		MenuMeterCPULoad *load = [[MenuMeterCPULoad alloc] init];
+		load.system = system * normalize;
+		load.user = user * normalize;
+		[loadInfo addObject:load];
+		[load release];
 	}
 
 	// Copy the new data into previous

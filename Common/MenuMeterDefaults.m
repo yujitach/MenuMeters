@@ -836,21 +836,15 @@
 - (int)loadIntPref:(NSString *)prefName lowBound:(int)lowBound
 		  highBound:(int)highBound defaultValue:(int)defaultValue {
 
-	int returnVal = defaultValue;
-	NSNumber *prefValue = (NSNumber *)CFPreferencesCopyValue((CFStringRef)prefName,
-															 (CFStringRef)kMenuMeterDefaultsDomain,
-															 kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-	if (prefValue && [prefValue isKindOfClass:[NSNumber class]]) {
-		returnVal = [prefValue intValue];
-		if ((returnVal < lowBound) || (returnVal > highBound)) {
-			returnVal = defaultValue;
-			[self saveIntPref:prefName value:returnVal];
-		}
-	} else {
-		[self saveIntPref:prefName value:returnVal];
+	Boolean keyExistsAndHasValidFormat = NO;
+	CFIndex returnValue = CFPreferencesGetAppIntegerValue((CFStringRef)prefName,
+														  (CFStringRef)kMenuMeterDefaultsDomain,
+														  &keyExistsAndHasValidFormat);
+	if (!keyExistsAndHasValidFormat) {
+		[self saveIntPref:prefName value:defaultValue];
+		returnValue = defaultValue;
 	}
-	if (prefValue) CFRelease(prefValue);
-	return returnVal;
+	return (int) returnValue;
 
 } // _loadIntPref
 
@@ -865,21 +859,21 @@
 - (int)loadBitFlagPref:(NSString *)prefName validFlags:(int)flags
 			  zeroValid:(BOOL)zeroValid defaultValue:(int)defaultValue {
 
-	int returnVal = defaultValue;
-	NSNumber *prefValue = (NSNumber *)CFPreferencesCopyValue((CFStringRef)prefName,
-															 (CFStringRef)kMenuMeterDefaultsDomain,
-															 kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-	if (prefValue && [prefValue isKindOfClass:[NSNumber class]]) {
-		returnVal = [prefValue intValue];
-		if (((returnVal | flags) != flags) || (zeroValid && !returnVal)) {
-			returnVal = defaultValue;
-			[self saveBitFlagPref:prefName value:returnVal];
+	Boolean keyExistsAndHasValidFormat = NO;
+	CFIndex returnValue = CFPreferencesGetAppIntegerValue((CFStringRef)prefName,
+														  (CFStringRef)kMenuMeterDefaultsDomain,
+														  &keyExistsAndHasValidFormat);
+	if (keyExistsAndHasValidFormat) {
+		if (((returnValue | flags) != flags) || (zeroValid && !returnValue)) {
+			keyExistsAndHasValidFormat = NO;
 		}
-	} else {
-		[self saveBitFlagPref:prefName value:returnVal];
 	}
-	if (prefValue) CFRelease(prefValue);
-	return returnVal;
+	
+	if (!keyExistsAndHasValidFormat) {
+		[self saveIntPref:prefName value:defaultValue];
+		returnValue = defaultValue;
+	}
+	return (int) returnValue;
 
 } // _loadBitFlagPref
 
@@ -893,16 +887,14 @@
 
 - (BOOL)loadBoolPref:(NSString *)prefName defaultValue:(BOOL)defaultValue {
 
-	BOOL returnValue = defaultValue;
-	NSObject *prefValue = (NSObject *)CFPreferencesCopyValue((CFStringRef)prefName,
-															 (CFStringRef)kMenuMeterDefaultsDomain,
-															 kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-	if (prefValue && [prefValue respondsToSelector:@selector(boolValue)]) {
-		returnValue = [(NSNumber *)prefValue boolValue];
-	} else {
+	Boolean keyExistsAndHasValidFormat = NO;
+	BOOL returnValue = CFPreferencesGetAppBooleanValue((CFStringRef)prefName,
+													   (CFStringRef)kMenuMeterDefaultsDomain,
+													   &keyExistsAndHasValidFormat);
+	if (!keyExistsAndHasValidFormat) {
 		[self saveBoolPref:prefName value:defaultValue];
+		returnValue = defaultValue;
 	}
-	if (prefValue) CFRelease(prefValue);
 	return returnValue;
 
 } // _loadBoolPref

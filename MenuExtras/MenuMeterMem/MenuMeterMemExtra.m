@@ -43,7 +43,6 @@
 - (void)renderPageIndicatorIntoImage:(NSImage *)image;
 
 // Timer callbacks
-- (void)updateMemDisplay:(NSTimer *)timer;
 - (void)updateMenuWhenDown;
 
 // Prefs
@@ -94,10 +93,6 @@
 	if (!self) {
 		return nil;
 	}
-
-	// Panther and Tiger check
-	isPantherOrLater = OSIsPantherOrLater();
-	isTigerOrLater = OSIsTigerOrLater();
 
 	// Load our pref bundle, we do this as a bundle because we are a plugin
 	// to SystemUIServer and as a result cannot have the same class loaded
@@ -257,9 +252,6 @@
 	// And configure directly from prefs on first load
 	[self configFromPrefs:nil];
 
-	// Fake a timer call to config initial values
-	[self updateMemDisplay:nil];
-
     // And hand ourself back to SystemUIServer
 	NSLog(@"MenuMeterMem loaded.");
     return self;
@@ -267,10 +259,6 @@
 } // initWithBundle
 
 - (void)willUnload {
-
-	// Stop the timer
-	[updateTimer invalidate];  // Released by the runloop
-	updateTimer = nil;
 
 	// Unregister pref change notifications
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
@@ -291,7 +279,6 @@
 	// Release the view and menu
 	[extraView release];
     [extraMenu release];
-	[updateTimer invalidate];  // Released by the runloop
 	[ourPrefs release];
 	[memStats release];
 	[localizedStrings release];
@@ -450,20 +437,12 @@
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"cowfaults"]]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMFaultInfoMenuIndex, title);
 	// Swap count/path, Tiger swap encryptioninfo from Michael Nordmeyer (http://goodyworks.com)
-	if (isTigerOrLater && [[currentSwapStats objectForKey:@"swapencrypted"] boolValue]) {
+	if ([[currentSwapStats objectForKey:@"swapencrypted"] boolValue]) {
 		title = [NSString stringWithFormat:kMenuIndentFormat,
 					[NSString stringWithFormat:
 						(([[currentSwapStats objectForKey:@"swapcount"] unsignedIntValue] > 1) ?
 							[localizedStrings objectForKey:kMultiEncryptedSwapFormat] :
 							[localizedStrings objectForKey:kSingleEncryptedSwapFormat]),
-						[prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcount"]],
-						[currentSwapStats objectForKey:@"swappath"]]];
-	} else {
-		title = [NSString stringWithFormat:kMenuIndentFormat,
-					[NSString stringWithFormat:
-						(([[currentSwapStats objectForKey:@"swapcount"] unsignedIntValue] > 1) ?
-							[localizedStrings objectForKey:kMultiSwapFormat] :
-							[localizedStrings objectForKey:kSingleSwapFormat]),
 						[prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcount"]],
 						[currentSwapStats objectForKey:@"swappath"]]];
 	}
@@ -477,16 +456,10 @@
 					[prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcountpeak"]]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapMaxCountInfoMenuIndex, title);
 	// Swap size, Tiger swap used path from Michael Nordmeyer (http://goodyworks.com)
-	if (isTigerOrLater) {
-		title = [NSString stringWithFormat:kMenuIndentFormat,
-			[NSString stringWithFormat:[localizedStrings objectForKey:kSwapSizeUsedFormat],
-				[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapsizemb"]],
-				[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapusedmb"]]]];
-	} else {
-		title = [NSString stringWithFormat:kMenuIndentFormat,
-					[NSString stringWithFormat:[localizedStrings objectForKey:kSwapSizeFormat],
-						[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapsize"]]]];
-	}
+	title = [NSString stringWithFormat:kMenuIndentFormat,
+		[NSString stringWithFormat:[localizedStrings objectForKey:kSwapSizeUsedFormat],
+			[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapsizemb"]],
+			[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapusedmb"]]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapSizeInfoMenuIndex, title);
 
 } // updateMenuContent
@@ -863,7 +836,7 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)updateMemDisplay:(NSTimer *)timer {
+- (void)timerFired:(NSTimer *)timer {
 
 	NSDictionary *currentStats = [memStats memStats];
 	if (!currentStats) return;
@@ -878,17 +851,12 @@
 	}
 	[memHistory addObject:currentStats];
 
-	// This code used to try to avoid a redraw if nothing had changed, but
-	// the cost of a redraw is so low its a false optimization.
-	[extraView setNeedsDisplay:YES];
-
 	// If the menu is down, update it
-	if ([self isMenuDown] || 
-		([self respondsToSelector:@selector(isMenuDownForAX)] && [self isMenuDownForAX])) {
+	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
 	}
-
-} // updateMemDisplay
+	[super timerFired:timer];
+} // timerFired
 
 - (void)updateMenuWhenDown {
 
@@ -1023,26 +991,12 @@
 		menuWidth += kMemPagingDisplayWidth + kMemPagingDisplayGapWidth;
 	}
 
-	// Restart the timer
-	[updateTimer invalidate];  // Runloop releases and retains the next one
-	updateTimer = [NSTimer scheduledTimerWithTimeInterval:[ourPrefs memInterval]
-												   target:self
-												 selector:@selector(updateMemDisplay:)
-												 userInfo:nil
-												  repeats:YES];
-	// On newer OS versions we need to put the timer into EventTracking to update while the menus are down
-	if (isPantherOrLater) {
-		[[NSRunLoop currentRunLoop] addTimer:updateTimer
-									 forMode:NSEventTrackingRunLoopMode];
-	}
-
 	// Resize the view
 	[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
 	[self setLength:menuWidth];
 
-	// Flag us for redisplay
-	[extraView setNeedsDisplay:YES];
-
+	// Force initial update
+	[self timerFired:nil];
 } // configFromPrefs
 
 @end

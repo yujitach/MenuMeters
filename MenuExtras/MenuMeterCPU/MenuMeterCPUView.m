@@ -63,8 +63,7 @@
     if (image) {
 		// Live updating even when menu is down handled by making the extra
 		// draw the background if needed.
-		if ([cpuMenuExtra isMenuDown] || 
-			([cpuMenuExtra respondsToSelector:@selector(isMenuDownForAX)] && [cpuMenuExtra isMenuDownForAX])) {
+		if (cpuMenuExtra.isMenuVisible) {
 			[cpuMenuExtra drawMenuBackground:YES];
 		}
 		// CPU image is is height - 1 to skip edge of menubar

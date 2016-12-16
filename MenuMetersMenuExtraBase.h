@@ -10,13 +10,15 @@
 #import "AppleUndocumented.h"
 #import "MenuMeterDefaults.h"
 
-@interface MenuMetersMenuExtraBase : NSMenuExtra
+@interface MenuMetersMenuExtraBase : NSMenuExtra <NSMenuDelegate>
 {
-    NSStatusItem*statusItem;
-    NSTimer*timer;
+    NSStatusItem* statusItem;
+    NSTimer* updateTimer;
 }
--(instancetype)initWithBundle:(NSBundle*)bundle;
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;
+- (void)timerFired:(id)timer;
+
+@property(nonatomic, readonly) BOOL isMenuVisible;
 @end
 
 #define NSMenuExtra MenuMetersMenuExtraBase
