@@ -286,6 +286,10 @@
 	return [self loadBoolPref:kMemUsedFreeLabelPref defaultValue:kMemUsedFreeLabelDefault];
 } // memUsedFreeLabel
 
+- (BOOL)memPressure {
+  return [self loadBoolPref:kMemPressurePref defaultValue:kMemPressureDefault];
+} // memUsedFreeLabel
+
 - (int)memGraphLength {
 	return [self loadIntPref:kMemGraphLengthPref
 					lowBound:kMemGraphWidthMin
@@ -336,6 +340,10 @@
 - (void)saveMemUsedFreeLabel:(BOOL)label {
 	[self saveBoolPref:kMemUsedFreeLabelPref value:label];
 } // saveMemUsedFreeLabel
+
+- (void)saveMemPressure:(BOOL)label {
+  [self saveBoolPref:kMemPressurePref value:label];
+} // saveMemPressure
 
 - (void)saveMemPageIndicator:(BOOL)indicator {
 	[self saveBoolPref:kMemPageIndicatorPref value:indicator];

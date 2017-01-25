@@ -248,6 +248,13 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	// Update total
 	totalRAM = active + inactive + wired + free + compressed;
 
+  int system_memory_pressure;
+  size_t length = sizeof(int);
+  
+  sysctlbyname("kern.memorystatus_vm_pressure_level", &system_memory_pressure, &length, nil, 0);
+  
+  double memory_pressure = system_memory_pressure * 0.25f;
+  
 	return [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSNumber numberWithDouble:(double)totalRAM / 1048576], @"totalmb",
 				// See discussion in 32 bit code for historical difference between free/used.
@@ -275,6 +282,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 				[NSNumber numberWithUnsignedLongLong:vmStats64.compressions], @"compressions",
 				[NSNumber numberWithUnsignedLongLong:deltaPageIn], @"deltapageins",
 				[NSNumber numberWithUnsignedLongLong:deltaPageOut], @"deltapageouts",
+        [NSNumber numberWithDouble:(double)memory_pressure], @"mempress",
 				nil];
 } // memStats64
 

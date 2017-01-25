@@ -39,6 +39,7 @@
 - (void)renderPieIntoImage:(NSImage *)image;
 - (void)renderNumbersIntoImage:(NSImage *)image;
 - (void)renderBarIntoImage:(NSImage *)image;
+- (void)renderPressureBar:(NSImage *)image;
 - (void)renderMemHistoryIntoImage:(NSImage *)image;
 - (void)renderPageIndicatorIntoImage:(NSImage *)image;
 
@@ -288,7 +289,12 @@
 			[self renderNumbersIntoImage:currentImage];
 			break;
 		case kMemDisplayBar:
-			[self renderBarIntoImage:currentImage];
+      if ([ourPrefs memPressure] == true) {
+        [self renderPressureBar:currentImage];
+      }
+      else {
+        [self renderBarIntoImage:currentImage];
+      }
 			break;
 		case kMemDisplayGraph:
 			[self renderMemHistoryIntoImage:currentImage];
@@ -579,6 +585,39 @@
 	[image unlockFocus];
 
 } // renderNumbersIntoImage
+
+- (void)renderPressureBar:(NSImage *)image {
+  // Load current stats
+  float pressure = 0.2f;
+  NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
+  if (currentMemStats) {
+    pressure = [[currentMemStats objectForKey:@"mempress"] floatValue];
+  }
+  
+  if (pressure < 0) { pressure = 0; };
+  
+  // Lock focus and draw
+  [image lockFocus];
+  float thermometerTotalHeight = (float)[image size].height - 3.0f;
+  
+  NSBezierPath *pressurePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight * pressure)];
+  
+  NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
+
+  [activeColor set];
+  [pressurePath fill];
+  
+  if (IsMenuMeterMenuBarDarkThemed()) {
+    [[NSColor darkGrayColor] set];
+  } else {
+    [fgMenuThemeColor set];
+  }
+  [framePath stroke];
+  
+  // Reset
+  [[NSColor blackColor] set];
+  [image unlockFocus];
+}
 
 //  Bar mode memory view contributed by Bernhard Baehr
 - (void)renderBarIntoImage:(NSImage *)image {
