@@ -46,6 +46,7 @@
                 <outlet property="memPageinColorLabel" destination="449" id="465"/>
                 <outlet property="memPageoutColor" destination="450" id="468"/>
                 <outlet property="memPageoutColorLabel" destination="451" id="467"/>
+                <outlet property="memPressureMode" destination="BU0-77-22F" id="esq-Of-g9b"/>
                 <outlet property="memUsedColor" destination="600" id="606"/>
                 <outlet property="memWiredColor" destination="232" id="253"/>
                 <outlet property="netDisplayMode" destination="296" id="340"/>
@@ -72,7 +73,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="MenuMeters" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="12" userLabel="PrefPane">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -91,7 +92,7 @@
                             <tabViewItem label="CPU" identifier="1" id="102">
                                 <view key="view" id="98">
                                     <rect key="frame" x="10" y="33" width="548" height="551"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView id="693">
                                             <rect key="frame" x="-3" y="-3" width="554" height="571"/>
@@ -102,7 +103,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="glow" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="479" id="1031">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="477">
                                                             <items>
                                                                 <menuItem title="glow" state="on" id="479"/>
@@ -204,7 +205,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Totaal (groot)" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1098" id="1023">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="382">
                                                             <items>
                                                                 <menuItem title="Totaal (groot)" state="on" id="1098"/>
@@ -303,7 +304,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Percentage" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1091" id="1015">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="146">
                                                             <items>
                                                                 <menuItem title="Percentage" state="on" id="1091"/>
@@ -359,7 +360,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="opent het volume in de Finder" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1101" id="1012">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="503">
                                                             <items>
                                                                 <menuItem title="opent het volume in de Finder" state="on" id="1101"/>
@@ -394,7 +395,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="ImageSet" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="203" id="1009">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="206">
                                                             <items>
                                                                 <menuItem title="ImageSet" state="on" id="203"/>
@@ -449,8 +450,112 @@
                                             <rect key="frame" x="-3" y="-3" width="554" height="571"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                             <subviews>
-                                                <tabView drawsBackground="NO" type="noTabsNoBorder" id="595">
-                                                    <rect key="frame" x="0.0" y="181" width="554" height="71"/>
+                                                <button id="426">
+                                                    <rect key="frame" x="150" y="390" width="253" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="check" title="Toon indicatie van 'paging'-activiteit" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1039">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="460"/>
+                                                    </connections>
+                                                </button>
+                                                <box verticalHuggingPriority="750" boxType="separator" id="424">
+                                                    <rect key="frame" x="90" y="415" width="442" height="5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </box>
+                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="423">
+                                                    <rect key="frame" x="18" y="414" width="67" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Algemeen" id="1038">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button id="361">
+                                                    <rect key="frame" x="150" y="370" width="220" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="check" title="Toon labels voor vrij / gebruikt" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1037">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="367"/>
+                                                    </connections>
+                                                </button>
+                                                <slider verticalHuggingPriority="750" id="224">
+                                                    <rect key="frame" x="19" y="454" width="515" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="60" doubleValue="15" tickMarkPosition="below" numberOfTickMarks="60" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1036">
+                                                        <font key="font" size="12" name="Helvetica"/>
+                                                    </sliderCell>
+                                                    <connections>
+                                                        <action selector="liveUpdateInterval:" target="-2" id="1003"/>
+                                                    </connections>
+                                                </slider>
+                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="222">
+                                                    <rect key="frame" x="18" y="486" width="171" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Ververs iedere (seconden):" id="1035">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <popUpButton verticalHuggingPriority="750" id="221">
+                                                    <rect key="frame" x="273" y="516" width="262" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <popUpButtonCell key="cell" type="push" title="Taartgrafiek" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1103" id="1034">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="menu"/>
+                                                        <menu key="menu" title="OtherViews" id="223">
+                                                            <items>
+                                                                <menuItem title="Taartgrafiek" state="on" id="1103"/>
+                                                                <menuItem title="Staafgrafiek" id="1104"/>
+                                                                <menuItem title="Geschiedenis" id="1105"/>
+                                                                <menuItem title="Totalen vrij / gebruikt" id="1106"/>
+                                                            </items>
+                                                        </menu>
+                                                    </popUpButtonCell>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="258"/>
+                                                    </connections>
+                                                </popUpButton>
+                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="220">
+                                                    <rect key="frame" x="191" y="486" width="54" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="x" id="1033">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <button id="218">
+                                                    <rect key="frame" x="19" y="516" width="251" height="27"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="check" title="Toon geheugen-MenuMeter" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1032">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="257"/>
+                                                    </connections>
+                                                </button>
+                                                <button misplaced="YES" id="BU0-77-22F">
+                                                    <rect key="frame" x="150" y="350" width="212" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="check" title="Display memory pressure" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="jyb-TY-qOU">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="zEK-eb-qpD"/>
+                                                    </connections>
+                                                </button>
+                                                <tabView misplaced="YES" drawsBackground="NO" type="noTabsNoBorder" id="595">
+                                                    <rect key="frame" x="0.0" y="176" width="554" height="71"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <font key="font" metaFont="message"/>
                                                     <tabViewItems>
@@ -574,12 +679,12 @@
                                                         </tabViewItem>
                                                     </tabViewItems>
                                                 </tabView>
-                                                <box verticalHuggingPriority="750" boxType="separator" id="515">
-                                                    <rect key="frame" x="88" y="332" width="444" height="5"/>
+                                                <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="515">
+                                                    <rect key="frame" x="88" y="327" width="444" height="5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </box>
-                                                <slider verticalHuggingPriority="750" id="514">
-                                                    <rect key="frame" x="177" y="297" width="299" height="17"/>
+                                                <slider verticalHuggingPriority="750" misplaced="YES" id="514">
+                                                    <rect key="frame" x="177" y="292" width="299" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" controlSize="small" alignment="left" minValue="11" maxValue="88" doubleValue="33" tickMarkPosition="below" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1046">
                                                         <font key="font" size="12" name="Helvetica"/>
@@ -588,8 +693,8 @@
                                                         <action selector="memPrefChange:" target="-2" id="518"/>
                                                     </connections>
                                                 </slider>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="513">
-                                                    <rect key="frame" x="18" y="332" width="65" height="17"/>
+                                                <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="513">
+                                                    <rect key="frame" x="18" y="327" width="65" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Weergave" id="1045">
                                                         <font key="font" metaFont="system"/>
@@ -597,8 +702,8 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="512">
-                                                    <rect key="frame" x="74" y="304" width="98" height="17"/>
+                                                <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="512">
+                                                    <rect key="frame" x="74" y="299" width="98" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" title="Grafiekbreedte" id="1044">
                                                         <font key="font" metaFont="system"/>
@@ -606,8 +711,8 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="451">
-                                                    <rect key="frame" x="272" y="161" width="100" height="17"/>
+                                                <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="451">
+                                                    <rect key="frame" x="272" y="156" width="100" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="page-out" id="1042">
                                                         <font key="font" metaFont="smallSystem"/>
@@ -615,16 +720,16 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <colorWell id="450">
-                                                    <rect key="frame" x="296" y="126" width="53" height="30"/>
+                                                <colorWell misplaced="YES" id="450">
+                                                    <rect key="frame" x="296" y="121" width="53" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="memPrefChange:" target="-2" id="462"/>
                                                     </connections>
                                                 </colorWell>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="449">
-                                                    <rect key="frame" x="183" y="161" width="100" height="17"/>
+                                                <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="449">
+                                                    <rect key="frame" x="183" y="156" width="100" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="page-in" id="1041">
                                                         <font key="font" metaFont="smallSystem"/>
@@ -632,20 +737,20 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <colorWell id="448">
-                                                    <rect key="frame" x="206" y="126" width="53" height="30"/>
+                                                <colorWell misplaced="YES" id="448">
+                                                    <rect key="frame" x="206" y="121" width="53" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="memPrefChange:" target="-2" id="461"/>
                                                     </connections>
                                                 </colorWell>
-                                                <box verticalHuggingPriority="750" boxType="separator" id="431">
-                                                    <rect key="frame" x="76" y="258" width="456" height="5"/>
+                                                <box verticalHuggingPriority="750" misplaced="YES" boxType="separator" id="431">
+                                                    <rect key="frame" x="76" y="253" width="456" height="5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </box>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="430">
-                                                    <rect key="frame" x="18" y="257" width="53" height="17"/>
+                                                <textField verticalHuggingPriority="750" misplaced="YES" allowsCharacterPickerTouchBarItem="NO" id="430">
+                                                    <rect key="frame" x="18" y="252" width="53" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Kleuren" id="1040">
                                                         <font key="font" metaFont="system"/>
@@ -653,99 +758,6 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <button id="426">
-                                                    <rect key="frame" x="150" y="390" width="253" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Toon indicatie van 'paging'-activiteit" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1039">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="memPrefChange:" target="-2" id="460"/>
-                                                    </connections>
-                                                </button>
-                                                <box verticalHuggingPriority="750" boxType="separator" id="424">
-                                                    <rect key="frame" x="90" y="415" width="442" height="5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </box>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="423">
-                                                    <rect key="frame" x="18" y="414" width="67" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Algemeen" id="1038">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <button id="361">
-                                                    <rect key="frame" x="150" y="370" width="220" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Toon labels voor vrij / gebruikt" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1037">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="memPrefChange:" target="-2" id="367"/>
-                                                    </connections>
-                                                </button>
-                                                <slider verticalHuggingPriority="750" id="224">
-                                                    <rect key="frame" x="19" y="454" width="515" height="25"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="60" doubleValue="15" tickMarkPosition="below" numberOfTickMarks="60" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1036">
-                                                        <font key="font" size="12" name="Helvetica"/>
-                                                    </sliderCell>
-                                                    <connections>
-                                                        <action selector="liveUpdateInterval:" target="-2" id="1003"/>
-                                                    </connections>
-                                                </slider>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="222">
-                                                    <rect key="frame" x="18" y="486" width="171" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Ververs iedere (seconden):" id="1035">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <popUpButton verticalHuggingPriority="750" id="221">
-                                                    <rect key="frame" x="273" y="516" width="262" height="26"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <popUpButtonCell key="cell" type="push" title="Taartgrafiek" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1103" id="1034">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                        <menu key="menu" title="OtherViews" id="223">
-                                                            <items>
-                                                                <menuItem title="Taartgrafiek" state="on" id="1103"/>
-                                                                <menuItem title="Staafgrafiek" id="1104"/>
-                                                                <menuItem title="Geschiedenis" id="1105"/>
-                                                                <menuItem title="Totalen vrij / gebruikt" id="1106"/>
-                                                            </items>
-                                                        </menu>
-                                                    </popUpButtonCell>
-                                                    <connections>
-                                                        <action selector="memPrefChange:" target="-2" id="258"/>
-                                                    </connections>
-                                                </popUpButton>
-                                                <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" id="220">
-                                                    <rect key="frame" x="191" y="486" width="54" height="17"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="x" id="1033">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <button id="218">
-                                                    <rect key="frame" x="19" y="516" width="251" height="27"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Toon geheugen-MenuMeter" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1032">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="memPrefChange:" target="-2" id="257"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </customView>
                                     </subviews>
@@ -782,7 +794,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Verzenden - Ontvangen" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1121" id="1076">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="591">
                                                             <items>
                                                                 <menuItem title="Verzenden - Ontvangen" state="on" id="1121"/>
@@ -808,7 +820,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Linear" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1114" id="1074">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="542">
                                                             <items>
                                                                 <menuItem title="Linear" state="on" id="1114"/>
@@ -836,7 +848,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Snelheid" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1118" id="1072">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="522">
                                                             <items>
                                                                 <menuItem title="Snelheid" state="on" id="1118"/>
@@ -875,7 +887,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Primair (automatisch)" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1120" id="1069">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="489">
                                                             <items>
                                                                 <menuItem title="Primair (automatisch)" state="on" id="1120"/>
@@ -939,7 +951,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Standaard" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1123" id="1064">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="403">
                                                             <items>
                                                                 <menuItem title="Standaard" state="on" id="1123"/>
@@ -1051,7 +1063,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Pijlen" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="1107" id="1055">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="293">
                                                             <items>
                                                                 <menuItem title="Pijlen" state="on" id="1107"/>
@@ -1116,6 +1128,7 @@
                     </textField>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="150" y="154"/>
         </window>
         <view id="413">
             <rect key="frame" x="0.0" y="0.0" width="381" height="1"/>
