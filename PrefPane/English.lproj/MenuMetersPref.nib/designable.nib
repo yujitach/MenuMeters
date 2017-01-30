@@ -485,17 +485,6 @@
                                                         <action selector="memPrefChange:" target="-2" id="367"/>
                                                     </connections>
                                                 </button>
-                                                <button misplaced="YES" id="VSv-lj-9ij">
-                                                    <rect key="frame" x="171" y="350" width="212" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Display memory pressure" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="bP6-b1-7hE">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="memPrefChange:" target="-2" id="kD8-58-ivD"/>
-                                                    </connections>
-                                                </button>
                                                 <slider verticalHuggingPriority="750" id="224">
                                                     <rect key="frame" x="19" y="454" width="515" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -758,7 +747,7 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <button id="n36-5B-5gY">
+                                                <button misplaced="YES" id="n36-5B-5gY">
                                                     <rect key="frame" x="171" y="350" width="212" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="Display memory pressure" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="zqk-GW-ii3">
