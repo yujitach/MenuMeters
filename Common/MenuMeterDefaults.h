@@ -72,6 +72,7 @@
 - (BOOL)memUsedFreeLabel;
 - (int)memGraphLength;
 - (BOOL)memPageIndicator;
+- (BOOL)memPressure;
 - (NSColor *)memFreeColor;
 - (NSColor *)memUsedColor;
 - (NSColor *)memActiveColor;
@@ -84,6 +85,7 @@
 - (void)saveMemDisplayMode:(int)mode;
 - (void)saveMemPageIndicator:(BOOL)indicator;
 - (void)saveMemUsedFreeLabel:(BOOL)label;
+- (void)saveMemPressure:(BOOL)label;
 - (void)saveMemGraphLength:(int)length;
 - (void)saveMemFreeColor:(NSColor *)color;
 - (void)saveMemUsedColor:(NSColor *)color;

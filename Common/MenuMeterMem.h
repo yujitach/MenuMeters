@@ -58,6 +58,7 @@
 #define kMemIntervalPref					@"MemInterval"
 #define kMemDisplayModePref					@"MemDisplayMode"
 #define kMemUsedFreeLabelPref				@"MemUsedFreeLabel"
+#define kMemPressurePref				@"MemPressure"
 #define kMemPageIndicatorPref				@"MemPagingIndicator"
 #define kMemGraphLengthPref					@"MemGraphLength"
 #define kMemFreeColorPref					@"MemFreeColor"
@@ -80,6 +81,8 @@ enum {
 
 // Used/Free label
 #define kMemUsedFreeLabelDefault			YES
+
+#define kMemPressureDefault           NO
 
 // Page indicator
 #define kMemPageIndicatorDefault			NO

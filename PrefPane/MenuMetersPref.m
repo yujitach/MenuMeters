@@ -496,6 +496,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveMemUsedFreeLabel:(([memFreeUsedLabeling state] == NSOnState) ? YES : NO)];
 	} else if (sender == memPageIndicator) {
 		[ourPrefs saveMemPageIndicator:(([memPageIndicator state] == NSOnState) ? YES : NO)];
+  } else if (sender == memPressureMode) {
+    [ourPrefs saveMemPressure:(([memPressureMode state] == NSOnState) ? YES : NO)];
 	} else if (sender == memGraphWidth) {
 		[ourPrefs saveMemGraphLength:[memGraphWidth intValue]];
 	} else if (sender == memActiveColor) {
@@ -522,6 +524,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[memInterval setDoubleValue:[ourPrefs memInterval]];
 	[memFreeUsedLabeling setState:([ourPrefs memUsedFreeLabel] ? NSOnState : NSOffState)];
 	[memPageIndicator setState:([ourPrefs memPageIndicator] ? NSOnState : NSOffState)];
+  [memPressureMode setState:([ourPrefs memPressure] ? NSOnState : NSOffState)];
 	[memGraphWidth setIntValue:[ourPrefs memGraphLength]];
 	[memActiveColor setColor:[ourPrefs memActiveColor]];
 	[memInactiveColor setColor:[ourPrefs memInactiveColor]];
@@ -561,6 +564,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[memPageinColor setEnabled:NO];
 		[memPageoutColor setEnabled:NO];
 	}
+  if (([memDisplayMode indexOfSelectedItem] +1) == kMemDisplayBar) {
+    [memPressureMode setEnabled:YES];
+  }
+  else {
+    [memPressureMode setEnabled:NO];
+  }
 
 	// Write prefs and notify
 	[ourPrefs syncWithDisk];
