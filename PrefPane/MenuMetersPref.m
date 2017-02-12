@@ -127,12 +127,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 	// On first load set the version string with a clickable link
         //NSString*webpageURL=@"http://ragingmenace.com/";
-        NSString*webpageURL=@"http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/";
+        NSString *webpageURL = @"http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan";
+        NSString *prefPaneName = @"MenuMeters Port";
+        NSString *appCopyright = @"©2017 Y. Tachikawa";
 	NSMutableAttributedString *versionInfoString =
-		[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleGetInfoString"];
+		[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 	NSMutableAttributedString *linkedVersionString =
 		[[NSMutableAttributedString alloc] initWithString:
-		  [NSString stringWithFormat:@"%@ (%@)", versionInfoString,webpageURL]];
+		  [NSString stringWithFormat:@"%@ %@ %@ (%@)", prefPaneName,versionInfoString,appCopyright,webpageURL]];
 	[linkedVersionString beginEditing];
 	[linkedVersionString setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [linkedVersionString length])];
 	[linkedVersionString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -148,7 +150,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 											[NSNumber numberWithInt:NSSingleUnderlineStyle],
 											NSUnderlineStyleAttributeName,
 											nil]
-						range:NSMakeRange([versionInfoString length] + 2, [webpageURL length])];
+						range:NSMakeRange([prefPaneName length] + [versionInfoString length] + [appCopyright length] + 4, [webpageURL length])];
 	[linkedVersionString endEditing];
 	// See QA1487
 	[versionDisplay setAllowsEditingTextAttributes:YES];
