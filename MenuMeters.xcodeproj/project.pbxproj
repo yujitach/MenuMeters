@@ -125,8 +125,6 @@
 		3383C1DF1B69DD2D00915D5D /* Japanese.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Japanese.lproj; sourceTree = "<group>"; };
 		3383C1E01B69DD2D00915D5D /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nl.lproj; sourceTree = "<group>"; };
 		3383C1E11B69DD2D00915D5D /* zh_CN.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zh_CN.lproj; sourceTree = "<group>"; };
-		D40138D504F7B1DD00A87BC9 /* French */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = French; path = French.lproj/Installer.nib; sourceTree = "<group>"; };
-		D40138D604F7B1E100A87BC9 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D40271B8083D928600D09108 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D40271BB083D92C500D09108 /* nl */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = nl; path = nl.lproj/MenuMetersPref.nib; sourceTree = "<group>"; };
 		D40271BE083D9C0500D09108 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = MenuExtras/MenuMeterCPU/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -148,8 +146,6 @@
 		D40DB4C503D260E800A87BC9 /* MenuMeterDisk.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterDisk.h; path = Common/MenuMeterDisk.h; sourceTree = "<group>"; };
 		D40DB4C603D260E800A87BC9 /* MenuMeterNet.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterNet.h; path = Common/MenuMeterNet.h; sourceTree = "<group>"; };
 		D40DB50E03D2631100A87BC9 /* SystemUIPlugin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemUIPlugin.framework; path = /System/Library/PrivateFrameworks/SystemUIPlugin.framework; sourceTree = "<absolute>"; };
-		D4157ABA19D13A0E008BD05F /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D4157ABB19D13A77008BD05F /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Installer.nib; sourceTree = "<group>"; };
 		D4157ABD19D13C18008BD05F /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4157ABE19D13C92008BD05F /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MenuMetersPref.nib; sourceTree = "<group>"; };
 		D4157AC019D13D4D008BD05F /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -223,8 +219,6 @@
 		D477AAF503D4BB9D00A87BC9 /* MenuMeterUptime.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterUptime.m; path = MenuExtras/MenuMeterCPU/MenuMeterUptime.m; sourceTree = "<group>"; };
 		D477AAFA03D4BEA900A87BC9 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = English; path = MenuExtras/MenuMeterCPU/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D478F451101A8AE100C79173 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		D487B84804F4779300A87BC9 /* Installer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Installer.h; sourceTree = "<group>"; };
-		D487B87D04F47D8400A87BC9 /* InstallTool.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = InstallTool.m; sourceTree = "<group>"; };
 		D48A784B10181DE6008E3207 /* AppleUndocumented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleUndocumented.h; path = Common/AppleUndocumented.h; sourceTree = "<group>"; };
 		D48A79F31018B051008E3207 /* MenuMeterWorkarounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuMeterWorkarounds.h; path = Common/MenuMeterWorkarounds.h; sourceTree = "<group>"; };
 		D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuMeterWorkarounds.m; path = Common/MenuMeterWorkarounds.m; sourceTree = "<group>"; };
@@ -237,12 +231,9 @@
 		D4D2ADDA1910AD0E004E2469 /* Italian */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4D2ADDC1910AD95004E2469 /* Italian */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4D2ADDF1910ADB8004E2469 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Italian; path = Italian.lproj/MenuMetersPref.nib; sourceTree = "<group>"; };
-		D4D2B0C104F5CF7D00A87BC9 /* ImageDS */ = {isa = PBXFileReference; lastKnownFileType = file; path = ImageDS; sourceTree = "<group>"; };
 		D4D9D1F30644C7E200047FDD /* Disk ArrowsRead.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Disk ArrowsRead.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Disk ArrowsRead.tiff"; sourceTree = "<group>"; };
 		D4D9D1F40644C7E200047FDD /* Disk ArrowsReadWrite.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Disk ArrowsReadWrite.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Disk ArrowsReadWrite.tiff"; sourceTree = "<group>"; };
 		D4D9D1F50644C7E200047FDD /* Disk ArrowsWrite.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Disk ArrowsWrite.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Disk ArrowsWrite.tiff"; sourceTree = "<group>"; };
-		D4E1B66D19BFFBE9003E9B6F /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/Installer.nib; sourceTree = "<group>"; };
-		D4E1B66E19BFFBEF003E9B6F /* German */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4E4BF9004F333B100A87BC9 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4E4BF9204F333B100A87BC9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MenuMetersPref.nib; sourceTree = "<group>"; };
 		D4E4BF9404F333B100A87BC9 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -255,15 +246,7 @@
 		D4E4BFA804F333B100A87BC9 /* LinearScale.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LinearScale.tiff; sourceTree = "<group>"; };
 		D4E4BFA904F333B100A87BC9 /* LogScale.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = LogScale.tiff; sourceTree = "<group>"; };
 		D4E4BFAA04F333B100A87BC9 /* SquareRootScale.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = SquareRootScale.tiff; sourceTree = "<group>"; };
-		D4E4C01804F3420700A87BC9 /* InstallerApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = InstallerApp.h; sourceTree = "<group>"; };
-		D4E4C01904F3420700A87BC9 /* InstallerApp.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = InstallerApp.m; sourceTree = "<group>"; };
-		D4E4C01A04F3420700A87BC9 /* InstallerAppMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = InstallerAppMain.m; sourceTree = "<group>"; };
-		D4E4C02004F3420700A87BC9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Installer.nib; sourceTree = "<group>"; };
-		D4E4C02204F3420700A87BC9 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D4E4C02304F3420700A87BC9 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		D4E4C02404F3420700A87BC9 /* Installer.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Installer.icns; sourceTree = "<group>"; };
 		D4EAD0070608D20800503A52 /* MenuMeters FAQ.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "MenuMeters FAQ.rtf"; sourceTree = "<group>"; };
-		D4EB673E04F5C6C800A87BC9 /* Package.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Package.pl; sourceTree = "<group>"; };
 		D4ECB2CA05FE6FA500954E26 /* DefaultsBundleInfo.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = DefaultsBundleInfo.plist; sourceTree = "<group>"; };
 		D4ECB2EB05FE704C00954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4ECB30805FE70D200954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Info.plist; path = MenuExtras/MenuMeterMem/Info.plist; sourceTree = "<group>"; };
@@ -271,9 +254,6 @@
 		D4ECB38E05FE71B000954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Info.plist; path = MenuExtras/MenuMeterCPU/Info.plist; sourceTree = "<group>"; };
 		D4ECB3B605FE72E100954E26 /* MenuMeters.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuMeters.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4ECB3B705FE730000954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4ECB3E205FE739800954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4F3924E0501802800C56500 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D4F3924F0501803100C56500 /* nl */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = nl; path = nl.lproj/Installer.nib; sourceTree = "<group>"; };
 		D4FC162003D26AAA00A87BC9 /* MenuMeterNetExtra.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MenuMeterNetExtra.m; sourceTree = "<group>"; };
 		D4FC162103D26AAA00A87BC9 /* MenuMeterNetConfig.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MenuMeterNetConfig.h; sourceTree = "<group>"; };
 		D4FC162203D26AAA00A87BC9 /* MenuMeterNetView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MenuMeterNetView.m; sourceTree = "<group>"; };
@@ -356,8 +336,6 @@
 				D40DB4A903D25F4C00A87BC9 /* MenuExtras */,
 				D4BC478903D5053500404110 /* MenuCracker */,
 				D4E4BF8B04F333B100A87BC9 /* PrefPane */,
-				D4E4C01504F3420700A87BC9 /* Installer */,
-				D4EB673D04F5C6C800A87BC9 /* Package */,
 				D40DB4B803D2600C00A87BC9 /* System Frameworks */,
 				D40DB50803D262ED00A87BC9 /* System Private Frameworks */,
 				3383C1711B69B72500915D5D /* MenuMetersApp */,
@@ -618,40 +596,6 @@
 				D4E4BFA504F333B100A87BC9 /* Scales */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		D4E4C01504F3420700A87BC9 /* Installer */ = {
-			isa = PBXGroup;
-			children = (
-				D487B84804F4779300A87BC9 /* Installer.h */,
-				D487B87D04F47D8400A87BC9 /* InstallTool.m */,
-				D4E4C01A04F3420700A87BC9 /* InstallerAppMain.m */,
-				D4E4C01804F3420700A87BC9 /* InstallerApp.h */,
-				D4E4C01904F3420700A87BC9 /* InstallerApp.m */,
-				D4E4C01B04F3420700A87BC9 /* Resources */,
-			);
-			path = Installer;
-			sourceTree = "<group>";
-		};
-		D4E4C01B04F3420700A87BC9 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				D4ECB3E205FE739800954E26 /* Info.plist */,
-				D4E4C02304F3420700A87BC9 /* InfoPlist.strings */,
-				D4E4C01F04F3420700A87BC9 /* Installer.nib */,
-				D4E4C02104F3420700A87BC9 /* Localizable.strings */,
-				D4E4C02404F3420700A87BC9 /* Installer.icns */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		D4EB673D04F5C6C800A87BC9 /* Package */ = {
-			isa = PBXGroup;
-			children = (
-				D4EB673E04F5C6C800A87BC9 /* Package.pl */,
-				D4D2B0C104F5CF7D00A87BC9 /* ImageDS */,
-			);
-			path = Package;
 			sourceTree = "<group>";
 		};
 		D4ECB2C905FE6FA500954E26 /* Resources */ = {
@@ -982,30 +926,6 @@
 				D4157ABE19D13C92008BD05F /* Japanese */,
 			);
 			name = MenuMetersPref.nib;
-			sourceTree = "<group>";
-		};
-		D4E4C01F04F3420700A87BC9 /* Installer.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4E4C02004F3420700A87BC9 /* English */,
-				D40138D504F7B1DD00A87BC9 /* French */,
-				D4F3924F0501803100C56500 /* nl */,
-				D4E1B66D19BFFBE9003E9B6F /* German */,
-				D4157ABB19D13A77008BD05F /* Japanese */,
-			);
-			name = Installer.nib;
-			sourceTree = "<group>";
-		};
-		D4E4C02104F3420700A87BC9 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4E4C02204F3420700A87BC9 /* English */,
-				D40138D604F7B1E100A87BC9 /* French */,
-				D4F3924E0501802800C56500 /* nl */,
-				D4E1B66E19BFFBEF003E9B6F /* German */,
-				D4157ABA19D13A0E008BD05F /* Japanese */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		D4FC163603D26B0800A87BC9 /* Localizable.strings */ = {
