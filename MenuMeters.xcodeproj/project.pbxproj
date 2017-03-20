@@ -12,8 +12,6 @@
 		332B0F8F1E0381780020CCBB /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
 		3345DD2C1B6BE7DB003843FC /* MenuMetersApp.app in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1701B69B72500915D5D /* MenuMetersApp.app */; };
 		3345DD2F1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		336B59411E03BA68006DA445 /* MenuMeters.pch in Headers */ = {isa = PBXBuildFile; fileRef = 336B59401E03BA68006DA445 /* MenuMeters.pch */; };
-		336B59421E03BA68006DA445 /* MenuMeters.pch in Headers */ = {isa = PBXBuildFile; fileRef = 336B59401E03BA68006DA445 /* MenuMeters.pch */; };
 		336B59431E03BA68006DA445 /* MenuMeters.pch in Headers */ = {isa = PBXBuildFile; fileRef = 336B59401E03BA68006DA445 /* MenuMeters.pch */; };
 		3383C1741B69B72600915D5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1731B69B72600915D5D /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3383C1771B69B72600915D5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1761B69B72600915D5D /* main.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -70,18 +68,13 @@
 		3383C1E71B69DD2D00915D5D /* Japanese.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DF1B69DD2D00915D5D /* Japanese.lproj */; };
 		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
 		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
-		D403AD3C0E04E99C00348443 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403AD3B0E04E99C00348443 /* Foundation.framework */; };
-		D403ADE30E04F17900348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADEB0E04F19C00348443 /* Carbon.framework */; };
 		D403ADF40E04F1E100348443 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADF30E04F1E100348443 /* SystemConfiguration.framework */; };
 		D403ADF70E04F20400348443 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADF60E04F20400348443 /* ApplicationServices.framework */; };
-		D403ADF80E04F21700348443 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADF60E04F20400348443 /* ApplicationServices.framework */; };
 		D403AE000E04F23800348443 /* PreferencePanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADFF0E04F23800348443 /* PreferencePanes.framework */; };
-		D403AE150E04F27000348443 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403AE140E04F27000348443 /* Security.framework */; };
 		D41C27C910490E3300A8E325 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D478F451101A8AE100C79173 /* IOKit.framework */; };
 		D46E02B9104BA13500BA590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403AD3B0E04E99C00348443 /* Foundation.framework */; };
-		D4E852F219F6CC2E00E25BBC /* MenuMeterWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */; };
 		D4E8531319F6CD0300E25BBC /* MenuMeterWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */; };
 		D4ECB39705FE72E100954E26 /* MenuMeterCPU.h in Headers */ = {isa = PBXBuildFile; fileRef = D40DB4C403D260E800A87BC9 /* MenuMeterCPU.h */; };
 		D4ECB39805FE72E100954E26 /* MenuMeterDisk.h in Headers */ = {isa = PBXBuildFile; fileRef = D40DB4C503D260E800A87BC9 /* MenuMeterDisk.h */; };
@@ -102,18 +95,6 @@
 		D4ECB3AA05FE72E100954E26 /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
 		D4ECB3AB05FE72E100954E26 /* MenuMeterPowerMate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBBF750463514700A804AF /* MenuMeterPowerMate.m */; };
 		D4ECB3AC05FE72E100954E26 /* MenuMetersPref.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4BFA104F333B100A87BC9 /* MenuMetersPref.m */; };
-		D4ECB3C005FE735400954E26 /* Installer.h in Headers */ = {isa = PBXBuildFile; fileRef = D487B84804F4779300A87BC9 /* Installer.h */; };
-		D4ECB3C205FE735400954E26 /* InstallTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D487B87D04F47D8400A87BC9 /* InstallTool.m */; };
-		D4ECB3CF05FE736D00954E26 /* InstallerApp.h in Headers */ = {isa = PBXBuildFile; fileRef = D4E4C01804F3420700A87BC9 /* InstallerApp.h */; };
-		D4ECB3D005FE736D00954E26 /* Installer.h in Headers */ = {isa = PBXBuildFile; fileRef = D487B84804F4779300A87BC9 /* Installer.h */; };
-		D4ECB3D205FE736D00954E26 /* Installer.nib in Resources */ = {isa = PBXBuildFile; fileRef = D4E4C01F04F3420700A87BC9 /* Installer.nib */; };
-		D4ECB3D305FE736D00954E26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4E4C02104F3420700A87BC9 /* Localizable.strings */; };
-		D4ECB3D405FE736D00954E26 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4E4C02304F3420700A87BC9 /* InfoPlist.strings */; };
-		D4ECB3D505FE736D00954E26 /* Installer.icns in Resources */ = {isa = PBXBuildFile; fileRef = D4E4C02404F3420700A87BC9 /* Installer.icns */; };
-		D4ECB3D705FE736D00954E26 /* InstallerApp.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4C01904F3420700A87BC9 /* InstallerApp.m */; };
-		D4ECB3D805FE736D00954E26 /* InstallerAppMain.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4C01A04F3420700A87BC9 /* InstallerAppMain.m */; };
-		D4ECB50105FE7F2F00954E26 /* MenuMeters.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = D4ECB3B605FE72E100954E26 /* MenuMeters.prefPane */; };
-		D4ECB50205FE7F3000954E26 /* InstallTool in Resources */ = {isa = PBXBuildFile; fileRef = D4ECB3C705FE735400954E26 /* InstallTool */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,27 +104,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3383C16F1B69B72500915D5D;
 			remoteInfo = MenuMetersApp;
-		};
-		D46DB6B0054E290E001EF699 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D40DB4A703D25F2100A87BC9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D4ECB3CB05FE736D00954E26;
-			remoteInfo = Installer;
-		};
-		D46DB6B4054E290E001EF699 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D40DB4A703D25F2100A87BC9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D4ECB3BE05FE735400954E26;
-			remoteInfo = "Install Tool";
-		};
-		D46DB7C2054E2A37001EF699 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D40DB4A703D25F2100A87BC9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D4ECB39105FE72E100954E26;
-			remoteInfo = PrefPane;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -311,8 +271,6 @@
 		D4ECB38E05FE71B000954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = Info.plist; path = MenuExtras/MenuMeterCPU/Info.plist; sourceTree = "<group>"; };
 		D4ECB3B605FE72E100954E26 /* MenuMeters.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuMeters.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4ECB3B705FE730000954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4ECB3C705FE735400954E26 /* InstallTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = InstallTool; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4ECB3E005FE736D00954E26 /* MenuMeters Installer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MenuMeters Installer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4ECB3E205FE739800954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4F3924E0501802800C56500 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4F3924F0501803100C56500 /* nl */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = nl; path = nl.lproj/Installer.nib; sourceTree = "<group>"; };
@@ -347,24 +305,6 @@
 				D403AE000E04F23800348443 /* PreferencePanes.framework in Frameworks */,
 				D41C27C910490E3300A8E325 /* IOKit.framework in Frameworks */,
 				D46E02B9104BA13500BA590F /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4ECB3C305FE735400954E26 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D403AD3C0E04E99C00348443 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4ECB3D905FE736D00954E26 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D403ADE30E04F17900348443 /* Cocoa.framework in Frameworks */,
-				D403ADF80E04F21700348443 /* ApplicationServices.framework in Frameworks */,
-				D403AE150E04F27000348443 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,8 +380,6 @@
 			isa = PBXGroup;
 			children = (
 				D4ECB3B605FE72E100954E26 /* MenuMeters.prefPane */,
-				D4ECB3C705FE735400954E26 /* InstallTool */,
-				D4ECB3E005FE736D00954E26 /* MenuMeters Installer.app */,
 				3383C1701B69B72500915D5D /* MenuMetersApp.app */,
 			);
 			name = Products;
@@ -753,44 +691,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4ECB3BF05FE735400954E26 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				336B59421E03BA68006DA445 /* MenuMeters.pch in Headers */,
-				D4ECB3C005FE735400954E26 /* Installer.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4ECB3CE05FE736D00954E26 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4ECB3CF05FE736D00954E26 /* InstallerApp.h in Headers */,
-				336B59411E03BA68006DA445 /* MenuMeters.pch in Headers */,
-				D4ECB3D005FE736D00954E26 /* Installer.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
-
-/* Begin PBXLegacyTarget section */
-		D4EB673A04F5B18100A87BC9 /* Package */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "Package/Package.pl $ACTION";
-			buildConfigurationList = D4AFB33F087726B20023B640 /* Build configuration list for PBXLegacyTarget "Package" */;
-			buildPhases = (
-			);
-			buildToolPath = /usr/bin/perl;
-			buildWorkingDirectory = ./;
-			dependencies = (
-				D4EB673F04F5C6D700A87BC9 /* PBXTargetDependency */,
-			);
-			name = Package;
-			passBuildSettingsInEnvironment = 1;
-			productName = "MenuMeters Package";
-		};
-/* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
 		3383C16F1B69B72500915D5D /* MenuMetersApp */ = {
@@ -832,48 +733,6 @@
 			productReference = D4ECB3B605FE72E100954E26 /* MenuMeters.prefPane */;
 			productType = "com.apple.product-type.bundle";
 		};
-		D4ECB3BE05FE735400954E26 /* Install Tool */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D4AFB327087726B20023B640 /* Build configuration list for PBXNativeTarget "Install Tool" */;
-			buildPhases = (
-				D4ECB3BF05FE735400954E26 /* Headers */,
-				D4ECB3C105FE735400954E26 /* Sources */,
-				D4ECB3C305FE735400954E26 /* Frameworks */,
-				D4ECB3C505FE735400954E26 /* Rez */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Install Tool";
-			productInstallPath = /usr/local/bin;
-			productName = "Install Tool";
-			productReference = D4ECB3C705FE735400954E26 /* InstallTool */;
-			productType = "com.apple.product-type.tool";
-		};
-		D4ECB3CB05FE736D00954E26 /* Installer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D4AFB33C087726B20023B640 /* Build configuration list for PBXNativeTarget "Installer" */;
-			buildPhases = (
-				D4ECB3CE05FE736D00954E26 /* Headers */,
-				D4ECB3D105FE736D00954E26 /* Resources */,
-				D4ECB3D605FE736D00954E26 /* Sources */,
-				D4ECB3D905FE736D00954E26 /* Frameworks */,
-				D4ECB3DD05FE736D00954E26 /* Rez */,
-				D4A20EFF1779739400FD70EB /* Recopy Signed Bundles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D4ECB3CD05FE736D00954E26 /* PBXTargetDependency */,
-				D4ECB3CC05FE736D00954E26 /* PBXTargetDependency */,
-			);
-			name = Installer;
-			productInstallPath = "";
-			productName = Installer;
-			productReference = D4ECB3E005FE736D00954E26 /* MenuMeters Installer.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -913,9 +772,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D4EB673A04F5B18100A87BC9 /* Package */,
-				D4ECB3CB05FE736D00954E26 /* Installer */,
-				D4ECB3BE05FE735400954E26 /* Install Tool */,
 				D4ECB39105FE72E100954E26 /* PrefPane */,
 				3383C16F1B69B72500915D5D /* MenuMetersApp */,
 			);
@@ -982,37 +838,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4ECB3D105FE736D00954E26 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4ECB3D205FE736D00954E26 /* Installer.nib in Resources */,
-				D4ECB3D305FE736D00954E26 /* Localizable.strings in Resources */,
-				D4ECB3D405FE736D00954E26 /* InfoPlist.strings in Resources */,
-				D4ECB3D505FE736D00954E26 /* Installer.icns in Resources */,
-				D4ECB50105FE7F2F00954E26 /* MenuMeters.prefPane in Resources */,
-				D4ECB50205FE7F3000954E26 /* InstallTool in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXRezBuildPhase section */
 		D4ECB3B305FE72E100954E26 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4ECB3C505FE735400954E26 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4ECB3DD05FE736D00954E26 /* Rez */ = {
 			isa = PBXRezBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1035,20 +864,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Workaround Xcode bug where \"Copy Bundle Resources\" changes code signed binaries by copying them again.\nexit 0\nset -e\ncd \"${BUILT_PRODUCTS_DIR}\"\nrsync -rltE --delete --force \"MenuMeterDefaults.bundle/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterDefaults.bundle/\"\nrsync -rltE --delete --force \"MenuMeterNet.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterNet.menu/\"\nrsync -rltE --delete --force \"MenuMeterMem.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterMem.menu/\"\nrsync -rltE --delete --force \"MenuMeterDisk.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterDisk.menu/\"\nrsync -rltE --delete --force \"MenuMeterCPU.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterCPU.menu/\"\nrsync -rltE --delete --force \"${PROJECT_DIR}/MenuCracker/MenuCracker.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuCracker.menu/\"\n";
-		};
-		D4A20EFF1779739400FD70EB /* Recopy Signed Bundles */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Recopy Signed Bundles";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Workaround Xcode bug where \"Copy Bundle Resources\" changes code signed binaries by copying them again.\nset -e\ncd \"${BUILT_PRODUCTS_DIR}\"\nrsync -rltE --delete --force \"MenuMeters.prefPane/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeters.prefPane/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1093,24 +908,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4ECB3C105FE735400954E26 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4ECB3C205FE735400954E26 /* InstallTool.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4ECB3D605FE736D00954E26 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4ECB3D705FE736D00954E26 /* InstallerApp.m in Sources */,
-				D4ECB3D805FE736D00954E26 /* InstallerAppMain.m in Sources */,
-				D4E852F219F6CC2E00E25BBC /* MenuMeterWorkarounds.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1118,21 +915,6 @@
 			isa = PBXTargetDependency;
 			target = 3383C16F1B69B72500915D5D /* MenuMetersApp */;
 			targetProxy = 3345DD2A1B6BE7A8003843FC /* PBXContainerItemProxy */;
-		};
-		D4EB673F04F5C6D700A87BC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D4ECB3CB05FE736D00954E26 /* Installer */;
-			targetProxy = D46DB6B0054E290E001EF699 /* PBXContainerItemProxy */;
-		};
-		D4ECB3CC05FE736D00954E26 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D4ECB3BE05FE735400954E26 /* Install Tool */;
-			targetProxy = D46DB6B4054E290E001EF699 /* PBXContainerItemProxy */;
-		};
-		D4ECB3CD05FE736D00954E26 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D4ECB39105FE72E100954E26 /* PrefPane */;
-			targetProxy = D46DB7C2054E2A37001EF699 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1356,13 +1138,6 @@
 			};
 			name = Debug;
 		};
-		D4AFB328087726B20023B640 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = InstallTool;
-			};
-			name = Release;
-		};
 		D4AFB33A087726B20023B640 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1381,34 +1156,6 @@
 				PRODUCT_NAME = MenuMeters;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = prefPane;
-			};
-			name = Release;
-		};
-		D4AFB33D087726B20023B640 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = Installer/Resources/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ragingmenace.MenuMetersInstaller;
-				PRODUCT_NAME = "MenuMeters Installer";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		D4AFB340087726B20023B640 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IMAGE_DSSTORE = Package/ImageDS;
-				KILL_ITEM_1 = "Restart SystemUIServer.app";
-				PACKAGE_BUILD_ITEM_1 = "MenuMeters Installer.app";
-				PACKAGE_SOURCE_ITEM_1 = "Docs/MenuMeters Read Me.rtf";
-				PACKAGE_SOURCE_ITEM_2 = Docs/History.txt;
-				PACKAGE_SOURCE_ITEM_3 = "Docs/GNU General Public License.rtf";
-				PACKAGE_SOURCE_ITEM_4 = "MenuCracker/Artistic License.rtf";
-				PACKAGE_SOURCE_ITEM_5 = "Docs/MenuMeters FAQ.rtf";
-				PRODUCT_NAME = MenuMeters;
-				PRODUCT_VERSION = 1.8.1;
-				RSRCFORK_SOURCE_ITEM_1 = "Docs/Website - Donate.webloc";
-				STRIP_NIBS = 0;
 			};
 			name = Release;
 		};
@@ -1502,41 +1249,6 @@
 			};
 			name = Debug;
 		};
-		D4CD20440D88E34100481A51 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				IMAGE_DSSTORE = Package/ImageDS;
-				KILL_ITEM_1 = "Restart SystemUIServer.app";
-				PACKAGE_BUILD_ITEM_1 = "MenuMeters Installer.app";
-				PACKAGE_SOURCE_ITEM_1 = "Docs/MenuMeters Read Me.rtf";
-				PACKAGE_SOURCE_ITEM_2 = Docs/History.txt;
-				PACKAGE_SOURCE_ITEM_3 = "Docs/GNU General Public License.rtf";
-				PACKAGE_SOURCE_ITEM_4 = "MenuCracker/Artistic License.rtf";
-				PACKAGE_SOURCE_ITEM_5 = "Docs/MenuMeters FAQ.rtf";
-				PRODUCT_NAME = MenuMeters;
-				PRODUCT_VERSION = 1.3.1d1;
-				RSRCFORK_SOURCE_ITEM_1 = "Docs/Website - Donate.webloc";
-				STRIP_NIBS = 0;
-			};
-			name = Debug;
-		};
-		D4CD20450D88E34100481A51 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = Installer/Resources/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ragingmenace.MenuMetersInstaller;
-				PRODUCT_NAME = "MenuMeters Installer";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		D4CD20460D88E34100481A51 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = InstallTool;
-			};
-			name = Debug;
-		};
 		D4CD20470D88E34100481A51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1570,38 +1282,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4AFB327087726B20023B640 /* Build configuration list for PBXNativeTarget "Install Tool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D4AFB328087726B20023B640 /* Release */,
-				D4CD20460D88E34100481A51 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		D4AFB339087726B20023B640 /* Build configuration list for PBXNativeTarget "PrefPane" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4AFB33A087726B20023B640 /* Release */,
 				D4CD20470D88E34100481A51 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D4AFB33C087726B20023B640 /* Build configuration list for PBXNativeTarget "Installer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D4AFB33D087726B20023B640 /* Release */,
-				D4CD20450D88E34100481A51 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D4AFB33F087726B20023B640 /* Build configuration list for PBXLegacyTarget "Package" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D4AFB340087726B20023B640 /* Release */,
-				D4CD20440D88E34100481A51 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
