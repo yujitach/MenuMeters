@@ -66,11 +66,12 @@ compfiles : $(BINARIES)
 clean :
 	-rm -f $(DMGFILE) $(PRODUCT) $(COMPONENT)
 	-rm -rf $(BINARIES)
+	xcodebuild clean
 
 .PHONY : distclean
-distclean :
+distclean : clean
 	-rm -f $(DISTRIBUTION_FILE) $(DISTRIBUTION_FILE).new
 
 .PHONY : compclean
-compclean :
+compclean : clean
 	-rm -f $(COMPONENT_PFILE) $(COMPONENT_PFILE).new
