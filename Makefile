@@ -7,24 +7,21 @@ PRODUCT = $(DISTDIR)/$(PROGRAM).pkg
 COMPONENT = $(DEPSDIR)/$(PROGRAM)Component.pkg
 COMPONENT_PFILE = $(PROGRAM).plist
 DISTRIBUTION_FILE = distribution.dist
-REQUIREMENTS = requirements.plist
+REQUIREMENTS_FILE = requirements.plist
 
 .PHONY : all
-all : $(DISTDIR) $(DEPSDIR) $(PRODUCT) $(DMGFILE)
+all : dmg
 
 .PHONY : dmg
 dmg : $(DMGFILE)
 
-$(DISTDIR) :
-	mkdir $(DISTDIR)
-
-$(DEPSDIR) :
-	mkdir $(DEPSDIR)
+$(DISTDIR) $(DEPSDIR) :
+	mkdir $@
 
 $(DMGFILE) : $(PRODUCT)
 	hdiutil create -volname $(PROGRAM) -srcfolder $(DISTDIR) -ov $(DMGFILE)
 
-$(PRODUCT) : $(BINARIES) $(REQUIREMENTS) $(COMPONENT_PFILE) $(COMPONENT) $(DISTRIBUTION_FILE) | $(DISTDIR)
+$(PRODUCT) : $(REQUIREMENTS_FILE) $(DISTRIBUTION_FILE) $(COMPONENT) | $(DISTDIR)
 	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path $(DEPSDIR) $(PRODUCT)
 
 $(BINARIES) :
@@ -35,7 +32,7 @@ $(COMPONENT_PFILE) :
 	@echo "Create a component pfile with make compfiles."
 	@exit 1
 
-$(COMPONENT) : $(BINARIES) $(COMPONENT_PFILE)
+$(COMPONENT) : $(BINARIES) $(COMPONENT_PFILE) | $(DEPSDIR)
 	pkgbuild --root $(BINARIES) --component-plist $(COMPONENT_PFILE) $(COMPONENT)
 
 $(DISTRIBUTION_FILE) :
@@ -57,7 +54,7 @@ usage :
 
 .PHONY : distfiles
 distfiles : $(COMPONENT)
-	productbuild --synthesize --product $(REQUIREMENTS) --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package $(COMPONENT) $(DISTRIBUTION_FILE).new
+	productbuild --synthesize --product $(REQUIREMENTS_FILE) --package ../EMCLoginItem/EMCLoginItemComponent.pkg --package $(COMPONENT) $(DISTRIBUTION_FILE).new
 	@echo "Edit the $(DISTRIBUTION_FILE).new template to create a suitable $(DISTRIBUTION_FILE) file."
 
 .PHONY : compfiles
