@@ -6,6 +6,9 @@ Build
 *.mode1v3
 *~
 *~.nib
-*~.xib 
-.DS_Store 
+*~.xib
+.DS_Store
 xcuserdata/
+deps/
+dist/
+MenuMeters.dmg
