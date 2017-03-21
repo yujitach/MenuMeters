@@ -24,7 +24,10 @@ $(DMGFILE) : $(PRODUCT)
 $(PRODUCT) : $(REQUIREMENTS_FILE) $(DISTRIBUTION_FILE) $(COMPONENT) | $(DISTDIR)
 	productbuild --distribution $(DISTRIBUTION_FILE) --resources . --package-path $(DEPSDIR) $(PRODUCT)
 
-$(BINARIES) :
+$(BINARIES) : compile
+
+.PHONY : compile
+compile :
 	xcodebuild install
 
 $(COMPONENT_PFILE) :
