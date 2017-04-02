@@ -1,13 +1,14 @@
-PROGRAM = MenuMeters
-DISTDIR = ./dist
-DEPSDIR = ./deps
-BINARIES = /tmp/MenuMeters.dst
-DMGFILE = $(PROGRAM).dmg
-PRODUCT = $(DISTDIR)/$(PROGRAM).pkg
-COMPONENT = $(DEPSDIR)/$(PROGRAM)Component.pkg
-COMPONENT_PFILE = $(PROGRAM).plist
-DISTRIBUTION_FILE = distribution.dist
-REQUIREMENTS_FILE = requirements.plist
+PROGRAM=           MenuMeters
+DISTDIR=           ./dist
+DEPSDIR=           ./deps
+BINARIES=          /tmp/MenuMeters.dst
+TARGET=            PrefPane
+DMGFILE=           $(PROGRAM).dmg
+PRODUCT=           $(DISTDIR)/$(PROGRAM).pkg
+COMPONENT=         $(DEPSDIR)/$(PROGRAM)Component.pkg
+COMPONENT_PFILE=   $(PROGRAM).plist
+DISTRIBUTION_FILE= distribution.dist
+REQUIREMENTS_FILE= requirements.plist
 
 .PHONY : all
 all : dmg
@@ -28,7 +29,7 @@ $(BINARIES) : compile
 
 .PHONY : compile
 compile :
-	xcodebuild install
+	xcodebuild -target $(TARGET) install
 
 $(COMPONENT_PFILE) :
 	@echo "Error: Missing component pfile."
@@ -67,7 +68,7 @@ compfiles : $(BINARIES)
 
 .PHONY : clean
 clean :
-	xcodebuild clean
+	xcodebuild -target $(TARGET) clean
 	-rm -f $(DMGFILE) $(PRODUCT) $(COMPONENT)
 	-rm -rf $(BINARIES)
 	-rm -rf $(DISTDIR) $(DEPSDIR)
