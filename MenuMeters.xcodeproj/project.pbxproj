@@ -68,6 +68,7 @@
 		3383C1E71B69DD2D00915D5D /* Japanese.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DF1B69DD2D00915D5D /* Japanese.lproj */; };
 		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
 		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
+		9023745B1E91612100B096A8 /* InfoPlistPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADEB0E04F19C00348443 /* Carbon.framework */; };
 		D403ADF40E04F1E100348443 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADF30E04F1E100348443 /* SystemConfiguration.framework */; };
@@ -125,6 +126,7 @@
 		3383C1DF1B69DD2D00915D5D /* Japanese.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Japanese.lproj; sourceTree = "<group>"; };
 		3383C1E01B69DD2D00915D5D /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nl.lproj; sourceTree = "<group>"; };
 		3383C1E11B69DD2D00915D5D /* zh_CN.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zh_CN.lproj; sourceTree = "<group>"; };
+		9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistPreprocessor.h; sourceTree = "<group>"; };
 		D40271B8083D928600D09108 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D40271BB083D92C500D09108 /* nl */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = nl; path = nl.lproj/MenuMetersPref.nib; sourceTree = "<group>"; };
 		D40271BE083D9C0500D09108 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = MenuExtras/MenuMeterCPU/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				D4E4BFA004F333B100A87BC9 /* MenuMetersPref.h */,
 				D4E4BFA104F333B100A87BC9 /* MenuMetersPref.m */,
 				D4E4BFB904F333D000A87BC9 /* Resources */,
+				9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */,
 			);
 			path = PrefPane;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				D4ECB39905FE72E100954E26 /* MenuMeterMem.h in Headers */,
 				D4ECB39A05FE72E100954E26 /* MenuMeterNet.h in Headers */,
 				D4ECB39B05FE72E100954E26 /* MenuMeterDefaults.h in Headers */,
+				9023745B1E91612100B096A8 /* InfoPlistPreprocessor.h in Headers */,
 				D4ECB39C05FE72E100954E26 /* MenuMeterPowerMate.h in Headers */,
 				D4ECB39D05FE72E100954E26 /* MenuMeters.h in Headers */,
 				D4ECB39E05FE72E100954E26 /* MenuMetersPref.h in Headers */,
@@ -990,6 +994,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MenuMetersApp/Info.plist;
+				INFOPLIST_PREFIX_HEADER = ./PrefPane/InfoPlistPreprocessor.h;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1049,6 +1055,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = MenuMetersApp/Info.plist;
+				INFOPLIST_PREFIX_HEADER = ./PrefPane/InfoPlistPreprocessor.h;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1070,6 +1078,8 @@
 				GCC_PREFIX_HEADER = MenuMeters.pch;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = PrefPane/Info.plist;
+				INFOPLIST_PREFIX_HEADER = ./PrefPane/InfoPlistPreprocessor.h;
+				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/PreferencePanes";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1181,6 +1191,8 @@
 				GCC_PREFIX_HEADER = MenuMeters.pch;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = PrefPane/Info.plist;
+				INFOPLIST_PREFIX_HEADER = ./PrefPane/InfoPlistPreprocessor.h;
+				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/PreferencePanes";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
