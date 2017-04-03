@@ -924,14 +924,18 @@
 													kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
 	if (archivedData && (CFGetTypeID(archivedData) == CFDataGetTypeID())) {
 		returnValue = [NSUnarchiver unarchiveObjectWithData:(__bridge NSData *)archivedData];
-		CFRelease(archivedData);
 	}
-	if (!returnValue) {
+
+    if (!returnValue) {
 		[self saveColorPref:prefName value:defaultValue];
 		returnValue = defaultValue;
 	}
-	return returnValue;
 
+    if (archivedData) {
+        CFRelease(archivedData);
+    }
+
+    return returnValue;
 } // _loadColorPref
 
 - (void)saveColorPref:(NSString *)prefName value:(NSColor *)value {
@@ -946,16 +950,24 @@
 
 - (NSString *)loadStringPref:(NSString *)prefName defaultValue:(NSString *)defaultValue {
 
-	NSString *returnValue = defaultValue;
+	NSString *returnValue = NULL;
 	CFStringRef prefValue = CFPreferencesCopyValue((CFStringRef)prefName,
 												   (CFStringRef)kMenuMeterDefaultsDomain,
 												   kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-	if (prefValue && (CFGetTypeID(prefValue) == CFStringGetTypeID())) {
-		returnValue = (NSString *)CFBridgingRelease(prefValue);
-	} else {
-		[self saveStringPref:prefName value:returnValue];
-	}
-	return returnValue;
+    if (prefValue) {
+        if (CFGetTypeID(prefValue) == CFStringGetTypeID()) {
+            returnValue = (NSString *)CFBridgingRelease(prefValue);
+        } else {
+            CFBridgingRelease(prefValue);
+        }
+    }
+
+    if (returnValue == NULL) {
+        returnValue = defaultValue;
+        [self saveStringPref:prefName value:returnValue];
+    }
+
+    return returnValue;
 
 } // _loadStringPref
 
