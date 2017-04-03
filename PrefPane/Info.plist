@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>MenuMeters</string>
 	<key>CFBundleGetInfoString</key>
-	<string>MenuMeters El Capitan Port 1.9.3, ©2015 Y. Tachikawa</string>
+	<string>MenuMeters El Capitan Port 1.9.4, ©2015 Y. Tachikawa</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
