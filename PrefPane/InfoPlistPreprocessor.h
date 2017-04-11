@@ -9,7 +9,7 @@
 #ifndef InfoPlistPreprocessor_h
 #define InfoPlistPreprocessor_h
 
-#define MM_VERSION 1.9.4
-#define MM_COPYRIGHT MenuMeters (El Capitan Port) v. MM_VERSION, 2015-2017 (C) Y. Tachikawa
+#define MM_VERSION 1.9.5
+#define MM_COPYRIGHT MenuMeters v.MM_VERSION, by many contributers
 
 #endif /* InfoPlistPreprocessor_h */

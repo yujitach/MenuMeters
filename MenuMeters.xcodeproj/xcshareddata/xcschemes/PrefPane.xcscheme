@@ -47,7 +47,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "cp -Rf ${CONFIGURATION_BUILD_DIR}/MenuMeters.prefPane ~/Library/PreferencePanes&#10;killall MenuMetersApp">
+               scriptText = "cp -Rf ${DSTROOT}/Library/PreferencePanes/MenuMeters.prefPane ~/Library/PreferencePanes&#10;killall MenuMetersApp&#10;open ~/Library/PreferencePanes/MenuMeters.prefPane">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
