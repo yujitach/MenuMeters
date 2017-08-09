@@ -9,7 +9,7 @@
 #ifndef InfoPlistPreprocessor_h
 #define InfoPlistPreprocessor_h
 
-#define MM_VERSION 1.9.5
+#define MM_VERSION 1.9.6
 #define MM_COPYRIGHT MenuMeters v.MM_VERSION, by many contributers
 
 #endif /* InfoPlistPreprocessor_h */

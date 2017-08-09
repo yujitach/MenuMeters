@@ -130,14 +130,15 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 	for (int i = 0; i < mountCount; i++) {
 		// We only view local volumes, which isn't easy (are FUSE volumes local?)
 		// Just look at filesystem type.
-		if((!strcmp(mountInfo[i].f_fstypename, "hfs") ||
+		if(!strcmp(mountInfo[i].f_fstypename, "hfs") ||
+                   !strcmp(mountInfo[i].f_fstypename, "apfs") ||
 			!strcmp(mountInfo[i].f_fstypename, "ufs") ||
 			!strcmp(mountInfo[i].f_fstypename, "msdos") ||
 			!strcmp(mountInfo[i].f_fstypename, "exfat") ||
 			!strcmp(mountInfo[i].f_fstypename, "ntfs") ||
 			!strcmp(mountInfo[i].f_fstypename, "cd9660") ||
 			!strcmp(mountInfo[i].f_fstypename, "cddafs") ||
-			!strcmp(mountInfo[i].f_fstypename, "udf"))) {
+			!strcmp(mountInfo[i].f_fstypename, "udf")) {
 
 			// Build the dictionary, start with 6 items (name, path, icon, free, used, total)
 			NSMutableDictionary *diskStats = [NSMutableDictionary dictionary];
