@@ -69,6 +69,8 @@
 		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
 		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
 		9023745B1E91612100B096A8 /* InfoPlistPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */; };
+		908780A81FB087B90053DDC5 /* EMCLoginItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 908780A71FB087B90053DDC5 /* EMCLoginItem.h */; };
+		908780AA1FB087D70053DDC5 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADEB0E04F19C00348443 /* Carbon.framework */; };
 		D403ADF40E04F1E100348443 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADF30E04F1E100348443 /* SystemConfiguration.framework */; };
@@ -127,6 +129,8 @@
 		3383C1E01B69DD2D00915D5D /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nl.lproj; sourceTree = "<group>"; };
 		3383C1E11B69DD2D00915D5D /* zh_CN.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zh_CN.lproj; sourceTree = "<group>"; };
 		9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistPreprocessor.h; sourceTree = "<group>"; };
+		908780A71FB087B90053DDC5 /* EMCLoginItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
+		908780A91FB087D70053DDC5 /* EMCLoginItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
 		D40271B8083D928600D09108 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D40271BB083D92C500D09108 /* nl */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = nl; path = nl.lproj/MenuMetersPref.nib; sourceTree = "<group>"; };
 		D40271BE083D9C0500D09108 /* nl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nl; path = MenuExtras/MenuMeterCPU/nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -565,6 +569,8 @@
 				D4E4BFA104F333B100A87BC9 /* MenuMetersPref.m */,
 				D4E4BFB904F333D000A87BC9 /* Resources */,
 				9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */,
+				908780A71FB087B90053DDC5 /* EMCLoginItem.h */,
+				908780A91FB087D70053DDC5 /* EMCLoginItem.m */,
 			);
 			path = PrefPane;
 			sourceTree = "<group>";
@@ -635,6 +641,7 @@
 				9023745B1E91612100B096A8 /* InfoPlistPreprocessor.h in Headers */,
 				D4ECB39C05FE72E100954E26 /* MenuMeterPowerMate.h in Headers */,
 				D4ECB39D05FE72E100954E26 /* MenuMeters.h in Headers */,
+				908780A81FB087B90053DDC5 /* EMCLoginItem.h in Headers */,
 				D4ECB39E05FE72E100954E26 /* MenuMetersPref.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -849,6 +856,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				908780AA1FB087D70053DDC5 /* EMCLoginItem.m in Sources */,
 				D4ECB3AA05FE72E100954E26 /* MenuMeterDefaults.m in Sources */,
 				D4ECB3AB05FE72E100954E26 /* MenuMeterPowerMate.m in Sources */,
 				D4ECB3AC05FE72E100954E26 /* MenuMetersPref.m in Sources */,
