@@ -22,6 +22,7 @@
 //
 
 #import "MenuMetersPref.h"
+#import "EMCLoginItem.h"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -188,16 +189,15 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setTitle:[NSString stringWithFormat:@"  %@",
 				[[netScaleCalc itemAtIndex:kNetScaleCalcLog] title]]];
     
-    NSString*appPath=[[NSBundle bundleForClass:[self class]] pathForResource:@"MenuMetersApp" ofType:@"app"];
+    NSString *appPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MenuMetersApp" ofType:@"app"];
     [[NSWorkspace sharedWorkspace] launchApplication:appPath];
-    NSURL*appURL=[NSURL fileURLWithPath:appPath];
-    LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-    LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemLast, NULL, NULL, (__bridge CFURLRef)appURL, NULL, NULL);
-    if (item)
+    
+    EMCLoginItem *loginItem = [EMCLoginItem loginItemWithPath:appPath];
+    
+    if (![loginItem isLoginItem])
     {
-        CFRelease(item);
+        [loginItem addLoginItem];
     }
-    CFRelease(loginItems);
 } // mainViewDidLoad
 
 - (void)willSelect {
