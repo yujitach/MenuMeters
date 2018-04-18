@@ -367,6 +367,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveCpuInterval:[cpuInterval doubleValue]];
 	} else if (sender == cpuPercentMode) {
 		[ourPrefs saveCpuPercentDisplay:(int)[cpuPercentMode indexOfSelectedItem]];
+    } else if (sender == cpuMaxProcessCount) {
+        [ourPrefs saveCpuMaxProcessCount:(int)[cpuMaxProcessCount intValue]];
 	} else if (sender == cpuGraphWidth) {
 		[ourPrefs saveCpuGraphLength:[cpuGraphWidth intValue]];
 	} else if (sender == cpuAvgProcs) {
@@ -392,6 +394,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuInterval setDoubleValue:[ourPrefs cpuInterval]];
 	[cpuPercentMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];
+    [cpuMaxProcessCount setIntValue:[ourPrefs cpuMaxProcessCount]];
+    [cpuMaxProcessCountCountLabel setStringValue:[NSString stringWithFormat:NSLocalizedString(@"(%d)", @"DO NOT LOCALIZE!!!"),
+                                                  (short)[ourPrefs cpuMaxProcessCount]]];
 	[cpuGraphWidth setIntValue:[ourPrefs cpuGraphLength]];
 	[cpuAvgProcs setState:([ourPrefs cpuAvgAllProcs] ? NSOnState : NSOffState)];
 	[cpuPowerMate setState:([ourPrefs cpuPowerMate] ? NSOnState : NSOffState)];
@@ -524,7 +529,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[memInterval setDoubleValue:[ourPrefs memInterval]];
 	[memFreeUsedLabeling setState:([ourPrefs memUsedFreeLabel] ? NSOnState : NSOffState)];
 	[memPageIndicator setState:([ourPrefs memPageIndicator] ? NSOnState : NSOffState)];
-  [memPressureMode setState:([ourPrefs memPressure] ? NSOnState : NSOffState)];
+    [memPressureMode setState:([ourPrefs memPressure] ? NSOnState : NSOffState)];
 	[memGraphWidth setIntValue:[ourPrefs memGraphLength]];
 	[memActiveColor setColor:[ourPrefs memActiveColor]];
 	[memInactiveColor setColor:[ourPrefs memInactiveColor]];

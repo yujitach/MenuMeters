@@ -41,6 +41,7 @@
 - (double)cpuInterval;
 - (int)cpuDisplayMode;
 - (int)cpuPercentDisplay;
+- (int)cpuMaxProcessCount;
 - (int)cpuGraphLength;
 - (BOOL)cpuAvgAllProcs;
 - (BOOL)cpuPowerMate;
@@ -50,6 +51,7 @@
 - (void)saveCpuInterval:(double)interval;
 - (void)saveCpuDisplayMode:(int)mode;
 - (void)saveCpuPercentDisplay:(int)mode;
+- (void)saveCpuMaxProcessCount:(int)maxCount;
 - (void)saveCpuGraphLength:(int)length;
 - (void)saveCpuAvgAllProcs:(BOOL)average;
 - (void)saveCpuPowerMate:(BOOL)active;

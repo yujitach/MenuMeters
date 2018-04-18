@@ -36,6 +36,8 @@
 #define kCPUUptimeInfoMenuIndex				3
 #define kCPUTaskInfoMenuIndex				5
 #define kCPULoadInfoMenuIndex				7
+#define kCPUProcessLabelMenuIndex           8
+#define kCPUProcessMenuIndex                (kCPUProcessLabelMenuIndex + 1)
 
 ///////////////////////////////////////////////////////////////
 //
@@ -47,6 +49,7 @@
 #define kCPUIntervalPref					@"CPUInterval"
 #define kCPUDisplayModePref					@"CPUDisplayMode"
 #define kCPUPercentDisplayPref				@"CPUPercentDisplayMode"
+#define kCPUMaxProcessCountPref             @"CPUMaxProcessCount"
 #define kCPUGraphLengthPref					@"CPUGraphLength"
 #define kCPUAvgAllProcsPref					@"CPUAverageMultiProcs"
 #define kCPUSystemColorPref					@"CPUSystemColor"
@@ -69,6 +72,11 @@ enum {
 	kCPUPercentDisplaySplit
 };
 #define kCPUPercentDisplayDefault			kCPUPercentDisplaySmall
+
+// Process info
+#define kCPUProcessCountMin                 0
+#define kCPUrocessCountMax                  25
+#define kCPUProcessCountDefault             5
 
 // PowerMate modes
 enum {
