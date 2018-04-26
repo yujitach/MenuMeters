@@ -4,6 +4,14 @@ My fork of MenuMeters for El Capitan, Sierra and High Sierra.
 # Usage:
 If you just want to use it, please go to http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/ and download the binary there. Note: as written there, you might need to log out and log in (or maybe to reboot) once to enable the new version.
 
+# Other versions:
+There are further forks of my version of MenuMeters, which implement more features. You might want to try them out:
+
+- https://github.com/emcrisostomo/MenuMeters which has DMG installers 
+- https://gitlab.com/axet/MenuMeters which has new features in the CPU meter, etc.
+
+If you'd like your version mentioned here, please tell me at the issues page.
+
 # Background:
 
 It's a great utility being developed by http://www.ragingmenace.com/software/menumeters/ .
