@@ -35,6 +35,9 @@
 // automatically localized by NSNumberFormatter)
 "%@, %@, %@" = "%1$@, %2$@, %3$@";
 
+// Top CPU intensive processes title
+"Top CPU Intensive Processes:" = "Top CPU Intensive Processes:";
+
 // Open Process Viewer/Open Console
 "Open Process Viewer" = "Ouvrir Visualiseur d'opérations";
 "Open Activity Monitor" = "Ouvrir Moniteur d'activité";
