@@ -68,7 +68,7 @@
 		3383C1E71B69DD2D00915D5D /* Japanese.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DF1B69DD2D00915D5D /* Japanese.lproj */; };
 		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
 		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
-		33C298D92105AD82003EFB03 /* MenuMetersPref.nib in Resources */ = {isa = PBXBuildFile; fileRef = D4E4BF9104F333B100A87BC9 /* MenuMetersPref.nib */; };
+		3384540C2105C3AA00D4DA92 /* MenuMetersPref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */; };
 		9023745B1E91612100B096A8 /* InfoPlistPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */; };
 		908780A81FB087B90053DDC5 /* EMCLoginItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 908780A71FB087B90053DDC5 /* EMCLoginItem.h */; };
 		908780AA1FB087D70053DDC5 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
@@ -111,7 +111,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		330D68B22105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MenuMetersPref.strings"; sourceTree = "<group>"; };
 		330D68B32105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterCPU/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		330D68B42105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterDisk/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		330D68B52105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterMem/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -134,12 +133,13 @@
 		3383C1DF1B69DD2D00915D5D /* Japanese.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Japanese.lproj; sourceTree = "<group>"; };
 		3383C1E01B69DD2D00915D5D /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nl.lproj; sourceTree = "<group>"; };
 		3383C1E11B69DD2D00915D5D /* zh_CN.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zh_CN.lproj; sourceTree = "<group>"; };
-		3393FEFF2105A65C0034D896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Base; path = Base.lproj/MenuMetersPref.nib; sourceTree = "<group>"; };
-		3393FF002105A6880034D896 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Japanese.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
-		3393FF012105A6EA0034D896 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = French.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
-		3393FF022105A6F50034D896 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = German.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
-		3393FF032105A7000034D896 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
-		3393FF042105A70C0034D896 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = Italian.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
+		3384540B2105C3AA00D4DA92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuMetersPref.xib; sourceTree = "<group>"; };
+		3384540D2105C3B100D4DA92 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
+		3384540E2105C3B300D4DA92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
+		3384540F2105C3B600D4DA92 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
+		338454102105C3B800D4DA92 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
+		338454112105C3BB00D4DA92 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
+		338454122105C3BD00D4DA92 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MenuMetersPref.strings"; sourceTree = "<group>"; };
 		9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistPreprocessor.h; sourceTree = "<group>"; };
 		908780A71FB087B90053DDC5 /* EMCLoginItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
 		908780A91FB087D70053DDC5 /* EMCLoginItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
@@ -604,9 +604,9 @@
 			isa = PBXGroup;
 			children = (
 				D4ECB3B705FE730000954E26 /* Info.plist */,
+				3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */,
 				D4E4BF9C04F333B100A87BC9 /* InfoPlist.strings */,
 				D4E4BF8F04F333B100A87BC9 /* Localizable.strings */,
-				D4E4BF9104F333B100A87BC9 /* MenuMetersPref.nib */,
 				D4E4BF9904F333B100A87BC9 /* Icon */,
 				D4E4BFA504F333B100A87BC9 /* Scales */,
 			);
@@ -783,12 +783,12 @@
 			files = (
 				D4ECB3A105FE72E100954E26 /* Localizable.strings in Resources */,
 				D4ECB3A305FE72E100954E26 /* MenuMetersPref.tiff in Resources */,
-				33C298D92105AD82003EFB03 /* MenuMetersPref.nib in Resources */,
 				D4ECB3A405FE72E100954E26 /* InfoPlist.strings in Resources */,
 				D4ECB3A505FE72E100954E26 /* CubeRootScale.tiff in Resources */,
 				D4ECB3A605FE72E100954E26 /* LinearScale.tiff in Resources */,
 				D4ECB3A705FE72E100954E26 /* LogScale.tiff in Resources */,
 				D4ECB3A805FE72E100954E26 /* SquareRootScale.tiff in Resources */,
+				3384540C2105C3AA00D4DA92 /* MenuMetersPref.xib in Resources */,
 				3345DD2C1B6BE7DB003843FC /* MenuMetersApp.app in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -875,6 +875,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3384540B2105C3AA00D4DA92 /* Base */,
+				3384540D2105C3B100D4DA92 /* ja */,
+				3384540E2105C3B300D4DA92 /* fr */,
+				3384540F2105C3B600D4DA92 /* de */,
+				338454102105C3B800D4DA92 /* nl */,
+				338454112105C3BB00D4DA92 /* it */,
+				338454122105C3BD00D4DA92 /* zh-Hans */,
+			);
+			name = MenuMetersPref.xib;
+			sourceTree = "<group>";
+		};
 		D42EC96E03D49B1D00A87BC9 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -929,20 +943,6 @@
 				330D68B72105AB950041B689 /* zh-Hans */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		D4E4BF9104F333B100A87BC9 /* MenuMetersPref.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3393FEFF2105A65C0034D896 /* Base */,
-				3393FF002105A6880034D896 /* ja */,
-				3393FF012105A6EA0034D896 /* fr */,
-				3393FF022105A6F50034D896 /* de */,
-				3393FF032105A7000034D896 /* nl */,
-				3393FF042105A70C0034D896 /* it */,
-				330D68B22105AB950041B689 /* zh-Hans */,
-			);
-			name = MenuMetersPref.nib;
 			sourceTree = "<group>";
 		};
 		D4FC163603D26B0800A87BC9 /* Localizable.strings */ = {
