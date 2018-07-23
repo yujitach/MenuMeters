@@ -1,0 +1,12 @@
+// Strings for menu abort sheet
+"Menu Extra Could Not Load" = "Menu Extra Could Not Load";
+"For instructions on enabling third-party menu extras please see the documentation." =
+"For instructions on enabling third-party menu extras please see the documentation.";
+
+// Strings for the disk icon sets
+"Color Arrows" = "彩色箭头";
+"Arrows" = "箭头";
+"Lights" = "灯";
+"Aqua Lights" = "Aqua 灯";
+"Disk Arrows" = "磁盘箭头";
+"Disk Arrows (large)" = "磁盘箭头(大)";

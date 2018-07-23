@@ -1,0 +1,60 @@
+//	In the interest of improving localizability most strings in MenuMeters
+//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
+//	convention. If localization requires different ordering of the parameters you
+//	can reorder the items (leaving the %1$ notations in place) and NSString will
+//	put the items in the right order
+
+// Menubar display labels used in free/total mode
+"U:" = "U:";
+"F:" = "F:";
+
+// Unit labels
+"MB" = "MB";
+
+// Memory usage title menu item
+"Memory Usage:" = "Memory Usage:";
+
+// Format string for memory usage. Float conversion to X.XX is
+// automatically localized by NSNumberFormatter and is therefore not exposed
+"%@ used, %@ free, %@ total" = "%1$@ used, %2$@ free, %3$@ total";
+
+// Memory page statistics title menu item
+"Memory Pages:" = "Memory Pages:";
+
+// Format strings for memory statistics. Float conversion to X.XX is
+// automatically localized by NSNumberFormatter and is therefore not exposed
+"%@ active, %@ wired" = "%1$@ active, %2$@ wired";
+"%@ inactive, %@ free" = "%1$@ inactive, %2$@ free";
+"%@ compressed (%@)" = "%1$@ compressed (%2$@)";
+
+// VM statistics title menu item
+"VM Statistics:" = "VM Statistics:";
+
+// Format strings for VM statistics
+// Technically we should cover all permutations of 1 or more than 1
+// for each statistic, but in the real world users never have just
+// one pagein or copy-on-write, etc. so we can simplify to just
+// the plural forms
+"%@ pageins, %@ pageouts" = "%1$@ pageins, %2$@ pageouts";
+"%@ cache lookups, %@ cache hits (%@)" = "%1$@ cache lookups, %2$@ cache hits (%3$@)";
+"%@ page faults, %@ copy-on-writes" = "%1$@ page faults, %2$@ copy-on-writes";
+
+// Swap file statistics title menu item
+"Swap Files:" = "Swap Files:";
+
+// Swap file info formats. Here we do need to handle plurals since
+// values of 1 are likely
+// Basic swap file info (ex: "1 swap file in /private/var/vm/")
+"%@ swap file present in %@" = "%1$@ swap file present in %2$@";
+"%@ swap files present in %@" = "%1$@ swap files present in %2$@";
+// Basic swap file info with encryption
+"%@ encrypted swap file present in %@" = "%1$@ encrypted swap file present in %2$@";
+"%@ encrypted swap files present in %@" = "%1$@ encrypted swap files present in %2$@";
+// Maximum swap count info
+"%@ swap file at peak usage" = "%1$@ swap file at peak usage";
+"%@ swap files at peak usage" = "%1$@ swap files at peak usage";
+// Swap space info, as with free/used/total the float format and MB label
+// are handled automatically by NSFormatter
+"%@ total swap space" = "%1$@ total swap space";
+// Swap space including used info (Tiger only)
+"%@ total swap space (%@ used)" = "%1$@ total swap space (%2$@ used)";
