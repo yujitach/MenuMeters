@@ -318,8 +318,8 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 					[fm fileExistsAtPath:currentFileFullPath isDirectory:&isDir] &&
 					!isDir) {
 				swapCount++;
-				swapSize += [[[fm fileAttributesAtPath:currentFileFullPath
-										  traverseLink:NO]
+				swapSize += [[[fm attributesOfItemAtPath:currentFileFullPath
+										  error:nil]
 								objectForKey:NSFileSize] unsignedLongLongValue];
 			}
 		}

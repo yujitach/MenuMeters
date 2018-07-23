@@ -136,7 +136,7 @@
 
 - (int)cpuDisplayMode {
 	return [self loadBitFlagPref:kCPUDisplayModePref
-					  validFlags:(kCPUDisplayPercent | kCPUDisplayGraph | kCPUDisplayThermometer)
+					  validFlags:(kCPUDisplayPercent | kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)
 					   zeroValid:NO
 					defaultValue:kCPUDisplayDefault];
 } // cpuDisplayMode
@@ -155,9 +155,31 @@
 				defaultValue:kCPUGraphWidthDefault];
 } // cpuGraphLength
 
+- (int)cpuHorizontalRows {
+    return [self loadIntPref:kCPUHorizontalRowsPref
+                    lowBound:kCPUHorizontalRowsMin
+                    highBound:kCPUHorizontalRowsMax
+                defaultValue:kCPUHorizontalRowsDefault];
+} // cpuHorizontalRows
+
+- (int)cpuMenuWidth {
+    return [self loadIntPref:kCPUMenuWidthPref
+                    lowBound:kCPUMenuWidthMin
+                    highBound:kCPUMenuWidthMax
+                defaultValue:kCPUMenuWidthDefault];
+} // cpuMenuWidth
+
 - (BOOL)cpuAvgAllProcs {
 	return [self loadBoolPref:kCPUAvgAllProcsPref defaultValue:kCPUAvgAllProcsDefault];
 } // cpuAvgAllProcs
+
+- (BOOL)cpuAvgLowerHalfProcs {
+	return [self loadBoolPref:kCPUAvgLowerHalfProcsPref defaultValue:kCPUAvgLowerHalfProcsDefault];
+} // cpuAvgLowerHalfProcs
+
+- (BOOL)cpuSortByUsage {
+	return [self loadBoolPref:kCPUSortByUsagePref defaultValue:kCPUSortByUsageDefault];
+} // cpuSortByUsage
 
 - (BOOL)cpuPowerMate {
 	return [self loadBoolPref:kCPUPowerMatePref defaultValue:kCPUPowerMateDefault];
@@ -194,9 +216,25 @@
 	[self saveIntPref:kCPUGraphLengthPref value:length];
 } // saveCpuGraphLength
 
+- (void)saveCpuHorizontalRows:(int)rows {
+    [self saveIntPref:kCPUHorizontalRowsPref value:rows];
+} // saveCpuHorizontalRows
+
+- (void)saveCpuMenuWidth:(int)rows {
+    [self saveIntPref:kCPUMenuWidthPref value:rows];
+} // saveCpuMenuWidth
+
 - (void)saveCpuAvgAllProcs:(BOOL)average {
 	[self saveBoolPref:kCPUAvgAllProcsPref value:average];
 } // saveCpuAvgAllProcs
+
+- (void)saveCpuAvgLowerHalfProcs:(BOOL)average {
+	[self saveBoolPref:kCPUAvgLowerHalfProcsPref value:average];
+} // saveCpuAvgLowerHalfProcs
+
+- (void)saveCpuSortByUsage:(BOOL)sort {
+	[self saveBoolPref:kCPUSortByUsagePref value:sort];
+} // saveCpuSortByUsage
 
 - (void)saveCpuPowerMate:(BOOL)active {
 	[self saveBoolPref:kCPUPowerMatePref value:active];
@@ -546,9 +584,9 @@
 	if (![fileManager fileExistsAtPath:[prefFolderPath stringByAppendingPathComponent:newPath]] &&
 		[fileManager fileExistsAtPath:[prefFolderPath stringByAppendingPathComponent:oldPath]]) {
 		// Move the file
-		[fileManager movePath:[prefFolderPath stringByAppendingPathComponent:oldPath]
+		[fileManager moveItemAtPath:[prefFolderPath stringByAppendingPathComponent:oldPath]
 					   toPath:[prefFolderPath stringByAppendingPathComponent:newPath]
-					  handler:nil];
+					  error:nil];
 	}
 #endif
 } // _migratePrefFile
