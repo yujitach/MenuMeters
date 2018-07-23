@@ -1,0 +1,357 @@
+
+/* Class = "NSWindow"; title = "MenuMeters"; ObjectID = "12"; */
+"12.title" = "MenuMeters";
+
+/* Class = "NSTabViewItem"; label = "Disque"; ObjectID = "100"; */
+"100.label" = "Disque";
+
+/* Class = "NSTabViewItem"; label = "CPU"; ObjectID = "102"; */
+"102.label" = "CPU";
+
+/* Class = "NSTabViewItem"; label = "Mémoire"; ObjectID = "103"; */
+"103.label" = "Mémoire";
+
+/* Class = "NSTabViewItem"; label = "Réseau"; ObjectID = "105"; */
+"105.label" = "Réseau";
+
+/* Class = "NSMenuItem"; title = "Graphique"; ObjectID = "145"; */
+"145.title" = "Graphique";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "146"; */
+"146.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Pourcentage"; ObjectID = "148"; */
+"148.title" = "Pourcentage";
+
+/* Class = "NSMenuItem"; title = "Graphique & Pourcentage"; ObjectID = "149"; */
+"149.title" = "Graphique & Pourcentage";
+
+/* Class = "NSMenuItem"; title = "ImageSet"; ObjectID = "203"; */
+"203.title" = "ImageSet";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "206"; */
+"206.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Barre d'usage"; ObjectID = "219"; */
+"219.title" = "Barre d'usage";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "223"; */
+"223.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Diagramme"; ObjectID = "225"; */
+"225.title" = "Diagramme";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "293"; */
+"293.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Texte"; ObjectID = "294"; */
+"294.title" = "Texte";
+
+/* Class = "NSMenuItem"; title = "Flèches"; ObjectID = "297"; */
+"297.title" = "Flèches";
+
+/* Class = "NSMenuItem"; title = "Flèches & Texte"; ObjectID = "299"; */
+"299.title" = "Flèches & Texte";
+
+/* Class = "NSMenuItem"; title = "Graphique"; ObjectID = "314"; */
+"314.title" = "Graphique";
+
+/* Class = "NSMenuItem"; title = "Thermomètre"; ObjectID = "357"; */
+"357.title" = "Thermomètre";
+
+/* Class = "NSMenuItem"; title = "Graphique, Pourcentage & Thermomètre"; ObjectID = "358"; */
+"358.title" = "Graphique, Pourcentage & Thermomètre";
+
+/* Class = "NSMenuItem"; title = "Pourcentage & Thermomètre"; ObjectID = "359"; */
+"359.title" = "Pourcentage & Thermomètre";
+
+/* Class = "NSMenuItem"; title = "Graphique & Thermomètre"; ObjectID = "360"; */
+"360.title" = "Graphique & Thermomètre";
+
+/* Class = "NSMenuItem"; title = "Graphique & Flèches"; ObjectID = "363"; */
+"363.title" = "Graphique & Flèches";
+
+/* Class = "NSMenuItem"; title = "Graphique & Texte"; ObjectID = "365"; */
+"365.title" = "Graphique & Texte";
+
+/* Class = "NSMenuItem"; title = "Graphique, Flèches & Texte"; ObjectID = "366"; */
+"366.title" = "Graphique, Flèches & Texte";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "382"; */
+"382.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Total (texte large)"; ObjectID = "384"; */
+"384.title" = "Total (texte large)";
+
+/* Class = "NSMenuItem"; title = "Utilisateur & Système (texte petit)"; ObjectID = "385"; */
+"385.title" = "Utilisateur & Système (texte petit)";
+
+/* Class = "NSMenuItem"; title = "Total (texte moyen)"; ObjectID = "386"; */
+"386.title" = "Total (texte moyen)";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "403"; */
+"403.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Sens opposé"; ObjectID = "404"; */
+"404.title" = "Sens opposé";
+
+/* Class = "NSMenuItem"; title = "Standard"; ObjectID = "406"; */
+"406.title" = "Standard";
+
+/* Class = "NSMenuItem"; title = "Centré"; ObjectID = "407"; */
+"407.title" = "Centré";
+
+/* Class = "NSMenuItem"; title = "Historique d'usage"; ObjectID = "472"; */
+"472.title" = "Historique d'usage";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "477"; */
+"477.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "clignotant"; ObjectID = "478"; */
+"478.title" = "clignotant";
+
+/* Class = "NSMenuItem"; title = "s'illuminant"; ObjectID = "479"; */
+"479.title" = "s'illuminant";
+
+/* Class = "NSMenuItem"; title = "Primaire (automatique)"; ObjectID = "487"; */
+"487.title" = "Primaire (automatique)";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "489"; */
+"489.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "illumination inversée"; ObjectID = "497"; */
+"497.title" = "illumination inversée";
+
+/* Class = "NSMenuItem"; title = "clignotement inversé"; ObjectID = "498"; */
+"498.title" = "clignotement inversé";
+
+/* Class = "NSMenuItem"; title = "ouvre le volume dans le Finder"; ObjectID = "500"; */
+"500.title" = "ouvre le volume dans le Finder";
+
+/* Class = "NSMenuItem"; title = "démonte et éjecte le volume"; ObjectID = "502"; */
+"502.title" = "démonte et éjecte le volume";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "503"; */
+"503.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Totaux Utilisée/Libre"; ObjectID = "508"; */
+"508.title" = "Totaux Utilisée/Libre";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "522"; */
+"522.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Vitesse du trafic sur l'interface"; ObjectID = "525"; */
+"525.title" = "Vitesse du trafic sur l'interface";
+
+/* Class = "NSMenuItem"; title = "Vitesse max. du trafic"; ObjectID = "526"; */
+"526.title" = "Vitesse max. du trafic";
+
+/* Class = "NSMenuItem"; title = "Linéaire"; ObjectID = "541"; */
+"541.title" = "Linéaire";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "542"; */
+"542.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Logarithmique "; ObjectID = "545"; */
+"545.title" = "Logarithmique ";
+
+/* Class = "NSMenuItem"; title = "Cubique"; ObjectID = "556"; */
+"556.title" = "Cubique";
+
+/* Class = "NSMenuItem"; title = "Carrée"; ObjectID = "557"; */
+"557.title" = "Carrée";
+
+/* Class = "NSMenuItem"; title = "Transmission/Réception"; ObjectID = "590"; */
+"590.title" = "Transmission/Réception";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "591"; */
+"591.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Réception/Transmission"; ObjectID = "592"; */
+"592.title" = "Réception/Transmission";
+
+/* Class = "NSMenuItem"; title = "Opposition inversée"; ObjectID = "613"; */
+"613.title" = "Opposition inversée";
+
+/* Class = "NSButtonCell"; title = "Afficher le menu d'Activité du disque"; ObjectID = "855"; */
+"855.title" = "Afficher le menu d'Activité du disque";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "856"; */
+"856.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "Intervalle (en seconde) de mise à jour : "; ObjectID = "859"; */
+"859.title" = "Intervalle (en seconde) de mise à jour : ";
+
+/* Class = "NSTextFieldCell"; title = "La sélection d'un volume dans le menu :"; ObjectID = "860"; */
+"860.title" = "La sélection d'un volume dans le menu :";
+
+/* Class = "NSTextFieldCell"; title = "(Maintenir la touche Option pour inverser le comportement)"; ObjectID = "862"; */
+"862.title" = "(Maintenir la touche Option pour inverser le comportement)";
+
+/* Class = "NSButtonCell"; title = "Afficher le menu CPU"; ObjectID = "863"; */
+"863.title" = "Afficher le menu CPU";
+
+/* Class = "NSTextFieldCell"; title = "Intervalle (en seconde) de mise à jour : "; ObjectID = "866"; */
+"866.title" = "Intervalle (en seconde) de mise à jour : ";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "867"; */
+"867.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "Charge utilisateur"; ObjectID = "868"; */
+"868.title" = "Charge utilisateur";
+
+/* Class = "NSTextFieldCell"; title = "Charge système"; ObjectID = "869"; */
+"869.title" = "Charge système";
+
+/* Class = "NSTextFieldCell"; title = "Afficher le pourcentage :"; ObjectID = "871"; */
+"871.title" = "Afficher le pourcentage :";
+
+/* Class = "NSButtonCell"; title = "Afficher la charge moyenne des processeurs comme pour un simple"; ObjectID = "873"; */
+"873.title" = "Afficher la charge moyenne des processeurs comme pour un simple";
+
+/* Class = "NSTextFieldCell"; title = "Largeur du graphique :"; ObjectID = "874"; */
+"874.title" = "Largeur du graphique :";
+
+/* Class = "NSTextFieldCell"; title = "Affichage du pourcentage"; ObjectID = "875"; */
+"875.title" = "Affichage du pourcentage";
+
+/* Class = "NSTextFieldCell"; title = "Affichage du graphique"; ObjectID = "876"; */
+"876.title" = "Affichage du graphique";
+
+/* Class = "NSTextFieldCell"; title = "Options diverses"; ObjectID = "877"; */
+"877.title" = "Options diverses";
+
+/* Class = "NSTextFieldCell"; title = "Couleurs"; ObjectID = "878"; */
+"878.title" = "Couleurs";
+
+/* Class = "NSButtonCell"; title = "Le PowerMate affiche l'usage CPU en :"; ObjectID = "879"; */
+"879.title" = "Le PowerMate affiche l'usage CPU en :";
+
+/* Class = "NSButtonCell"; title = "Afficher le menu Mémoire"; ObjectID = "881"; */
+"881.title" = "Afficher le menu Mémoire";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "882"; */
+"882.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "Intervalle (en seconde) de mise à jour : "; ObjectID = "884"; */
+"884.title" = "Intervalle (en seconde) de mise à jour : ";
+
+/* Class = "NSButtonCell"; title = "Afficher les préfixes (Utilisée/Libre)"; ObjectID = "886"; */
+"886.title" = "Afficher les préfixes (Utilisée/Libre)";
+
+/* Class = "NSTextFieldCell"; title = "Général"; ObjectID = "887"; */
+"887.title" = "Général";
+
+/* Class = "NSButtonCell"; title = "Afficher l'indicateur d'activité de la pagination"; ObjectID = "888"; */
+"888.title" = "Afficher l'indicateur d'activité de la pagination";
+
+/* Class = "NSTextFieldCell"; title = "Couleurs"; ObjectID = "889"; */
+"889.title" = "Couleurs";
+
+/* Class = "NSTextFieldCell"; title = "Pagein"; ObjectID = "890"; */
+"890.title" = "Pagein";
+
+/* Class = "NSTextFieldCell"; title = "Pageout"; ObjectID = "891"; */
+"891.title" = "Pageout";
+
+/* Class = "NSTextFieldCell"; title = "Taux pagination"; ObjectID = "892"; */
+"892.title" = "Taux pagination";
+
+/* Class = "NSTextFieldCell"; title = "Largeur du graphique :"; ObjectID = "893"; */
+"893.title" = "Largeur du graphique :";
+
+/* Class = "NSTextFieldCell"; title = "Affichage du graphique"; ObjectID = "894"; */
+"894.title" = "Affichage du graphique";
+
+/* Class = "NSTextFieldCell"; title = "Active"; ObjectID = "896"; */
+"896.title" = "Active";
+
+/* Class = "NSTextFieldCell"; title = "Inactive"; ObjectID = "897"; */
+"897.title" = "Inactive";
+
+/* Class = "NSTextFieldCell"; title = "Liée"; ObjectID = "898"; */
+"898.title" = "Liée";
+
+/* Class = "NSTextFieldCell"; title = "Libre"; ObjectID = "899"; */
+"899.title" = "Libre";
+
+/* Class = "NSTextFieldCell"; title = "Utilisée"; ObjectID = "900"; */
+"900.title" = "Utilisée";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "902"; */
+"902.title" = "x";
+
+/* Class = "NSButtonCell"; title = "Afficher le menu Réseau"; ObjectID = "903"; */
+"903.title" = "Afficher le menu Réseau";
+
+/* Class = "NSTextFieldCell"; title = "Intervalle (en seconde) de mise à jour : "; ObjectID = "905"; */
+"905.title" = "Intervalle (en seconde) de mise à jour : ";
+
+/* Class = "NSTextFieldCell"; title = "Transmission"; ObjectID = "906"; */
+"906.title" = "Transmission";
+
+/* Class = "NSTextFieldCell"; title = "Réception"; ObjectID = "907"; */
+"907.title" = "Réception";
+
+/* Class = "NSButtonCell"; title = "Afficher les préfixes (Tx/Rx)"; ObjectID = "909"; */
+"909.title" = "Afficher les préfixes (Tx/Rx)";
+
+/* Class = "NSButtonCell"; title = "Ignorer les valeurs inférieures à 1Ko/s"; ObjectID = "910"; */
+"910.title" = "Ignorer les valeurs inférieures à 1Ko/s";
+
+/* Class = "NSTextFieldCell"; title = "Style du graphique :"; ObjectID = "911"; */
+"911.title" = "Style du graphique :";
+
+/* Class = "NSTextFieldCell"; title = "Largeur du graphique :"; ObjectID = "912"; */
+"912.title" = "Largeur du graphique :";
+
+/* Class = "NSTextFieldCell"; title = "Affichage du texte"; ObjectID = "914"; */
+"914.title" = "Affichage du texte";
+
+/* Class = "NSTextFieldCell"; title = "Affichage du graphique"; ObjectID = "915"; */
+"915.title" = "Affichage du graphique";
+
+/* Class = "NSTextFieldCell"; title = "Couleurs"; ObjectID = "916"; */
+"916.title" = "Couleurs";
+
+/* Class = "NSTextFieldCell"; title = "Interface préférée :"; ObjectID = "917"; */
+"917.title" = "Interface préférée :";
+
+/* Class = "NSTextFieldCell"; title = "Général"; ObjectID = "919"; */
+"919.title" = "Général";
+
+/* Class = "NSTextFieldCell"; title = "Échelles :"; ObjectID = "920"; */
+"920.title" = "Échelles :";
+
+/* Class = "NSTextFieldCell"; title = "Graduation :"; ObjectID = "922"; */
+"922.title" = "Graduation :";
+
+/* Class = "NSTextFieldCell"; title = "Affichage :"; ObjectID = "924"; */
+"924.title" = "Affichage :";
+
+/* Class = "NSTextFieldCell"; title = "Inactive"; ObjectID = "926"; */
+"926.title" = "Inactive";
+
+/* Class = "NSTextFieldCell"; title = "MenuMeters, © 2002-2009 Alex Harper (http://www.ragingmenace.com)"; ObjectID = "927"; */
+"927.title" = "MenuMeters, © 2002-2009 Alex Harper (http://www.ragingmenace.com)";
+
+/* Class = "NSButtonCell"; title = "Sort by CPU usage"; ObjectID = "929"; */
+"929.title" = "Sort by CPU usage";
+
+/* Class = "NSTextFieldCell"; title = "Horizontal Rows:"; ObjectID = "944"; */
+"944.title" = "Horizontal Rows:";
+
+/* Class = "NSTextFieldCell"; title = "Thermometer Display"; ObjectID = "945"; */
+"945.title" = "Thermometer Display";
+
+/* Class = "NSMenuItem"; title = "Horizontal Thermometer"; ObjectID = "946"; */
+"946.title" = "Horizontal Thermometer";
+
+/* Class = "NSButtonCell"; title = "Show average for least utilized processors as single display"; ObjectID = "950"; */
+"950.title" = "Show average for least utilized processors as single display";
+
+/* Class = "NSTextFieldCell"; title = "Horizontal Width:"; ObjectID = "954"; */
+"954.title" = "Horizontal Width:";
+
+/* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "Yhx-uB-Efv"; */
+"Yhx-uB-Efv.title" = "Display memory pressure";
