@@ -124,7 +124,7 @@
 	NSMenuItem *menuItem = nil;
 
 	// Add processor info which never changes
-	if ([cpuInfo numberOfCPUs:NO] > 1) {
+    if ([cpuInfo numberOfCPUsByCombiningLowerHalf:NO] > 1) {
 		menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kMultiProcessorTitle value:nil table:nil]
 													  action:nil
 											   keyEquivalent:@""];
@@ -789,7 +789,7 @@
 
 - (uint32_t)numberOfCPUsToDisplay
 {
-    return [cpuInfo numberOfCPUs:[ourPrefs cpuAvgLowerHalfProcs]];
+    return [cpuInfo numberOfCPUsByCombiningLowerHalf:[ourPrefs cpuAvgLowerHalfProcs]];
 }
 
 - (void)getCPULoadForCPU:(uint32_t)processor

@@ -178,7 +178,7 @@ uint32_t cpuCount;
 
 } // cpuSpeed
 
-- (uint32_t)numberOfCPUs:(BOOL)combineLowerHalf {
+- (uint32_t)numberOfCPUsByCombiningLowerHalf:(BOOL)combineLowerHalf {
 
 	return combineLowerHalf ? (cpuCount / 2) + 1 : cpuCount;
 
@@ -187,7 +187,7 @@ uint32_t cpuCount;
 - (NSString *)processorDescription {
 
 	return [NSString stringWithFormat:[localizedStrings objectForKey:kProcessorNameFormat],
-                   [self numberOfCPUs:NO], [self cpuName], [self cpuSpeed]];
+                [self numberOfCPUsByCombiningLowerHalf:NO], [self cpuName], [self cpuSpeed]];
 
 } // processorDescription
 
