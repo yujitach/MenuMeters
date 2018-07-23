@@ -528,7 +528,7 @@
 
 - (void)timerFired:(NSTimer *)timerFired {
 	// Get the current load
-	NSArray *currentLoad = [cpuInfo currentLoad:[ourPrefs cpuSortByUsage]
+	NSArray *currentLoad = [cpuInfo currentLoadBySorting:[ourPrefs cpuSortByUsage]
                                     andCombineLowerHalf:[ourPrefs cpuAvgLowerHalfProcs]];
 	if (!currentLoad) return;
 

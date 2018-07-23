@@ -227,7 +227,7 @@ uint32_t cpuCount;
 
 } // loadAverage
 
-- (NSArray *)currentLoad: (BOOL)sorted andCombineLowerHalf:(BOOL)combine {
+- (NSArray *)currentLoadBySorting: (BOOL)sorted andCombineLowerHalf:(BOOL)combine {
 
 	// Read the current ticks
 	natural_t processorCount;

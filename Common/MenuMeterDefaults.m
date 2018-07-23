@@ -891,6 +891,9 @@
 		[self saveIntPref:prefName value:defaultValue];
 		returnValue = defaultValue;
 	}
+    if(returnValue > highBound || returnValue < lowBound){
+        returnValue = defaultValue;
+    }
 	return (int) returnValue;
 
 } // _loadIntPref

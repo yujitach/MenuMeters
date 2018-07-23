@@ -63,6 +63,6 @@
 // Load info
 - (NSString *)currentProcessorTasks;
 - (NSString *)loadAverage;
-- (NSArray *)currentLoad:(BOOL)sorted andCombineLowerHalf:(BOOL)combine;
+- (NSArray *)currentLoadBySorting:(BOOL)sorted andCombineLowerHalf:(BOOL)combine;
 
 @end
