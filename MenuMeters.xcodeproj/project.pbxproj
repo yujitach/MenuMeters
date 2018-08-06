@@ -167,7 +167,6 @@
 		D4157AC119D13D73008BD05F /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = MenuExtras/MenuMeterMem/Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4157AC219D13DAC008BD05F /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = MenuExtras/MenuMeterDisk/Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4157AC319D13DD9008BD05F /* Japanese */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = MenuExtras/MenuMeterCPU/Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D41C27741048FE9B00A8E325 /* MenuCracker.menu */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = MenuCracker.menu; sourceTree = "<group>"; };
 		D42C6C861996D9BB005F87BD /* Dark ArrowsIdle.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Dark ArrowsIdle.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Dark ArrowsIdle.tiff"; sourceTree = "<group>"; };
 		D42C6C871996D9BB005F87BD /* Dark ArrowsRead.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Dark ArrowsRead.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Dark ArrowsRead.tiff"; sourceTree = "<group>"; };
 		D42C6C881996D9BB005F87BD /* Dark ArrowsReadWrite.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Dark ArrowsReadWrite.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Dark ArrowsReadWrite.tiff"; sourceTree = "<group>"; };
@@ -239,7 +238,6 @@
 		D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuMeterWorkarounds.m; path = Common/MenuMeterWorkarounds.m; sourceTree = "<group>"; };
 		D4BBBF740463514700A804AF /* MenuMeterPowerMate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterPowerMate.h; path = Common/MenuMeterPowerMate.h; sourceTree = "<group>"; };
 		D4BBBF750463514700A804AF /* MenuMeterPowerMate.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterPowerMate.m; path = Common/MenuMeterPowerMate.m; sourceTree = "<group>"; };
-		D4BC478A03D5053500404110 /* Artistic License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Artistic License.rtf"; sourceTree = "<group>"; };
 		D4D2ADD01910ABB3004E2469 /* Italian */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = MenuExtras/MenuMeterCPU/Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4D2ADD51910AC03004E2469 /* Italian */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = MenuExtras/MenuMeterDisk/Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4D2ADD81910AC5F004E2469 /* Italian */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Italian; path = MenuExtras/MenuMeterMem/Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -346,7 +344,6 @@
 				D4510D7304F2F06100A87BC9 /* Docs */,
 				D40DB4B303D25F9E00A87BC9 /* Common */,
 				D40DB4A903D25F4C00A87BC9 /* MenuExtras */,
-				D4BC478903D5053500404110 /* MenuCracker */,
 				D4E4BF8B04F333B100A87BC9 /* PrefPane */,
 				D40DB4B803D2600C00A87BC9 /* System Frameworks */,
 				D40DB50803D262ED00A87BC9 /* System Private Frameworks */,
@@ -557,15 +554,6 @@
 				D477AAFF03D4BEB400A87BC9 /* Localizable.strings */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		D4BC478903D5053500404110 /* MenuCracker */ = {
-			isa = PBXGroup;
-			children = (
-				D4BC478A03D5053500404110 /* Artistic License.rtf */,
-				D41C27741048FE9B00A8E325 /* MenuCracker.menu */,
-			);
-			path = MenuCracker;
 			sourceTree = "<group>";
 		};
 		D4E4BF8B04F333B100A87BC9 /* PrefPane */ = {
