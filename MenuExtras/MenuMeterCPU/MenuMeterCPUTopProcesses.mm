@@ -165,7 +165,7 @@ NSString* const kProcessListItemCPUKey           = @"cpuPercent";
     //
     //    n       Non-event mode (default).  Calculate CPU usage since the previous sample.
     //
-    task.arguments = @[ @"-c", [NSString stringWithFormat:@"/usr/bin/top -s 0 -l 2 -c e -stats pid,cpu,time,mem,uid,user,command -o cpu -n %ld", maxItem] ];
+    task.arguments = @[ @"-c", [NSString stringWithFormat:@"/usr/bin/top -s 0 -l 2 -c e -stats pid,cpu,mem,uid,user,command -o cpu -n %ld", maxItem] ];
     
     // Output of the task:
     //    Processes: 468 total, 4 running, 3 stuck, 461 sleeping, 2394 threads
@@ -181,8 +181,8 @@ NSString* const kProcessListItemCPUKey           = @"cpuPercent";
     //    Networks: packets: 17698924/10G in, 19957766/14G out.
     //    Disks: 16239072/115G read, 10103470/102G written.
     //
-    //    PID COMMAND     %CPU TIME     MEM    UID USER
-    //    0   kernel_task 0.0  02:24:41 1578M+ 0   root
+    //    PID COMMAND     %CPU MEM    UID USER
+    //    0   kernel_task 0.0  1578M+ 0   root
     //    Further process info lines repeated till the end of process list ...
     //
     // This above will be repeated once again
@@ -207,11 +207,11 @@ NSString* const kProcessListItemCPUKey           = @"cpuPercent";
             unsigned int dwPID = 0;
             double fCpu = 0.0;
             char architecture = 0;
-            std::string mem, time, user, cmd, stat;
+            std::string mem, user, cmd, stat;
 
             line = std::stringstream(nextLine);
             // scan the line
-            line >> std::skipws >> dwPID >> std::noskipws >> architecture >> std::skipws >> fCpu >> time >> mem >> dwUID >> user;
+            line >> std::skipws >> dwPID >> std::noskipws >> architecture >> std::skipws >> fCpu >> mem >> dwUID >> user;
             // scan remaining part, the (TODO: later full) command line
             std::getline(line, cmd);
 
