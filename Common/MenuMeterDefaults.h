@@ -43,7 +43,11 @@
 - (int)cpuPercentDisplay;
 - (int)cpuMaxProcessCount;
 - (int)cpuGraphLength;
+- (int)cpuHorizontalRows;
+- (int)cpuMenuWidth;
 - (BOOL)cpuAvgAllProcs;
+- (BOOL)cpuAvgLowerHalfProcs;
+- (BOOL)cpuSortByUsage;
 - (BOOL)cpuPowerMate;
 - (int)cpuPowerMateMode;
 - (NSColor *)cpuSystemColor;
@@ -53,7 +57,11 @@
 - (void)saveCpuPercentDisplay:(int)mode;
 - (void)saveCpuMaxProcessCount:(int)maxCount;
 - (void)saveCpuGraphLength:(int)length;
+- (void)saveCpuHorizontalRows:(int)rows;
+- (void)saveCpuMenuWidth:(int)width;
 - (void)saveCpuAvgAllProcs:(BOOL)average;
+- (void)saveCpuAvgLowerHalfProcs:(BOOL)average;
+- (void)saveCpuSortByUsage:(BOOL)sort;
 - (void)saveCpuPowerMate:(BOOL)active;
 - (void)saveCpuPowerMateMode:(int)mode;
 - (void)saveCpuSystemColor:(NSColor *)color;

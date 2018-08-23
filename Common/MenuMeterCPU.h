@@ -51,7 +51,11 @@
 #define kCPUPercentDisplayPref				@"CPUPercentDisplayMode"
 #define kCPUMaxProcessCountPref             @"CPUMaxProcessCount"
 #define kCPUGraphLengthPref					@"CPUGraphLength"
+#define kCPUHorizontalRowsPref              @"CPUHorizontalRows"
+#define kCPUMenuWidthPref                   @"CPUMenuWidth"
 #define kCPUAvgAllProcsPref					@"CPUAverageMultiProcs"
+#define kCPUAvgLowerHalfProcsPref			@"CPUAverageLowerHalfProcs"
+#define kCPUSortByUsagePref				    @"CPUSortByUsage"
 #define kCPUSystemColorPref					@"CPUSystemColor"
 #define kCPUUserColorPref					@"CPUUserColor"
 #define kCPUPowerMatePref					@"CPUPowerMate"
@@ -61,7 +65,8 @@
 enum {
 	kCPUDisplayPercent						= 1,
 	kCPUDisplayGraph						= 2,
-	kCPUDisplayThermometer					= 4
+	kCPUDisplayThermometer					= 4,
+    kCPUDisplayHorizontalThermometer        = 8
 };
 #define kCPUDisplayDefault					kCPUDisplayPercent
 
@@ -97,8 +102,24 @@ enum {
 #define kCPUGraphWidthMax					88
 #define kCPUGraphWidthDefault				33
 
+// Thermometer display
+#define kCPUHorizontalRowsMin               1
+#define kCPUHorizontalRowsMax               8
+#define kCPUHorizontalRowsDefault           2
+
+// Menu width
+#define kCPUMenuWidthMin                    60
+#define kCPUMenuWidthMax                    400
+#define kCPUMenuWidthDefault                120
+
 // Multiproc averaging
 #define kCPUAvgAllProcsDefault				NO
+
+// Least-utilized half of procs averaging
+#define kCPUAvgLowerHalfProcsDefault		NO
+
+// Sorting by usage
+#define kCPUSortByUsageDefault				NO
 
 // PowerMate
 #define kCPUPowerMateDefault				NO

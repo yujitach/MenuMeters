@@ -198,7 +198,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 						  forKey:@"free"];
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kUsedSpaceFormat],
 									[self spaceString:(((float)mountInfo[i].f_blocks -
-														(float)mountInfo[i].f_bavail) * mountInfo[i].f_bsize)]]
+														(float)mountInfo[i].f_bavail) * (float)mountInfo[i].f_bsize)]]
 						  forKey:@"used"];
 			// Store the data into the array
 			[diskSpaceDetails addObject:diskStats];

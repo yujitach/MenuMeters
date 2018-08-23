@@ -57,6 +57,7 @@
 ///////////////////////////////////////////////////////////////
 
 @implementation MenuMeterCPUStats
+uint32_t cpuCount;
 
 - (id)init {
 
@@ -177,16 +178,16 @@
 
 } // cpuSpeed
 
-- (uint32_t)numberOfCPUs {
+- (uint32_t)numberOfCPUsByCombiningLowerHalf:(BOOL)combineLowerHalf {
 
-	return cpuCount;
+	return combineLowerHalf ? (cpuCount / 2) + 1 : cpuCount;
 
 } // numberOfCPUs
 
 - (NSString *)processorDescription {
 
 	return [NSString stringWithFormat:[localizedStrings objectForKey:kProcessorNameFormat],
-				[self numberOfCPUs], [self cpuName], [self cpuSpeed]];
+                [self numberOfCPUsByCombiningLowerHalf:NO], [self cpuName], [self cpuSpeed]];
 
 } // processorDescription
 
@@ -227,7 +228,7 @@
 
 } // loadAverage
 
-- (NSArray *)currentLoad  {
+- (NSArray *)currentLoadBySorting: (BOOL)sorted andCombineLowerHalf:(BOOL)combine {
 
 	// Read the current ticks
 	natural_t processorCount;
@@ -284,6 +285,53 @@
 			priorCPUTicks[i].cpu_ticks[j] = processorTickInfo[i].cpu_ticks[j];
 		}
 	}
+
+    // Sort the load if necessary
+    if (sorted == YES) {
+        NSMutableArray *sorted = [NSMutableArray array];
+        
+        for (natural_t i = 0; i < processorCount; i++) {
+            float maxSum = 0.0f;
+            natural_t maxIndex = 0;
+            for (natural_t j = 0; j < (processorCount - i); j++) {
+                MenuMeterCPULoad *load = [loadInfo objectAtIndex: j];
+                float sum = load.system + load.user;
+                if (sum > maxSum) {
+                    maxSum = sum;
+                    maxIndex = j;
+                }
+            }
+            [sorted addObject: [loadInfo objectAtIndex: maxIndex]];
+            [loadInfo removeObjectAtIndex: maxIndex];
+        }
+
+        loadInfo = sorted;
+
+        // Now reduce the least-utilized half of the CPUs into a single value
+        // if requested to do so.
+        if (combine) {
+            processorCount /= 2;
+            NSMutableArray *combined = [NSMutableArray array];
+            for (natural_t i = 0; i < processorCount; i++) {
+                [combined addObject: [loadInfo objectAtIndex: i]];
+            }
+            float system = 0, user = 0;
+            for (natural_t i = 0; i < processorCount; i++) {
+                natural_t loadIndex = processorCount + i;
+                MenuMeterCPULoad *load = [loadInfo objectAtIndex: loadIndex];
+                user += load.user;
+                system += load.system;
+            }
+            system /= processorCount;
+            user /= processorCount;
+            MenuMeterCPULoad *load = [[MenuMeterCPULoad alloc] init];
+            load.system = system;
+            load.user = user;
+            [combined addObject: load];
+            [loadInfo removeAllObjects];
+            loadInfo = combined;
+        }
+    }
 
 	// Dealloc
 	vm_deallocate(mach_task_self(), (vm_address_t)processorTickInfo, (vm_size_t)(processorInfoCount * sizeof(natural_t)));

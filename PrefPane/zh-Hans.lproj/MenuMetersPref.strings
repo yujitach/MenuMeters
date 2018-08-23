@@ -1,0 +1,339 @@
+
+/* Class = "NSWindow"; title = "MenuMeters"; ObjectID = "12"; */
+"12.title" = "MenuMeters";
+
+/* Class = "NSTabViewItem"; label = "磁盘"; ObjectID = "100"; */
+"100.label" = "磁盘";
+
+/* Class = "NSTabViewItem"; label = "CPU"; ObjectID = "102"; */
+"102.label" = "CPU";
+
+/* Class = "NSTabViewItem"; label = "内存"; ObjectID = "103"; */
+"103.label" = "内存";
+
+/* Class = "NSTabViewItem"; label = "网络"; ObjectID = "105"; */
+"105.label" = "网络";
+
+/* Class = "NSMenuItem"; title = "曲线"; ObjectID = "145"; */
+"145.title" = "曲线";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "146"; */
+"146.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "百分比"; ObjectID = "148"; */
+"148.title" = "百分比";
+
+/* Class = "NSMenuItem"; title = "曲线和百分比"; ObjectID = "149"; */
+"149.title" = "曲线和百分比";
+
+/* Class = "NSMenuItem"; title = "ImageSet"; ObjectID = "203"; */
+"203.title" = "ImageSet";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "206"; */
+"206.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "使用条状图"; ObjectID = "219"; */
+"219.title" = "使用条状图";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "223"; */
+"223.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "使用饼图"; ObjectID = "225"; */
+"225.title" = "使用饼图";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "293"; */
+"293.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "吞吐量"; ObjectID = "294"; */
+"294.title" = "吞吐量";
+
+/* Class = "NSMenuItem"; title = "箭头"; ObjectID = "297"; */
+"297.title" = "箭头";
+
+/* Class = "NSMenuItem"; title = "箭头和吞吐量"; ObjectID = "299"; */
+"299.title" = "箭头和吞吐量";
+
+/* Class = "NSMenuItem"; title = "曲线"; ObjectID = "314"; */
+"314.title" = "曲线";
+
+/* Class = "NSMenuItem"; title = "寒暑表"; ObjectID = "357"; */
+"357.title" = "寒暑表";
+
+/* Class = "NSMenuItem"; title = "曲线、百分比和寒暑表"; ObjectID = "358"; */
+"358.title" = "曲线、百分比和寒暑表";
+
+/* Class = "NSMenuItem"; title = "百分比和寒暑表"; ObjectID = "359"; */
+"359.title" = "百分比和寒暑表";
+
+/* Class = "NSMenuItem"; title = "曲线和寒暑表"; ObjectID = "360"; */
+"360.title" = "曲线和寒暑表";
+
+/* Class = "NSMenuItem"; title = "曲线和箭头"; ObjectID = "363"; */
+"363.title" = "曲线和箭头";
+
+/* Class = "NSMenuItem"; title = "曲线和吞吐量"; ObjectID = "365"; */
+"365.title" = "曲线和吞吐量";
+
+/* Class = "NSMenuItem"; title = "曲线、箭头和吞吐量"; ObjectID = "366"; */
+"366.title" = "曲线、箭头和吞吐量";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "382"; */
+"382.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "合计(大文字)"; ObjectID = "384"; */
+"384.title" = "合计(大文字)";
+
+/* Class = "NSMenuItem"; title = "用户和系统(小文字)"; ObjectID = "385"; */
+"385.title" = "用户和系统(小文字)";
+
+/* Class = "NSMenuItem"; title = "合计(中文字)"; ObjectID = "386"; */
+"386.title" = "合计(中文字)";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "403"; */
+"403.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "天地"; ObjectID = "404"; */
+"404.title" = "天地";
+
+/* Class = "NSMenuItem"; title = "标准"; ObjectID = "406"; */
+"406.title" = "标准";
+
+/* Class = "NSMenuItem"; title = "居中"; ObjectID = "407"; */
+"407.title" = "居中";
+
+/* Class = "NSMenuItem"; title = "使用历史曲线"; ObjectID = "472"; */
+"472.title" = "使用历史曲线";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "477"; */
+"477.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "脉搏"; ObjectID = "478"; */
+"478.title" = "脉搏";
+
+/* Class = "NSMenuItem"; title = "发光"; ObjectID = "479"; */
+"479.title" = "发光";
+
+/* Class = "NSMenuItem"; title = "主要(自动)"; ObjectID = "487"; */
+"487.title" = "主要(自动)";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "489"; */
+"489.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "反发光"; ObjectID = "497"; */
+"497.title" = "反发光";
+
+/* Class = "NSMenuItem"; title = "反脉搏"; ObjectID = "498"; */
+"498.title" = "反脉搏";
+
+/* Class = "NSMenuItem"; title = "打开宗卷"; ObjectID = "500"; */
+"500.title" = "打开宗卷";
+
+/* Class = "NSMenuItem"; title = "卸下/推出宗卷"; ObjectID = "502"; */
+"502.title" = "卸下/推出宗卷";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "503"; */
+"503.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "已使用/可用合计"; ObjectID = "508"; */
+"508.title" = "已使用/可用合计";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "522"; */
+"522.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "接口速度"; ObjectID = "525"; */
+"525.title" = "接口速度";
+
+/* Class = "NSMenuItem"; title = "尖峰流量"; ObjectID = "526"; */
+"526.title" = "尖峰流量";
+
+/* Class = "NSMenuItem"; title = "线性"; ObjectID = "541"; */
+"541.title" = "线性";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "542"; */
+"542.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "对数"; ObjectID = "545"; */
+"545.title" = "对数";
+
+/* Class = "NSMenuItem"; title = "立方根"; ObjectID = "556"; */
+"556.title" = "立方根";
+
+/* Class = "NSMenuItem"; title = "平方根"; ObjectID = "557"; */
+"557.title" = "平方根";
+
+/* Class = "NSMenuItem"; title = "发送/接收"; ObjectID = "590"; */
+"590.title" = "发送/接收";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "591"; */
+"591.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "接收/发送"; ObjectID = "592"; */
+"592.title" = "接收/发送";
+
+/* Class = "NSMenuItem"; title = "交换天地"; ObjectID = "613"; */
+"613.title" = "交换天地";
+
+/* Class = "NSButtonCell"; title = "显示磁盘活动菜单仪表"; ObjectID = "1006"; */
+"1006.title" = "显示磁盘活动菜单仪表";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1007"; */
+"1007.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "更新间隔(秒)："; ObjectID = "1010"; */
+"1010.title" = "更新间隔(秒)：";
+
+/* Class = "NSTextFieldCell"; title = "从磁盘菜单选择宗卷"; ObjectID = "1011"; */
+"1011.title" = "从磁盘菜单选择宗卷";
+
+/* Class = "NSTextFieldCell"; title = "(按着 Option 键将使动作相反)"; ObjectID = "1013"; */
+"1013.title" = "(按着 Option 键将使动作相反)";
+
+/* Class = "NSButtonCell"; title = "显示 CPU 菜单仪表"; ObjectID = "1014"; */
+"1014.title" = "显示 CPU 菜单仪表";
+
+/* Class = "NSTextFieldCell"; title = "更新间隔(秒)："; ObjectID = "1017"; */
+"1017.title" = "更新间隔(秒)：";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1018"; */
+"1018.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "用户载入"; ObjectID = "1019"; */
+"1019.title" = "用户载入";
+
+/* Class = "NSTextFieldCell"; title = "系统载入"; ObjectID = "1020"; */
+"1020.title" = "系统载入";
+
+/* Class = "NSTextFieldCell"; title = "显示百分比为："; ObjectID = "1022"; */
+"1022.title" = "显示百分比为：";
+
+/* Class = "NSButtonCell"; title = "将多处理器平均作为单个处理器显示"; ObjectID = "1024"; */
+"1024.title" = "将多处理器平均作为单个处理器显示";
+
+/* Class = "NSTextFieldCell"; title = "曲线宽度："; ObjectID = "1025"; */
+"1025.title" = "曲线宽度：";
+
+/* Class = "NSTextFieldCell"; title = "百分比显示"; ObjectID = "1026"; */
+"1026.title" = "百分比显示";
+
+/* Class = "NSTextFieldCell"; title = "曲线显示"; ObjectID = "1027"; */
+"1027.title" = "曲线显示";
+
+/* Class = "NSTextFieldCell"; title = "杂项"; ObjectID = "1028"; */
+"1028.title" = "杂项";
+
+/* Class = "NSTextFieldCell"; title = "颜色"; ObjectID = "1029"; */
+"1029.title" = "颜色";
+
+/* Class = "NSButtonCell"; title = "PowerMate 显示 CPU 使用情况为"; ObjectID = "1030"; */
+"1030.title" = "PowerMate 显示 CPU 使用情况为";
+
+/* Class = "NSButtonCell"; title = "显示内存菜单仪表"; ObjectID = "1032"; */
+"1032.title" = "显示内存菜单仪表";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1033"; */
+"1033.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "更新间隔(秒)："; ObjectID = "1035"; */
+"1035.title" = "更新间隔(秒)：";
+
+/* Class = "NSButtonCell"; title = "显示已使用/可用标签"; ObjectID = "1037"; */
+"1037.title" = "显示已使用/可用标签";
+
+/* Class = "NSTextFieldCell"; title = "通用"; ObjectID = "1038"; */
+"1038.title" = "通用";
+
+/* Class = "NSButtonCell"; title = "显示分页中活动检视器"; ObjectID = "1039"; */
+"1039.title" = "显示分页中活动检视器";
+
+/* Class = "NSTextFieldCell"; title = "颜色"; ObjectID = "1040"; */
+"1040.title" = "颜色";
+
+/* Class = "NSTextFieldCell"; title = "分页输入"; ObjectID = "1041"; */
+"1041.title" = "分页输入";
+
+/* Class = "NSTextFieldCell"; title = "分页输出"; ObjectID = "1042"; */
+"1042.title" = "分页输出";
+
+/* Class = "NSTextFieldCell"; title = "分页中比率"; ObjectID = "1043"; */
+"1043.title" = "分页中比率";
+
+/* Class = "NSTextFieldCell"; title = "曲线宽度："; ObjectID = "1044"; */
+"1044.title" = "曲线宽度：";
+
+/* Class = "NSTextFieldCell"; title = "曲线显示"; ObjectID = "1045"; */
+"1045.title" = "曲线显示";
+
+/* Class = "NSTextFieldCell"; title = "已激活"; ObjectID = "1047"; */
+"1047.title" = "已激活";
+
+/* Class = "NSTextFieldCell"; title = "未激活"; ObjectID = "1048"; */
+"1048.title" = "未激活";
+
+/* Class = "NSTextFieldCell"; title = "联动"; ObjectID = "1049"; */
+"1049.title" = "联动";
+
+/* Class = "NSTextFieldCell"; title = "可用"; ObjectID = "1050"; */
+"1050.title" = "可用";
+
+/* Class = "NSTextFieldCell"; title = "已使用"; ObjectID = "1051"; */
+"1051.title" = "已使用";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1053"; */
+"1053.title" = "x";
+
+/* Class = "NSButtonCell"; title = "显示网络菜单仪表"; ObjectID = "1054"; */
+"1054.title" = "显示网络菜单仪表";
+
+/* Class = "NSTextFieldCell"; title = "更新间隔(秒)："; ObjectID = "1056"; */
+"1056.title" = "更新间隔(秒)：";
+
+/* Class = "NSTextFieldCell"; title = "发送"; ObjectID = "1057"; */
+"1057.title" = "发送";
+
+/* Class = "NSTextFieldCell"; title = "接收"; ObjectID = "1058"; */
+"1058.title" = "接收";
+
+/* Class = "NSButtonCell"; title = "显示吞吐量标签(发/收)"; ObjectID = "1060"; */
+"1060.title" = "显示吞吐量标签(发/收)";
+
+/* Class = "NSButtonCell"; title = "忽略低于 1KB/s 的数值"; ObjectID = "1061"; */
+"1061.title" = "忽略低于 1KB/s 的数值";
+
+/* Class = "NSTextFieldCell"; title = "曲线样式："; ObjectID = "1062"; */
+"1062.title" = "曲线样式：";
+
+/* Class = "NSTextFieldCell"; title = "曲线宽度："; ObjectID = "1063"; */
+"1063.title" = "曲线宽度：";
+
+/* Class = "NSTextFieldCell"; title = "吞吐量显示"; ObjectID = "1065"; */
+"1065.title" = "吞吐量显示";
+
+/* Class = "NSTextFieldCell"; title = "曲线显示"; ObjectID = "1066"; */
+"1066.title" = "曲线显示";
+
+/* Class = "NSTextFieldCell"; title = "颜色"; ObjectID = "1067"; */
+"1067.title" = "颜色";
+
+/* Class = "NSTextFieldCell"; title = "显示选择的接口："; ObjectID = "1068"; */
+"1068.title" = "显示选择的接口：";
+
+/* Class = "NSTextFieldCell"; title = "通用"; ObjectID = "1070"; */
+"1070.title" = "通用";
+
+/* Class = "NSTextFieldCell"; title = "显示进位："; ObjectID = "1071"; */
+"1071.title" = "显示进位：";
+
+/* Class = "NSTextFieldCell"; title = "显示进位中："; ObjectID = "1073"; */
+"1073.title" = "显示进位中：";
+
+/* Class = "NSTextFieldCell"; title = "显示方向："; ObjectID = "1075"; */
+"1075.title" = "显示方向：";
+
+/* Class = "NSTextFieldCell"; title = "未激活"; ObjectID = "1077"; */
+"1077.title" = "未激活";
+
+/* Class = "NSTextFieldCell"; title = "MenuMeters, © 2002-2014 Alex Harper (http://www.ragingmenace.com)"; ObjectID = "1078"; */
+"1078.title" = "MenuMeters, © 2002-2014 Alex Harper (http://www.ragingmenace.com)";
+
+/* Class = "NSTextFieldCell"; title = "Compressed"; ObjectID = "1081"; */
+"1081.title" = "Compressed";

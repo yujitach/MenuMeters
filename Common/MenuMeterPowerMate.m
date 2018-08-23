@@ -150,20 +150,26 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	}
 
 	// Install notifications for Powermate devices
-	err = IOServiceAddMatchingNotification(notifyPort,  kIOMatchedNotification,
+	err = IOServiceAddMatchingNotification(notifyPort,
+                                           kIOMatchedNotification,
 										   matchingDict,
-										   DeviceMatched, (__bridge void *)(self), &deviceMatchedIterator);
+										   DeviceMatched,
+                                           (__bridge void *)(self), &deviceMatchedIterator);
 	if (err != KERN_SUCCESS) {
-		CFRelease(matchingDict);
+        CFRelease(terminatedDict);
+
 		return nil;
 	}
-	err = IOServiceAddMatchingNotification(notifyPort, kIOTerminatedNotification,
+
+    err = IOServiceAddMatchingNotification(notifyPort,
+                                           kIOTerminatedNotification,
 										   terminatedDict,
-										   DeviceTerminated, (__bridge void *)(self), &deviceTerminatedIterator);
+										   DeviceTerminated,
+                                           (__bridge void *)(self), &deviceTerminatedIterator);
 	if (err != KERN_SUCCESS) {
-		CFRelease(matchingDict);
 		return nil;
 	}
+
 	// Pump the iterators and trigger first matching if the device is already
 	// present. Run termnated first so that matched iterator leaves us
 	// in correct state.
@@ -171,7 +177,6 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	DeviceMatched((__bridge void *)(self), deviceMatchedIterator);
 
 	return self;
-
 } // init
 
 - (void)dealloc {

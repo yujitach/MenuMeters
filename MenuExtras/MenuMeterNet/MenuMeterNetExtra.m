@@ -350,18 +350,20 @@
 			NSMutableDictionary *interfaceUpdateMenuItems = [NSMutableDictionary dictionary];
 			NSString *interfaceDescription = [details objectForKey:@"name"];
 			NSString *speed = nil;
-			BOOL foundSelectedInterface = NO;
 			// Best guess if this is an active interface, default to assume it is active
 			BOOL isActiveInterface = YES;
-			if ([details objectForKey:@"linkactive"]) {
+			
+            if ([details objectForKey:@"linkactive"]) {
 				isActiveInterface = [[details objectForKey:@"linkactive"] boolValue];
 			}
-			if ([details objectForKey:@"pppstatus"]) {
+			
+            if ([details objectForKey:@"pppstatus"]) {
 				if ([(NSNumber *)[[details objectForKey:@"pppstatus"] objectForKey:@"status"] unsignedIntValue] == PPP_IDLE) {
 					isActiveInterface = NO;
 				}
 			}
-			// Calc speed
+			
+            // Calc speed
 			if ([details objectForKey:@"linkspeed"] && isActiveInterface) {
 				if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000000) {
 					speed = [NSString stringWithFormat:@" %.0f%@",
@@ -654,6 +656,7 @@
 				[pppControlItem setRepresentedObject:[details objectForKey:@"service"]];
 				[interfaceSubmenu addItem:[NSMenuItem separatorItem]];
 			}
+            
 			// Add interface selection submenus
 			BOOL hadInterfaceSelector = NO;
 			if ([[details objectForKey:@"primary"] boolValue]) {
@@ -669,6 +672,7 @@
 				}
 				hadInterfaceSelector = YES;
 			}
+            
 			// Other choose interface
 			if ([details objectForKey:@"devicename"]) {
 				NSMenuItem *interfaceSwitchItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kSelectInterfaceTitle]
@@ -682,30 +686,28 @@
 				}
 				hadInterfaceSelector = YES;
 			}
-			if (hadInterfaceSelector) {
+			
+            if (hadInterfaceSelector) {
 				[interfaceSubmenu addItem:[NSMenuItem separatorItem]];
 			}
+            
 			// Checkmark the interface menu if we haven't found one already
-			if (!foundSelectedInterface) {
-				if ([[ourPrefs netPreferInterface] isEqualToString:kNetPrimaryInterface] && [[details objectForKey:@"primary"] boolValue]) {
+			if ([[ourPrefs netPreferInterface] isEqualToString:kNetPrimaryInterface] && [[details objectForKey:@"primary"] boolValue]) {
 					// This is the primary and the primary is preferred
 					[titleItem setState:NSOnState];
-					foundSelectedInterface = YES;
-				} else if (preferredInterfaceConfig && [details objectForKey:@"devicename"]) {
-					// Is this device the one being graphed?
-					if ([[details objectForKey:@"devicename"] isEqualToString:[preferredInterfaceConfig objectForKey:@"name"]] ||
-						[[details objectForKey:@"devicename"] isEqualToString:[preferredInterfaceConfig objectForKey:@"statname"]]) {
-						[titleItem setState:NSOnState];
-						foundSelectedInterface = YES;
-					}
-				} else if (preferredInterfaceConfig && [details objectForKey:@"devicepppname"]) {
-					if ([[details objectForKey:@"devicepppname"] isEqualToString:[preferredInterfaceConfig objectForKey:@"name"]] ||
-						[[details objectForKey:@"devicepppname"] isEqualToString:[preferredInterfaceConfig objectForKey:@"statname"]]) {
-						[titleItem setState:NSOnState];
-						foundSelectedInterface = YES;
-					}
+			} else if (preferredInterfaceConfig && [details objectForKey:@"devicename"]) {
+				// Is this device the one being graphed?
+				if ([[details objectForKey:@"devicename"] isEqualToString:[preferredInterfaceConfig objectForKey:@"name"]] ||
+					[[details objectForKey:@"devicename"] isEqualToString:[preferredInterfaceConfig objectForKey:@"statname"]]) {
+					[titleItem setState:NSOnState];
+				}
+			} else if (preferredInterfaceConfig && [details objectForKey:@"devicepppname"]) {
+				if ([[details objectForKey:@"devicepppname"] isEqualToString:[preferredInterfaceConfig objectForKey:@"name"]] ||
+					[[details objectForKey:@"devicepppname"] isEqualToString:[preferredInterfaceConfig objectForKey:@"statname"]]) {
+                    [titleItem setState:NSOnState];
 				}
 			}
+			
 			// Copy IP
 			NSMenuItem *copyIPItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kCopyIPv4Title]
 																			   action:@selector(copyAddress:)
