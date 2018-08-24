@@ -126,7 +126,7 @@ uint32_t cpuCount;
 	if (err != KERN_SUCCESS) {
 		return nil;
 	}
-	priorCPUTicks = malloc(processorCount * sizeof(struct processor_cpu_load_info));
+	priorCPUTicks = (processor_cpu_load_info_t) malloc(processorCount * sizeof(struct processor_cpu_load_info));
 	for (natural_t i = 0; i < processorCount; i++) {
 		for (natural_t j = 0; j < CPU_STATE_MAX; j++) {
 			priorCPUTicks[i].cpu_ticks[j] = processorTickInfo[i].cpu_ticks[j];
@@ -203,6 +203,7 @@ uint32_t cpuCount;
 	mach_msg_type_number_t count = PROCESSOR_SET_LOAD_INFO_COUNT;
 	kern_return_t err = processor_set_statistics(processorSet, PROCESSOR_SET_LOAD_INFO,
 												 (processor_set_info_t)&loadInfo, &count);
+    
 	if (err != KERN_SUCCESS) {
 		return [localizedStrings objectForKey:kNoInfoErrorMessage];
 	} else {

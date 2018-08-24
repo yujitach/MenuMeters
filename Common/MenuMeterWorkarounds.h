@@ -36,6 +36,7 @@ __private_extern__ BOOL OSIsSnowLeopardOrLater(void);
 __private_extern__ BOOL OSIsMavericksOrLater(void);
 
 // Menu live updating (CFIndex is right-sized everywhere)
+__private_extern__ void LiveUpdateMenuItemTitleAndVisibility(NSMenu *, CFIndex, NSString *, BOOL);
 __private_extern__ void LiveUpdateMenuItemTitle(NSMenu *, CFIndex, NSString *);
 __private_extern__ void LiveUpdateMenu(NSMenu *);
 

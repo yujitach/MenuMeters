@@ -54,6 +54,8 @@
 	IBOutlet NSSlider				*cpuInterval;
 	IBOutlet NSPopUpButton			*cpuPercentMode;
 	IBOutlet NSTextField			*cpuPercentModeLabel;
+    IBOutlet NSSlider               *cpuMaxProcessCount;
+    IBOutlet NSTextField            *cpuMaxProcessCountCountLabel;
 	IBOutlet NSSlider				*cpuGraphWidth;
 	IBOutlet NSTextField			*cpuGraphWidthLabel;
 	IBOutlet NSSlider				*cpuHorizontalRows;
@@ -95,7 +97,7 @@
 	IBOutlet NSTextField			*memPageinColorLabel;
 	IBOutlet NSColorWell			*memPageoutColor;
 	IBOutlet NSTextField			*memPageoutColorLabel;
-  IBOutlet NSButton         *memPressureMode;
+    IBOutlet NSButton               *memPressureMode;
 	// Net pane controls
 	IBOutlet NSButton				*netMeterToggle;
 	IBOutlet NSPopUpButton			*netDisplayMode;

@@ -148,6 +148,13 @@
 				defaultValue:kCPUPercentDisplayDefault];
 } // cpuPercentDisplay
 
+- (int)cpuMaxProcessCount {
+    return [self loadIntPref:kCPUMaxProcessCountPref
+                    lowBound:kCPUProcessCountMin
+                   highBound:kCPUrocessCountMax
+                defaultValue:kCPUProcessCountDefault];
+} // cpuMaxProcessCount
+
 - (int)cpuGraphLength {
 	return [self loadIntPref:kCPUGraphLengthPref
 					lowBound:kCPUGraphWidthMin
@@ -211,6 +218,10 @@
 - (void)saveCpuPercentDisplay:(int)mode {
 	[self saveIntPref:kCPUPercentDisplayPref value:mode];
 } // saveCpuPercentSplit
+
+- (void)saveCpuMaxProcessCount:(int)maxCount {
+    [self saveIntPref:kCPUMaxProcessCountPref value:maxCount];
+} // saveCpuMaxProcessCount
 
 - (void)saveCpuGraphLength:(int)length {
 	[self saveIntPref:kCPUGraphLengthPref value:length];

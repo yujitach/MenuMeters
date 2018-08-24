@@ -73,6 +73,7 @@
 #define kUptimeTitle						@"Uptime:"
 #define kTaskThreadTitle					@"Tasks/Threads:"
 #define kLoadAverageTitle					@"Load Average (1m, 5m, 15m):"
+#define kProcessTitle                       @"Top CPU Intensive Processes:"
 #define kOpenProcessViewerTitle				@"Open Process Viewer"
 #define kOpenActivityMonitorTitle			@"Open Activity Monitor"
 #define kOpenConsoleTitle					@"Open Console"
@@ -105,9 +106,10 @@
 
 	// Data gatherers and storage
 	cpuInfo = [[MenuMeterCPUStats alloc] init];
+    cpuTopProcesses = [[MenuMeterCPUTopProcesses alloc] init];
 	uptimeInfo = [[MenuMeterUptime alloc] init];
 	loadHistory = [NSMutableArray array];
-	if (!(cpuInfo && uptimeInfo && loadHistory)) {
+	if (!(cpuInfo && uptimeInfo && loadHistory && cpuTopProcesses)) {
 		NSLog(@"MenuMeterCPU unable to load data gatherers or storage. Abort.");
 		return nil;
 	}
@@ -163,6 +165,18 @@
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
+    // Add top kCPUrocessCountMax most CPU intensive processes
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kProcessTitle value:nil table:nil]
+                                                  action:nil
+                                           keyEquivalent:@""];
+    [menuItem setEnabled:NO];
+    
+    // as this list is "static" unfortunately we need all of the kCPUrocessCountMax menu items and hide/show later the un-wanted/wanted ones
+    for (NSInteger ndx = 0; ndx < kCPUrocessCountMax; ++ndx) {
+        menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+        [menuItem setEnabled:NO];
+    }
+    
 	// And the "Open Process Viewer"/"Open Activity Monitor" and "Open Console" item
 	[extraMenu addItem:[NSMenuItem separatorItem]];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenActivityMonitorTitle value:nil table:nil]
@@ -300,17 +314,55 @@
 	// Update the various displays starting with uptime
 	NSString *title = [NSString stringWithFormat:kMenuIndentFormat, [uptimeInfo uptime]];
 	if (title) LiveUpdateMenuItemTitle(extraMenu, kCPUUptimeInfoMenuIndex, title);
+    
 	// Tasks
 	title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo currentProcessorTasks]];
 	if (title) LiveUpdateMenuItemTitle(extraMenu, kCPUTaskInfoMenuIndex, title);
+    
 	// Load
 	title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo loadAverage]];
 	if (title) LiveUpdateMenuItemTitle(extraMenu, kCPULoadInfoMenuIndex, title);
-
+    
+    // Top CPU intensive processes
+    NSArray* processes = ([ourPrefs cpuMaxProcessCount] > 0 ? [cpuTopProcesses runningProcessesByCPUUsage:[ourPrefs cpuMaxProcessCount]] : nil);    
+    LiveUpdateMenuItemTitleAndVisibility(extraMenu, kCPUProcessLabelMenuIndex, nil, (processes == nil));
+    for (NSInteger ndx = 0; ndx < kCPUrocessCountMax; ++ndx) {
+        if (ndx < processes.count) {
+            title = [NSString stringWithFormat:kMenuIndentFormat, [NSString stringWithFormat:@"%@ (%.1f%%)", processes[ndx][kProcessListItemProcessNameKey], [processes[ndx][kProcessListItemCPUKey] floatValue]]];
+            LiveUpdateMenuItemTitleAndVisibility(extraMenu, kCPUProcessMenuIndex + ndx, title, (title.length == 0));
+        }
+        else {
+            LiveUpdateMenuItemTitleAndVisibility(extraMenu, kCPUProcessMenuIndex + ndx, nil, YES);
+        }
+    }
+    
 	// Send the menu back to SystemUIServer
 	return extraMenu;
 
 } // menu
+
+///////////////////////////////////////////////////////////////
+//
+//    NSMenuDelegate
+//
+///////////////////////////////////////////////////////////////
+
+- (void)menuWillOpen:(NSMenu *)menu {
+    
+    if ([ourPrefs cpuMaxProcessCount] > 0)
+        [cpuTopProcesses startUpdateProcessList];
+     
+    [super menuWillOpen:menu];
+    
+} // menuWillOpen:
+
+- (void)menuDidClose:(NSMenu *)menu {
+
+    [cpuTopProcesses stopUpdateProcessList];
+
+    [super menuDidClose:menu];
+
+} // menuDidClose:
 
 ///////////////////////////////////////////////////////////////
 //

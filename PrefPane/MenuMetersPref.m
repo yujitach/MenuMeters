@@ -127,8 +127,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 
 	// On first load set the version string with a clickable link
-        //NSString*webpageURL=@"http://ragingmenace.com/";
-        NSString*webpageURL=@"http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/";
+    //NSString*webpageURL=@"http://ragingmenace.com/";
+    NSString* webpageURL=@"http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/";
 	NSMutableAttributedString *versionInfoString =
 		[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleGetInfoString"];
 	NSMutableAttributedString *linkedVersionString =
@@ -367,6 +367,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveCpuInterval:[cpuInterval doubleValue]];
 	} else if (sender == cpuPercentMode) {
 		[ourPrefs saveCpuPercentDisplay:(int)[cpuPercentMode indexOfSelectedItem]];
+    } else if (sender == cpuMaxProcessCount) {
+        [ourPrefs saveCpuMaxProcessCount:(int)[cpuMaxProcessCount intValue]];
 	} else if (sender == cpuGraphWidth) {
 		[ourPrefs saveCpuGraphLength:[cpuGraphWidth intValue]];
     } else if (sender == cpuHorizontalRows) {
@@ -416,6 +418,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuInterval setDoubleValue:[ourPrefs cpuInterval]];
 	[cpuPercentMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];
+    [cpuMaxProcessCount setIntValue:[ourPrefs cpuMaxProcessCount]];
+    [cpuMaxProcessCountCountLabel setStringValue:[NSString stringWithFormat:NSLocalizedString(@"(%d)", @"DO NOT LOCALIZE!!!"),
+                                                  (short)[ourPrefs cpuMaxProcessCount]]];
 	[cpuGraphWidth setIntValue:[ourPrefs cpuGraphLength]];
     [cpuHorizontalRows setIntValue:[ourPrefs cpuHorizontalRows]];
     [cpuMenuWidth setIntValue:[ourPrefs cpuMenuWidth]];
@@ -553,8 +558,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveMemUsedFreeLabel:(([memFreeUsedLabeling state] == NSOnState) ? YES : NO)];
 	} else if (sender == memPageIndicator) {
 		[ourPrefs saveMemPageIndicator:(([memPageIndicator state] == NSOnState) ? YES : NO)];
-  } else if (sender == memPressureMode) {
-    [ourPrefs saveMemPressure:(([memPressureMode state] == NSOnState) ? YES : NO)];
+    } else if (sender == memPressureMode) {
+        [ourPrefs saveMemPressure:(([memPressureMode state] == NSOnState) ? YES : NO)];
 	} else if (sender == memGraphWidth) {
 		[ourPrefs saveMemGraphLength:[memGraphWidth intValue]];
 	} else if (sender == memActiveColor) {
@@ -581,7 +586,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[memInterval setDoubleValue:[ourPrefs memInterval]];
 	[memFreeUsedLabeling setState:([ourPrefs memUsedFreeLabel] ? NSOnState : NSOffState)];
 	[memPageIndicator setState:([ourPrefs memPageIndicator] ? NSOnState : NSOffState)];
-  [memPressureMode setState:([ourPrefs memPressure] ? NSOnState : NSOffState)];
+    [memPressureMode setState:([ourPrefs memPressure] ? NSOnState : NSOffState)];
 	[memGraphWidth setIntValue:[ourPrefs memGraphLength]];
 	[memActiveColor setColor:[ourPrefs memActiveColor]];
 	[memInactiveColor setColor:[ourPrefs memInactiveColor]];
@@ -621,12 +626,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[memPageinColor setEnabled:NO];
 		[memPageoutColor setEnabled:NO];
 	}
-  if (([memDisplayMode indexOfSelectedItem] +1) == kMemDisplayBar) {
-    [memPressureMode setEnabled:YES];
-  }
-  else {
-    [memPressureMode setEnabled:NO];
-  }
+    if (([memDisplayMode indexOfSelectedItem] +1) == kMemDisplayBar) {
+        [memPressureMode setEnabled:YES];
+    }
+    else {
+        [memPressureMode setEnabled:NO];
+    }
 
 	// Write prefs and notify
 	[ourPrefs syncWithDisk];

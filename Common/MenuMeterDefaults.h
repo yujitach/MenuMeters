@@ -41,6 +41,7 @@
 - (double)cpuInterval;
 - (int)cpuDisplayMode;
 - (int)cpuPercentDisplay;
+- (int)cpuMaxProcessCount;
 - (int)cpuGraphLength;
 - (int)cpuHorizontalRows;
 - (int)cpuMenuWidth;
@@ -54,6 +55,7 @@
 - (void)saveCpuInterval:(double)interval;
 - (void)saveCpuDisplayMode:(int)mode;
 - (void)saveCpuPercentDisplay:(int)mode;
+- (void)saveCpuMaxProcessCount:(int)maxCount;
 - (void)saveCpuGraphLength:(int)length;
 - (void)saveCpuHorizontalRows:(int)rows;
 - (void)saveCpuMenuWidth:(int)width;
