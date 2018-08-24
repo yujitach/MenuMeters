@@ -29,6 +29,7 @@
 #import "MenuMeterCPU.h"
 #import "MenuMeterCPUView.h"
 #import "MenuMeterCPUStats.h"
+#import "MenuMeterCPUTopProcesses.h"
 #import "MenuMeterUptime.h"
 #import "MenuMeterPowerMate.h"
 #import "MenuMeterWorkarounds.h"
@@ -43,6 +44,7 @@
 	MenuMeterDefaults				*ourPrefs;
 	// Info gatherers
 	MenuMeterCPUStats				*cpuInfo;
+    MenuMeterCPUTopProcesses        *cpuTopProcesses;
 	MenuMeterUptime					*uptimeInfo;
 	// PowerMate support
 	MenuMeterPowerMate				*powerMate;

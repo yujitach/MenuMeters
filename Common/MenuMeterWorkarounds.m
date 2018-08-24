@@ -92,6 +92,10 @@ __private_extern__ BOOL OSIsMavericksOrLater(void) {
 }
 
 __private_extern__ void LiveUpdateMenuItemTitle(NSMenu *menu, CFIndex index, NSString *title) {
+    LiveUpdateMenuItemTitleAndVisibility(menu, index, title, NO);
+}
+
+__private_extern__ void LiveUpdateMenuItemTitleAndVisibility(NSMenu *menu, CFIndex index, NSString *title, BOOL hidden) {
 
 	// Update a menu itm various displays. Under 10.4 the Carbon and Cocoa menus
 	// were not kept in sync. This problem disappeared later (not a problem in
@@ -112,7 +116,9 @@ __private_extern__ void LiveUpdateMenuItemTitle(NSMenu *menu, CFIndex index, NSS
 									(CFStringRef)title);
 	}
 #endif
-	[[menu itemAtIndex:index] setTitle:title];
+    if (title)
+        [[menu itemAtIndex:index] setTitle:title];
+    [[menu itemAtIndex:index] setHidden:hidden];
 
 } // LiveUpdateMenuItemTitle
 
