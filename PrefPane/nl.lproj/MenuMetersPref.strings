@@ -110,95 +110,95 @@
 /* Class = "NSTextFieldCell"; title = "Grafiekweergave"; ObjectID = "854"; */
 "854.title" = "Grafiekweergave";
 
-/* Class = "NSTextFieldCell"; title = "Algemeen"; ObjectID = "857"; */
-"857.title" = "Algemeen";
+/* Class = "NSTextFieldCell"; title = "Algemeen"; ObjectID = "1008"; */
+"1008.title" = "Algemeen";
 
-/* Class = "NSTextFieldCell"; title = "Kleuren"; ObjectID = "860"; */
-"860.title" = "Kleuren";
+/* Class = "NSTextFieldCell"; title = "Kleuren"; ObjectID = "1011"; */
+"1011.title" = "Kleuren";
 
-/* Class = "NSButtonCell"; title = "PowerMate toont CPU-gebruik als"; ObjectID = "863"; */
-"863.title" = "PowerMate toont CPU-gebruik als";
+/* Class = "NSButtonCell"; title = "PowerMate toont CPU-gebruik als"; ObjectID = "1014"; */
+"1014.title" = "PowerMate toont CPU-gebruik als";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "866"; */
-"866.title" = "OtherViews";
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1017"; */
+"1017.title" = "OtherViews";
 
-/* Class = "NSMenuItem"; title = "inverse pulse"; ObjectID = "867"; */
-"867.title" = "inverse pulse";
+/* Class = "NSMenuItem"; title = "inverse pulse"; ObjectID = "1018"; */
+"1018.title" = "inverse pulse";
 
-/* Class = "NSMenuItem"; title = "inverse glow"; ObjectID = "868"; */
-"868.title" = "inverse glow";
+/* Class = "NSMenuItem"; title = "inverse glow"; ObjectID = "1019"; */
+"1019.title" = "inverse glow";
 
-/* Class = "NSMenuItem"; title = "glow"; ObjectID = "869"; */
-"869.title" = "glow";
+/* Class = "NSMenuItem"; title = "glow"; ObjectID = "1020"; */
+"1020.title" = "glow";
 
-/* Class = "NSMenuItem"; title = "pulse"; ObjectID = "870"; */
-"870.title" = "pulse";
+/* Class = "NSMenuItem"; title = "pulse"; ObjectID = "1021"; */
+"1021.title" = "pulse";
 
-/* Class = "NSTabViewItem"; label = "Geheugen"; ObjectID = "871"; */
+/* Class = "NSTabViewItem"; label = "Geheugen"; ObjectID = "1022"; */
 "871.label" = "Geheugen";
 
-/* Class = "NSButtonCell"; title = "Toon geheugen-MenuMeter"; ObjectID = "874"; */
-"874.title" = "Toon geheugen-MenuMeter";
+/* Class = "NSButtonCell"; title = "Toon geheugen-MenuMeter"; ObjectID = "1025"; */
+"1025.title" = "Toon geheugen-MenuMeter";
 
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "876"; */
-"876.title" = "x";
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1027"; */
+"1027.title" = "x";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "879"; */
-"879.title" = "OtherViews";
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1030"; */
+"1030.title" = "OtherViews";
 
-/* Class = "NSMenuItem"; title = "Totalen vrij / gebruikt"; ObjectID = "880"; */
-"880.title" = "Totalen vrij / gebruikt";
+/* Class = "NSMenuItem"; title = "Totalen vrij / gebruikt"; ObjectID = "1031"; */
+"1031.title" = "Totalen vrij / gebruikt";
 
-/* Class = "NSMenuItem"; title = "Geschiedenis"; ObjectID = "881"; */
-"881.title" = "Geschiedenis";
+/* Class = "NSMenuItem"; title = "Geschiedenis"; ObjectID = "1032"; */
+"1032.title" = "Geschiedenis";
 
-/* Class = "NSMenuItem"; title = "Taartgrafiek"; ObjectID = "882"; */
-"882.title" = "Taartgrafiek";
+/* Class = "NSMenuItem"; title = "Taartgrafiek"; ObjectID = "1033"; */
+"1033.title" = "Taartgrafiek";
 
-/* Class = "NSMenuItem"; title = "Staafgrafiek"; ObjectID = "883"; */
-"883.title" = "Staafgrafiek";
+/* Class = "NSMenuItem"; title = "Staafgrafiek"; ObjectID = "1034"; */
+"1034.title" = "Staafgrafiek";
 
-/* Class = "NSTextFieldCell"; title = "Ververs iedere (seconden):"; ObjectID = "885"; */
-"885.title" = "Ververs iedere (seconden):";
+/* Class = "NSTextFieldCell"; title = "Ververs iedere (seconden):"; ObjectID = "1036"; */
+"1036.title" = "Ververs iedere (seconden):";
 
-/* Class = "NSButtonCell"; title = "Anti-alias tekst"; ObjectID = "889"; */
-"889.title" = "Anti-alias tekst";
+/* Class = "NSButtonCell"; title = "Anti-alias tekst"; ObjectID = "1040"; */
+"1040.title" = "Anti-alias tekst";
 
-/* Class = "NSButtonCell"; title = "Toon labels voor vrij / gebruikt"; ObjectID = "891"; */
-"891.title" = "Toon labels voor vrij / gebruikt";
+/* Class = "NSButtonCell"; title = "Toon labels voor vrij / gebruikt"; ObjectID = "1042"; */
+"1042.title" = "Toon labels voor vrij / gebruikt";
 
-/* Class = "NSTextFieldCell"; title = "Algemeen"; ObjectID = "893"; */
-"893.title" = "Algemeen";
+/* Class = "NSTextFieldCell"; title = "Algemeen"; ObjectID = "1044"; */
+"1044.title" = "Algemeen";
 
-/* Class = "NSButtonCell"; title = "Toon indicatie van 'paging'-activiteit"; ObjectID = "896"; */
-"896.title" = "Toon indicatie van 'paging'-activiteit";
+/* Class = "NSButtonCell"; title = "Toon indicatie van 'paging'-activiteit"; ObjectID = "1047"; */
+"1047.title" = "Toon indicatie van 'paging'-activiteit";
 
-/* Class = "NSTextFieldCell"; title = "Kleuren"; ObjectID = "898"; */
-"898.title" = "Kleuren";
+/* Class = "NSTextFieldCell"; title = "Kleuren"; ObjectID = "1049"; */
+"1049.title" = "Kleuren";
 
-/* Class = "NSTextFieldCell"; title = "page-in"; ObjectID = "902"; */
-"902.title" = "page-in";
+/* Class = "NSTextFieldCell"; title = "page-in"; ObjectID = "1053"; */
+"1053.title" = "page-in";
 
-/* Class = "NSTextFieldCell"; title = "page-out"; ObjectID = "905"; */
-"905.title" = "page-out";
+/* Class = "NSTextFieldCell"; title = "page-out"; ObjectID = "1056"; */
+"1056.title" = "page-out";
 
-/* Class = "NSTextFieldCell"; title = "paging"; ObjectID = "908"; */
-"908.title" = "paging";
+/* Class = "NSTextFieldCell"; title = "paging"; ObjectID = "1059"; */
+"1059.title" = "paging";
 
-/* Class = "NSTextFieldCell"; title = "Grafiekbreedte"; ObjectID = "910"; */
-"910.title" = "Grafiekbreedte";
+/* Class = "NSTextFieldCell"; title = "Grafiekbreedte"; ObjectID = "1061"; */
+"1061.title" = "Grafiekbreedte";
 
-/* Class = "NSTextFieldCell"; title = "Weergave"; ObjectID = "912"; */
-"912.title" = "Weergave";
+/* Class = "NSTextFieldCell"; title = "Weergave"; ObjectID = "1063"; */
+"1063.title" = "Weergave";
 
-/* Class = "NSTextFieldCell"; title = "Actief"; ObjectID = "923"; */
-"923.title" = "Actief";
+/* Class = "NSTextFieldCell"; title = "Actief"; ObjectID = "1074"; */
+"1074.title" = "Actief";
 
-/* Class = "NSTextFieldCell"; title = "Inactief"; ObjectID = "925"; */
-"925.title" = "Inactief";
+/* Class = "NSTextFieldCell"; title = "Inactief"; ObjectID = "1076"; */
+"1076.title" = "Inactief";
 
-/* Class = "NSTextFieldCell"; title = "'wired'"; ObjectID = "927"; */
-"927.title" = "'wired'";
+/* Class = "NSTextFieldCell"; title = "'wired'"; ObjectID = "1078"; */
+"1078.title" = "'wired'";
 
 /* Class = "NSTextFieldCell"; title = "Vrij"; ObjectID = "932"; */
 "932.title" = "Vrij";
@@ -206,20 +206,20 @@
 /* Class = "NSTextFieldCell"; title = "Gebruikt"; ObjectID = "934"; */
 "934.title" = "Gebruikt";
 
-/* Class = "NSTabViewItem"; label = "Netwerk"; ObjectID = "936"; */
+/* Class = "NSTabViewItem"; label = "Netwerk"; ObjectID = ""; */
 "936.label" = "Netwerk";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "941"; */
 "941.title" = "x";
 
-/* Class = "NSButtonCell"; title = "Toon netwerk-MenuMeter"; ObjectID = "943"; */
-"943.title" = "Toon netwerk-MenuMeter";
+/* Class = "NSButtonCell"; title = "Toon netwerk-MenuMeter"; ObjectID = ""; */
+".title" = "Toon netwerk-MenuMeter";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "946"; */
-"946.title" = "OtherViews";
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = ""; */
+".title" = "OtherViews";
 
-/* Class = "NSMenuItem"; title = "Grafiek, pijlen en doorvoer"; ObjectID = "947"; */
-"947.title" = "Grafiek, pijlen en doorvoer";
+/* Class = "NSMenuItem"; title = "Grafiek, pijlen en doorvoer"; ObjectID = ""; */
+".title" = "Grafiek, pijlen en doorvoer";
 
 /* Class = "NSMenuItem"; title = "Grafiek en doorvoer"; ObjectID = "948"; */
 "948.title" = "Grafiek en doorvoer";
