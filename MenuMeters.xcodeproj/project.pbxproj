@@ -12,7 +12,6 @@
 		332B0F8F1E0381780020CCBB /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
 		3345DD2C1B6BE7DB003843FC /* MenuMetersApp.app in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1701B69B72500915D5D /* MenuMetersApp.app */; };
 		3345DD2F1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		336B59431E03BA68006DA445 /* MenuMeters.pch in Headers */ = {isa = PBXBuildFile; fileRef = 336B59401E03BA68006DA445 /* MenuMeters.pch */; };
 		3383C1741B69B72600915D5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1731B69B72600915D5D /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3383C1771B69B72600915D5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1761B69B72600915D5D /* main.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3383C1821B69B88500915D5D /* MenuMeterPowerMate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBBF750463514700A804AF /* MenuMeterPowerMate.m */; };
@@ -68,8 +67,6 @@
 		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
 		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
 		3384540C2105C3AA00D4DA92 /* MenuMetersPref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */; };
-		9023745B1E91612100B096A8 /* InfoPlistPreprocessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */; };
-		908780A81FB087B90053DDC5 /* EMCLoginItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 908780A71FB087B90053DDC5 /* EMCLoginItem.h */; };
 		908780AA1FB087D70053DDC5 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADEB0E04F19C00348443 /* Carbon.framework */; };
@@ -79,14 +76,6 @@
 		D41C27C910490E3300A8E325 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D478F451101A8AE100C79173 /* IOKit.framework */; };
 		D46E02B9104BA13500BA590F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403AD3B0E04E99C00348443 /* Foundation.framework */; };
 		D4E8531319F6CD0300E25BBC /* MenuMeterWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */; };
-		D4ECB39705FE72E100954E26 /* MenuMeterCPU.h in Headers */ = {isa = PBXBuildFile; fileRef = D40DB4C403D260E800A87BC9 /* MenuMeterCPU.h */; };
-		D4ECB39805FE72E100954E26 /* MenuMeterDisk.h in Headers */ = {isa = PBXBuildFile; fileRef = D40DB4C503D260E800A87BC9 /* MenuMeterDisk.h */; };
-		D4ECB39905FE72E100954E26 /* MenuMeterMem.h in Headers */ = {isa = PBXBuildFile; fileRef = D40DB4C203D260E800A87BC9 /* MenuMeterMem.h */; };
-		D4ECB39A05FE72E100954E26 /* MenuMeterNet.h in Headers */ = {isa = PBXBuildFile; fileRef = D40DB4C603D260E800A87BC9 /* MenuMeterNet.h */; };
-		D4ECB39B05FE72E100954E26 /* MenuMeterDefaults.h in Headers */ = {isa = PBXBuildFile; fileRef = D432074803D3DCBA00A87BC9 /* MenuMeterDefaults.h */; };
-		D4ECB39C05FE72E100954E26 /* MenuMeterPowerMate.h in Headers */ = {isa = PBXBuildFile; fileRef = D4BBBF740463514700A804AF /* MenuMeterPowerMate.h */; };
-		D4ECB39D05FE72E100954E26 /* MenuMeters.h in Headers */ = {isa = PBXBuildFile; fileRef = D4510D9104F2F0FD00A87BC9 /* MenuMeters.h */; };
-		D4ECB39E05FE72E100954E26 /* MenuMetersPref.h in Headers */ = {isa = PBXBuildFile; fileRef = D4E4BFA004F333B100A87BC9 /* MenuMetersPref.h */; };
 		D4ECB3A105FE72E100954E26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4E4BF8F04F333B100A87BC9 /* Localizable.strings */; };
 		D4ECB3A305FE72E100954E26 /* MenuMetersPref.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4E4BF9B04F333B100A87BC9 /* MenuMetersPref.tiff */; };
 		D4ECB3A405FE72E100954E26 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4E4BF9C04F333B100A87BC9 /* InfoPlist.strings */; };
@@ -249,7 +238,7 @@
 		D4E4BF9004F333B100A87BC9 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4E4BF9404F333B100A87BC9 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4E4BF9B04F333B100A87BC9 /* MenuMetersPref.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = MenuMetersPref.tiff; sourceTree = "<group>"; };
-		D4E4BF9C04F333B100A87BC9 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		D4E4BF9C04F333B100A87BC9 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		D4E4BFA004F333B100A87BC9 /* MenuMetersPref.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MenuMetersPref.h; sourceTree = "<group>"; };
 		D4E4BFA104F333B100A87BC9 /* MenuMetersPref.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuMetersPref.m; sourceTree = "<group>"; };
 		D4E4BFA704F333B100A87BC9 /* CubeRootScale.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = CubeRootScale.tiff; sourceTree = "<group>"; };
@@ -625,27 +614,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		D4ECB39605FE72E100954E26 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4ECB39705FE72E100954E26 /* MenuMeterCPU.h in Headers */,
-				336B59431E03BA68006DA445 /* MenuMeters.pch in Headers */,
-				D4ECB39805FE72E100954E26 /* MenuMeterDisk.h in Headers */,
-				D4ECB39905FE72E100954E26 /* MenuMeterMem.h in Headers */,
-				D4ECB39A05FE72E100954E26 /* MenuMeterNet.h in Headers */,
-				D4ECB39B05FE72E100954E26 /* MenuMeterDefaults.h in Headers */,
-				9023745B1E91612100B096A8 /* InfoPlistPreprocessor.h in Headers */,
-				D4ECB39C05FE72E100954E26 /* MenuMeterPowerMate.h in Headers */,
-				D4ECB39D05FE72E100954E26 /* MenuMeters.h in Headers */,
-				908780A81FB087B90053DDC5 /* EMCLoginItem.h in Headers */,
-				D4ECB39E05FE72E100954E26 /* MenuMetersPref.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		3383C16F1B69B72500915D5D /* MenuMetersApp */ = {
 			isa = PBXNativeTarget;
@@ -668,12 +636,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4AFB339087726B20023B640 /* Build configuration list for PBXNativeTarget "PrefPane" */;
 			buildPhases = (
-				D4ECB39605FE72E100954E26 /* Headers */,
 				D4ECB39F05FE72E100954E26 /* Resources */,
 				D4ECB3A905FE72E100954E26 /* Sources */,
 				D4ECB3AD05FE72E100954E26 /* Frameworks */,
 				D4ECB3B305FE72E100954E26 /* Rez */,
-				D4A20EF2177970FD00FD70EB /* Recopy Signed Bundles */,
 			);
 			buildRules = (
 			);
@@ -692,7 +658,7 @@
 		D40DB4A703D25F2100A87BC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				TargetAttributes = {
 					3383C16F1B69B72500915D5D = {
 						CreatedOnToolsVersion = 7.0;
@@ -795,23 +761,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXRezBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		D4A20EF2177970FD00FD70EB /* Recopy Signed Bundles */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Recopy Signed Bundles";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Workaround Xcode bug where \"Copy Bundle Resources\" changes code signed binaries by copying them again.\nexit 0\nset -e\ncd \"${BUILT_PRODUCTS_DIR}\"\nrsync -rltE --delete --force \"MenuMeterDefaults.bundle/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterDefaults.bundle/\"\nrsync -rltE --delete --force \"MenuMeterNet.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterNet.menu/\"\nrsync -rltE --delete --force \"MenuMeterMem.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterMem.menu/\"\nrsync -rltE --delete --force \"MenuMeterDisk.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterDisk.menu/\"\nrsync -rltE --delete --force \"MenuMeterCPU.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuMeterCPU.menu/\"\nrsync -rltE --delete --force \"${PROJECT_DIR}/MenuCracker/MenuCracker.menu/\" \"${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MenuCracker.menu/\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3383C16C1B69B72500915D5D /* Sources */ = {
@@ -1077,10 +1026,10 @@
 		D4AFB33A087726B20023B640 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PREFIX_HEADER = MenuMeters.pch;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = PrefPane/Info.plist;
@@ -1206,10 +1155,10 @@
 		D4CD20470D88E34100481A51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
-				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_PREFIX_HEADER = MenuMeters.pch;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				INFOPLIST_FILE = PrefPane/Info.plist;
