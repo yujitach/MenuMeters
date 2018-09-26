@@ -329,7 +329,19 @@
     for (NSInteger ndx = 0; ndx < kCPUrocessCountMax; ++ndx) {
         if (ndx < processes.count) {
             title = [NSString stringWithFormat:kMenuIndentFormat, [NSString stringWithFormat:@"%@ (%.1f%%)", processes[ndx][kProcessListItemProcessNameKey], [processes[ndx][kProcessListItemCPUKey] floatValue]]];
-            LiveUpdateMenuItemTitleAndVisibility(extraMenu, kCPUProcessMenuIndex + ndx, title, (title.length == 0));
+            NSMenuItem*mi=[extraMenu itemAtIndex: kCPUProcessMenuIndex + ndx];
+            mi.title=title;
+            mi.hidden=title.length==0;
+            
+            
+            NSNumber* pid=processes[ndx][kProcessListItemPIDKey];
+            NSRunningApplication*app=[NSRunningApplication runningApplicationWithProcessIdentifier:pid.intValue];
+            NSImage*icon=app.icon;
+            if(!icon){
+                icon=[[NSWorkspace sharedWorkspace] iconForFile:@"/bin/bash"];
+            }
+            icon.size=NSMakeSize(16, 16);
+            mi.image=icon;
         }
         else {
             LiveUpdateMenuItemTitleAndVisibility(extraMenu, kCPUProcessMenuIndex + ndx, nil, YES);
