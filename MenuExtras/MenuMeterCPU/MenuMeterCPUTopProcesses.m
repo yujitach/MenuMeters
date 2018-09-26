@@ -86,8 +86,8 @@ NSString* const kProcessListItemCPUKey           = @"cpuPercent";
             [self dealWithLine:x];
             buffer=[buffer substringFromIndex:i+1];
         }
+        [fh readInBackgroundAndNotifyForModes:@[NSRunLoopCommonModes]];
     }
-    [fh readInBackgroundAndNotifyForModes:@[NSRunLoopCommonModes]];
 }
     
 - (void)startUpdateProcessList {
@@ -95,7 +95,7 @@ NSString* const kProcessListItemCPUKey           = @"cpuPercent";
     buffer=[NSString string];
     task = [NSTask new];
     task.launchPath = @"/usr/bin/top";
-    task.arguments =[[NSString stringWithFormat:@"-s 1 -l 0 -c e -stats pid,cpu,uid,user,command -o cpu -n %@",  @(kCPUrocessCountMax)] componentsSeparatedByString:@" "];
+    task.arguments =[[NSString stringWithFormat:@"-s 1 -l 0 -stats pid,cpu,uid,user,command -o cpu -n %@",  @(kCPUrocessCountMax)] componentsSeparatedByString:@" "];
     
     pipe = [NSPipe pipe];
     task.standardOutput = pipe;
@@ -136,12 +136,12 @@ NSString* const kProcessListItemCPUKey           = @"cpuPercent";
             [x addObject:i];
         }
     }
-    
+    NSArray*commandName=[x subarrayWithRange:NSMakeRange(4,x.count-4)];
     NSDictionary* entry = @{ kProcessListItemPIDKey:x[0],
                              kProcessListItemCPUKey:x[1],
                              kProcessListItemUserIDKey:x[2],
                              kProcessListItemUserNameKey:x[3],
-                             kProcessListItemProcessNameKey:[self normalizedCommand:x[4]]
+                             kProcessListItemProcessNameKey:[self normalizedCommand:[commandName componentsJoinedByString:@" "]]
                              };
     [tempArray addObject:entry];
 }

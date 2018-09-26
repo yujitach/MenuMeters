@@ -328,7 +328,9 @@
     LiveUpdateMenuItemTitleAndVisibility(extraMenu, kCPUProcessLabelMenuIndex, nil, (processes == nil));
     for (NSInteger ndx = 0; ndx < kCPUrocessCountMax; ++ndx) {
         if (ndx < processes.count) {
-            title = [NSString stringWithFormat:kMenuIndentFormat, [NSString stringWithFormat:@"%@ (%.1f%%)", processes[ndx][kProcessListItemProcessNameKey], [processes[ndx][kProcessListItemCPUKey] floatValue]]];
+            NSString*name=processes[ndx][kProcessListItemProcessNameKey];
+            float percent=[processes[ndx][kProcessListItemCPUKey] floatValue];
+            title = [NSString stringWithFormat:kMenuIndentFormat, [NSString stringWithFormat:@"%@ (%.1f%%)", name,percent ]];
             NSMenuItem*mi=[extraMenu itemAtIndex: kCPUProcessMenuIndex + ndx];
             mi.title=title;
             mi.hidden=title.length==0;
@@ -338,7 +340,11 @@
             NSRunningApplication*app=[NSRunningApplication runningApplicationWithProcessIdentifier:pid.intValue];
             NSImage*icon=app.icon;
             if(!icon){
-                icon=[[NSWorkspace sharedWorkspace] iconForFile:@"/bin/bash"];
+                static NSImage*defaultIcon=nil;
+                if(!defaultIcon){
+                    defaultIcon=[[NSWorkspace sharedWorkspace] iconForFile:@"/bin/bash"];
+                }
+                icon=defaultIcon;
             }
             icon.size=NSMakeSize(16, 16);
             mi.image=icon;
