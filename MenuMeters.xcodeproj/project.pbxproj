@@ -67,6 +67,7 @@
 		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
 		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
 		3384540C2105C3AA00D4DA92 /* MenuMetersPref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */; };
+		33C9164A215BD88B00DEA006 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 33C91649215BD88B00DEA006 /* Base.lproj */; };
 		908780AA1FB087D70053DDC5 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADEB0E04F19C00348443 /* Carbon.framework */; };
@@ -129,6 +130,7 @@
 		338454102105C3B800D4DA92 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
 		338454112105C3BB00D4DA92 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
 		338454122105C3BD00D4DA92 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MenuMetersPref.strings"; sourceTree = "<group>"; };
+		33C91649215BD88B00DEA006 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
 		9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistPreprocessor.h; sourceTree = "<group>"; };
 		908780A71FB087B90053DDC5 /* EMCLoginItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
 		908780A91FB087D70053DDC5 /* EMCLoginItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 		33BA36D41B69E48300B4220E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33C91649215BD88B00DEA006 /* Base.lproj */,
 				3383C1DA1B69DD2D00915D5D /* English.lproj */,
 				3383C1DB1B69DD2D00915D5D /* French.lproj */,
 				3383C1DC1B69DD2D00915D5D /* German.lproj */,
@@ -706,6 +709,7 @@
 				3383C1E71B69DD2D00915D5D /* Japanese.lproj in Resources */,
 				3383C19D1B69D8D000915D5D /* Color ArrowsIdle.tiff in Resources */,
 				3383C1E41B69DD2D00915D5D /* German.lproj in Resources */,
+				33C9164A215BD88B00DEA006 /* Base.lproj in Resources */,
 				3383C19E1B69D8D000915D5D /* Color ArrowsReadWrite.tiff in Resources */,
 				3383C19F1B69D8D000915D5D /* Dark ArrowsIdle.tiff in Resources */,
 				3383C1A01B69D8D000915D5D /* Dark ArrowsRead.tiff in Resources */,
