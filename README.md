@@ -1,8 +1,10 @@
 # MenuMeters
-My fork of MenuMeters for El Capitan, Sierra and High Sierra.
+My fork of MenuMeters for El Capitan, Sierra, High Sierra and Mojave.
 
 # Usage:
-If you just want to use it, please go to http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/ and download the binary there. Note: as written there, you might need to log out and log in (or maybe to reboot) once to enable the new version.
+If you just want to use it, please go to http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/ or https://github.com/yujitach/MenuMeters/releases and download the binary. The detailed installation instruction is given in the former.
+
+Note: as written there, you might need to log out and log in (or maybe to reboot) once to enable the new version.
 
 # Other versions:
 There are further forks of my version of MenuMeters, which implement more features. You might want to try them out:
