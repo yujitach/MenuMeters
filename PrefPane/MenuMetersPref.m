@@ -442,7 +442,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     }
     else {
         [cpuAvgProcs setEnabled:YES];
-        [cpuPercentModeLabel setTextColor:[NSColor blackColor]];
+        [cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
         [cpuAvgLowerHalfProcs setEnabled:NO];
     }
     if ([cpuAvgProcs state] == NSOnState) {
@@ -453,23 +453,23 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     }
 	if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) {
 		[cpuPercentMode setEnabled:YES];
-		[cpuPercentModeLabel setTextColor:[NSColor blackColor]];
+		[cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[cpuPercentMode setEnabled:NO];
         [cpuPercentModeLabel setTextColor:[NSColor lightGrayColor]];
 	}
 	if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayGraph) {
 		[cpuGraphWidth setEnabled:YES];
-		[cpuGraphWidthLabel setTextColor:[NSColor blackColor]];
+		[cpuGraphWidthLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[cpuGraphWidth setEnabled:NO];
 		[cpuGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
 	}
     if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayHorizontalThermometer) {
 		[cpuHorizontalRows setEnabled:YES];
-		[cpuHorizontalRowsLabel setTextColor:[NSColor blackColor]];
+		[cpuHorizontalRowsLabel setTextColor:[NSColor controlTextColor]];
         [cpuMenuWidth setEnabled:YES];
-        [cpuMenuWidthLabel setTextColor:[NSColor blackColor]];
+        [cpuMenuWidthLabel setTextColor:[NSColor controlTextColor]];
         [cpuAvgProcs setEnabled:NO];
     }
     else {
@@ -483,8 +483,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 			([cpuPercentMode indexOfSelectedItem] == kCPUPercentDisplaySplit))) {
 		[cpuUserColor setEnabled:YES];
 		[cpuSystemColor setEnabled:YES];
-		[cpuUserColorLabel setTextColor:[NSColor blackColor]];
-		[cpuSystemColorLabel setTextColor:[NSColor blackColor]];
+		[cpuUserColorLabel setTextColor:[NSColor controlTextColor]];
+		[cpuSystemColorLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[cpuUserColor setEnabled:NO];
 		[cpuSystemColor setEnabled:NO];
@@ -610,14 +610,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	if (([memDisplayMode indexOfSelectedItem] + 1) == kMemDisplayGraph) {
 		[memGraphWidth setEnabled:YES];
-		[memGraphWidthLabel setTextColor:[NSColor blackColor]];
+		[memGraphWidthLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[memGraphWidth setEnabled:NO];
 		[memGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
 	}
 	if ([memPageIndicator state] == NSOnState) {
-		[memPageinColorLabel setTextColor:[NSColor blackColor]];
-		[memPageoutColorLabel setTextColor:[NSColor blackColor]];
+		[memPageinColorLabel setTextColor:[NSColor controlTextColor]];
+		[memPageoutColorLabel setTextColor:[NSColor controlTextColor]];
 		[memPageinColor setEnabled:YES];
 		[memPageoutColor setEnabled:YES];
 	} else {
@@ -742,9 +742,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	if (([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayGraph) {
 		[netGraphStyle setEnabled:YES];
-		[netGraphStyleLabel setTextColor:[NSColor blackColor]];
+		[netGraphStyleLabel setTextColor:[NSColor controlTextColor]];
 		[netGraphWidth setEnabled:YES];
-		[netGraphWidthLabel setTextColor:[NSColor blackColor]];
+		[netGraphWidthLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[netGraphStyle setEnabled:NO];
 		[netGraphStyleLabel setTextColor:[NSColor lightGrayColor]];
@@ -754,9 +754,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if ((([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayArrows) ||
 		(([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayGraph)) {
 		[netScaleMode setEnabled:YES];
-		[netScaleModeLabel setTextColor:[NSColor blackColor]];
+		[netScaleModeLabel setTextColor:[NSColor controlTextColor]];
 		[netScaleCalc setEnabled:YES];
-		[netScaleCalcLabel setTextColor:[NSColor blackColor]];
+		[netScaleCalcLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[netScaleMode setEnabled:NO];
 		[netScaleModeLabel setTextColor:[NSColor lightGrayColor]];
