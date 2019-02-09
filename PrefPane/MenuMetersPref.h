@@ -63,6 +63,7 @@
     IBOutlet NSSlider               *cpuMenuWidth;
 	IBOutlet NSTextField			*cpuMenuWidthLabel;
 	IBOutlet NSButton				*cpuAvgProcs;
+	IBOutlet NSButton				*cpuSumProcsPercent;
     IBOutlet NSButton               *cpuAvgLowerHalfProcs;
     IBOutlet NSButton               *cpuSortByUsage;
 	IBOutlet NSButton				*cpuPowerMate;

@@ -46,6 +46,7 @@
 - (int)cpuHorizontalRows;
 - (int)cpuMenuWidth;
 - (BOOL)cpuAvgAllProcs;
+- (BOOL)cpuSumAllProcsPercent;
 - (BOOL)cpuAvgLowerHalfProcs;
 - (BOOL)cpuSortByUsage;
 - (BOOL)cpuPowerMate;
@@ -60,6 +61,7 @@
 - (void)saveCpuHorizontalRows:(int)rows;
 - (void)saveCpuMenuWidth:(int)width;
 - (void)saveCpuAvgAllProcs:(BOOL)average;
+- (void)saveCpuSumAllProcsPercent:(BOOL)sum;
 - (void)saveCpuAvgLowerHalfProcs:(BOOL)average;
 - (void)saveCpuSortByUsage:(BOOL)sort;
 - (void)saveCpuPowerMate:(BOOL)active;

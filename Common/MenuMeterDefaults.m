@@ -180,6 +180,10 @@
 	return [self loadBoolPref:kCPUAvgAllProcsPref defaultValue:kCPUAvgAllProcsDefault];
 } // cpuAvgAllProcs
 
+- (BOOL)cpuSumAllProcsPercent {
+	return [self loadBoolPref:kCPUSumAllProcsPercentPref defaultValue:kCPUSumAllProcsPercentDefault];
+} // cpuSumAllProcsPercent
+
 - (BOOL)cpuAvgLowerHalfProcs {
 	return [self loadBoolPref:kCPUAvgLowerHalfProcsPref defaultValue:kCPUAvgLowerHalfProcsDefault];
 } // cpuAvgLowerHalfProcs
@@ -238,6 +242,10 @@
 - (void)saveCpuAvgAllProcs:(BOOL)average {
 	[self saveBoolPref:kCPUAvgAllProcsPref value:average];
 } // saveCpuAvgAllProcs
+
+- (void)saveCpuSumAllProcsPercent:(BOOL)sum {
+	[self saveBoolPref:kCPUSumAllProcsPercentPref value:sum];
+} // saveCpuSumAllProcsPercent
 
 - (void)saveCpuAvgLowerHalfProcs:(BOOL)average {
 	[self saveBoolPref:kCPUAvgLowerHalfProcsPref value:average];
