@@ -60,7 +60,8 @@
 	// Cached colors and theme support
 	NSColor							*userColor,
 									*systemColor,
-									*fgMenuThemeColor;
+									*fgMenuThemeColor,
+                                    *temperatureColor;
 
 } // MenuMeterCPUExtra
 

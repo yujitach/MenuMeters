@@ -341,6 +341,20 @@ uint32_t cpuCount;
 
 } // currentLoad
 
+- (float_t)cpuProximityTemperature {
+    float_t celsius = -273.15F;
+    if (kIOReturnSuccess == SMCOpen()) {
+        SMCKeyValue value;
+        //use harcoded value for a while
+        //TODO: implement SMC tab to allow setup smc gauges in toolbar
+        if (kIOReturnSuccess == SMCReadKey(toSMCCode("TC0P"), &value)) {
+            celsius = SP78_TO_CELSIUS(value.bytes);
+        }
+        SMCClose();
+    }
+    return celsius;
+} // cpuProximityTemperature
+
 ///////////////////////////////////////////////////////////////
 //
 //	Utility
