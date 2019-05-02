@@ -28,36 +28,6 @@
 //	Definitions for 64-bit from 10.9+ so we can still use old SDKs.
 //
 ///////////////////////////////////////////////////////////////
-#ifndef ELCAPITAN
-struct vm_statistics64 {
-	natural_t	free_count;
-	natural_t	active_count;
-	natural_t	inactive_count;
-	natural_t	wire_count;
-	uint64_t	zero_fill_count;
-	uint64_t	reactivations;
-	uint64_t	pageins;
-	uint64_t	pageouts;
-	uint64_t	faults;
-	uint64_t	cow_faults;
-	uint64_t	lookups;
-	uint64_t	hits;
-	uint64_t	purges;
-	natural_t	purgeable_count;
-	natural_t	speculative_count;
-	uint64_t	decompressions;
-	uint64_t	compressions;
-	uint64_t	swapins;
-	uint64_t	swapouts;
-	natural_t	compressor_page_count;
-	natural_t	throttled_count;
-	natural_t	external_page_count;
-	natural_t	internal_page_count;
-	uint64_t	total_uncompressed_pages_in_compressor;
-} __attribute__((aligned(8)));
-typedef struct vm_statistics64	vm_statistics64_data_t;
-typedef integer_t	*host_info64_t;
-#endif
 typedef kern_return_t (*host_statistics64_Ptr)(host_t host_priv,
 											   host_flavor_t flavor,
 											   host_info64_t host_info64_out,

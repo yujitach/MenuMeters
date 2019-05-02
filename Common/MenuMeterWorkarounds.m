@@ -26,22 +26,7 @@
 #import "MenuMeterWorkarounds.h"
 #import "AppleUndocumented.h"
 
-// Declare NSProcessInfo version tests from 10.10
-#ifndef ELCAPITAN
-#ifdef __x86_64__
-typedef struct {
-	int64_t majorVersion;
-	int64_t minorVersion;
-	int64_t patchVersion;
-} NSOperatingSystemVersion;
-#else 
-typedef struct {
-	int32_t majorVersion;
-	int32_t minorVersion;
-	int32_t patchVersion;
-} NSOperatingSystemVersion;
-#endif
-#endif
+
 
 @interface NSProcessInfo (MenuMetersWorkarounds)
 - (BOOL)isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion)version;
@@ -49,22 +34,8 @@ typedef struct {
 
 
 static BOOL SystemVersionCompare(SInt32 gestVersion, int32_t major, int32_t minor) {
-#ifndef ELCAPITAN
-	if ([NSProcessInfo instancesRespondToSelector:@selector(isOperatingSystemAtLeastVersion:)]) {
-#endif
 		NSOperatingSystemVersion version = { major, minor, 0 };
 		return [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:version];
-#ifndef ELCAPITAN
-	} else {
-		SInt32 systemVersion = 0;
-		OSStatus err = Gestalt(gestaltSystemVersion, &systemVersion);
-		if ((err == noErr) && (systemVersion >= gestVersion)) {
-			return YES;
-		} else {
-			return NO;
-		}
-	}
-#endif
 } 
 
 __private_extern__ BOOL OSIsJaguarOrLater(void) {

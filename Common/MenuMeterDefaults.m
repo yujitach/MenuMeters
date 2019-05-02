@@ -50,10 +50,6 @@
 - (int)loadBitFlagPref:(NSString *)prefName validFlags:(int)flags
 			  zeroValid:(BOOL)zeroValid defaultValue:(int)defaultValue;
 - (void)saveBitFlagPref:(NSString *)prefName value:(int)value;
-#ifndef ELCAPITAN
-- (BOOL)loadBoolPref:(NSString *)prefName defaultValue:(BOOL)defaultValue;
-- (void)saveBoolPref:(NSString *)prefName value:(BOOL)value;
-#endif
 - (NSColor *)loadColorPref:(NSString *)prefName defaultValue:(NSColor *)defaultValue;
 - (void)saveColorPref:(NSString *)prefname value:(NSColor *)value;
 - (NSString *)loadStringPref:(NSString *)prefName defaultValue:(NSString *)defaultValue;
@@ -588,34 +584,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)migratePrefFile {
-#ifndef ELCAPITAN
-	// Find the user's pref folder
-    NSString *prefFolderPath = nil;
-	FSRef prefFolderFSRef;
-	OSStatus err = FSFindFolder(kUserDomain, kPreferencesFolderType, kDontCreateFolder, &prefFolderFSRef);
-	if (err == noErr) {
-		CFURLRef prefURL = CFURLCreateFromFSRef(kCFAllocatorSystemDefault, &prefFolderFSRef);
-		if (prefURL) {
-			prefFolderPath = [(NSURL *)prefURL path];
-			CFRelease(prefURL);
-		}
-	}
-	if (!prefFolderPath) {
-		return;
-	}
 
-	// Can we move the file? Don't overwrite existing new prefs.
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	NSString *newPath = [kMenuMeterDefaultsDomain stringByAppendingString:@".plist"];
-	NSString *oldPath = [kMenuMeterObsoleteDomain stringByAppendingString:@".plist"];
-	if (![fileManager fileExistsAtPath:[prefFolderPath stringByAppendingPathComponent:newPath]] &&
-		[fileManager fileExistsAtPath:[prefFolderPath stringByAppendingPathComponent:oldPath]]) {
-		// Move the file
-		[fileManager moveItemAtPath:[prefFolderPath stringByAppendingPathComponent:oldPath]
-					   toPath:[prefFolderPath stringByAppendingPathComponent:newPath]
-					  error:nil];
-	}
-#endif
 } // _migratePrefFile
 
 - (void)migratePrefsForward {

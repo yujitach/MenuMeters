@@ -398,9 +398,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
-#ifdef ELCAPITAN
     [super configDisplay:kDiskMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs diskInterval]];
-#endif
 
 	// Update prefs
 	[ourPrefs syncWithDisk];

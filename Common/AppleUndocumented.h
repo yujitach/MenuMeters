@@ -103,6 +103,4 @@ int CoreMenuExtraRemoveMenuExtra(void *menuExtra, int whoCares);
 
 @end
 
-#ifdef ELCAPITAN
 #import "MenuMetersMenuExtraBase.h"
-#endif

@@ -973,10 +973,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = MenuMeters.pch;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"ELCAPITAN=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
@@ -1034,7 +1031,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = MenuMeters.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"ELCAPITAN=1",
 					"DEBUG=1",
 					"$(inherited)",
 				);
@@ -1077,7 +1073,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/PreferencePanes";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DELCAPITAN";
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yujitach.MenuMeters;
 				PRODUCT_NAME = MenuMeters;
 				SDKROOT = macosx;
@@ -1206,7 +1202,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/PreferencePanes";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DELCAPITAN";
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yujitach.MenuMeters;
 				PRODUCT_NAME = MenuMeters;
 				SDKROOT = macosx;

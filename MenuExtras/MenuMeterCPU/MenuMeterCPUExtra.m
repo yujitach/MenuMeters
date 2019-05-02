@@ -723,9 +723,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
-#ifdef ELCAPITAN
     [super configDisplay:kCPUMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs cpuInterval]];
-#endif
 	// Update prefs
 	[ourPrefs syncWithDisk];
 

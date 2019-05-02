@@ -59,17 +59,10 @@
 #define kMenuCrackerURL				[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuCracker" ofType:@"menu" inDirectory:@""]]
 
 // Paths to the menu extras
-#ifdef ELCAPITAN
 #define kCPUMenuURL nil
 #define kDiskMenuURL nil
 #define kMemMenuURL nil
 #define kNetMenuURL nil
-#else
-#define kCPUMenuURL					[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuMeterCPU" ofType:@"menu" inDirectory:@""]]
-#define kDiskMenuURL				[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuMeterDisk" ofType:@"menu" inDirectory:@""]]
-#define kMemMenuURL					[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuMeterMem" ofType:@"menu" inDirectory:@""]]
-#define kNetMenuURL					[NSURL fileURLWithPath:[[self bundle] pathForResource:@"MenuMeterNet" ofType:@"menu" inDirectory:@""]]
-#endif
 
 // How long to wait for Extras to add once CoreMenuExtraAddMenuExtra returns?
 #define kWaitForExtraLoadMicroSec		10000000
@@ -784,45 +777,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 ///////////////////////////////////////////////////////////////
 
 - (void)loadExtraAtURL:(NSURL *)extraURL withID:(NSString *)bundleID {
-#ifdef ELCAPITAN
     [ourPrefs saveBoolPref:bundleID value:YES];
     [ourPrefs syncWithDisk];
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:bundleID
                                                                    object:kPrefChangeNotification
                                                                  userInfo:nil deliverImmediately:YES];
     return;
-#else
-	// Load the crack. With MenuCracker 2.x multiple loads are allowed, so
-	// we don't care if someone else has the MenuCracker 2.x bundle loaded.
-	// Plus, since MC 2.x does dodgy things with the load we can't actually
-	// find out if its loaded.
-	CoreMenuExtraAddMenuExtra((CFURLRef)kMenuCrackerURL, 0, 0, 0, 0, 0);
-
-	// Load actual request
-	CoreMenuExtraAddMenuExtra((CFURLRef)extraURL, 0, 0, 0, 0, 0);
-
-	// Wait for the item to load
-	int microSlept = 0;
-	while (![self isExtraWithBundleIDLoaded:bundleID] && (microSlept < kWaitForExtraLoadMicroSec)) {
-		microSlept += kWaitForExtraLoadStepMicroSec;
-		usleep(kWaitForExtraLoadStepMicroSec);
-	}
-
-	// Try again if needed
-	if (![self isExtraWithBundleIDLoaded:bundleID]) {
-		microSlept = 0;
-		CoreMenuExtraAddMenuExtra((CFURLRef)extraURL, 0, 0, 0, 0, 0);
-		while (![self isExtraWithBundleIDLoaded:bundleID] && (microSlept < kWaitForExtraLoadMicroSec)) {
-			microSlept += kWaitForExtraLoadStepMicroSec;
-			usleep(kWaitForExtraLoadStepMicroSec);
-		}
-	}
-
-	// Give up
-	if (![self isExtraWithBundleIDLoaded:bundleID]) {
-		[self showMenuExtraErrorSheet];
-	}
-#endif
 } // loadExtraAtURL:withID:
 
 - (BOOL)isExtraWithBundleIDLoaded:(NSString *)bundleID {
