@@ -226,7 +226,7 @@
 		D476533603DB41AF00A87BC9 /* French */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D477AAE803D4BB7D00A87BC9 /* MenuMeterCPUView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPUView.h; path = MenuExtras/MenuMeterCPU/MenuMeterCPUView.h; sourceTree = "<group>"; };
 		D477AAE903D4BB7D00A87BC9 /* MenuMeterCPUView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPUView.m; path = MenuExtras/MenuMeterCPU/MenuMeterCPUView.m; sourceTree = "<group>"; };
-		D477AAEC03D4BB8600A87BC9 /* MenuMeterCPUExtra.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPUExtra.m; path = MenuExtras/MenuMeterCPU/MenuMeterCPUExtra.m; sourceTree = "<group>"; };
+		D477AAEC03D4BB8600A87BC9 /* MenuMeterCPUExtra.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPUExtra.m; path = MenuExtras/MenuMeterCPU/MenuMeterCPUExtra.m; sourceTree = "<group>"; wrapsLines = 0; };
 		D477AAED03D4BB8600A87BC9 /* MenuMeterCPUExtra.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPUExtra.h; path = MenuExtras/MenuMeterCPU/MenuMeterCPUExtra.h; sourceTree = "<group>"; };
 		D477AAF003D4BB9200A87BC9 /* MenuMeterCPUStats.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPUStats.h; path = MenuExtras/MenuMeterCPU/MenuMeterCPUStats.h; sourceTree = "<group>"; };
 		D477AAF103D4BB9200A87BC9 /* MenuMeterCPUStats.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPUStats.m; path = MenuExtras/MenuMeterCPU/MenuMeterCPUStats.m; sourceTree = "<group>"; };
@@ -979,7 +979,7 @@
 				);
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -1040,7 +1040,7 @@
 				);
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -1070,7 +1070,7 @@
 				DEVELOPMENT_TEAM = "";
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				GCC_PREFIX_HEADER = MenuMeters.pch;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INFOPLIST_FILE = PrefPane/Info.plist;
 				INFOPLIST_PREFIX_HEADER = ./PrefPane/InfoPlistPreprocessor.h;
 				INFOPLIST_PREPROCESS = YES;
@@ -1199,7 +1199,7 @@
 				DEVELOPMENT_TEAM = "";
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				GCC_PREFIX_HEADER = MenuMeters.pch;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INFOPLIST_FILE = PrefPane/Info.plist;
 				INFOPLIST_PREFIX_HEADER = ./PrefPane/InfoPlistPreprocessor.h;
 				INFOPLIST_PREPROCESS = YES;

@@ -1110,9 +1110,9 @@
 			labelOffset += kNetArrowDisplayWidth + kNetDisplayGapWidth;
 		}
 		if (interfaceUp) {
-			[throughputLabel compositeToPoint:NSMakePoint(labelOffset, 0) operation:NSCompositeSourceOver];
+            [throughputLabel drawAtPoint:NSMakePoint(labelOffset, 0) fromRect:NSMakeRect(0, 0, [throughputLabel size].width, [throughputLabel size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		} else {
-			[inactiveThroughputLabel compositeToPoint:NSMakePoint(labelOffset, 0) operation:NSCompositeSourceOver];
+            [inactiveThroughputLabel drawAtPoint:NSMakePoint(labelOffset, 0) fromRect:NSMakeRect(0, 0, [inactiveThroughputLabel size].width, [inactiveThroughputLabel size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		}
 	}
 	// No descenders, so render lower

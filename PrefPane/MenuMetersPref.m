@@ -146,7 +146,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 											NSLinkAttributeName,
 											[NSColor blueColor],
 											NSForegroundColorAttributeName,
-											[NSNumber numberWithInt:NSSingleUnderlineStyle],
+											[NSNumber numberWithInt:NSUnderlineStyleSingle],
 											NSUnderlineStyleAttributeName,
 											nil]
 						range:NSMakeRange([versionInfoString length] + 2, [webpageURL length])];
@@ -839,34 +839,17 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // removeExtraWithBundleID
 
 - (void)showMenuExtraErrorSheet {
-
-	NSBeginAlertSheet(
-		// Title
-		[[NSBundle bundleForClass:[self class]] localizedStringForKey:@"Menu Extra Could Not Load"
-																value:nil
-																table:nil],
-		// Default button
-		nil,
-		// Alternate button
-		nil,
-		// Other button
-		nil,
-		// Window
-		[[self mainView] window],
-		// Delegate
-		nil,
-		// end elector
-		nil,
-		// dismiss selector
-		nil,
-		// context
-		nil,
-		// msg
-        @"%@",
-		[[NSBundle bundleForClass:[self class]]
-			localizedStringForKey:@"For instructions on enabling third-party menu extras please see the documentation."
-							value:nil
-							table:nil]);
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setMessageText:[[NSBundle bundleForClass:[self class]]
+                               localizedStringForKey:@"For instructions on enabling third-party menu extras please see the documentation."
+                               value:nil
+                               table:nil]];
+    [alert setInformativeText:[[NSBundle bundleForClass:[self class]] localizedStringForKey:@"Menu Extra Could Not Load"
+                                                                                  value:nil
+                                                                                  table:nil]];
+    [alert beginSheetModalForWindow:[[self mainView] window] completionHandler:^(NSModalResponse returnCode) {
+        NSLog(@"Alert sheet ended");
+    }];
 
 } // showMenuExtraErrorSheet
 

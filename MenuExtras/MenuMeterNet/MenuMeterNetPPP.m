@@ -183,7 +183,7 @@ static id gSharedPPP = nil;
 	NSData *idReply = [self pppconfdExecMessage:idMsgData];
 	uint32_t linkID = 0;
 	if ([idReply length] != sizeof(uint32_t)) return nil;
-	[idReply getBytes:&linkID];
+    [idReply getBytes:&linkID length:[idReply length]];
 
 	// Now get status of that link
 	struct ppp_msg_hdr statusMsg = { 0, PPP_STATUS, 0, 0, linkID, 0 };
@@ -227,7 +227,7 @@ static id gSharedPPP = nil;
 	NSData *idReply = [self pppconfdExecMessage:idMsgData];
 	uint32_t linkID = 0;
 	if ([idReply length] != sizeof(uint32_t)) return nil;
-	[idReply getBytes:&linkID];
+	[idReply getBytes:&linkID length:[idReply length]];
 
 	// Now get status of that link
 	struct ppp_msg_hdr statusMsg = { 0, PPP_STATUS, 0, 0, linkID, 0 };
@@ -277,7 +277,7 @@ static id gSharedPPP = nil;
 	NSData *idReply = [self pppconfdExecMessage:idMsgData];
 	uint32_t linkID = 0;
 	if ([idReply length] != sizeof(uint32_t)) return;
-	[idReply getBytes:&linkID];
+	[idReply getBytes:&linkID length:[idReply length]];
 
 	// Connect the link
 	struct ppp_msg_hdr connectMsg = { 0, PPP_CONNECT, 0, 0, linkID, 0 };
@@ -300,7 +300,7 @@ static id gSharedPPP = nil;
 	NSData *idReply = [self pppconfdExecMessage:idMsgData];
 	uint32_t linkID = 0;
 	if ([idReply length] != sizeof(uint32_t)) return;
-	[idReply getBytes:&linkID];
+	[idReply getBytes:&linkID length:[idReply length]];
 
 	// Disconnect the link
 	struct ppp_msg_hdr disconnectMsg = { 0, PPP_DISCONNECT, 0, 0, linkID, 0 };
@@ -322,7 +322,7 @@ static id gSharedPPP = nil;
 	// Size the reply
 	if ([reply length] == sizeof(uint32_t)) {
 		uint32_t retVal = 0;
-		[reply getBytes:&retVal];
+		[reply getBytes:&retVal length:[reply length]];
 		return retVal;
 	}
 	// Fallthrough

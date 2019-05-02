@@ -573,7 +573,7 @@
 
 	// Draw the prerendered label
 	if ([ourPrefs memUsedFreeLabel]) {
-		[numberLabelPrerender compositeToPoint:NSMakePoint(0,0) operation:NSCompositeSourceOver];
+        [numberLabelPrerender drawAtPoint:NSMakePoint(0, 0) fromRect:NSMakeRect(0, 0, [numberLabelPrerender size].width, [numberLabelPrerender size].height) operation:NSCompositeSourceOver fraction:1.0f];
 	}
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
 	// No descenders so render lower

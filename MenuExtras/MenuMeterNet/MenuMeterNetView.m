@@ -63,7 +63,8 @@
 			[netMenuExtra drawMenuBackground:YES];
 		}
 		// Net image is is height - 1 to skip edge of menubar
-		[image compositeToPoint:NSMakePoint(0, 1) operation:NSCompositeSourceOver];
+		//[image compositeToPoint:NSMakePoint(0, 1) operation:NSCompositeSourceOver];
+        [image drawAtPoint:NSMakePoint(0, 1) fromRect:myRect operation:NSCompositeSourceOut fraction:1.0f];
 	}
 
 } // drawRect

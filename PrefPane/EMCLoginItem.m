@@ -130,6 +130,8 @@
 
 - (BOOL)isLoginItem
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
                                                             kLSSharedFileListSessionLoginItems,
                                                             NULL);
@@ -143,7 +145,6 @@
         {
             LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
             CFURLRef itemUrl;
-            
             if (LSSharedFileListItemResolve(loginItem, 0, &itemUrl, NULL) == noErr)
             {
                 if (CFEqual(itemUrl, url))
@@ -163,6 +164,7 @@
     }
     
     return NO;
+#pragma GCC diagnostic pop
 }
 
 - (void)addLoginItem
@@ -216,6 +218,8 @@
 - (LSSharedFileListItemRef)findItem:(LSSharedFileListRef)loginItems
                            withPath:(CFURLRef)path
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     UInt32 seed;
     CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(loginItems, &seed);
     
@@ -234,10 +238,13 @@
     }
     
     return nil;
+#pragma GCC diagnostic pop
 }
 
 - (void)removeLoginItem
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL,
                                                             kLSSharedFileListSessionLoginItems,
                                                             NULL);
@@ -282,6 +289,7 @@
     {
         NSLog(@"Warning: could not get list of login items.");
     }
+#pragma GCC diagnostic pop
 }
 
 - (void)addAfterLast

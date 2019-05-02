@@ -490,14 +490,16 @@
 	[image lockFocus];
 	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
 		// When graphing right align, we had trouble with doing this with NSParagraphStyle, so do it manually
-		[percentImage compositeToPoint:NSMakePoint(offset + percentWidth - ceilf((float)[percentImage size].width) - 1,
-												   (float)round(([image size].height - [percentImage size].height) / 2))
-							 operation:NSCompositeSourceOver];
+        [percentImage drawAtPoint:NSMakePoint(offset + percentWidth - ceilf((float)[percentImage size].width) - 1,
+                                              (float)round(([image size].height - [percentImage size].height) / 2)
+                                              )
+                         fromRect:NSMakeRect(0, 0, [percentImage size].width, [percentImage size].height) operation:NSCompositeSourceOver fraction:1.0f];
 	} else {
 		// Otherwise center
-		[percentImage compositeToPoint:NSMakePoint(offset + (float)floor(((percentWidth - [percentImage size].width) / 2)),
-												   (float)round(([image size].height - [percentImage size].height) / 2))
-							 operation:NSCompositeSourceOver];
+        [percentImage drawAtPoint:NSMakePoint(offset + (float)floor(((percentWidth - [percentImage size].width) / 2)),
+                                              (float)round(([image size].height - [percentImage size].height) / 2)
+                                              )
+                         fromRect:NSMakeRect(0, 0, [percentImage size].width, [percentImage size].height) operation:NSCompositeSourceOver fraction:1.0f];
 	}
 	[image unlockFocus];
 
@@ -518,17 +520,17 @@
 	[image lockFocus];
 	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
 		// When graphing right align, we had trouble with doing this with NSParagraphStyle, so do it manually
-		[systemImage compositeToPoint:NSMakePoint(offset + percentWidth - [systemImage size].width - 1, 0)
-							 operation:NSCompositeSourceOver];
-		[userImage compositeToPoint:NSMakePoint(offset + percentWidth - (float)[userImage size].width - 1,
-												(float)floor([image size].height / 2))
-							operation:NSCompositeSourceOver];
+        [systemImage drawAtPoint:NSMakePoint(offset + percentWidth - [systemImage size].width - 1, 0)
+                        fromRect:NSMakeRect(0, 0, [systemImage size].width, [systemImage size].height) operation:NSCompositeSourceOver fraction:1.0f];
+        [userImage drawAtPoint:NSMakePoint(offset + percentWidth - (float)[userImage size].width - 1,
+                                           (float)floor([image size].height / 2))
+                      fromRect:NSMakeRect(0, 0, [userImage size].width, [userImage size].height) operation:NSCompositeSourceOver fraction:1.0f];
 	} else {
-		[systemImage compositeToPoint:NSMakePoint(offset + floorf((percentWidth - (float)[systemImage size].width) / 2), 0)
-							operation:NSCompositeSourceOver];
-		[userImage compositeToPoint:NSMakePoint(offset + floorf((percentWidth - (float)[systemImage size].width) / 2),
-												(float)floor([image size].height / 2))
-							operation:NSCompositeSourceOver];
+        [systemImage drawAtPoint:NSMakePoint(offset + floorf((percentWidth - (float)[systemImage size].width) / 2), 0)
+                        fromRect:NSMakeRect(0, 0, [systemImage size].width, [systemImage size].height) operation:NSCompositeSourceOver fraction:1.0f];
+        [userImage drawAtPoint:NSMakePoint(offset + floorf((percentWidth - (float)[systemImage size].width) / 2),
+                                           (float)floor([image size].height / 2))
+                      fromRect:NSMakeRect(0, 0, [userImage size].width, [userImage size].height) operation:NSCompositeSourceOver fraction:1.0f];
 	}
 	[image unlockFocus];
 

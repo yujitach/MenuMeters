@@ -299,8 +299,8 @@
 		NSImage *menuItemImage = [[NSImage alloc] initWithSize:NSMakeSize([volIcon size].width + 10 + (float)finalTextWidth,
 																		   [volIcon size].height)];
 		[menuItemImage lockFocus];
-		[volIcon compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
-		[(NSAttributedString *)[nameStrings objectAtIndex:i]
+        [volIcon drawAtPoint:NSMakePoint(0, 0) fromRect:NSMakeRect(0, 0, [volIcon size].width, [volIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
+        [(NSAttributedString *)[nameStrings objectAtIndex:i]
 				drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10,
 										ceilf((float)[volIcon size].height / 2))];
 		[(NSAttributedString *)[detailStrings objectAtIndex:i]
@@ -416,7 +416,7 @@
 
 	// Read/scale the boto disk icon for those styles that need it
 	NSImage *bootDiskIcon = [[NSWorkspace sharedWorkspace] iconForFile:@"/"];
-	[bootDiskIcon setScalesWhenResized:YES];
+	//[bootDiskIcon setScalesWhenResized:YES];
 	[bootDiskIcon setSize:NSMakeSize(kDiskViewWidth, kDiskViewWidth)];
 
 	// Release current images
@@ -431,38 +431,35 @@
 		// Small disk arrow is an overlay on the boot disk icon
 		idleImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
 		[idleImage lockFocus];
-		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
-							 operation:NSCompositeSourceOver];
+        [bootDiskIcon drawAtPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2) fromRect:NSMakeRect(0, 0, [bootDiskIcon size].width, [bootDiskIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		[idleImage unlockFocus];
 		// Read
 		readImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
 		[readImage lockFocus];
-		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
-							 operation:NSCompositeSourceOver];
-		[[[NSImage alloc] initWithContentsOfFile:
-		   [[self bundle] pathForResource:[imageSetNamePrefix stringByAppendingString:@"Read"]
-								   ofType:@"tiff"]]
-			compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
+        [bootDiskIcon drawAtPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2) fromRect:NSMakeRect(0, 0, [bootDiskIcon size].width, [bootDiskIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
+        NSImage *iconRead = [[NSImage alloc] initWithContentsOfFile:
+                         [[self bundle] pathForResource:[imageSetNamePrefix stringByAppendingString:@"Read"]
+                                                 ofType:@"tiff"]];
+        [iconRead drawAtPoint:NSMakePoint(0, 0) fromRect:NSMakeRect(0, 0, [iconRead size].width, [iconRead size].height) operation:NSCompositeSourceOver fraction:1.0f];
+			//compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
 		[readImage unlockFocus];
 		// Write
 		writeImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
 		[writeImage lockFocus];
-		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
-							 operation:NSCompositeSourceOver];
-		[[[NSImage alloc] initWithContentsOfFile:
-			[[self bundle]pathForResource:[imageSetNamePrefix stringByAppendingString:@"Write"]
-								   ofType:@"tiff"]]
-			compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
+        [bootDiskIcon drawAtPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2) fromRect:NSMakeRect(0, 0, [bootDiskIcon size].width, [bootDiskIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
+        NSImage *iconWrite = [[NSImage alloc] initWithContentsOfFile:
+                             [[self bundle] pathForResource:[imageSetNamePrefix stringByAppendingString:@"Write"]
+                                                     ofType:@"tiff"]];
+        [iconWrite drawAtPoint:NSMakePoint(0, 0) fromRect:NSMakeRect(0, 0, [iconWrite size].width, [iconWrite size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		[writeImage unlockFocus];
 		// Read/Write
 		readwriteImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
 		[readwriteImage lockFocus];
-		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
-							 operation:NSCompositeSourceOver];
-		[[[NSImage alloc] initWithContentsOfFile:
-			[[self bundle]pathForResource:[imageSetNamePrefix stringByAppendingString:@"ReadWrite"]
-								   ofType:@"tiff"]]
-			compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
+        [bootDiskIcon drawAtPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2) fromRect:NSMakeRect(0, 0, [bootDiskIcon size].width, [bootDiskIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
+        NSImage *iconReadWrite = [[NSImage alloc] initWithContentsOfFile:
+                              [[self bundle] pathForResource:[imageSetNamePrefix stringByAppendingString:@"ReadWrite"]
+                                                      ofType:@"tiff"]];
+        [iconReadWrite drawAtPoint:NSMakePoint(0, 0) fromRect:NSMakeRect(0, 0, [iconReadWrite size].width, [iconReadWrite size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		[readwriteImage unlockFocus];
 	} else if ([ourPrefs diskImageset]  == kDiskArrowsLargeImageSet) {
 		// Large arrow disk icon overlays based on patches by Mac-arena the Bored Zo
@@ -470,8 +467,7 @@
 		// Read
 		readImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
 		[readImage lockFocus];
-		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
-							 operation:NSCompositeSourceOver];
+        [bootDiskIcon drawAtPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2) fromRect:NSMakeRect(0, 0, [bootDiskIcon size].width, [bootDiskIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		NSBezierPath *readArrowPath = [NSBezierPath bezierPath];
 		[readArrowPath moveToPoint:NSMakePoint(0, (menubarHeight / 2) + 1)];
 		[readArrowPath lineToPoint:NSMakePoint(kDiskViewWidth, (menubarHeight / 2) + 1)];
@@ -483,8 +479,7 @@
 		// Write
 		writeImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
 		[writeImage lockFocus];
-		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
-							 operation:NSCompositeSourceOver];
+        [bootDiskIcon drawAtPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2) fromRect:NSMakeRect(0, 0, [bootDiskIcon size].width, [bootDiskIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		NSBezierPath *writeArrowPath = [NSBezierPath bezierPath];
 		[writeArrowPath moveToPoint:NSMakePoint(0, (menubarHeight / 2) - 1)];
 		[writeArrowPath lineToPoint:NSMakePoint(kDiskViewWidth, (menubarHeight / 2) - 1)];
@@ -496,14 +491,12 @@
 		// Idle
 		idleImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
 		[idleImage lockFocus];
-		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
-			operation:NSCompositeSourceOver];
+        [bootDiskIcon drawAtPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2) fromRect:NSMakeRect(0, 0, [bootDiskIcon size].width, [bootDiskIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		[idleImage unlockFocus];
 		// Read/Write
 		readwriteImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
 		[readwriteImage lockFocus];
-		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
-							 operation:NSCompositeSourceOver];
+        [bootDiskIcon drawAtPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2) fromRect:NSMakeRect(0, 0, [bootDiskIcon size].width, [bootDiskIcon size].height) operation:NSCompositeSourceOver fraction:1.0f];
 		[[NSColor greenColor] set];
 		[readArrowPath fill];
 		[[NSColor redColor] set];

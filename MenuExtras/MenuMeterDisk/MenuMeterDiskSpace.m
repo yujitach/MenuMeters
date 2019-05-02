@@ -152,7 +152,9 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 			// bugs. Again, probably fixed in new OS versions, but stick with
 			// what works. Filesystem Carbon calls are available in x86_64,
 			// so we're fine with this.
-			FSRef pathRef;
+            FSRef pathRef;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 			OSStatus err = FSPathMakeRef((UInt8 *)[mountPath fileSystemRepresentation], &pathRef, NULL);
 			if (err != noErr) {
 				continue;
@@ -167,6 +169,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 			FSVolumeInfo volInfo;
 			HFSUniStr255 volumeName;
 			err = FSGetVolumeInfo(catInfo.volume, 0, NULL, kFSVolInfoNone, &volInfo, &volumeName, NULL);
+#pragma GCC diagnostic pop
 			if (err != noErr) {
 				continue;
 			}

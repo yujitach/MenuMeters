@@ -64,7 +64,7 @@
 			[memMenuExtra drawMenuBackground:YES];
 		}
 		// Mem extra image is is height - 1 to skip edge of menubar
-		[image compositeToPoint:NSMakePoint(0, 1) operation:NSCompositeSourceOver];
+        [image drawAtPoint:NSMakePoint(0, 1) fromRect:NSMakeRect(0, 0, [image size].width, [image size].height) operation:NSCompositeSourceOver fraction:1.0f];
 	}
 
 } // drawRect

@@ -63,7 +63,7 @@
 			[diskMenuExtra drawMenuBackground:YES];
 		}
 		// Disk images are 22px (same height as menubar and our view)
-		[image compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
+        [image drawAtPoint:NSMakePoint(0, 0) fromRect:NSMakeRect(0, 0, [image size].width, [image size].height) operation:NSCompositeSourceOver fraction:1.0f];
 	}
 
 } // drawRect
