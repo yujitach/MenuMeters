@@ -111,6 +111,7 @@
 	IBOutlet NSSlider				*netInterval;
 	IBOutlet NSButton				*netThroughputLabeling;
 	IBOutlet NSButton				*netThroughput1KBound;
+	IBOutlet NSButton				*netThroughputBits;
 	IBOutlet NSPopUpButton			*netGraphStyle;
 	IBOutlet NSTextField			*netGraphStyleLabel;
 	IBOutlet NSSlider				*netGraphWidth;

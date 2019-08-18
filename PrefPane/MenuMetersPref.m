@@ -669,6 +669,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveNetThroughputLabel:(([netThroughputLabeling state] == NSOnState) ? YES : NO)];
 	} else if (sender == netThroughput1KBound) {
 		[ourPrefs saveNetThroughput1KBound:(([netThroughput1KBound state] == NSOnState) ? YES : NO)];
+	} else if (sender == netThroughputBits) {
+		[ourPrefs saveNetThroughputBits:(([netThroughputBits state] == NSOnState) ? YES : NO)];
 	} else if (sender == netGraphStyle) {
 		[ourPrefs saveNetGraphStyle:(int)[netGraphStyle indexOfSelectedItem]];
 	} else if (sender == netGraphWidth) {
@@ -702,6 +704,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[netInterval setDoubleValue:[ourPrefs netInterval]];
 	[netThroughputLabeling setState:([ourPrefs netThroughputLabel] ? NSOnState : NSOffState)];
 	[netThroughput1KBound setState:([ourPrefs netThroughput1KBound] ? NSOnState : NSOffState)];
+	[netThroughputBits setState:([ourPrefs netThroughputBits] ? NSOnState : NSOffState)];
 	[netGraphStyle selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[netGraphStyle selectItemAtIndex:[ourPrefs netGraphStyle]];
 	[netGraphWidth setIntValue:[ourPrefs netGraphLength]];
@@ -736,9 +739,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if (([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayThroughput) {
 		[netThroughputLabeling setEnabled:YES];
 		[netThroughput1KBound setEnabled:YES];
+		[netThroughputBits setEnabled:YES];
 	} else {
 		[netThroughputLabeling setEnabled:NO];
 		[netThroughput1KBound setEnabled:NO];
+		[netThroughputBits setEnabled:NO];
 	}
 	if (([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayGraph) {
 		[netGraphStyle setEnabled:YES];
