@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="101100" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -73,6 +73,7 @@
                 <outlet property="netScaleMode" destination="524" id="536"/>
                 <outlet property="netScaleModeLabel" destination="523" id="549"/>
                 <outlet property="netThroughput1KBound" destination="377" id="379"/>
+                <outlet property="netThroughputBits" destination="evw-vV-J1K" id="IFt-7g-qja"/>
                 <outlet property="netThroughputLabeling" destination="362" id="370"/>
                 <outlet property="netTxColor" destination="333" id="345"/>
                 <outlet property="prefTabs" destination="99" id="117"/>
@@ -676,14 +677,6 @@
                                                         <action selector="memPrefChange:" target="-2" id="257"/>
                                                     </connections>
                                                 </button>
-                                                <button id="kbR-DC-oA2">
-                                                    <rect key="frame" x="170" y="350" width="212" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Display memory pressure" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="aOw-Lj-aWS">
-                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                </button>
                                                 <tabView drawsBackground="NO" type="noTabsNoBorder" id="595">
                                                     <rect key="frame" x="141" y="166" width="271" height="71"/>
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -888,6 +881,14 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
+                                                <button id="kbR-DC-oA2">
+                                                    <rect key="frame" x="171" y="350" width="212" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="check" title="Display memory pressure" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="aOw-Lj-aWS">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                </button>
                                             </subviews>
                                         </customView>
                                     </subviews>
@@ -1113,19 +1114,19 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <button id="377">
-                                                    <rect key="frame" x="162" y="250" width="191" height="18"/>
+                                                <button id="evw-vV-J1K" userLabel="Net Throughput Bits">
+                                                    <rect key="frame" x="163" y="250" width="230" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <buttonCell key="cell" type="check" title="Ignore values below 1KB/s" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1061">
+                                                    <buttonCell key="cell" type="check" title="Show bits per second" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="K7W-5f-1U8" userLabel="Show bits per second">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="netPrefChange:" target="-2" id="378"/>
+                                                        <action selector="netPrefChange:" target="-2" id="aV2-SV-gae"/>
                                                     </connections>
                                                 </button>
                                                 <button id="362">
-                                                    <rect key="frame" x="162" y="230" width="230" height="18"/>
+                                                    <rect key="frame" x="163" y="210" width="230" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="Show throughput labels (Tx/Rx)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1060">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1240,6 +1241,17 @@
                                                         <action selector="liveUpdateInterval:" target="-2" id="1004"/>
                                                     </connections>
                                                 </slider>
+                                                <button id="377">
+                                                    <rect key="frame" x="163" y="230" width="191" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <buttonCell key="cell" type="check" title="Ignore values below 1K/s" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1061">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="netPrefChange:" target="-2" id="378"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </customView>
                                     </subviews>

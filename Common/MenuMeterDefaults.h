@@ -116,6 +116,7 @@
 - (int)netScaleCalc;
 - (BOOL)netThroughputLabel;
 - (BOOL)netThroughput1KBound;
+- (BOOL)netThroughputBits;
 - (int)netGraphStyle;
 - (int)netGraphLength;
 - (NSColor *)netTransmitColor;
@@ -129,6 +130,7 @@
 - (void)saveNetScaleCalc:(int)calc;
 - (void)saveNetThroughputLabel:(BOOL)label;
 - (void)saveNetThroughput1KBound:(BOOL)bound;
+- (void)saveNetThroughputBits:(BOOL)bits;
 - (void)saveNetGraphStyle:(int)style;
 - (void)saveNetGraphLength:(int)length;
 - (void)saveNetTransmitColor:(NSColor *)color;
