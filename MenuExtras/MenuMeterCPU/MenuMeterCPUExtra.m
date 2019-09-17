@@ -542,7 +542,7 @@
     float_t celsius = [cpuInfo cpuProximityTemperature];
     [image lockFocus];
     NSAttributedString *renderTemperatureString = [[NSAttributedString alloc]
-         initWithString:[NSString stringWithFormat:@"%.1f°", celsius]
+         initWithString:[NSString stringWithFormat:@"%.1f℃", celsius]
          attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:9.5f],
                      NSFontAttributeName, temperatureColor, NSForegroundColorAttributeName,
                      nil]];
