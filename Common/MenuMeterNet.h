@@ -48,6 +48,7 @@
 #define kNetDisplayOrientationPref			@"NetOrientation"
 #define kNetThroughputLabelPref				@"NetThroughputLabel"
 #define kNetThroughput1KBoundPref			@"NetThroughput1KBound"
+#define kNetThroughputBitsPref				@"NetThroughputBits"
 #define kNetGraphStylePref					@"NetGraphStyle"
 #define kNetGraphLengthPref					@"NetGraphLength"
 #define kNetScaleModePref					@"NetScaleMode"
@@ -112,6 +113,9 @@ enum {
 
 // Thoughput 1K bound
 #define kNetThroughput1KBoundDefault		NO
+
+// Thoughput Bits per second
+#define kNetThroughputBitsDefault			NO
 
 // Colors
 											// Moss green

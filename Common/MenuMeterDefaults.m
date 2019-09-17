@@ -491,6 +491,10 @@
 	return [self loadBoolPref:kNetThroughput1KBoundPref defaultValue:kNetThroughput1KBoundDefault];
 } // netThroughput1KBound
 
+- (BOOL)netThroughputBits {
+	return [self loadBoolPref:kNetThroughputBitsPref defaultValue:kNetThroughputBitsDefault];
+} // netThroughputBits
+
 - (int)netGraphStyle {
 	return [self loadIntPref:kNetGraphStylePref
 					lowBound:kNetGraphStyleStandard
@@ -548,6 +552,10 @@
 - (void)saveNetThroughput1KBound:(BOOL)label {
 	[self saveBoolPref:kNetThroughput1KBoundPref value:label];
 } // saveNetThroughput1KBound
+
+- (void)saveNetThroughputBits:(BOOL)label {
+	[self saveBoolPref:kNetThroughputBitsPref value:label];
+} // saveNetThroughputBits
 
 - (void)saveNetGraphStyle:(int)style {
 	[self saveIntPref:kNetGraphStylePref value:style];

@@ -56,10 +56,14 @@
 - (void)configFromPrefs:(NSNotification *)notification;
 
 // Data formatting
-- (NSString *)throughputStringForBPS:(double)bps;
+- (NSString *)throughputStringForBytesPerSecond:(double)bps;
 - (NSString *)throughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval;
 - (NSString *)menubarThroughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval;
-- (NSString *)stringForBytes:(double)bytes;
+- (NSString *)throughputStringForBytesPerSecond:(double)bps withSpace:(Boolean)wantSpace;
+- (NSString *)trafficStringForNumber:(NSNumber *)throughputNumber withLabel:(NSString *)directionLabel;
+- (NSUInteger)scaleDown:(double *)num usingBase:(NSUInteger)base withLimit:(NSUInteger)limit;
+- (NSString *)stringifyNumber:(double)num withUnitLabel:(NSString *)label andFormat:(NSString *)format;
+- (NSString *)throughputStringForBytes:(NSNumber *)throughputNumber;
 
 @end
 
@@ -81,7 +85,6 @@
 #define kThroughputTitle				@"Throughput:"
 #define kPeakThroughputTitle			@"Peak Throughput:"
 #define kTrafficTotalTitle				@"Traffic Totals:"
-#define kTrafficTotalFormat				@"%@ %@ (%@ bytes)"
 #define kOpenNetworkUtilityTitle		@"Open Network Utility"
 #define kOpenNetworkPrefsTitle			@"Open Network Preferences"
 #define kOpenInternetConnectTitle		@"Open Internet Connect"
@@ -92,13 +95,26 @@
 #define kPPPConnectTitle				@"Connect"
 #define kPPPDisconnectTitle				@"Disconnect"
 #define kNoInterfaceErrorMessage		@"No Active Interfaces"
-#define kGbpsLabel						@"Gbps"
-#define kMbpsLabel						@"Mbps"
-#define kKbpsLabel						@"Kbps"
+#define kBitsLabel						@"bits"
+#define kBytesLabel						@"bytes"
+#define kBitLabel						@"b"
+#define kKbLabel						@"Kb"
+#define kMbLabel						@"Mb"
+#define kGbLabel						@"Gb"
+#define kTbLabel						@"Tb"
 #define kByteLabel						@"B"
 #define kKBLabel						@"KB"
 #define kMBLabel						@"MB"
 #define kGBLabel						@"GB"
+#define kTBLabel						@"TB"
+#define kBpsLabel						@"bps"
+#define kKbpsLabel						@"Kbps"
+#define kMbpsLabel						@"Mbps"
+#define kGbpsLabel						@"Gbps"
+#define kBitPerSecondLabel				@"b/s"
+#define kKbPerSecondLabel				@"Kb/s"
+#define kMbPerSecondLabel				@"Mb/s"
+#define kGbPerSecondLabel				@"Gb/s"
 #define kBytePerSecondLabel				@"B/s"
 #define kKBPerSecondLabel				@"KB/s"
 #define kMBPerSecondLabel				@"MB/s"
@@ -108,6 +124,8 @@
 #define kPPPConnectedTitle				@"Connected"
 #define kPPPConnectedWithTimeTitle		@"Connected %02d:%02d:%02d"
 #define kPPPDisconnectingTitle			@"Disconnecting..."
+#define kKiloBinary						1024
+#define kKiloDecimal					1000
 
 ///////////////////////////////////////////////////////////////
 //
@@ -187,8 +205,10 @@
 							kPeakThroughputTitle,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTrafficTotalTitle value:nil table:nil],
 							kTrafficTotalTitle,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTrafficTotalFormat value:nil table:nil],
-							kTrafficTotalFormat,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kBitsLabel value:nil table:nil],
+							kBitsLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kBytesLabel value:nil table:nil],
+							kBytesLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kOpenNetworkUtilityTitle value:nil table:nil],
 							kOpenNetworkUtilityTitle,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kOpenNetworkPrefsTitle value:nil table:nil],
@@ -209,12 +229,24 @@
 							kPPPConnectTitle,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kPPPDisconnectTitle value:nil table:nil],
 							kPPPDisconnectTitle,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kGbpsLabel value:nil table:nil],
-							kGbpsLabel,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMbpsLabel value:nil table:nil],
-							kMbpsLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kBpsLabel value:nil table:nil],
+							kBpsLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kKbpsLabel value:nil table:nil],
 							kKbpsLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMbpsLabel value:nil table:nil],
+							kMbpsLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kGbpsLabel value:nil table:nil],
+							kGbpsLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kBitLabel value:nil table:nil],
+							kBitLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kKbLabel value:nil table:nil],
+							kKbLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMbLabel value:nil table:nil],
+							kMbLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kGbLabel value:nil table:nil],
+							kGbLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTbLabel value:nil table:nil],
+							kTbLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kByteLabel value:nil table:nil],
 							kByteLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kKBLabel value:nil table:nil],
@@ -223,6 +255,16 @@
 							kMBLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kGBLabel value:nil table:nil],
 							kGBLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTBLabel value:nil table:nil],
+							kTBLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kBitPerSecondLabel value:nil table:nil],
+							kBitPerSecondLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kKbPerSecondLabel value:nil table:nil],
+							kKbPerSecondLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMbPerSecondLabel value:nil table:nil],
+							kMbPerSecondLabel,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kGbPerSecondLabel value:nil table:nil],
+							kGbPerSecondLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kBytePerSecondLabel value:nil table:nil],
 							kBytePerSecondLabel,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kKBPerSecondLabel value:nil table:nil],
@@ -366,15 +408,15 @@
             // Calc speed
 			if ([details objectForKey:@"linkspeed"] && isActiveInterface) {
 				if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000000) {
-					speed = [NSString stringWithFormat:@" %.0f%@",
+					speed = [NSString stringWithFormat:@" %.0f %@",
 								([[details objectForKey:@"linkspeed"] doubleValue] / 1000000000),
 								[localizedStrings objectForKey:kGbpsLabel]];
 				} else if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000) {
-					speed = [NSString stringWithFormat:@" %.0f%@",
+					speed = [NSString stringWithFormat:@" %.0f %@",
 								([[details objectForKey:@"linkspeed"] doubleValue] / 1000000),
 								[localizedStrings objectForKey:kMbpsLabel]];
 				} else {
-					speed = [NSString stringWithFormat:@" %@%@",
+					speed = [NSString stringWithFormat:@" %@ %@",
 								[bytesFormatter stringForObjectValue:
 									[NSNumber numberWithDouble:([[details objectForKey:@"linkspeed"] doubleValue] / 1000)]],
 								[localizedStrings objectForKey:kKbpsLabel]];
@@ -574,7 +616,7 @@
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
 					NSMenuItem *peakItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																						[self throughputStringForBPS:[peakNumber doubleValue]]]
+																						[self throughputStringForBytesPerSecond:[peakNumber doubleValue]]]
 																			  action:nil
 																	   keyEquivalent:@""];
 					[peakItem setEnabled:NO];
@@ -588,19 +630,13 @@
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
 					NSMenuItem *totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																							[NSString stringWithFormat:[localizedStrings objectForKey:kTrafficTotalFormat],
-																								[localizedStrings objectForKey:kTxLabel],
-																								[self stringForBytes:[throughputOutNumber doubleValue]],
-																								[prettyIntFormatter stringForObjectValue:throughputOutNumber]]]
+																					   [self trafficStringForNumber:throughputOutNumber withLabel:kTxLabel]]
 																			   action:nil
 																		keyEquivalent:@""];
 					[totalItem setEnabled:NO];
 					[interfaceUpdateMenuItems setObject:totalItem forKey:@"totaloutitem"];
 					totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																				[NSString stringWithFormat:[localizedStrings objectForKey:kTrafficTotalFormat],
-																					[localizedStrings objectForKey:kRxLabel],
-																					[self stringForBytes:[throughputInNumber doubleValue]],
-																					[prettyIntFormatter stringForObjectValue:throughputInNumber]]]
+																		   [self trafficStringForNumber:throughputInNumber withLabel:kRxLabel]]
 																   action:nil
 															keyEquivalent:@""];
 					[totalItem setEnabled:NO];
@@ -1277,10 +1313,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[NSString stringWithFormat:[localizedStrings objectForKey:kTrafficTotalFormat],
-													[localizedStrings objectForKey:kTxLabel],
-														[self stringForBytes:[throughputNumber doubleValue]],
-														[prettyIntFormatter stringForObjectValue:throughputNumber]]]);
+											 [self trafficStringForNumber:throughputNumber withLabel:kTxLabel]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"totalinitem"];
 				throughputNumber = [throughputDetails objectForKey:@"totalin"];
@@ -1288,10 +1321,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[NSString stringWithFormat:[localizedStrings objectForKey:kTrafficTotalFormat],
-													[localizedStrings objectForKey:kRxLabel],
-													[self stringForBytes:[throughputNumber doubleValue]],
-													[prettyIntFormatter stringForObjectValue:throughputNumber]]]);
+												[self trafficStringForNumber:throughputNumber withLabel:kRxLabel]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"peakitem"];
 				throughputNumber = [throughputDetails objectForKey:@"peak"];
@@ -1299,7 +1329,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[self throughputStringForBPS:[throughputNumber doubleValue]]]);
+												[self throughputStringForBytesPerSecond:[throughputNumber doubleValue]]]);
 				}
 			}
 		}
@@ -1532,7 +1562,7 @@
 		float suffixMaxWidth = 0;
 		NSAttributedString *throughString = [[NSAttributedString alloc]
 												initWithString:[NSString stringWithFormat:@"99.9%@",
-																	[localizedStrings objectForKey:kBytePerSecondLabel]]
+																[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kBitPerSecondLabel : kBytePerSecondLabel]]
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																	throughputFont, NSFontAttributeName,
 																	nil]];
@@ -1541,7 +1571,7 @@
 		}
 		throughString = [[NSAttributedString alloc]
 							initWithString:[NSString stringWithFormat:@"99.9%@",
-												[localizedStrings objectForKey:kKBPerSecondLabel]]
+												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kKbPerSecondLabel : kKBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
 												nil]];
@@ -1550,7 +1580,7 @@
 		}
 		throughString = [[NSAttributedString alloc]
 							initWithString:[NSString stringWithFormat:@"99.9%@",
-												[localizedStrings objectForKey:kMBPerSecondLabel]]
+												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kMbPerSecondLabel : kMBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
 												nil]];
@@ -1559,7 +1589,7 @@
 		}
 		throughString = [[NSAttributedString alloc]
 							initWithString:[NSString stringWithFormat:@"99.9%@",
-												[localizedStrings objectForKey:kGBPerSecondLabel]]
+												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kGbPerSecondLabel : kGBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
 												nil]];
@@ -1587,91 +1617,120 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (NSString *)throughputStringForBPS:(double)bps {
+- (NSString *)throughputStringForBytesPerSecond:(double)bps {
 
-	if ((bps < 1024) && [ourPrefs netThroughput1KBound]) {
-		bps = 0;
-	}
-	if (bps > 1073741824) {
-		return [NSString stringWithFormat:@"%@%@",
-					[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:(double)bps / 1073741824]],
-					[localizedStrings objectForKey:kGBPerSecondLabel]];
-	} else if (bps > 1048576) {
-		return [NSString stringWithFormat:@"%@%@",
-					[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:(double)bps / 1048576]],
-					[localizedStrings objectForKey:kMBPerSecondLabel]];
-	} else if ((bps > 1024) || [ourPrefs netThroughput1KBound]) {
-		return [NSString stringWithFormat:@"%@%@",
-					[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:(double)bps / 1024]],
-					[localizedStrings objectForKey:kKBPerSecondLabel]];
-	} else {
-		return [NSString stringWithFormat:@"%.0f%@", (float)bps,
-					[localizedStrings objectForKey:kBytePerSecondLabel]];
-	}
+	return [self throughputStringForBytesPerSecond:bps withSpace:YES];
 
-} // throughputStringForBPS
+} // throughputStringForBytesPerSecond
 
 - (NSString *)throughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval {
 
 	if (interval <= 0) return nil;
-	return [self throughputStringForBPS:bytes / interval];
+	return [self throughputStringForBytesPerSecond:bytes / interval];
 
 } // throughputStringForBytes:inInterval:
 
 - (NSString *)menubarThroughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval {
 
-	double bps = bytes / interval;
-	if ((bps < 1024) && [ourPrefs netThroughput1KBound]) {
-		bps = 0;
-	}
-	if (bps > 1073741824) {
-		return [NSString stringWithFormat:@"%@%@",
-				[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:(double)bps / 1073741824]],
-				[localizedStrings objectForKey:kGBPerSecondLabel]];
-	} else if (bps > 104857600) {
-		// Patch from Alex Eddy, don't show decimals to limit to 4 digits
-		return [NSString stringWithFormat:@"%.0f%@", bps / 1048576,
-					[localizedStrings objectForKey:kMBPerSecondLabel]];
-	} else if (bps > 1048576) {
-		return [NSString stringWithFormat:@"%@%@",
-				[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:(double)bps / 1048576]],
-				[localizedStrings objectForKey:kMBPerSecondLabel]];
-	} else if (bps > 102400) {
-		// Patch from Alex Eddy, don't show decimals to limit to 4 digits
-		return [NSString stringWithFormat:@"%.0f%@", bps / 1024,
-				[localizedStrings objectForKey:kKBPerSecondLabel]];
-	} else if ((bps > 1024) || [ourPrefs netThroughput1KBound]) {
-		return [NSString stringWithFormat:@"%@%@",
-				[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:(double)bps / 1024]],
-				[localizedStrings objectForKey:kKBPerSecondLabel]];
-	} else {
-		return [NSString stringWithFormat:@"%.0f%@", (float)bps,
-				[localizedStrings objectForKey:kBytePerSecondLabel]];
-	}
+	if (interval <= 0) return nil;
+	return [self throughputStringForBytesPerSecond:bytes / interval withSpace:NO];
 
 } // menubarThroughputStringForBytes:inInterval:
 
-- (NSString *)stringForBytes:(double)bytes {
+- (NSString *)throughputStringForBytesPerSecond:(double)bps withSpace:(Boolean)wantSpace {
 
-	if (bytes > 1073741824) {
-		return [NSString stringWithFormat:@"%@%@",
-					[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:bytes / 1073741824]],
-					[localizedStrings objectForKey:kGBLabel]];
-	} else if (bytes > 1048576) {
-		return [NSString stringWithFormat:@"%@%@",
-					[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:bytes / 1048576]],
-					[localizedStrings objectForKey:kMBLabel]];
-	} else if ((bytes > 1024) || [ourPrefs netThroughput1KBound]) {
-		return [NSString stringWithFormat:@"%@%@",
-					[bytesFormatter stringForObjectValue:[NSNumber numberWithDouble:bytes / 1024]],
-					[localizedStrings objectForKey:kKBLabel]];
-	} else {
-		return [NSString stringWithFormat:@"%.0f%@", bytes,
-					[localizedStrings objectForKey:kByteLabel]];
+	NSArray *labels = @[kBytePerSecondLabel, kKBPerSecondLabel, kMBPerSecondLabel, kGBPerSecondLabel];
+	int kilo = kKiloBinary;
+
+	if ([ourPrefs netThroughputBits]) {
+		labels = @[kBitPerSecondLabel,  kKbPerSecondLabel, kMbPerSecondLabel, kGbPerSecondLabel];
+		kilo = kKiloDecimal;
+		bps *= 8;
 	}
 
-} // stringForBytes
+	if ((bps < kilo) && [ourPrefs netThroughput1KBound]) {
+		bps = 0;
+	}
 
+	NSUInteger labelIndex = [self scaleDown:&bps usingBase:kilo withLimit:[labels count] - 1];
+	NSString *unitLabel = [labels objectAtIndex:labelIndex];
+
+	NSString *format = @"%.1f";
+	if (labelIndex == 0 || bps >= 1000) {
+		format = @"%.0f";
+	}
+
+	if (wantSpace) {
+		format = [NSString stringWithFormat:@"%@ %%@", format];
+	} else {
+		format = [NSString stringWithFormat:@"%@%%@", format];
+	}
+
+	return [self stringifyNumber:bps withUnitLabel:unitLabel andFormat:format];
+
+} // throughputStringForBytesPerSecond:withFormat:
+
+- (NSString *)trafficStringForNumber:(NSNumber *)throughputNumber withLabel:(NSString *)directionLabel {
+
+	NSArray *labels = @[kByteLabel, kKBLabel, kMBLabel, kGBLabel, kTBLabel];
+	double throughput = [throughputNumber doubleValue];
+	int kilo = kKiloBinary;
+
+	if ([ourPrefs netThroughputBits]) {
+		labels = @[kBitLabel, kKbLabel, kMbLabel, kGbLabel, kTbLabel];
+		kilo = kKiloDecimal;
+		throughput *= 8;
+	}
+
+	NSUInteger labelIndex = [self scaleDown:&throughput usingBase:kilo withLimit:[labels count] - 1];
+	NSString *unitLabel = [labels objectAtIndex:labelIndex];
+
+	NSString *format = @"%.1f %@";
+	if (labelIndex == 0) {
+		format = @"%.0f %@";
+	}
+
+	NSString *scaledTrafficTotal = [self stringifyNumber:throughput withUnitLabel:unitLabel andFormat:format];
+	NSString *unscaledTrafficTotal = [self throughputStringForBytes:throughputNumber];
+
+	return [NSString stringWithFormat:@"%@ %@ (%@)", directionLabel, scaledTrafficTotal, unscaledTrafficTotal];
+
+} // trafficStringForNumber:withLabel:
+
+- (NSUInteger)scaleDown:(double *)num usingBase:(NSUInteger)base withLimit:(NSUInteger)limit {
+
+	NSUInteger exponent = 0;
+
+	if (base > 1) {
+		for (; *num >= base && exponent < limit; exponent++) {
+			*num /= base;
+		}
+	}
+
+	return exponent;
+
+} // scaleDown:usingBase:withLimit:
+
+- (NSString *)stringifyNumber:(double)num withUnitLabel:(NSString *)label andFormat:(NSString *)format {
+
+	return [NSString stringWithFormat:format, num, [localizedStrings objectForKey:label]];
+
+} // stringifyNumber:withUnitLabel:andFormat:
+
+- (NSString *)throughputStringForBytes:(NSNumber *)throughputNumber {
+
+	double throughput = [throughputNumber doubleValue];
+	NSString *unitLabel = kBytesLabel;
+
+	if ([ourPrefs netThroughputBits]) {
+		unitLabel = kBitsLabel;
+		throughput *= 8;
+	};
+
+	NSString *prettyTotal = [prettyIntFormatter stringForObjectValue:[NSNumber numberWithDouble:throughput]];
+
+	return [NSString stringWithFormat:@"%@ %@", prettyTotal, unitLabel];
+
+} // throughputStringForBytes
 
 @end
-

@@ -3,13 +3,25 @@
 "Rx:" = "in：";
 
 // Unit labels
+"bits" = "bits";
+"bytes" = "バイト";
 "Gbps" = "Gbps";
 "Mbps" = "Mbps";
 "Kbps" = "Kbps";
+"b" = "b";
+"Kb" = "Kb";
+"Mb" = "Mb";
+"Gb" = "Gb";
+"Tb" = "Tb";
 "B" = "B";
 "KB" = "KB";
 "MB" = "MB";
 "GB" = "GB";
+"TB" = "TB";
+"b/s" = "b/s";
+"Kb/s" = "Kb/s";
+"Mb/s" = "Mb/s";
+"Gb/s" = "Gb/s";
 "B/s" = "B/s";
 "KB/s" = "KB/s";
 "MB/s" = "MB/s";
@@ -45,11 +57,6 @@
 
 // Traffic totals menu title
 "Traffic Totals:" = "トラフィック合計：";
-
-// Traffic total format string. The Tx and Rx labels from above are automatically used
-// as the first param, and numbers are localized automatically by NSNumberFormatter
-// ex: "Tx: XX.XMB (XXX,XXX bytes)
-"%@ %@ (%@ bytes)" = "%1$@ %2$@ (%3$@ バイト)";
 
 // Menu action title strings
 "Open Network Utility" = "ネットワークユーティリティを開く";
