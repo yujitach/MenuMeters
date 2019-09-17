@@ -364,7 +364,10 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Save changes
 	if (sender == cpuDisplayMode) {
 		[ourPrefs saveCpuDisplayMode:(int)[cpuDisplayMode indexOfSelectedItem] + 1];
-	} else if (sender == cpuInterval) {
+    } else if (sender == cpuTemperatureToggle) {
+        bool show = [cpuAvgProcs state] == NSOnState ? YES : NO;
+        [ourPrefs saveCpuTempreture:show];
+    } else if (sender == cpuInterval) {
 		[ourPrefs saveCpuInterval:[cpuInterval doubleValue]];
 	} else if (sender == cpuPercentMode) {
 		[ourPrefs saveCpuPercentDisplay:(int)[cpuPercentMode indexOfSelectedItem]];

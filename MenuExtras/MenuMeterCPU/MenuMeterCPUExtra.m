@@ -250,14 +250,20 @@
 	if (![loadHistory count]) return nil;
 
     uint32_t cpuCount = [self numberOfCPUsToDisplay];
+    float renderOffset = 0.0f;
     // Horizontal CPU thermometer is handled differently because it has to
     // manage rows and columns in a very different way from normal horizontal
     // layout
+    if ([ourPrefs cpuShowTempreture]) {
+        [self renderSingleTemperatureIntoImage:currentImage atOffset:renderOffset];
+        renderOffset += kCPUTemperatureDisplayWidth;
+    }
     if ([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) {
         // Calculate the minimum number of columns that will be needed
         uint32_t rowCount = [ourPrefs cpuHorizontalRows];
-        uint32_t columnCount = 
-            ((cpuCount - 1) / [ourPrefs cpuHorizontalRows]) + 1;
+        //ceil(A/B) for ints is equal (A+B-1)/B
+        uint32_t columnCount = (cpuCount+rowCount-1)/rowCount;
+            //((cpuCount - 1) / [ourPrefs cpuHorizontalRows]) + 1;
         // Calculate a column width
         float columnWidth = (menuWidth - 1.0f) / columnCount;
         // Image height
@@ -265,7 +271,7 @@
         // Calculate a thermometer height
         float thermometerHeight = ((imageHeight - 2) / rowCount);
         for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum++) {
-            float xOffset = ((cpuNum / rowCount) * columnWidth) + 1.0f;
+            float xOffset = renderOffset + ((cpuNum / rowCount) * columnWidth) + 1.0f;
             float yOffset = (imageHeight -
                              (((cpuNum % rowCount) + 1) * thermometerHeight)) - 1.0f;
             [self renderHorizontalThermometerIntoImage:currentImage forProcessor:cpuNum atX:xOffset andY:yOffset withWidth:columnWidth andHeight:thermometerHeight];
@@ -273,7 +279,6 @@
     }
     else {
 		// Loop by processor
-		float renderOffset = 0;
 		int cpuDisplayModePrefs = [ourPrefs cpuDisplayMode];
 		for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum++) {
 			
@@ -298,7 +303,7 @@
 			}
 			// At end of each proc adjust spacing
 			renderOffset += kCPUDisplayMultiProcGapWidth;
-			
+
 			// If we're averaging all we're done on first iteration
 			if ([ourPrefs cpuAvgAllProcs]) break;
 		}
@@ -533,6 +538,21 @@
 
 } // renderSplitPercentIntoImage:forProcessor:atOffset:
 
+- (void)renderSingleTemperatureIntoImage:(NSImage *)image atOffset:(float)offset {
+    float_t celsius = [cpuInfo cpuProximityTemperature];
+    [image lockFocus];
+    NSAttributedString *renderTemperatureString = [[NSAttributedString alloc]
+         initWithString:[NSString stringWithFormat:@"%.1f°", celsius]
+         attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:9.5f],
+                     NSFontAttributeName, temperatureColor, NSForegroundColorAttributeName,
+                     nil]];
+    [renderTemperatureString drawAtPoint:NSMakePoint(
+         kCPUTemperatureDisplayWidth - (float)round([renderTemperatureString size].width) - 1,
+         (float)floor(([image size].height-[renderTemperatureString size].height) / 2)
+    )];
+    [image unlockFocus];
+} // renderSingleTemperatureIntoImage:atOffset:
+
 
 - (void)renderThermometerIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
 
@@ -717,6 +737,7 @@
 	// Cache colors to skip archiver
 	userColor = [ourPrefs cpuUserColor];
 	systemColor = [ourPrefs cpuSystemColor];
+    temperatureColor = [ourPrefs cpuTemperatureColor];
 
 	// It turns out that text drawing is _much_ slower than compositing images together
 	// so we render several arrays of images, each representing a different percent value
@@ -821,6 +842,9 @@
         if (![ourPrefs cpuAvgAllProcs] && (numberOfCPUs > 1)) {
             menuWidth += ((numberOfCPUs - 1) * kCPUDisplayMultiProcGapWidth);
         }
+    }
+    if ([ourPrefs cpuShowTempreture]) {
+        menuWidth += kCPUTemperatureDisplayWidth;
     }
 
 	// Handle PowerMate

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30C0F2A7227A19BF003E6699 /* libsmc_reader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C0F2A12279F52D003E6699 /* libsmc_reader.a */; };
+		30C0F2A8227A3AD2003E6699 /* libsmc_reader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C0F2A12279F52D003E6699 /* libsmc_reader.a */; };
 		33281A491B6BFB01001EA811 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1C11B69DB0D00915D5D /* MainMenu.xib */; };
 		33281A4A1B6BFB05001EA811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
 		332B0F8F1E0381780020CCBB /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
@@ -91,6 +93,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		30C0F2A02279F52D003E6699 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30C0F29C2279F52C003E6699 /* smc_reader.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 30C0F2952279F52C003E6699;
+			remoteInfo = smc_reader;
+		};
 		3345DD2A1B6BE7A8003843FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D40DB4A703D25F2100A87BC9 /* Project object */;
@@ -101,6 +110,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30C0F29C2279F52C003E6699 /* smc_reader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = smc_reader.xcodeproj; path = smc_reader/smc_reader.xcodeproj; sourceTree = "<group>"; };
 		330D68B32105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterCPU/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		330D68B42105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterDisk/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		330D68B52105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterMem/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -273,6 +283,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C0F2A7227A19BF003E6699 /* libsmc_reader.a in Frameworks */,
 				3383C1871B69BACA00915D5D /* SystemUIPlugin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +292,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C0F2A8227A3AD2003E6699 /* libsmc_reader.a in Frameworks */,
 				D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */,
 				D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */,
 				D403ADF40E04F1E100348443 /* SystemConfiguration.framework in Frameworks */,
@@ -294,6 +306,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30C0F29D2279F52C003E6699 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30C0F2A12279F52D003E6699 /* libsmc_reader.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30C0F2A6227A19BF003E6699 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3383C1711B69B72500915D5D /* MenuMetersApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +370,7 @@
 				D40DB50803D262ED00A87BC9 /* System Private Frameworks */,
 				3383C1711B69B72500915D5D /* MenuMetersApp */,
 				D40DB4B003D25F6400A87BC9 /* Products */,
+				30C0F2A6227A19BF003E6699 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -369,6 +397,7 @@
 		D40DB4B303D25F9E00A87BC9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				30C0F29C2279F52C003E6699 /* smc_reader.xcodeproj */,
 				D48A784B10181DE6008E3207 /* AppleUndocumented.h */,
 				3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */,
 				3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */,
@@ -642,7 +671,6 @@
 				D4ECB39F05FE72E100954E26 /* Resources */,
 				D4ECB3A905FE72E100954E26 /* Sources */,
 				D4ECB3AD05FE72E100954E26 /* Frameworks */,
-				D4ECB3B305FE72E100954E26 /* Rez */,
 			);
 			buildRules = (
 			);
@@ -661,11 +689,10 @@
 		D40DB4A703D25F2100A87BC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				TargetAttributes = {
 					3383C16F1B69B72500915D5D = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = 95AQ7YKR5A;
 					};
 				};
 			};
@@ -686,6 +713,12 @@
 			mainGroup = D40DB4A303D25F2100A87BC9;
 			productRefGroup = D40DB4B003D25F6400A87BC9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 30C0F29D2279F52C003E6699 /* Products */;
+					ProjectRef = 30C0F29C2279F52C003E6699 /* smc_reader.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D4ECB39105FE72E100954E26 /* PrefPane */,
@@ -693,6 +726,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		30C0F2A12279F52D003E6699 /* libsmc_reader.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libsmc_reader.a;
+			remoteRef = 30C0F2A02279F52D003E6699 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3383C16E1B69B72500915D5D /* Resources */ = {
@@ -755,16 +798,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXRezBuildPhase section */
-		D4ECB3B305FE72E100954E26 /* Rez */ = {
-			isa = PBXRezBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXRezBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3383C16C1B69B72500915D5D /* Sources */ = {
@@ -926,10 +959,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
 				DSTROOT = "/tmp/$(PROJECT_NAME)App.dst";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -985,10 +1018,10 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				DSTROOT = "/tmp/$(PROJECT_NAME)App.dst";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1032,7 +1065,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEPLOYMENT_LOCATION = YES;
+				DEVELOPMENT_TEAM = "";
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				GCC_PREFIX_HEADER = MenuMeters.pch;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
@@ -1089,9 +1124,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.4][arch=ppc]" = 10.2;
-				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.5][arch=*]" = 10.5;
-				PREBINDING = NO;
+				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.4][arch=ppc]" = 10.10;
+				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.5][arch=*]" = 10.10;
 				SDKROOT = macosx;
 				SEPARATE_STRIP = YES;
 				WARNING_CFLAGS = (
@@ -1142,10 +1176,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.4][arch=ppc]" = 10.2;
-				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.5][arch=*]" = 10.5;
+				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.4][arch=ppc]" = 10.10;
+				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.5][arch=*]" = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx;
 				SEPARATE_STRIP = YES;
 				WARNING_CFLAGS = (
@@ -1161,7 +1194,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEPLOYMENT_LOCATION = YES;
+				DEVELOPMENT_TEAM = "";
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				GCC_PREFIX_HEADER = MenuMeters.pch;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;

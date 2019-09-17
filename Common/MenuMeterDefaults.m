@@ -211,6 +211,14 @@
 	return [self loadColorPref:kCPUUserColorPref defaultValue:kCPUUserColorDefault];
 } // cpuUserColor
 
+- (BOOL)cpuShowTempreture {
+    return [self loadBoolPref:kCPUShowTemperature defaultValue:kCPUShowTemperatureDefault];
+} //cpuTempreture
+
+- (NSColor *)cpuTemperatureColor {
+    return [self loadColorPref:kCPUTemperatureColor defaultValue:kCPUTemperatureColorDefault];
+} //cpuTemperatureColor
+
 - (void)saveCpuInterval:(double)interval {
 	[self saveDoublePref:kCPUIntervalPref value:interval];
 } // saveCpuInterval
@@ -262,6 +270,14 @@
 - (void)saveCpuPowerMateMode:(int)mode {
 	[self saveIntPref:kCPUPowerMateMode value:mode];
 } // saveCpuPowerMateMode
+
+- (void)saveCpuTempreture:(BOOL)show {
+    [self saveBoolPref: kCPUShowTemperature value:show];
+} // saveCpuTemperature
+
+- (void)saveCpuTempretureColor:(NSColor *)color {
+    [self saveColorPref:kCPUTemperatureColor value:color];
+} // saveCpuTempretureColor
 
 - (void)saveCpuSystemColor:(NSColor *)color {
 	[self saveColorPref:kCPUSystemColorPref value:color];
