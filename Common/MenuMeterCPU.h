@@ -54,6 +54,7 @@
 #define kCPUHorizontalRowsPref              @"CPUHorizontalRows"
 #define kCPUMenuWidthPref                   @"CPUMenuWidth"
 #define kCPUAvgAllProcsPref					@"CPUAverageMultiProcs"
+#define kCPUSumAllProcsPercentPref			@"CPUSumAllProcsPercent"
 #define kCPUAvgLowerHalfProcsPref			@"CPUAverageLowerHalfProcs"
 #define kCPUSortByUsagePref				    @"CPUSortByUsage"
 #define kCPUSystemColorPref					@"CPUSystemColor"
@@ -114,6 +115,9 @@ enum {
 
 // Multiproc averaging
 #define kCPUAvgAllProcsDefault				NO
+
+// Multiproc sum percentage
+#define kCPUSumAllProcsPercentDefault		NO
 
 // Least-utilized half of procs averaging
 #define kCPUAvgLowerHalfProcsDefault		NO

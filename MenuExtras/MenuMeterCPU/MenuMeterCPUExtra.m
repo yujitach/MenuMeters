@@ -479,6 +479,10 @@
 	if (totalLoad > 1) totalLoad = 1;
 	if (totalLoad < 0) totalLoad = 0;
 
+	if ([ourPrefs cpuSumAllProcsPercent]) {
+		totalLoad *= numberOfCPUs;
+	}
+
 	// Get the prerendered text and draw
 	NSImage *percentImage = [singlePercentCache objectAtIndex:roundf(totalLoad * 100.0f)];
 	if (!percentImage) return;
@@ -721,6 +725,7 @@
 	singlePercentCache = nil;
 	splitUserPercentCache = nil;
 	splitSystemPercentCache = nil;
+	int numberOfCPUs = [self numberOfCPUsToDisplay];
 
 	if (([ourPrefs cpuPercentDisplay] == kCPUPercentDisplayLarge) ||
 		([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall)) {
@@ -736,7 +741,11 @@
 											fgMenuThemeColor,
 											NSForegroundColorAttributeName,
 											nil];
-		for (int i = 0; i <= 100; i++) {
+		int percentLimit = 100;
+		if ([ourPrefs cpuSumAllProcsPercent]) {
+			percentLimit *= numberOfCPUs;
+		}
+		for (int i = 0; i <= percentLimit; i++) {
 			NSAttributedString *cacheText = [[NSAttributedString alloc]
 												initWithString:[NSString stringWithFormat:@"%d%%", i]
 													attributes:textAttributes];
@@ -795,7 +804,6 @@
 	}
 
 	// Fix our menu size to match our new config
-    int numberOfCPUs = [self numberOfCPUsToDisplay];
 	menuWidth = 0;
     if ([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) {
         menuWidth = [ourPrefs cpuMenuWidth];
