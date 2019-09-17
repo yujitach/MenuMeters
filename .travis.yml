@@ -1,0 +1,4 @@
+language: objective-c
+xcode_project: MenuMeters.xcodeproj
+xcode_scheme: PrefPane
+script: set -o pipefail && xcodebuild -project MenuMeters.xcodeproj -scheme PrefPane build | xcpretty
