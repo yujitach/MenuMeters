@@ -432,6 +432,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Update controls
 	[cpuDisplayMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuDisplayMode selectItemAtIndex:[ourPrefs cpuDisplayMode] - 1];
+    [cpuTemperatureToggle setState:[ourPrefs cpuShowTempreture]];
 	[cpuInterval setDoubleValue:[ourPrefs cpuInterval]];
 	[cpuPercentMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];

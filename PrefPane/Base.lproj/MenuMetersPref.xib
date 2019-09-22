@@ -100,7 +100,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="CPU" identifier="1" id="102">
-                                <view key="view" ambiguous="YES" id="98">
+                                <view key="view" id="98">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -606,7 +606,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Memory" identifier="" id="103">
-                                <view key="view" id="104">
+                                <view key="view" ambiguous="YES" id="104">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -918,6 +918,9 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="v1t-AE-YHF"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </customView>
