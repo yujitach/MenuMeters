@@ -22,6 +22,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>MM_VERSION</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
 	<key>NSMainNibFile</key>
 	<string>MenuMetersPref</string>
 	<key>NSPrefPaneIconFile</key>
