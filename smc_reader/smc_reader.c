@@ -57,8 +57,8 @@ kern_return_t SMCCall(int index, SMCKeyData *inputStructure, SMCKeyData *outputS
 kern_return_t SMCReadKey(SMCCode key, SMCKeyValue *val)
 {
     kern_return_t result;
-    SMCKeyData  inputStructure = {0, 0};
-    SMCKeyData  outputStructure = {0, 0};
+    SMCKeyData  inputStructure = {};
+    SMCKeyData  outputStructure = {};
 
     inputStructure.key = key;
     inputStructure.data8 = SMC_CMD_READ_KEYINFO;
@@ -97,7 +97,7 @@ kern_return_t SMCReadKey(SMCCode key, SMCKeyValue *val)
 kern_return_t SMCReadKeysCount(UInt32 *count)
 {
     kern_return_t result;
-    SMCKeyValue val = {0, 0};
+    SMCKeyValue val = {};
     result = SMCReadKey(toSMCCode("#KEY"), &val);
     if (result == kIOReturnSuccess && val.info.dataType.type == SMC_DATATYPE_UINT32.type)
     {
@@ -109,8 +109,8 @@ kern_return_t SMCReadKeysCount(UInt32 *count)
 kern_return_t SMCReadKeyAtIndex(UInt32 index, SMCKeyValue *val)
 {
     kern_return_t result;
-    SMCKeyData  inputStructure = {0, 0};
-    SMCKeyData  outputStructure = {0, 0};
+    SMCKeyData  inputStructure = {};
+    SMCKeyData  outputStructure = {};
 
     inputStructure.data32 = index;
     inputStructure.data8 = SMC_CMD_READ_INDEX;
