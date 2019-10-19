@@ -254,7 +254,7 @@
     // Horizontal CPU thermometer is handled differently because it has to
     // manage rows and columns in a very different way from normal horizontal
     // layout
-    if ([ourPrefs cpuShowTempreture]) {
+    if ([ourPrefs cpuShowTemperature]) {
         [self renderSingleTemperatureIntoImage:currentImage atOffset:renderOffset];
         renderOffset += kCPUTemperatureDisplayWidth;
     }
@@ -843,7 +843,7 @@
             menuWidth += ((numberOfCPUs - 1) * kCPUDisplayMultiProcGapWidth);
         }
     }
-    if ([ourPrefs cpuShowTempreture]) {
+    if ([ourPrefs cpuShowTemperature]) {
         menuWidth += kCPUTemperatureDisplayWidth;
     }
 
