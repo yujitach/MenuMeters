@@ -366,7 +366,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveCpuDisplayMode:(int)[cpuDisplayMode indexOfSelectedItem] + 1];
     } else if (sender == cpuTemperatureToggle) {
         bool show = ([cpuTemperatureToggle state] == NSOnState) ? YES : NO;
-        [ourPrefs saveCpuTempreture:show];
+        [ourPrefs saveCpuTemperature:show];
     } else if (sender == cpuInterval) {
 		[ourPrefs saveCpuInterval:[cpuInterval doubleValue]];
 	} else if (sender == cpuPercentMode) {
@@ -420,7 +420,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	} else if (sender == cpuSystemColor) {
 		[ourPrefs saveCpuSystemColor:[cpuSystemColor color]];
         } else if (sender == cpuTemperatureColor) {
-                [ourPrefs saveCpuTempretureColor:[cpuTemperatureColor color]];
+                [ourPrefs saveCpuTemperatureColor:[cpuTemperatureColor color]];
 	} else if (!sender) {
 		// On first load handle multiprocs options
 		if (![self isMultiProcessor]) {
@@ -432,7 +432,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Update controls
 	[cpuDisplayMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuDisplayMode selectItemAtIndex:[ourPrefs cpuDisplayMode] - 1];
-    [cpuTemperatureToggle setState:[ourPrefs cpuShowTempreture]];
+    [cpuTemperatureToggle setState:[ourPrefs cpuShowTemperature]];
 	[cpuInterval setDoubleValue:[ourPrefs cpuInterval]];
 	[cpuPercentMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];

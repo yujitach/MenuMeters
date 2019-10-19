@@ -50,7 +50,7 @@
 - (BOOL)cpuAvgLowerHalfProcs;
 - (BOOL)cpuSortByUsage;
 - (BOOL)cpuPowerMate;
-- (BOOL)cpuShowTempreture;
+- (BOOL)cpuShowTemperature;
 - (int)cpuPowerMateMode;
 - (NSColor *)cpuSystemColor;
 - (NSColor *)cpuUserColor;
@@ -67,11 +67,11 @@
 - (void)saveCpuAvgLowerHalfProcs:(BOOL)average;
 - (void)saveCpuSortByUsage:(BOOL)sort;
 - (void)saveCpuPowerMate:(BOOL)active;
-- (void)saveCpuTempreture:(BOOL)show;
+- (void)saveCpuTemperature:(BOOL)show;
 - (void)saveCpuPowerMateMode:(int)mode;
 - (void)saveCpuSystemColor:(NSColor *)color;
 - (void)saveCpuUserColor:(NSColor *)color;
-- (void)saveCpuTempretureColor:(NSColor *)color;
+- (void)saveCpuTemperatureColor:(NSColor *)color;
 
 // Disk menu prefs
 - (double)diskInterval;
