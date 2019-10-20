@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30C0F2A7227A19BF003E6699 /* libsmc_reader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C0F2A12279F52D003E6699 /* libsmc_reader.a */; };
-		30C0F2A8227A3AD2003E6699 /* libsmc_reader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30C0F2A12279F52D003E6699 /* libsmc_reader.a */; };
 		33281A491B6BFB01001EA811 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1C11B69DB0D00915D5D /* MainMenu.xib */; };
 		33281A4A1B6BFB05001EA811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
 		332B0F8F1E0381780020CCBB /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
@@ -90,16 +88,11 @@
 		D4ECB3AB05FE72E100954E26 /* MenuMeterPowerMate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BBBF750463514700A804AF /* MenuMeterPowerMate.m */; };
 		D4ECB3AC05FE72E100954E26 /* MenuMetersPref.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4BFA104F333B100A87BC9 /* MenuMetersPref.m */; };
 		D602BB91207F9561004984C1 /* MenuMeterCPUTopProcesses.m in Sources */ = {isa = PBXBuildFile; fileRef = D602BB90207F9561004984C1 /* MenuMeterCPUTopProcesses.m */; };
+		F75EBE30235B6F3600876CF7 /* smc_reader.c in Sources */ = {isa = PBXBuildFile; fileRef = F75EBE2F235B6F3600876CF7 /* smc_reader.c */; };
+		F75EBE31235B6F3600876CF7 /* smc_reader.c in Sources */ = {isa = PBXBuildFile; fileRef = F75EBE2F235B6F3600876CF7 /* smc_reader.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		30C0F2A02279F52D003E6699 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 30C0F29C2279F52C003E6699 /* smc_reader.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 30C0F2952279F52C003E6699;
-			remoteInfo = smc_reader;
-		};
 		3345DD2A1B6BE7A8003843FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D40DB4A703D25F2100A87BC9 /* Project object */;
@@ -110,7 +103,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		30C0F29C2279F52C003E6699 /* smc_reader.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = smc_reader.xcodeproj; path = smc_reader/smc_reader.xcodeproj; sourceTree = "<group>"; };
 		330D68B32105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterCPU/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		330D68B42105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterDisk/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		330D68B52105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "MenuExtras/MenuMeterMem/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -276,6 +268,8 @@
 		D4FC163403D26B0000A87BC9 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D602BB8F207F9561004984C1 /* MenuMeterCPUTopProcesses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPUTopProcesses.h; path = MenuExtras/MenuMeterCPU/MenuMeterCPUTopProcesses.h; sourceTree = "<group>"; };
 		D602BB90207F9561004984C1 /* MenuMeterCPUTopProcesses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPUTopProcesses.m; path = MenuExtras/MenuMeterCPU/MenuMeterCPUTopProcesses.m; sourceTree = "<group>"; };
+		F75EBE2E235B6F3600876CF7 /* smc_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smc_reader.h; sourceTree = "<group>"; };
+		F75EBE2F235B6F3600876CF7 /* smc_reader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = smc_reader.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,7 +277,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C0F2A7227A19BF003E6699 /* libsmc_reader.a in Frameworks */,
 				3383C1871B69BACA00915D5D /* SystemUIPlugin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +285,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30C0F2A8227A3AD2003E6699 /* libsmc_reader.a in Frameworks */,
 				D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */,
 				D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */,
 				D403ADF40E04F1E100348443 /* SystemConfiguration.framework in Frameworks */,
@@ -306,14 +298,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		30C0F29D2279F52C003E6699 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				30C0F2A12279F52D003E6699 /* libsmc_reader.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		30C0F2A6227A19BF003E6699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +345,7 @@
 		D40DB4A303D25F2100A87BC9 = {
 			isa = PBXGroup;
 			children = (
+				F75EBE2D235B6F3600876CF7 /* smc_reader */,
 				336B59401E03BA68006DA445 /* MenuMeters.pch */,
 				D4510D7304F2F06100A87BC9 /* Docs */,
 				D40DB4B303D25F9E00A87BC9 /* Common */,
@@ -397,7 +382,6 @@
 		D40DB4B303D25F9E00A87BC9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				30C0F29C2279F52C003E6699 /* smc_reader.xcodeproj */,
 				D48A784B10181DE6008E3207 /* AppleUndocumented.h */,
 				3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */,
 				3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */,
@@ -644,6 +628,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		F75EBE2D235B6F3600876CF7 /* smc_reader */ = {
+			isa = PBXGroup;
+			children = (
+				F75EBE2E235B6F3600876CF7 /* smc_reader.h */,
+				F75EBE2F235B6F3600876CF7 /* smc_reader.c */,
+			);
+			path = smc_reader;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -713,12 +706,6 @@
 			mainGroup = D40DB4A303D25F2100A87BC9;
 			productRefGroup = D40DB4B003D25F6400A87BC9 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 30C0F29D2279F52C003E6699 /* Products */;
-					ProjectRef = 30C0F29C2279F52C003E6699 /* smc_reader.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				D4ECB39105FE72E100954E26 /* PrefPane */,
@@ -726,16 +713,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		30C0F2A12279F52D003E6699 /* libsmc_reader.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libsmc_reader.a;
-			remoteRef = 30C0F2A02279F52D003E6699 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3383C16E1B69B72500915D5D /* Resources */ = {
@@ -814,6 +791,7 @@
 				3383C1841B69B88C00915D5D /* MenuMeterCPUStats.m in Sources */,
 				3345DD2F1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m in Sources */,
 				3383C1851B69B89100915D5D /* MenuMeterUptime.m in Sources */,
+				F75EBE31235B6F3600876CF7 /* smc_reader.c in Sources */,
 				D602BB91207F9561004984C1 /* MenuMeterCPUTopProcesses.m in Sources */,
 				3383C18B1B69C75A00915D5D /* MenuMeterMemStats.m in Sources */,
 				3383C1931B69C78600915D5D /* MenuMeterDiskSpace.m in Sources */,
@@ -838,6 +816,7 @@
 				D4ECB3AA05FE72E100954E26 /* MenuMeterDefaults.m in Sources */,
 				D4ECB3AB05FE72E100954E26 /* MenuMeterPowerMate.m in Sources */,
 				D4ECB3AC05FE72E100954E26 /* MenuMetersPref.m in Sources */,
+				F75EBE30235B6F3600876CF7 /* smc_reader.c in Sources */,
 				D4E8531319F6CD0300E25BBC /* MenuMeterWorkarounds.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
