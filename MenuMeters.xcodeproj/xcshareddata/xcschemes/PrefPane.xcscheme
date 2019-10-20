@@ -60,8 +60,7 @@
       </PreActions>
       <PathRunnable
          runnableDebuggingMode = "0"
-         BundleIdentifier = "com.apple.systempreferences"
-         FilePath = "/Applications/System Preferences.app">
+         FilePath = "/System/Applications/System Preferences.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference
