@@ -60,12 +60,6 @@
 		3383C1AF1B69D8D000915D5D /* Disk ArrowsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F30644C7E200047FDD /* Disk ArrowsRead.tiff */; };
 		3383C1B01B69D8D000915D5D /* Disk ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F40644C7E200047FDD /* Disk ArrowsReadWrite.tiff */; };
 		3383C1B11B69D8D000915D5D /* Disk ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F50644C7E200047FDD /* Disk ArrowsWrite.tiff */; };
-		3383C1E31B69DD2D00915D5D /* French.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DB1B69DD2D00915D5D /* French.lproj */; };
-		3383C1E41B69DD2D00915D5D /* German.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DC1B69DD2D00915D5D /* German.lproj */; };
-		3383C1E51B69DD2D00915D5D /* Italian.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DD1B69DD2D00915D5D /* Italian.lproj */; };
-		3383C1E71B69DD2D00915D5D /* Japanese.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1DF1B69DD2D00915D5D /* Japanese.lproj */; };
-		3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E01B69DD2D00915D5D /* nl.lproj */; };
-		3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1E11B69DD2D00915D5D /* zh_CN.lproj */; };
 		3384540C2105C3AA00D4DA92 /* MenuMetersPref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */; };
 		33883CF023655C9900B8AC14 /* MenuMeterDiskExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95D03D49AE400A87BC9 /* MenuMeterDiskExtra.m */; };
 		33883CF123655C9900B8AC14 /* MenuMeterWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */; };
@@ -124,7 +118,9 @@
 		33883D36236561B700B8AC14 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		33883D47236568CB00B8AC14 /* MenuMetersPref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */; };
 		33883D482365E3D400B8AC14 /* DiskImageSet.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4E4BF8F04F333B100A87BC9 /* DiskImageSet.strings */; };
-		33C9164A215BD88B00DEA006 /* Base.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 33C91649215BD88B00DEA006 /* Base.lproj */; };
+		33883D4B2365E61200B8AC14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33883D492365E61200B8AC14 /* Localizable.strings */; };
+		33883D4C2365E61200B8AC14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33883D492365E61200B8AC14 /* Localizable.strings */; };
+		33883D542365E78300B8AC14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
 		908780AA1FB087D70053DDC5 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADEB0E04F19C00348443 /* Carbon.framework */; };
@@ -175,13 +171,6 @@
 		3383C1781B69B72600915D5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3383C17D1B69B72600915D5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3383C1C11B69DB0D00915D5D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		3383C1DA1B69DD2D00915D5D /* English.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = English.lproj; sourceTree = "<group>"; };
-		3383C1DB1B69DD2D00915D5D /* French.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = French.lproj; sourceTree = "<group>"; };
-		3383C1DC1B69DD2D00915D5D /* German.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = German.lproj; sourceTree = "<group>"; };
-		3383C1DD1B69DD2D00915D5D /* Italian.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Italian.lproj; sourceTree = "<group>"; };
-		3383C1DF1B69DD2D00915D5D /* Japanese.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Japanese.lproj; sourceTree = "<group>"; };
-		3383C1E01B69DD2D00915D5D /* nl.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = nl.lproj; sourceTree = "<group>"; };
-		3383C1E11B69DD2D00915D5D /* zh_CN.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zh_CN.lproj; sourceTree = "<group>"; };
 		3384540B2105C3AA00D4DA92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuMetersPref.xib; sourceTree = "<group>"; };
 		3384540D2105C3B100D4DA92 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
 		3384540E2105C3B300D4DA92 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
@@ -191,7 +180,14 @@
 		338454122105C3BD00D4DA92 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MenuMetersPref.strings"; sourceTree = "<group>"; };
 		33883D3223655C9900B8AC14 /* MenuMeters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuMeters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33883D3323655C9900B8AC14 /* MenuMeters-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MenuMeters-Info.plist"; path = "/Users/yujitach/Documents/Develop/MenuMeters/MenuMeters-Info.plist"; sourceTree = "<absolute>"; };
-		33C91649215BD88B00DEA006 /* Base.lproj */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Base.lproj; sourceTree = "<group>"; };
+		33883D4A2365E61200B8AC14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33883D4D2365E62000B8AC14 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33883D4E2365E62300B8AC14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		33883D4F2365E62B00B8AC14 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33883D502365E62E00B8AC14 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33883D512365E63100B8AC14 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = German; path = German.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33883D522365E63700B8AC14 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
+		33883D532365E63B00B8AC14 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistPreprocessor.h; sourceTree = "<group>"; };
 		908780A71FB087B90053DDC5 /* EMCLoginItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
 		908780A91FB087D70053DDC5 /* EMCLoginItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
@@ -379,7 +375,7 @@
 				3383C1731B69B72600915D5D /* AppDelegate.m */,
 				3383C1C11B69DB0D00915D5D /* MainMenu.xib */,
 				3383C1781B69B72600915D5D /* Assets.xcassets */,
-				33BA36D41B69E48300B4220E /* Resources */,
+				33883D492365E61200B8AC14 /* Localizable.strings */,
 				3383C17D1B69B72600915D5D /* Info.plist */,
 				3383C1751B69B72600915D5D /* Supporting Files */,
 			);
@@ -392,21 +388,6 @@
 				3383C1761B69B72600915D5D /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		33BA36D41B69E48300B4220E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				33C91649215BD88B00DEA006 /* Base.lproj */,
-				3383C1DA1B69DD2D00915D5D /* English.lproj */,
-				3383C1DB1B69DD2D00915D5D /* French.lproj */,
-				3383C1DC1B69DD2D00915D5D /* German.lproj */,
-				3383C1DD1B69DD2D00915D5D /* Italian.lproj */,
-				3383C1DF1B69DD2D00915D5D /* Japanese.lproj */,
-				3383C1E01B69DD2D00915D5D /* nl.lproj */,
-				3383C1E11B69DD2D00915D5D /* zh_CN.lproj */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		D40DB4A303D25F2100A87BC9 = {
@@ -812,11 +793,7 @@
 				3383C19A1B69D8D000915D5D /* ArrowsRead.tiff in Resources */,
 				3383C19B1B69D8D000915D5D /* Color ArrowsWrite.tiff in Resources */,
 				3383C19C1B69D8D000915D5D /* Color ArrowsRead.tiff in Resources */,
-				3383C1E91B69DD2D00915D5D /* zh_CN.lproj in Resources */,
-				3383C1E71B69DD2D00915D5D /* Japanese.lproj in Resources */,
 				3383C19D1B69D8D000915D5D /* Color ArrowsIdle.tiff in Resources */,
-				3383C1E41B69DD2D00915D5D /* German.lproj in Resources */,
-				33C9164A215BD88B00DEA006 /* Base.lproj in Resources */,
 				3383C19E1B69D8D000915D5D /* Color ArrowsReadWrite.tiff in Resources */,
 				3383C19F1B69D8D000915D5D /* Dark ArrowsIdle.tiff in Resources */,
 				3383C1A01B69D8D000915D5D /* Dark ArrowsRead.tiff in Resources */,
@@ -824,16 +801,14 @@
 				3383C1A21B69D8D000915D5D /* Dark ArrowsWrite.tiff in Resources */,
 				3383C1A31B69D8D000915D5D /* Dark Color ArrowsIdle.tiff in Resources */,
 				3383C1A41B69D8D000915D5D /* Dark Color ArrowsRead.tiff in Resources */,
-				3383C1E81B69DD2D00915D5D /* nl.lproj in Resources */,
 				3383C1A51B69D8D000915D5D /* Dark Color ArrowsReadWrite.tiff in Resources */,
 				3383C1A61B69D8D000915D5D /* Dark Color ArrowsWrite.tiff in Resources */,
 				3383C1A71B69D8D000915D5D /* LightsWrite.tiff in Resources */,
 				3383C1A81B69D8D000915D5D /* LightsIdle.tiff in Resources */,
 				3383C1A91B69D8D000915D5D /* LightsRead.tiff in Resources */,
+				33883D4B2365E61200B8AC14 /* Localizable.strings in Resources */,
 				3383C1AA1B69D8D000915D5D /* LightsReadWrite.tiff in Resources */,
-				3383C1E31B69DD2D00915D5D /* French.lproj in Resources */,
 				3383C1AB1B69D8D000915D5D /* Aqua LightsIdle.tiff in Resources */,
-				3383C1E51B69DD2D00915D5D /* Italian.lproj in Resources */,
 				3383C1AC1B69D8D000915D5D /* Aqua LightsReadWrite.tiff in Resources */,
 				33281A4A1B6BFB05001EA811 /* Assets.xcassets in Resources */,
 				3383C1AD1B69D8D000915D5D /* Aqua LightsWrite.tiff in Resources */,
@@ -865,6 +840,7 @@
 				33883D1C23655C9900B8AC14 /* Dark Color ArrowsRead.tiff in Resources */,
 				33883D2023655C9900B8AC14 /* LightsWrite.tiff in Resources */,
 				33883D47236568CB00B8AC14 /* MenuMetersPref.xib in Resources */,
+				33883D4C2365E61200B8AC14 /* Localizable.strings in Resources */,
 				33883D482365E3D400B8AC14 /* DiskImageSet.strings in Resources */,
 				33883D1E23655C9900B8AC14 /* Dark Color ArrowsReadWrite.tiff in Resources */,
 				33883D1F23655C9900B8AC14 /* Dark Color ArrowsWrite.tiff in Resources */,
@@ -878,6 +854,7 @@
 				33883D2B23655C9900B8AC14 /* Disk ArrowsRead.tiff in Resources */,
 				33883D2C23655C9900B8AC14 /* Disk ArrowsReadWrite.tiff in Resources */,
 				33883D2D23655C9900B8AC14 /* Disk ArrowsWrite.tiff in Resources */,
+				33883D542365E78300B8AC14 /* Assets.xcassets in Resources */,
 				33883D2E23655C9900B8AC14 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1001,6 +978,21 @@
 				338454122105C3BD00D4DA92 /* zh-Hans */,
 			);
 			name = MenuMetersPref.xib;
+			sourceTree = "<group>";
+		};
+		33883D492365E61200B8AC14 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33883D4A2365E61200B8AC14 /* Base */,
+				33883D4D2365E62000B8AC14 /* English */,
+				33883D4E2365E62300B8AC14 /* zh-Hans */,
+				33883D4F2365E62B00B8AC14 /* nl */,
+				33883D502365E62E00B8AC14 /* French */,
+				33883D512365E63100B8AC14 /* German */,
+				33883D522365E63700B8AC14 /* Italian */,
+				33883D532365E63B00B8AC14 /* Japanese */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 		D42EC96E03D49B1D00A87BC9 /* Localizable.strings */ = {
