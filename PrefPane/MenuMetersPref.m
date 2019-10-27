@@ -122,6 +122,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 ///////////////////////////////////////////////////////////////
 - (void)mainViewDidLoad {
 
+#ifndef OUTOFPREFPANE
 	// Check OS version
 	BOOL isLeopardOrLater = OSIsLeopardOrLater();
 
@@ -129,7 +130,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if (isLeopardOrLater) {
 		[[self mainView] setFrameSize:NSMakeSize(668, [[self mainView] frame].size.height)];
 	}
-
+#endif
 	// On first load switch to the first tab
 	[prefTabs selectFirstTabViewItem:self];
 
