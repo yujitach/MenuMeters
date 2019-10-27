@@ -11,6 +11,7 @@
 #import "MenuMeterDiskExtra.h"
 #import "MenuMeterMemExtra.h"
 #import "MenuMeterNetExtra.h"
+#import "MenuMetersPref.h"
 
 @interface AppDelegate ()
 
@@ -23,8 +24,9 @@
     MenuMeterDiskExtra*diskExtra;
     MenuMeterNetExtra*netExtra;
     MenuMeterMemExtra*memExtra;
-    
-    
+#ifdef OUTOFPREFPANE
+    MenuMetersPref*pref;
+#endif
     NSTimer*timer;
 }
 
@@ -37,7 +39,10 @@
     netExtra=[[MenuMeterNetExtra alloc] initWithBundle:[NSBundle mainBundle]];
 
     memExtra=[[MenuMeterMemExtra alloc] initWithBundle:[NSBundle mainBundle]];
-
+#ifdef OUTOFPREFPANE
+    pref=[[MenuMetersPref alloc] init];
+    [pref.window makeKeyAndOrderFront:self];
+#endif
 }
 
 

@@ -31,7 +31,6 @@
 ///////////////////////////////////////////////////////////////
 
 @interface MenuMetersPref (PrivateMethods)
-
 // Notifications
 - (void)menuExtraUnloaded:(NSNotification *)notification;
 - (void)menuExtraChangedPrefs:(NSNotification *)notification;
@@ -95,13 +94,32 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 
 @implementation MenuMetersPref
+#ifdef OUTOFPREFPANE
+{
+    IBOutlet NSWindow* _window;
+}
 
+-(instancetype)init
+{
+    self=[super initWithWindowNibName:@"MenuMetersPref"];
+    [self loadWindow];
+    self.window=_window;
+    [self mainViewDidLoad];
+    [self willSelect];
+    return self;
+}
+-(NSView*)mainView{
+    return self.window.contentView;
+}
+-(NSBundle*)bundle{
+    return [NSBundle mainBundle];
+}
+#endif
 ///////////////////////////////////////////////////////////////
 //
-//	Pref pane standard methods
+//    Pref pane standard methods
 //
 ///////////////////////////////////////////////////////////////
-
 - (void)mainViewDidLoad {
 
 	// Check OS version
@@ -192,13 +210,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     
     NSString *appPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MenuMetersApp" ofType:@"app"];
     [[NSWorkspace sharedWorkspace] launchApplication:appPath];
-    
+/*
     EMCLoginItem *loginItem = [EMCLoginItem loginItemWithPath:appPath];
     
     if (![loginItem isLoginItem])
     {
         [loginItem addLoginItem];
     }
+ */
 } // mainViewDidLoad
 
 - (void)willSelect {

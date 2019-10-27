@@ -26,6 +26,7 @@
 #import <sys/types.h>
 #import <sys/sysctl.h>
 #import <unistd.h>
+#import <AppKit/AppKit.h>
 #import "AppleUndocumented.h"
 #import "MenuMeters.h"
 #import "MenuMeterDefaults.h"
@@ -37,7 +38,13 @@
 #import "MenuMeterPowerMate.h"
 
 
-@interface MenuMetersPref : NSPreferencePane {
+@interface MenuMetersPref :
+#ifdef OUTOFPREFPANE
+NSWindowController
+#else
+NSPreferencePane
+#endif
+{
 
 	// Our preferences
 	MenuMeterDefaults				*ourPrefs;
