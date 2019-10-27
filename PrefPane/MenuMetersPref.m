@@ -141,7 +141,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[diskImageSet addItemWithTitle:[[NSBundle bundleForClass:[self class]]
 										   localizedStringForKey:imageSetName
 														   value:nil
-														   table:nil]];
+														   table:@"DiskImageSet"]];
 	}
 
 	// On first load set the version string with a clickable link
@@ -210,14 +210,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     
     NSString *appPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MenuMetersApp" ofType:@"app"];
     [[NSWorkspace sharedWorkspace] launchApplication:appPath];
-/*
+#ifndef OUTOFPREFPANE
     EMCLoginItem *loginItem = [EMCLoginItem loginItemWithPath:appPath];
     
     if (![loginItem isLoginItem])
     {
         [loginItem addLoginItem];
     }
- */
+#endif
 } // mainViewDidLoad
 
 - (void)willSelect {
