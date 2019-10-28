@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330247652366CB7A00F88D61 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330247642366CB7A00F88D61 /* Sparkle.framework */; };
+		330247672366CEA800F88D61 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 330247662366CEA800F88D61 /* dsa_pub.pem */; };
+		3302476A2366CF7F00F88D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 330247642366CB7A00F88D61 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		33281A491B6BFB01001EA811 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1C11B69DB0D00915D5D /* MainMenu.xib */; };
 		33281A4A1B6BFB05001EA811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
 		332B0F8F1E0381780020CCBB /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
@@ -155,7 +158,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		330247692366CF6E00F88D61 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3302476A2366CF7F00F88D61 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		330247642366CB7A00F88D61 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		330247662366CEA800F88D61 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		330D68B72105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DiskImageSet.strings"; sourceTree = "<group>"; };
 		3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuMetersMenuExtraBase.h; sourceTree = "<group>"; };
 		3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuMetersMenuExtraBase.m; sourceTree = "<group>"; };
@@ -309,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33883D0923655C9900B8AC14 /* SystemUIPlugin.framework in Frameworks */,
+				330247652366CB7A00F88D61 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +351,7 @@
 		30C0F2A6227A19BF003E6699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				330247642366CB7A00F88D61 /* Sparkle.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -342,6 +362,7 @@
 				3383C1721B69B72500915D5D /* AppDelegate.h */,
 				3383C1731B69B72600915D5D /* AppDelegate.m */,
 				3383C1C11B69DB0D00915D5D /* MainMenu.xib */,
+				330247662366CEA800F88D61 /* dsa_pub.pem */,
 				3383C1781B69B72600915D5D /* Assets.xcassets */,
 				33883D492365E61200B8AC14 /* Localizable.strings */,
 				3383C17D1B69B72600915D5D /* Info.plist */,
@@ -642,6 +663,7 @@
 				33883CEF23655C9900B8AC14 /* Sources */,
 				33883D0823655C9900B8AC14 /* Frameworks */,
 				33883D0A23655C9900B8AC14 /* Resources */,
+				330247692366CF6E00F88D61 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -771,6 +793,7 @@
 				33883D4C2365E61200B8AC14 /* Localizable.strings in Resources */,
 				33883D482365E3D400B8AC14 /* DiskImageSet.strings in Resources */,
 				33883D1E23655C9900B8AC14 /* Dark Color ArrowsReadWrite.tiff in Resources */,
+				330247672366CEA800F88D61 /* dsa_pub.pem in Resources */,
 				33883D1F23655C9900B8AC14 /* Dark Color ArrowsWrite.tiff in Resources */,
 				33883D2123655C9900B8AC14 /* LightsIdle.tiff in Resources */,
 				33883D2223655C9900B8AC14 /* LightsRead.tiff in Resources */,
@@ -1089,6 +1112,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1109,7 +1133,7 @@
 				INFOPLIST_FILE = "MenuMeters-Info.plist";
 				INFOPLIST_PREFIX_HEADER = ./PrefPane/InfoPlistPreprocessor.h;
 				INFOPLIST_PREPROCESS = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1149,6 +1173,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1171,7 +1196,7 @@
 				INFOPLIST_FILE = "MenuMeters-Info.plist";
 				INFOPLIST_PREFIX_HEADER = ./PrefPane/InfoPlistPreprocessor.h;
 				INFOPLIST_PREPROCESS = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
