@@ -192,6 +192,13 @@
 		[item setRepresentedObject:[[diskSpaceData objectAtIndex:i] objectForKey:@"path"]];
 		[item setTarget:self];
 	}
+#ifdef OUTOFPREFPANE
+    [extraMenu addItem:[NSMenuItem separatorItem]];
+    NSMenuItem*menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[[NSBundle mainBundle] localizedStringForKey:kOpenMenuMetersPref value:nil table:nil]
+                                                             action:@selector(openMenuMetersPref:)
+                                                      keyEquivalent:@""];
+    [menuItem setTarget:self];
+#endif
 
 	return extraMenu;
 

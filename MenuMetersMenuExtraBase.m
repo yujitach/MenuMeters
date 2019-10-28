@@ -58,7 +58,10 @@
         statusItem=nil;
     }
 }
-
+- (void)openMenuMetersPref:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"openPref" object:self]];
+}
 #pragma mark NSMenuDelegate
 - (void)menuNeedsUpdate:(NSMenu*)menu {
     statusItem.menu = self.menu;

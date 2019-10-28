@@ -187,7 +187,12 @@
 												  action:@selector(openConsole:)
 										   keyEquivalent:@""];
 	[menuItem setTarget:self];
-
+#ifdef OUTOFPREFPANE
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenMenuMetersPref value:nil table:nil]
+                                                  action:@selector(openMenuMetersPref:)
+                                           keyEquivalent:@""];
+    [menuItem setTarget:self];
+#endif
 	// Get our view
 	extraView = [[MenuMeterCPUView alloc] initWithFrame:[[self view] frame] menuExtra:self];
 	if (!extraView) {

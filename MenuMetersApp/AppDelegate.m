@@ -41,7 +41,6 @@
     memExtra=[[MenuMeterMemExtra alloc] initWithBundle:[NSBundle mainBundle]];
 #ifdef OUTOFPREFPANE
     pref=[[MenuMetersPref alloc] init];
-    [pref.window makeKeyAndOrderFront:self];
 #endif
 }
 
@@ -50,4 +49,12 @@
     // Insert code here to tear down your application
 }
 
+
+#ifdef OUTOFPREFPANE
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
+{
+    [pref.window makeKeyAndOrderFront:sender];
+    return YES;
+}
+#endif
 @end

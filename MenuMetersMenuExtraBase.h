@@ -17,8 +17,9 @@
 }
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;
 - (void)timerFired:(id)timer;
-
+- (void)openMenuMetersPref:(id)sender;
 @property(nonatomic, readonly) BOOL isMenuVisible;
 @end
 
 #define NSMenuExtra MenuMetersMenuExtraBase
+#define kOpenMenuMetersPref                 @"Open MenuMeters preferences"

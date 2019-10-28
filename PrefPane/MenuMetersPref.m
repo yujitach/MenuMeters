@@ -23,6 +23,12 @@
 
 #import "MenuMetersPref.h"
 #import "EMCLoginItem.h"
+#ifdef OUTOFPREFPANE
+#import "MenuMeterCPUExtra.h"
+#import "MenuMeterDiskExtra.h"
+#import "MenuMeterMemExtra.h"
+#import "MenuMeterNetExtra.h"
+#endif
 
 ///////////////////////////////////////////////////////////////
 //
@@ -98,14 +104,43 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 {
     IBOutlet NSWindow* _window;
 }
-
+-(void)openPrefPane:(NSNotification*)notification
+{
+    [self.window makeKeyAndOrderFront:self];
+    id obj=notification.object;
+    if([obj isKindOfClass:[MenuMeterCPUExtra class]]){
+        [prefTabs selectTabViewItemAtIndex:0];
+    }
+    if([obj isKindOfClass:[MenuMeterDiskExtra class]]){
+        [prefTabs selectTabViewItemAtIndex:1];
+    }
+    if([obj isKindOfClass:[MenuMeterMemExtra class]]){
+        [prefTabs selectTabViewItemAtIndex:2];
+    }
+    if([obj isKindOfClass:[MenuMeterNetExtra class]]){
+        [prefTabs selectTabViewItemAtIndex:3];
+    }
+    [NSApp activateIgnoringOtherApps:YES];
+}
+-(BOOL)noMenuMeterLoaded
+{
+    return ![self isExtraWithBundleIDLoaded:kCPUMenuBundleID] &&
+    ![self isExtraWithBundleIDLoaded:kDiskMenuBundleID] &&
+    ![self isExtraWithBundleIDLoaded:kMemMenuBundleID] &&
+    ![self isExtraWithBundleIDLoaded:kNetMenuBundleID];
+}
 -(instancetype)init
 {
     self=[super initWithWindowNibName:@"MenuMetersPref"];
     [self loadWindow];
     self.window=_window;
+    [self.window setDelegate:self];
     [self mainViewDidLoad];
     [self willSelect];
+    if([self noMenuMeterLoaded]){
+        [self.window makeKeyAndOrderFront:self];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPrefPane:) name:@"openPref" object:nil];
     return self;
 }
 -(NSView*)mainView{
@@ -113,6 +148,16 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 }
 -(NSBundle*)bundle{
     return [NSBundle mainBundle];
+}
+-(void)windowWillClose:(NSNotification *)notification
+{
+    if(![self noMenuMeterLoaded]){
+        [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+    }
+}
+-(void)windowDidBecomeKey:(NSNotification *)notification
+{
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
 }
 #endif
 ///////////////////////////////////////////////////////////////
@@ -208,15 +253,38 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 				pathForResource:@"LogScale" ofType:@"tiff"]]];
 	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setTitle:[NSString stringWithFormat:@"  %@",
 				[[netScaleCalc itemAtIndex:kNetScaleCalcLog] title]]];
-    
+
+#ifndef OUTOFPREFPANE
     NSString *appPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MenuMetersApp" ofType:@"app"];
     [[NSWorkspace sharedWorkspace] launchApplication:appPath];
-#ifndef OUTOFPREFPANE
     EMCLoginItem *loginItem = [EMCLoginItem loginItemWithPath:appPath];
     
     if (![loginItem isLoginItem])
     {
         [loginItem addLoginItem];
+    }
+#endif
+#ifdef OUTOFPREFPANE
+    {
+    NSString*oldAppPath=[@"~/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMetersApp.app" stringByExpandingTildeInPath];
+        EMCLoginItem*oldItem=[EMCLoginItem loginItemWithPath:oldAppPath];
+        if(oldItem.isLoginItem){
+            [oldItem removeLoginItem];
+        }
+    }
+    {
+        NSString*oldAppPath=@"/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMetersApp.app";
+            EMCLoginItem*oldItem=[EMCLoginItem loginItemWithPath:oldAppPath];
+            if(oldItem.isLoginItem){
+                [oldItem removeLoginItem];
+            }
+    }
+    system("killall MenuMetersApp");
+    {
+        EMCLoginItem*thisItem=[EMCLoginItem loginItemWithBundle:[NSBundle mainBundle]];
+        if(!thisItem.isLoginItem){
+            [thisItem addLoginItem];
+        }
     }
 #endif
 } // mainViewDidLoad

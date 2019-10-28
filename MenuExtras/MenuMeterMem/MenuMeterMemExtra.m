@@ -163,6 +163,13 @@
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
+#ifdef OUTOFPREFPANE
+    [extraMenu addItem:[NSMenuItem separatorItem]];
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[[NSBundle mainBundle] localizedStringForKey:kOpenMenuMetersPref value:nil table:nil]
+                                                  action:@selector(openMenuMetersPref:)
+                                           keyEquivalent:@""];
+    [menuItem setTarget:self];
+#endif
 
 	// Get our view
     extraView = [[MenuMeterMemView alloc] initWithFrame:[[self view] frame] menuExtra:self];

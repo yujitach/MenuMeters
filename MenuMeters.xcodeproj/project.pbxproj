@@ -179,7 +179,7 @@
 		338454112105C3BB00D4DA92 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
 		338454122105C3BD00D4DA92 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MenuMetersPref.strings"; sourceTree = "<group>"; };
 		33883D3223655C9900B8AC14 /* MenuMeters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuMeters.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		33883D3323655C9900B8AC14 /* MenuMeters-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "MenuMeters-Info.plist"; path = "/Users/yujitach/Documents/Develop/MenuMeters/MenuMeters-Info.plist"; sourceTree = "<absolute>"; };
+		33883D3323655C9900B8AC14 /* MenuMeters-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MenuMeters-Info.plist"; sourceTree = SOURCE_ROOT; };
 		33883D4A2365E61200B8AC14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33883D4D2365E62000B8AC14 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33883D4E2365E62300B8AC14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };

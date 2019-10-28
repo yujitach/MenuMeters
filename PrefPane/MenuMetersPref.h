@@ -40,7 +40,7 @@
 
 @interface MenuMetersPref :
 #ifdef OUTOFPREFPANE
-NSWindowController
+NSWindowController<NSWindowDelegate>
 #else
 NSPreferencePane
 #endif
