@@ -10,6 +10,7 @@
 		330247652366CB7A00F88D61 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 330247642366CB7A00F88D61 /* Sparkle.framework */; };
 		330247672366CEA800F88D61 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 330247662366CEA800F88D61 /* dsa_pub.pem */; };
 		3302476A2366CF7F00F88D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 330247642366CB7A00F88D61 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		330611032367EA4C0016E763 /* MenuMetersMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */; };
 		33281A491B6BFB01001EA811 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1C11B69DB0D00915D5D /* MainMenu.xib */; };
 		33281A4A1B6BFB05001EA811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
 		332B0F8F1E0381780020CCBB /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
@@ -116,7 +117,6 @@
 		33883D2B23655C9900B8AC14 /* Disk ArrowsRead.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F30644C7E200047FDD /* Disk ArrowsRead.tiff */; };
 		33883D2C23655C9900B8AC14 /* Disk ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F40644C7E200047FDD /* Disk ArrowsReadWrite.tiff */; };
 		33883D2D23655C9900B8AC14 /* Disk ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F50644C7E200047FDD /* Disk ArrowsWrite.tiff */; };
-		33883D2E23655C9900B8AC14 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1C11B69DB0D00915D5D /* MainMenu.xib */; };
 		33883D3423655CBF00B8AC14 /* MenuMetersPref.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4BFA104F333B100A87BC9 /* MenuMetersPref.m */; };
 		33883D36236561B700B8AC14 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		33883D47236568CB00B8AC14 /* MenuMetersPref.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */; };
@@ -175,6 +175,7 @@
 /* Begin PBXFileReference section */
 		330247642366CB7A00F88D61 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		330247662366CEA800F88D61 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
+		330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuMetersMainMenu.xib; sourceTree = "<group>"; };
 		330D68B72105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DiskImageSet.strings"; sourceTree = "<group>"; };
 		3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuMetersMenuExtraBase.h; sourceTree = "<group>"; };
 		3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuMetersMenuExtraBase.m; sourceTree = "<group>"; };
@@ -365,6 +366,7 @@
 				3383C1721B69B72500915D5D /* AppDelegate.h */,
 				3383C1731B69B72600915D5D /* AppDelegate.m */,
 				3383C1C11B69DB0D00915D5D /* MainMenu.xib */,
+				330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */,
 				330247662366CEA800F88D61 /* dsa_pub.pem */,
 				3383C1781B69B72600915D5D /* Assets.xcassets */,
 				33883D492365E61200B8AC14 /* Localizable.strings */,
@@ -796,6 +798,7 @@
 				33883D1723655C9900B8AC14 /* Dark ArrowsIdle.tiff in Resources */,
 				33883D1823655C9900B8AC14 /* Dark ArrowsRead.tiff in Resources */,
 				33883D1923655C9900B8AC14 /* Dark ArrowsReadWrite.tiff in Resources */,
+				330611032367EA4C0016E763 /* MenuMetersMainMenu.xib in Resources */,
 				33883D1A23655C9900B8AC14 /* Dark ArrowsWrite.tiff in Resources */,
 				33883D1B23655C9900B8AC14 /* Dark Color ArrowsIdle.tiff in Resources */,
 				33883D1C23655C9900B8AC14 /* Dark Color ArrowsRead.tiff in Resources */,
@@ -817,7 +820,6 @@
 				33883D2C23655C9900B8AC14 /* Disk ArrowsReadWrite.tiff in Resources */,
 				33883D2D23655C9900B8AC14 /* Disk ArrowsWrite.tiff in Resources */,
 				33883D542365E78300B8AC14 /* Assets.xcassets in Resources */,
-				33883D2E23655C9900B8AC14 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

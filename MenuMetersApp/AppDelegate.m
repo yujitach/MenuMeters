@@ -34,6 +34,12 @@
     NSTimer*timer;
 }
 
+-(IBAction)checkForUpdates:(id)sender
+{
+#ifdef OUTOFPREFPANE
+    [updater checkForUpdates:sender];
+#endif
+}
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     cpuExtra=[[MenuMeterCPUExtra alloc] initWithBundle:[NSBundle mainBundle]];
@@ -64,6 +70,7 @@
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
     [pref.window makeKeyAndOrderFront:sender];
     return YES;
 }

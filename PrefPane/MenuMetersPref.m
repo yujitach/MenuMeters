@@ -106,7 +106,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 }
 -(void)openPrefPane:(NSNotification*)notification
 {
-    [self.window makeKeyAndOrderFront:self];
     id obj=notification.object;
     if([obj isKindOfClass:[MenuMeterCPUExtra class]]){
         [prefTabs selectTabViewItemAtIndex:0];
@@ -120,7 +119,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     if([obj isKindOfClass:[MenuMeterNetExtra class]]){
         [prefTabs selectTabViewItemAtIndex:3];
     }
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
     [NSApp activateIgnoringOtherApps:YES];
+    [self.window makeKeyAndOrderFront:self];
 }
 -(BOOL)noMenuMeterLoaded
 {
@@ -138,6 +139,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [self mainViewDidLoad];
     [self willSelect];
     if([self noMenuMeterLoaded]){
+        [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
         [self.window makeKeyAndOrderFront:self];
     }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPrefPane:) name:@"openPref" object:nil];
@@ -154,10 +156,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     if(![self noMenuMeterLoaded]){
         [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
     }
-}
--(void)windowDidBecomeKey:(NSNotification *)notification
-{
-    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
 }
 #endif
 ///////////////////////////////////////////////////////////////

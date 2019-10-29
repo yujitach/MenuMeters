@@ -29,7 +29,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<string>MenuMetersMainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUEnableAutomaticChecks</key>
