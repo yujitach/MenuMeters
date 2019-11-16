@@ -9,7 +9,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>MM_COPYRIGHT</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>MenuMeters.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
