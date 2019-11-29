@@ -362,7 +362,11 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 ///////////////////////////////////////////////////////////////
 
 - (void)initializeSwapPath {
-
+/* this code seems to cause hangs for some users.
+   in any case, dynamic_pager is launched on demand from long time ago, and
+   you can't get the changed swap file path in this method, as far as I understand.
+   the rest is kept for historical interest.
+   this should fix https://github.com/yujitach/MenuMeters/issues/124 .
 	// We need to figure out where the swap file is. This information
 	// is not published by dynamic_pager to sysctl. We can't get dynamic_pager's
 	// arg list directed using sysctl because its UID 0. So we have to do some
@@ -421,9 +425,10 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	}
 	else {
 		NSLog(@"MenuMeterMemStats unable to locate dynamic_pager args. Assume default.");
+ */
 		swapPath = kDefaultSwapPath;
 		swapPrefix = kDefaultSwapPrefix;
-	}
+//	}
 
 } // initializeSwapPath
 
