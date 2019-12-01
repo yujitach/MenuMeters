@@ -56,6 +56,7 @@
 #define kCPUMenuWidthPref                   @"CPUMenuWidth"
 #define kCPUAvgAllProcsPref					@"CPUAverageMultiProcs"
 #define kCPUSumAllProcsPercentPref			@"CPUSumAllProcsPercent"
+// Note that "Lower Half" is now reused to show only physical cores
 #define kCPUAvgLowerHalfProcsPref			@"CPUAverageLowerHalfProcs"
 #define kCPUSortByUsagePref				    @"CPUSortByUsage"
 #define kCPUSystemColorPref					@"CPUSystemColor"

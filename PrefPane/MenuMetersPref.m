@@ -545,13 +545,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [cpuAvgProcs setEnabled:NO];
 		[cpuSumProcsPercent setEnabled:NO];
         [cpuPercentModeLabel setTextColor:[NSColor lightGrayColor]];
-        [cpuAvgLowerHalfProcs setEnabled:YES];
+//        [cpuAvgLowerHalfProcs setEnabled:YES];
     }
     else {
         [cpuAvgProcs setEnabled:YES];
 		[cpuSumProcsPercent setEnabled:YES];
         [cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
-        [cpuAvgLowerHalfProcs setEnabled:NO];
+//        [cpuAvgLowerHalfProcs setEnabled:NO];
     }
     if ([cpuAvgProcs state] == NSOnState) {
         [cpuSortByUsage setEnabled:NO];
