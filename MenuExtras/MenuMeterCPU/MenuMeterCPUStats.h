@@ -60,6 +60,7 @@
 - (NSString *)cpuSpeed;
 - (uint32_t)numberOfCPUsByCombiningLowerHalf:(BOOL)combineLowerHalf;
 - (NSString *)processorDescription;
+- (NSString *)coreDescription;
 
 // Load info
 - (NSString *)currentProcessorTasks;

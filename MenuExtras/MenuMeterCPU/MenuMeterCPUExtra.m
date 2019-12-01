@@ -140,6 +140,10 @@
 												  action:nil
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [cpuInfo coreDescription]]
+                                                                                              action:nil
+                                                                               keyEquivalent:@""];
+    [menuItem setEnabled:NO];
 
 	// Add uptime title and blank for uptime display
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kUptimeTitle value:nil table:nil]

@@ -34,10 +34,10 @@
 #define kCPUTemperatureDisplayWidth         33
 
 // Menu item indexes
-#define kCPUUptimeInfoMenuIndex				3
-#define kCPUTaskInfoMenuIndex				5
-#define kCPULoadInfoMenuIndex				7
-#define kCPUProcessLabelMenuIndex           8
+#define kCPUUptimeInfoMenuIndex				4
+#define kCPUTaskInfoMenuIndex				6
+#define kCPULoadInfoMenuIndex				8
+#define kCPUProcessLabelMenuIndex           9
 #define kCPUProcessMenuIndex                (kCPUProcessLabelMenuIndex + 1)
 
 ///////////////////////////////////////////////////////////////

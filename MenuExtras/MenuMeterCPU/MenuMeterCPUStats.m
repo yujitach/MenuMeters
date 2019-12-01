@@ -58,6 +58,7 @@
 
 @implementation MenuMeterCPUStats
 uint32_t cpuCount;
+uint32_t coreCount;
 
 - (id)init {
 
@@ -113,6 +114,11 @@ uint32_t cpuCount;
 		return nil;
 	}
 
+    size_t size=sizeof(coreCount);
+    if(sysctlbyname("machdep.cpu.core_count", &coreCount, &size, NULL, 0)){
+        coreCount=cpuCount;
+    }
+    
 	// Set up our mach host and default processor set for later calls
 	machHost = mach_host_self();
 	processor_set_default(machHost, &processorSet);
@@ -185,11 +191,15 @@ uint32_t cpuCount;
 } // numberOfCPUs
 
 - (NSString *)processorDescription {
-
-	return [NSString stringWithFormat:[localizedStrings objectForKey:kProcessorNameFormat],
-                [self numberOfCPUsByCombiningLowerHalf:NO], [self cpuName], [self cpuSpeed]];
-
+	return [NSString stringWithFormat:@"%@ @ %@", [self cpuName], [self cpuSpeed]];
 } // processorDescription
+- (NSString *)coreDescription {
+    if(cpuCount==coreCount){
+        return [NSString stringWithFormat:@"%@ cores",@(cpuCount)];
+    }else{
+        return [NSString stringWithFormat:@"%@ cores (%@ hyperthread per core)",@(cpuCount),@(cpuCount/coreCount)];
+    }
+} // coreDescription
 
 ///////////////////////////////////////////////////////////////
 //
@@ -364,9 +374,25 @@ uint32_t cpuCount;
 - (NSString *)cpuPrettyName {
 
 #if  __i386__ || __x86_64__
-	// Intel Core Duo/Solo and later reported as 80486, just call
-	// everything "Intel"
-	return @"Intel";
+
+    char cpumodel[64];
+    size_t size = sizeof(cpumodel);
+    if (!sysctlbyname("machdep.cpu.brand_string", cpumodel, &size, NULL, 0)){
+        NSString*s=[NSString stringWithUTF8String:cpumodel];
+        NSRange r;
+        r=[s rangeOfString:@"@"];
+        if(r.location!=NSNotFound){
+            s=[s substringToIndex:r.location];
+        }
+        r=[s rangeOfString:@"CPU"];
+        if(r.location!=NSNotFound){
+            s=[s substringToIndex:r.location];
+        }
+        s=[s stringByReplacingOccurrencesOfString:@"(TM)" withString:@"™"];
+        s=[s stringByReplacingOccurrencesOfString:@"(R)" withString:@"®"];
+        return s;
+    }
+    return @"Intel";
 #else
 	// Start with nothing
 	NSString					*prettyName = @"Unknown CPU";
