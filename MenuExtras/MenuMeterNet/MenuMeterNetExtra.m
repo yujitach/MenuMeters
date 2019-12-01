@@ -1189,7 +1189,7 @@
 
 	// Load new net data
 	NSDictionary *netLoad = [netStats netStatsForInterval:currentSampleInterval];
-
+    if(netLoad){ // fix for https://github.com/yujitach/MenuMeters/issues/120
 	// Add to history (at least one)
 	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
 		if ([netHistoryData count] >= [ourPrefs netGraphLength]) {
@@ -1207,7 +1207,7 @@
 
 	// Update for next sample
 	lastSampleDate = [NSDate date];
-
+    }
 	// If the menu is down force it to update
 	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
