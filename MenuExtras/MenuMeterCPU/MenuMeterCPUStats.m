@@ -200,7 +200,7 @@ uint32_t coreCount;
     if(cpuCount==coreCount){
         return [NSString stringWithFormat:@"%@ cores",@(cpuCount)];
     }else{
-        return [NSString stringWithFormat:@"%@ cores (%@ hyperthread per core)",@(cpuCount),@(cpuCount/coreCount)];
+        return [NSString stringWithFormat:@"%@ cores (%@ hyperthreads per core)",@(cpuCount),@(cpuCount/coreCount)];
     }
 } // coreDescription
 

@@ -52,9 +52,7 @@
 
 // Utilities
 - (void)getCPULoadForCPU:(uint32_t)processor
-            returnSystem:(double *)system
-              returnUser:(double *)user;
-- (void)getCPULoadFromLoad:(MenuMeterCPULoad *)load
+              atPosition:(NSInteger)position
             returnSystem:(double *)system
               returnUser:(double *)user;
 
@@ -413,7 +411,6 @@
 	// Position for initial offset
 	[systemPath moveToPoint:NSMakePoint(offset, 0)];
 	[userPath moveToPoint:NSMakePoint(offset, 0)];
-    int numberOfCPUs=[cpuInfo numberOfCPUs];
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
 	float renderHeight = (float)[image size].height - 0.5f;  // Save space for baseline
@@ -423,30 +420,8 @@
 		if (renderPosition >= [loadHistory count]) break;
 
 		// Grab data
-		NSArray *loadHistoryEntry = [loadHistory objectAtIndex:renderPosition];
-		if (!loadHistoryEntry || ([loadHistoryEntry count] < numberOfCPUs)) {
-			// Bad data, just skip
-			continue;
-		}
-
-		// Get load at this position.
-		MenuMeterCPULoad *load = loadHistoryEntry[processor];
-		double system = load.system;
-		double user = load.user;
-		if ([ourPrefs cpuAvgAllProcs]) {
-			for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
-				MenuMeterCPULoad *load = loadHistoryEntry[cpuNum];
-				system += load.system;
-				user += load.user;
-			}
-			system /= numberOfCPUs;
-			user /= numberOfCPUs;
-		}
-		// Sanity and limit
-		if (system < 0) system = 0;
-		if (system > 1) system = 1;
-		if (user < 0) user = 0;
-		if (user > 1) user = 1;
+            double system=0, user=0;
+            [self getCPULoadForCPU:processor atPosition:renderPosition returnSystem:&system returnUser:&user];
 
 		// Update paths (adding baseline)
 		[userPath lineToPoint:NSMakePoint(offset + renderPosition,
@@ -476,24 +451,14 @@
     
 
 	// Current load (if available)
-	NSArray *currentLoad = [loadHistory lastObject];
-	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
-
-	MenuMeterCPULoad *load = currentLoad[processor];
-	float totalLoad = load.system + load.user;
-	if ([ourPrefs cpuAvgAllProcs]) {
-                int numberOfCPUs = [cpuInfo numberOfCPUs];
-		for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
-			MenuMeterCPULoad *load = currentLoad[cpuNum];
-			totalLoad += load.user + load.system;
-		}
-		totalLoad /= numberOfCPUs;
-            if ([ourPrefs cpuSumAllProcsPercent]) {
-                    totalLoad *= numberOfCPUs;
-            }
-	}
-	if (totalLoad > 1) totalLoad = 1;
-	if (totalLoad < 0) totalLoad = 0;
+    double system=0,user=0;
+    [self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
+    float totalLoad = system + user;
+    if (totalLoad > 1) totalLoad = 1;
+    if (totalLoad < 0) totalLoad = 0;
+    if ([ourPrefs cpuSumAllProcsPercent]) {
+           totalLoad *= [cpuInfo numberOfCPUs];
+    }
 
 
 	// Get the prerendered text and draw
@@ -518,7 +483,7 @@
 - (void)renderSplitPercentIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
 
     double system, user;
-    [self getCPULoadForCPU:processor returnSystem:&system returnUser:&user];
+    [self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
     if ((system < 0) || (user < 0)) {
         return;
     }
@@ -565,7 +530,7 @@
 - (void)renderThermometerIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
 
     double system, user;
-    [self getCPULoadForCPU:processor returnSystem:&system returnUser:&user];
+    [self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
     if ((system < 0) || (user < 0)) {
         return;
     }
@@ -595,7 +560,7 @@
 
 - (void)renderHorizontalThermometerIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atX:(float)x andY:(float)y withWidth:(float)width andHeight:(float)height {
     double system, user;
-    [self getCPULoadForCPU:processor returnSystem:&system returnUser:&user];
+    [self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
     if ((system < 0) || (user < 0)) {
         return;
     }
@@ -898,33 +863,41 @@
 } // configFromPrefs
 
 - (void)getCPULoadForCPU:(uint32_t)processor
+              atPosition:(NSInteger)position
             returnSystem:(double *)system
               returnUser:(double *)user
 {
 	NSArray *currentLoad = [loadHistory lastObject];
+    if(position!=-1){
+        currentLoad=[loadHistory objectAtIndex:position];
+    }
 	if (!currentLoad || ([currentLoad count] < processor)) {
         *system = -1;
         *user = -1;
         return;
     }
 
-    [self getCPULoadFromLoad:currentLoad[processor]
-                returnSystem:system
-                  returnUser:user];
-}
-
-- (void)getCPULoadFromLoad:(MenuMeterCPULoad *)load
-            returnSystem:(double *)system
-              returnUser:(double *)user
-{
-    *system = load.system;
-    *user = load.user;
+    if (![ourPrefs cpuAvgAllProcs]){
+        MenuMeterCPULoad*load=currentLoad[processor];
+        *system = load.system;
+        *user = load.user;
+    }else{
+        double s=0,u=0;
+        int numberOfCPUs = [cpuInfo numberOfCPUs];
+        for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
+                MenuMeterCPULoad *load = currentLoad[cpuNum];
+            s+=load.system;
+            u+=load.user;
+            }
+            s /= numberOfCPUs;
+            u /= numberOfCPUs;
+        *system=s;
+        *user=u;
+    }
     // Sanity and limit
     if (*system < 0) *system = 0;
     if (*system > 1) *system = 1;
     if (*user < 0) *user = 0;
     if (*user > 1) *user = 1;
-    
 }
-
 @end
