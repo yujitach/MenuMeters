@@ -177,7 +177,7 @@
 	}
     [self setView:extraView];
 
-	throughputFont = [NSFont systemFontOfSize:9.5f];
+    throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];//[NSFont systemFontOfSize:9.5f];
 
 	// Localizable strings
 	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -630,13 +630,13 @@
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
 					NSMenuItem *totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																					   [self trafficStringForNumber:throughputOutNumber withLabel:kTxLabel]]
+                                                                                                           [self trafficStringForNumber:throughputOutNumber withLabel:[localizedStrings objectForKey:kTxLabel]]]
 																			   action:nil
 																		keyEquivalent:@""];
 					[totalItem setEnabled:NO];
 					[interfaceUpdateMenuItems setObject:totalItem forKey:@"totaloutitem"];
 					totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																		   [self trafficStringForNumber:throughputInNumber withLabel:kRxLabel]]
+																		   [self trafficStringForNumber:throughputInNumber withLabel:[localizedStrings objectForKey:kRxLabel]]]
 																   action:nil
 															keyEquivalent:@""];
 					[totalItem setEnabled:NO];
@@ -1319,7 +1319,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-											 [self trafficStringForNumber:throughputNumber withLabel:kTxLabel]]);
+											 [self trafficStringForNumber:throughputNumber withLabel:[localizedStrings objectForKey:kTxLabel]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"totalinitem"];
 				throughputNumber = [throughputDetails objectForKey:@"totalin"];
@@ -1327,7 +1327,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[self trafficStringForNumber:throughputNumber withLabel:kRxLabel]]);
+												[self trafficStringForNumber:throughputNumber withLabel:[localizedStrings objectForKey:kRxLabel]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"peakitem"];
 				throughputNumber = [throughputDetails objectForKey:@"peak"];
@@ -1567,7 +1567,7 @@
 		// Deal with localizable throughput suffix
 		float suffixMaxWidth = 0;
 		NSAttributedString *throughString = [[NSAttributedString alloc]
-												initWithString:[NSString stringWithFormat:@"99.9%@",
+												initWithString:[NSString stringWithFormat:@"999.9%@",
 																[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kBitPerSecondLabel : kBytePerSecondLabel]]
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																	throughputFont, NSFontAttributeName,
@@ -1576,7 +1576,7 @@
 			suffixMaxWidth = (float)[throughString size].width;
 		}
 		throughString = [[NSAttributedString alloc]
-							initWithString:[NSString stringWithFormat:@"99.9%@",
+							initWithString:[NSString stringWithFormat:@"999.9%@",
 												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kKbPerSecondLabel : kKBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
@@ -1585,7 +1585,7 @@
 			suffixMaxWidth = (float)[throughString size].width;
 		}
 		throughString = [[NSAttributedString alloc]
-							initWithString:[NSString stringWithFormat:@"99.9%@",
+							initWithString:[NSString stringWithFormat:@"999.9%@",
 												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kMbPerSecondLabel : kMBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
@@ -1594,7 +1594,7 @@
 			suffixMaxWidth = (float)[throughString size].width;
 		}
 		throughString = [[NSAttributedString alloc]
-							initWithString:[NSString stringWithFormat:@"99.9%@",
+							initWithString:[NSString stringWithFormat:@"999.9%@",
 												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kGbPerSecondLabel : kGBPerSecondLabel]]
 								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 												throughputFont, NSFontAttributeName,
@@ -1602,7 +1602,7 @@
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
-		menuWidth += ceilf(suffixMaxWidth) + kNetNumberDisplayGapWidth;
+            menuWidth += ceilf(suffixMaxWidth); 
 	}
 	// If more than one display is present we need to add a gaps
 	if (displayCount) {

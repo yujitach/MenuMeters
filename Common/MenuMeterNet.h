@@ -30,7 +30,7 @@
 
 // Widths of the various displays
 #define kNetArrowDisplayWidth				13
-#define kNetNumberDisplayGapWidth			2
+// #define kNetNumberDisplayGapWidth			2
 #define kNetDisplayGapWidth					2
 
 // String for primary interface selection (primary interface)

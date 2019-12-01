@@ -115,8 +115,8 @@
 "%@ total swap space (%@ used)" = "スワップ容量合計：%1$@ (使用中：%2$@)";
 
 // Menubar display labels for throughput, Tx and Rx also used for Tx and Rx menu items
-"Tx:" = "out：";
-"Rx:" = "in：";
+"Tx:" = "out:";
+"Rx:" = "in:";
 
 // Unit labels
 "Gbps" = "Gbps";
