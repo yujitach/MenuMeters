@@ -184,11 +184,14 @@ uint32_t coreCount;
 
 } // cpuSpeed
 
-- (uint32_t)numberOfCPUsByCombiningLowerHalf:(BOOL)combineLowerHalf {
-
-	return combineLowerHalf ? coreCount  : cpuCount;
-
+- (uint32_t)numberOfCPUs {
+	return cpuCount;
 } // numberOfCPUs
+
+- (uint32_t)numberOfCores {
+    return coreCount;
+} 
+
 
 - (NSString *)processorDescription {
 	return [NSString stringWithFormat:@"%@ @ %@", [self cpuName], [self cpuSpeed]];
@@ -238,7 +241,7 @@ uint32_t coreCount;
 
 } // loadAverage
 
-- (NSArray *)currentLoadBySorting: (BOOL)sorted andCombineLowerHalf:(BOOL)combine {
+- (NSArray *)currentLoadBySorting: (BOOL)sorted {
 
 	// Read the current ticks
 	natural_t processorCount;
@@ -296,14 +299,6 @@ uint32_t coreCount;
 		}
 	}
 
-    if(combine){
-        int thread_per_core=cpuCount/coreCount;
-        NSMutableArray *combined = [NSMutableArray array];
-        for (natural_t i = 0; i < coreCount; i++) {
-                [combined addObject: [loadInfo objectAtIndex: i*thread_per_core]];
-        }
-        loadInfo = combined;
-    }
     // Sort the load if necessary
     if (sorted == YES) {
         NSMutableArray *sorted = [NSMutableArray array];

@@ -51,7 +51,6 @@
 - (void)configFromPrefs:(NSNotification *)notification;
 
 // Utilities
-- (uint32_t)numberOfCPUsToDisplay;
 - (void)getCPULoadForCPU:(uint32_t)processor
             returnSystem:(double *)system
               returnUser:(double *)user;
@@ -126,7 +125,7 @@
 	NSMenuItem *menuItem = nil;
 
 	// Add processor info which never changes
-    if ([cpuInfo numberOfCPUsByCombiningLowerHalf:NO] > 1) {
+    if ([cpuInfo numberOfCPUs] > 1) {
 		menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kMultiProcessorTitle value:nil table:nil]
 													  action:nil
 											   keyEquivalent:@""];
@@ -258,7 +257,9 @@
 	// Don't render without data
 	if (![loadHistory count]) return nil;
 
-    uint32_t cpuCount = [self numberOfCPUsToDisplay];
+
+    uint32_t cpuCount=[cpuInfo numberOfCPUs];
+    uint32_t stride=[ourPrefs cpuAvgLowerHalfProcs]?[cpuInfo numberOfCPUs]/[cpuInfo numberOfCores]:1;
     float renderOffset = 0.0f;
     // Horizontal CPU thermometer is handled differently because it has to
     // manage rows and columns in a very different way from normal horizontal
@@ -279,7 +280,7 @@
         float imageHeight = (float) ([currentImage size].height);
         // Calculate a thermometer height
         float thermometerHeight = ((imageHeight - 2) / rowCount);
-        for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum++) {
+        for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum+=stride) {
             float xOffset = renderOffset + ((cpuNum / rowCount) * columnWidth) + 1.0f;
             float yOffset = (imageHeight -
                              (((cpuNum % rowCount) + 1) * thermometerHeight)) - 1.0f;
@@ -289,7 +290,7 @@
     else {
 		// Loop by processor
 		int cpuDisplayModePrefs = [ourPrefs cpuDisplayMode];
-		for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum++) {
+        for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum+=stride) {
 			
 			// Render graph if needed
 			if (cpuDisplayModePrefs & kCPUDisplayGraph) {
@@ -412,9 +413,7 @@
 	// Position for initial offset
 	[systemPath moveToPoint:NSMakePoint(offset, 0)];
 	[userPath moveToPoint:NSMakePoint(offset, 0)];
-
-    int numberOfCPUs = [self numberOfCPUsToDisplay];
-
+    int numberOfCPUs=[cpuInfo numberOfCPUs];
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
 	float renderHeight = (float)[image size].height - 0.5f;  // Save space for baseline
@@ -475,27 +474,27 @@
 
 - (void)renderSinglePercentIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
     
-    int numberOfCPUs = [self numberOfCPUsToDisplay];
 
 	// Current load (if available)
 	NSArray *currentLoad = [loadHistory lastObject];
-	if (!currentLoad || ([currentLoad count] < numberOfCPUs)) return;
+	if (!currentLoad || ([currentLoad count] < [cpuInfo numberOfCPUs])) return;
 
 	MenuMeterCPULoad *load = currentLoad[processor];
 	float totalLoad = load.system + load.user;
 	if ([ourPrefs cpuAvgAllProcs]) {
+                int numberOfCPUs = [cpuInfo numberOfCPUs];
 		for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
 			MenuMeterCPULoad *load = currentLoad[cpuNum];
 			totalLoad += load.user + load.system;
 		}
 		totalLoad /= numberOfCPUs;
+            if ([ourPrefs cpuSumAllProcsPercent]) {
+                    totalLoad *= numberOfCPUs;
+            }
 	}
 	if (totalLoad > 1) totalLoad = 1;
 	if (totalLoad < 0) totalLoad = 0;
 
-	if ([ourPrefs cpuSumAllProcsPercent]) {
-		totalLoad *= numberOfCPUs;
-	}
 
 	// Get the prerendered text and draw
 	NSImage *percentImage = [singlePercentCache objectAtIndex:roundf(totalLoad * 100.0f)];
@@ -631,8 +630,7 @@
 
 - (void)timerFired:(NSTimer *)timerFired {
 	// Get the current load
-	NSArray *currentLoad = [cpuInfo currentLoadBySorting:[ourPrefs cpuSortByUsage]
-                                    andCombineLowerHalf:[ourPrefs cpuAvgLowerHalfProcs]];
+	NSArray *currentLoad = [cpuInfo currentLoadBySorting:[ourPrefs cpuSortByUsage]];
 	if (!currentLoad) return;
 
 	// Add to history (at least one)
@@ -669,7 +667,7 @@
 
 - (void)updatePowerMate {
 
-    int numberOfCPUs = [self numberOfCPUsToDisplay];
+    int numberOfCPUs = [cpuInfo numberOfCPUs];
 
 	// Current load (if available)
 	NSArray *currentLoad = [loadHistory lastObject];
@@ -755,7 +753,8 @@
 	singlePercentCache = nil;
 	splitUserPercentCache = nil;
 	splitSystemPercentCache = nil;
-	int numberOfCPUs = [self numberOfCPUsToDisplay];
+	int numberOfLogicalCPUs = [cpuInfo numberOfCPUs];
+    int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs]?[cpuInfo numberOfCores]:[cpuInfo numberOfCPUs];
 
 	if (([ourPrefs cpuPercentDisplay] == kCPUPercentDisplayLarge) ||
 		([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall)) {
@@ -773,7 +772,7 @@
 											nil];
 		int percentLimit = 100;
 		if ([ourPrefs cpuSumAllProcsPercent]) {
-			percentLimit *= numberOfCPUs;
+			percentLimit *= numberOfLogicalCPUs;
 		}
 		for (int i = 0; i <= percentLimit; i++) {
 			NSAttributedString *cacheText = [[NSAttributedString alloc]
@@ -897,11 +896,6 @@
 	// Force initial update
 	[self timerFired:nil];
 } // configFromPrefs
-
-- (uint32_t)numberOfCPUsToDisplay
-{
-    return [cpuInfo numberOfCPUsByCombiningLowerHalf:[ourPrefs cpuAvgLowerHalfProcs]];
-}
 
 - (void)getCPULoadForCPU:(uint32_t)processor
             returnSystem:(double *)system

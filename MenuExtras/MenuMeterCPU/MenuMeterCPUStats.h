@@ -58,14 +58,15 @@
 // CPU info
 - (NSString *)cpuName;
 - (NSString *)cpuSpeed;
-- (uint32_t)numberOfCPUsByCombiningLowerHalf:(BOOL)combineLowerHalf;
+- (uint32_t)numberOfCPUs;
+- (uint32_t)numberOfCores;
 - (NSString *)processorDescription;
 - (NSString *)coreDescription;
 
 // Load info
 - (NSString *)currentProcessorTasks;
 - (NSString *)loadAverage;
-- (NSArray *)currentLoadBySorting:(BOOL)sorted andCombineLowerHalf:(BOOL)combine;
+- (NSArray *)currentLoadBySorting:(BOOL)sorted;
 - (float_t)cpuProximityTemperature;
 
 @end
