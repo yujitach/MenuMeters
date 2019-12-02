@@ -218,10 +218,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [versionDisplay setSelectable:YES];
 	[versionDisplay setAttributedStringValue:linkedVersionString];
 
-	// On first load turn off cpu averaging control if this is not a multiproc machine
-	[cpuAvgProcs setEnabled:[self isMultiProcessor]];
-	[cpuSumProcsPercent setEnabled:NO];
-
 	// Set up a NSFormatter for use printing timers
 	NSNumberFormatter *intervalFormatter = [[NSNumberFormatter alloc] init];
 	[intervalFormatter setLocalizesFormat:YES];
@@ -465,37 +461,40 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [ourPrefs saveCpuHorizontalRows:[cpuHorizontalRows intValue]];
     } else if (sender == cpuMenuWidth) {
         [ourPrefs saveCpuMenuWidth:[cpuMenuWidth intValue]];
-	} else if (sender == cpuAvgProcs) {
-        bool avg = ([cpuAvgProcs state] == NSOnState) ? YES : NO;
-		[ourPrefs saveCpuAvgAllProcs:avg];
-        if (avg) {
-            [ourPrefs saveCpuAvgLowerHalfProcs:NO];
-            [ourPrefs saveCpuSortByUsage:NO];
-		} else {
-			[ourPrefs saveCpuSumAllProcsPercent:NO];
-		}
-	} else if (sender == cpuSumProcsPercent) {
-		bool sum = ([cpuSumProcsPercent state] == NSOnState) ? YES : NO;
-		[ourPrefs saveCpuSumAllProcsPercent:sum];
-		if (sum) {
-			[ourPrefs saveCpuAvgAllProcs:YES];
-		}
+    } else if (sender == cpuMultipleCPU) {
+        switch([cpuMultipleCPU indexOfSelectedItem]){
+            case 0:
+                [ourPrefs saveCpuAvgAllProcs:NO];
+                [ourPrefs saveCpuSumAllProcsPercent:NO];
+                [ourPrefs saveCpuSortByUsage:NO];
+                break;
+            case 1:
+                [ourPrefs saveCpuAvgAllProcs:YES];
+                [ourPrefs saveCpuSumAllProcsPercent:NO];
+                [ourPrefs saveCpuSortByUsage:NO];
+                break;
+            case 2:
+                [ourPrefs saveCpuAvgAllProcs:YES];
+                [ourPrefs saveCpuSumAllProcsPercent:YES];
+                [ourPrefs saveCpuSortByUsage:NO];
+                break;
+            case 3:
+                [ourPrefs saveCpuAvgAllProcs:NO];
+                [ourPrefs saveCpuSumAllProcsPercent:NO];
+                [ourPrefs saveCpuSortByUsage:YES];
+                break;
+            default:
+                [ourPrefs saveCpuAvgAllProcs:NO];
+                [ourPrefs saveCpuSumAllProcsPercent:NO];
+                [ourPrefs saveCpuSortByUsage:NO];
+                break;
+            }
 	} else if (sender == cpuAvgLowerHalfProcs) {
         bool avg = ([cpuAvgLowerHalfProcs state] == NSOnState) ? YES : NO;
 		[ourPrefs saveCpuAvgLowerHalfProcs:avg];
         if (avg) {
             [ourPrefs saveCpuAvgAllProcs:NO];
 			[ourPrefs saveCpuSumAllProcsPercent:NO];
-        }
-    } else if (sender == cpuSortByUsage) {
-        BOOL sort = ([cpuSortByUsage state] == NSOnState) ? YES : NO;
-        [ourPrefs saveCpuSortByUsage:sort];
-        if (sort) {
-            [ourPrefs saveCpuAvgAllProcs:NO];
-			[ourPrefs saveCpuSumAllProcsPercent:NO];
-        }
-        else {
-            [ourPrefs saveCpuAvgLowerHalfProcs:NO];
         }
 	} else if (sender == cpuPowerMate) {
 		[ourPrefs saveCpuPowerMate:(([cpuPowerMate state] == NSOnState) ? YES : NO)];
@@ -528,10 +527,16 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuGraphWidth setIntValue:[ourPrefs cpuGraphLength]];
     [cpuHorizontalRows setIntValue:[ourPrefs cpuHorizontalRows]];
     [cpuMenuWidth setIntValue:[ourPrefs cpuMenuWidth]];
-	[cpuAvgProcs setState:([ourPrefs cpuAvgAllProcs] ? NSOnState : NSOffState)];
-	[cpuSumProcsPercent setState:([ourPrefs cpuSumAllProcsPercent] ? NSOnState : NSOffState)];
+    if([ourPrefs cpuSortByUsage]){
+        [cpuMultipleCPU selectItemAtIndex:3];
+    }else if([ourPrefs cpuSumAllProcsPercent]){
+        [cpuMultipleCPU selectItemAtIndex:2];
+    }else if([ourPrefs cpuAvgAllProcs]){
+        [cpuMultipleCPU selectItemAtIndex:1];
+    }else{
+        [cpuMultipleCPU selectItemAtIndex:0];
+    }
 	[cpuAvgLowerHalfProcs setState:([ourPrefs cpuAvgLowerHalfProcs] ? NSOnState : NSOffState)];
-	[cpuSortByUsage setState:([ourPrefs cpuSortByUsage] ? NSOnState : NSOffState)];
 	[cpuPowerMate setState:([ourPrefs cpuPowerMate] ? NSOnState : NSOffState)];
 	[cpuPowerMateMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPowerMateMode selectItemAtIndex:[ourPrefs cpuPowerMateMode]];
@@ -540,27 +545,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [cpuTemperatureColor setColor:[ourPrefs cpuTemperatureColor]];
 	[cpuIntervalDisplay takeDoubleValueFrom:cpuInterval];
 
-	// Disable controls as needed
-    if ([cpuSortByUsage state] == NSOnState) {
-        [cpuAvgProcs setEnabled:NO];
-		[cpuSumProcsPercent setEnabled:NO];
-        [cpuPercentModeLabel setTextColor:[NSColor lightGrayColor]];
-//        [cpuAvgLowerHalfProcs setEnabled:YES];
-    }
-    else {
-        [cpuAvgProcs setEnabled:YES];
-		[cpuSumProcsPercent setEnabled:YES];
-        [cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
-//        [cpuAvgLowerHalfProcs setEnabled:NO];
-    }
-    if ([cpuAvgProcs state] == NSOnState) {
-        [cpuSortByUsage setEnabled:NO];
-		[cpuSumProcsPercent setEnabled:YES];
-    }
-    else {
-        [cpuSortByUsage setEnabled:YES];
-		[cpuSumProcsPercent setEnabled:NO];
-    }
 	if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) {
 		[cpuPercentMode setEnabled:YES];
 		[cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
@@ -580,8 +564,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[cpuHorizontalRowsLabel setTextColor:[NSColor controlTextColor]];
         [cpuMenuWidth setEnabled:YES];
         [cpuMenuWidthLabel setTextColor:[NSColor controlTextColor]];
-        [cpuAvgProcs setEnabled:NO];
-		[cpuSumProcsPercent setEnabled:NO];
     }
     else {
 		[cpuHorizontalRows setEnabled:NO];
