@@ -47,8 +47,8 @@
 {
     if(!messageViewerController){
         messageViewerController=[[MessageViewerController alloc] initWithRTF:[[NSBundle mainBundle] pathForResource:WELCOME ofType:@"rtf"]];
-        [messageViewerController showWindow:sender];
     }
+    [messageViewerController showWindow:sender];
 }
 -(IBAction)showWelcome:(id)sender
 {
@@ -76,6 +76,9 @@
     updater=[SUUpdater sharedUpdater];
     updater.feedURL=[NSURL URLWithString:@"https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"];
     [self showWelcome:self];
+    if(![pref noMenuMeterLoaded]){
+        [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
+    }
 #endif
 }
 
