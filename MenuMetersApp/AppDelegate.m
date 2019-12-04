@@ -76,9 +76,6 @@
     updater=[SUUpdater sharedUpdater];
     updater.feedURL=[NSURL URLWithString:@"https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"];
     [self showWelcome:self];
-    if(![pref noMenuMeterLoaded]){
-        [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
-    }
 #endif
 }
 
