@@ -14,6 +14,7 @@
 #import "MenuMetersPref.h"
 #ifdef OUTOFPREFPANE
 #import <Sparkle/Sparkle.h>
+#import "MessageViewerController.h"
 #endif
 
 @interface AppDelegate ()
@@ -30,6 +31,7 @@
 #ifdef OUTOFPREFPANE
     MenuMetersPref*pref;
     SUUpdater*updater;
+    MessageViewerController*messageViewerController;
 #endif
     NSTimer*timer;
 }
@@ -39,6 +41,22 @@
 #ifdef OUTOFPREFPANE
     [updater checkForUpdates:sender];
 #endif
+}
+#define WELCOME @"v2.0.3alert"
+-(IBAction)showMessage:(id)sender
+{
+    if(!messageViewerController){
+        messageViewerController=[[MessageViewerController alloc] initWithRTF:[[NSBundle mainBundle] pathForResource:WELCOME ofType:@"rtf"]];
+        [messageViewerController showWindow:sender];
+    }
+}
+-(IBAction)showWelcome:(id)sender
+{
+    NSString*key=[WELCOME stringByAppendingString:@"Shown"];
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:key]){
+        [self showMessage:sender];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
+    }
 }
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
@@ -57,6 +75,7 @@
     }
     updater=[SUUpdater sharedUpdater];
     updater.feedURL=[NSURL URLWithString:@"https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"];
+    [self showWelcome:self];
 #endif
 }
 
