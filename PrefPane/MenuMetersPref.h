@@ -71,7 +71,6 @@ NSPreferencePane
     IBOutlet NSSlider               *cpuMenuWidth;
 	IBOutlet NSTextField			*cpuMenuWidthLabel;
 	IBOutlet NSPopUpButton				*cpuMultipleCPU;
-    IBOutlet NSButton               *cpuAvgLowerHalfProcs;
 	IBOutlet NSButton				*cpuPowerMate;
 	IBOutlet NSPopUpButton			*cpuPowerMateMode;
 	IBOutlet NSColorWell			*cpuUserColor;

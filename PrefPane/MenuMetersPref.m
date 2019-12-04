@@ -201,6 +201,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[linkedVersionString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
 										  [NSFont systemFontOfSize:10.0f],
 										  NSFontAttributeName,
+                                                            [NSColor textColor],
+                                                            NSForegroundColorAttributeName,
 										  nil]
 								 range:NSMakeRange(0, [linkedVersionString length])];
 	[linkedVersionString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -464,38 +466,42 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     } else if (sender == cpuMultipleCPU) {
         switch([cpuMultipleCPU indexOfSelectedItem]){
             case 0:
+                [ourPrefs saveCpuAvgLowerHalfProcs:NO];
                 [ourPrefs saveCpuAvgAllProcs:NO];
                 [ourPrefs saveCpuSumAllProcsPercent:NO];
                 [ourPrefs saveCpuSortByUsage:NO];
                 break;
             case 1:
-                [ourPrefs saveCpuAvgAllProcs:YES];
+                [ourPrefs saveCpuAvgLowerHalfProcs:YES];
+                [ourPrefs saveCpuAvgAllProcs:NO];
                 [ourPrefs saveCpuSumAllProcsPercent:NO];
                 [ourPrefs saveCpuSortByUsage:NO];
                 break;
             case 2:
+                [ourPrefs saveCpuAvgLowerHalfProcs:NO];
+                [ourPrefs saveCpuAvgAllProcs:YES];
+                [ourPrefs saveCpuSumAllProcsPercent:NO];
+                [ourPrefs saveCpuSortByUsage:NO];
+                break;
+            case 3:
+                [ourPrefs saveCpuAvgLowerHalfProcs:NO];
                 [ourPrefs saveCpuAvgAllProcs:YES];
                 [ourPrefs saveCpuSumAllProcsPercent:YES];
                 [ourPrefs saveCpuSortByUsage:NO];
                 break;
-            case 3:
+            case 4:
+                [ourPrefs saveCpuAvgLowerHalfProcs:NO];
                 [ourPrefs saveCpuAvgAllProcs:NO];
                 [ourPrefs saveCpuSumAllProcsPercent:NO];
                 [ourPrefs saveCpuSortByUsage:YES];
                 break;
             default:
+                [ourPrefs saveCpuAvgLowerHalfProcs:NO];
                 [ourPrefs saveCpuAvgAllProcs:NO];
                 [ourPrefs saveCpuSumAllProcsPercent:NO];
                 [ourPrefs saveCpuSortByUsage:NO];
                 break;
             }
-	} else if (sender == cpuAvgLowerHalfProcs) {
-        bool avg = ([cpuAvgLowerHalfProcs state] == NSOnState) ? YES : NO;
-		[ourPrefs saveCpuAvgLowerHalfProcs:avg];
-        if (avg) {
-            [ourPrefs saveCpuAvgAllProcs:NO];
-			[ourPrefs saveCpuSumAllProcsPercent:NO];
-        }
 	} else if (sender == cpuPowerMate) {
 		[ourPrefs saveCpuPowerMate:(([cpuPowerMate state] == NSOnState) ? YES : NO)];
 	} else if (sender == cpuPowerMateMode) {
@@ -528,15 +534,16 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [cpuHorizontalRows setIntValue:[ourPrefs cpuHorizontalRows]];
     [cpuMenuWidth setIntValue:[ourPrefs cpuMenuWidth]];
     if([ourPrefs cpuSortByUsage]){
-        [cpuMultipleCPU selectItemAtIndex:3];
+        [cpuMultipleCPU selectItemAtIndex:4];
     }else if([ourPrefs cpuSumAllProcsPercent]){
-        [cpuMultipleCPU selectItemAtIndex:2];
+        [cpuMultipleCPU selectItemAtIndex:3];
     }else if([ourPrefs cpuAvgAllProcs]){
+        [cpuMultipleCPU selectItemAtIndex:2];
+    }else if([ourPrefs cpuAvgLowerHalfProcs]){
         [cpuMultipleCPU selectItemAtIndex:1];
     }else{
         [cpuMultipleCPU selectItemAtIndex:0];
     }
-	[cpuAvgLowerHalfProcs setState:([ourPrefs cpuAvgLowerHalfProcs] ? NSOnState : NSOffState)];
 	[cpuPowerMate setState:([ourPrefs cpuPowerMate] ? NSOnState : NSOffState)];
 	[cpuPowerMateMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPowerMateMode selectItemAtIndex:[ourPrefs cpuPowerMateMode]];
