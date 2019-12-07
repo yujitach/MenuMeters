@@ -40,6 +40,7 @@
                 <outlet property="diskSelectMode" destination="501" id="506"/>
                 <outlet property="memActiveColor" destination="233" id="251"/>
                 <outlet property="memColorTab" destination="595" id="608"/>
+                <outlet property="memCompressedColor" destination="456" id="1hu-xb-WKb"/>
                 <outlet property="memDisplayMode" destination="221" id="248"/>
                 <outlet property="memFreeColor" destination="603" id="607"/>
                 <outlet property="memFreeUsedLabeling" destination="361" id="369"/>
@@ -54,6 +55,7 @@
                 <outlet property="memPageinColorLabel" destination="449" id="465"/>
                 <outlet property="memPageoutColor" destination="450" id="468"/>
                 <outlet property="memPageoutColorLabel" destination="451" id="467"/>
+                <outlet property="memPressureMode" destination="kbR-DC-oA2" id="Q6h-hU-Rjz"/>
                 <outlet property="memUsedColor" destination="600" id="606"/>
                 <outlet property="memWiredColor" destination="232" id="253"/>
                 <outlet property="netDisplayMode" destination="296" id="340"/>
@@ -85,7 +87,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="119" y="174" width="594" height="673"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <value key="minSize" type="size" width="213.66399999999999" height="10"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="594" height="673"/>
@@ -97,7 +99,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="CPU" identifier="1" id="102">
-                                <view key="view" ambiguous="YES" id="98">
+                                <view key="view" id="98">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -496,7 +498,7 @@
                                                     <rect key="frame" x="21" y="391" width="511" height="13"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="(Holding the Option key will reverse the behavior)" id="1013">
-                                                        <font key="font" metaFont="system" size="10"/>
+                                                        <font key="font" metaFont="menu" size="10"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -588,12 +590,12 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Memory" identifier="" id="103">
-                                <view key="view" id="104">
-                                    <rect key="frame" x="10" y="33" width="548" height="577"/>
+                                <view key="view" ambiguous="YES" id="104">
+                                    <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="774">
-                                            <rect key="frame" x="0.0" y="23" width="554" height="571"/>
+                                            <rect key="frame" x="0.0" y="52" width="554" height="571"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="426">
@@ -829,16 +831,7 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="457">
-                                                    <rect key="frame" x="316" y="149" width="100" height="14"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Paging Rate" id="1043">
-                                                        <font key="font" metaFont="menu" size="11"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <colorWell hidden="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="456">
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="456">
                                                     <rect key="frame" x="340" y="111" width="53" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -894,7 +887,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kbR-DC-oA2">
-                                                    <rect key="frame" x="171" y="350" width="212" height="18"/>
+                                                    <rect key="frame" x="170" y="352" width="212" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="Display memory pressure" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="aOw-Lj-aWS">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -904,6 +897,15 @@
                                                         <action selector="memPrefChange:" target="-2" id="v1t-AE-YHF"/>
                                                     </connections>
                                                 </button>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NzQ-0R-xAe">
+                                                    <rect key="frame" x="318" y="149" width="96" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Compressed" id="ex0-hf-q5R">
+                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                         </customView>
                                     </subviews>
@@ -1282,7 +1284,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="U9X-wn-4af">
                                                 <rect key="frame" x="0.0" y="0.0" width="554" height="569"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="U5D-Mp-8pb">
                                                         <rect key="frame" x="0.0" y="0.0" width="554" height="569"/>

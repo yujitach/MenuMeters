@@ -98,13 +98,13 @@ NSPreferencePane
 	IBOutlet NSColorWell			*memInactiveColor;
 	IBOutlet NSColorWell			*memWiredColor;
 	IBOutlet NSColorWell			*memCompressedColor;
-	IBOutlet NSColorWell			*memFreeColor;
+        IBOutlet NSColorWell			*memFreeColor;
 	IBOutlet NSColorWell			*memUsedColor;
 	IBOutlet NSColorWell			*memPageinColor;
 	IBOutlet NSTextField			*memPageinColorLabel;
 	IBOutlet NSColorWell			*memPageoutColor;
 	IBOutlet NSTextField			*memPageoutColorLabel;
-    IBOutlet NSButton               *memPressureMode;
+        IBOutlet NSButton               *memPressureMode;
 	// Net pane controls
 	IBOutlet NSButton				*netMeterToggle;
 	IBOutlet NSPopUpButton			*netDisplayMode;
