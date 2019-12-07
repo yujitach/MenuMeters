@@ -53,8 +53,8 @@ NSPreferencePane
 	CFRunLoopSourceRef				scRunSource;
 	// Main controls
 	IBOutlet NSTabView				*prefTabs;
-	IBOutlet NSTextField			*versionDisplay;
-	// CPU pane controlsaverage
+    __unsafe_unretained IBOutlet NSTextView *aboutView;
+    // CPU pane controlsaverage
 	IBOutlet NSButton				*cpuMeterToggle;
     IBOutlet NSButton               *cpuTemperatureToggle;
 	IBOutlet NSPopUpButton			*cpuDisplayMode;
@@ -134,7 +134,9 @@ NSPreferencePane
 - (void)willSelect;
 - (void)didUnselect;
 
+-(instancetype)initWithAboutFileName:(NSString*)about;
 // IB Targets
+-(IBAction)openAbout:(id)sender;
 - (IBAction)liveUpdateInterval:(id)sender;
 - (IBAction)cpuPrefChange:(id)sender;
 - (IBAction)diskPrefChange:(id)sender;

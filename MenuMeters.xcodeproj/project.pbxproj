@@ -16,9 +16,6 @@
 		332B0F8F1E0381780020CCBB /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
 		3345DD2C1B6BE7DB003843FC /* MenuMetersApp.app in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1701B69B72500915D5D /* MenuMetersApp.app */; };
 		3345DD2F1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		33679E4B239766750021408D /* AuxPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33679E4A239766750021408D /* AuxPanelController.m */; };
-		33679E4F239766900021408D /* MessageViewerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33679E4C2397668F0021408D /* MessageViewerController.m */; };
-		33679E50239766900021408D /* MessageViewer.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33679E4D2397668F0021408D /* MessageViewer.xib */; };
 		33679E52239767B40021408D /* v2.0.3alert.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 33679E51239767B30021408D /* v2.0.3alert.rtf */; };
 		33679E5523976B560021408D /* SystemUIPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40DB50E03D2631100A87BC9 /* SystemUIPlugin.framework */; };
 		3383C1741B69B72600915D5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1731B69B72600915D5D /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -184,11 +181,6 @@
 		330D68B72105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DiskImageSet.strings"; sourceTree = "<group>"; };
 		3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuMetersMenuExtraBase.h; sourceTree = "<group>"; };
 		3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuMetersMenuExtraBase.m; sourceTree = "<group>"; };
-		33679E49239766750021408D /* AuxPanelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuxPanelController.h; sourceTree = "<group>"; };
-		33679E4A239766750021408D /* AuxPanelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuxPanelController.m; sourceTree = "<group>"; };
-		33679E4C2397668F0021408D /* MessageViewerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewerController.m; sourceTree = "<group>"; };
-		33679E4D2397668F0021408D /* MessageViewer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageViewer.xib; sourceTree = "<group>"; };
-		33679E4E239766900021408D /* MessageViewerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageViewerController.h; sourceTree = "<group>"; };
 		33679E51239767B30021408D /* v2.0.3alert.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = v2.0.3alert.rtf; sourceTree = "<group>"; };
 		336B59401E03BA68006DA445 /* MenuMeters.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuMeters.pch; sourceTree = "<group>"; };
 		3383C1701B69B72500915D5D /* MenuMetersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuMetersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,19 +364,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		33679E48239766530021408D /* MessageViewer */ = {
-			isa = PBXGroup;
-			children = (
-				33679E49239766750021408D /* AuxPanelController.h */,
-				33679E4A239766750021408D /* AuxPanelController.m */,
-				33679E4D2397668F0021408D /* MessageViewer.xib */,
-				33679E4E239766900021408D /* MessageViewerController.h */,
-				33679E4C2397668F0021408D /* MessageViewerController.m */,
-				33679E51239767B30021408D /* v2.0.3alert.rtf */,
-			);
-			name = MessageViewer;
-			sourceTree = "<group>";
-		};
 		3383C1711B69B72500915D5D /* MenuMetersApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,7 +399,6 @@
 				D40DB4B303D25F9E00A87BC9 /* Common */,
 				D40DB4A903D25F4C00A87BC9 /* MenuExtras */,
 				D4E4BF8B04F333B100A87BC9 /* PrefPane */,
-				33679E48239766530021408D /* MessageViewer */,
 				3383C1711B69B72500915D5D /* MenuMetersApp */,
 				D40DB4B003D25F6400A87BC9 /* Products */,
 				D40DB50803D262ED00A87BC9 /* System Private Frameworks */,
@@ -642,6 +620,7 @@
 		D4E4BFB904F333D000A87BC9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				33679E51239767B30021408D /* v2.0.3alert.rtf */,
 				D4ECB3B705FE730000954E26 /* Info.plist */,
 				3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */,
 				D4E4BF9C04F333B100A87BC9 /* InfoPlist.strings */,
@@ -835,7 +814,6 @@
 				33883D47236568CB00B8AC14 /* MenuMetersPref.xib in Resources */,
 				330247672366CEA800F88D61 /* dsa_pub.pem in Resources */,
 				33883D4C2365E61200B8AC14 /* Localizable.strings in Resources */,
-				33679E50239766900021408D /* MessageViewer.xib in Resources */,
 				33883D482365E3D400B8AC14 /* DiskImageSet.strings in Resources */,
 				33883D1E23655C9900B8AC14 /* Dark Color ArrowsReadWrite.tiff in Resources */,
 				33883D1F23655C9900B8AC14 /* Dark Color ArrowsWrite.tiff in Resources */,
@@ -931,7 +909,6 @@
 				33883CF023655C9900B8AC14 /* MenuMeterDiskExtra.m in Sources */,
 				33883CF123655C9900B8AC14 /* MenuMeterWorkarounds.m in Sources */,
 				33883CF223655C9900B8AC14 /* main.m in Sources */,
-				33679E4B239766750021408D /* AuxPanelController.m in Sources */,
 				33883CF323655C9900B8AC14 /* MenuMeterPowerMate.m in Sources */,
 				33883CF423655C9900B8AC14 /* MenuMeterCPUExtra.m in Sources */,
 				33883CF523655C9900B8AC14 /* MenuMeterMemExtra.m in Sources */,
@@ -942,7 +919,6 @@
 				33883CFA23655C9900B8AC14 /* smc_reader.c in Sources */,
 				33883CFB23655C9900B8AC14 /* MenuMeterCPUTopProcesses.m in Sources */,
 				33883CFC23655C9900B8AC14 /* MenuMeterMemStats.m in Sources */,
-				33679E4F239766900021408D /* MessageViewerController.m in Sources */,
 				33883CFD23655C9900B8AC14 /* MenuMeterDiskSpace.m in Sources */,
 				33883CFE23655C9900B8AC14 /* MenuMeterDiskIO.m in Sources */,
 				33883D3423655CBF00B8AC14 /* MenuMetersPref.m in Sources */,

@@ -33,12 +33,6 @@
                                     <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="E9m-P1-Os3"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Show version info..." id="53n-K2-0Yz">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="showMessage:" target="Voe-Tx-rLC" id="f7Q-Y7-wfR"/>
-                                </connections>
-                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                             <menuItem title="Services" id="NMo-om-nkz">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -179,12 +173,6 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="checkForUpdates:" target="Voe-Tx-rLC" id="DvY-g6-Iu2"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Show version info..." id="IY7-94-GF7">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showMessage:" target="Voe-Tx-rLC" id="yh4-dj-vjZ"/>
                     </connections>
                 </menuItem>
             </items>

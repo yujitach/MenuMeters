@@ -104,6 +104,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 {
     IBOutlet NSWindow* _window;
 }
+-(IBAction)openAbout:(id)sender
+{
+    [prefTabs selectTabViewItemAtIndex:4];
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+    [NSApp activateIgnoringOtherApps:YES];
+    [self.window makeKeyAndOrderFront:self];
+}
 -(void)openPrefPane:(NSNotification*)notification
 {
     id obj=notification.object;
@@ -130,7 +137,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     ![self isExtraWithBundleIDLoaded:kMemMenuBundleID] &&
     ![self isExtraWithBundleIDLoaded:kNetMenuBundleID];
 }
--(instancetype)init
+-(void)setupAboutTab:(NSString*)about
+{
+    NSString*pathToRTF=[[NSBundle mainBundle] pathForResource:about ofType:@"rtf"];
+    NSMutableAttributedString*x=[[NSMutableAttributedString alloc] initWithURL:[NSURL fileURLWithPath:pathToRTF] options:@{} documentAttributes:nil error:nil];
+    [x addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, x.length)];
+    [aboutView.textStorage appendAttributedString:x];
+}
+-(instancetype)initWithAboutFileName:(NSString*)about
 {
     self=[super initWithWindowNibName:@"MenuMetersPref"];
     [self loadWindow];
@@ -138,6 +152,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [self.window setDelegate:self];
     [self mainViewDidLoad];
     [self willSelect];
+    [self setupAboutTab:about];
     if([self noMenuMeterLoaded]){
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
         [self.window makeKeyAndOrderFront:self];
@@ -187,38 +202,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 														   value:nil
 														   table:@"DiskImageSet"]];
 	}
-
-	// On first load set the version string with a clickable link
-    //NSString*webpageURL=@"http://ragingmenace.com/";
-    NSString* webpageURL=@"http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/";
-	NSMutableAttributedString *versionInfoString =
-		[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleGetInfoString"];
-	NSMutableAttributedString *linkedVersionString =
-		[[NSMutableAttributedString alloc] initWithString:
-		  [NSString stringWithFormat:@"%@ (%@)", versionInfoString,webpageURL]];
-	[linkedVersionString beginEditing];
-	[linkedVersionString setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [linkedVersionString length])];
-	[linkedVersionString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										  [NSFont systemFontOfSize:10.0f],
-										  NSFontAttributeName,
-                                                            [NSColor textColor],
-                                                            NSForegroundColorAttributeName,
-										  nil]
-								 range:NSMakeRange(0, [linkedVersionString length])];
-	[linkedVersionString addAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											webpageURL,
-											NSLinkAttributeName,
-											[NSColor blueColor],
-											NSForegroundColorAttributeName,
-											[NSNumber numberWithInt:NSSingleUnderlineStyle],
-											NSUnderlineStyleAttributeName,
-											nil]
-						range:NSMakeRange([versionInfoString length] + 2, [webpageURL length])];
-	[linkedVersionString endEditing];
-	// See QA1487
-	[versionDisplay setAllowsEditingTextAttributes:YES];
-    [versionDisplay setSelectable:YES];
-	[versionDisplay setAttributedStringValue:linkedVersionString];
 
 	// Set up a NSFormatter for use printing timers
 	NSNumberFormatter *intervalFormatter = [[NSNumberFormatter alloc] init];

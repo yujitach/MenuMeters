@@ -14,7 +14,6 @@
 #import "MenuMetersPref.h"
 #ifdef OUTOFPREFPANE
 #import <Sparkle/Sparkle.h>
-#import "MessageViewerController.h"
 #endif
 
 @interface AppDelegate ()
@@ -31,7 +30,6 @@
 #ifdef OUTOFPREFPANE
     MenuMetersPref*pref;
     SUUpdater*updater;
-    MessageViewerController*messageViewerController;
 #endif
     NSTimer*timer;
 }
@@ -43,21 +41,6 @@
 #endif
 }
 #define WELCOME @"v2.0.3alert"
--(IBAction)showMessage:(id)sender
-{
-    if(!messageViewerController){
-        messageViewerController=[[MessageViewerController alloc] initWithRTF:[[NSBundle mainBundle] pathForResource:WELCOME ofType:@"rtf"]];
-    }
-    [messageViewerController showWindow:sender];
-}
--(IBAction)showWelcome:(id)sender
-{
-    NSString*key=[WELCOME stringByAppendingString:@"Shown"];
-    if(![[NSUserDefaults standardUserDefaults] boolForKey:key]){
-        [self showMessage:sender];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
-    }
-}
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     cpuExtra=[[MenuMeterCPUExtra alloc] initWithBundle:[NSBundle mainBundle]];
@@ -69,13 +52,17 @@
     memExtra=[[MenuMeterMemExtra alloc] initWithBundle:[NSBundle mainBundle]];
     
 #ifdef OUTOFPREFPANE
-    pref=[[MenuMetersPref alloc] init];
     if([self isRunningOnReadOnlyVolume]){
         [self alertConcerningAppTranslocation];
     }
     updater=[SUUpdater sharedUpdater];
     updater.feedURL=[NSURL URLWithString:@"https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"];
-    [self showWelcome:self];
+    pref=[[MenuMetersPref alloc] initWithAboutFileName:WELCOME];
+    NSString*key=[WELCOME stringByAppendingString:@"Presented"];
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:key]){
+        [pref openAbout:WELCOME];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
+    }
 #endif
 }
 
