@@ -99,7 +99,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="CPU" identifier="1" id="102">
-                                <view key="view" id="98">
+                                <view key="view" ambiguous="YES" id="98">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -341,7 +341,7 @@
                                                     </connections>
                                                 </popUpButton>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="144">
-                                                    <rect key="frame" x="19" y="562" width="227" height="27"/>
+                                                    <rect key="frame" x="19" y="571" width="227" height="27"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <buttonCell key="cell" type="check" title="Display CPU Menu Meter" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="1014">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -487,11 +487,11 @@
                             </tabViewItem>
                             <tabViewItem label="Disk" identifier="2" id="100">
                                 <view key="view" id="101">
-                                    <rect key="frame" x="10" y="33" width="548" height="577"/>
+                                    <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="773">
-                                            <rect key="frame" x="0.0" y="23" width="554" height="571"/>
+                                            <rect key="frame" x="0.0" y="52" width="554" height="571"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="505">
@@ -590,7 +590,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Memory" identifier="" id="103">
-                                <view key="view" ambiguous="YES" id="104">
+                                <view key="view" id="104">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
