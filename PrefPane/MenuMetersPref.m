@@ -434,6 +434,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     } else if (sender == cpuTemperatureToggle) {
         bool show = ([cpuTemperatureToggle state] == NSOnState) ? YES : NO;
         [ourPrefs saveCpuTemperature:show];
+   } else if (sender == cpuTemperatureUnit) {
+       [ourPrefs saveCpuTemperatureUnit:(int)[cpuTemperatureUnit indexOfSelectedItem]];
     } else if (sender == cpuInterval) {
 		[ourPrefs saveCpuInterval:[cpuInterval doubleValue]];
 	} else if (sender == cpuPercentMode) {
@@ -507,6 +509,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuDisplayMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuDisplayMode selectItemAtIndex:[ourPrefs cpuDisplayMode] - 1];
     [cpuTemperatureToggle setState:[ourPrefs cpuShowTemperature]];
+        [cpuTemperatureUnit selectItemAtIndex:[ourPrefs cpuTemperatureUnit]];
 	[cpuInterval setDoubleValue:[ourPrefs cpuInterval]];
 	[cpuPercentMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];

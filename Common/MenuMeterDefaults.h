@@ -52,6 +52,7 @@
 - (BOOL)cpuPowerMate;
 - (BOOL)cpuShowTemperature;
 - (int)cpuPowerMateMode;
+- (int)cpuTemperatureUnit;
 - (NSColor *)cpuSystemColor;
 - (NSColor *)cpuUserColor;
 - (NSColor *)cpuTemperatureColor;
@@ -72,6 +73,7 @@
 - (void)saveCpuSystemColor:(NSColor *)color;
 - (void)saveCpuUserColor:(NSColor *)color;
 - (void)saveCpuTemperatureColor:(NSColor *)color;
+- (void)saveCpuTemperatureUnit:(int)unit;
 
 // Disk menu prefs
 - (double)diskInterval;

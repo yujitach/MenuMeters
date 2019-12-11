@@ -513,9 +513,21 @@
 
 - (void)renderSingleTemperatureIntoImage:(NSImage *)image atOffset:(float)offset {
     float_t celsius = [cpuInfo cpuProximityTemperature];
+    float_t fahrenheit=celsius*1.8+32;
+    NSString*temperatureString=@"";
+    switch([ourPrefs cpuTemperatureUnit]){
+        case kCPUTemperatureUnitCelsius:
+            temperatureString=[NSString stringWithFormat:@"%.1f℃", celsius];
+            break;
+        case kCPUTemperatureUnitFahrenheit:
+            temperatureString=[NSString stringWithFormat:@"%.1f℉", fahrenheit];
+            break;
+        default:
+            temperatureString=@"???";
+    }
     [image lockFocus];
     NSAttributedString *renderTemperatureString = [[NSAttributedString alloc]
-         initWithString:[NSString stringWithFormat:@"%.1f℃", celsius]
+         initWithString:temperatureString
          attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:9.5f],
                      NSFontAttributeName, temperatureColor, NSForegroundColorAttributeName,
                      nil]];

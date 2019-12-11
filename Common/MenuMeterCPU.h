@@ -31,7 +31,7 @@
 #define kCPUPercentDisplayBorderWidth		2
 #define kCPUThermometerDisplayWidth			10
 #define kCPUDisplayMultiProcGapWidth		5
-#define kCPUTemperatureDisplayWidth         33
+#define kCPUTemperatureDisplayWidth         35
 
 // Menu item indexes
 #define kCPUUptimeInfoMenuIndex				4
@@ -65,7 +65,9 @@
 #define kCPUPowerMateMode					@"CPUPowerMateMode"
 #define kCPUShowTemperature                 @"CPUTemperature"
 #define kCPUTemperatureColor                @"CPUTemperatureColor"
-
+#define kCPUTemperatureUnit                @"CPUTemperatureUnit"
+#define kCPUTemperatureUnitCelsius 0
+#define kCPUTemperatureUnitFahrenheit 1
 // Display modes
 enum {
 	kCPUDisplayPercent						= 1,

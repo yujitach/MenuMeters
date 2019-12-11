@@ -202,6 +202,12 @@
 				   highBound:kCPUPowerMateInversePulse
 				defaultValue:kCPUPowerMateModeDefault];
 } // cpuPowerMateMode
+- (int)cpuTemperatureUnit {
+    return [self loadIntPref:kCPUTemperatureUnit
+                    lowBound:kCPUTemperatureUnitCelsius
+                   highBound:kCPUTemperatureUnitFahrenheit
+                defaultValue:kCPUTemperatureUnitCelsius];
+}
 
 - (NSColor *)cpuSystemColor {
 	return [self loadColorPref:kCPUSystemColorPref defaultValue:kCPUSystemColorDefault];
@@ -269,6 +275,10 @@
 
 - (void)saveCpuPowerMateMode:(int)mode {
 	[self saveIntPref:kCPUPowerMateMode value:mode];
+} // saveCpuPowerMateMode
+
+- (void)saveCpuTemperatureUnit:(int)unit {
+    [self saveIntPref:kCPUTemperatureUnit value:unit];
 } // saveCpuPowerMateMode
 
 - (void)saveCpuTemperature:(BOOL)show {

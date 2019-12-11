@@ -57,7 +57,8 @@ NSPreferencePane
     // CPU pane controlsaverage
 	IBOutlet NSButton				*cpuMeterToggle;
     IBOutlet NSButton               *cpuTemperatureToggle;
-	IBOutlet NSPopUpButton			*cpuDisplayMode;
+    __weak IBOutlet NSPopUpButton *cpuTemperatureUnit;
+    IBOutlet NSPopUpButton			*cpuDisplayMode;
 	IBOutlet NSTextField			*cpuIntervalDisplay;
 	IBOutlet NSSlider				*cpuInterval;
 	IBOutlet NSPopUpButton			*cpuPercentMode;
