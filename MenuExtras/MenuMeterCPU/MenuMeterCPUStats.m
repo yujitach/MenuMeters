@@ -59,6 +59,7 @@
 @implementation MenuMeterCPUStats
 uint32_t cpuCount;
 uint32_t coreCount;
+uint32_t packageCount;
 
 - (id)init {
 
@@ -115,9 +116,15 @@ uint32_t coreCount;
 	}
 
     size_t size=sizeof(coreCount);
-    if(sysctlbyname("machdep.cpu.core_count", &coreCount, &size, NULL, 0)){
+    if(sysctlbyname("hw.physicalcpu", &coreCount, &size, NULL, 0)){
         coreCount=cpuCount;
     }
+
+    size=sizeof(packageCount);
+    if(sysctlbyname("hw.packages", &packageCount, &size, NULL, 0)){
+        packageCount=1;
+    }
+
     
 	// Set up our mach host and default processor set for later calls
 	machHost = mach_host_self();
@@ -192,16 +199,22 @@ uint32_t coreCount;
     return coreCount;
 } 
 
-
+-(NSString*)packages{
+    if(packageCount==1){
+        return @"";
+    }else{
+        return [NSString stringWithFormat:@"%@x ",@(packageCount)];
+    }
+}
 - (NSString *)processorDescription {
-	return [NSString stringWithFormat:@"%@ @ %@", [self cpuName], [self cpuSpeed]];
+	return [NSString stringWithFormat:@"%@%@ @ %@", [self packages], [self cpuName], [self cpuSpeed]];
 } // processorDescription
 - (NSString *)coreDescription {
-    if(cpuCount==coreCount){
-        return [NSString stringWithFormat:@"%@ cores",@(cpuCount)];
-    }else{
-        return [NSString stringWithFormat:@"%@ cores (%@ hyperthreads per core)",@(cpuCount),@(cpuCount/coreCount)];
+    NSString*hyperinfo=@"";
+    if(cpuCount!=coreCount){
+        hyperinfo=[NSString stringWithFormat:@" (%@ hyperthreads per core)",@(cpuCount/coreCount)];
     }
+    return [NSString stringWithFormat:@"%@%@ physical cores%@",[self packages],@(coreCount/packageCount),hyperinfo];
 } // coreDescription
 
 ///////////////////////////////////////////////////////////////
