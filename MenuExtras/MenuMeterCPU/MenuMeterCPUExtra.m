@@ -518,9 +518,15 @@
     switch([ourPrefs cpuTemperatureUnit]){
         case kCPUTemperatureUnitCelsius:
             temperatureString=[NSString stringWithFormat:@"%.1f℃", celsius];
+            if(celsius<-100){
+                temperatureString=@"??℃";
+            }
             break;
         case kCPUTemperatureUnitFahrenheit:
             temperatureString=[NSString stringWithFormat:@"%.1f℉", fahrenheit];
+            if(celsius<-100){
+                temperatureString=@"??℉";
+            }
             break;
         default:
             temperatureString=@"???";
