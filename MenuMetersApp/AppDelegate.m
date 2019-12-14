@@ -40,7 +40,7 @@
     [updater checkForUpdates:sender];
 #endif
 }
-#define WELCOME @"v2.0.3alert"
+#define WELCOME @"v2.0.4alert"
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     cpuExtra=[[MenuMeterCPUExtra alloc] initWithBundle:[NSBundle mainBundle]];
