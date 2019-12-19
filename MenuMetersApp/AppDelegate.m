@@ -40,6 +40,21 @@
     [updater checkForUpdates:sender];
 #endif
 }
+-(void)killOlderInstances{
+    NSString*thisVersion=NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"];
+    for(NSRunningApplication* x in [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.yujitach.MenuMeters"]){
+        if([x isEqualTo:NSRunningApplication.currentApplication]){
+            continue;
+        }
+        NSBundle*b=[NSBundle bundleWithURL:x.bundleURL];
+        NSString*version=b.infoDictionary[@"CFBundleVersion"];
+        NSComparisonResult r=[[SUStandardVersionComparator defaultComparator] compareVersion:version toVersion:thisVersion];
+        if(r!=NSOrderedDescending){
+            NSLog(@"version %@ already running, which is equal or older than this binary %@. Going to kill it.",version,thisVersion);
+            [x terminate];
+        }
+    }
+}
 #define WELCOME @"v2.0.4alert"
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
@@ -55,6 +70,7 @@
     if([self isRunningOnReadOnlyVolume]){
         [self alertConcerningAppTranslocation];
     }
+    [self killOlderInstances];
     updater=[SUUpdater sharedUpdater];
     updater.feedURL=[NSURL URLWithString:@"https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"];
     pref=[[MenuMetersPref alloc] initWithAboutFileName:WELCOME];
