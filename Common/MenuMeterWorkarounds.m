@@ -137,18 +137,23 @@ __private_extern__ BOOL IsMenuMeterMenuBarDarkThemed(void) {
     if(@available(macOS 10.14,*)){
         // https://stackoverflow.com/questions/25207077/how-to-detect-if-os-x-is-in-dark-mode
         // https://github.com/ruiaureliano/macOS-Appearance/blob/master/Appearance/Source/AppDelegate.swift
+#ifdef __MAC_10_14
+        // effectiveAppearance is available on SDK >= 10.14, so the
+        // line below won't compile with earlier SDKs
         return [[NSApplication sharedApplication].effectiveAppearance.name containsString:@"ark"];
-    }else{
-        // On 10.10 there is no documented API for theme, so we'll guess a couple of different ways.
-        BOOL isDark = NO;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults synchronize];
-        NSString *interfaceStyle = [defaults stringForKey:@"AppleInterfaceStyle"];
-        if (interfaceStyle && [interfaceStyle isEqualToString:@"Dark"]) {
-            isDark = YES;
-        }
-        return isDark;
+#else
+        // do not return, but continue making guesses
+#endif
     }
+    // On 10.10 there is no documented API for theme, so we'll guess a couple of different ways.
+    BOOL isDark = NO;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize];
+    NSString *interfaceStyle = [defaults stringForKey:@"AppleInterfaceStyle"];
+    if (interfaceStyle && [interfaceStyle isEqualToString:@"Dark"]) {
+        isDark = YES;
+    }
+    return isDark;
 } // IsMenuMeterMenuBarDarkThemed
 
 __private_extern__ NSColor * MenuItemTextColor(void) {
