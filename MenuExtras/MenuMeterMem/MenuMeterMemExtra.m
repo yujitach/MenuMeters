@@ -396,14 +396,16 @@
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"pageouts"]]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMPageInfoMenuIndex, title);
 	// VM cache
+	const double divisor = [[currentMemStats objectForKey:@"lookups"] doubleValue];
 	title = [NSString stringWithFormat:kMenuIndentFormat,
 				[NSString stringWithFormat:[localizedStrings objectForKey:kVMCacheFormat],
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"lookups"]],
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"hits"]],
 					[percentFormatter stringForObjectValue:
 						[NSNumber numberWithDouble:
-							(double)(([[currentMemStats objectForKey:@"hits"] doubleValue] /
-									  [[currentMemStats objectForKey:@"lookups"] doubleValue]) * 100.0)]]]];
+                            divisor == 0.0 ? 0.0 :
+                            (double)(([[currentMemStats objectForKey:@"hits"] doubleValue] /
+									  divisor) * 100.0)]]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMCacheInfoMenuIndex, title);
 	// VM fault
 	title = [NSString stringWithFormat:kMenuIndentFormat,
