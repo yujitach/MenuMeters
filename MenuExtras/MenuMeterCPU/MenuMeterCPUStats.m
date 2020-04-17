@@ -48,6 +48,8 @@
 #define kTaskThreadFormat					@"%d tasks, %d threads"
 #define kLoadAverageFormat					@"%@, %@, %@"
 #define kNoInfoErrorMessage					@"No info available"
+#define kHyperThreadsPerCoreFormat			@" (%@ hyperthreads per core)"
+#define kPhysicalCoresFormat				@"%@%@ physical cores"
 
 
 ///////////////////////////////////////////////////////////////
@@ -157,6 +159,10 @@ uint32_t packageCount;
 							kLoadAverageFormat,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kNoInfoErrorMessage value:nil table:nil],
 							kNoInfoErrorMessage,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kHyperThreadsPerCoreFormat value:nil table:nil],
+							kHyperThreadsPerCoreFormat,
+							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kPhysicalCoresFormat value:nil table:nil],
+							kPhysicalCoresFormat,
 							nil];
 	if (!localizedStrings) {
 		return nil;
@@ -212,9 +218,9 @@ uint32_t packageCount;
 - (NSString *)coreDescription {
     NSString*hyperinfo=@"";
     if(cpuCount!=coreCount){
-        hyperinfo=[NSString stringWithFormat:@" (%@ hyperthreads per core)",@(cpuCount/coreCount)];
+        hyperinfo=[NSString stringWithFormat:[localizedStrings objectForKey:kHyperThreadsPerCoreFormat],@(cpuCount/coreCount)];
     }
-    return [NSString stringWithFormat:@"%@%@ physical cores%@",[self packages],@(coreCount/packageCount),hyperinfo];
+    return [NSString stringWithFormat:@"%@%@", [NSString stringWithFormat:[localizedStrings objectForKey:kPhysicalCoresFormat],[self packages],@(coreCount/packageCount)],hyperinfo];
 } // coreDescription
 
 ///////////////////////////////////////////////////////////////
