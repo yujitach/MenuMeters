@@ -415,7 +415,7 @@
 	if ([[currentSwapStats objectForKey:@"swapencrypted"] boolValue]) {
 		title = [NSString stringWithFormat:kMenuIndentFormat,
 					[NSString stringWithFormat:
-						(([[currentSwapStats objectForKey:@"swapcount"] unsignedIntValue] > 1) ?
+						(([[currentSwapStats objectForKey:@"swapcount"] unsignedIntValue] != 1) ?
 							[localizedStrings objectForKey:kMultiEncryptedSwapFormat] :
 							[localizedStrings objectForKey:kSingleEncryptedSwapFormat]),
 						[prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcount"]],
@@ -425,7 +425,7 @@
 	// Swap max
 	title = [NSString stringWithFormat:kMenuIndentFormat,
 				[NSString stringWithFormat:
-					(([[currentSwapStats objectForKey:@"swapcountpeak"] unsignedIntValue] > 1) ?
+					(([[currentSwapStats objectForKey:@"swapcountpeak"] unsignedIntValue] != 1) ?
 						[localizedStrings objectForKey:kMaxMultiSwapFormat] :
 						[localizedStrings objectForKey:kMaxSingleSwapFormat]),
 					[prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcountpeak"]]]];

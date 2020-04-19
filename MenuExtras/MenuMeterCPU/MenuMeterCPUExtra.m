@@ -123,7 +123,7 @@
 	NSMenuItem *menuItem = nil;
 
 	// Add processor info which never changes
-    if ([cpuInfo numberOfCPUs] > 1) {
+    if ([cpuInfo numberOfCPUs] != 1) {
 		menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kMultiProcessorTitle value:nil table:nil]
 													  action:nil
 											   keyEquivalent:@""];
