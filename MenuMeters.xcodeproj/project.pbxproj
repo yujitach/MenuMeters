@@ -210,6 +210,9 @@
 		339B8C8F237FE17F008B9755 /* MenuMeters.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MenuMeters.icns; sourceTree = "<group>"; };
 		33F092172367387B00953CAB /* MenuMeters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MenuMeters.entitlements; sourceTree = "<group>"; };
 		33F0921823673DAC00953CAB /* releases.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = releases.html; sourceTree = "<group>"; };
+		538B152824465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
+		538B152924465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DiskImageSet.strings; sourceTree = "<group>"; };
+		538B152A24465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistPreprocessor.h; sourceTree = "<group>"; };
 		908780A71FB087B90053DDC5 /* EMCLoginItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
 		908780A91FB087D70053DDC5 /* EMCLoginItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
@@ -737,6 +740,7 @@
 				it,
 				Base,
 				"zh-Hans",
+				fi,
 			);
 			mainGroup = D40DB4A303D25F2100A87BC9;
 			productRefGroup = D40DB4B003D25F6400A87BC9 /* Products */;
@@ -968,6 +972,7 @@
 				338454102105C3B800D4DA92 /* nl */,
 				338454112105C3BB00D4DA92 /* it */,
 				338454122105C3BD00D4DA92 /* zh-Hans */,
+				538B152824465532008BAFC2 /* fi */,
 			);
 			name = MenuMetersPref.xib;
 			sourceTree = "<group>";
@@ -983,6 +988,7 @@
 				33883D512365E63100B8AC14 /* de */,
 				33883D522365E63700B8AC14 /* it */,
 				33883D532365E63B00B8AC14 /* ja */,
+				538B152A24465532008BAFC2 /* fi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -997,6 +1003,7 @@
 				D4050C3D19BFF75B00DB69A4 /* de */,
 				D4157ABD19D13C18008BD05F /* ja */,
 				330D68B72105AB950041B689 /* zh-Hans */,
+				538B152924465532008BAFC2 /* fi */,
 			);
 			name = DiskImageSet.strings;
 			sourceTree = "<group>";
