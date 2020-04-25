@@ -902,7 +902,7 @@
     }else{
         double s=0,u=0;
         int numberOfCPUs = [cpuInfo numberOfCPUs];
-        for (uint32_t cpuNum = 1; cpuNum < numberOfCPUs; cpuNum++) {
+        for (uint32_t cpuNum = 0; cpuNum < numberOfCPUs; cpuNum++) {
                 MenuMeterCPULoad *load = currentLoad[cpuNum];
             s+=load.system;
             u+=load.user;
