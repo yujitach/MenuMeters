@@ -720,14 +720,10 @@
 				TargetAttributes = {
 					3383C16F1B69B72500915D5D = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = "";
 					};
 					33883CEE23655C9900B8AC14 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = 95AQ7YKR5A;
 						ProvisioningStyle = Automatic;
-					};
-					D4ECB39105FE72E100954E26 = {
-						DevelopmentTeam = "";
 					};
 				};
 			};
@@ -1160,7 +1156,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = MM_VERSION;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 95AQ7YKR5A;
 				DSTROOT = "/tmp/$(PROJECT_NAME)App.dst";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1226,7 +1222,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = MM_VERSION;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 95AQ7YKR5A;
 				DSTROOT = "/tmp/$(PROJECT_NAME)App.dst";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
