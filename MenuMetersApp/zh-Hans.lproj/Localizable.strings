@@ -34,6 +34,10 @@
 // Format string for tasks and threads
 "%d tasks, %d threads" = "%1$d 进程， %2$d 线程";
 
+// Core count / hyperthreading format strings
+" (%@ hyperthreads per core)" = " (%@ hyperthreads per core)";
+"%@%@ physical cores" = "%@%@ physical cores";
+
 // Load average title
 "Load Average (1m, 5m, 15m):" = "平均载入(1m, 5m, 15m)：";
 

@@ -28,6 +28,10 @@
 // Format strings for tasks and threads
 "%d tasks, %d threads" = "%1$d Prozesse, %2$d Threads";
 
+// Core count / hyperthreading format strings
+" (%@ hyperthreads per core)" = " (%@ hyperthreads per core)";
+"%@%@ physical cores" = "%@%@ physical cores";
+
 // Load average title
 "Load Average (1m, 5m, 15m):" = "Durchschnittliche Auslastung (1 Min., 5 Min., 15 Min.):";
 
