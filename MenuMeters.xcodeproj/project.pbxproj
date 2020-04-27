@@ -16,7 +16,7 @@
 		332B0F8F1E0381780020CCBB /* MenuMeterDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */; };
 		3345DD2C1B6BE7DB003843FC /* MenuMetersApp.app in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1701B69B72500915D5D /* MenuMetersApp.app */; };
 		3345DD2F1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		33679E52239767B40021408D /* v2.0.4alert.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 33679E51239767B30021408D /* v2.0.4alert.rtf */; };
+		33679E52239767B40021408D /* v2.0.5alert.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 33679E51239767B30021408D /* v2.0.5alert.rtf */; };
 		33679E5523976B560021408D /* SystemUIPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40DB50E03D2631100A87BC9 /* SystemUIPlugin.framework */; };
 		3383C1741B69B72600915D5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1731B69B72600915D5D /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3383C1771B69B72600915D5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1761B69B72600915D5D /* main.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -181,7 +181,7 @@
 		330D68B72105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DiskImageSet.strings"; sourceTree = "<group>"; };
 		3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuMetersMenuExtraBase.h; sourceTree = "<group>"; };
 		3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuMetersMenuExtraBase.m; sourceTree = "<group>"; };
-		33679E51239767B30021408D /* v2.0.4alert.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = v2.0.4alert.rtf; sourceTree = "<group>"; };
+		33679E51239767B30021408D /* v2.0.5alert.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = v2.0.5alert.rtf; sourceTree = "<group>"; };
 		336B59401E03BA68006DA445 /* MenuMeters.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuMeters.pch; sourceTree = "<group>"; };
 		3383C1701B69B72500915D5D /* MenuMetersApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuMetersApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3383C1721B69B72500915D5D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -623,7 +623,7 @@
 		D4E4BFB904F333D000A87BC9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				33679E51239767B30021408D /* v2.0.4alert.rtf */,
+				33679E51239767B30021408D /* v2.0.5alert.rtf */,
 				D4ECB3B705FE730000954E26 /* Info.plist */,
 				3384540A2105C3AA00D4DA92 /* MenuMetersPref.xib */,
 				D4E4BF9C04F333B100A87BC9 /* InfoPlist.strings */,
@@ -808,7 +808,7 @@
 				33883D1623655C9900B8AC14 /* Color ArrowsReadWrite.tiff in Resources */,
 				33883D1723655C9900B8AC14 /* Dark ArrowsIdle.tiff in Resources */,
 				33883D1823655C9900B8AC14 /* Dark ArrowsRead.tiff in Resources */,
-				33679E52239767B40021408D /* v2.0.4alert.rtf in Resources */,
+				33679E52239767B40021408D /* v2.0.5alert.rtf in Resources */,
 				33883D1923655C9900B8AC14 /* Dark ArrowsReadWrite.tiff in Resources */,
 				330611032367EA4C0016E763 /* MenuMetersMainMenu.xib in Resources */,
 				33883D1A23655C9900B8AC14 /* Dark ArrowsWrite.tiff in Resources */,

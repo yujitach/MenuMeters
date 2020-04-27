@@ -55,7 +55,7 @@
         }
     }
 }
-#define WELCOME @"v2.0.4alert"
+#define WELCOME @"v2.0.5alert"
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     cpuExtra=[[MenuMeterCPUExtra alloc] initWithBundle:[NSBundle mainBundle]];
