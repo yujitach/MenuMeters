@@ -280,6 +280,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (NSImage *)image {
+        [self setupAppearance];
 
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize(menuWidth,

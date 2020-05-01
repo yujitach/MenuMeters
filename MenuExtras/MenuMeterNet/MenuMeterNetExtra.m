@@ -338,6 +338,8 @@
 
 - (NSImage *)image {
 
+        [self setupAppearance];
+    
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
 																	  [extraView frame].size.height - 1)];

@@ -7,6 +7,7 @@
 //
 
 #import "MenuMetersMenuExtraBase.h"
+#import "MenuMeterWorkarounds.h"
 
 @implementation MenuMetersMenuExtraBase
 -(instancetype)initWithBundle:(NSBundle*)bundle
@@ -61,6 +62,11 @@
 - (void)openMenuMetersPref:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"openPref" object:self]];
+}
+- (void)setupAppearance {
+    if(@available(macOS 10.14,*)){
+        [NSAppearance setCurrentAppearance:[NSAppearance appearanceNamed:IsMenuMeterMenuBarDarkThemed()?NSAppearanceNameDarkAqua:NSAppearanceNameAqua]];
+    }
 }
 #pragma mark NSMenuDelegate
 - (void)menuNeedsUpdate:(NSMenu*)menu {

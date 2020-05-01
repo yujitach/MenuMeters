@@ -146,6 +146,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (NSImage *)image {
+    [self setupAppearance];
 
 	// Switch on state
 	switch (displayedActivity) {

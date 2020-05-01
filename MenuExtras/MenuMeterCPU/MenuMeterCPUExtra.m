@@ -246,7 +246,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (NSImage *)image {
-
+    [self setupAppearance];
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
 																	  [extraView frame].size.height - 1)];
@@ -802,14 +802,12 @@
 			NSAttributedString *cacheText = [[NSAttributedString alloc]
 											  initWithString:[NSString stringWithFormat:@"%d%%", i]
 											  attributes:textAttributes];
-			NSImage *cacheImage = [[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
-																			// No descenders, so render lower
-																			[cacheText size].height - 1)];
-
-			[cacheImage lockFocus];
-			[cacheText drawAtPoint:NSMakePoint(0, -1)];  // No descenders in our text so render lower
-			[cacheImage unlockFocus];
-			[splitSystemPercentCache addObject:cacheImage];
+                        NSImage* cacheImage= [NSImage imageWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
+                                                                                                      ceilf((float)[cacheText size].height)) flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+                                                   [cacheText drawAtPoint:NSMakePoint(0, 0)];
+                                                   return YES;
+                                               }];
+                        [splitSystemPercentCache addObject:cacheImage];
 		}
 		// Calc the new text width, both arrays are same font, so use either
 		percentWidth = (float)round([[splitSystemPercentCache lastObject] size].width) + kCPUPercentDisplayBorderWidth;
