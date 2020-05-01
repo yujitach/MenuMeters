@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -88,7 +88,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="119" y="174" width="594" height="673"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="213.66399999999999" height="10"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="594" height="673"/>
@@ -101,11 +101,11 @@
                         <tabViewItems>
                             <tabViewItem label="CPU" identifier="1" id="102">
                                 <view key="view" id="98">
-                                    <rect key="frame" x="10" y="33" width="307" height="0.0"/>
+                                    <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <customView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="693">
-                                            <rect key="frame" x="0.0" y="-609" width="554" height="626"/>
+                                            <rect key="frame" x="0.0" y="-3" width="554" height="626"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="481">
@@ -260,7 +260,7 @@
                                                     <rect key="frame" x="226" y="95" width="100" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="System" id="1020">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -269,7 +269,7 @@
                                                     <rect key="frame" x="86" y="95" width="100" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="User" id="1019">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -388,7 +388,7 @@
                                                     <rect key="frame" x="360" y="95" width="100" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Temperature" id="C4n-F2-kuL">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -747,7 +747,7 @@
                                                                         <rect key="frame" x="-2" y="47" width="100" height="14"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Active" id="1047">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
+                                                                            <font key="font" metaFont="menu" size="11"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
@@ -756,7 +756,7 @@
                                                                         <rect key="frame" x="176" y="47" width="100" height="14"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Inactive" id="1048">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
+                                                                            <font key="font" metaFont="menu" size="11"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
@@ -765,7 +765,7 @@
                                                                         <rect key="frame" x="87" y="47" width="100" height="14"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Wired" id="1049">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
+                                                                            <font key="font" metaFont="menu" size="11"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
@@ -782,7 +782,7 @@
                                                                         <rect key="frame" x="263" y="47" width="96" height="14"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Compressed" id="ex0-hf-q5R">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
+                                                                            <font key="font" metaFont="menu" size="11"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
@@ -807,7 +807,7 @@
                                                                         <rect key="frame" x="121" y="47" width="35" height="14"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Free" id="1050">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
+                                                                            <font key="font" metaFont="menu" size="11"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
@@ -816,7 +816,7 @@
                                                                         <rect key="frame" x="208" y="47" width="44" height="14"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Used" id="1051">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
+                                                                            <font key="font" metaFont="menu" size="11"/>
                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
@@ -870,7 +870,7 @@
                                                     <rect key="frame" x="227" y="149" width="100" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Pageout" id="1042">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -887,7 +887,7 @@
                                                     <rect key="frame" x="138" y="149" width="100" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Pagein" id="1041">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -950,7 +950,7 @@
                                                     <rect key="frame" x="317" y="69" width="100" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Inactive" id="1077">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -1201,7 +1201,7 @@
                                                     <rect key="frame" x="227" y="69" width="100" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Receive" id="1058">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -1210,7 +1210,7 @@
                                                     <rect key="frame" x="138" y="69" width="100" height="14"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Transmit" id="1057">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -1298,18 +1298,18 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-0N-sdX">
-                                            <rect key="frame" x="-3" y="34" width="554" height="569"/>
+                                            <rect key="frame" x="-3" y="89" width="554" height="514"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="U9X-wn-4af">
-                                                <rect key="frame" x="0.0" y="0.0" width="538" height="569"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                            <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="U9X-wn-4af">
+                                                <rect key="frame" x="0.0" y="0.0" width="554" height="514"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="U5D-Mp-8pb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="538" height="569"/>
+                                                    <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="U5D-Mp-8pb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="554" height="514"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <size key="minSize" width="538" height="569"/>
+                                                        <size key="minSize" width="554" height="514"/>
                                                         <size key="maxSize" width="560" height="10000000"/>
                                                         <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     </textView>
@@ -1319,13 +1319,13 @@
                                                 <rect key="frame" x="-100" y="-100" width="240" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="acX-Ld-w1b">
-                                                <rect key="frame" x="-16" y="0.0" width="16" height="0.0"/>
+                                            <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="acX-Ld-w1b">
+                                                <rect key="frame" x="538" y="0.0" width="16" height="514"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-rW-str">
-                                            <rect key="frame" x="182" y="-3" width="163" height="32"/>
+                                            <rect key="frame" x="193" y="43" width="163" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Check for updates..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XYi-uP-QCD">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1335,6 +1335,34 @@
                                                 <action selector="checkForUpdates:" target="-1" id="TZB-Bx-2dF"/>
                                             </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXi-JR-d2r">
+                                            <rect key="frame" x="58" y="17" width="203" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Automatic update check interval:" id="tug-YR-k7T">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0K2-bO-QtW">
+                                            <rect key="frame" x="310" y="11" width="151" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="Once per day" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lh5-j8-SRe" id="pR0-RY-h1F">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <menu key="menu" id="Evg-RA-EnA">
+                                                    <items>
+                                                        <menuItem title="Never" id="STJ-3R-khe"/>
+                                                        <menuItem title="Once per day" state="on" id="lh5-j8-SRe"/>
+                                                        <menuItem title="Once per week" id="LmO-Ij-G7M"/>
+                                                        <menuItem title="Once per month" id="PuG-eZ-jRm"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="updateInterval:" target="-1" id="f6G-pB-AQJ"/>
+                                            </connections>
+                                        </popUpButton>
                                     </subviews>
                                 </view>
                             </tabViewItem>
