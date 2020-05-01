@@ -367,7 +367,7 @@
 - (NSMenu *)menu {
 
 	// New cache
-	updateMenuItems = [NSMutableDictionary dictionary];//
+	updateMenuItems = [NSMutableDictionary dictionary];
 
 	// Empty the menu
 	while ([extraMenu numberOfItems]) {
@@ -407,7 +407,9 @@
 			
             // Calc speed
 			if ([details objectForKey:@"linkspeed"] && isActiveInterface) {
-				if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000000) {
+				if ([[details objectForKey:@"linkspeed"] doubleValue] < 0) {
+					speed = nil;
+				} else if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000000) {
 					speed = [NSString stringWithFormat:@" %.0f %@",
 								([[details objectForKey:@"linkspeed"] doubleValue] / 1000000000),
 								[localizedStrings objectForKey:kGbpsLabel]];

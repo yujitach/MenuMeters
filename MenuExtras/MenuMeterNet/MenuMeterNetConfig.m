@@ -31,7 +31,7 @@
 ///////////////////////////////////////////////////////////////
 
 // Speed defines
-#define kInterfaceDefaultSpeed 			10000000
+#define kInterfaceDefaultSpeed 			-1
 #define kModemInterfaceDefaultSpeed		56000
 
 @interface MenuMeterNetConfig (PrivateMethods)
@@ -614,15 +614,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
 	}
 	NSNumber *linkSpeed = (NSNumber *)CFBridgingRelease(IORegistryEntryCreateCFProperty(controllerService,
-																	  CFSTR(kIOLinkSpeed),
-																	  kCFAllocatorDefault,
-																	  kNilOptions));
+																						CFSTR(kIOLinkSpeed),
+																						kCFAllocatorDefault,
+																						kNilOptions));
 	IOObjectRelease(controllerService);
 	IOObjectRelease(regEntry);
 	IOObjectRelease(iterator);
-	if (linkSpeed) {
-        return linkSpeed;
-	}
 	if (linkSpeed && ([linkSpeed unsignedLongLongValue] > 0)) {
 		return linkSpeed;
 	} else {
