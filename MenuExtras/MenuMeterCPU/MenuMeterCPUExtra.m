@@ -761,11 +761,11 @@
 			NSAttributedString *cacheText = [[NSAttributedString alloc]
 												initWithString:[NSString stringWithFormat:@"%d%%", i]
 													attributes:textAttributes];
-			NSImage *cacheImage = [[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
-																			ceilf((float)[cacheText size].height))];
-			[cacheImage lockFocus];
-			[cacheText drawAtPoint:NSMakePoint(0, 0)];
-			[cacheImage unlockFocus];
+                        NSImage* cacheImage= [NSImage imageWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
+                                                                                                      ceilf((float)[cacheText size].height)) flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+                                                   [cacheText drawAtPoint:NSMakePoint(0, 0)];
+                                                   return YES;
+                                               }];
 			[singlePercentCache addObject:cacheImage];
 		}
 		// Calc the new width
@@ -782,13 +782,11 @@
 			NSAttributedString *cacheText = [[NSAttributedString alloc]
 												initWithString:[NSString stringWithFormat:@"%d%%", i]
 													attributes:textAttributes];
-			NSImage *cacheImage = [[NSImage alloc] initWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
-																			// No descenders, so render lower
-																			[cacheText size].height - 1)];
-
-			[cacheImage lockFocus];
-			[cacheText drawAtPoint:NSMakePoint(0, -1)];  // No descenders in our text so render lower
-			[cacheImage unlockFocus];
+                        NSImage* cacheImage= [NSImage imageWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
+                                                                                                      ceilf((float)[cacheText size].height)) flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+                                                   [cacheText drawAtPoint:NSMakePoint(0, -1)];
+                                                   return YES;
+                                               }];
 			[splitUserPercentCache addObject:cacheImage];
 		}
 		splitSystemPercentCache = [NSMutableArray array];
@@ -804,7 +802,7 @@
 											  attributes:textAttributes];
                         NSImage* cacheImage= [NSImage imageWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
                                                                                                       ceilf((float)[cacheText size].height)) flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
-                                                   [cacheText drawAtPoint:NSMakePoint(0, 0)];
+                                                   [cacheText drawAtPoint:NSMakePoint(0, -1)];
                                                    return YES;
                                                }];
                         [splitSystemPercentCache addObject:cacheImage];
