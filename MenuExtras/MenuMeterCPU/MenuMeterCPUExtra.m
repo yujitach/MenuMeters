@@ -262,11 +262,12 @@
     // Horizontal CPU thermometer is handled differently because it has to
     // manage rows and columns in a very different way from normal horizontal
     // layout
+    
     if ([ourPrefs cpuShowTemperature]) {
         [self renderSingleTemperatureIntoImage:currentImage atOffset:renderOffset];
-        renderOffset += kCPUTemperatureDisplayWidth;
+        renderOffset += ([ourPrefs cpuShowTemperatureTextOnly] ? kCPUTemperatureTextOnlyDisplayWidth : kCPUTemperatureDisplayWidth);
     }
-    if ([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) {
+    if ([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer  && ![ourPrefs cpuShowTemperatureTextOnly]) {
         // Calculate the minimum number of columns that will be needed
         uint32_t rowCount = [ourPrefs cpuHorizontalRows];
         //ceil(A/B) for ints is equal (A+B-1)/B
@@ -285,7 +286,7 @@
             [self renderHorizontalThermometerIntoImage:currentImage forProcessor:cpuNum atX:xOffset andY:yOffset withWidth:columnWidth andHeight:thermometerHeight];
         }
     }
-    else {
+    else if(![ourPrefs cpuShowTemperatureTextOnly]) {
 		// Loop by processor
 		int cpuDisplayModePrefs = [ourPrefs cpuDisplayMode];
         for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum+=stride) {
@@ -309,6 +310,11 @@
 				[self renderThermometerIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
 				renderOffset += kCPUThermometerDisplayWidth;
 			}
+            
+            if (cpuDisplayModePrefs & kCPUDisplayTemperatureTextOnly) {
+                NSLog(@"Showing text only");
+            }
+            
 			// At end of each proc adjust spacing
 			renderOffset += kCPUDisplayMultiProcGapWidth;
 
@@ -532,9 +538,15 @@
             temperatureString=@"???";
     }
     [image lockFocus];
+    float fontSize =  9.5f;
+    
+    if ([ourPrefs cpuShowTemperatureTextOnly]) {
+        fontSize = 10.5f;
+    }
+    
     NSAttributedString *renderTemperatureString = [[NSAttributedString alloc]
          initWithString:temperatureString
-         attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:9.5f],
+         attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:fontSize],
                      NSFontAttributeName, temperatureColor, NSForegroundColorAttributeName,
                      nil]];
     [renderTemperatureString drawAtPoint:NSMakePoint(
@@ -826,12 +838,20 @@
         if ([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) {
             menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * kCPUThermometerDisplayWidth);
         }
+        
+        
+        
         if (![ourPrefs cpuAvgAllProcs] && (numberOfCPUs > 1)) {
             menuWidth += ((numberOfCPUs - 1) * kCPUDisplayMultiProcGapWidth);
         }
     }
     if ([ourPrefs cpuShowTemperature]) {
-        menuWidth += kCPUTemperatureDisplayWidth;
+        if ([ourPrefs cpuShowTemperatureTextOnly] ) {
+            menuWidth += kCPUTemperatureTextOnlyDisplayWidth;
+        }else{
+             menuWidth += kCPUTemperatureDisplayWidth;
+        }
+        
     }
 
 	// Handle PowerMate

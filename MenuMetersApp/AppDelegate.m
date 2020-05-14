@@ -16,6 +16,7 @@
 #import <Sparkle/Sparkle.h>
 #endif
 
+
 @interface AppDelegate ()
 
 @property (weak) IBOutlet NSWindow *window;

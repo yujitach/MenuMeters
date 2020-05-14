@@ -127,6 +127,7 @@
 		33883D542365E78300B8AC14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
 		339B8C90237FE17F008B9755 /* MenuMeters.icns in Resources */ = {isa = PBXBuildFile; fileRef = 339B8C8F237FE17F008B9755 /* MenuMeters.icns */; };
 		33F0921923673DAC00953CAB /* releases.html in Resources */ = {isa = PBXBuildFile; fileRef = 33F0921823673DAC00953CAB /* releases.html */; };
+		8A25DA85246DACC3000933A2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A25DA84246DACC3000933A2 /* Sparkle.framework */; };
 		908780AA1FB087D70053DDC5 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		D403ADE40E04F18400348443 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADE20E04F17900348443 /* Cocoa.framework */; };
 		D403ADEC0E04F19C00348443 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D403ADEB0E04F19C00348443 /* Carbon.framework */; };
@@ -213,6 +214,7 @@
 		538B152824465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
 		538B152924465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DiskImageSet.strings; sourceTree = "<group>"; };
 		538B152A24465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8A25DA84246DACC3000933A2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistPreprocessor.h; sourceTree = "<group>"; };
 		908780A71FB087B90053DDC5 /* EMCLoginItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
 		908780A91FB087D70053DDC5 /* EMCLoginItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EMCLoginItem.m; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3383C1871B69BACA00915D5D /* SystemUIPlugin.framework in Frameworks */,
+				8A25DA85246DACC3000933A2 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,6 +398,7 @@
 		D40DB4A303D25F2100A87BC9 = {
 			isa = PBXGroup;
 			children = (
+				8A25DA84246DACC3000933A2 /* Sparkle.framework */,
 				33F092172367387B00953CAB /* MenuMeters.entitlements */,
 				F75EBE2D235B6F3600876CF7 /* smc_reader */,
 				336B59401E03BA68006DA445 /* MenuMeters.pch */,
@@ -722,7 +726,7 @@
 						CreatedOnToolsVersion = 7.0;
 					};
 					33883CEE23655C9900B8AC14 = {
-						DevelopmentTeam = 95AQ7YKR5A;
+						DevelopmentTeam = 52B5TC74Y7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1040,6 +1044,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1047,6 +1052,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"ELCAPITAN=1",
 					"$(inherited)",
+					"OUTOFPREFPANE=1",
 				);
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1099,6 +1105,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks",
+					"$(PROJECT_DIR)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1108,6 +1115,7 @@
 					"ELCAPITAN=1",
 					"DEBUG=1",
 					"$(inherited)",
+					"OUTOFPREFPANE=1",
 				);
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1156,7 +1164,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = MM_VERSION;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 95AQ7YKR5A;
+				DEVELOPMENT_TEAM = 52B5TC74Y7;
 				DSTROOT = "/tmp/$(PROJECT_NAME)App.dst";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1222,7 +1230,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = MM_VERSION;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 95AQ7YKR5A;
+				DEVELOPMENT_TEAM = 52B5TC74Y7;
 				DSTROOT = "/tmp/$(PROJECT_NAME)App.dst";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

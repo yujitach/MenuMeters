@@ -32,6 +32,7 @@
 #define kCPUThermometerDisplayWidth			10
 #define kCPUDisplayMultiProcGapWidth		5
 #define kCPUTemperatureDisplayWidth         35
+#define kCPUTemperatureTextOnlyDisplayWidth -85
 
 // Menu item indexes
 #define kCPUUptimeInfoMenuIndex				4
@@ -64,16 +65,18 @@
 #define kCPUPowerMatePref					@"CPUPowerMate"
 #define kCPUPowerMateMode					@"CPUPowerMateMode"
 #define kCPUShowTemperature                 @"CPUTemperature"
+#define kCPUShowTemperatureTextOnly         @"CPUTemperatureTextOnly"
 #define kCPUTemperatureColor                @"CPUTemperatureColor"
-#define kCPUTemperatureUnit                @"CPUTemperatureUnit"
-#define kCPUTemperatureUnitCelsius 0
-#define kCPUTemperatureUnitFahrenheit 1
+#define kCPUTemperatureUnit                 @"CPUTemperatureUnit"
+#define kCPUTemperatureUnitCelsius          0
+#define kCPUTemperatureUnitFahrenheit       1
 // Display modes
 enum {
 	kCPUDisplayPercent						= 1,
 	kCPUDisplayGraph						= 2,
 	kCPUDisplayThermometer					= 4,
-    kCPUDisplayHorizontalThermometer        = 8
+    kCPUDisplayHorizontalThermometer        = 8,
+    kCPUDisplayTemperatureTextOnly          = 9
 };
 #define kCPUDisplayDefault					kCPUDisplayPercent
 
@@ -136,6 +139,7 @@ enum {
 
 // Show CPU temperature
 #define kCPUShowTemperatureDefault          YES
+#define kCPUShowTemperatureTextOnlyDefault  NO
 
 // Colors
 											// Maraschino

@@ -535,7 +535,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuPowerMateMode selectItemAtIndex:[ourPrefs cpuPowerMateMode]];
 	[cpuUserColor setColor:[ourPrefs cpuUserColor]];
 	[cpuSystemColor setColor:[ourPrefs cpuSystemColor]];
-        [cpuTemperatureColor setColor:[ourPrefs cpuTemperatureColor]];
+    [cpuTemperatureColor setColor:[ourPrefs cpuTemperatureColor]];
 	[cpuIntervalDisplay takeDoubleValueFrom:cpuInterval];
 
 	if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) {
@@ -564,6 +564,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[cpuMenuWidth setEnabled:NO];
 		[cpuMenuWidthLabel setTextColor:[NSColor lightGrayColor]];
     }
+
 	if ((([cpuDisplayMode indexOfSelectedItem] + 1) & (kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)) ||
 		((([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) &&
 			([cpuPercentMode indexOfSelectedItem] == kCPUPercentDisplaySplit))) {
@@ -578,6 +579,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[cpuSystemColorLabel setTextColor:[NSColor lightGrayColor]];
 	}
 
+
+     [ourPrefs saveCpuTemperatureTextOnly:(([cpuDisplayMode indexOfSelectedItem] + 1) == kCPUDisplayTemperatureTextOnly)];
+    
 	// Write prefs and notify
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kCPUMenuBundleID]) {

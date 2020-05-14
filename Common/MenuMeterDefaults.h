@@ -51,6 +51,7 @@
 - (BOOL)cpuSortByUsage;
 - (BOOL)cpuPowerMate;
 - (BOOL)cpuShowTemperature;
+- (BOOL)cpuShowTemperatureTextOnly;
 - (int)cpuPowerMateMode;
 - (int)cpuTemperatureUnit;
 - (NSColor *)cpuSystemColor;
@@ -69,6 +70,7 @@
 - (void)saveCpuSortByUsage:(BOOL)sort;
 - (void)saveCpuPowerMate:(BOOL)active;
 - (void)saveCpuTemperature:(BOOL)show;
+- (void)saveCpuTemperatureTextOnly:(BOOL)show;
 - (void)saveCpuPowerMateMode:(int)mode;
 - (void)saveCpuSystemColor:(NSColor *)color;
 - (void)saveCpuUserColor:(NSColor *)color;

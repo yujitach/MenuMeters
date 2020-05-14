@@ -221,6 +221,10 @@
     return [self loadBoolPref:kCPUShowTemperature defaultValue:kCPUShowTemperatureDefault];
 }
 
+- (BOOL)cpuShowTemperatureTextOnly {
+    return [self loadBoolPref:kCPUShowTemperatureTextOnly defaultValue:kCPUShowTemperatureTextOnlyDefault];
+}
+
 - (NSColor *)cpuTemperatureColor {
     return [self loadColorPref:kCPUTemperatureColor defaultValue:kCPUTemperatureColorDefault];
 } //cpuTemperatureColor
@@ -284,6 +288,10 @@
 - (void)saveCpuTemperature:(BOOL)show {
     [self saveBoolPref: kCPUShowTemperature value:show];
 } // saveCpuTemperature
+
+- (void)saveCpuTemperatureTextOnly:(BOOL)show {
+    [self saveBoolPref: kCPUShowTemperatureTextOnly value:show];
+} // saveCpuTemperatureTextOnly
 
 - (void)saveCpuTemperatureColor:(NSColor *)color {
     [self saveColorPref:kCPUTemperatureColor value:color];
