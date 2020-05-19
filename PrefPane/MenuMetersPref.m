@@ -418,6 +418,19 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 } // liveUpdateInterval:
 
+-(int)cpuDisplayMode
+{
+    int r=0;
+    if([cpuPercentage state]==NSOnState)
+        r|=kCPUDisplayPercent;
+    if([cpuGraph state]==NSOnState)
+        r|=kCPUDisplayGraph;
+    if([cpuThermometer state]==NSOnState)
+        r|=kCPUDisplayThermometer;
+    if([cpuHorizontalThermometer state]==NSOnState)
+        r|=kCPUDisplayHorizontalThermometer;
+    return r;
+}
 - (IBAction)cpuPrefChange:(id)sender {
 
 	// Extra load handler
@@ -429,8 +442,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuMeterToggle setState:([self isExtraWithBundleIDLoaded:kCPUMenuBundleID] ? NSOnState : NSOffState)];
 
 	// Save changes
-	if (sender == cpuDisplayMode) {
-		[ourPrefs saveCpuDisplayMode:(int)[cpuDisplayMode indexOfSelectedItem] + 1];
+    if (sender == cpuPercentage
+        || sender == cpuGraph
+        || sender == cpuThermometer
+        || sender == cpuHorizontalThermometer) {
+		[ourPrefs saveCpuDisplayMode:[self cpuDisplayMode]];
     } else if (sender == cpuTemperatureToggle) {
         bool show = ([cpuTemperatureToggle state] == NSOnState) ? YES : NO;
         [ourPrefs saveCpuTemperature:show];
@@ -506,8 +522,19 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 
 	// Update controls
-	[cpuDisplayMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
-	[cpuDisplayMode selectItemAtIndex:[ourPrefs cpuDisplayMode] - 1];
+        [cpuPercentage setState:([ourPrefs cpuDisplayMode]&kCPUDisplayPercent)?NSOnState:NSOffState];
+        [cpuGraph setState:([ourPrefs cpuDisplayMode]&kCPUDisplayGraph)?NSOnState:NSOffState];
+        [cpuThermometer setState:([ourPrefs cpuDisplayMode]&kCPUDisplayThermometer)?NSOnState:NSOffState];
+        [cpuHorizontalThermometer setState:([ourPrefs cpuDisplayMode]&kCPUDisplayHorizontalThermometer)?NSOnState:NSOffState];
+    if([cpuHorizontalThermometer state]==NSOnState){
+        [cpuPercentage setEnabled:NO];
+        [cpuGraph setEnabled:NO];
+        [cpuThermometer setEnabled:NO];
+    }else{
+        [cpuPercentage setEnabled:YES];
+        [cpuGraph setEnabled:YES];
+        [cpuThermometer setEnabled:YES];
+    }
     [cpuTemperatureToggle setState:[ourPrefs cpuShowTemperature]];
         [cpuTemperatureUnit selectItemAtIndex:[ourPrefs cpuTemperatureUnit]];
 	[cpuInterval setDoubleValue:[ourPrefs cpuInterval]];
@@ -538,21 +565,21 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [cpuTemperatureColor setColor:[ourPrefs cpuTemperatureColor]];
 	[cpuIntervalDisplay takeDoubleValueFrom:cpuInterval];
 
-	if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) {
+	if ([cpuPercentage state]==NSOnState) {
 		[cpuPercentMode setEnabled:YES];
 		[cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[cpuPercentMode setEnabled:NO];
         [cpuPercentModeLabel setTextColor:[NSColor lightGrayColor]];
 	}
-	if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayGraph) {
+	if ([cpuGraph state]==NSOnState) {
 		[cpuGraphWidth setEnabled:YES];
 		[cpuGraphWidthLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[cpuGraphWidth setEnabled:NO];
 		[cpuGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
 	}
-    if (([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayHorizontalThermometer) {
+    if ([cpuHorizontalThermometer state]==NSOnState) {
 		[cpuHorizontalRows setEnabled:YES];
 		[cpuHorizontalRowsLabel setTextColor:[NSColor controlTextColor]];
         [cpuMenuWidth setEnabled:YES];
@@ -564,19 +591,19 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[cpuMenuWidth setEnabled:NO];
 		[cpuMenuWidthLabel setTextColor:[NSColor lightGrayColor]];
     }
-	if ((([cpuDisplayMode indexOfSelectedItem] + 1) & (kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)) ||
+/*	if ((([cpuDisplayMode indexOfSelectedItem] + 1) & (kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)) ||
 		((([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) &&
-			([cpuPercentMode indexOfSelectedItem] == kCPUPercentDisplaySplit))) {
+			([cpuPercentMode indexOfSelectedItem] == kCPUPercentDisplaySplit))) {*/
 		[cpuUserColor setEnabled:YES];
 		[cpuSystemColor setEnabled:YES];
 		[cpuUserColorLabel setTextColor:[NSColor controlTextColor]];
 		[cpuSystemColorLabel setTextColor:[NSColor controlTextColor]];
-	} else {
+/*	} else {
 		[cpuUserColor setEnabled:NO];
 		[cpuSystemColor setEnabled:NO];
 		[cpuUserColorLabel setTextColor:[NSColor lightGrayColor]];
 		[cpuSystemColorLabel setTextColor:[NSColor lightGrayColor]];
-	}
+	}*/
 
 	// Write prefs and notify
 	[ourPrefs syncWithDisk];
