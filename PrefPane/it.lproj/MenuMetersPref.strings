@@ -15,13 +15,13 @@
 "105.label" = "Network";
 
 /* Class = "NSMenuItem"; title = "Grafico"; ObjectID = "145"; */
-"145.title" = "Grafico";
+"IS4-Xc-psg.title" = "Grafico";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "146"; */
 "146.title" = "OtherViews";
 
 /* Class = "NSMenuItem"; title = "Percentuale"; ObjectID = "148"; */
-"148.title" = "Percentuale";
+"Jeh-C2-Wwp.title" = "Percentuale";
 
 /* Class = "NSMenuItem"; title = "Grafico e Percentuale"; ObjectID = "149"; */
 "149.title" = "Grafico e Percentuale";
@@ -57,7 +57,8 @@
 "314.title" = "Grafico";
 
 /* Class = "NSMenuItem"; title = "Termometro"; ObjectID = "357"; */
-"357.title" = "Termometro";
+"r6t-Zl-sS4.title" = "Barre verticali";
+"spo-WT-wCm.title" = "Barre orizzontali";
 
 /* Class = "NSMenuItem"; title = "Grafico, Percentuale e Termometro"; ObjectID = "358"; */
 "358.title" = "Grafico, Percentuale e Termometro";

@@ -15,13 +15,13 @@
 "105.label" = "Netzwerk";
 
 /* Class = "NSMenuItem"; title = "Grafik"; ObjectID = "145"; */
-"145.title" = "Grafik";
+"IS4-Xc-psg.title" = "Grafik";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "146"; */
 "146.title" = "OtherViews";
 
 /* Class = "NSMenuItem"; title = "Prozentsatz"; ObjectID = "148"; */
-"148.title" = "Prozentsatz";
+"Jeh-C2-Wwp.title" = "Prozentsatz";
 
 /* Class = "NSMenuItem"; title = "Grafik und Prozentsatz"; ObjectID = "149"; */
 "149.title" = "Grafik und Prozentsatz";
@@ -57,7 +57,8 @@
 "314.title" = "Grafik";
 
 /* Class = "NSMenuItem"; title = "Thermometer"; ObjectID = "357"; */
-"357.title" = "Thermometer";
+"r6t-Zl-sS4.title" = "Vertikales Balkendiagramm";
+"spo-WT-wCm.title" = "Horizontales Balkendiagramm";
 
 /* Class = "NSMenuItem"; title = "Grafik, Prozentsatz und Thermometer"; ObjectID = "358"; */
 "358.title" = "Grafik, Prozentsatz und Thermometer";

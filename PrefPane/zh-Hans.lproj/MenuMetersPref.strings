@@ -15,13 +15,13 @@
 "105.label" = "网络";
 
 /* Class = "NSMenuItem"; title = "曲线"; ObjectID = "145"; */
-"145.title" = "曲线";
+"IS4-Xc-psg.title" = "曲线";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "146"; */
 "146.title" = "OtherViews";
 
 /* Class = "NSMenuItem"; title = "百分比"; ObjectID = "148"; */
-"148.title" = "百分比";
+"Jeh-C2-Wwp.title" = "百分比";
 
 /* Class = "NSMenuItem"; title = "曲线和百分比"; ObjectID = "149"; */
 "149.title" = "曲线和百分比";
@@ -57,7 +57,8 @@
 "314.title" = "曲线";
 
 /* Class = "NSMenuItem"; title = "寒暑表"; ObjectID = "357"; */
-"357.title" = "寒暑表";
+"r6t-Zl-sS4.title" = "垂直条形图";
+"spo-WT-wCm.title" = "水平条形图";
 
 /* Class = "NSMenuItem"; title = "曲线、百分比和寒暑表"; ObjectID = "358"; */
 "358.title" = "曲线、百分比和寒暑表";

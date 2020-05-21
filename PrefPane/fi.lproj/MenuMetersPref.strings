@@ -15,13 +15,13 @@
 "105.label" = "Verkko";
 
 /* Class = "NSMenuItem"; title = "Graph"; ObjectID = "145"; */
-"145.title" = "Kuvaaja";
+"IS4-Xc-psg.title" = "Kuvaaja";
 
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "146"; */
 "146.title" = "OtherViews";
 
 /* Class = "NSMenuItem"; title = "Percentage"; ObjectID = "148"; */
-"148.title" = "Prosenttiluku";
+"Jeh-C2-Wwp.title" = "Prosenttiluku";
 
 /* Class = "NSMenuItem"; title = "Graph and Percentage"; ObjectID = "149"; */
 "149.title" = "Kuvaaja ja prosenttiluku";
@@ -57,7 +57,8 @@
 "314.title" = "Kuvaaja";
 
 /* Class = "NSMenuItem"; title = "Thermometer"; ObjectID = "357"; */
-"357.title" = "Lämpötila";
+"r6t-Zl-sS4.title" = "Pystysuora pylväskaavio";
+"spo-WT-wCm.title" = "Vaakasuora pylväskaavio";
 
 /* Class = "NSMenuItem"; title = "Graph, Percentage and Thermometer"; ObjectID = "358"; */
 "358.title" = "Kuvaaja, prosenttiluku ja lämpötila";
