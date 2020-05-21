@@ -262,6 +262,20 @@
     // Horizontal CPU thermometer is handled differently because it has to
     // manage rows and columns in a very different way from normal horizontal
     // layout
+    if(![ourPrefs cpuShowTemperature] && [ourPrefs cpuDisplayMode]==0){
+        [currentImage lockFocus];
+        NSAttributedString *cpuString = [[NSAttributedString alloc]
+             initWithString:@"CPU"
+             attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:10],
+                         NSFontAttributeName, [NSColor textColor], NSForegroundColorAttributeName,
+                         nil]];
+        [cpuString drawAtPoint:NSMakePoint(
+             kCPULabelOnlyWidth - (float)round([cpuString size].width) - 1,
+             (float)floor(([currentImage size].height-[cpuString size].height) / 2)
+        )];
+        [currentImage unlockFocus];
+        return currentImage;
+    }
     if ([ourPrefs cpuShowTemperature]) {
         [self renderSingleTemperatureIntoImage:currentImage atOffset:renderOffset];
         renderOffset += kCPUTemperatureDisplayWidth;
@@ -833,7 +847,9 @@
     if ([ourPrefs cpuShowTemperature]) {
         menuWidth += kCPUTemperatureDisplayWidth;
     }
-
+    if(![ourPrefs cpuShowTemperature] && [ourPrefs cpuDisplayMode]==0){
+        menuWidth=kCPULabelOnlyWidth;
+    }
 	// Handle PowerMate
 	if ([ourPrefs cpuPowerMate]) {
 		// Load PowerMate if needed, this grabs control of the PowerMate

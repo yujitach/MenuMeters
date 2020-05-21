@@ -32,6 +32,7 @@
 #define kCPUThermometerDisplayWidth			10
 #define kCPUDisplayMultiProcGapWidth		5
 #define kCPUTemperatureDisplayWidth         35
+#define kCPULabelOnlyWidth         25
 
 // Menu item indexes
 #define kCPUUptimeInfoMenuIndex				4
