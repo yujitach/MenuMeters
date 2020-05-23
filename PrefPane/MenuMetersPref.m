@@ -103,6 +103,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 #ifdef OUTOFPREFPANE
 {
     IBOutlet NSWindow* _window;
+    SUUpdater*updater;
 }
 -(IBAction)openAbout:(id)sender
 {
@@ -144,7 +145,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [x addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, x.length)];
     [aboutView.textStorage appendAttributedString:x];
 }
--(instancetype)initWithAboutFileName:(NSString*)about
+-(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_
 {
     self=[super initWithWindowNibName:@"MenuMetersPref"];
     [self loadWindow];
@@ -157,6 +158,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
         [self.window makeKeyAndOrderFront:self];
     }
+    updater=updater_;
+    [self setupUpdateIntervalMenu];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPrefPane:) name:@"openPref" object:nil];
     return self;
 }
@@ -173,7 +176,59 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     }
 }
 #endif
-///////////////////////////////////////////////////////////////
+-(IBAction)checkForUpdates:(id)sender
+{
+#ifdef OUTOFPREFPANE
+    [updater checkForUpdates:sender];
+#endif
+}
+-(void)setupUpdateIntervalMenu
+{
+    if(updater.automaticallyChecksForUpdates){
+        NSTimeInterval updateInterval=updater.updateCheckInterval;
+        if(updateInterval<3600*24+1){
+            [updateIntervalButton selectItemAtIndex:1];
+        }else if(updateInterval<7*3600*24+1){
+            [updateIntervalButton selectItemAtIndex:2];
+        }else if(updateInterval<30*3600*24+1){
+            [updateIntervalButton selectItemAtIndex:3];
+        }else{
+            [updateIntervalButton selectItemAtIndex:1];
+        }
+    }else{
+        [updateIntervalButton selectItemAtIndex:0];
+    }
+}
+-(IBAction)updateInterval:(id)sender
+{
+#ifdef OUTOFPREFPANE
+    NSPopUpButton*button=sender;
+    NSInteger intervalInDays=1;
+    switch(button.indexOfSelectedItem){
+        case 0:
+            intervalInDays=-1;
+            break;
+        case 1:
+            intervalInDays=1;
+            break;
+        case 2:
+            intervalInDays=7;
+            break;
+        case 3:
+            intervalInDays=30;
+            break;
+        default:
+            intervalInDays=1;
+            break;
+    }
+    if(intervalInDays<=0){
+        [updater setAutomaticallyChecksForUpdates:NO];
+    }else{
+        [updater setAutomaticallyChecksForUpdates:YES];
+        [updater setUpdateCheckInterval:intervalInDays*3600*24];
+    }
+#endif
+}///////////////////////////////////////////////////////////////
 //
 //    Pref pane standard methods
 //

@@ -34,42 +34,7 @@
     NSTimer*timer;
 }
 
--(IBAction)checkForUpdates:(id)sender
-{
-#ifdef OUTOFPREFPANE
-    [updater checkForUpdates:sender];
-#endif
-}
--(IBAction)updateInterval:(id)sender
-{
-#ifdef OUTOFPREFPANE
-    NSPopUpButton*button=sender;
-    NSInteger intervalInDays=1;
-    switch(button.indexOfSelectedItem){
-        case 0:
-            intervalInDays=-1;
-            break;
-        case 1:
-            intervalInDays=1;
-            break;
-        case 2:
-            intervalInDays=7;
-            break;
-        case 3:
-            intervalInDays=30;
-            break;
-        default:
-            intervalInDays=1;
-            break;
-    }
-    if(intervalInDays<=0){
-        [updater setAutomaticallyChecksForUpdates:NO];
-    }else{
-        [updater setAutomaticallyChecksForUpdates:YES];
-        [updater setUpdateCheckInterval:intervalInDays*3600*24];
-    }
-#endif
-}
+
 -(void)killOlderInstances{
     NSString*thisVersion=NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"];
     for(NSRunningApplication* x in [NSRunningApplication runningApplicationsWithBundleIdentifier:@"com.yujitach.MenuMeters"]){
@@ -103,7 +68,7 @@
     [self killOlderInstances];
     updater=[SUUpdater sharedUpdater];
     updater.feedURL=[NSURL URLWithString:@"https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"];
-    pref=[[MenuMetersPref alloc] initWithAboutFileName:WELCOME];
+    pref=[[MenuMetersPref alloc] initWithAboutFileName:WELCOME andUpdater:updater];
     NSString*key=[WELCOME stringByAppendingString:@"Presented"];
     if(![[NSUserDefaults standardUserDefaults] boolForKey:key]){
         [pref openAbout:WELCOME];

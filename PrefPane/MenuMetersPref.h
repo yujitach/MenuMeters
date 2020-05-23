@@ -36,6 +36,9 @@
 #import "MenuMeterMem.h"
 #import "MenuMeterNet.h"
 #import "MenuMeterPowerMate.h"
+#ifdef OUTOFPREFPANE
+#import <Sparkle/Sparkle.h>
+#endif
 
 
 @interface MenuMetersPref :
@@ -131,7 +134,7 @@ NSPreferencePane
 	IBOutlet NSColorWell			*netTxColor;
 	IBOutlet NSColorWell			*netRxColor;
 	IBOutlet NSColorWell			*netInactiveColor;
-
+    __weak IBOutlet NSPopUpButton *updateIntervalButton;
 } // MenuMetersPref
 
 // Pref pane standard methods
@@ -139,7 +142,7 @@ NSPreferencePane
 - (void)willSelect;
 - (void)didUnselect;
 
--(instancetype)initWithAboutFileName:(NSString*)about;
+-(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_;
 // IB Targets
 -(IBAction)openAbout:(id)sender;
 - (IBAction)liveUpdateInterval:(id)sender;
