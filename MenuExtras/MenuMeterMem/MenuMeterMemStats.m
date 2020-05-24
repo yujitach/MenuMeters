@@ -426,9 +426,19 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	else {
 		NSLog(@"MenuMeterMemStats unable to locate dynamic_pager args. Assume default.");
  */
+    // and now we provide a modern code to get the info via sysctl.
+    // Apparently there are still people who changes the swap file path... see
+    // https://github.com/yujitach/MenuMeters/issues/164
+    char swapfileprefix[1024];
+    size_t size = sizeof(swapfileprefix);
+    if (!sysctlbyname("vm.swapfileprefix", swapfileprefix, &size, NULL, 0)){
+        NSString*x=[NSString stringWithUTF8String:swapfileprefix];
+        swapPrefix=[x lastPathComponent];
+        swapPath=[[x stringByDeletingLastPathComponent] stringByAppendingString:@"/"];
+    }else{
 		swapPath = kDefaultSwapPath;
 		swapPrefix = kDefaultSwapPrefix;
-//	}
+    }
 
 } // initializeSwapPath
 
