@@ -165,10 +165,7 @@
 	[menuItem setEnabled:NO];
 #ifdef OUTOFPREFPANE
     [extraMenu addItem:[NSMenuItem separatorItem]];
-    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[[NSBundle mainBundle] localizedStringForKey:kOpenMenuMetersPref value:nil table:nil]
-                                                  action:@selector(openMenuMetersPref:)
-                                           keyEquivalent:@""];
-    [menuItem setTarget:self];
+    [self addStandardMenuEntriesTo:extraMenu];
 #endif
 
 	// Get our view

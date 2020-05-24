@@ -9,6 +9,11 @@
 #import "MenuMetersMenuExtraBase.h"
 #import "MenuMeterWorkarounds.h"
 
+#import "MenuMeterCPUExtra.h"
+#import "MenuMeterDiskExtra.h"
+#import "MenuMeterMemExtra.h"
+#import "MenuMeterNetExtra.h"
+
 @implementation MenuMetersMenuExtraBase
 -(instancetype)initWithBundle:(NSBundle*)bundle
 {
@@ -62,6 +67,48 @@
 - (void)openMenuMetersPref:(id)sender
 {
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"openPref" object:self]];
+}
+- (void)openActivityMonitor:(id)sender {
+
+    if (![[NSWorkspace sharedWorkspace] launchApplication:@"Activity Monitor.app"]) {
+        NSLog(@"MenuMeter unable to launch the Activity Monitor.");
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(),^{
+        if(@available(macOS 10.15,*)){
+            int tab=1;
+            if([self isKindOfClass:[MenuMeterCPUExtra class]]){
+                tab=1;
+            }
+            if([self isKindOfClass:[MenuMeterDiskExtra class]]){
+                tab=4;
+            }
+            if([self isKindOfClass:[MenuMeterMemExtra class]]){
+                tab=2;
+            }
+            if([self isKindOfClass:[MenuMeterNetExtra class]]){
+                tab=5;
+            }
+            NSString*source=[NSString stringWithFormat:@"tell application \"System Events\" to tell process \"Activity Monitor\" to click radio button %@ of radio group 1 of group 2 of toolbar of window 1", @(tab)];
+            NSAppleScript*script=[[NSAppleScript alloc] initWithSource:source];
+            NSDictionary* errorDict=nil;
+            [script executeAndReturnError:&errorDict];
+            if(errorDict){
+                NSLog(@"%@",errorDict);
+            }
+        }
+    });
+} // openActivityMonitor
+- (void)addStandardMenuEntriesTo:(NSMenu*)extraMenu
+{
+    NSMenuItem* menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:NSLocalizedString(kOpenActivityMonitorTitle, kOpenActivityMonitorTitle)
+                                                              action:@selector(openActivityMonitor:)
+                                                       keyEquivalent:@""];
+    [menuItem setTarget:self];
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:NSLocalizedString(kOpenMenuMetersPref, kOpenMenuMetersPref)
+                                                  action:@selector(openMenuMetersPref:)
+                                           keyEquivalent:@""];
+    [menuItem setTarget:self];
+
 }
 - (void)setupAppearance {
     if(@available(macOS 10.14,*)){

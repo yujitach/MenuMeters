@@ -791,10 +791,7 @@
 					   keyEquivalent:@""] setTarget:self];
 	}
     #ifdef OUTOFPREFPANE
-        NSMenuItem*menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[[NSBundle mainBundle] localizedStringForKey:kOpenMenuMetersPref value:nil table:nil]
-                                                      action:@selector(openMenuMetersPref:)
-                                               keyEquivalent:@""];
-        [menuItem setTarget:self];
+        [self addStandardMenuEntriesTo:extraMenu];
     #endif
 
 	// Send the menu back to SystemUIServer

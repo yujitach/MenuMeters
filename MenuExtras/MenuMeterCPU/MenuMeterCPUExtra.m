@@ -72,7 +72,6 @@
 #define kLoadAverageTitle					@"Load Average (1m, 5m, 15m):"
 #define kProcessTitle                       @"Top CPU Intensive Processes:"
 #define kOpenProcessViewerTitle				@"Open Process Viewer"
-#define kOpenActivityMonitorTitle			@"Open Activity Monitor"
 #define kOpenConsoleTitle					@"Open Console"
 #define kNoInfoErrorMessage					@"No info available"
 
@@ -180,19 +179,12 @@
     
 	// And the "Open Process Viewer"/"Open Activity Monitor" and "Open Console" item
 	[extraMenu addItem:[NSMenuItem separatorItem]];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenActivityMonitorTitle value:nil table:nil]
-												  action:@selector(openActivityMonitor:)
-										   keyEquivalent:@""];
-	[menuItem setTarget:self];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenConsoleTitle value:nil table:nil]
 												  action:@selector(openConsole:)
 										   keyEquivalent:@""];
 	[menuItem setTarget:self];
 #ifdef OUTOFPREFPANE
-    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenMenuMetersPref value:nil table:nil]
-                                                  action:@selector(openMenuMetersPref:)
-                                           keyEquivalent:@""];
-    [menuItem setTarget:self];
+        [self addStandardMenuEntriesTo:extraMenu];
 #endif
 	// Get our view
 	extraView = [[MenuMeterCPUView alloc] initWithFrame:[[self view] frame] menuExtra:self];
@@ -706,13 +698,6 @@
 
 } // openProcessViewer
 
-- (void)openActivityMonitor:(id)sender {
-
-	if (![[NSWorkspace sharedWorkspace] launchApplication:@"Activity Monitor.app"]) {
-		NSLog(@"MenuMeterCPU unable to launch the Activity Monitor.");
-	}
-
-} // openActivityMonitor
 
 - (void)openConsole:(id)sender {
 
