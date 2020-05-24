@@ -34,6 +34,12 @@
     NSTimer*timer;
 }
 
+-(IBAction)checkForUpdates:(id)sender
+{
+#ifdef OUTOFPREFPANE
+    [updater checkForUpdates:sender];
+#endif
+}
 
 -(void)killOlderInstances{
     NSString*thisVersion=NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"];

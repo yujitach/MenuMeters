@@ -176,12 +176,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     }
 }
 #endif
--(IBAction)checkForUpdates:(id)sender
-{
-#ifdef OUTOFPREFPANE
-    [updater checkForUpdates:sender];
-#endif
-}
 -(void)setupUpdateIntervalMenu
 {
     if(updater.automaticallyChecksForUpdates){
