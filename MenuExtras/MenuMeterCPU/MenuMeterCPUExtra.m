@@ -86,7 +86,7 @@
 
 - initWithBundle:(NSBundle *)bundle {
 
-	self = [super initWithBundle:bundle];
+	self = [super initWithBundleID:kCPUMenuBundleID];
 	if (!self) {
 		return nil;
 	}

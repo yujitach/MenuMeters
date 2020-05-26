@@ -52,7 +52,7 @@
 
 - initWithBundle:(NSBundle *)bundle {
 
-	self = [super initWithBundle:bundle];
+    self = [super initWithBundleID:kDiskMenuBundleID];
 	if (!self) {
 		return nil;
 	}

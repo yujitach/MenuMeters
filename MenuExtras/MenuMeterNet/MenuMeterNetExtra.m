@@ -137,7 +137,7 @@
 
 - initWithBundle:(NSBundle *)bundle {
 
-	self = [super initWithBundle:bundle];
+    self = [super initWithBundleID:kNetMenuBundleID];
 	if (!self) {
 		return nil;
 	}

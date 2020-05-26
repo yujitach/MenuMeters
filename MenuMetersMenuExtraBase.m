@@ -15,9 +15,10 @@
 #import "MenuMeterNetExtra.h"
 
 @implementation MenuMetersMenuExtraBase
--(instancetype)initWithBundle:(NSBundle*)bundle
+-(instancetype)initWithBundleID:(NSString*)bundleID
 {
-    self=[super initWithBundle:bundle];
+    self=[super initWithBundle:[NSBundle mainBundle]];
+    self.bundleID=bundleID;
     return self;
 }
 -(void)willUnload {
@@ -51,6 +52,11 @@
     if([ourPrefs loadBoolPref:bundleID defaultValue:YES]){
         if(!statusItem){
             statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+            if(@available(macOS 10.12,*)){
+//                statusItem.autosaveName=self.bundleID;
+                statusItem.behavior=NSStatusItemBehaviorRemovalAllowed;
+                [statusItem addObserver:self forKeyPath:@"visible" options:NSKeyValueObservingOptionNew context:nil];
+            }
             statusItem.menu = self.menu;
             statusItem.menu.delegate = self;
         }
@@ -59,9 +65,24 @@
         [updateTimer setTolerance:.2*interval];
         [[NSRunLoop currentRunLoop] addTimer:updateTimer forMode:NSRunLoopCommonModes];
     }else if(![ourPrefs loadBoolPref:bundleID defaultValue:YES] && statusItem){
-        [updateTimer invalidate];
-        [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
-        statusItem=nil;
+        [self removeStatusItem];
+    }
+}
+-(void)removeStatusItem
+{
+    [updateTimer invalidate];
+    [[NSStatusBar systemStatusBar] removeStatusItem:statusItem];
+    statusItem=nil;
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"menuExtraUnloaded" object:self.bundleID]];
+}
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if(@available(macOS 10.12,*)){
+        if(object==statusItem){
+            if(!statusItem.visible){
+                [self removeStatusItem];
+            }
+        }
     }
 }
 - (void)openMenuMetersPref:(id)sender

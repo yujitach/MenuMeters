@@ -353,23 +353,10 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 														  object:kPrefChangeNotification];
 
 	// Register for notifications from the extras when they unload
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
+	[[NSNotificationCenter defaultCenter] addObserver:self
 														selector:@selector(menuExtraUnloaded:)
-															name:kCPUMenuBundleID
-														  object:kCPUMenuUnloadNotification];
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(menuExtraUnloaded:)
-															name:kDiskMenuBundleID
-														  object:kDiskMenuUnloadNotification];
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(menuExtraUnloaded:)
-															name:kMemMenuBundleID
-														  object:kMemMenuUnloadNotification];
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(menuExtraUnloaded:)
-															name:kNetMenuBundleID
-														  object:kNetMenuUnloadNotification];
-
+															name:@"menuExtraUnloaded"
+														  object:nil];
 } // willSelect
 
 - (void)didUnselect {
@@ -393,7 +380,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 - (void)menuExtraUnloaded:(NSNotification *)notification {
 
-	NSString *bundleID = [notification name];
+	NSString *bundleID = [notification object];
 	if (bundleID) {
 		if ([bundleID isEqualToString:kCPUMenuBundleID]) {
 			[cpuMeterToggle setState:NSOffState];
@@ -405,7 +392,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 			[netMeterToggle setState:NSOffState];
 		}
 	}
-
+    [self removeExtraWithBundleID:bundleID];
 } // menuExtraUnloaded
 
 - (void)menuExtraChangedPrefs:(NSNotification *)notification {
@@ -999,6 +986,10 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [[NSDistributedNotificationCenter defaultCenter] postNotificationName:bundleID
                                                                    object:kPrefChangeNotification
      userInfo:nil deliverImmediately:YES];
+    if([self noMenuMeterLoaded]){
+        [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+        [self.window makeKeyAndOrderFront:self];
+    }
     return;
 } // removeExtraWithBundleID
 

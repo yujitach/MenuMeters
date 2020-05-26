@@ -90,7 +90,7 @@
 
 - initWithBundle:(NSBundle *)bundle {
 
-	self = [super initWithBundle:bundle];
+    self = [super initWithBundleID:kMemMenuBundleID];
 	if (!self) {
 		return nil;
 	}
