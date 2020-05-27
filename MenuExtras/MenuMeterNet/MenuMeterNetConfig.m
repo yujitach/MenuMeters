@@ -588,10 +588,67 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 //
 ///////////////////////////////////////////////////////////////
 
+// taken from https://stackoverflow.com/a/12310154/239243
+- (NSString *)runCommand:(NSString *)commandToRun
+{
+    NSTask *task = [[NSTask alloc] init];
+    [task setLaunchPath:@"/bin/sh"];
+
+    NSArray *arguments = [NSArray arrayWithObjects:
+                          @"-c" ,
+                          [NSString stringWithFormat:@"%@", commandToRun],
+                          nil];
+//    NSLog(@"run command:%@", commandToRun);
+    [task setArguments:arguments];
+
+    NSPipe *pipe = [NSPipe pipe];
+    [task setStandardOutput:pipe];
+    [task setStandardError:pipe];
+
+    NSFileHandle *file = [pipe fileHandleForReading];
+    
+    [task launch];
+
+    NSData *data = [file readDataToEndOfFile];
+    [file closeFile];
+
+    NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return output;
+}
+
 - (NSNumber *)speedForInterfaceName:(NSString *)bsdInterface {
 
 	if (!bsdInterface) return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
+    NSLog(@"getting the speed for %@",bsdInterface);
+    /* The old way to get the speed via IOKit no longer reliably works, most probably due to the slow move to DriverKit.
+     The link speed as reported by NetworkUtility.app can also be obtained by ifconfig, whose source code is available at
+     https://opensource.apple.com/source/network_cmds/network_cmds-596/ifconfig.tproj/
+    e.g. for Catalina. Unfortunately the ioctl used there is not exposed in the standard development headers, although you can presumably use it by copying the content of the private headers.
+     Here instead I just directly call ifconfig.
+     */
+    NSString*line=[self runCommand:[NSString stringWithFormat:@"ifconfig -v %@ | grep uplink",bsdInterface]];
+    if([line containsString:@"does not"]){
+         return [NSNumber numberWithLong:0];
+    }
+    NSRange r=[line rangeOfString:@"/"];
+    line=[line substringFromIndex:r.location+1];
+    double factor=1;
+    if((r=[line rangeOfString:@"Gbps"]).location!=NSNotFound){
+        factor=1000*1000*1000;
+    }else if((r=[line rangeOfString:@"Mbps"]).location!=NSNotFound){
+        factor=1000*1000;
+    }else if((r=[line rangeOfString:@"Kbps"]).location!=NSNotFound){
+        factor=1000;
+    }else if((r=[line rangeOfString:@"bps"]).location!=NSNotFound){
+        factor=1;
+    }else{
+        factor=0;
+    }
+    
+    line=[line substringToIndex:r.location];
+    return [NSNumber numberWithDouble:[line doubleValue]*factor];
 
+    /*
 	// Get the speed from IOKit
 	io_iterator_t iterator;
 	IOServiceGetMatchingServices(masterPort,
@@ -625,7 +682,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	} else {
 		return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
 	}
-
+     */
 } // speedForInterfaceName
 
 - (NSDictionary *)sysconfigValueForKey:(NSString *)key {
