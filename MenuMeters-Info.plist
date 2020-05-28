@@ -29,7 +29,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSAppleEventsUsageDescription</key>
-	<string>This is to control the Activity Monitor to open specific panes such as memory or network.</string>
+	<string>This is to control the Activity Monitor to open specific panes such as memory or network. Another alert might be shown soon afterwards.</string>
 	<key>NSMainNibFile</key>
 	<string>MenuMetersMainMenu</string>
 	<key>NSPrincipalClass</key>
