@@ -793,7 +793,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"ELCAPITAN=1",
 					"$(inherited)",
-					"OUTOFPREFPANE=1",
 				);
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -861,7 +860,6 @@
 					"ELCAPITAN=1",
 					"DEBUG=1",
 					"$(inherited)",
-					"OUTOFPREFPANE=1",
 				);
 				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -23,12 +23,10 @@
 
 #import "MenuMetersPref.h"
 #import "EMCLoginItem.h"
-#ifdef OUTOFPREFPANE
 #import "MenuMeterCPUExtra.h"
 #import "MenuMeterDiskExtra.h"
 #import "MenuMeterMemExtra.h"
 #import "MenuMeterNetExtra.h"
-#endif
 
 ///////////////////////////////////////////////////////////////
 //
@@ -100,7 +98,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 
 @implementation MenuMetersPref
-#ifdef OUTOFPREFPANE
 {
     IBOutlet NSWindow* _window;
     SUUpdater*updater;
@@ -175,7 +172,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
     }
 }
-#endif
 -(void)setupUpdateIntervalMenu
 {
     if(updater.automaticallyChecksForUpdates){
@@ -195,7 +191,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 }
 -(IBAction)updateInterval:(id)sender
 {
-#ifdef OUTOFPREFPANE
     NSPopUpButton*button=sender;
     NSInteger intervalInDays=1;
     switch(button.indexOfSelectedItem){
@@ -221,23 +216,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [updater setAutomaticallyChecksForUpdates:YES];
         [updater setUpdateCheckInterval:intervalInDays*3600*24];
     }
-#endif
 }///////////////////////////////////////////////////////////////
 //
 //    Pref pane standard methods
 //
 ///////////////////////////////////////////////////////////////
 - (void)mainViewDidLoad {
-
-#ifndef OUTOFPREFPANE
-	// Check OS version
-	BOOL isLeopardOrLater = OSIsLeopardOrLater();
-
-	// Resize to be the new width of the System Preferences window for Leopard
-	if (isLeopardOrLater) {
-		[[self mainView] setFrameSize:NSMakeSize(668, [[self mainView] frame].size.height)];
-	}
-#endif
 	// On first load switch to the first tab
 	[prefTabs selectFirstTabViewItem:self];
 
@@ -282,17 +266,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setTitle:[NSString stringWithFormat:@"  %@",
 				[[netScaleCalc itemAtIndex:kNetScaleCalcLog] title]]];
 
-#ifndef OUTOFPREFPANE
-    NSString *appPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MenuMetersApp" ofType:@"app"];
-    [[NSWorkspace sharedWorkspace] launchApplication:appPath];
-    EMCLoginItem *loginItem = [EMCLoginItem loginItemWithPath:appPath];
-    
-    if (![loginItem isLoginItem])
-    {
-        [loginItem addLoginItem];
-    }
-#endif
-#ifdef OUTOFPREFPANE
     {
     NSString*oldAppPath=[@"~/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMetersApp.app" stringByExpandingTildeInPath];
         EMCLoginItem*oldItem=[EMCLoginItem loginItemWithPath:oldAppPath];
@@ -314,7 +287,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
             [thisItem addLoginItem];
         }
     }
-#endif
 } // mainViewDidLoad
 
 - (void)willSelect {

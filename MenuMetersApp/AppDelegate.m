@@ -12,9 +12,7 @@
 #import "MenuMeterMemExtra.h"
 #import "MenuMeterNetExtra.h"
 #import "MenuMetersPref.h"
-#ifdef OUTOFPREFPANE
 #import <Sparkle/Sparkle.h>
-#endif
 
 @interface AppDelegate ()
 
@@ -27,18 +25,14 @@
     MenuMeterDiskExtra*diskExtra;
     MenuMeterNetExtra*netExtra;
     MenuMeterMemExtra*memExtra;
-#ifdef OUTOFPREFPANE
     MenuMetersPref*pref;
     SUUpdater*updater;
-#endif
     NSTimer*timer;
 }
 
 -(IBAction)checkForUpdates:(id)sender
 {
-#ifdef OUTOFPREFPANE
     [updater checkForUpdates:sender];
-#endif
 }
 
 -(void)killOlderInstances{
@@ -67,7 +61,6 @@
 
     memExtra=[[MenuMeterMemExtra alloc] initWithBundle:[NSBundle mainBundle]];
     
-#ifdef OUTOFPREFPANE
     if([self isRunningOnReadOnlyVolume]){
         [self alertConcerningAppTranslocation];
     }
@@ -80,7 +73,6 @@
         [pref openAbout:WELCOME];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
     }
-#endif
 }
 
 
@@ -88,8 +80,6 @@
     // Insert code here to tear down your application
 }
 
-
-#ifdef OUTOFPREFPANE
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
@@ -121,5 +111,4 @@
     [NSApp terminate:nil];
 }
 
-#endif
 @end

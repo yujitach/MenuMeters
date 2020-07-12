@@ -183,9 +183,7 @@
 												  action:@selector(openConsole:)
 										   keyEquivalent:@""];
 	[menuItem setTarget:self];
-#ifdef OUTOFPREFPANE
-        [self addStandardMenuEntriesTo:extraMenu];
-#endif
+	[self addStandardMenuEntriesTo:extraMenu];
 	// Get our view
 	extraView = [[MenuMeterCPUView alloc] initWithFrame:[[self view] frame] menuExtra:self];
 	if (!extraView) {

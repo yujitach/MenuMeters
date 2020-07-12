@@ -36,17 +36,11 @@
 #import "MenuMeterMem.h"
 #import "MenuMeterNet.h"
 #import "MenuMeterPowerMate.h"
-#ifdef OUTOFPREFPANE
 #import <Sparkle/Sparkle.h>
-#endif
 
 
 @interface MenuMetersPref :
-#ifdef OUTOFPREFPANE
 NSWindowController<NSWindowDelegate>
-#else
-NSPreferencePane
-#endif
 {
 
 	// Our preferences
