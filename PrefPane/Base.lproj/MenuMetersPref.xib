@@ -83,6 +83,7 @@
                 <outlet property="netThroughputLabeling" destination="362" id="370"/>
                 <outlet property="netTxColor" destination="333" id="345"/>
                 <outlet property="prefTabs" destination="99" id="117"/>
+                <outlet property="sparkleUIContainer" destination="d2S-NP-QJd" id="LcX-MV-ZDl"/>
                 <outlet property="updateIntervalButton" destination="0K2-bO-QtW" id="Klq-pn-RHu"/>
             </connections>
         </customObject>
@@ -1345,49 +1346,55 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="acX-Ld-w1b">
-                                                <rect key="frame" x="538" y="0.0" width="16" height="514"/>
+                                                <rect key="frame" x="539" y="0.0" width="15" height="514"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-rW-str">
-                                            <rect key="frame" x="193" y="43" width="163" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Check for updates..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XYi-uP-QCD">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="checkForUpdates:" target="-1" id="8Gp-8H-UaH"/>
-                                            </connections>
-                                        </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXi-JR-d2r">
-                                            <rect key="frame" x="58" y="17" width="203" height="16"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Automatic update check interval:" id="tug-YR-k7T">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0K2-bO-QtW">
-                                            <rect key="frame" x="310" y="11" width="151" height="25"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="Once per day" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lh5-j8-SRe" id="pR0-RY-h1F">
-                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                                <menu key="menu" id="Evg-RA-EnA">
-                                                    <items>
-                                                        <menuItem title="Never" id="STJ-3R-khe"/>
-                                                        <menuItem title="Once per day" state="on" id="lh5-j8-SRe"/>
-                                                        <menuItem title="Once per week" id="LmO-Ij-G7M"/>
-                                                        <menuItem title="Once per month" id="PuG-eZ-jRm"/>
-                                                    </items>
-                                                </menu>
-                                            </popUpButtonCell>
-                                            <connections>
-                                                <action selector="updateInterval:" target="-2" id="srZ-Xt-iV3"/>
-                                            </connections>
-                                        </popUpButton>
+                                        <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2S-NP-QJd" userLabel="Sparkle UI Container">
+                                            <rect key="frame" x="40" y="-6" width="438" height="97"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-rW-str">
+                                                    <rect key="frame" x="153" y="49" width="163" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="push" title="Check for updates..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XYi-uP-QCD">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="checkForUpdates:" target="-1" id="8Gp-8H-UaH"/>
+                                                    </connections>
+                                                </button>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXi-JR-d2r">
+                                                    <rect key="frame" x="18" y="23" width="203" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Automatic update check interval:" id="tug-YR-k7T">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0K2-bO-QtW">
+                                                    <rect key="frame" x="270" y="17" width="151" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <popUpButtonCell key="cell" type="push" title="Once per day" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lh5-j8-SRe" id="pR0-RY-h1F">
+                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="menu"/>
+                                                        <menu key="menu" id="Evg-RA-EnA">
+                                                            <items>
+                                                                <menuItem title="Never" id="STJ-3R-khe"/>
+                                                                <menuItem title="Once per day" state="on" id="lh5-j8-SRe"/>
+                                                                <menuItem title="Once per week" id="LmO-Ij-G7M"/>
+                                                                <menuItem title="Once per month" id="PuG-eZ-jRm"/>
+                                                            </items>
+                                                        </menu>
+                                                    </popUpButtonCell>
+                                                    <connections>
+                                                        <action selector="updateInterval:" target="-2" id="srZ-Xt-iV3"/>
+                                                    </connections>
+                                                </popUpButton>
+                                            </subviews>
+                                        </customView>
                                     </subviews>
                                 </view>
                             </tabViewItem>

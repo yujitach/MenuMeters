@@ -12,7 +12,9 @@
 #import "MenuMeterMemExtra.h"
 #import "MenuMeterNetExtra.h"
 #import "MenuMetersPref.h"
+#ifdef SPARKLE
 #import <Sparkle/Sparkle.h>
+#endif
 
 @interface AppDelegate ()
 
@@ -26,13 +28,17 @@
     MenuMeterNetExtra*netExtra;
     MenuMeterMemExtra*memExtra;
     MenuMetersPref*pref;
+#ifdef SPARKLE
     SUUpdater*updater;
+#endif
     NSTimer*timer;
 }
 
 -(IBAction)checkForUpdates:(id)sender
 {
+#ifdef SPARKLE
     [updater checkForUpdates:sender];
+#endif
 }
 
 -(void)killOlderInstances{
@@ -43,7 +49,12 @@
         }
         NSBundle*b=[NSBundle bundleWithURL:x.bundleURL];
         NSString*version=b.infoDictionary[@"CFBundleVersion"];
+#ifdef SPARKLE
         NSComparisonResult r=[[SUStandardVersionComparator defaultComparator] compareVersion:version toVersion:thisVersion];
+#else
+        NSComparisonResult r=[version compare:thisVersion options:NSNumericSearch];
+#endif
+        NSLog(@"vers: running is %@, ours is %@, compare result was %ld", version, thisVersion, r);
         if(r!=NSOrderedDescending){
             NSLog(@"version %@ already running, which is equal or older than this binary %@. Going to kill it.",version,thisVersion);
             [x terminate];
@@ -65,9 +76,13 @@
         [self alertConcerningAppTranslocation];
     }
     [self killOlderInstances];
+#ifdef SPARKLE
     updater=[SUUpdater sharedUpdater];
     updater.feedURL=[NSURL URLWithString:@"https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"];
     pref=[[MenuMetersPref alloc] initWithAboutFileName:WELCOME andUpdater:updater];
+#else
+    pref=[[MenuMetersPref alloc] initWithAboutFileName:WELCOME];
+#endif
     NSString*key=[WELCOME stringByAppendingString:@"Presented"];
     if(![[NSUserDefaults standardUserDefaults] boolForKey:key]){
         [pref openAbout:WELCOME];

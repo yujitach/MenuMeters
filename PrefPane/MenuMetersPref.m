@@ -100,7 +100,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 @implementation MenuMetersPref
 {
     IBOutlet NSWindow* _window;
+#ifdef SPARKLE
     SUUpdater*updater;
+#endif
 }
 -(IBAction)openAbout:(id)sender
 {
@@ -142,9 +144,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [x addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, x.length)];
     [aboutView.textStorage appendAttributedString:x];
 }
--(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_
+-(void)initCommon:(NSString*)about
 {
-    self=[super initWithWindowNibName:@"MenuMetersPref"];
     [self loadWindow];
     self.window=_window;
     [self.window setDelegate:self];
@@ -155,11 +156,26 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
         [self.window makeKeyAndOrderFront:self];
     }
+    [self setupSparkleUI];
+}
+#ifdef SPARKLE
+-(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_
+{
+    self=[super initWithWindowNibName:@"MenuMetersPref"];
     updater=updater_;
-    [self setupUpdateIntervalMenu];
+    [self initCommon:about];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPrefPane:) name:@"openPref" object:nil];
     return self;
 }
+#else
+-(instancetype)initWithAboutFileName:(NSString*)about
+{
+    self=[super initWithWindowNibName:@"MenuMetersPref"];
+    [self initCommon:about];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPrefPane:) name:@"openPref" object:nil];
+    return self;
+}
+#endif
 -(NSView*)mainView{
     return self.window.contentView;
 }
@@ -172,8 +188,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
     }
 }
--(void)setupUpdateIntervalMenu
+-(void)setupSparkleUI
 {
+    // This is hacky, but if we're a Sparkle build this sets up the updater UI bits,
+    // and if we're not, just hide them
+#ifdef SPARKLE
     if(updater.automaticallyChecksForUpdates){
         NSTimeInterval updateInterval=updater.updateCheckInterval;
         if(updateInterval<3600*24+1){
@@ -188,9 +207,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     }else{
         [updateIntervalButton selectItemAtIndex:0];
     }
+#else
+    sparkleUIContainer.hidden = YES;
+#endif
 }
 -(IBAction)updateInterval:(id)sender
 {
+#ifdef SPARKLE
     NSPopUpButton*button=sender;
     NSInteger intervalInDays=1;
     switch(button.indexOfSelectedItem){
@@ -216,7 +239,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [updater setAutomaticallyChecksForUpdates:YES];
         [updater setUpdateCheckInterval:intervalInDays*3600*24];
     }
-}///////////////////////////////////////////////////////////////
+#endif
+}
+///////////////////////////////////////////////////////////////
 //
 //    Pref pane standard methods
 //
