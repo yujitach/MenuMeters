@@ -626,11 +626,17 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     e.g. for Catalina. Unfortunately the ioctl used there is not exposed in the standard development headers, although you can presumably use it by copying the content of the private headers.
      Here instead I just directly call ifconfig.
      */
-    NSString*line=[self runCommand:[NSString stringWithFormat:@"ifconfig -v %@ | grep uplink",bsdInterface]];
+    NSString*line=[self runCommand:[NSString stringWithFormat:@"ifconfig -v %@ | egrep 'link rate|uplink'",bsdInterface]];
     if([line containsString:@"does not"]){
          return [NSNumber numberWithLong:0];
     }
     NSRange r=[line rangeOfString:@"/"];
+    if(r.location==NSNotFound){
+        r=[line rangeOfString:@": "];
+    }
+    if(r.location==NSNotFound){
+        return [NSNumber numberWithLong:0];
+    }
     line=[line substringFromIndex:r.location+1];
     double factor=1;
     if((r=[line rangeOfString:@"Gbps"]).location!=NSNotFound){
