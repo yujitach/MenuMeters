@@ -193,10 +193,8 @@
 		[item setRepresentedObject:[[diskSpaceData objectAtIndex:i] objectForKey:@"path"]];
 		[item setTarget:self];
 	}
-#ifdef OUTOFPREFPANE
     [extraMenu addItem:[NSMenuItem separatorItem]];
     [self addStandardMenuEntriesTo:extraMenu];
-#endif
 
 	return extraMenu;
 

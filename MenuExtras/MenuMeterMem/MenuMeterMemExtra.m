@@ -163,10 +163,8 @@
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
-#ifdef OUTOFPREFPANE
     [extraMenu addItem:[NSMenuItem separatorItem]];
     [self addStandardMenuEntriesTo:extraMenu];
-#endif
 
 	// Get our view
     extraView = [[MenuMeterMemView alloc] initWithFrame:[[self view] frame] menuExtra:self];

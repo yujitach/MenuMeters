@@ -12,7 +12,7 @@
 #import "MenuMeterMemExtra.h"
 #import "MenuMeterNetExtra.h"
 #import "MenuMetersPref.h"
-#ifdef OUTOFPREFPANE
+#ifdef SPARKLE
 #import <Sparkle/Sparkle.h>
 #endif
 
@@ -27,8 +27,8 @@
     MenuMeterDiskExtra*diskExtra;
     MenuMeterNetExtra*netExtra;
     MenuMeterMemExtra*memExtra;
-#ifdef OUTOFPREFPANE
     MenuMetersPref*pref;
+#ifdef SPARKLE
     SUUpdater*updater;
 #endif
     NSTimer*timer;
@@ -36,7 +36,7 @@
 
 -(IBAction)checkForUpdates:(id)sender
 {
-#ifdef OUTOFPREFPANE
+#ifdef SPARKLE
     [updater checkForUpdates:sender];
 #endif
 }
@@ -49,7 +49,12 @@
         }
         NSBundle*b=[NSBundle bundleWithURL:x.bundleURL];
         NSString*version=b.infoDictionary[@"CFBundleVersion"];
+#ifdef SPARKLE
         NSComparisonResult r=[[SUStandardVersionComparator defaultComparator] compareVersion:version toVersion:thisVersion];
+#else
+        NSComparisonResult r=[version compare:thisVersion options:NSNumericSearch];
+#endif
+        NSLog(@"vers: running is %@, ours is %@, compare result was %ld", version, thisVersion, r);
         if(r!=NSOrderedDescending){
             NSLog(@"version %@ already running, which is equal or older than this binary %@. Going to kill it.",version,thisVersion);
             [x terminate];
@@ -67,20 +72,22 @@
 
     memExtra=[[MenuMeterMemExtra alloc] initWithBundle:[NSBundle mainBundle]];
     
-#ifdef OUTOFPREFPANE
     if([self isRunningOnReadOnlyVolume]){
         [self alertConcerningAppTranslocation];
     }
     [self killOlderInstances];
+#ifdef SPARKLE
     updater=[SUUpdater sharedUpdater];
     updater.feedURL=[NSURL URLWithString:@"https://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/MenuMeters-Update.xml"];
     pref=[[MenuMetersPref alloc] initWithAboutFileName:WELCOME andUpdater:updater];
+#else
+    pref=[[MenuMetersPref alloc] initWithAboutFileName:WELCOME];
+#endif
     NSString*key=[WELCOME stringByAppendingString:@"Presented"];
     if(![[NSUserDefaults standardUserDefaults] boolForKey:key]){
         [pref openAbout:WELCOME];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
     }
-#endif
 }
 
 
@@ -88,8 +95,6 @@
     // Insert code here to tear down your application
 }
 
-
-#ifdef OUTOFPREFPANE
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
@@ -121,5 +126,4 @@
     [NSApp terminate:nil];
 }
 
-#endif
 @end

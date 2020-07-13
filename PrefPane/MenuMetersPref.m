@@ -23,12 +23,10 @@
 
 #import "MenuMetersPref.h"
 #import "EMCLoginItem.h"
-#ifdef OUTOFPREFPANE
 #import "MenuMeterCPUExtra.h"
 #import "MenuMeterDiskExtra.h"
 #import "MenuMeterMemExtra.h"
 #import "MenuMeterNetExtra.h"
-#endif
 
 ///////////////////////////////////////////////////////////////
 //
@@ -100,10 +98,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 
 @implementation MenuMetersPref
-#ifdef OUTOFPREFPANE
 {
     IBOutlet NSWindow* _window;
+#ifdef SPARKLE
     SUUpdater*updater;
+#endif
 }
 -(IBAction)openAbout:(id)sender
 {
@@ -145,9 +144,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     [x addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, x.length)];
     [aboutView.textStorage appendAttributedString:x];
 }
--(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_
+-(void)initCommon:(NSString*)about
 {
-    self=[super initWithWindowNibName:@"MenuMetersPref"];
     [self loadWindow];
     self.window=_window;
     [self.window setDelegate:self];
@@ -158,11 +156,26 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
         [self.window makeKeyAndOrderFront:self];
     }
+    [self setupSparkleUI];
+}
+#ifdef SPARKLE
+-(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_
+{
+    self=[super initWithWindowNibName:@"MenuMetersPref"];
     updater=updater_;
-    [self setupUpdateIntervalMenu];
+    [self initCommon:about];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPrefPane:) name:@"openPref" object:nil];
     return self;
 }
+#else
+-(instancetype)initWithAboutFileName:(NSString*)about
+{
+    self=[super initWithWindowNibName:@"MenuMetersPref"];
+    [self initCommon:about];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPrefPane:) name:@"openPref" object:nil];
+    return self;
+}
+#endif
 -(NSView*)mainView{
     return self.window.contentView;
 }
@@ -175,9 +188,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [NSApp setActivationPolicy:NSApplicationActivationPolicyAccessory];
     }
 }
-#endif
--(void)setupUpdateIntervalMenu
+-(void)setupSparkleUI
 {
+    // This is hacky, but if we're a Sparkle build this sets up the updater UI bits,
+    // and if we're not, just hide them
+#ifdef SPARKLE
     if(updater.automaticallyChecksForUpdates){
         NSTimeInterval updateInterval=updater.updateCheckInterval;
         if(updateInterval<3600*24+1){
@@ -192,10 +207,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     }else{
         [updateIntervalButton selectItemAtIndex:0];
     }
+#else
+    sparkleUIContainer.hidden = YES;
+#endif
 }
 -(IBAction)updateInterval:(id)sender
 {
-#ifdef OUTOFPREFPANE
+#ifdef SPARKLE
     NSPopUpButton*button=sender;
     NSInteger intervalInDays=1;
     switch(button.indexOfSelectedItem){
@@ -222,22 +240,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [updater setUpdateCheckInterval:intervalInDays*3600*24];
     }
 #endif
-}///////////////////////////////////////////////////////////////
+}
+///////////////////////////////////////////////////////////////
 //
 //    Pref pane standard methods
 //
 ///////////////////////////////////////////////////////////////
 - (void)mainViewDidLoad {
-
-#ifndef OUTOFPREFPANE
-	// Check OS version
-	BOOL isLeopardOrLater = OSIsLeopardOrLater();
-
-	// Resize to be the new width of the System Preferences window for Leopard
-	if (isLeopardOrLater) {
-		[[self mainView] setFrameSize:NSMakeSize(668, [[self mainView] frame].size.height)];
-	}
-#endif
 	// On first load switch to the first tab
 	[prefTabs selectFirstTabViewItem:self];
 
@@ -282,17 +291,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setTitle:[NSString stringWithFormat:@"  %@",
 				[[netScaleCalc itemAtIndex:kNetScaleCalcLog] title]]];
 
-#ifndef OUTOFPREFPANE
-    NSString *appPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"MenuMetersApp" ofType:@"app"];
-    [[NSWorkspace sharedWorkspace] launchApplication:appPath];
-    EMCLoginItem *loginItem = [EMCLoginItem loginItemWithPath:appPath];
-    
-    if (![loginItem isLoginItem])
-    {
-        [loginItem addLoginItem];
-    }
-#endif
-#ifdef OUTOFPREFPANE
     {
     NSString*oldAppPath=[@"~/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMetersApp.app" stringByExpandingTildeInPath];
         EMCLoginItem*oldItem=[EMCLoginItem loginItemWithPath:oldAppPath];
@@ -314,7 +312,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
             [thisItem addLoginItem];
         }
     }
-#endif
 } // mainViewDidLoad
 
 - (void)willSelect {

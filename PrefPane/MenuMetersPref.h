@@ -36,17 +36,13 @@
 #import "MenuMeterMem.h"
 #import "MenuMeterNet.h"
 #import "MenuMeterPowerMate.h"
-#ifdef OUTOFPREFPANE
+#ifdef SPARKLE
 #import <Sparkle/Sparkle.h>
 #endif
 
 
 @interface MenuMetersPref :
-#ifdef OUTOFPREFPANE
 NSWindowController<NSWindowDelegate>
-#else
-NSPreferencePane
-#endif
 {
 
 	// Our preferences
@@ -135,6 +131,7 @@ NSPreferencePane
 	IBOutlet NSColorWell			*netRxColor;
 	IBOutlet NSColorWell			*netInactiveColor;
     __weak IBOutlet NSPopUpButton *updateIntervalButton;
+    IBOutlet NSView					*sparkleUIContainer;
 } // MenuMetersPref
 
 // Pref pane standard methods
@@ -142,7 +139,11 @@ NSPreferencePane
 - (void)willSelect;
 - (void)didUnselect;
 
+#ifdef SPARKLE
 -(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_;
+#else
+-(instancetype)initWithAboutFileName:(NSString*)about;
+#endif
 // IB Targets
 -(IBAction)openAbout:(id)sender;
 - (IBAction)liveUpdateInterval:(id)sender;

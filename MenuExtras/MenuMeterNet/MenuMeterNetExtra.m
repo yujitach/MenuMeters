@@ -790,9 +790,7 @@
 							  action:@selector(openInternetConnect:)
 					   keyEquivalent:@""] setTarget:self];
 	}
-    #ifdef OUTOFPREFPANE
-        [self addStandardMenuEntriesTo:extraMenu];
-    #endif
+	[self addStandardMenuEntriesTo:extraMenu];
 
 	// Send the menu back to SystemUIServer
 	return extraMenu;
