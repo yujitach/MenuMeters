@@ -131,9 +131,27 @@
     [menuItem setTarget:self];
 
 }
+-(BOOL)isDark
+{
+    if(@available(macOS 10.14,*)){
+        // https://github.com/ruiaureliano/macOS-Appearance/blob/master/Appearance/Source/AppDelegate.swift
+        return [statusItem.button.effectiveAppearance.name containsString:@"ark"];
+    }else{
+        // https://stackoverflow.com/questions/25207077/how-to-detect-if-os-x-is-in-dark-mode
+        // On 10.10 there is no documented API for theme, so we'll guess a couple of different ways.
+        BOOL isDark = NO;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults synchronize];
+        NSString *interfaceStyle = [defaults stringForKey:@"AppleInterfaceStyle"];
+        if (interfaceStyle && [interfaceStyle isEqualToString:@"Dark"]) {
+            isDark = YES;
+        }
+        return isDark;
+    }
+}
 - (void)setupAppearance {
     if(@available(macOS 10.14,*)){
-        [NSAppearance setCurrentAppearance:[NSAppearance appearanceNamed:IsMenuMeterMenuBarDarkThemed()?NSAppearanceNameDarkAqua:NSAppearanceNameAqua]];
+        [NSAppearance setCurrentAppearance:statusItem.button.effectiveAppearance];
     }
 }
 #pragma mark NSMenuDelegate

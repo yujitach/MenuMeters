@@ -519,7 +519,7 @@
 	totalArc += inactiveMB / totalMB;
 
 	// Finish arc with black or gray
-	if (IsMenuMeterMenuBarDarkThemed()) {
+	if (self.isDark) {
 		[[NSColor darkGrayColor] set];		
 	} else {
 		[[NSColor blackColor] set];
@@ -612,7 +612,7 @@
   [activeColor set];
   [pressurePath fill];
   
-  if (IsMenuMeterMenuBarDarkThemed()) {
+  if (self.isDark) {
     [[NSColor darkGrayColor] set];
   } else {
     [fgMenuThemeColor set];
@@ -667,7 +667,7 @@
 	[activePath fill];
 	[wireColor set];
 	[wirePath fill];
-	if (IsMenuMeterMenuBarDarkThemed()) {
+	if (self.isDark) {
 		[[NSColor darkGrayColor] set];
 	} else {
 		[fgMenuThemeColor set];
@@ -773,7 +773,7 @@
 	[image lockFocus];
 	float indicatorHeight = (float)[image size].height;
 	
-	BOOL darkTheme = IsMenuMeterMenuBarDarkThemed();
+	BOOL darkTheme = self.isDark;
 
 	// Set up the pageout path
 	NSBezierPath *arrow = [NSBezierPath bezierPath];

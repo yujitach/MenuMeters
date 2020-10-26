@@ -413,7 +413,7 @@
 	
 	// Decide on image set name prefix
 	NSString *imageSetNamePrefix = [kDiskImageSets objectAtIndex:[ourPrefs diskImageset]];
-	if (IsMenuMeterMenuBarDarkThemed()) {
+	if (self.isDark) {
 		imageSetNamePrefix = [kDiskDarkImageSets objectAtIndex:[ourPrefs diskImageset]];
 	}
 

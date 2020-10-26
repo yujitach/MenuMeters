@@ -21,6 +21,7 @@
 - (void)openActivityMonitor:(id)sender;
 - (void)addStandardMenuEntriesTo:(NSMenu*)extraMenu;
 - (void)setupAppearance;
+- (BOOL)isDark;
 -(instancetype)initWithBundleID:(NSString*)bundleID;
 @property(nonatomic, readonly) BOOL isMenuVisible;
 @property(nonatomic, retain) NSString*bundleID;
