@@ -356,3 +356,47 @@
 
 /* Class = "NSButtonCell"; title = "Zeige Speicherdruck"; ObjectID = "Ve2-cJ-Q8P"; */
 "Ve2-cJ-Q8P.title" = "Zeige Speicherdruck";
+
+/* Class = "NSButtonCell"; title = "Als Bits/Sek. anzeigen"; ObjectID = "K7W-5f-1U8"; */
+"K7W-5f-1U8.title" = "Als Bits/Sek. anzeigen";
+
+/* Class = "NSTabViewItem"; title = "Als Bits/Sek. anzeigen"; ObjectID = "FSw-QC-dn2"; */
+"FSw-QC-dn2.label" = "Über";
+
+/* Class = "NSButtonCell"; title = "Als Bits/Sek. anzeigen"; ObjectID = "XYi-uP-QCD"; */
+"XYi-uP-QCD.title" = "Nach Updates suchen";
+
+/* Class = "NSButton"; title = "Zeige CPU Temperatur"; ObjectID = "5r7-xY-4OH"; */
+"5r7-xY-4OH.title" = "Zeige CPU Temperatur";
+
+"tug-YR-k7T.title" = "Automatische Updates";
+
+"STJ-3R-khe.title" = "Nie";
+
+"lh5-j8-SRe.title" = "Täglich";
+
+"LmO-Ij-G7M.title" = "Wöchentlich";
+
+"PuG-eZ-jRm.title" = "Monatlich";
+
+"k2d-Cg-pqL.title" = "Zeige:";
+
+"vbH-jV-tUr.title" = "alle Kerne, inkl. Hyperthreat";
+
+"H5f-hN-vQV.title" = "nur pysikalische Kerne";
+
+"BYT-hf-ygS.title" = "Durchschnitt aller Kerne";
+
+"5Lg-aP-TSR.title" = "Summe aller Kerne";
+
+"CG1-40-AVC.title" = "alle Kerne";
+
+"p2Z-13-y3b.title" = "Prozessoptionen";
+
+"rhi-NX-C3L.title" = "Max. Prozesse: (%d)";
+
+"1094.title" = "Thermometeroptionen";
+
+"1088.title" = "Horizontale Reihen";
+
+"1117.title" = "Horizontale Breite";
