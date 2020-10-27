@@ -356,3 +356,63 @@
 
 /* Class = "NSButtonCell"; title = "Zeige Speicherdruck"; ObjectID = "Ve2-cJ-Q8P"; */
 "Ve2-cJ-Q8P.title" = "Zeige Speicherdruck";
+
+/* Class = "NSButtonCell"; title = "Als Bits/Sek. anzeigen"; ObjectID = "K7W-5f-1U8"; */
+"K7W-5f-1U8.title" = "Als Bits/Sek. anzeigen";
+
+/* Class = "NSTabViewItem"; title = "Als Bits/Sek. anzeigen"; ObjectID = "FSw-QC-dn2"; */
+"FSw-QC-dn2.label" = "Über";
+
+/* Class = "NSButtonCell"; title = "Als Bits/Sek. anzeigen"; ObjectID = "XYi-uP-QCD"; */
+"XYi-uP-QCD.title" = "Nach Updates suchen";
+
+/* Class = "NSButton"; title = "Zeige CPU Temperatur"; ObjectID = "5r7-xY-4OH"; */
+"5r7-xY-4OH.title" = "Zeige CPU Temperatur";
+
+/* title = "Automatic update check interval:"; ObjectID = "tug-YR-k7T"; */
+"tug-YR-k7T.title" = "Automatische Updates: ";
+
+/* title = "Never"; ObjectID = "STJ-3R-khe"; */
+"STJ-3R-khe.title" = "Nie";
+
+/* title = "Once per day"; ObjectID = "lh5-j8-SRe"; */
+"lh5-j8-SRe.title" = "Täglich";
+
+/* title = "Once per week"; ObjectID = "LmO-Ij-G7M"; */
+"LmO-Ij-G7M.title" = "Wöchentlich";
+
+/* title = "Once per month"; ObjectID = "PuG-eZ-jRm"; */
+"PuG-eZ-jRm.title" = "Monatlich";
+
+/* title = "Show:"; ObjectID = "k2d-Cg-pqL"; */
+"k2d-Cg-pqL.title" = "Zeige:";
+
+/* title = "all cores, including hyperthreaded ones"; ObjectID = "vbH-jV-tUr"; */
+"vbH-jV-tUr.title" = "alle Kerne, inkl. Hyperthreat";
+
+/* title = "physical cores only"; ObjectID = "H5f-hN-vQV"; */
+"H5f-hN-vQV.title" = "nur pysikalische Kerne";
+
+/* title = "the average of all cores"; ObjectID = "BYT-hf-ygS"; */
+"BYT-hf-ygS.title" = "Durchschnitt aller Kerne";
+
+/* title = "the sum of all cores"; ObjectID = "5Lg-aP-TSR"; */
+"5Lg-aP-TSR.title" = "Summe aller Kerne";
+
+/* title = "all cores sorted"; ObjectID = "CG1-40-AVC"; */
+"CG1-40-AVC.title" = "alle Kerne";
+
+/* title = "Process Display"; ObjectID = "p2Z-13-y3b"; */
+"p2Z-13-y3b.title" = "Prozessoptionen";
+
+/* title = "Processes to show:"; ObjectID = "rhi-NX-C3L"; */
+"rhi-NX-C3L.title" = "Max. Prozesse:";
+
+/* title = "Horizontal Thermometer Display"; ObjectID = "1094"; */
+"1094.title" = "Thermometeroptionen";
+
+/* title = "Horizontal Rows:"; ObjectID = "1088"; */
+"1088.title" = "Horizontale Reihen";
+
+/* title = "Horizontal Width:"; ObjectID = "1117"; */
+"1117.title" = "Horizontale Breite";
