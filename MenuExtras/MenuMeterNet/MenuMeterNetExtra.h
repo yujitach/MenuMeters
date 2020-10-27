@@ -27,7 +27,6 @@
 #import "MenuMeters.h"
 #import "MenuMeterDefaults.h"
 #import "MenuMeterNet.h"
-#import "MenuMeterNetView.h"
 #import "MenuMeterNetConfig.h"
 #import "MenuMeterNetStats.h"
 #import "MenuMeterNetPPP.h"
@@ -38,7 +37,6 @@
 
 	// Menu Extra necessities
 	NSMenu 							*extraMenu;
-    MenuMeterNetView 				*extraView;
 	// Pref object
 	MenuMeterDefaults				*ourPrefs;
 	// Info gatherers/controllers

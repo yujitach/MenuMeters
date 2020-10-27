@@ -30,13 +30,9 @@
 		33883CFE23655C9900B8AC14 /* MenuMeterDiskIO.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC96203D49AF000A87BC9 /* MenuMeterDiskIO.m */; };
 		33883CFF23655C9900B8AC14 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1731B69B72600915D5D /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		33883D0023655C9900B8AC14 /* MenuMeterNetPPP.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B6FA103D3BACD00A87BC9 /* MenuMeterNetPPP.m */; };
-		33883D0123655C9900B8AC14 /* MenuMeterMemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F12DB03D48A0800A87BC9 /* MenuMeterMemView.m */; };
 		33883D0223655C9900B8AC14 /* MenuMeterNetExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162003D26AAA00A87BC9 /* MenuMeterNetExtra.m */; };
-		33883D0323655C9900B8AC14 /* MenuMeterNetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162203D26AAA00A87BC9 /* MenuMeterNetView.m */; };
 		33883D0423655C9900B8AC14 /* MenuMeterNetConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162703D26AAA00A87BC9 /* MenuMeterNetConfig.m */; };
-		33883D0523655C9900B8AC14 /* MenuMeterDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95903D49AD900A87BC9 /* MenuMeterDiskView.m */; };
 		33883D0623655C9900B8AC14 /* MenuMeterNetStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162403D26AAA00A87BC9 /* MenuMeterNetStats.m */; };
-		33883D0723655C9900B8AC14 /* MenuMeterCPUView.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAE903D4BB7D00A87BC9 /* MenuMeterCPUView.m */; };
 		33883D0B23655C9900B8AC14 /* ArrowsIdle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97303D49B6500A87BC9 /* ArrowsIdle.tiff */; };
 		33883D0C23655C9900B8AC14 /* ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97403D49B6500A87BC9 /* ArrowsReadWrite.tiff */; };
 		33883D0D23655C9900B8AC14 /* ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97503D49B6500A87BC9 /* ArrowsWrite.tiff */; };
@@ -91,13 +87,9 @@
 		6349C11924BB733300C6FC99 /* MenuMetersPref.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E4BFA104F333B100A87BC9 /* MenuMetersPref.m */; };
 		6349C11A24BB733300C6FC99 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3383C1731B69B72600915D5D /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		6349C11B24BB733300C6FC99 /* MenuMeterNetPPP.m in Sources */ = {isa = PBXBuildFile; fileRef = D45B6FA103D3BACD00A87BC9 /* MenuMeterNetPPP.m */; };
-		6349C11C24BB733300C6FC99 /* MenuMeterMemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F12DB03D48A0800A87BC9 /* MenuMeterMemView.m */; };
 		6349C11D24BB733300C6FC99 /* MenuMeterNetExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162003D26AAA00A87BC9 /* MenuMeterNetExtra.m */; };
-		6349C11E24BB733300C6FC99 /* MenuMeterNetView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162203D26AAA00A87BC9 /* MenuMeterNetView.m */; };
 		6349C11F24BB733300C6FC99 /* MenuMeterNetConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162703D26AAA00A87BC9 /* MenuMeterNetConfig.m */; };
-		6349C12024BB733300C6FC99 /* MenuMeterDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95903D49AD900A87BC9 /* MenuMeterDiskView.m */; };
 		6349C12124BB733300C6FC99 /* MenuMeterNetStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FC162403D26AAA00A87BC9 /* MenuMeterNetStats.m */; };
-		6349C12224BB733300C6FC99 /* MenuMeterCPUView.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAE903D4BB7D00A87BC9 /* MenuMeterCPUView.m */; };
 		6349C12524BB733300C6FC99 /* SystemUIPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40DB50E03D2631100A87BC9 /* SystemUIPlugin.framework */; };
 		6349C12724BB733300C6FC99 /* ArrowsIdle.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97303D49B6500A87BC9 /* ArrowsIdle.tiff */; };
 		6349C12824BB733300C6FC99 /* ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D42EC97403D49B6500A87BC9 /* ArrowsReadWrite.tiff */; };
@@ -217,8 +209,6 @@
 		D42C6C951996DA77005F87BD /* Dark Color ArrowsRead.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Dark Color ArrowsRead.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Dark Color ArrowsRead.tiff"; sourceTree = "<group>"; };
 		D42C6C961996DA77005F87BD /* Dark Color ArrowsReadWrite.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Dark Color ArrowsReadWrite.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Dark Color ArrowsReadWrite.tiff"; sourceTree = "<group>"; };
 		D42C6C971996DA77005F87BD /* Dark Color ArrowsWrite.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Dark Color ArrowsWrite.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Dark Color ArrowsWrite.tiff"; sourceTree = "<group>"; };
-		D42EC95903D49AD900A87BC9 /* MenuMeterDiskView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterDiskView.m; path = MenuExtras/MenuMeterDisk/MenuMeterDiskView.m; sourceTree = "<group>"; };
-		D42EC95A03D49AD900A87BC9 /* MenuMeterDiskView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterDiskView.h; path = MenuExtras/MenuMeterDisk/MenuMeterDiskView.h; sourceTree = "<group>"; };
 		D42EC95D03D49AE400A87BC9 /* MenuMeterDiskExtra.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterDiskExtra.m; path = MenuExtras/MenuMeterDisk/MenuMeterDiskExtra.m; sourceTree = "<group>"; };
 		D42EC95E03D49AE400A87BC9 /* MenuMeterDiskExtra.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterDiskExtra.h; path = MenuExtras/MenuMeterDisk/MenuMeterDiskExtra.h; sourceTree = "<group>"; };
 		D42EC96103D49AF000A87BC9 /* MenuMeterDiskIO.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterDiskIO.h; path = MenuExtras/MenuMeterDisk/MenuMeterDiskIO.h; sourceTree = "<group>"; };
@@ -246,8 +236,6 @@
 		D4510D9104F2F0FD00A87BC9 /* MenuMeters.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeters.h; path = Common/MenuMeters.h; sourceTree = "<group>"; };
 		D45B6FA103D3BACD00A87BC9 /* MenuMeterNetPPP.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MenuMeterNetPPP.m; sourceTree = "<group>"; };
 		D45B6FA203D3BACD00A87BC9 /* MenuMeterNetPPP.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MenuMeterNetPPP.h; sourceTree = "<group>"; };
-		D45F12DA03D48A0800A87BC9 /* MenuMeterMemView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterMemView.h; path = MenuExtras/MenuMeterMem/MenuMeterMemView.h; sourceTree = "<group>"; };
-		D45F12DB03D48A0800A87BC9 /* MenuMeterMemView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterMemView.m; path = MenuExtras/MenuMeterMem/MenuMeterMemView.m; sourceTree = "<group>"; };
 		D45F12DE03D48A1300A87BC9 /* MenuMeterMemExtra.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterMemExtra.h; path = MenuExtras/MenuMeterMem/MenuMeterMemExtra.h; sourceTree = "<group>"; };
 		D45F12DF03D48A1300A87BC9 /* MenuMeterMemExtra.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterMemExtra.m; path = MenuExtras/MenuMeterMem/MenuMeterMemExtra.m; sourceTree = "<group>"; };
 		D45F12E203D48A1C00A87BC9 /* MenuMeterMemStats.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterMemStats.m; path = MenuExtras/MenuMeterMem/MenuMeterMemStats.m; sourceTree = "<group>"; };
@@ -256,8 +244,6 @@
 		D45FEFCD0470257D00A87BC9 /* Aqua LightsReadWrite.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Aqua LightsReadWrite.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Aqua LightsReadWrite.tiff"; sourceTree = "<group>"; };
 		D45FEFCE0470257D00A87BC9 /* Aqua LightsWrite.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Aqua LightsWrite.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Aqua LightsWrite.tiff"; sourceTree = "<group>"; };
 		D45FEFCF0470257D00A87BC9 /* Aqua LightsRead.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Aqua LightsRead.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Aqua LightsRead.tiff"; sourceTree = "<group>"; };
-		D477AAE803D4BB7D00A87BC9 /* MenuMeterCPUView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPUView.h; path = MenuExtras/MenuMeterCPU/MenuMeterCPUView.h; sourceTree = "<group>"; };
-		D477AAE903D4BB7D00A87BC9 /* MenuMeterCPUView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPUView.m; path = MenuExtras/MenuMeterCPU/MenuMeterCPUView.m; sourceTree = "<group>"; };
 		D477AAEC03D4BB8600A87BC9 /* MenuMeterCPUExtra.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPUExtra.m; path = MenuExtras/MenuMeterCPU/MenuMeterCPUExtra.m; sourceTree = "<group>"; };
 		D477AAED03D4BB8600A87BC9 /* MenuMeterCPUExtra.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPUExtra.h; path = MenuExtras/MenuMeterCPU/MenuMeterCPUExtra.h; sourceTree = "<group>"; };
 		D477AAF003D4BB9200A87BC9 /* MenuMeterCPUStats.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPUStats.h; path = MenuExtras/MenuMeterCPU/MenuMeterCPUStats.h; sourceTree = "<group>"; };
@@ -289,8 +275,6 @@
 		D4ECB3B705FE730000954E26 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4FC162003D26AAA00A87BC9 /* MenuMeterNetExtra.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MenuMeterNetExtra.m; sourceTree = "<group>"; };
 		D4FC162103D26AAA00A87BC9 /* MenuMeterNetConfig.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MenuMeterNetConfig.h; sourceTree = "<group>"; };
-		D4FC162203D26AAA00A87BC9 /* MenuMeterNetView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MenuMeterNetView.m; sourceTree = "<group>"; };
-		D4FC162303D26AAA00A87BC9 /* MenuMeterNetView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MenuMeterNetView.h; sourceTree = "<group>"; };
 		D4FC162403D26AAA00A87BC9 /* MenuMeterNetStats.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MenuMeterNetStats.m; sourceTree = "<group>"; };
 		D4FC162503D26AAA00A87BC9 /* MenuMeterNetStats.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MenuMeterNetStats.h; sourceTree = "<group>"; };
 		D4FC162603D26AAA00A87BC9 /* MenuMeterNetExtra.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MenuMeterNetExtra.h; sourceTree = "<group>"; };
@@ -436,8 +420,6 @@
 		D40DB4CD03D2618F00A87BC9 /* MenuMeterNet */ = {
 			isa = PBXGroup;
 			children = (
-				D4FC162303D26AAA00A87BC9 /* MenuMeterNetView.h */,
-				D4FC162203D26AAA00A87BC9 /* MenuMeterNetView.m */,
 				D4FC162603D26AAA00A87BC9 /* MenuMeterNetExtra.h */,
 				D4FC162003D26AAA00A87BC9 /* MenuMeterNetExtra.m */,
 				D4FC162103D26AAA00A87BC9 /* MenuMeterNetConfig.h */,
@@ -462,8 +444,6 @@
 		D42EC94703D498CC00A87BC9 /* MenuMeterDisk */ = {
 			isa = PBXGroup;
 			children = (
-				D42EC95A03D49AD900A87BC9 /* MenuMeterDiskView.h */,
-				D42EC95903D49AD900A87BC9 /* MenuMeterDiskView.m */,
 				D42EC95E03D49AE400A87BC9 /* MenuMeterDiskExtra.h */,
 				D42EC95D03D49AE400A87BC9 /* MenuMeterDiskExtra.m */,
 				D42EC96103D49AF000A87BC9 /* MenuMeterDiskIO.h */,
@@ -524,8 +504,6 @@
 		D45F12C503D4886000A87BC9 /* MenuMeterMem */ = {
 			isa = PBXGroup;
 			children = (
-				D45F12DA03D48A0800A87BC9 /* MenuMeterMemView.h */,
-				D45F12DB03D48A0800A87BC9 /* MenuMeterMemView.m */,
 				D45F12DE03D48A1300A87BC9 /* MenuMeterMemExtra.h */,
 				D45F12DF03D48A1300A87BC9 /* MenuMeterMemExtra.m */,
 				D45F12E303D48A1C00A87BC9 /* MenuMeterMemStats.h */,
@@ -537,8 +515,6 @@
 		D477AAD603D4B9DE00A87BC9 /* MenuMeterCPU */ = {
 			isa = PBXGroup;
 			children = (
-				D477AAE803D4BB7D00A87BC9 /* MenuMeterCPUView.h */,
-				D477AAE903D4BB7D00A87BC9 /* MenuMeterCPUView.m */,
 				D477AAED03D4BB8600A87BC9 /* MenuMeterCPUExtra.h */,
 				D477AAEC03D4BB8600A87BC9 /* MenuMeterCPUExtra.m */,
 				D477AAF003D4BB9200A87BC9 /* MenuMeterCPUStats.h */,
@@ -850,13 +826,9 @@
 				33883D3423655CBF00B8AC14 /* MenuMetersPref.m in Sources */,
 				33883CFF23655C9900B8AC14 /* AppDelegate.m in Sources */,
 				33883D0023655C9900B8AC14 /* MenuMeterNetPPP.m in Sources */,
-				33883D0123655C9900B8AC14 /* MenuMeterMemView.m in Sources */,
 				33883D0223655C9900B8AC14 /* MenuMeterNetExtra.m in Sources */,
-				33883D0323655C9900B8AC14 /* MenuMeterNetView.m in Sources */,
 				33883D0423655C9900B8AC14 /* MenuMeterNetConfig.m in Sources */,
-				33883D0523655C9900B8AC14 /* MenuMeterDiskView.m in Sources */,
 				33883D0623655C9900B8AC14 /* MenuMeterNetStats.m in Sources */,
-				33883D0723655C9900B8AC14 /* MenuMeterCPUView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,13 +855,9 @@
 				6349C11924BB733300C6FC99 /* MenuMetersPref.m in Sources */,
 				6349C11A24BB733300C6FC99 /* AppDelegate.m in Sources */,
 				6349C11B24BB733300C6FC99 /* MenuMeterNetPPP.m in Sources */,
-				6349C11C24BB733300C6FC99 /* MenuMeterMemView.m in Sources */,
 				6349C11D24BB733300C6FC99 /* MenuMeterNetExtra.m in Sources */,
-				6349C11E24BB733300C6FC99 /* MenuMeterNetView.m in Sources */,
 				6349C11F24BB733300C6FC99 /* MenuMeterNetConfig.m in Sources */,
-				6349C12024BB733300C6FC99 /* MenuMeterDiskView.m in Sources */,
 				6349C12124BB733300C6FC99 /* MenuMeterNetStats.m in Sources */,
-				6349C12224BB733300C6FC99 /* MenuMeterCPUView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

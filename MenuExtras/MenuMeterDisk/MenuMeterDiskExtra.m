@@ -85,12 +85,6 @@
 	// Disable menu autoenabling
 	[extraMenu setAutoenablesItems:NO];
 
-	// Set the menu extra view up
-    extraView = [[MenuMeterDiskView alloc] initWithFrame:[[self view] frame] menuExtra:self];
-	if (!extraView) {
-		return nil;
-	}
-    [self setView:extraView];
 
 	// Register for pref changes
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
@@ -429,7 +423,7 @@
 	readwriteImage = nil;
 
 	// Setup new images as overlays or basic images
-	float menubarHeight = (float)[extraView frame].size.height;
+    float menubarHeight = [NSApplication sharedApplication].mainMenu.menuBarHeight;
 	if ([ourPrefs diskImageset] == kDiskArrowsImageSet) {
 		// Small disk arrow is an overlay on the boot disk icon
 		idleImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];

@@ -185,11 +185,6 @@
 	[menuItem setTarget:self];
 	[self addStandardMenuEntriesTo:extraMenu];
 	// Get our view
-	extraView = [[MenuMeterCPUView alloc] initWithFrame:[[self view] frame] menuExtra:self];
-	if (!extraView) {
-		return nil;
-	}
-	[self setView:extraView];
 
 	// Register for pref changes
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
@@ -239,7 +234,7 @@
     [self setupAppearance];
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-																	  [extraView frame].size.height - 1)];
+                                                                     [NSApplication sharedApplication].mainMenu.menuBarHeight-1)];
 	if (!currentImage) return nil;
 
 	// Don't render without data
@@ -868,7 +863,6 @@
 	}
 
 	// Resize the view
-	[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
 	[self setLength:menuWidth];
 
 	// Force initial update

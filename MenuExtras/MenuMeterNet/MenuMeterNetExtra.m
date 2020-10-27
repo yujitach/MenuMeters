@@ -170,12 +170,6 @@
 	// Menu is regenerated in the menu method always so no futher setup
 
 	// Set the menu extra view up
-	// Get our view
-    extraView = [[MenuMeterNetView alloc] initWithFrame:[[self view] frame] menuExtra:self];
-	if (!extraView) {
-		return nil;
-	}
-    [self setView:extraView];
 
     throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];//[NSFont systemFontOfSize:9.5f];
 
@@ -342,7 +336,7 @@
     
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-																	  [extraView frame].size.height - 1)];
+                                                                     [NSApplication sharedApplication].mainMenu.menuBarHeight-1)];
 	if (!currentImage) return nil;
 
 	// Don't render without data
@@ -1471,7 +1465,7 @@
 
 	// Generate arrow bezier path offset as needed for current display mode
 	float arrowOffset =  0;
-	float viewHeight = (float)[extraView frame].size.height;
+	float viewHeight = [NSApplication sharedApplication].mainMenu.menuBarHeight;
 	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
 		arrowOffset = [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 	}
@@ -1609,7 +1603,6 @@
 	}
 
 	// Resize the view
-	[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
 	[self setLength:menuWidth];
 
 	// Force initial update

@@ -166,13 +166,6 @@
     [extraMenu addItem:[NSMenuItem separatorItem]];
     [self addStandardMenuEntriesTo:extraMenu];
 
-	// Get our view
-    extraView = [[MenuMeterMemView alloc] initWithFrame:[[self view] frame] menuExtra:self];
-	if (!extraView) {
-		return nil;
-	}
-    [self setView:extraView];
-
 	// Load localized strings
 	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kUsageFormat value:nil table:nil],
@@ -279,7 +272,7 @@
 
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize(menuWidth,
-																	  [extraView frame].size.height - 1)];
+																	  [NSApplication sharedApplication].mainMenu.menuBarHeight - 1)];
 
 	// Don't render without data
 	if (![memHistory count]) return nil;
@@ -929,10 +922,10 @@
 																nil]];
 	if ([renderUString size].width > [renderFString size].width) {
 		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderUString size].width,
-																		[extraView frame].size.height - 1)];
+                                                                        [NSApplication sharedApplication].mainMenu.menuBarHeight-1)];
 	} else {
 		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderFString size].width,
-																		[extraView frame].size.height - 1)];
+                                                                        [NSApplication sharedApplication].mainMenu.menuBarHeight-1)];
 	}
 	[numberLabelPrerender lockFocus];
 	// No descenders so render both lines lower than normal
@@ -987,7 +980,6 @@
 	}
 
 	// Resize the view
-	[extraView setFrameSize:NSMakeSize(menuWidth, [extraView frame].size.height)];
 	[self setLength:menuWidth];
 
 	// Force initial update

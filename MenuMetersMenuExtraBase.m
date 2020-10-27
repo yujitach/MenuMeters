@@ -28,6 +28,18 @@
 }
 -(void)timerFired:(id)notused
 {
+    statusItem.button.image=self.image;
+/*    NSImage*image=self.image;
+    NSImage*canvas=[NSImage imageWithSize:image.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+        [[[NSColor systemGrayColor] colorWithAlphaComponent:.3] setFill];
+        [NSBezierPath fillRect:(CGRect) {.size = image.size}];
+        [image drawAtPoint:CGPointZero fromRect:(CGRect) {.size = image.size} operation:NSCompositeSourceOver fraction:1.0];
+        return YES;
+    }];
+    statusItem.button.image=canvas;*/
+}
+-(void)timerXired:(id)notused
+{
     NSImage *oldCanvas = statusItem.button.image;
     NSImage *canvas = oldCanvas;
     NSSize imageSize = NSMakeSize(self.length, self.view.frame.size.height);

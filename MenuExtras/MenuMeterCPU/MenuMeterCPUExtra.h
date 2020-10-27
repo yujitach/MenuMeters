@@ -27,7 +27,6 @@
 #import "MenuMeters.h"
 #import "MenuMeterDefaults.h"
 #import "MenuMeterCPU.h"
-#import "MenuMeterCPUView.h"
 #import "MenuMeterCPUStats.h"
 #import "MenuMeterCPUTopProcesses.h"
 #import "MenuMeterUptime.h"
@@ -39,7 +38,6 @@
 
 	// Menu Extra necessities
 	NSMenu 							*extraMenu;
-    MenuMeterCPUView 				*extraView;
 	// Prefs object
 	MenuMeterDefaults				*ourPrefs;
 	// Info gatherers

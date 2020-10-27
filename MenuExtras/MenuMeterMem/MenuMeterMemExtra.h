@@ -27,7 +27,6 @@
 #import "MenuMeters.h"
 #import "MenuMeterDefaults.h"
 #import "MenuMeterMem.h"
-#import "MenuMeterMemView.h"
 #import "MenuMeterMemStats.h"
 #import "MenuMeterWorkarounds.h"
 
@@ -36,7 +35,6 @@
 
 	// Menu Extra necessities
 	NSMenu 							*extraMenu;
-    MenuMeterMemView 				*extraView;
 	// Pref object
 	MenuMeterDefaults				*ourPrefs;
 	// Info gathers
