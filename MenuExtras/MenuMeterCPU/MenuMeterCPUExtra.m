@@ -187,16 +187,7 @@
 	[self addStandardMenuEntriesTo:extraMenu];
 	// Get our view
 
-	// Register for pref changes
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(configFromPrefs:)
-															name:kCPUMenuBundleID
-														  object:kPrefChangeNotification];
-	// Register for 10.10 theme changes
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(configFromPrefs:)
-															name:kAppleInterfaceThemeChangedNotification
-														  object:nil];
+
 
 	// And configure directly from prefs on first load
 	[self configFromPrefs:nil];

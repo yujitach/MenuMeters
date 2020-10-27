@@ -17,6 +17,7 @@
 - (NSImage*)image;
 - (NSMenu*)menu;
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;
+- (void)configFromPrefs:(NSNotification*)notification;
 - (void)timerFired:(id)timer;
 - (void)openMenuMetersPref:(id)sender;
 - (void)openActivityMonitor:(id)sender;
@@ -31,5 +32,4 @@
 #define NSMenuExtra MenuMetersMenuExtraBase
 #define kOpenMenuMetersPref                 @"Open MenuMeters preferences"
 #define kOpenActivityMonitorTitle            @"Open Activity Monitor"
-#define kAppleInterfaceThemeChangedNotification        @"AppleInterfaceThemeChangedNotification"
 

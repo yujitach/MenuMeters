@@ -19,7 +19,17 @@
 {
     self=[super init];
     self.bundleID=bundleID;
+    // Register for pref changes
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+                                                        selector:@selector(configFromPrefs:)
+                                                            name:self.bundleID
+                                                          object:kPrefChangeNotification];
     return self;
+}
+-(void)configFromPrefs:(NSNotification *)notification
+{
+    NSLog(@"shouldn't happen");
+    abort();
 }
 -(NSMenu*)menu
 {
@@ -80,6 +90,7 @@
             }
             statusItem.menu = self.menu;
             statusItem.menu.delegate = self;
+            [statusItem.button addObserver:self forKeyPath:@"effectiveAppearance" options:NSKeyValueObservingOptionNew context:nil];
         }
         [updateTimer invalidate];
         updateTimer=[NSTimer timerWithTimeInterval:interval target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
@@ -98,8 +109,12 @@
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
+    if(object==statusItem.button && [keyPath isEqualToString:@"effectiveAppearance"]){
+        [self configFromPrefs:nil];
+    }
+
     if(@available(macOS 10.12,*)){
-        if(object==statusItem){
+        if(object==statusItem && [keyPath isEqualToString:@"visible"]){
             if(!statusItem.visible){
                 [self removeStatusItem];
             }

@@ -292,11 +292,6 @@
 	[tempFormat setFormat:@"#,##0"];
 	prettyIntFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 
-	// Register for pref changes
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(configFromPrefs:)
-															name:kNetMenuBundleID
-														  object:kPrefChangeNotification];
 	// And configure directly from prefs on first load
 	[self configFromPrefs:nil];
 
