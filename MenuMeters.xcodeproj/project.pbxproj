@@ -127,8 +127,6 @@
 		6349C14824BB733300C6FC99 /* Disk ArrowsReadWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F40644C7E200047FDD /* Disk ArrowsReadWrite.tiff */; };
 		6349C14924BB733300C6FC99 /* Disk ArrowsWrite.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D4D9D1F50644C7E200047FDD /* Disk ArrowsWrite.tiff */; };
 		6349C14A24BB733300C6FC99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
-		6349C15624BB8C4E00C6FC99 /* AppleUndocumented.h in Headers */ = {isa = PBXBuildFile; fileRef = D48A784B10181DE6008E3207 /* AppleUndocumented.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		6349C15824BB8C5B00C6FC99 /* AppleUndocumented.h in Headers */ = {isa = PBXBuildFile; fileRef = D48A784B10181DE6008E3207 /* AppleUndocumented.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -251,7 +249,6 @@
 		D477AAF403D4BB9D00A87BC9 /* MenuMeterUptime.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterUptime.h; path = MenuExtras/MenuMeterCPU/MenuMeterUptime.h; sourceTree = "<group>"; };
 		D477AAF503D4BB9D00A87BC9 /* MenuMeterUptime.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = MenuMeterUptime.m; path = MenuExtras/MenuMeterCPU/MenuMeterUptime.m; sourceTree = "<group>"; };
 		D478F451101A8AE100C79173 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		D48A784B10181DE6008E3207 /* AppleUndocumented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppleUndocumented.h; path = Common/AppleUndocumented.h; sourceTree = "<group>"; };
 		D48A79F31018B051008E3207 /* MenuMeterWorkarounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuMeterWorkarounds.h; path = Common/MenuMeterWorkarounds.h; sourceTree = "<group>"; };
 		D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuMeterWorkarounds.m; path = Common/MenuMeterWorkarounds.m; sourceTree = "<group>"; };
 		D4BBBF740463514700A804AF /* MenuMeterPowerMate.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterPowerMate.h; path = Common/MenuMeterPowerMate.h; sourceTree = "<group>"; };
@@ -383,7 +380,6 @@
 		D40DB4B303D25F9E00A87BC9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				D48A784B10181DE6008E3207 /* AppleUndocumented.h */,
 				3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */,
 				3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */,
 				D4510D9104F2F0FD00A87BC9 /* MenuMeters.h */,
@@ -597,7 +593,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6349C15624BB8C4E00C6FC99 /* AppleUndocumented.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,7 +600,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6349C15824BB8C5B00C6FC99 /* AppleUndocumented.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

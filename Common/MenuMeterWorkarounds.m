@@ -24,7 +24,6 @@
 //
 
 #import "MenuMeterWorkarounds.h"
-#import "AppleUndocumented.h"
 
 // Declare NSProcessInfo version tests from 10.10
 #ifndef ELCAPITAN

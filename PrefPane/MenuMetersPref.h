@@ -27,7 +27,6 @@
 #import <sys/sysctl.h>
 #import <unistd.h>
 #import <AppKit/AppKit.h>
-#import "AppleUndocumented.h"
 #import "MenuMeters.h"
 #import "MenuMeterDefaults.h"
 #import "MenuMeterWorkarounds.h"

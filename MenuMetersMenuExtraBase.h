@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AppleUndocumented.h"
-#import "MenuMeterDefaults.h"
+@class MenuMeterDefaults;
 
 @interface MenuMetersMenuExtraBase : NSObject <NSMenuDelegate>
 {
@@ -32,4 +31,5 @@
 #define NSMenuExtra MenuMetersMenuExtraBase
 #define kOpenMenuMetersPref                 @"Open MenuMeters preferences"
 #define kOpenActivityMonitorTitle            @"Open Activity Monitor"
+#define kAppleInterfaceThemeChangedNotification        @"AppleInterfaceThemeChangedNotification"
 
