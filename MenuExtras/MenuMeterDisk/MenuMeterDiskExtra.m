@@ -291,23 +291,25 @@
 		}
 
 		// Build the new image
-		NSImage *menuItemImage = [[NSImage alloc] initWithSize:NSMakeSize([volIcon size].width + 10 + (float)finalTextWidth,
-																		   [volIcon size].height)];
-		[menuItemImage lockFocus];
-		[volIcon compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
-		[(NSAttributedString *)[nameStrings objectAtIndex:i]
-				drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10,
-										ceilf((float)[volIcon size].height / 2))];
-		[(NSAttributedString *)[detailStrings objectAtIndex:i]
-				drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10 + (float)widestNameText + 15,
-										ceilf((float)[volIcon size].height / 2))];
-		[(NSAttributedString *)[usedStrings objectAtIndex:i]
-				drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10, 1)];
-		[(NSAttributedString *)[freeStrings objectAtIndex:i]
-				drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10 + (float)widestUsedSpaceText + 10, 1)];
-		[(NSAttributedString *)[totalStrings objectAtIndex:i]
-				drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10 + (float)widestUsedSpaceText + 10 + (float)widestFreeSpaceText + 10, 1)];
-		[menuItemImage unlockFocus];
+		NSImage *menuItemImage = [NSImage imageWithSize:NSMakeSize([volIcon size].width + 10 + (float)finalTextWidth,
+                                                                           [volIcon size].height)
+                                                        flipped:NO
+                                                 drawingHandler:^BOOL(NSRect dstRect) {
+                    [volIcon compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
+                    [(NSAttributedString *)[nameStrings objectAtIndex:i]
+                            drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10,
+                                                    ceilf((float)[volIcon size].height / 2))];
+                    [(NSAttributedString *)[detailStrings objectAtIndex:i]
+                            drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10 + (float)widestNameText + 15,
+                                                    ceilf((float)[volIcon size].height / 2))];
+                    [(NSAttributedString *)[usedStrings objectAtIndex:i]
+                            drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10, 1)];
+                    [(NSAttributedString *)[freeStrings objectAtIndex:i]
+                            drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10 + (float)widestUsedSpaceText + 10, 1)];
+                    [(NSAttributedString *)[totalStrings objectAtIndex:i]
+                            drawAtPoint:NSMakePoint(ceilf((float)[volIcon size].width) + 10 + (float)widestUsedSpaceText + 10 + (float)widestFreeSpaceText + 10, 1)];
+                    return YES;
+                }  ];
 		[itemImages addObject:menuItemImage];
 	}
 
