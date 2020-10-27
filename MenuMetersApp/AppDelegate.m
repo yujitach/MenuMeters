@@ -64,13 +64,13 @@
 #define WELCOME @"v2.0.8alert"
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    cpuExtra=[[MenuMeterCPUExtra alloc] initWithBundle:[NSBundle mainBundle]];
+    cpuExtra=[[MenuMeterCPUExtra alloc] init];
     
-    diskExtra=[[MenuMeterDiskExtra alloc] initWithBundle:[NSBundle mainBundle]];
+    diskExtra=[[MenuMeterDiskExtra alloc] init];
 
-    netExtra=[[MenuMeterNetExtra alloc] initWithBundle:[NSBundle mainBundle]];
+    netExtra=[[MenuMeterNetExtra alloc] init];
 
-    memExtra=[[MenuMeterMemExtra alloc] initWithBundle:[NSBundle mainBundle]];
+    memExtra=[[MenuMeterMemExtra alloc] init];
     
     if([self isRunningOnReadOnlyVolume]){
         [self alertConcerningAppTranslocation];

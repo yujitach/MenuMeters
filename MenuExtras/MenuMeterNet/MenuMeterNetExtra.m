@@ -135,7 +135,7 @@
 
 @implementation MenuMeterNetExtra
 
-- initWithBundle:(NSBundle *)bundle {
+- init {
 
     self = [super initWithBundleID:kNetMenuBundleID];
 	if (!self) {
@@ -317,8 +317,6 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kNetMenuBundleID
 																   object:kNetMenuUnloadNotification];
 
-	// Let super do the rest
-    [super willUnload];
 
 } // willUnload
 
@@ -1601,9 +1599,6 @@
 	if (displayCount) {
 		menuWidth += ((displayCount - 1) * kNetDisplayGapWidth);
 	}
-
-	// Resize the view
-	[self setLength:menuWidth];
 
 	// Force initial update
 	[self timerFired:nil];

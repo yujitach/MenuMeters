@@ -84,9 +84,10 @@
 
 @implementation MenuMeterCPUExtra
 
-- initWithBundle:(NSBundle *)bundle {
+- init {
 
 	self = [super initWithBundleID:kCPUMenuBundleID];
+    NSBundle*bundle=[NSBundle mainBundle];
 	if (!self) {
 		return nil;
 	}
@@ -216,9 +217,6 @@
 	// Let the pref panel know we have been removed
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kCPUMenuBundleID
 																   object:kCPUMenuUnloadNotification];
-
-	// Let super do the rest
-	[super willUnload];
 
 } // willUnload
 
@@ -862,9 +860,7 @@
 		powerMate = nil;
 	}
 
-	// Resize the view
-	[self setLength:menuWidth];
-
+    
 	// Force initial update
 	[self timerFired:nil];
 } // configFromPrefs

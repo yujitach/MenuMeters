@@ -88,9 +88,10 @@
 
 @implementation MenuMeterMemExtra
 
-- initWithBundle:(NSBundle *)bundle {
+- init {
 
     self = [super initWithBundleID:kMemMenuBundleID];
+    NSBundle*bundle=[NSBundle mainBundle];
 	if (!self) {
 		return nil;
 	}
@@ -254,8 +255,6 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kMemMenuBundleID
 																   object:kMemMenuUnloadNotification];
 
-	// Let super do the rest
-    [super willUnload];
 
 } // willUnload
 
@@ -979,8 +978,6 @@
 		menuWidth += kMemPagingDisplayWidth + kMemPagingDisplayGapWidth;
 	}
 
-	// Resize the view
-	[self setLength:menuWidth];
 
 	// Force initial update
 	[self timerFired:nil];

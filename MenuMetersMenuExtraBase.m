@@ -17,14 +17,23 @@
 @implementation MenuMetersMenuExtraBase
 -(instancetype)initWithBundleID:(NSString*)bundleID
 {
-    self=[super initWithBundle:[NSBundle mainBundle]];
+    self=[super init];
     self.bundleID=bundleID;
     return self;
+}
+-(NSMenu*)menu
+{
+    NSLog(@"shouldn't happen");
+    abort();
+}
+-(NSImage*)image
+{
+    NSLog(@"shouldn't happen");
+    abort();
 }
 -(void)willUnload {
     [updateTimer invalidate];
     updateTimer = nil;
-    [super willUnload];
 }
 -(void)timerFired:(id)notused
 {
@@ -42,13 +51,13 @@
 {
     NSImage *oldCanvas = statusItem.button.image;
     NSImage *canvas = oldCanvas;
-    NSSize imageSize = NSMakeSize(self.length, self.view.frame.size.height);
+    NSImage *image = self.image;
+    NSSize imageSize = image.size;
     NSSize oldImageSize = canvas.size;
     if (imageSize.width != oldImageSize.width || imageSize.height != oldImageSize.height) {
         canvas = [[NSImage alloc] initWithSize:imageSize];
     }
     
-    NSImage *image = self.image;
     [canvas lockFocus];
     [image drawAtPoint:CGPointZero fromRect:(CGRect) {.size = image.size} operation:NSCompositeCopy fraction:1.0];
     [canvas unlockFocus];

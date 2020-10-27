@@ -50,7 +50,7 @@
 
 @implementation MenuMeterDiskExtra
 
-- initWithBundle:(NSBundle *)bundle {
+- init {
 
     self = [super initWithBundleID:kDiskMenuBundleID];
 	if (!self) {
@@ -126,8 +126,6 @@
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kDiskMenuBundleID
 																   object:kDiskMenuUnloadNotification];
 
-	// Let super do the rest
-    [super willUnload];
 
 } // willUnload
 
@@ -437,7 +435,7 @@
 		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
 							 operation:NSCompositeSourceOver];
 		[[[NSImage alloc] initWithContentsOfFile:
-		   [[self bundle] pathForResource:[imageSetNamePrefix stringByAppendingString:@"Read"]
+		   [[NSBundle mainBundle] pathForResource:[imageSetNamePrefix stringByAppendingString:@"Read"]
 								   ofType:@"tiff"]]
 			compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
 		[readImage unlockFocus];
@@ -447,7 +445,7 @@
 		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
 							 operation:NSCompositeSourceOver];
 		[[[NSImage alloc] initWithContentsOfFile:
-			[[self bundle]pathForResource:[imageSetNamePrefix stringByAppendingString:@"Write"]
+			[[NSBundle mainBundle]pathForResource:[imageSetNamePrefix stringByAppendingString:@"Write"]
 								   ofType:@"tiff"]]
 			compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
 		[writeImage unlockFocus];
@@ -457,7 +455,7 @@
 		[bootDiskIcon compositeToPoint:NSMakePoint(0, (menubarHeight - kDiskViewWidth) / 2)
 							 operation:NSCompositeSourceOver];
 		[[[NSImage alloc] initWithContentsOfFile:
-			[[self bundle]pathForResource:[imageSetNamePrefix stringByAppendingString:@"ReadWrite"]
+			[[NSBundle mainBundle]pathForResource:[imageSetNamePrefix stringByAppendingString:@"ReadWrite"]
 								   ofType:@"tiff"]]
 			compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
 		[readwriteImage unlockFocus];
@@ -508,13 +506,13 @@
 		[readwriteImage unlockFocus];
 	} else {
 		// Load the static images
-		idleImage = [[NSImage alloc] initWithContentsOfFile:[[self bundle]
+		idleImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle]
 						pathForResource:[imageSetNamePrefix stringByAppendingString:@"Idle"] ofType:@"tiff"]];
-		readImage = [[NSImage alloc] initWithContentsOfFile:[[self bundle]
+		readImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle]
 						pathForResource:[imageSetNamePrefix stringByAppendingString:@"Read"] ofType:@"tiff"]];
-		writeImage = [[NSImage alloc] initWithContentsOfFile:[[self bundle]
+		writeImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle]
 						pathForResource:[imageSetNamePrefix stringByAppendingString:@"Write"] ofType:@"tiff"]];
-		readwriteImage = [[NSImage alloc] initWithContentsOfFile:[[self bundle]
+		readwriteImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle]
 						pathForResource:[imageSetNamePrefix stringByAppendingString:@"ReadWrite"] ofType:@"tiff"]];
 	}
 

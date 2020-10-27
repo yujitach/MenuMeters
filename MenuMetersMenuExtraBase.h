@@ -10,11 +10,13 @@
 #import "AppleUndocumented.h"
 #import "MenuMeterDefaults.h"
 
-@interface MenuMetersMenuExtraBase : NSMenuExtra <NSMenuDelegate>
+@interface MenuMetersMenuExtraBase : NSObject <NSMenuDelegate>
 {
     NSStatusItem* statusItem;
     NSTimer* updateTimer;
 }
+- (NSImage*)image;
+- (NSMenu*)menu;
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;
 - (void)timerFired:(id)timer;
 - (void)openMenuMetersPref:(id)sender;
