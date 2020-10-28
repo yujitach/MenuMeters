@@ -1433,7 +1433,7 @@
                                                     </connections>
                                                 </button>
                                                 <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7d-Nj-Lcq">
-                                                    <rect key="frame" x="230" y="80" width="306" height="19"/>
+                                                    <rect key="frame" x="230" y="76" width="306" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="10" tickMarkPosition="below" sliderType="linear" id="PMb-IL-jfo"/>
                                                     <connections>
