@@ -39,5 +39,3 @@ __private_extern__ void LiveUpdateMenuItemTitleAndVisibility(NSMenu *, CFIndex, 
 __private_extern__ void LiveUpdateMenuItemTitle(NSMenu *, CFIndex, NSString *);
 __private_extern__ void LiveUpdateMenu(NSMenu *);
 
-__private_extern__ NSColor * MenuItemTextColor(void);
-

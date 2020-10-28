@@ -862,7 +862,7 @@
 	[ourPrefs syncWithDisk];
 
 	// Handle menubar theme changes
-	fgMenuThemeColor = MenuItemTextColor();
+        fgMenuThemeColor = self.menuBarTextColor;
 	
 	// Cache colors to skip archive cycle from prefs
         freeColor = [self colorByAdjustingForLightDark:[ourPrefs memFreeColor]];

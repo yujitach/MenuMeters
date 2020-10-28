@@ -132,7 +132,3 @@ __private_extern__ void LiveUpdateMenu(NSMenu *menu) {
 
 } // LiveUpdateMenu
 
-
-__private_extern__ NSColor * MenuItemTextColor(void) {
-    return [NSColor labelColor];
-} // MenuItemTextColor

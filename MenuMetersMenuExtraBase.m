@@ -14,6 +14,8 @@
 #import "MenuMeterMemExtra.h"
 #import "MenuMeterNetExtra.h"
 
+#define kAppleInterfaceThemeChangedNotification        @"AppleInterfaceThemeChangedNotification"
+
 @implementation MenuMetersMenuExtraBase
 -(NSColor*)colorByAdjustingForLightDark:(NSColor*)c
 {
@@ -29,6 +31,13 @@
                                                             name:self.bundleID
                                                           object:kPrefChangeNotification];
     [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"tintPercentage" options:NSKeyValueObservingOptionNew context:nil];
+    if(@available(macOS 10.14,*)){
+    }else{
+        [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+                                                            selector:@selector(configFromPrefs:)
+                                                                name:kAppleInterfaceThemeChangedNotification
+                                                              object:nil];
+    }
     return self;
 }
 -(void)configFromPrefs:(NSNotification *)notification
@@ -191,6 +200,16 @@
         }
         return isDark;
     }
+}
+-(NSColor*)menuBarTextColor
+{
+    if(@available(macOS 10.14,*)){
+        return [NSColor labelColor];
+    }
+    if (self.isDark){
+        return [NSColor whiteColor];
+    }
+    return [NSColor blackColor];
 }
 - (void)setupAppearance {
     if(@available(macOS 10.14,*)){

@@ -690,7 +690,7 @@
 	[ourPrefs syncWithDisk];
 
 	// Handle menubar theme changes
-	fgMenuThemeColor = MenuItemTextColor();
+	fgMenuThemeColor = self.menuBarTextColor;
 
 	// Cache colors to skip archiver
 	userColor = [self colorByAdjustingForLightDark:[ourPrefs cpuUserColor]];

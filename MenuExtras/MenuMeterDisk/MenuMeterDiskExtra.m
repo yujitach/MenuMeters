@@ -378,7 +378,7 @@
 	[ourPrefs syncWithDisk];
 
 	// Handle menubar theme changes
-	fgMenuThemeColor = MenuItemTextColor();
+	fgMenuThemeColor = self.menuBarTextColor;
 	
 	// Decide on image set name prefix
 	NSString *imageSetNamePrefix = [kDiskImageSets objectAtIndex:[ourPrefs diskImageset]];
