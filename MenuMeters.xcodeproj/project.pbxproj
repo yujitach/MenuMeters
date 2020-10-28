@@ -194,7 +194,6 @@
 		D40DB4C403D260E800A87BC9 /* MenuMeterCPU.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPU.h; path = Common/MenuMeterCPU.h; sourceTree = "<group>"; };
 		D40DB4C503D260E800A87BC9 /* MenuMeterDisk.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterDisk.h; path = Common/MenuMeterDisk.h; sourceTree = "<group>"; };
 		D40DB4C603D260E800A87BC9 /* MenuMeterNet.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = MenuMeterNet.h; path = Common/MenuMeterNet.h; sourceTree = "<group>"; };
-		D40DB50E03D2631100A87BC9 /* SystemUIPlugin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemUIPlugin.framework; path = /System/Library/PrivateFrameworks/SystemUIPlugin.framework; sourceTree = "<absolute>"; };
 		D4157ABD19D13C18008BD05F /* ja */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ja; path = ja.lproj/DiskImageSet.strings; sourceTree = "<group>"; };
 		D42C6C861996D9BB005F87BD /* Dark ArrowsIdle.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Dark ArrowsIdle.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Dark ArrowsIdle.tiff"; sourceTree = "<group>"; };
 		D42C6C871996D9BB005F87BD /* Dark ArrowsRead.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Dark ArrowsRead.tiff"; path = "MenuExtras/MenuMeterDisk/Icons/Dark ArrowsRead.tiff"; sourceTree = "<group>"; };
@@ -343,7 +342,6 @@
 				D4E4BF8B04F333B100A87BC9 /* PrefPane */,
 				3383C1711B69B72500915D5D /* MenuMetersApp */,
 				D40DB4B003D25F6400A87BC9 /* Products */,
-				D40DB50803D262ED00A87BC9 /* System Private Frameworks */,
 				D40DB4B803D2600C00A87BC9 /* System Frameworks */,
 				30C0F2A6227A19BF003E6699 /* Frameworks */,
 				33883D3323655C9900B8AC14 /* MenuMeters-Info.plist */,
@@ -421,14 +419,6 @@
 			);
 			name = MenuMeterNet;
 			path = MenuExtras/MenuMeterNet;
-			sourceTree = "<group>";
-		};
-		D40DB50803D262ED00A87BC9 /* System Private Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D40DB50E03D2631100A87BC9 /* SystemUIPlugin.framework */,
-			);
-			name = "System Private Frameworks";
 			sourceTree = "<group>";
 		};
 		D42EC94703D498CC00A87BC9 /* MenuMeterDisk */ = {

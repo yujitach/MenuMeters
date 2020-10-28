@@ -17,7 +17,7 @@
 @implementation MenuMetersMenuExtraBase
 -(NSColor*)colorByAdjustingForLightDark:(NSColor*)c
 {
-    return [c blendedColorWithFraction:[[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"]  ofColor:self.isDark?[NSColor whiteColor]:[NSColor blackColor]];
+    return [c blendedColorWithFraction:[[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"]/100  ofColor:self.isDark?[NSColor whiteColor]:[NSColor blackColor]];
 }
 -(instancetype)initWithBundleID:(NSString*)bundleID
 {
