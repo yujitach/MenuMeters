@@ -20,7 +20,7 @@
     self=[super init];
     self.bundleID=bundleID;
     // Register for pref changes
-    [[NSDistributedNotificationCenter defaultCenter] addObserver:self
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                                         selector:@selector(configFromPrefs:)
                                                             name:self.bundleID
                                                           object:kPrefChangeNotification];
@@ -40,10 +40,6 @@
 {
     NSLog(@"shouldn't happen");
     abort();
-}
--(void)willUnload {
-    [updateTimer invalidate];
-    updateTimer = nil;
 }
 -(void)timerFired:(id)notused
 {

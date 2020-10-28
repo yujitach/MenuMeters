@@ -355,7 +355,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[self menuExtraChangedPrefs:nil];
 
 	// Register for pref change notifications from the extras
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
+	[[NSNotificationCenter defaultCenter] addObserver:self
 														selector:@selector(menuExtraChangedPrefs:)
 															name:kPrefPaneBundleID
 														  object:kPrefChangeNotification];
@@ -370,7 +370,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (void)didUnselect {
 
 	// Unregister all notifications
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self name:nil object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:nil];
 
 	// Unhook from SystemConfig Framework
 	[self disconnectSystemConfig];
@@ -652,9 +652,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Write prefs and notify
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kCPUMenuBundleID]) {
-		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kCPUMenuBundleID
+		[[NSNotificationCenter defaultCenter] postNotificationName:kCPUMenuBundleID
 																	   object:kPrefChangeNotification
-                 userInfo:nil deliverImmediately:YES];
+                 userInfo:nil];
 	}
 
 } // cpuPrefChange
@@ -689,9 +689,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Write prefs and notify
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kDiskMenuBundleID]) {
-		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kDiskMenuBundleID
+		[[NSNotificationCenter defaultCenter] postNotificationName:kDiskMenuBundleID
 																	   object:kPrefChangeNotification
-                 userInfo:nil deliverImmediately:YES];
+                 userInfo:nil];
 	}
 
 } // diskPrefChange
@@ -793,9 +793,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Write prefs and notify
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kMemMenuBundleID]) {
-		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kMemMenuBundleID
+		[[NSNotificationCenter defaultCenter] postNotificationName:kMemMenuBundleID
 																	   object:kPrefChangeNotification
-                 userInfo:nil deliverImmediately:YES];
+                 userInfo:nil];
 	}
 
 } // memPrefChange
@@ -929,9 +929,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// Write prefs and notify
 	[ourPrefs syncWithDisk];
 	if ([self isExtraWithBundleIDLoaded:kNetMenuBundleID]) {
-		[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kNetMenuBundleID
+		[[NSNotificationCenter defaultCenter] postNotificationName:kNetMenuBundleID
 																	   object:kPrefChangeNotification
-                 userInfo:nil deliverImmediately:YES];
+                 userInfo:nil];
 	}
 
 } // netPrefChange
@@ -946,9 +946,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 #ifdef ELCAPITAN
     [ourPrefs saveBoolPref:bundleID value:YES];
     [ourPrefs syncWithDisk];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:bundleID
+    [[NSNotificationCenter defaultCenter] postNotificationName:bundleID
                                                                    object:kPrefChangeNotification
-                                                                 userInfo:nil deliverImmediately:YES];
+                                                                 userInfo:nil];
     return;
 #else
 	// Load the crack. With MenuCracker 2.x multiple loads are allowed, so
@@ -991,9 +991,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (void)removeExtraWithBundleID:(NSString *)bundleID {
     [ourPrefs saveBoolPref:bundleID value:NO];
     [ourPrefs syncWithDisk];
-    [[NSDistributedNotificationCenter defaultCenter] postNotificationName:bundleID
+    [[NSNotificationCenter defaultCenter] postNotificationName:bundleID
                                                                    object:kPrefChangeNotification
-     userInfo:nil deliverImmediately:YES];
+     userInfo:nil];
     if([self noMenuMeterLoaded]){
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
         [self.window makeKeyAndOrderFront:self];

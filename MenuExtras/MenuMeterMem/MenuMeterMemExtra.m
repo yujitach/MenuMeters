@@ -234,20 +234,6 @@
 
 } // initWithBundle
 
-- (void)willUnload {
-
-	// Unregister pref change notifications
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
-															   name:nil
-															 object:nil];
-
-	// Let the pref panel know we have been removed
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kMemMenuBundleID
-																   object:kMemMenuUnloadNotification];
-
-
-} // willUnload
-
  // dealloc
 
 ///////////////////////////////////////////////////////////////

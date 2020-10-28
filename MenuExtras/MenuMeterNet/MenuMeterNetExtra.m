@@ -301,20 +301,6 @@
 
 } // initWithBundle
 
-- (void)willUnload {
-
-	// Unregister pref change notifications
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
-															   name:nil
-															 object:nil];
-
-	// Let the pref panel know we have been removed
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kNetMenuBundleID
-																   object:kNetMenuUnloadNotification];
-
-
-} // willUnload
-
  // dealloc
 
 ///////////////////////////////////////////////////////////////
@@ -1376,7 +1362,7 @@
 	[ourPrefs saveNetPreferInterface:interfaceName];
 	[ourPrefs syncWithDisk];
 	// Send the notification to the pref pane
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kPrefPaneBundleID
+	[[NSNotificationCenter defaultCenter] postNotificationName:kPrefPaneBundleID
 																   object:kPrefChangeNotification];
 
 } // switchDisplay

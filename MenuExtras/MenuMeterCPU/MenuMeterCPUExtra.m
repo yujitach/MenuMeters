@@ -198,19 +198,6 @@
 
 } // initWithBundle
 
-- (void)willUnload {
-
-	// Unregister pref change notifications
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
-															   name:nil
-															 object:nil];
-
-	// Let the pref panel know we have been removed
-	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:kCPUMenuBundleID
-																   object:kCPUMenuUnloadNotification];
-
-} // willUnload
-
  // dealloc
 
 ///////////////////////////////////////////////////////////////
@@ -853,7 +840,7 @@
 
     
 	// Force initial update
-	[self timerFired:nil];
+    statusItem.button.image=self.image;
 } // configFromPrefs
 
 - (void)getCPULoadForCPU:(uint32_t)processor
