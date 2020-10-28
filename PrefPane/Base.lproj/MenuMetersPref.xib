@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -118,7 +118,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="inverse glow" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="497" id="1031">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="477">
                                                             <items>
                                                                 <menuItem title="glow" id="479"/>
@@ -406,7 +406,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <popUpButtonCell key="cell" type="push" title="all cores, including hyperthreaded ones" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="vbH-jV-tUr" id="2eO-R1-Shj">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" id="5N5-Z8-HuN">
                                                             <items>
                                                                 <menuItem title="all cores, including hyperthreaded ones" state="on" id="vbH-jV-tUr"/>
@@ -450,7 +450,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="User and System (small text)" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="385" id="1023">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="382">
                                                             <items>
                                                                 <menuItem title="Total (large text)" id="384"/>
@@ -468,7 +468,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <popUpButtonCell key="cell" type="push" title="℃" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Wgg-4C-Cbe" id="yqw-R3-fFv">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" id="WwM-or-ADO">
                                                             <items>
                                                                 <menuItem title="℃" state="on" id="Wgg-4C-Cbe"/>
@@ -552,7 +552,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="opens the volume" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="500" id="1012">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="503">
                                                             <items>
                                                                 <menuItem title="opens the volume" state="on" id="500"/>
@@ -587,7 +587,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="ImageSet" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="203" id="1009">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="206">
                                                             <items>
                                                                 <menuItem title="ImageSet" state="on" id="203"/>
@@ -701,7 +701,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Usage Chart" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="225" id="1034">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="223">
                                                             <items>
                                                                 <menuItem title="Usage Chart" state="on" id="225"/>
@@ -986,7 +986,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Transmit/Receive" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="590" id="1076">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="591">
                                                             <items>
                                                                 <menuItem title="Transmit/Receive" state="on" id="590"/>
@@ -1012,7 +1012,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Linear" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="541" id="1074">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="542">
                                                             <items>
                                                                 <menuItem title="Linear" state="on" id="541"/>
@@ -1040,7 +1040,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Interface speed" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="525" id="1072">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="522">
                                                             <items>
                                                                 <menuItem title="Interface speed" state="on" id="525"/>
@@ -1079,7 +1079,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Primary (automatic)" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="487" id="1069">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="489">
                                                             <items>
                                                                 <menuItem title="Primary (automatic)" state="on" id="487"/>
@@ -1143,7 +1143,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Standard" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="406" id="1064">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="403">
                                                             <items>
                                                                 <menuItem title="Standard" state="on" id="406"/>
@@ -1255,7 +1255,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <popUpButtonCell key="cell" type="push" title="Graph, Arrows and Throughput" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="366" id="1055">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
+                                                        <font key="font" metaFont="menu"/>
                                                         <menu key="menu" title="OtherViews" id="293">
                                                             <items>
                                                                 <menuItem title="Arrows" id="297"/>
@@ -1324,18 +1324,18 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nf9-0N-sdX">
-                                            <rect key="frame" x="-3" y="89" width="554" height="514"/>
+                                            <rect key="frame" x="-3" y="120" width="554" height="483"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="U9X-wn-4af">
-                                                <rect key="frame" x="0.0" y="0.0" width="554" height="514"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="554" height="483"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="U5D-Mp-8pb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="554" height="514"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="554" height="483"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        <size key="minSize" width="554" height="514"/>
+                                                        <size key="minSize" width="554" height="483"/>
                                                         <size key="maxSize" width="560" height="10000000"/>
                                                         <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                     </textView>
@@ -1346,27 +1346,16 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="acX-Ld-w1b">
-                                                <rect key="frame" x="539" y="0.0" width="15" height="514"/>
+                                                <rect key="frame" x="538" y="0.0" width="16" height="483"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
                                         <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d2S-NP-QJd" userLabel="Sparkle UI Container">
-                                            <rect key="frame" x="40" y="-6" width="438" height="97"/>
+                                            <rect key="frame" x="-3" y="3" width="554" height="118"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-rW-str">
-                                                    <rect key="frame" x="153" y="49" width="163" height="32"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <buttonCell key="cell" type="push" title="Check for updates..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XYi-uP-QCD">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="checkForUpdates:" target="-1" id="8Gp-8H-UaH"/>
-                                                    </connections>
-                                                </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HXi-JR-d2r">
-                                                    <rect key="frame" x="18" y="23" width="203" height="16"/>
+                                                    <rect key="frame" x="39" y="12" width="203" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Automatic update check interval:" id="tug-YR-k7T">
                                                         <font key="font" metaFont="system"/>
@@ -1375,7 +1364,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0K2-bO-QtW">
-                                                    <rect key="frame" x="270" y="17" width="151" height="25"/>
+                                                    <rect key="frame" x="244" y="6" width="156" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <popUpButtonCell key="cell" type="push" title="Once per day" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="lh5-j8-SRe" id="pR0-RY-h1F">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -1393,6 +1382,29 @@
                                                         <action selector="updateInterval:" target="-2" id="srZ-Xt-iV3"/>
                                                     </connections>
                                                 </popUpButton>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gf6-QI-d0d">
+                                                    <rect key="frame" x="244" y="82" width="267" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="check" title="Opens specific panes of Activity Monitor" bezelStyle="regularSquare" imagePosition="left" inset="2" id="phH-yJ-I6O">
+                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="showAlertConcerningSystemEventsEtc:" target="-2" id="oxi-7E-2SU"/>
+                                                        <binding destination="mKC-fV-MVM" name="value" keyPath="values.activityMonitorOpenSpecificPanes" id="w8t-X1-bUW"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-rW-str">
+                                                    <rect key="frame" x="240" y="41" width="163" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="push" title="Check for updates..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XYi-uP-QCD">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="checkForUpdates:" target="-1" id="8Gp-8H-UaH"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </customView>
                                     </subviews>
@@ -1404,5 +1416,6 @@
             </view>
             <point key="canvasLocation" x="139" y="146.5"/>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="mKC-fV-MVM"/>
     </objects>
 </document>

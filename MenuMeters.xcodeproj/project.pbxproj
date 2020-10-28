@@ -154,7 +154,6 @@
 		3383C1761B69B72600915D5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3383C1781B69B72600915D5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3383C17D1B69B72600915D5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3383C1C11B69DB0D00915D5D /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		3384540B2105C3AA00D4DA92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MenuMetersPref.xib; sourceTree = "<group>"; };
 		3384540D2105C3B100D4DA92 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
 		3384540E2105C3B300D4DA92 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
@@ -313,7 +312,6 @@
 				339B8C8F237FE17F008B9755 /* MenuMeters.icns */,
 				3383C1721B69B72500915D5D /* AppDelegate.h */,
 				3383C1731B69B72600915D5D /* AppDelegate.m */,
-				3383C1C11B69DB0D00915D5D /* MainMenu.xib */,
 				330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */,
 				330247662366CEA800F88D61 /* dsa_pub.pem */,
 				3383C1781B69B72600915D5D /* Assets.xcassets */,

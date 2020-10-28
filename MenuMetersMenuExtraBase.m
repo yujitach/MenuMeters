@@ -130,6 +130,9 @@
     if (![[NSWorkspace sharedWorkspace] launchApplication:@"Activity Monitor.app"]) {
         NSLog(@"MenuMeter unable to launch the Activity Monitor.");
     }
+    BOOL x=[[NSUserDefaults standardUserDefaults] boolForKey:@"activityMonitorOpenSpecificPanes"];
+    if(!x)
+        return;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(),^{
         if(@available(macOS 10.15,*)){
             int tab=1;

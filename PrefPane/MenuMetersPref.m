@@ -104,6 +104,17 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     SUUpdater*updater;
 #endif
 }
+-(IBAction)showAlertConcerningSystemEventsEtc:(id)sender
+{
+    NSButton*b=sender;
+    if([b state]==NSOnState){
+        NSAlert*alert=[[NSAlert alloc] init];
+        alert.messageText=@"Using this feature for the first time will bring up two alerts by the system";
+        [alert addButtonWithTitle:@"OK"];
+        alert.informativeText=@"This feature uses AppleScript and System Events to simulate a click to switch to a specific pane of the Activity Monitor. This requires 1. one confirmation dialog to allow MenuMeters to use AppleScript, and 2. a trip to the Security & Privacy pane of the System Preferences to allow MenuMeters to use Accesibility features.";
+        [alert runModal];
+    }
+}
 -(IBAction)openAbout:(id)sender
 {
     [prefTabs selectTabViewItemAtIndex:4];
