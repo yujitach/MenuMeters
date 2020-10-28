@@ -865,14 +865,14 @@
 	fgMenuThemeColor = MenuItemTextColor();
 	
 	// Cache colors to skip archive cycle from prefs
-	freeColor = [ourPrefs memFreeColor];
-	usedColor = [ourPrefs memUsedColor];
-	activeColor = [ourPrefs memActiveColor];
-	inactiveColor = [ourPrefs memInactiveColor];
-	wireColor = [ourPrefs memWireColor];
-	compressedColor = [ourPrefs memCompressedColor];
-	pageInColor = [ourPrefs memPageInColor];
-	pageOutColor = [ourPrefs memPageOutColor];
+        freeColor = [self colorByAdjustingForLightDark:[ourPrefs memFreeColor]];
+        usedColor = [self colorByAdjustingForLightDark:[ourPrefs memUsedColor]];
+        activeColor = [self colorByAdjustingForLightDark:[ourPrefs memActiveColor]];
+        inactiveColor = [self colorByAdjustingForLightDark:[ourPrefs memInactiveColor]];
+        wireColor = [self colorByAdjustingForLightDark:[ourPrefs memWireColor]];
+        compressedColor = [self colorByAdjustingForLightDark:[ourPrefs memCompressedColor]];
+        pageInColor = [self colorByAdjustingForLightDark:[ourPrefs memPageInColor]];
+        pageOutColor = [self colorByAdjustingForLightDark:[ourPrefs memPageOutColor]];
 
 	// Since text rendering is so CPU intensive we minimize this by
 	// prerendering what we can if we need it
@@ -884,7 +884,7 @@
 																			   table:nil]
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
-																[ourPrefs memUsedColor], NSForegroundColorAttributeName,
+																usedColor, NSForegroundColorAttributeName,
 																nil]];
 	NSAttributedString *renderFString = [[NSAttributedString alloc]
 											initWithString:[[NSBundle bundleForClass:[self class]]
@@ -893,7 +893,7 @@
 																				table:nil]
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
 																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
-																[ourPrefs memFreeColor], NSForegroundColorAttributeName,
+																freeColor, NSForegroundColorAttributeName,
 																nil]];
 	if ([renderUString size].width > [renderFString size].width) {
 		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderUString size].width,

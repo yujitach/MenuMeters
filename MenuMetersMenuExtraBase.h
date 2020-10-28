@@ -14,6 +14,7 @@
     NSStatusItem* statusItem;
     NSTimer* updateTimer;
 }
+-(NSColor*)colorByAdjustingForLightDark:(NSColor*)c;
 - (NSImage*)image;
 - (NSMenu*)menu;
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;

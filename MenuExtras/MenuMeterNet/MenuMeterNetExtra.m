@@ -1438,9 +1438,9 @@
 	[ourPrefs syncWithDisk];
 
 	// Cache colors to skip archiver
-	txColor = [ourPrefs netTransmitColor];
-	rxColor = [ourPrefs netReceiveColor];
-	inactiveColor = [ourPrefs netInactiveColor];
+        txColor = [self colorByAdjustingForLightDark:[ourPrefs netTransmitColor]];
+        rxColor = [self colorByAdjustingForLightDark:[ourPrefs netReceiveColor]];
+        inactiveColor = [self colorByAdjustingForLightDark:[ourPrefs netInactiveColor]];
 
 	// Generate arrow bezier path offset as needed for current display mode
 	float arrowOffset =  0;

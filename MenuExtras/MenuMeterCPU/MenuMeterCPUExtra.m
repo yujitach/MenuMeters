@@ -693,9 +693,9 @@
 	fgMenuThemeColor = MenuItemTextColor();
 
 	// Cache colors to skip archiver
-	userColor = [ourPrefs cpuUserColor];
-	systemColor = [ourPrefs cpuSystemColor];
-    temperatureColor = [ourPrefs cpuTemperatureColor];
+	userColor = [self colorByAdjustingForLightDark:[ourPrefs cpuUserColor]];
+	systemColor = [self colorByAdjustingForLightDark:[ourPrefs cpuSystemColor]];
+        temperatureColor = [self colorByAdjustingForLightDark:[ourPrefs cpuTemperatureColor]];
 
 	// It turns out that text drawing is _much_ slower than compositing images together
 	// so we render several arrays of images, each representing a different percent value

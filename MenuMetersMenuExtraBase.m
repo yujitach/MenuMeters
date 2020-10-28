@@ -15,6 +15,10 @@
 #import "MenuMeterNetExtra.h"
 
 @implementation MenuMetersMenuExtraBase
+-(NSColor*)colorByAdjustingForLightDark:(NSColor*)c
+{
+    return [c blendedColorWithFraction:[[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"]  ofColor:self.isDark?[NSColor whiteColor]:[NSColor blackColor]];
+}
 -(instancetype)initWithBundleID:(NSString*)bundleID
 {
     self=[super init];
@@ -24,6 +28,7 @@
                                                         selector:@selector(configFromPrefs:)
                                                             name:self.bundleID
                                                           object:kPrefChangeNotification];
+    [[NSUserDefaults standardUserDefaults] addObserver:self forKeyPath:@"tintPercentage" options:NSKeyValueObservingOptionNew context:nil];
     return self;
 }
 -(void)configFromPrefs:(NSNotification *)notification
@@ -115,6 +120,9 @@
                 [self removeStatusItem];
             }
         }
+    }
+    if([keyPath isEqualToString:@"tintPercentage"]){
+        [self configFromPrefs:nil];
     }
 }
 - (void)openMenuMetersPref:(id)sender
