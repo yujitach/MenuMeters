@@ -228,7 +228,7 @@
         NSAttributedString *cpuString = [[NSAttributedString alloc]
              initWithString:@"CPU"
              attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:10],
-                         NSFontAttributeName, [NSColor textColor], NSForegroundColorAttributeName,
+                         NSFontAttributeName, fgMenuThemeColor, NSForegroundColorAttributeName,
                          nil]];
         [cpuString drawAtPoint:NSMakePoint(
              kCPULabelOnlyWidth - (float)round([cpuString size].width) - 1,
