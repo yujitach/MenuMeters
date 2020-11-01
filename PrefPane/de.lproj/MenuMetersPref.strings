@@ -416,3 +416,18 @@
 
 /* title = "Horizontal Width:"; ObjectID = "1117"; */
 "1117.title" = "Horizontale Breite";
+
+/* title = "pure black/white"; ObjectID = "ayz-p2-XC5"; */
+"ayz-p2-XC5.title" = "Schwarz-Weiß";
+
+/* title = "original"; ObjectID = "FPO-Jo-ubG"; */
+"FPO-Jo-ubG.title" = "Original";
+
+/* title = "Color tint:"; ObjectID = "mAZ-f2-5AJ"; */
+"mAZ-f2-5AJ.title" = "Farbton:";
+
+/* title = "Activity monitor:"; ObjectID = "CDM-3t-gon"; */
+"CDM-3t-gon.title" = "Aktivitätsanzeige:";
+
+/* title = "Opens specific  panes"; ObjectID = "phH-yJ-I6O"; */
+"phH-yJ-I6O.title" = "Öffnet entsprechende Kategorien";
