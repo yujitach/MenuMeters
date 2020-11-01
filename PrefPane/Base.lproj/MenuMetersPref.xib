@@ -243,7 +243,7 @@
                                                     </sliderCell>
                                                 </slider>
                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1114">
-                                                    <rect key="frame" x="85" y="146" width="115" height="22"/>
+                                                    <rect key="frame" x="85" y="146" width="148" height="22"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Horizontal Width:" id="1117">
                                                         <font key="font" metaFont="system"/>
@@ -1410,7 +1410,7 @@
                                                     </connections>
                                                 </popUpButton>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gf6-QI-d0d">
-                                                    <rect key="frame" x="230" y="51" width="153" height="18"/>
+                                                    <rect key="frame" x="230" y="51" width="306" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="Opens specific panes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="phH-yJ-I6O">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
