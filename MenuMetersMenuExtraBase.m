@@ -213,6 +213,10 @@
     }
     return [NSColor blackColor];
 }
+-(CGFloat)height
+{
+    return statusItem.button.frame.size.height;
+}
 - (void)setupAppearance {
     if(@available(macOS 10.14,*)){
         [NSAppearance setCurrentAppearance:statusItem.button.effectiveAppearance];

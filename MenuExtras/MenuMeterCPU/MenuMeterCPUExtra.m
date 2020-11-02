@@ -210,7 +210,7 @@
     [self setupAppearance];
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-                                                                     [NSApplication sharedApplication].mainMenu.menuBarHeight-1)];
+                                                                     self.height-1)];
 	if (!currentImage) return nil;
 
 	// Don't render without data

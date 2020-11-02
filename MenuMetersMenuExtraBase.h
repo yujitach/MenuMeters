@@ -25,6 +25,7 @@
 - (void)addStandardMenuEntriesTo:(NSMenu*)extraMenu;
 - (void)setupAppearance;
 - (BOOL)isDark;
+- (CGFloat)height;
 -(NSColor*)menuBarTextColor;
 -(instancetype)initWithBundleID:(NSString*)bundleID;
 @property(nonatomic, readonly) BOOL isMenuVisible;

@@ -315,7 +315,7 @@
     
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-                                                                     [NSApplication sharedApplication].mainMenu.menuBarHeight-1)];
+                                                                     self.height-1)];
 	if (!currentImage) return nil;
 
 	// Don't render without data
@@ -1444,7 +1444,7 @@
 
 	// Generate arrow bezier path offset as needed for current display mode
 	float arrowOffset =  0;
-	float viewHeight = [NSApplication sharedApplication].mainMenu.menuBarHeight;
+    float viewHeight = self.height;
 	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
 		arrowOffset = [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 	}

@@ -247,7 +247,7 @@
 
 	// Image to render into (and return to view)
 	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize(menuWidth,
-																	  [NSApplication sharedApplication].mainMenu.menuBarHeight - 1)];
+																	  self.height - 1)];
 
 	// Don't render without data
 	if (![memHistory count]) return nil;
@@ -897,10 +897,10 @@
 																nil]];
 	if ([renderUString size].width > [renderFString size].width) {
 		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderUString size].width,
-                                                                        [NSApplication sharedApplication].mainMenu.menuBarHeight-1)];
+                                                                        self.height-1)];
 	} else {
 		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderFString size].width,
-                                                                        [NSApplication sharedApplication].mainMenu.menuBarHeight-1)];
+                                                                        self.height-1)];
 	}
 	[numberLabelPrerender lockFocus];
 	// No descenders so render both lines lower than normal

@@ -398,7 +398,7 @@
 	readwriteImage = nil;
 
 	// Setup new images as overlays or basic images
-    float menubarHeight = [NSApplication sharedApplication].mainMenu.menuBarHeight;
+    float menubarHeight = self.height;
 	if ([ourPrefs diskImageset] == kDiskArrowsImageSet) {
 		// Small disk arrow is an overlay on the boot disk icon
 		idleImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
