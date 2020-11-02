@@ -64,14 +64,6 @@
 #define WELCOME @"v2.0.8alert"
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    cpuExtra=[[MenuMeterCPUExtra alloc] init];
-    
-    diskExtra=[[MenuMeterDiskExtra alloc] init];
-
-    netExtra=[[MenuMeterNetExtra alloc] init];
-
-    memExtra=[[MenuMeterMemExtra alloc] init];
-    
     if([self isRunningOnReadOnlyVolume]){
         [self alertConcerningAppTranslocation];
     }
@@ -88,6 +80,15 @@
         [pref openAbout:WELCOME];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
     }
+    // init of extras were moved to the last step.
+    // It is because init of extras can raise exceptions when I introduce bugs.
+    // If extras are init'ed first, neither the updater nor the pref pane is init'ed,
+    // which is even worse.
+    // When extras are inited last, at least the updater and the pref pane are live.
+    cpuExtra=[[MenuMeterCPUExtra alloc] init];
+    diskExtra=[[MenuMeterDiskExtra alloc] init];
+    netExtra=[[MenuMeterNetExtra alloc] init];
+    memExtra=[[MenuMeterMemExtra alloc] init];
 }
 
 

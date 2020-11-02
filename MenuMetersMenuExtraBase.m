@@ -215,7 +215,12 @@
 }
 -(CGFloat)height
 {
-    return statusItem.button.frame.size.height;
+    CGFloat height=statusItem.button.frame.size.height;
+    // height is sometimes zero here, which causes a lot of headaches if untreated...
+    if(height<10){
+        height=22; // the value before Big Sur.
+    }
+    return height;
 }
 - (void)setupAppearance {
     if(@available(macOS 10.14,*)){
