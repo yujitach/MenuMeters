@@ -40,5 +40,7 @@
 	<string>dsa_pub.pem</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>36000</integer>
+	<key>SUEnableSystemProfiling</key>
+	<true/>
 </dict>
 </plist>
