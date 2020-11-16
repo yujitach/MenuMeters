@@ -93,8 +93,13 @@
     if([ourPrefs loadBoolPref:bundleID defaultValue:YES]){
         if(!statusItem){
             statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+            if(@available(macOS 11,*)){
+                // 11.0.1 does not keep the position unless autosaveName is explicitly set,
+                // see https://github.com/feedback-assistant/reports/issues/151 .
+                // This is done here in order not to lose positions on pre-macOS 11 systems.
+                statusItem.autosaveName=self.bundleID;
+            }
             if(@available(macOS 10.12,*)){
-//                statusItem.autosaveName=self.bundleID;
                 statusItem.behavior=NSStatusItemBehaviorRemovalAllowed;
                 [statusItem addObserver:self forKeyPath:@"visible" options:NSKeyValueObservingOptionNew context:nil];
             }
