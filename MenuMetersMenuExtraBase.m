@@ -55,7 +55,7 @@
     NSLog(@"shouldn't happen");
     abort();
 }
--(void)timerXired:(id)notused
+-(void)timerFired:(id)notused
 {
     statusItem.button.image=self.image;
 /*    NSImage*image=self.image;
@@ -67,7 +67,7 @@
     }];
     statusItem.button.image=canvas;*/
 }
--(void)timerFired:(id)notused
+-(void)timerXired:(id)notused
 {
     NSImage *oldCanvas = statusItem.button.image;
     NSImage *canvas = oldCanvas;
