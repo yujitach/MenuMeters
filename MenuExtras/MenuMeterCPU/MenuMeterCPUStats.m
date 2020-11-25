@@ -94,20 +94,22 @@ uint32_t packageCount;
 	uint32_t clockRate = 0;
 	int mib[2] = { CTL_HW, HW_CPU_FREQ };
 	size_t sysctlLength = sizeof(clockRate);
-	if (sysctl(mib, 2, &clockRate, &sysctlLength, NULL, 0)) {
-		return nil;
-	}
-	if (clockRate > 1000000000) {
-		clockSpeed = [NSString stringWithFormat:@"%@GHz",
-							[twoDigitFloatFormatter stringForObjectValue:
-								[NSNumber numberWithFloat:(float)clockRate / 1000000000]]];
-	}
-	else {
-		clockSpeed = [NSString stringWithFormat:@"%dMHz", clockRate / 1000000];
-	}
-	if (!clockSpeed) {
-		return nil;
-	}
+	if (sysctl(mib, 2, &clockRate, &sysctlLength, NULL, 0) == 0) {
+        if (clockRate > 1000000000) {
+            clockSpeed = [NSString stringWithFormat:@"%@GHz",
+                                [twoDigitFloatFormatter stringForObjectValue:
+                                    [NSNumber numberWithFloat:(float)clockRate / 1000000000]]];
+        }
+        else {
+            clockSpeed = [NSString stringWithFormat:@"%dMHz", clockRate / 1000000];
+        }
+        if (!clockSpeed) {
+            return nil;
+        }
+    } else {
+        // Apple Silicon does not return a clockspeed, work around this for now
+        clockSpeed = [NSString stringWithFormat:@"Unknown"];
+    }
 
 	// Gather the cpu count
 	sysctlLength = sizeof(cpuCount);
