@@ -136,6 +136,7 @@
 @implementation MenuMeterNetExtra
 {
     ImageHostController*ihc;
+    int counter;
 }
 - init {
 
@@ -1104,6 +1105,8 @@
 	
 	NSString *txString = [self menubarThroughputStringForBytes:txValue inInterval:sampleInterval];
 	NSString *rxString = [self menubarThroughputStringForBytes:rxValue inInterval:sampleInterval];
+    txString=[NSString stringWithFormat:@"%@: %@",@(counter),txString];
+    rxString=[NSString stringWithFormat:@"%@: %@",@(counter),rxString];
 	NSAttributedString *renderTxString = [[NSAttributedString alloc]
 												initWithString:txString
 													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -1158,7 +1161,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)timerFired:(NSTimer *)timer {
-
+    counter++;
 	// Get new config
 	preferredInterfaceConfig = [netConfig interfaceConfigForInterfaceName:[ourPrefs netPreferInterface]];
 
