@@ -22,7 +22,7 @@
 //
 
 #import "MenuMeterNetExtra.h"
-
+#import "ImageHostController.h"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -134,14 +134,20 @@
 ///////////////////////////////////////////////////////////////
 
 @implementation MenuMeterNetExtra
-
+{
+    ImageHostController*ihc;
+}
 - init {
 
     self = [super initWithBundleID:kNetMenuBundleID];
 	if (!self) {
 		return nil;
 	}
-
+    
+    ihc=[[ImageHostController alloc] initWithWindowNibName:@"ImageHostController"];
+    [ihc loadWindow];
+    [ihc.window makeKeyAndOrderFront:nil];
+    
     ourPrefs = [MenuMeterDefaults sharedMenuMeterDefaults];
     if (!ourPrefs) {
 		NSLog(@"MenuMeterCPU unable to connect to preferences. Abort.");
@@ -334,6 +340,9 @@
 	}
 
 	// Send it back for the view to render
+    
+    [ihc setImage:currentImage];
+    
 	return currentImage;
 
 } // image

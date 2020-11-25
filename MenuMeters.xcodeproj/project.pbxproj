@@ -67,6 +67,9 @@
 		33883D542365E78300B8AC14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
 		339B8C90237FE17F008B9755 /* MenuMeters.icns in Resources */ = {isa = PBXBuildFile; fileRef = 339B8C8F237FE17F008B9755 /* MenuMeters.icns */; };
 		33F0921923673DAC00953CAB /* releases.html in Resources */ = {isa = PBXBuildFile; fileRef = 33F0921823673DAC00953CAB /* releases.html */; };
+		33FE98AC256E38C4007551DF /* ImageHostController.h in Headers */ = {isa = PBXBuildFile; fileRef = 33FE98A9256E38C4007551DF /* ImageHostController.h */; };
+		33FE98AD256E38C4007551DF /* ImageHostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FE98AA256E38C4007551DF /* ImageHostController.m */; };
+		33FE98AE256E38C4007551DF /* ImageHostController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FE98AB256E38C4007551DF /* ImageHostController.xib */; };
 		6349C10924BB733300C6FC99 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		6349C10A24BB733300C6FC99 /* MenuMeterDiskExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95D03D49AE400A87BC9 /* MenuMeterDiskExtra.m */; };
 		6349C10B24BB733300C6FC99 /* MenuMeterWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */; };
@@ -174,6 +177,9 @@
 		339B8C8F237FE17F008B9755 /* MenuMeters.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MenuMeters.icns; sourceTree = "<group>"; };
 		33F092172367387B00953CAB /* MenuMeters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MenuMeters.entitlements; sourceTree = "<group>"; };
 		33F0921823673DAC00953CAB /* releases.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = releases.html; sourceTree = "<group>"; };
+		33FE98A9256E38C4007551DF /* ImageHostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageHostController.h; sourceTree = "<group>"; };
+		33FE98AA256E38C4007551DF /* ImageHostController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageHostController.m; sourceTree = "<group>"; };
+		33FE98AB256E38C4007551DF /* ImageHostController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageHostController.xib; sourceTree = "<group>"; };
 		538B152824465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
 		538B152924465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DiskImageSet.strings; sourceTree = "<group>"; };
 		538B152A24465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -416,6 +422,9 @@
 				D4FC162403D26AAA00A87BC9 /* MenuMeterNetStats.m */,
 				D45B6FA203D3BACD00A87BC9 /* MenuMeterNetPPP.h */,
 				D45B6FA103D3BACD00A87BC9 /* MenuMeterNetPPP.m */,
+				33FE98A9256E38C4007551DF /* ImageHostController.h */,
+				33FE98AA256E38C4007551DF /* ImageHostController.m */,
+				33FE98AB256E38C4007551DF /* ImageHostController.xib */,
 			);
 			name = MenuMeterNet;
 			path = MenuExtras/MenuMeterNet;
@@ -577,6 +586,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33FE98AC256E38C4007551DF /* ImageHostController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +694,7 @@
 				339B8C90237FE17F008B9755 /* MenuMeters.icns in Resources */,
 				33883D0F23655C9900B8AC14 /* Color ArrowsWrite.tiff in Resources */,
 				33883D1023655C9900B8AC14 /* Color ArrowsRead.tiff in Resources */,
+				33FE98AE256E38C4007551DF /* ImageHostController.xib in Resources */,
 				33883D1323655C9900B8AC14 /* Color ArrowsIdle.tiff in Resources */,
 				33883D1623655C9900B8AC14 /* Color ArrowsReadWrite.tiff in Resources */,
 				33883D1723655C9900B8AC14 /* Dark ArrowsIdle.tiff in Resources */,
@@ -803,6 +814,7 @@
 				33883CFE23655C9900B8AC14 /* MenuMeterDiskIO.m in Sources */,
 				33883D3423655CBF00B8AC14 /* MenuMetersPref.m in Sources */,
 				33883CFF23655C9900B8AC14 /* AppDelegate.m in Sources */,
+				33FE98AD256E38C4007551DF /* ImageHostController.m in Sources */,
 				33883D0023655C9900B8AC14 /* MenuMeterNetPPP.m in Sources */,
 				33883D0223655C9900B8AC14 /* MenuMeterNetExtra.m in Sources */,
 				33883D0423655C9900B8AC14 /* MenuMeterNetConfig.m in Sources */,
