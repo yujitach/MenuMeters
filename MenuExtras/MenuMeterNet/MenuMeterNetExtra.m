@@ -1190,9 +1190,9 @@
 	lastSampleDate = [NSDate date];
     }
 	// If the menu is down force it to update
-	if (self.isMenuVisible) {
+//	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
-	}
+//	}
 
 	[super timerFired:timer];
 } // timerFired
