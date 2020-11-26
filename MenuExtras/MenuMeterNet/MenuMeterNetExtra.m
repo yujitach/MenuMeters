@@ -1582,7 +1582,7 @@
 	}
 
 	// Force initial update
-	[self timerFired:nil];
+    statusItem.button.image=self.image;
 } // configFromPrefs
 
 ///////////////////////////////////////////////////////////////

@@ -105,7 +105,7 @@
             }
             statusItem.menu = self.menu;
             statusItem.menu.delegate = self;
-            [statusItem.button addObserver:self forKeyPath:@"effectiveAppearance" options:NSKeyValueObservingOptionNew context:nil];
+            [statusItem.button addObserver:self forKeyPath:@"effectiveAppearance" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         }
         [updateTimer invalidate];
         updateTimer=[NSTimer timerWithTimeInterval:interval target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
@@ -125,7 +125,11 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if(object==statusItem.button && [keyPath isEqualToString:@"effectiveAppearance"]){
-        [self configFromPrefs:nil];
+        NSAppearance*old=change[NSKeyValueChangeOldKey];
+        NSAppearance*new=change[NSKeyValueChangeNewKey];
+        if(![old.name isEqualToString:new.name]){
+            [self configFromPrefs:nil];
+        }
     }
 
     if(@available(macOS 10.12,*)){
