@@ -148,12 +148,12 @@
     ihc=[[ImageHostController alloc] initWithWindowNibName:@"ImageHostController"];
     [ihc loadWindow];
     [ihc.window makeKeyAndOrderFront:nil];
-    
     ourPrefs = [MenuMeterDefaults sharedMenuMeterDefaults];
     if (!ourPrefs) {
 		NSLog(@"MenuMeterCPU unable to connect to preferences. Abort.");
 		return nil;
 	}
+    [ihc prependMessage:[NSString stringWithFormat:@"netInterval:%@\n",@([ourPrefs netInterval])]];
 
 	// Build our data gatherers
 	netConfig = [[MenuMeterNetConfig alloc] init];
@@ -1196,7 +1196,7 @@
 	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
 	}
-
+    [ihc prependMessage:[NSString stringWithFormat:@"%@ # %@ # %@\n",@(counter),lastSampleDate,@(currentSampleInterval)]];
 	[super timerFired:timer];
 } // timerFired
 

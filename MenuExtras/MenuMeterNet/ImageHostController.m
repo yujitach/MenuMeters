@@ -8,11 +8,13 @@
 #import "ImageHostController.h"
 
 @interface ImageHostController ()
-@property (weak) IBOutlet NSImageView *imageView;
+@property (retain) IBOutlet NSImageView *imageView;
+@property (retain) IBOutlet NSTextView *textView;
 
 @end
 
 @implementation ImageHostController
+
 
 - (void)windowDidLoad {
     [super windowDidLoad];
@@ -23,5 +25,17 @@
 -(void)setImage:(NSImage*)image
 {
     self.imageView.image=image;
+}
+-(void)prependMessage:(NSString *)string
+{
+    [self.textView.textStorage replaceCharactersInRange:NSMakeRange(0, 0) withString:string];
+}
+
+- (IBAction)copyContentToPasteboard:(id)sender {
+    NSPasteboard*pb=[NSPasteboard generalPasteboard];
+    [pb declareTypes:@[NSPasteboardTypeString] owner:self];
+    [pb setString:self.textView.string forType:NSPasteboardTypeString];
+    [[NSSound soundNamed:@"Submarine"] play];
+
 }
 @end
