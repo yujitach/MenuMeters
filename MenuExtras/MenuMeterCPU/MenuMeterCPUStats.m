@@ -35,6 +35,7 @@
 
 @interface MenuMeterCPUStats (PrivateMethods)
 - (NSString *)cpuPrettyName;
+- (UInt32)clockFrequency;
 @end
 
 
@@ -91,30 +92,22 @@ uint32_t packageCount;
 	}
 
 	// Gather the clock rate string
-	uint32_t clockRate = 0;
-	int mib[2] = { CTL_HW, HW_CPU_FREQ };
-	size_t sysctlLength = sizeof(clockRate);
-	if (sysctl(mib, 2, &clockRate, &sysctlLength, NULL, 0) == 0) {
-        if (clockRate > 1000000000) {
-            clockSpeed = [NSString stringWithFormat:@"%@GHz",
-                                [twoDigitFloatFormatter stringForObjectValue:
-                                    [NSNumber numberWithFloat:(float)clockRate / 1000000000]]];
-        }
-        else {
-            clockSpeed = [NSString stringWithFormat:@"%dMHz", clockRate / 1000000];
-        }
-        if (!clockSpeed) {
-            return nil;
-        }
+    uint32_t clockRate = [self clockFrequency];
+    if (clockRate > 1000000000) {
+        clockSpeed = [NSString stringWithFormat:@"%@GHz",
+                            [twoDigitFloatFormatter stringForObjectValue:
+                                [NSNumber numberWithFloat:(float)clockRate / 1000000000]]];
     } else {
-        // Apple Silicon does not return a clockspeed, work around this for now
-        clockSpeed = [NSString stringWithFormat:@"Unknown"];
+        clockSpeed = [NSString stringWithFormat:@"%dMHz", clockRate / 1000000];
+    }
+    if (!clockSpeed) {
+        return nil;
     }
 
 	// Gather the cpu count
-	sysctlLength = sizeof(cpuCount);
-	mib[0] = CTL_HW;
-	mib[1] = HW_NCPU;
+
+    size_t sysctlLength = sizeof(cpuCount);
+    int mib[2] = { CTL_HW, HW_NCPU };
 	if (sysctl(mib, 2, &cpuCount, &sysctlLength, NULL, 0)) {
 		return nil;
 	}
@@ -422,5 +415,29 @@ uint32_t packageCount;
 #endif
 
 } // _cpuPrettyName
+
+- (UInt32) clockFrequency {
+    uint32_t clockRate = 0;
+
+    // First try with sysctl
+    int mib[2] = { CTL_HW, HW_CPU_FREQ };
+    size_t sysctlLength = sizeof(clockRate);
+    int res = sysctl(mib, 2, &clockRate, &sysctlLength, NULL, 0);
+
+    // Try using IOKit
+    if (res != 0) {
+        mach_port_t platformExpertDevice = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
+        CFTypeRef platformClockFrequency = IORegistryEntryCreateCFProperty(platformExpertDevice, CFSTR("clock-frequency"), kCFAllocatorDefault, 0);
+        if (CFGetTypeID(platformClockFrequency) == CFDataGetTypeID()) {
+            const CFDataRef platformClockFrequencyData = (const CFDataRef) platformClockFrequency;
+            const UInt8* clockFreqBytes = CFDataGetBytePtr(platformClockFrequencyData);
+            clockRate = CFSwapInt32BigToHost(*(UInt32*)(clockFreqBytes)) * 1000;
+            CFRelease(platformClockFrequency);
+        }
+        IOObjectRelease(platformExpertDevice);
+    }
+
+    return clockRate;
+} // getClockFrequency
 
 @end
