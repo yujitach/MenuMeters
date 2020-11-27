@@ -5,5 +5,4 @@ env:
 osx_image:
     - xcode12
     - xcode11
-    - xcode10
 script: "[ \"$(sw_vers -productVersion | cut -b1-5)\" = '10.13' ] && HARD='ENABLE_HARDENED_RUNTIME=NO' ; set -o pipefail && xcodebuild -project MenuMeters.xcodeproj -scheme \"$MM_SCHEME\" -configuration Release build CODE_SIGN_IDENTITY='-' DEVELOPMENT_TEAM='' $HARD | xcpretty"
