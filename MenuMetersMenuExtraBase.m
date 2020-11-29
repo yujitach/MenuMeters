@@ -19,7 +19,7 @@
 @implementation MenuMetersMenuExtraBase
 -(NSColor*)colorByAdjustingForLightDark:(NSColor*)c
 {
-    return [c blendedColorWithFraction:[[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"]/100  ofColor:self.isDark?[NSColor whiteColor]:[NSColor blackColor]];
+    return [c blendedColorWithFraction:[[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"]/100  ofColor:self.isDark?[[NSColor whiteColor] colorWithAlphaComponent:[c alphaComponent]]:[[NSColor blackColor] colorWithAlphaComponent:[c alphaComponent]]];
 }
 -(instancetype)initWithBundleID:(NSString*)bundleID
 {
