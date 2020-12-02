@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17156" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17156"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -43,7 +43,6 @@
                 <outlet property="diskMeterToggle" destination="202" id="211"/>
                 <outlet property="diskSelectMode" destination="501" id="506"/>
                 <outlet property="memActiveColor" destination="233" id="251"/>
-                <outlet property="memColorTab" destination="595" id="608"/>
                 <outlet property="memCompressedColor" destination="456" id="1hu-xb-WKb"/>
                 <outlet property="memDisplayMode" destination="221" id="248"/>
                 <outlet property="memFreeColor" destination="603" id="607"/>
@@ -735,131 +734,108 @@
                                                         <action selector="memPrefChange:" target="-2" id="257"/>
                                                     </connections>
                                                 </button>
-                                                <tabView fixedFrame="YES" drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="595">
-                                                    <rect key="frame" x="52" y="166" width="356" height="71"/>
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="231">
+                                                    <rect key="frame" x="299" y="178" width="53" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <font key="font" metaFont="system"/>
-                                                    <tabViewItems>
-                                                        <tabViewItem identifier="" id="596">
-                                                            <view key="view" id="598">
-                                                                <rect key="frame" x="0.0" y="0.0" width="356" height="71"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                <subviews>
-                                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="231">
-                                                                        <rect key="frame" x="200" y="9" width="53" height="30"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <connections>
-                                                                            <action selector="memPrefChange:" target="-2" id="261"/>
-                                                                        </connections>
-                                                                    </colorWell>
-                                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="232">
-                                                                        <rect key="frame" x="111" y="9" width="53" height="30"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <connections>
-                                                                            <action selector="memPrefChange:" target="-2" id="262"/>
-                                                                        </connections>
-                                                                    </colorWell>
-                                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="233">
-                                                                        <rect key="frame" x="22" y="9" width="53" height="30"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <connections>
-                                                                            <action selector="memPrefChange:" target="-2" id="260"/>
-                                                                        </connections>
-                                                                    </colorWell>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="234">
-                                                                        <rect key="frame" x="-2" y="47" width="100" height="14"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Active" id="1047">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
-                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="235">
-                                                                        <rect key="frame" x="176" y="47" width="100" height="14"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Inactive" id="1048">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
-                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="236">
-                                                                        <rect key="frame" x="87" y="47" width="100" height="14"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Wired" id="1049">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
-                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="456">
-                                                                        <rect key="frame" x="286" y="9" width="53" height="30"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <connections>
-                                                                            <action selector="memPrefChange:" target="-2" id="463"/>
-                                                                        </connections>
-                                                                    </colorWell>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NzQ-0R-xAe">
-                                                                        <rect key="frame" x="263" y="47" width="96" height="14"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Compressed" id="ex0-hf-q5R">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
-                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                </subviews>
-                                                            </view>
-                                                        </tabViewItem>
-                                                        <tabViewItem identifier="" id="597">
-                                                            <view key="view" ambiguous="YES" id="599">
-                                                                <rect key="frame" x="0.0" y="0.0" width="356" height="71"/>
-                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                <subviews>
-                                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="600">
-                                                                        <rect key="frame" x="199" y="9" width="53" height="30"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <connections>
-                                                                            <action selector="memPrefChange:" target="-2" id="605"/>
-                                                                        </connections>
-                                                                    </colorWell>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="601">
-                                                                        <rect key="frame" x="121" y="47" width="35" height="14"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Free" id="1050">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
-                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="602">
-                                                                        <rect key="frame" x="208" y="47" width="44" height="14"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Used" id="1051">
-                                                                            <font key="font" metaFont="controlContent" size="11"/>
-                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="603">
-                                                                        <rect key="frame" x="110" y="9" width="53" height="30"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                        <connections>
-                                                                            <action selector="memPrefChange:" target="-2" id="604"/>
-                                                                        </connections>
-                                                                    </colorWell>
-                                                                </subviews>
-                                                            </view>
-                                                        </tabViewItem>
-                                                    </tabViewItems>
-                                                </tabView>
+                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="261"/>
+                                                    </connections>
+                                                </colorWell>
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="232">
+                                                    <rect key="frame" x="210" y="178" width="53" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="262"/>
+                                                    </connections>
+                                                </colorWell>
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="233">
+                                                    <rect key="frame" x="121" y="178" width="53" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="260"/>
+                                                    </connections>
+                                                </colorWell>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="234">
+                                                    <rect key="frame" x="97" y="216" width="100" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Active" id="1047">
+                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="235">
+                                                    <rect key="frame" x="275" y="216" width="100" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Inactive" id="1048">
+                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="236">
+                                                    <rect key="frame" x="186" y="216" width="100" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Wired" id="1049">
+                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="456">
+                                                    <rect key="frame" x="385" y="178" width="53" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="463"/>
+                                                    </connections>
+                                                </colorWell>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NzQ-0R-xAe">
+                                                    <rect key="frame" x="362" y="216" width="96" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Compressed" id="ex0-hf-q5R">
+                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="600">
+                                                    <rect key="frame" x="299" y="42" width="53" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="605"/>
+                                                    </connections>
+                                                </colorWell>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="601">
+                                                    <rect key="frame" x="221" y="80" width="35" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Free" id="1050">
+                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="602">
+                                                    <rect key="frame" x="308" y="80" width="44" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Used" id="1051">
+                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="603">
+                                                    <rect key="frame" x="210" y="42" width="53" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="604"/>
+                                                    </connections>
+                                                </colorWell>
                                                 <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="515">
                                                     <rect key="frame" x="140" y="317" width="392" height="5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -892,40 +868,6 @@
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="451">
-                                                    <rect key="frame" x="227" y="149" width="100" height="14"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Pageout" id="1042">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="450">
-                                                    <rect key="frame" x="251" y="111" width="53" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="memPrefChange:" target="-2" id="462"/>
-                                                    </connections>
-                                                </colorWell>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="449">
-                                                    <rect key="frame" x="138" y="149" width="100" height="14"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Pagein" id="1041">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="448">
-                                                    <rect key="frame" x="162" y="111" width="53" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <connections>
-                                                        <action selector="memPrefChange:" target="-2" id="461"/>
-                                                    </connections>
-                                                </colorWell>
                                                 <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="431">
                                                     <rect key="frame" x="68" y="243" width="464" height="5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -950,6 +892,40 @@
                                                         <action selector="memPrefChange:" target="-2" id="v1t-AE-YHF"/>
                                                     </connections>
                                                 </button>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="451">
+                                                    <rect key="frame" x="275" y="146" width="100" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Pageout" id="1042">
+                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="450">
+                                                    <rect key="frame" x="299" y="108" width="53" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="462"/>
+                                                    </connections>
+                                                </colorWell>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="449">
+                                                    <rect key="frame" x="186" y="146" width="100" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Pagein" id="1041">
+                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="448">
+                                                    <rect key="frame" x="210" y="108" width="53" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="color" red="0.058130499000000002" green="0.055541898999999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="memPrefChange:" target="-2" id="461"/>
+                                                    </connections>
+                                                </colorWell>
                                             </subviews>
                                         </customView>
                                     </subviews>
@@ -1328,7 +1304,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="U9X-wn-4af">
                                                 <rect key="frame" x="0.0" y="0.0" width="554" height="483"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="U5D-Mp-8pb">
                                                         <rect key="frame" x="0.0" y="0.0" width="554" height="483"/>

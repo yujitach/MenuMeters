@@ -761,10 +761,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		(([memDisplayMode indexOfSelectedItem] + 1) == kMemDisplayBar) ||
 		(([memDisplayMode indexOfSelectedItem] + 1) == kMemDisplayGraph)) {
 		[memFreeUsedLabeling setEnabled:NO];
-		[memColorTab selectTabViewItemAtIndex:kMemActiveWiredInactiveColorTab];
 	} else {
 		[memFreeUsedLabeling setEnabled:YES];
-		[memColorTab selectTabViewItemAtIndex:kMemUsedFreeColorTab];
 	}
 	if (([memDisplayMode indexOfSelectedItem] + 1) == kMemDisplayGraph) {
 		[memGraphWidth setEnabled:YES];

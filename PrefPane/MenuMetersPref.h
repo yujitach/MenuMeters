@@ -96,7 +96,6 @@ NSWindowController<NSWindowDelegate>
 	IBOutlet NSButton				*memPageIndicator;
 	IBOutlet NSSlider				*memGraphWidth;
 	IBOutlet NSTextField			*memGraphWidthLabel;
-	IBOutlet NSTabView				*memColorTab;
 	IBOutlet NSColorWell			*memActiveColor;
 	IBOutlet NSColorWell			*memInactiveColor;
 	IBOutlet NSColorWell			*memWiredColor;
