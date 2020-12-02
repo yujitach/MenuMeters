@@ -486,12 +486,8 @@
 	[renderPath fill];
 	totalArc += inactiveMB / totalMB;
 
-	// Finish arc with black or gray
-	if (self.isDark) {
-		[[NSColor darkGrayColor] set];		
-	} else {
-		[[NSColor blackColor] set];
-	}
+	// Finish arc with the default color
+        [fgMenuThemeColor set];
 
 	// Close the circle if needed
 	if (totalArc < 1) {
@@ -580,11 +576,7 @@
   [activeColor set];
   [pressurePath fill];
   
-  if (self.isDark) {
-    [[NSColor darkGrayColor] set];
-  } else {
-    [fgMenuThemeColor set];
-  }
+  [fgMenuThemeColor set];
   [framePath stroke];
   
   // Reset
@@ -635,11 +627,7 @@
 	[activePath fill];
 	[wireColor set];
 	[wirePath fill];
-	if (self.isDark) {
-		[[NSColor darkGrayColor] set];
-	} else {
-		[fgMenuThemeColor set];
-	}
+	[fgMenuThemeColor set];
 	[framePath stroke];
 
 	// Reset
