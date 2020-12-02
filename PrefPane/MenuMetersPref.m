@@ -609,13 +609,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [cpuTemperatureColor setColor:[ourPrefs cpuTemperatureColor]];
 	[cpuIntervalDisplay takeDoubleValueFrom:cpuInterval];
 
-	if ([cpuPercentage state]==NSOnState) {
+/*	if ([cpuPercentage state]==NSOnState) {
 		[cpuPercentMode setEnabled:YES];
 		[cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
 	} else {
 		[cpuPercentMode setEnabled:NO];
         [cpuPercentModeLabel setTextColor:[NSColor lightGrayColor]];
 	}
+ */
 	if ([cpuGraph state]==NSOnState) {
 		[cpuGraphWidth setEnabled:YES];
 		[cpuGraphWidthLabel setTextColor:[NSColor controlTextColor]];

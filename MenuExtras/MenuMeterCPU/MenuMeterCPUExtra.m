@@ -83,7 +83,9 @@
 ///////////////////////////////////////////////////////////////
 
 @implementation MenuMeterCPUExtra
-
+{
+    float cpuTemperatureDisplayWidth;
+}
 - init {
 
 	self = [super initWithBundleID:kCPUMenuBundleID];
@@ -239,7 +241,7 @@
     }
     if ([ourPrefs cpuShowTemperature]) {
         [self renderSingleTemperatureIntoImage:currentImage atOffset:renderOffset];
-        renderOffset += kCPUTemperatureDisplayWidth;
+        renderOffset += cpuTemperatureDisplayWidth;
     }
     if ([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) {
         // Calculate the minimum number of columns that will be needed
@@ -486,6 +488,14 @@
 
 } // renderSplitPercentIntoImage:forProcessor:atOffset:
 
+-(NSAttributedString*)renderTemperatureStringForString:(NSString*)temperatureString
+{
+    return [[NSAttributedString alloc]
+        initWithString:temperatureString
+        attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:self.fontSize],
+                    NSFontAttributeName, temperatureColor, NSForegroundColorAttributeName,
+                    nil]];
+}
 - (void)renderSingleTemperatureIntoImage:(NSImage *)image atOffset:(float)offset {
     float_t celsius = [cpuInfo cpuProximityTemperature];
     float_t fahrenheit=celsius*1.8+32;
@@ -507,14 +517,10 @@
             temperatureString=@"???";
     }
     [image lockFocus];
-    NSAttributedString *renderTemperatureString = [[NSAttributedString alloc]
-         initWithString:temperatureString
-         attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:9.5f],
-                     NSFontAttributeName, temperatureColor, NSForegroundColorAttributeName,
-                     nil]];
+    NSAttributedString *renderTemperatureString =[self renderTemperatureStringForString:temperatureString];
     [renderTemperatureString drawAtPoint:NSMakePoint(
-         kCPUTemperatureDisplayWidth - (float)round([renderTemperatureString size].width) - 1,
-         (float)floor(([image size].height-[renderTemperatureString size].height) / 2)
+         cpuTemperatureDisplayWidth - (float)round([renderTemperatureString size].width) - 1,
+         (float)ceilf(([image size].height-[renderTemperatureString size].height) / 2)
     )];
     [image unlockFocus];
 } // renderSingleTemperatureIntoImage:atOffset:
@@ -681,7 +687,17 @@
 //	Prefs
 //
 ///////////////////////////////////////////////////////////////
-
+-(float)fontSize
+{
+    float fontSize=14;
+    if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
+        fontSize = 11;
+    }
+    if([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit){
+        fontSize = 9.5f;
+    }
+    return fontSize;
+}
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
     [super configDisplay:kCPUMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs cpuInterval]];
@@ -711,10 +727,7 @@
 		([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall)) {
 
 		singlePercentCache = [NSMutableArray array];
-		float fontSize = 14;
-		if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
-			fontSize = 11;
-		}
+		float fontSize = self.fontSize;
 		NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
 											[NSFont systemFontOfSize:fontSize],
 											NSFontAttributeName,
@@ -740,8 +753,9 @@
 		percentWidth = (float)round([[singlePercentCache lastObject] size].width) + kCPUPercentDisplayBorderWidth;
 	} else if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
 		splitUserPercentCache = [NSMutableArray array];
+                float fontSize=self.fontSize;
 		NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-											[NSFont systemFontOfSize:9.5f],
+											[NSFont systemFontOfSize:fontSize],
 											NSFontAttributeName,
 											userColor,
 											NSForegroundColorAttributeName,
@@ -799,7 +813,8 @@
         }
     }
     if ([ourPrefs cpuShowTemperature]) {
-        menuWidth += kCPUTemperatureDisplayWidth;
+        cpuTemperatureDisplayWidth=1+[self renderTemperatureStringForString:@"66.6℃"].size.width;
+        menuWidth += cpuTemperatureDisplayWidth;
     }
     if(![ourPrefs cpuShowTemperature] && [ourPrefs cpuDisplayMode]==0){
         menuWidth=kCPULabelOnlyWidth;
