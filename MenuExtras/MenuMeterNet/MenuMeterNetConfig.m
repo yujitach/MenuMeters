@@ -616,7 +616,29 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     return output;
 }
 
-- (NSNumber *)speedForInterfaceName:(NSString *)bsdInterface {
+- (NSNumber *)speedForInterfaceName:(NSString*)bsdInterface{
+    NSDictionary* airportDict=[self sysconfigValueForKey:[NSString stringWithFormat:@"Setup:/Network/Interface/%@/AirPort",bsdInterface]];
+    if(airportDict){
+        return [self speedForAirport];
+    }
+
+    NSNumber*x=[self speedForInterfaceNameViaIOKit:bsdInterface];
+    if(!x){
+        x=[self speedForInterfaceNameViaIfConfig:bsdInterface];
+    }
+    return x;
+}
+- (NSNumber*)speedForAirport
+{
+    NSString*line=[self runCommand:@"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep maxRate"];
+    NSRange r=[line rangeOfString:@":"];
+    if(r.location==NSNotFound){
+        return nil;
+    }
+    line=[line substringFromIndex:r.location+1];
+    return [NSNumber numberWithDouble:[line doubleValue]*1000*1000];
+}
+- (NSNumber *)speedForInterfaceNameViaIfConfig:(NSString *)bsdInterface {
 
 	if (!bsdInterface) return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
     NSLog(@"getting the speed for %@",bsdInterface);
@@ -653,15 +675,15 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     
     line=[line substringToIndex:r.location];
     return [NSNumber numberWithDouble:[line doubleValue]*factor];
-
-    /*
+}
+- (NSNumber *)speedForInterfaceNameViaIOKit:(NSString *)bsdInterface {
 	// Get the speed from IOKit
 	io_iterator_t iterator;
 	IOServiceGetMatchingServices(masterPort,
 								 IOBSDNameMatching(masterPort, kNilOptions, [bsdInterface UTF8String]),
 								 &iterator);
 	// If we didn't get an iterator guess 10Mbit
-	if (!iterator) return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
+    if (!iterator) return nil;
 
 	// Otherwise poke around IOKit
 	io_registry_entry_t	regEntry = IOIteratorNext(iterator);
@@ -686,9 +708,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if (linkSpeed && ([linkSpeed unsignedLongLongValue] > 0)) {
 		return linkSpeed;
 	} else {
-		return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
+        return nil;
 	}
-     */
 } // speedForInterfaceName
 
 - (NSDictionary *)sysconfigValueForKey:(NSString *)key {
