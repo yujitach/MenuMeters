@@ -68,7 +68,16 @@
 // 	and top, does not require root access
 //
 ///////////////////////////////////////////////////////////////
-
+- (void)resetTotalsForInterfaceName:(NSString*)interfaceName
+{
+    NSDictionary *oldStats = [lastData objectForKey:interfaceName];
+    if(oldStats){
+        NSMutableDictionary*x=[oldStats mutableCopy];
+        x[@"totalin"]=@(0);
+        x[@"totalout"]=@(0);
+        lastData[interfaceName]=x;
+    }
+}
 - (NSDictionary *)netStatsForInterval:(NSTimeInterval)sampleInterval {
 
 	// Get sizing info from sysctl and resize as needed.
