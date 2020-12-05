@@ -74,7 +74,7 @@
 #define kOpenProcessViewerTitle				@"Open Process Viewer"
 #define kOpenConsoleTitle					@"Open Console"
 #define kNoInfoErrorMessage					@"No info available"
-
+#define kCPUPowerLimitStatusTitle @"CPU power limit:"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -168,6 +168,14 @@
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kCPUPowerLimitStatusTitle value:nil table:nil]
+                                                  action:nil
+                                           keyEquivalent:@""];
+    [menuItem setEnabled:NO];
+    menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    [menuItem setEnabled:NO];
+
+    
     // Add top kCPUrocessCountMax most CPU intensive processes
     menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kProcessTitle value:nil table:nil]
                                                   action:nil
@@ -312,6 +320,10 @@
 	// Load
 	title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo loadAverage]];
 	if (title) LiveUpdateMenuItemTitle(extraMenu, kCPULoadInfoMenuIndex, title);
+
+    title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo cpuPowerLimitStatus]];
+    if (title) LiveUpdateMenuItemTitle(extraMenu, kCPUPowerLimitInfoMenuIndex, title);
+
     
     // Top CPU intensive processes
     NSArray* processes = ([ourPrefs cpuMaxProcessCount] > 0 ? [cpuTopProcesses runningProcessesByCPUUsage:[ourPrefs cpuMaxProcessCount]] : nil);    

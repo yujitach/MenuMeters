@@ -47,6 +47,10 @@
 // automatically localized by NSNumberFormatter)
 "%@, %@, %@" = "%1$@, %2$@, %3$@";
 
+// CPU power limit status
+"CPU power limit:" = "CPU power limit:";
+"speed %@%%, scheduler %@%%" = "speed %@%%, scheduler %@%%";
+
 // Open Process Viewer/Open Console
 "Open Process Viewer" = "Open Process Viewer";
 "Open Activity Monitor" = "Open Activity Monitor";

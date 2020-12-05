@@ -51,7 +51,7 @@
 #define kNoInfoErrorMessage					@"No info available"
 #define kHyperThreadsPerCoreFormat			@" (%@ hyperthreads per core)"
 #define kPhysicalCoresFormat				@"%@%@ physical cores"
-#define kCPUPowerLimitStatusFormat               @"Power limit: speed %@%%, scheduler %@%%"
+#define kCPUPowerLimitStatusFormat               @"speed %@%%, scheduler %@%%"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -158,6 +158,8 @@ uint32_t packageCount;
 							kHyperThreadsPerCoreFormat,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kPhysicalCoresFormat value:nil table:nil],
 							kPhysicalCoresFormat,
+                                                        [[NSBundle bundleForClass:[self class]] localizedStringForKey:kCPUPowerLimitStatusFormat value:nil table:nil],
+                                                        kCPUPowerLimitStatusFormat,
 							nil];
 	if (!localizedStrings) {
 		return nil;
