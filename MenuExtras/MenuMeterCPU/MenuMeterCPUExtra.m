@@ -464,6 +464,10 @@
     if ((system < 0) || (user < 0)) {
         return;
     }
+    if ([ourPrefs cpuSumAllProcsPercent]) {
+           system *= [cpuInfo numberOfCPUs];
+            user  *= [cpuInfo numberOfCPUs];
+    }
 
 	// Get the prerendered text and draw
 	NSImage *systemImage = [splitSystemPercentCache objectAtIndex:roundf(system * 100.0f)];
