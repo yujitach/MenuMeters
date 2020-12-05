@@ -764,7 +764,11 @@
 											userColor,
 											NSForegroundColorAttributeName,
 											nil];
-		for (int i = 0; i <= 100; i++) {
+        int percentLimit = 100;
+        if ([ourPrefs cpuSumAllProcsPercent]) {
+            percentLimit *= numberOfLogicalCPUs;
+        }
+		for (int i = 0; i <= percentLimit; i++) {
 			NSAttributedString *cacheText = [[NSAttributedString alloc]
 												initWithString:[NSString stringWithFormat:@"%d%%", i]
 													attributes:textAttributes];
