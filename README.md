@@ -4,8 +4,11 @@ My fork of MenuMeters for El Capitan, Sierra, High Sierra, Mojave and Catalina.
 # Usage:
 If you just want to use it, please go to http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/ or https://github.com/yujitach/MenuMeters/releases and download the binary. The detailed installation instruction is given in the former.
 
-# Other versions:
-There are further forks of my version of MenuMeters, which implement more features. You might want to try them out:
+# Other versions & related open source softwares:
+
+If you run Mojave and higher, https://github.com/exelban/stats is another menubar monitor which has a more modern look and feel, often offers more capability, and is maintained actively. It is heavily recommended.
+
+There are also further forks of my version of MenuMeters, which implement more features. You might want to try them out:
 
 - https://github.com/emcrisostomo/MenuMeters which has DMG installers 
 - https://gitlab.com/axet/MenuMeters which has new features in the CPU meter, etc.
