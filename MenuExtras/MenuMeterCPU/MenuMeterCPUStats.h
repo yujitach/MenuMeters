@@ -68,5 +68,6 @@
 - (NSString *)loadAverage;
 - (NSArray *)currentLoadBySorting:(BOOL)sorted;
 - (float_t)cpuProximityTemperature;
+- (NSString*)cpuPowerLimitStatus;
 
 @end

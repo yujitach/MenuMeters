@@ -41,7 +41,7 @@
 // the format of the load average floats themselves (load average floats are
 // automatically localized by NSNumberFormatter)
 "%@, %@, %@" = "1分間：%1$@、5分間：%2$@、15分間：%3$@";
-
+"Power limit: speed %@%%, scheduler %@%%" = "パワーリミット: スピード %@%%, スケジューラ %@%%";
 // Open Process Viewer/Open Console
 "Open Process Viewer" = "プロセスビューアを開く";
 "Open Activity Monitor" = "アクティビティモニタを開く";

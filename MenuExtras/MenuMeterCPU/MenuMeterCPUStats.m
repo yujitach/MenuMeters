@@ -22,7 +22,7 @@
 //
 
 #import "MenuMeterCPUStats.h"
-
+#import <IOKit/pwr_mgt/IOPM.h>
 
 @implementation MenuMeterCPULoad
 @end
@@ -51,7 +51,7 @@
 #define kNoInfoErrorMessage					@"No info available"
 #define kHyperThreadsPerCoreFormat			@" (%@ hyperthreads per core)"
 #define kPhysicalCoresFormat				@"%@%@ physical cores"
-
+#define kCPUPowerLimitStatusFormat               @"Power limit: speed %@%%, scheduler %@%%"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -439,5 +439,17 @@ uint32_t packageCount;
 
     return clockRate;
 } // getClockFrequency
-
+- (NSString*)cpuPowerLimitStatus
+{
+    CFDictionaryRef dic=NULL;
+    IOPMCopyCPUPowerStatus(&dic);
+    if(dic){
+        NSDictionary*d=CFBridgingRelease(dic);
+        NSNumber*speedLimit=d[[NSString stringWithUTF8String:kIOPMCPUPowerLimitProcessorSpeedKey]];
+        NSNumber*schedulerLimit=d[[NSString stringWithUTF8String:kIOPMCPUPowerLimitSchedulerTimeKey]];
+        return [NSString stringWithFormat:[localizedStrings objectForKey:kCPUPowerLimitStatusFormat],speedLimit,schedulerLimit];
+    }else{
+        return nil;
+    }
+}
 @end
