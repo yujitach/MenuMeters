@@ -62,6 +62,8 @@
 #define kUsageTitle							@"Memory Usage:"
 #define kPageStatsTitle						@"Memory Pages:"
 #define kVMStatsTitle						@"VM Statistics:"
+#define kMemPressureTitle                                       @"Memory Pressure:"
+#define kMemPressureFormat                                      @"%@%%\t(level %@)"
 #define kSwapStatsTitle						@"Swap Files:"
 #define kUsageFormat						@"%@ used, %@ free, %@ total"
 #define kActiveWiredFormat					@"%@ active, %@ wired"
@@ -153,6 +155,14 @@
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
+        // add items for memory pressure
+        menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kMemPressureTitle value:nil table:nil]
+                                                  action:nil
+                                           keyEquivalent:@""];
+        [menuItem setEnabled:NO];
+        menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+        [menuItem setEnabled:NO];
+
 	// Swap file stats menu item and placeholders
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kSwapStatsTitle value:nil table:nil]
 												  action:nil
@@ -201,6 +211,8 @@
 							kSwapSizeUsedFormat,
 							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMBLabel value:nil table:nil],
 							kMBLabel,
+                            [[NSBundle bundleForClass:[self class]] localizedStringForKey:kMemPressureFormat value:nil table:nil],
+                            kMemPressureFormat,
 							nil];
 	if (!localizedStrings) {
 		return nil;
@@ -377,6 +389,11 @@
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"faults"]],
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"cowfaults"]]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMFaultInfoMenuIndex, title);
+    
+        title=[NSString stringWithFormat:kMenuIndentFormat,
+               [NSString stringWithFormat:[localizedStrings objectForKey:kMemPressureFormat],[currentMemStats objectForKey:@"mempress"],[currentMemStats objectForKey:@"mempresslevel"]]];
+        LiveUpdateMenuItemTitle(extraMenu, kMemMemPressureInfoMenuIndex, title);
+    
 	// Swap count/path, Tiger swap encryptioninfo from Michael Nordmeyer (http://goodyworks.com)
 	if ([[currentSwapStats objectForKey:@"swapencrypted"] boolValue]) {
 		title = [NSString stringWithFormat:kMenuIndentFormat,
@@ -560,7 +577,7 @@
   float pressure = 0.2f;
   NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
   if (currentMemStats) {
-    pressure = [[currentMemStats objectForKey:@"mempress"] floatValue];
+    pressure = [[currentMemStats objectForKey:@"mempress"] intValue] / 100.0f;
   }
   
   if (pressure < 0) { pressure = 0; };

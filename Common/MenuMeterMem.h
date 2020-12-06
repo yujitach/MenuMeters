@@ -44,9 +44,10 @@
 #define kMemVMPageInfoMenuIndex				7
 #define kMemVMCacheInfoMenuIndex			8
 #define kMemVMFaultInfoMenuIndex			9
-#define kMemSwapCountInfoMenuIndex			11
-#define kMemSwapMaxCountInfoMenuIndex		12
-#define kMemSwapSizeInfoMenuIndex			13
+#define kMemMemPressureInfoMenuIndex                    11
+#define kMemSwapCountInfoMenuIndex			13
+#define kMemSwapMaxCountInfoMenuIndex		14
+#define kMemSwapSizeInfoMenuIndex			15
 
 ///////////////////////////////////////////////////////////////
 //

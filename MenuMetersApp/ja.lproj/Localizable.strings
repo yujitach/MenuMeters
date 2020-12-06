@@ -64,6 +64,8 @@
 "KB" = "KB";
 "MB" = "MB";
 "GB" = "GB";
+"Memory Pressure:" = "メモリプレッシャー：";
+"%@%%\t(level %@)" = "%@%%\t(レベル %@)";
 
 // Menubar display labels used in free/total mode
 "U:" = "使用：";

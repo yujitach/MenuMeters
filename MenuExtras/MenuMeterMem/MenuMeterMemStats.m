@@ -22,6 +22,8 @@
 //
 
 #import "MenuMeterMemStats.h"
+#include <sys/sysctl.h>
+#include <sys/syscall.h>
 
 ///////////////////////////////////////////////////////////////
 //
@@ -248,12 +250,12 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	// Update total
 	totalRAM = active + inactive + wired + free + compressed;
 
-  int system_memory_pressure;
+  int memory_pressure_level;
   size_t length = sizeof(int);
   
-  sysctlbyname("kern.memorystatus_vm_pressure_level", &system_memory_pressure, &length, nil, 0);
-  
-  double memory_pressure = system_memory_pressure * 0.25f;
+  sysctlbyname("kern.memorystatus_vm_pressure_level", &memory_pressure_level, &length, nil, 0);
+
+    int memory_pressure=[self memPressure];
   
 	return [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSNumber numberWithDouble:(double)totalRAM / 1048576], @"totalmb",
@@ -282,7 +284,8 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 				[NSNumber numberWithUnsignedLongLong:vmStats64.compressions], @"compressions",
 				[NSNumber numberWithUnsignedLongLong:deltaPageIn], @"deltapageins",
 				[NSNumber numberWithUnsignedLongLong:deltaPageOut], @"deltapageouts",
-        [NSNumber numberWithDouble:(double)memory_pressure], @"mempress",
+        [NSNumber numberWithInt:memory_pressure], @"mempress",
+                [NSNumber numberWithInt:memory_pressure_level], @"mempresslevel",
 				nil];
 } // memStats64
 
@@ -442,4 +445,17 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 } // initializeSwapPath
 
+- (int)memPressure
+{
+    // taken from https://github.com/tramdas/memstatpoller/blob/38fbb15efc9b28db508d21ef557c89b4b29fd94e/main.c#L95
+    int error;
+    int level=0;
+    // This is how AAPL's memory_pressure tool reports "System-wide memory free percentage":
+    //error = memorystatus_get_level((user_addr_t) level);
+    error = syscall(SYS_memorystatus_get_level, &level);
+    if(error){
+        NSLog(@"memorystatus_get_level failed: error=%@ errorno=%@ (%s)",@(error),@(errno),strerror(errno));
+    }
+    return level;
+}
 @end

@@ -77,7 +77,8 @@
 "KB" = "KB";
 "MB" = "MB";
 "GB" = "GB";
-
+"Memory Pressure:" = "Memory Pressure:";
+"%@%%\t(level %@)" = "%@%%\t(level %@)";
 //	In the interest of improving localizability most strings in MenuMeters
 //	are exposed as NSString format strings, including the %1$, %2$ parameter placement
 //	convention. If localization requires different ordering of the parameters you
