@@ -280,7 +280,11 @@
       }
 			break;
 		case kMemDisplayGraph:
-			[self renderMemHistoryIntoImage:currentImage];
+                if([ourPrefs memPressure]){
+                    [self renderPressureHistoryIntoImage:currentImage];
+                }else{
+                    [self renderMemHistoryIntoImage:currentImage];
+                }
 	}
 	if ([ourPrefs memPageIndicator]) {
 		[self renderPageIndicatorIntoImage:currentImage];
@@ -652,6 +656,51 @@
 	[image unlockFocus];
 
 } // renderBarIntoImage
+
+- (void)renderPressureHistoryIntoImage:(NSImage *)image {
+
+    // Construct paths
+    NSBezierPath *activePath =  [NSBezierPath bezierPath];
+
+    // Position for initial offset
+    [activePath moveToPoint:NSMakePoint(0, 0)];
+
+    // Loop over pixels in desired width until we're out of data
+    int renderPosition = 0;
+    // Graph height does not include baseline, reserve the space for real data
+    // since memory usage can never be zero.
+    float renderHeight = (float)[image size].height;
+     for (renderPosition = 0; renderPosition < [ourPrefs memGraphLength]; renderPosition++) {
+
+        // No data at this position?
+        if (renderPosition >= [memHistory count]) break;
+
+        // Grab data
+        NSDictionary *memData = [memHistory objectAtIndex:renderPosition];
+        if (!memData) continue;
+        int pressure = [[memData objectForKey:@"mempress"] intValue];
+        if (pressure < 0) { pressure = 0; };
+        if (pressure > 100) { pressure = 100; };
+
+        // Update paths (adding baseline)
+        [activePath lineToPoint:NSMakePoint(renderPosition,
+                                          pressure / 100.f * renderHeight)];
+    }
+
+    // Return to lower edge (fill will close the graph)
+    [activePath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
+
+
+    // Render the graph
+    [image lockFocus];
+    [activeColor set];
+    [activePath fill];
+
+    // Clean up
+    [[NSColor blackColor] set];
+    [image unlockFocus];
+
+} // renderMemHistoryIntoImages
 
 - (void)renderMemHistoryIntoImage:(NSImage *)image {
 
