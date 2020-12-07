@@ -548,7 +548,7 @@
 																		usedMB,
 																		[localizedStrings objectForKey:kMBLabel]]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																		[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+                                                                    [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																		usedColor, NSForegroundColorAttributeName,
 																		nil]];
 	// Construct and draw the free string
@@ -557,7 +557,7 @@
 																		freeMB,
 																		[localizedStrings objectForKey:kMBLabel]]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																		[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+                                                                    [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																		freeColor, NSForegroundColorAttributeName,
 																		nil]];
 
@@ -843,7 +843,7 @@
 	NSAttributedString *renderString = [[NSAttributedString alloc]
 											initWithString:countString
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+                                                            [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																fgMenuThemeColor, NSForegroundColorAttributeName,
 																nil]];
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
@@ -937,7 +937,7 @@
 																			   value:nil
 																			   table:nil]
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+                                                            [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																usedColor, NSForegroundColorAttributeName,
 																nil]];
 	NSAttributedString *renderFString = [[NSAttributedString alloc]
@@ -946,7 +946,7 @@
 																				value:nil
 																				table:nil]
 												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+                                                            [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																freeColor, NSForegroundColorAttributeName,
 																nil]];
 	if ([renderUString size].width > [renderFString size].width) {
@@ -968,7 +968,7 @@
 		NSAttributedString *renderMBString =  [[NSAttributedString alloc]
 													initWithString:[localizedStrings objectForKey:kMBLabel]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																		[NSFont systemFontOfSize:9.5f], NSFontAttributeName,
+                                                                    [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																		nil]];
 		mbLength = (float)ceil([renderMBString size].width);
 	}

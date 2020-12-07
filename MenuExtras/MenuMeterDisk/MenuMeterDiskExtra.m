@@ -177,7 +177,7 @@
 	NSDictionary *stringAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
 										fgMenuThemeColor,
 										NSForegroundColorAttributeName,
-										[NSFont systemFontOfSize:11.0f],
+                                        [NSFont monospacedDigitSystemFontOfSize:11.0f weight:NSFontWeightRegular],
 										NSFontAttributeName,
 										nil];
 

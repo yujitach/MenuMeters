@@ -172,7 +172,7 @@
 
 	// Set the menu extra view up
 
-    throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];//[NSFont systemFontOfSize:9.5f];
+    throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];
 
 	// Localizable strings
 	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:

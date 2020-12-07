@@ -237,7 +237,7 @@
         [currentImage lockFocus];
         NSAttributedString *cpuString = [[NSAttributedString alloc]
              initWithString:@"CPU"
-             attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:10],
+             attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont monospacedDigitSystemFontOfSize:11.0f weight:NSFontWeightRegular],
                          NSFontAttributeName, fgMenuThemeColor, NSForegroundColorAttributeName,
                          nil]];
         [cpuString drawAtPoint:NSMakePoint(
@@ -508,7 +508,7 @@
 {
     return [[NSAttributedString alloc]
         initWithString:temperatureString
-        attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont systemFontOfSize:self.fontSize],
+        attributes:[NSDictionary dictionaryWithObjectsAndKeys:                          [NSFont monospacedDigitSystemFontOfSize:self.fontSize weight:NSFontWeightRegular],
                     NSFontAttributeName, temperatureColor, NSForegroundColorAttributeName,
                     nil]];
 }
@@ -745,7 +745,7 @@
 		singlePercentCache = [NSMutableArray array];
 		float fontSize = self.fontSize;
 		NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-											[NSFont systemFontOfSize:fontSize],
+                                        [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular],
 											NSFontAttributeName,
 											fgMenuThemeColor,
 											NSForegroundColorAttributeName,
@@ -771,7 +771,7 @@
 		splitUserPercentCache = [NSMutableArray array];
                 float fontSize=self.fontSize;
 		NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-											[NSFont systemFontOfSize:fontSize],
+                                        [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular],
 											NSFontAttributeName,
 											userColor,
 											NSForegroundColorAttributeName,
@@ -793,7 +793,7 @@
 		}
 		splitSystemPercentCache = [NSMutableArray array];
 		textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-								[NSFont systemFontOfSize:9.5f],
+                          [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular],
 								NSFontAttributeName,
 								systemColor,
 								NSForegroundColorAttributeName,
