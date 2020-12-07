@@ -798,7 +798,7 @@
 								systemColor,
 								NSForegroundColorAttributeName,
 								nil];
-		for (int i = 0; i <= 100; i++) {
+		for (int i = 0; i <= percentLimit; i++) {
 			NSAttributedString *cacheText = [[NSAttributedString alloc]
 											  initWithString:[NSString stringWithFormat:@"%d%%", i]
 											  attributes:textAttributes];
