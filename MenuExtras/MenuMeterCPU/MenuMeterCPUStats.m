@@ -144,27 +144,6 @@ uint32_t packageCount;
 	}
 	vm_deallocate(mach_task_self(), (vm_address_t)processorTickInfo, (vm_size_t)(processorInfoCount * sizeof(natural_t)));
 
-	// Localizable strings load
-	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kProcessorNameFormat value:nil table:nil],
-							kProcessorNameFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTaskThreadFormat value:nil table:nil],
-							kTaskThreadFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kLoadAverageFormat value:nil table:nil],
-							kLoadAverageFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kNoInfoErrorMessage value:nil table:nil],
-							kNoInfoErrorMessage,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kHyperThreadsPerCoreFormat value:nil table:nil],
-							kHyperThreadsPerCoreFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kPhysicalCoresFormat value:nil table:nil],
-							kPhysicalCoresFormat,
-                                                        [[NSBundle bundleForClass:[self class]] localizedStringForKey:kCPUPowerLimitStatusFormat value:nil table:nil],
-                                                        kCPUPowerLimitStatusFormat,
-							nil];
-	if (!localizedStrings) {
-		return nil;
-	}
-
 	// Send on back
 	return self;
 

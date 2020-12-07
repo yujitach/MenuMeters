@@ -11,6 +11,10 @@
 		330247672366CEA800F88D61 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 330247662366CEA800F88D61 /* dsa_pub.pem */; };
 		3302476A2366CF7F00F88D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 330247642366CB7A00F88D61 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		330611032367EA4C0016E763 /* MenuMetersMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */; };
+		3330C5B4257DFAED00BD5164 /* LocalizedStrings.h in Headers */ = {isa = PBXBuildFile; fileRef = 3330C5B2257DFAED00BD5164 /* LocalizedStrings.h */; };
+		3330C5B5257DFAED00BD5164 /* LocalizedStrings.h in Headers */ = {isa = PBXBuildFile; fileRef = 3330C5B2257DFAED00BD5164 /* LocalizedStrings.h */; };
+		3330C5B6257DFAED00BD5164 /* LocalizedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330C5B3257DFAED00BD5164 /* LocalizedStrings.m */; };
+		3330C5B7257DFAED00BD5164 /* LocalizedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330C5B3257DFAED00BD5164 /* LocalizedStrings.m */; };
 		33679E52239767B40021408D /* v2.0.8alert.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 33679E51239767B30021408D /* v2.0.8alert.rtf */; };
 		33883CF023655C9900B8AC14 /* MenuMeterDiskExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95D03D49AE400A87BC9 /* MenuMeterDiskExtra.m */; };
 		33883CF123655C9900B8AC14 /* MenuMeterWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */; };
@@ -145,6 +149,8 @@
 		330247662366CEA800F88D61 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuMetersMainMenu.xib; sourceTree = "<group>"; };
 		330D68B72105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DiskImageSet.strings"; sourceTree = "<group>"; };
+		3330C5B2257DFAED00BD5164 /* LocalizedStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizedStrings.h; sourceTree = "<group>"; };
+		3330C5B3257DFAED00BD5164 /* LocalizedStrings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizedStrings.m; sourceTree = "<group>"; };
 		3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuMetersMenuExtraBase.h; sourceTree = "<group>"; };
 		3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuMetersMenuExtraBase.m; sourceTree = "<group>"; };
 		33679E51239767B30021408D /* v2.0.8alert.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = v2.0.8alert.rtf; sourceTree = "<group>"; };
@@ -385,6 +391,8 @@
 				D4BBBF750463514700A804AF /* MenuMeterPowerMate.m */,
 				D48A79F31018B051008E3207 /* MenuMeterWorkarounds.h */,
 				D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */,
+				3330C5B2257DFAED00BD5164 /* LocalizedStrings.h */,
+				3330C5B3257DFAED00BD5164 /* LocalizedStrings.m */,
 				D4ECB2C905FE6FA500954E26 /* Resources */,
 			);
 			name = Common;
@@ -577,6 +585,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3330C5B4257DFAED00BD5164 /* LocalizedStrings.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +593,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3330C5B5257DFAED00BD5164 /* LocalizedStrings.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +803,7 @@
 				33883CF423655C9900B8AC14 /* MenuMeterCPUExtra.m in Sources */,
 				33883CF523655C9900B8AC14 /* MenuMeterMemExtra.m in Sources */,
 				33883CF623655C9900B8AC14 /* MenuMeterDefaults.m in Sources */,
+				3330C5B6257DFAED00BD5164 /* LocalizedStrings.m in Sources */,
 				33883CF723655C9900B8AC14 /* MenuMeterCPUStats.m in Sources */,
 				33883CF823655C9900B8AC14 /* MenuMetersMenuExtraBase.m in Sources */,
 				33883CF923655C9900B8AC14 /* MenuMeterUptime.m in Sources */,
@@ -822,6 +833,7 @@
 				6349C10E24BB733300C6FC99 /* MenuMeterCPUExtra.m in Sources */,
 				6349C10F24BB733300C6FC99 /* MenuMeterMemExtra.m in Sources */,
 				6349C11024BB733300C6FC99 /* MenuMeterDefaults.m in Sources */,
+				3330C5B7257DFAED00BD5164 /* LocalizedStrings.m in Sources */,
 				6349C11124BB733300C6FC99 /* MenuMeterCPUStats.m in Sources */,
 				6349C11224BB733300C6FC99 /* MenuMetersMenuExtraBase.m in Sources */,
 				6349C11324BB733300C6FC99 /* MenuMeterUptime.m in Sources */,

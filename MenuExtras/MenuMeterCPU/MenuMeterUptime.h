@@ -22,12 +22,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "LocalizedStrings.h"
 
 @interface MenuMeterUptime : NSObject {
-
-	// Localizable string dictionary
-	NSDictionary		*localizedStrings;
 
 } // MenuMeterUptime
 

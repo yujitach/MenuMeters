@@ -44,8 +44,6 @@
 	MenuMeterNetPPP					*pppControl;
 	// Formatters for localization
 	NSNumberFormatter				*bytesFormatter, *prettyIntFormatter;
-	// Localizable strings
-	NSDictionary					*localizedStrings;
 	// Cached colors
 	NSColor							*txColor, *rxColor, *inactiveColor;
 	// Cached bezier paths

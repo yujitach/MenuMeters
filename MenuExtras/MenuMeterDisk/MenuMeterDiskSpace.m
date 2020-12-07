@@ -71,24 +71,6 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 		return nil;
 	}
 
-	// Load up our strings
-	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kUsedSpaceFormat value:nil table:nil],
-							kUsedSpaceFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kFreeSpaceFormat value:nil table:nil],
-							kFreeSpaceFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kTotalSpaceFormat value:nil table:nil],
-							kTotalSpaceFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kKBLabel value:nil table:nil],
-							kKBLabel,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMBLabel value:nil table:nil],
-							kMBLabel,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kGBLabel value:nil table:nil],
-							kGBLabel,
-							nil];
-	if (!localizedStrings) {
-		return nil;
-	}
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.

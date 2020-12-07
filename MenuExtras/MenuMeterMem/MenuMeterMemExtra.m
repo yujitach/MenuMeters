@@ -177,46 +177,7 @@
     [extraMenu addItem:[NSMenuItem separatorItem]];
     [self addStandardMenuEntriesTo:extraMenu];
 
-	// Load localized strings
-	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kUsageFormat value:nil table:nil],
-							kUsageFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kActiveWiredFormat value:nil table:nil],
-							kActiveWiredFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kInactiveFreeFormat value:nil table:nil],
-							kInactiveFreeFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kCompressedFormat value:nil table:nil],
-							kCompressedFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kVMPagingFormat value:nil table:nil],
-							kVMPagingFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kVMCacheFormat value:nil table:nil],
-							kVMCacheFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kVMFaultCopyOnWriteFormat value:nil table:nil],
-							kVMFaultCopyOnWriteFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kSingleSwapFormat value:nil table:nil],
-							kSingleSwapFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMultiSwapFormat value:nil table:nil],
-							kMultiSwapFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMaxSingleSwapFormat value:nil table:nil],
-							kMaxSingleSwapFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMaxMultiSwapFormat value:nil table:nil],
-							kMaxMultiSwapFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kSingleEncryptedSwapFormat value:nil table:nil],
-							kSingleEncryptedSwapFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMultiEncryptedSwapFormat value:nil table:nil],
-							kMultiEncryptedSwapFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kSwapSizeFormat value:nil table:nil],
-							kSwapSizeFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kSwapSizeUsedFormat value:nil table:nil],
-							kSwapSizeUsedFormat,
-							[[NSBundle bundleForClass:[self class]] localizedStringForKey:kMBLabel value:nil table:nil],
-							kMBLabel,
-                            [[NSBundle bundleForClass:[self class]] localizedStringForKey:kMemPressureFormat value:nil table:nil],
-                            kMemPressureFormat,
-							nil];
-	if (!localizedStrings) {
-		return nil;
-	}
+
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.

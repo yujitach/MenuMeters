@@ -38,8 +38,6 @@
 	MenuMeterDefaults				*ourPrefs;
 	// Info gathers
 	MenuMeterMemStats				*memStats;
-	// Localized strings
-	NSDictionary					*localizedStrings;
 	// Formatters for numbers so we get localization correctly
 	NSNumberFormatter				*memFloatMBFormatter,
 									*memIntMBFormatter,

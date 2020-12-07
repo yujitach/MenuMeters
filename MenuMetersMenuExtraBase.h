@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LocalizedStrings.h"
+
 @class MenuMeterDefaults;
 
 @interface MenuMetersMenuExtraBase : NSObject <NSMenuDelegate>

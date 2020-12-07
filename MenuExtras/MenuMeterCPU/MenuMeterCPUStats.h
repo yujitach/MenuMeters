@@ -30,6 +30,7 @@
 #import <mach/mach_error.h>
 #import "MenuMeterCPU.h"
 #import "../../smc_reader/smc_reader.h"
+#import "LocalizedStrings.h"
 
 @interface MenuMeterCPULoad : NSObject
 @property(nonatomic) double system;
@@ -48,8 +49,6 @@
 	processor_set_name_port_t			processorSet;
 	// Previous processor tick data
 	processor_cpu_load_info_t 			priorCPUTicks;
-	// Localized string dictionary
-	NSDictionary						*localizedStrings;
 	// Localized float display
 	NSNumberFormatter					*twoDigitFloatFormatter;
 

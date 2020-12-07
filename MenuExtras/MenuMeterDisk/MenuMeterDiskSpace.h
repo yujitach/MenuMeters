@@ -27,12 +27,10 @@
 #import <sys/mount.h>
 #import <sys/stat.h>
 #import <string.h>
-
+#import "LocalizedStrings.h"
 
 @interface MenuMeterDiskSpace : NSObject {
 
-	// Cache for the localized strings
-	NSDictionary		*localizedStrings;
 	// NSFormatter for disk space localization
 	NSNumberFormatter	*spaceFormatter;
 	BOOL				useBaseTen;

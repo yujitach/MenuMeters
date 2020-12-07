@@ -59,20 +59,6 @@
 	if (!selfBundle) {
 		return nil;
 	}
-	localizedStrings = [NSDictionary dictionaryWithObjectsAndKeys:
-							[selfBundle localizedStringForKey:kUptimeUnavailable value:nil table:nil],
-							kUptimeUnavailable,
-							[selfBundle localizedStringForKey:kUptimeMultiDayFormat value:nil table:nil],
-							kUptimeMultiDayFormat,
-							[selfBundle localizedStringForKey:kUptimeOneDayFormat value:nil table:nil],
-							kUptimeOneDayFormat,
-							[selfBundle localizedStringForKey:kUptimeZeroDayFormat value:nil table:nil],
-							kUptimeZeroDayFormat,
-							nil
-						];
-	if (!localizedStrings) {
-		return nil;
-	}
 
 	// Send on back
 	return self;
