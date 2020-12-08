@@ -721,7 +721,7 @@
 
     int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs]?[cpuInfo numberOfCores]:[cpuInfo numberOfCPUs];
 
-	if ([ourPrefs cpuPercentDisplay]) {
+	if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
 		// Calc the new width
         NSAttributedString*string=[self percentStringForLoad:1.0f andColor:fgMenuThemeColor];
 		percentWidth = (float)round([string size].width) + kCPUPercentDisplayBorderWidth;
