@@ -237,12 +237,12 @@
         [currentImage lockFocus];
         NSAttributedString *cpuString = [[NSAttributedString alloc]
              initWithString:@"CPU"
-             attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont monospacedDigitSystemFontOfSize:11.0f weight:NSFontWeightRegular],
+             attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont monospacedDigitSystemFontOfSize:[NSFont smallSystemFontSize] weight:NSFontWeightRegular],
                          NSFontAttributeName, fgMenuThemeColor, NSForegroundColorAttributeName,
                          nil]];
         [cpuString drawAtPoint:NSMakePoint(
              kCPULabelOnlyWidth - (float)round([cpuString size].width) - 1,
-             (float)floor(([currentImage size].height-[cpuString size].height) / 2)
+             (float)(([currentImage size].height-[cpuString size].height) / 2)+self.baselineOffset
         )];
         [currentImage unlockFocus];
         return currentImage;
@@ -466,7 +466,7 @@
 	[image lockFocus];
     NSAttributedString*string=[self percentStringForLoad:totalLoad andColor:fgMenuThemeColor];
     [string drawAtPoint:NSMakePoint(offset + percentWidth - ceilf((float)[string size].width) - 1,
-                                        (float)round(([image size].height - [string size].height) / 2)-1)];
+                                        (float)(([image size].height - [string size].height) / 2)+self.baselineOffset)];
 	[image unlockFocus];
 
 }  // renderSinglePercentIntoImage:forProcessor:atOffset:
@@ -526,7 +526,7 @@
     NSAttributedString *renderTemperatureString =[self renderTemperatureStringForString:temperatureString];
     [renderTemperatureString drawAtPoint:NSMakePoint(
          cpuTemperatureDisplayWidth - (float)round([renderTemperatureString size].width) - 1,
-         (float)round(([image size].height-[renderTemperatureString size].height) / 2-1)
+         (float)(([image size].height-[renderTemperatureString size].height) / 2+self.baselineOffset)
     )];
     [image unlockFocus];
 } // renderSingleTemperatureIntoImage:atOffset:
@@ -693,6 +693,17 @@
 //	Prefs
 //
 ///////////////////////////////////////////////////////////////
+-(float)baselineOffset
+{
+    float offset=1.0f;
+    if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
+        offset=+0.5f;
+    }
+    if([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit){
+        offset = +0.0f;
+    }
+    return offset;
+}
 -(float)fontSize
 {
     float fontSize=14;
