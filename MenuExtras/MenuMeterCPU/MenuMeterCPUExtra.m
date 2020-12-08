@@ -435,7 +435,20 @@
 	[image unlockFocus];
 
 } // renderHistoryGraphIntoImage:forProcessor:atOffset:
-
+-(NSAttributedString*)percentStringForLoad:(float)load andColor:(NSColor*)color
+{
+    float fontSize = self.fontSize;
+    NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular],
+                                        NSFontAttributeName,
+                                        color,
+                                        NSForegroundColorAttributeName,
+                                        nil];
+    NSAttributedString *cacheText = [[NSAttributedString alloc]
+                                            initWithString:[NSString stringWithFormat:@"%d%%", (int)roundf(load * 100.0f)]
+                                                attributes:textAttributes];
+    return cacheText;
+}
 - (void)renderSinglePercentIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
     
 
@@ -450,21 +463,10 @@
     }
 
 
-	// Get the prerendered text and draw
-	NSImage *percentImage = [singlePercentCache objectAtIndex:roundf(totalLoad * 100.0f)];
-	if (!percentImage) return;
 	[image lockFocus];
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
-		// When graphing right align, we had trouble with doing this with NSParagraphStyle, so do it manually
-		[percentImage compositeToPoint:NSMakePoint(offset + percentWidth - ceilf((float)[percentImage size].width) - 1,
-												   (float)round(([image size].height - [percentImage size].height) / 2))
-							 operation:NSCompositeSourceOver];
-	} else {
-		// Otherwise center
-		[percentImage compositeToPoint:NSMakePoint(offset + (float)floor(((percentWidth - [percentImage size].width) / 2)),
-												   (float)round(([image size].height - [percentImage size].height) / 2))
-							 operation:NSCompositeSourceOver];
-	}
+    NSAttributedString*string=[self percentStringForLoad:totalLoad andColor:fgMenuThemeColor];
+    [string drawAtPoint:NSMakePoint(offset + percentWidth - ceilf((float)[string size].width) - 1,
+                                        (float)round(([image size].height - [string size].height) / 2)-1)];
 	[image unlockFocus];
 
 }  // renderSinglePercentIntoImage:forProcessor:atOffset:
@@ -482,24 +484,12 @@
     }
 
 	// Get the prerendered text and draw
-	NSImage *systemImage = [splitSystemPercentCache objectAtIndex:roundf(system * 100.0f)];
-	NSImage *userImage = [splitUserPercentCache objectAtIndex:roundf(user * 100.0f)];
-	if (!(systemImage && userImage)) return;
+    NSAttributedString *systemString = [self percentStringForLoad:system andColor:systemColor];
+    NSAttributedString *userString = [self percentStringForLoad:user andColor:userColor];
 	[image lockFocus];
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
-		// When graphing right align, we had trouble with doing this with NSParagraphStyle, so do it manually
-		[systemImage compositeToPoint:NSMakePoint(offset + percentWidth - [systemImage size].width - 1, 0)
-							 operation:NSCompositeSourceOver];
-		[userImage compositeToPoint:NSMakePoint(offset + percentWidth - (float)[userImage size].width - 1,
-												(float)floor([image size].height / 2))
-							operation:NSCompositeSourceOver];
-	} else {
-		[systemImage compositeToPoint:NSMakePoint(offset + floorf((percentWidth - (float)[systemImage size].width) / 2), 0)
-							operation:NSCompositeSourceOver];
-		[userImage compositeToPoint:NSMakePoint(offset + floorf((percentWidth - (float)[systemImage size].width) / 2),
-												(float)floor([image size].height / 2))
-							operation:NSCompositeSourceOver];
-	}
+    [systemString drawAtPoint:NSMakePoint(offset + percentWidth - [systemString size].width - 1, -1)];
+    [userString drawAtPoint:NSMakePoint(offset + percentWidth - (float)[userString size].width - 1,
+                                            (float)floor([image size].height / 2)-1)];
 	[image unlockFocus];
 
 } // renderSplitPercentIntoImage:forProcessor:atOffset:
@@ -536,7 +526,7 @@
     NSAttributedString *renderTemperatureString =[self renderTemperatureStringForString:temperatureString];
     [renderTemperatureString drawAtPoint:NSMakePoint(
          cpuTemperatureDisplayWidth - (float)round([renderTemperatureString size].width) - 1,
-         (float)ceilf(([image size].height-[renderTemperatureString size].height) / 2)
+         (float)round(([image size].height-[renderTemperatureString size].height) / 2-1)
     )];
     [image unlockFocus];
 } // renderSingleTemperatureIntoImage:atOffset:
@@ -729,88 +719,12 @@
 	systemColor = [self colorByAdjustingForLightDark:[ourPrefs cpuSystemColor]];
         temperatureColor = [self colorByAdjustingForLightDark:[ourPrefs cpuTemperatureColor]];
 
-	// It turns out that text drawing is _much_ slower than compositing images together
-	// so we render several arrays of images, each representing a different percent value
-	// which we can then composite together. Testing showed this to be almost 2x
-	// faster than rendering the text every time through.
-	singlePercentCache = nil;
-	splitUserPercentCache = nil;
-	splitSystemPercentCache = nil;
-	int numberOfLogicalCPUs = [cpuInfo numberOfCPUs];
     int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs]?[cpuInfo numberOfCores]:[cpuInfo numberOfCPUs];
 
-	if (([ourPrefs cpuPercentDisplay] == kCPUPercentDisplayLarge) ||
-		([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall)) {
-
-		singlePercentCache = [NSMutableArray array];
-		float fontSize = self.fontSize;
-		NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular],
-											NSFontAttributeName,
-											fgMenuThemeColor,
-											NSForegroundColorAttributeName,
-											nil];
-		int percentLimit = 100;
-		if ([ourPrefs cpuSumAllProcsPercent]) {
-			percentLimit *= numberOfLogicalCPUs;
-		}
-		for (int i = 0; i <= percentLimit; i++) {
-			NSAttributedString *cacheText = [[NSAttributedString alloc]
-												initWithString:[NSString stringWithFormat:@"%d%%", i]
-													attributes:textAttributes];
-                        NSImage* cacheImage= [NSImage imageWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
-                                                                                                      ceilf((float)[cacheText size].height)) flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
-                                                   [cacheText drawAtPoint:NSMakePoint(0, 0)];
-                                                   return YES;
-                                               }];
-			[singlePercentCache addObject:cacheImage];
-		}
+	if ([ourPrefs cpuPercentDisplay]) {
 		// Calc the new width
-		percentWidth = (float)round([[singlePercentCache lastObject] size].width) + kCPUPercentDisplayBorderWidth;
-	} else if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
-		splitUserPercentCache = [NSMutableArray array];
-                float fontSize=self.fontSize;
-		NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular],
-											NSFontAttributeName,
-											userColor,
-											NSForegroundColorAttributeName,
-											nil];
-        int percentLimit = 100;
-        if ([ourPrefs cpuSumAllProcsPercent]) {
-            percentLimit *= numberOfLogicalCPUs;
-        }
-		for (int i = 0; i <= percentLimit; i++) {
-			NSAttributedString *cacheText = [[NSAttributedString alloc]
-												initWithString:[NSString stringWithFormat:@"%d%%", i]
-													attributes:textAttributes];
-                        NSImage* cacheImage= [NSImage imageWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
-                                                                                                      ceilf((float)[cacheText size].height)) flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
-                                                   [cacheText drawAtPoint:NSMakePoint(0, -1)];
-                                                   return YES;
-                                               }];
-			[splitUserPercentCache addObject:cacheImage];
-		}
-		splitSystemPercentCache = [NSMutableArray array];
-		textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular],
-								NSFontAttributeName,
-								systemColor,
-								NSForegroundColorAttributeName,
-								nil];
-		for (int i = 0; i <= percentLimit; i++) {
-			NSAttributedString *cacheText = [[NSAttributedString alloc]
-											  initWithString:[NSString stringWithFormat:@"%d%%", i]
-											  attributes:textAttributes];
-                        NSImage* cacheImage= [NSImage imageWithSize:NSMakeSize(ceilf((float)[cacheText size].width),
-                                                                                                      ceilf((float)[cacheText size].height)) flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
-                                                   [cacheText drawAtPoint:NSMakePoint(0, -1)];
-                                                   return YES;
-                                               }];
-                        [splitSystemPercentCache addObject:cacheImage];
-		}
-		// Calc the new text width, both arrays are same font, so use either
-		percentWidth = (float)round([[splitSystemPercentCache lastObject] size].width) + kCPUPercentDisplayBorderWidth;
+        NSAttributedString*string=[self percentStringForLoad:1.0f andColor:fgMenuThemeColor];
+		percentWidth = (float)round([string size].width) + kCPUPercentDisplayBorderWidth;
 	}
 
 	// Fix our menu size to match our new config

@@ -49,9 +49,6 @@
 	float							menuWidth;
 	// Prerendered percentage text displays and their calculated width
 	float							percentWidth;
-	NSMutableArray					*singlePercentCache,
-									*splitUserPercentCache,
-									*splitSystemPercentCache;
 	// Historical data samples
 	NSMutableArray					*loadHistory;
 	// Cached colors and theme support
