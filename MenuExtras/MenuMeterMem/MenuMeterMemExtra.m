@@ -469,7 +469,7 @@
 	totalArc += inactiveMB / totalMB;
 
 	// Finish arc with the default color
-        [fgMenuThemeColor set];
+        [[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
 
 	// Close the circle if needed
 	if (totalArc < 1) {
@@ -558,7 +558,8 @@
   [activeColor set];
   [pressurePath fill];
   
-  [fgMenuThemeColor set];
+  [[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
+
   [framePath stroke];
   
   // Reset
@@ -609,7 +610,7 @@
 	[activePath fill];
 	[wireColor set];
 	[wirePath fill];
-	[fgMenuThemeColor set];
+        [[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
 	[framePath stroke];
 
 	// Reset

@@ -554,7 +554,7 @@
 	[userPath fill];
 	[systemColor set];
 	[systemPath fill];
-	[fgMenuThemeColor set];
+        [[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
 	[framePath stroke];
 
 	// Reset
@@ -583,7 +583,7 @@
 	[userPath fill];
 	[systemColor set];
 	[systemPath fill];
-    [fgMenuThemeColor set];
+    [[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
     [rightCapPath fill];
 
 	// Reset
