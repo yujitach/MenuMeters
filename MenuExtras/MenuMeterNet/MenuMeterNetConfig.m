@@ -617,16 +617,28 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 }
 
 - (NSNumber *)speedForInterfaceName:(NSString*)bsdInterface{
-    NSDictionary* airportDict=[self sysconfigValueForKey:[NSString stringWithFormat:@"Setup:/Network/Interface/%@/AirPort",bsdInterface]];
-    if(airportDict){
-        return [self speedForAirport];
+    {
+        NSDictionary* airportDict=[self sysconfigValueForKey:[NSString stringWithFormat:@"Setup:/Network/Interface/%@/AirPort",bsdInterface]];
+        if(airportDict){
+            NSNumber* x = [self speedForAirport];
+            if(x){
+                return x;
+            }
+        }
     }
-
-    NSNumber*x=[self speedForInterfaceNameViaIOKit:bsdInterface];
-    if(!x){
-        x=[self speedForInterfaceNameViaIfConfig:bsdInterface];
+    {
+        NSNumber* x=[self speedForInterfaceNameViaIOKit:bsdInterface];
+        if(x){
+            return x;
+        }
     }
-    return x;
+    {
+        NSNumber* x=[self speedForInterfaceNameViaIfConfig:bsdInterface];
+        if(x){
+            return x;
+        }
+    }
+    return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
 }
 - (NSNumber*)speedForAirport
 {
