@@ -514,7 +514,11 @@
             }
             break;
         case kCPUTemperatureUnitFahrenheit:
-            temperatureString=[NSString stringWithFormat:@"%.1f℉", fahrenheit];
+            if(fahrenheit>=100){
+                temperatureString=[NSString stringWithFormat:@"%d℉", (int)fahrenheit];
+            }else{
+                temperatureString=[NSString stringWithFormat:@"%.1f℉", fahrenheit];
+            }
             if(celsius<-100){
                 temperatureString=@"??℉";
             }
