@@ -70,6 +70,8 @@
 		33883D4C2365E61200B8AC14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33883D492365E61200B8AC14 /* Localizable.strings */; };
 		33883D542365E78300B8AC14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
 		339B8C90237FE17F008B9755 /* MenuMeters.icns in Resources */ = {isa = PBXBuildFile; fileRef = 339B8C8F237FE17F008B9755 /* MenuMeters.icns */; };
+		33B440112594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */; };
+		33B440122594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */; };
 		33F0921923673DAC00953CAB /* releases.html in Resources */ = {isa = PBXBuildFile; fileRef = 33F0921823673DAC00953CAB /* releases.html */; };
 		6349C10924BB733300C6FC99 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		6349C10A24BB733300C6FC99 /* MenuMeterDiskExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95D03D49AE400A87BC9 /* MenuMeterDiskExtra.m */; };
@@ -178,6 +180,7 @@
 		33883D522365E63700B8AC14 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33883D532365E63B00B8AC14 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		339B8C8F237FE17F008B9755 /* MenuMeters.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MenuMeters.icns; sourceTree = "<group>"; };
+		33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = com.ragingmenace.MenuMeters.plist; sourceTree = "<group>"; };
 		33F092172367387B00953CAB /* MenuMeters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MenuMeters.entitlements; sourceTree = "<group>"; };
 		33F0921823673DAC00953CAB /* releases.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = releases.html; sourceTree = "<group>"; };
 		538B152824465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
@@ -385,6 +388,7 @@
 				D40DB4C503D260E800A87BC9 /* MenuMeterDisk.h */,
 				D40DB4C203D260E800A87BC9 /* MenuMeterMem.h */,
 				D40DB4C603D260E800A87BC9 /* MenuMeterNet.h */,
+				33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */,
 				D432074803D3DCBA00A87BC9 /* MenuMeterDefaults.h */,
 				D432074903D3DCBA00A87BC9 /* MenuMeterDefaults.m */,
 				D4BBBF740463514700A804AF /* MenuMeterPowerMate.h */,
@@ -709,6 +713,7 @@
 				330247672366CEA800F88D61 /* dsa_pub.pem in Resources */,
 				33883D4C2365E61200B8AC14 /* Localizable.strings in Resources */,
 				33883D482365E3D400B8AC14 /* DiskImageSet.strings in Resources */,
+				33B440112594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist in Resources */,
 				33883D1E23655C9900B8AC14 /* Dark Color ArrowsReadWrite.tiff in Resources */,
 				33883D1F23655C9900B8AC14 /* Dark Color ArrowsWrite.tiff in Resources */,
 				33883D2123655C9900B8AC14 /* LightsIdle.tiff in Resources */,
@@ -752,6 +757,7 @@
 				6349C13B24BB733300C6FC99 /* dsa_pub.pem in Resources */,
 				6349C13C24BB733300C6FC99 /* Localizable.strings in Resources */,
 				6349C13D24BB733300C6FC99 /* DiskImageSet.strings in Resources */,
+				33B440122594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist in Resources */,
 				6349C13E24BB733300C6FC99 /* Dark Color ArrowsReadWrite.tiff in Resources */,
 				6349C13F24BB733300C6FC99 /* Dark Color ArrowsWrite.tiff in Resources */,
 				6349C14024BB733300C6FC99 /* LightsIdle.tiff in Resources */,

@@ -75,9 +75,18 @@
         NSError*error=nil;
         NSDictionary*dict=[NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:nil error:&error];
         if(dict){
+            NSData*defaultData=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:kMenuMeterDefaultsDomain ofType:@"plist"]];
+            NSDictionary*defaultDict=[NSPropertyListSerialization propertyListWithData:defaultData options:NSPropertyListImmutable format:nil error:nil];
             for(NSString*key in [dict allKeys]){
                 NSLog(@"migrating %@", key);
-                [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:key] forKey:key];
+                NSObject*value=[dict objectForKey:key];
+                NSObject*defaultValue=[defaultDict objectForKey:key];
+                if([value isEqualTo:defaultValue]){
+                    NSLog(@"\t%@ has default value; no need to copy",key);
+                }else{
+                    NSLog(@"\t%@ has non-default value; copying",key);
+                    [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:key] forKey:key];
+                }
             }
         }else{
             NSLog(@"error reading old pref plist: %@",error);
