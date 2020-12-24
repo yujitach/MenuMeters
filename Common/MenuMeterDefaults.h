@@ -32,6 +32,7 @@
 - (void)saveBoolPref:(NSString *)prefName value:(BOOL)value;
 #endif
 
++ (void)movePreferencesIfNecessary;
 + (MenuMeterDefaults*)sharedMenuMeterDefaults;
 
 // Pref read/write

@@ -61,6 +61,10 @@
         }
     }
 }
+- (void)applicationWillFinishLaunching:(NSNotification *)notification
+{
+    [MenuMeterDefaults movePreferencesIfNecessary];
+}
 #define WELCOME @"v2.0.8alert"
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
