@@ -345,7 +345,7 @@ uint32_t packageCount;
 
 - (NSString *)cpuPrettyName {
 
-#if  __i386__ || __x86_64__
+#if  1
 
     char cpumodel[64];
     size_t size = sizeof(cpumodel);
@@ -362,9 +362,15 @@ uint32_t packageCount;
         }
         s=[s stringByReplacingOccurrencesOfString:@"(TM)" withString:@"™"];
         s=[s stringByReplacingOccurrencesOfString:@"(R)" withString:@"®"];
+        
+        NXArchInfo const *archInfo = NXGetLocalArchInfo();
+        if (archInfo) {
+            s = [s stringByAppendingFormat:@" (%@)",[NSString stringWithCString:archInfo->description]];
+        }
+        
         return s;
     }
-    return @"Intel";
+    return @"???";
 #else
 	// Start with nothing
 	NSString					*prettyName = @"Unknown CPU";
