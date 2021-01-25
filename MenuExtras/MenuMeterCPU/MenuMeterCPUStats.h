@@ -29,7 +29,6 @@
 #import <mach/mach.h>
 #import <mach/mach_error.h>
 #import "MenuMeterCPU.h"
-#import "../../smc_reader/smc_reader.h"
 #import "LocalizedStrings.h"
 
 @interface MenuMeterCPULoad : NSObject

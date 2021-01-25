@@ -11,6 +11,8 @@
 		330247672366CEA800F88D61 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 330247662366CEA800F88D61 /* dsa_pub.pem */; };
 		3302476A2366CF7F00F88D61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 330247642366CB7A00F88D61 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		330611032367EA4C0016E763 /* MenuMetersMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */; };
+		3325978C25BE7DB10070CE37 /* applesilicon_hardware_reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3325978B25BE7DB10070CE37 /* applesilicon_hardware_reader.m */; };
+		3325979325BE7DD00070CE37 /* applesilicon_hardware_reader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3325978B25BE7DB10070CE37 /* applesilicon_hardware_reader.m */; };
 		3330C5B4257DFAED00BD5164 /* LocalizedStrings.h in Headers */ = {isa = PBXBuildFile; fileRef = 3330C5B2257DFAED00BD5164 /* LocalizedStrings.h */; };
 		3330C5B5257DFAED00BD5164 /* LocalizedStrings.h in Headers */ = {isa = PBXBuildFile; fileRef = 3330C5B2257DFAED00BD5164 /* LocalizedStrings.h */; };
 		3330C5B6257DFAED00BD5164 /* LocalizedStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3330C5B3257DFAED00BD5164 /* LocalizedStrings.m */; };
@@ -151,6 +153,8 @@
 		330247662366CEA800F88D61 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuMetersMainMenu.xib; sourceTree = "<group>"; };
 		330D68B72105AB950041B689 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DiskImageSet.strings"; sourceTree = "<group>"; };
+		3325978B25BE7DB10070CE37 /* applesilicon_hardware_reader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = applesilicon_hardware_reader.m; sourceTree = "<group>"; };
+		3325978F25BE7DCA0070CE37 /* applesilicon_hardware_reader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = applesilicon_hardware_reader.h; sourceTree = "<group>"; };
 		3330C5B2257DFAED00BD5164 /* LocalizedStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalizedStrings.h; sourceTree = "<group>"; };
 		3330C5B3257DFAED00BD5164 /* LocalizedStrings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalizedStrings.m; sourceTree = "<group>"; };
 		3345DD2D1B6BEFDE003843FC /* MenuMetersMenuExtraBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuMetersMenuExtraBase.h; sourceTree = "<group>"; };
@@ -343,7 +347,7 @@
 			children = (
 				33F092172367387B00953CAB /* MenuMeters.entitlements */,
 				9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */,
-				F75EBE2D235B6F3600876CF7 /* smc_reader */,
+				F75EBE2D235B6F3600876CF7 /* hardware_reader */,
 				336B59401E03BA68006DA445 /* MenuMeters.pch */,
 				D4510D7304F2F06100A87BC9 /* Docs */,
 				D40DB4B303D25F9E00A87BC9 /* Common */,
@@ -573,13 +577,15 @@
 			path = Common/Resources;
 			sourceTree = "<group>";
 		};
-		F75EBE2D235B6F3600876CF7 /* smc_reader */ = {
+		F75EBE2D235B6F3600876CF7 /* hardware_reader */ = {
 			isa = PBXGroup;
 			children = (
 				F75EBE2E235B6F3600876CF7 /* smc_reader.h */,
 				F75EBE2F235B6F3600876CF7 /* smc_reader.c */,
+				3325978B25BE7DB10070CE37 /* applesilicon_hardware_reader.m */,
+				3325978F25BE7DCA0070CE37 /* applesilicon_hardware_reader.h */,
 			);
-			path = smc_reader;
+			path = hardware_reader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -812,6 +818,7 @@
 				3330C5B6257DFAED00BD5164 /* LocalizedStrings.m in Sources */,
 				33883CF723655C9900B8AC14 /* MenuMeterCPUStats.m in Sources */,
 				33883CF823655C9900B8AC14 /* MenuMetersMenuExtraBase.m in Sources */,
+				3325978C25BE7DB10070CE37 /* applesilicon_hardware_reader.m in Sources */,
 				33883CF923655C9900B8AC14 /* MenuMeterUptime.m in Sources */,
 				33883CFA23655C9900B8AC14 /* smc_reader.c in Sources */,
 				33883CFB23655C9900B8AC14 /* MenuMeterCPUTopProcesses.m in Sources */,
@@ -842,6 +849,7 @@
 				3330C5B7257DFAED00BD5164 /* LocalizedStrings.m in Sources */,
 				6349C11124BB733300C6FC99 /* MenuMeterCPUStats.m in Sources */,
 				6349C11224BB733300C6FC99 /* MenuMetersMenuExtraBase.m in Sources */,
+				3325979325BE7DD00070CE37 /* applesilicon_hardware_reader.m in Sources */,
 				6349C11324BB733300C6FC99 /* MenuMeterUptime.m in Sources */,
 				6349C11424BB733300C6FC99 /* smc_reader.c in Sources */,
 				6349C11524BB733300C6FC99 /* MenuMeterCPUTopProcesses.m in Sources */,
