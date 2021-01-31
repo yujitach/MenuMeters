@@ -26,7 +26,7 @@
             SMCCode key=val.key;
             char s[5]={key.code[3],key.code[2],key.code[1],key.code[0],0};
             NSString*name=[NSString stringWithUTF8String:s];
-            if([name hasPrefix:@"T"]){
+            if([name hasPrefix:@"T"]&&val.info.dataType.type ==SMC_DATATYPE_SP78.type){
                 [a addObject:name];
             }
         }
