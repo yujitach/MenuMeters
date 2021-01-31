@@ -219,7 +219,12 @@
                    highBound:kCPUTemperatureUnitFahrenheit
                 defaultValue:kCPUTemperatureUnitCelsius];
 }
-
+- (NSString*)cpuTemperatureSensor{
+    return [self loadStringPref:kCPUTemperatureSensor defaultValue:kCPUTemperatureSensorDefault];
+}
+-(void)saveCpuTemperatureSensor:(NSString *)name{
+    [self saveStringPref:kCPUTemperatureSensor value:name];
+}
 - (NSColor *)cpuSystemColor {
 	return [self loadColorPref:kCPUSystemColorPref defaultValue:kCPUSystemColorDefault];
 } // cpuSystemColor

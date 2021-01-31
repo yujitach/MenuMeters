@@ -78,6 +78,7 @@ NSWindowController<NSWindowDelegate>
 	IBOutlet NSPopUpButton			*cpuPowerMateMode;
 	IBOutlet NSColorWell			*cpuUserColor;
     IBOutlet NSColorWell            *cpuTemperatureColor;
+    IBOutlet NSPopUpButton* cpuTemperatureSensor;
 	IBOutlet NSTextField			*cpuUserColorLabel;
 	IBOutlet NSColorWell			*cpuSystemColor;
 	IBOutlet NSTextField			*cpuSystemColorLabel;

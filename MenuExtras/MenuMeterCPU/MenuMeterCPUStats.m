@@ -25,6 +25,8 @@
 #import <IOKit/pwr_mgt/IOPM.h>
 #import "../../hardware_reader/smc_reader.h"
 #import "../../hardware_reader/applesilicon_hardware_reader.h"
+#import "TemperatureReader.h"
+#import "MenuMeterDefaults.h"
 #include <TargetConditionals.h>
 
 @implementation MenuMeterCPULoad
@@ -327,8 +329,8 @@ uint32_t packageCount;
 } // currentLoad
 
 - (float_t)cpuProximityTemperature {
-    float_t celsius = -273.15F;
 #if TARGET_CPU_X86_64
+    float_t celsius = -273.15F;
     if (kIOReturnSuccess == SMCOpen()) {
         SMCKeyValue value;
         //use harcoded value for a while
@@ -338,16 +340,14 @@ uint32_t packageCount;
         }
         SMCClose();
     }
-#elif TARGET_CPU_ARM64
-    NSDictionary*dict=AppleSiliconTemperatureDictionary();
-    //use harcoded value for a while
-    //TODO: implement tab to select which sensor to display
-    NSNumber*temp=dict[@"SOC MTR Temp Sensor0"];
-    if(temp){
-        celsius=[temp floatValue];
-    }
-#endif
     return celsius;
+#elif TARGET_CPU_ARM64
+    NSString*sensor=[[MenuMeterDefaults sharedMenuMeterDefaults] cpuTemperatureSensor];
+    if([sensor isEqualToString:kCPUTemperatureSensorDefault]){
+        sensor=[TemperatureReader defaultSensor];
+    }
+    return [TemperatureReader temperatureOfSensorWithName:sensor];
+#endif
 } // cpuProximityTemperature
 
 ///////////////////////////////////////////////////////////////

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,6 +32,7 @@
                 <outlet property="cpuSystemColor" destination="163" id="181"/>
                 <outlet property="cpuSystemColorLabel" destination="166" id="267"/>
                 <outlet property="cpuTemperatureColor" destination="N2x-dP-JhG" id="DJw-gX-f5H"/>
+                <outlet property="cpuTemperatureSensor" destination="bed-uN-AWJ" id="Ouf-Wx-y7D"/>
                 <outlet property="cpuTemperatureToggle" destination="zYV-YS-fXt" id="zXf-mD-wVE"/>
                 <outlet property="cpuTemperatureUnit" destination="4w5-Tb-3io" id="URX-mr-TVT"/>
                 <outlet property="cpuThermometer" destination="hCJ-ZO-KEk" id="KIo-ac-0by"/>
@@ -92,7 +93,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="119" y="174" width="594" height="673"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
             <value key="minSize" type="size" width="213.66399999999999" height="10"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="594" height="673"/>
@@ -225,7 +226,7 @@
                                                     <rect key="frame" x="251" y="294" width="279" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" controlSize="small" alignment="left" minValue="11" maxValue="88" doubleValue="33" tickMarkPosition="below" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1021">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                     </sliderCell>
                                                     <connections>
                                                         <action selector="cpuPrefChange:" target="-2" id="186"/>
@@ -235,7 +236,7 @@
                                                     <rect key="frame" x="251" y="172" width="279" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" controlSize="small" state="on" alignment="left" minValue="1" maxValue="8" doubleValue="4" tickMarkPosition="below" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1090">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                         <connections>
                                                             <action selector="cpuPrefChange:" target="-2" id="1096"/>
                                                         </connections>
@@ -254,7 +255,7 @@
                                                     <rect key="frame" x="250" y="148" width="280" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" controlSize="small" state="on" alignment="left" minValue="60" maxValue="400" doubleValue="120" tickMarkPosition="below" numberOfTickMarks="8" sliderType="linear" id="1116">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                         <connections>
                                                             <action selector="cpuPrefChange:" target="-2" id="1118"/>
                                                         </connections>
@@ -316,7 +317,7 @@
                                                     <rect key="frame" x="249" y="444" width="283" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="10" doubleValue="1.5" tickMarkPosition="below" numberOfTickMarks="20" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1016">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                     </sliderCell>
                                                     <connections>
                                                         <action selector="liveUpdateInterval:" target="-2" id="1001"/>
@@ -350,7 +351,7 @@
                                                     <rect key="frame" x="250" y="235" width="280" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" controlSize="small" continuous="YES" alignment="left" maxValue="25" doubleValue="5" tickMarkPosition="below" numberOfTickMarks="26" allowsTickMarkValuesOnly="YES" sliderType="linear" id="JMV-Ao-yHz">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                     </sliderCell>
                                                     <connections>
                                                         <action selector="cpuPrefChange:" target="-2" id="w2d-Wc-Rfb"/>
@@ -434,7 +435,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zYV-YS-fXt">
-                                                    <rect key="frame" x="248" y="480" width="181" height="18"/>
+                                                    <rect key="frame" x="248" y="524" width="181" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="Show CPU Temperature in" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5r7-xY-4OH">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -463,7 +464,7 @@
                                                     </connections>
                                                 </popUpButton>
                                                 <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4w5-Tb-3io">
-                                                    <rect key="frame" x="433" y="474" width="100" height="26"/>
+                                                    <rect key="frame" x="433" y="518" width="99" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <popUpButtonCell key="cell" type="push" title="℃" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Wgg-4C-Cbe" id="yqw-R3-fFv">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -480,7 +481,7 @@
                                                     </connections>
                                                 </popUpButton>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mnr-rk-WdZ">
-                                                    <rect key="frame" x="248" y="504" width="284" height="18"/>
+                                                    <rect key="frame" x="382" y="550" width="140" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="Horizontal bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="spo-WT-wCm">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -491,7 +492,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCJ-ZO-KEk">
-                                                    <rect key="frame" x="248" y="527" width="284" height="18"/>
+                                                    <rect key="frame" x="382" y="573" width="140" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="Vertical bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="r6t-Zl-sS4">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -502,7 +503,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EKe-a8-Y3G">
-                                                    <rect key="frame" x="248" y="550" width="284" height="18"/>
+                                                    <rect key="frame" x="248" y="550" width="140" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="Graph" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="IS4-Xc-psg">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -513,7 +514,7 @@
                                                     </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4TZ-cB-Ylq">
-                                                    <rect key="frame" x="248" y="574" width="284" height="18"/>
+                                                    <rect key="frame" x="248" y="574" width="140" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <buttonCell key="cell" type="check" title="Percentage" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Jeh-C2-Wwp">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -523,6 +524,27 @@
                                                         <action selector="cpuPrefChange:" target="-2" id="QcM-JU-Sbv"/>
                                                     </connections>
                                                 </button>
+                                                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bed-uN-AWJ">
+                                                    <rect key="frame" x="326" y="488" width="206" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="SI8-yn-7ra">
+                                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="menu"/>
+                                                        <menu key="menu" id="ana-bp-m3D"/>
+                                                    </popUpButtonCell>
+                                                    <connections>
+                                                        <action selector="cpuPrefChange:" target="-2" id="GEx-CE-x89"/>
+                                                    </connections>
+                                                </popUpButton>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AkQ-wb-nzk">
+                                                    <rect key="frame" x="269" y="489" width="63" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Sensor:" id="Bgr-O5-qr1">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                         </customView>
                                     </subviews>
@@ -601,7 +623,7 @@
                                                     <rect key="frame" x="19" y="454" width="515" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.10000000000000001" maxValue="5" doubleValue="0.30000000000000004" tickMarkPosition="below" numberOfTickMarks="50" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1008">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                     </sliderCell>
                                                     <connections>
                                                         <action selector="liveUpdateInterval:" target="-2" id="1002"/>
@@ -680,7 +702,7 @@
                                                     <rect key="frame" x="19" y="454" width="515" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="60" doubleValue="15" tickMarkPosition="below" numberOfTickMarks="60" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1036">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                     </sliderCell>
                                                     <connections>
                                                         <action selector="liveUpdateInterval:" target="-2" id="1003"/>
@@ -844,7 +866,7 @@
                                                     <rect key="frame" x="172" y="282" width="299" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" controlSize="small" alignment="left" minValue="11" maxValue="88" doubleValue="33" tickMarkPosition="below" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1046">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                     </sliderCell>
                                                     <connections>
                                                         <action selector="memPrefChange:" target="-2" id="518"/>
@@ -1185,7 +1207,7 @@
                                                     <rect key="frame" x="165" y="128" width="313" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" controlSize="small" alignment="left" minValue="11" maxValue="88" doubleValue="33" tickMarkPosition="below" numberOfTickMarks="8" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1059">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                     </sliderCell>
                                                     <connections>
                                                         <action selector="netPrefChange:" target="-2" id="351"/>
@@ -1272,7 +1294,7 @@
                                                     <rect key="frame" x="19" y="454" width="515" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <sliderCell key="cell" continuous="YES" alignment="left" minValue="0.5" maxValue="20" doubleValue="2" tickMarkPosition="below" numberOfTickMarks="40" allowsTickMarkValuesOnly="YES" sliderType="linear" id="1052">
-                                                        <font key="font" metaFont="user"/>
+                                                        <font key="font" usesAppearanceFont="YES"/>
                                                     </sliderCell>
                                                     <connections>
                                                         <action selector="liveUpdateInterval:" target="-2" id="1004"/>

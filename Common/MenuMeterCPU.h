@@ -66,6 +66,8 @@
 #define kCPUPowerMateMode					@"CPUPowerMateMode"
 #define kCPUShowTemperature                 @"CPUTemperature"
 #define kCPUTemperatureColor                @"CPUTemperatureColor"
+#define kCPUTemperatureSensor                @"CPUTemperatureSensor"
+#define kCPUTemperatureSensorDefault                @"CPUTemperatureSensorDefault"
 #define kCPUTemperatureUnit                @"CPUTemperatureUnit"
 #define kCPUTemperatureUnitCelsius 0
 #define kCPUTemperatureUnitFahrenheit 1

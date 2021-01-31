@@ -27,7 +27,7 @@
 #import "MenuMeterDiskExtra.h"
 #import "MenuMeterMemExtra.h"
 #import "MenuMeterNetExtra.h"
-
+#import "TemperatureReader.h"
 ///////////////////////////////////////////////////////////////
 //
 //	Private methods and constants
@@ -325,6 +325,26 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     }
 } // mainViewDidLoad
 
+- (void)updateTemperatureSensors
+{
+    NSArray*sensorNames=[TemperatureReader sensorNames];
+    NSMenu*menu=[cpuTemperatureSensor menu];
+    for(NSString*name in sensorNames){
+        [menu addItemWithTitle:name action:nil keyEquivalent:@""];
+    }
+    NSString*sensor=[ourPrefs cpuTemperatureSensor];
+    if([sensor isEqualTo:kCPUTemperatureSensorDefault]){
+        sensor=[TemperatureReader defaultSensor];
+    }
+    NSMenuItem*item=[menu itemWithTitle:sensor];
+    if(!item){
+        // This means that it is the first launch after migrating to a new Mac with a different set of sensors.
+        [ourPrefs saveCpuTemperatureSensor:kCPUTemperatureSensorDefault];
+        sensor=[TemperatureReader defaultSensor];
+        item=[menu itemWithTitle:sensor];
+    }
+    [cpuTemperatureSensor selectItem:item];
+}
 - (void)willSelect {
 
 	// Reread prefs on each load
@@ -350,7 +370,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 	// Build the preferred interface menu and select (this actually updates the net prefs too)
 	[self updateNetInterfaceMenu];
-
+    
+    [self updateTemperatureSensors];
 	// Reset the controls to match the prefs
 	[self menuExtraChangedPrefs:nil];
 
@@ -496,6 +517,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [ourPrefs saveCpuTemperature:show];
    } else if (sender == cpuTemperatureUnit) {
        [ourPrefs saveCpuTemperatureUnit:(int)[cpuTemperatureUnit indexOfSelectedItem]];
+   } else if (sender==cpuTemperatureSensor){
+       NSString*sensor=[cpuTemperatureSensor selectedItem].title;
+       if([sensor isEqualToString:[TemperatureReader defaultSensor]]){
+           sensor=kCPUTemperatureSensorDefault;
+       }
+       [ourPrefs saveCpuTemperatureSensor:sensor];
     } else if (sender == cpuInterval) {
 		[ourPrefs saveCpuInterval:[cpuInterval doubleValue]];
 	} else if (sender == cpuPercentMode) {

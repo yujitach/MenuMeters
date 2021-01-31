@@ -71,6 +71,10 @@
 		33883D482365E3D400B8AC14 /* DiskImageSet.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4E4BF8F04F333B100A87BC9 /* DiskImageSet.strings */; };
 		33883D4C2365E61200B8AC14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33883D492365E61200B8AC14 /* Localizable.strings */; };
 		33883D542365E78300B8AC14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3383C1781B69B72600915D5D /* Assets.xcassets */; };
+		3391A11825C66B5F00B83705 /* TemperatureReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3391A11625C66B5F00B83705 /* TemperatureReader.h */; };
+		3391A11925C66B5F00B83705 /* TemperatureReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3391A11625C66B5F00B83705 /* TemperatureReader.h */; };
+		3391A11A25C66B5F00B83705 /* TemperatureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3391A11725C66B5F00B83705 /* TemperatureReader.m */; };
+		3391A11B25C66B5F00B83705 /* TemperatureReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3391A11725C66B5F00B83705 /* TemperatureReader.m */; };
 		339B8C90237FE17F008B9755 /* MenuMeters.icns in Resources */ = {isa = PBXBuildFile; fileRef = 339B8C8F237FE17F008B9755 /* MenuMeters.icns */; };
 		33B440112594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */; };
 		33B440122594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */; };
@@ -183,6 +187,8 @@
 		33883D512365E63100B8AC14 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33883D522365E63700B8AC14 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		33883D532365E63B00B8AC14 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3391A11625C66B5F00B83705 /* TemperatureReader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemperatureReader.h; sourceTree = "<group>"; };
+		3391A11725C66B5F00B83705 /* TemperatureReader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemperatureReader.m; sourceTree = "<group>"; };
 		339B8C8F237FE17F008B9755 /* MenuMeters.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MenuMeters.icns; sourceTree = "<group>"; };
 		33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = com.ragingmenace.MenuMeters.plist; sourceTree = "<group>"; };
 		33F092172367387B00953CAB /* MenuMeters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MenuMeters.entitlements; sourceTree = "<group>"; };
@@ -584,6 +590,8 @@
 				F75EBE2F235B6F3600876CF7 /* smc_reader.c */,
 				3325978B25BE7DB10070CE37 /* applesilicon_hardware_reader.m */,
 				3325978F25BE7DCA0070CE37 /* applesilicon_hardware_reader.h */,
+				3391A11625C66B5F00B83705 /* TemperatureReader.h */,
+				3391A11725C66B5F00B83705 /* TemperatureReader.m */,
 			);
 			path = hardware_reader;
 			sourceTree = "<group>";
@@ -595,6 +603,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3391A11825C66B5F00B83705 /* TemperatureReader.h in Headers */,
 				3330C5B4257DFAED00BD5164 /* LocalizedStrings.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,6 +612,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3391A11925C66B5F00B83705 /* TemperatureReader.h in Headers */,
 				3330C5B5257DFAED00BD5164 /* LocalizedStrings.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,6 +817,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3391A11A25C66B5F00B83705 /* TemperatureReader.m in Sources */,
 				33883D36236561B700B8AC14 /* EMCLoginItem.m in Sources */,
 				33883CF023655C9900B8AC14 /* MenuMeterDiskExtra.m in Sources */,
 				33883CF123655C9900B8AC14 /* MenuMeterWorkarounds.m in Sources */,
@@ -838,6 +849,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3391A11B25C66B5F00B83705 /* TemperatureReader.m in Sources */,
 				6349C10924BB733300C6FC99 /* EMCLoginItem.m in Sources */,
 				6349C10A24BB733300C6FC99 /* MenuMeterDiskExtra.m in Sources */,
 				6349C10B24BB733300C6FC99 /* MenuMeterWorkarounds.m in Sources */,
