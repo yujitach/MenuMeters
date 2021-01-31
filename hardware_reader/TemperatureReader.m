@@ -16,23 +16,73 @@
 +(NSArray*)sensorNames
 {
 #if TARGET_CPU_X86_64
-    return nil;
+    if (kIOReturnSuccess == SMCOpen()) {
+        UInt32 count;
+        NSMutableArray*a=[NSMutableArray array];
+        SMCReadKeysCount(&count);
+        for(int i=0;i<count;i++){
+            SMCKeyValue val;
+            SMCReadKeyAtIndex(i, &val);
+            SMCCode key=val.key;
+            char s[5]={key.code[3],key.code[2],key.code[1],key.code[0],0};
+            NSString*name=[NSString stringWithUTF8String:s];
+            if([name hasPrefix:@"T"]){
+                [a addObject:name];
+            }
+        }
+        SMCClose();
+        return a;
+    }else{
+        return nil;
+    }
 #elif TARGET_CPU_ARM64
     return [[AppleSiliconTemperatureDictionary() allKeys] sortedArrayUsingSelector:@selector(compare:)];
 #endif
 }
 +(NSString*)defaultSensor
 {
+    static NSString*foo=nil;
+    if(!foo){
+        foo=[self defaultSensorRealWork];
+    }
+    return foo;
+}
++(NSString*)defaultSensorRealWork
+{
+    NSString* candidate=
 #if TARGET_CPU_X86_64
-    return @"";
+    @"TC0P";
 #elif TARGET_CPU_ARM64
-    return @"SOC MTR Temp Sensor0";
+    @"SOC MTR Temp Sensor0";
+#endif
+    if(![self sensorNames])
+        return candidate;
+    if([[self sensorNames] containsObject:candidate])
+        return candidate;
+    return [self sensorNames][0];
+}
++(NSString*)displayNameForSensor:(NSString*)name
+{
+#if TARGET_CPU_X86_64
+    return name;
+#elif TARGET_CPU_ARM64
+    return name;
 #endif
 }
 +(float)temperatureOfSensorWithName:(NSString*)name
 {
 #if TARGET_CPU_X86_64
-    return 0;
+    float_t celsius = -273.15F;
+    if (kIOReturnSuccess == SMCOpen()) {
+        SMCKeyValue value;
+        //use harcoded value for a while
+        //TODO: implement SMC tab to allow setup smc gauges in toolbar
+        if (kIOReturnSuccess == SMCReadKey(toSMCCode([name UTF8String]), &value)) {
+            celsius = SP78_TO_CELSIUS(value.bytes);
+        }
+        SMCClose();
+    }
+    return celsius;
 #elif TARGET_CPU_ARM64
     return [(NSNumber*)AppleSiliconTemperatureDictionary()[name] floatValue];
 #endif

@@ -328,20 +328,26 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (void)updateTemperatureSensors
 {
     NSArray*sensorNames=[TemperatureReader sensorNames];
+    if(!sensorNames){
+        cpuTemperatureSensor.enabled=NO;
+        return;
+    }
     NSMenu*menu=[cpuTemperatureSensor menu];
     for(NSString*name in sensorNames){
-        [menu addItemWithTitle:name action:nil keyEquivalent:@""];
+        NSString*displayName=[TemperatureReader displayNameForSensor:name];
+        NSMenuItem*item=[menu addItemWithTitle:displayName action:nil keyEquivalent:@""];
+        item.toolTip=name;
     }
     NSString*sensor=[ourPrefs cpuTemperatureSensor];
     if([sensor isEqualTo:kCPUTemperatureSensorDefault]){
         sensor=[TemperatureReader defaultSensor];
     }
-    NSMenuItem*item=[menu itemWithTitle:sensor];
+    NSMenuItem*item=[menu itemWithTitle:[TemperatureReader displayNameForSensor:sensor]];
     if(!item){
         // This means that it is the first launch after migrating to a new Mac with a different set of sensors.
         [ourPrefs saveCpuTemperatureSensor:kCPUTemperatureSensorDefault];
         sensor=[TemperatureReader defaultSensor];
-        item=[menu itemWithTitle:sensor];
+        item=[menu itemWithTitle:[TemperatureReader displayNameForSensor:sensor]];
     }
     [cpuTemperatureSensor selectItem:item];
 }
@@ -518,7 +524,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
    } else if (sender == cpuTemperatureUnit) {
        [ourPrefs saveCpuTemperatureUnit:(int)[cpuTemperatureUnit indexOfSelectedItem]];
    } else if (sender==cpuTemperatureSensor){
-       NSString*sensor=[cpuTemperatureSensor selectedItem].title;
+       NSString*sensor=[cpuTemperatureSensor selectedItem].toolTip;
        if([sensor isEqualToString:[TemperatureReader defaultSensor]]){
            sensor=kCPUTemperatureSensorDefault;
        }

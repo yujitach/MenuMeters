@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TemperatureReader : NSObject
 +(NSArray*)sensorNames;
 +(NSString*)defaultSensor;
++(NSString*)displayNameForSensor:(NSString*)name;
 +(float)temperatureOfSensorWithName:(NSString*)name;
 @end
 
