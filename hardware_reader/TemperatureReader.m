@@ -59,12 +59,31 @@
         return candidate;
     if([[self sensorNames] containsObject:candidate])
         return candidate;
+    for(NSString*sensor in [self sensorNames]){
+        if([sensor hasPrefix:@"TC"])
+            return sensor;
+    }
     return [self sensorNames][0];
 }
 +(NSString*)displayNameForSensor:(NSString*)name
 {
 #if TARGET_CPU_X86_64
-    return name;
+    static NSMutableDictionary*dict=nil;
+    if(!dict){
+        dict=[NSMutableDictionary dictionary];
+        NSDictionary*rawDict=SMCHumanReadableDescriptions();
+        for(NSString*key in [self sensorNames]){
+            NSString*s=rawDict[key];
+            if(s){
+                s=[s stringByReplacingOccurrencesOfString:@"(DegC)" withString:@""];
+                s=[s stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"(%@)",key] withString:@""];
+                dict[key]=[NSString stringWithFormat:@"%@: %@",key,s];
+            }else{
+                dict[key]=key;
+            }
+        }
+    }
+    return dict[name];
 #elif TARGET_CPU_ARM64
     return name;
 #endif

@@ -28,7 +28,7 @@
 		33883CF723655C9900B8AC14 /* MenuMeterCPUStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAF103D4BB9200A87BC9 /* MenuMeterCPUStats.m */; };
 		33883CF823655C9900B8AC14 /* MenuMetersMenuExtraBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		33883CF923655C9900B8AC14 /* MenuMeterUptime.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAF503D4BB9D00A87BC9 /* MenuMeterUptime.m */; };
-		33883CFA23655C9900B8AC14 /* smc_reader.c in Sources */ = {isa = PBXBuildFile; fileRef = F75EBE2F235B6F3600876CF7 /* smc_reader.c */; };
+		33883CFA23655C9900B8AC14 /* smc_reader.m in Sources */ = {isa = PBXBuildFile; fileRef = F75EBE2F235B6F3600876CF7 /* smc_reader.m */; };
 		33883CFB23655C9900B8AC14 /* MenuMeterCPUTopProcesses.m in Sources */ = {isa = PBXBuildFile; fileRef = D602BB90207F9561004984C1 /* MenuMeterCPUTopProcesses.m */; };
 		33883CFC23655C9900B8AC14 /* MenuMeterMemStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F12E203D48A1C00A87BC9 /* MenuMeterMemStats.m */; };
 		33883CFD23655C9900B8AC14 /* MenuMeterDiskSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC96503D49AF700A87BC9 /* MenuMeterDiskSpace.m */; };
@@ -90,7 +90,7 @@
 		6349C11124BB733300C6FC99 /* MenuMeterCPUStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAF103D4BB9200A87BC9 /* MenuMeterCPUStats.m */; };
 		6349C11224BB733300C6FC99 /* MenuMetersMenuExtraBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		6349C11324BB733300C6FC99 /* MenuMeterUptime.m in Sources */ = {isa = PBXBuildFile; fileRef = D477AAF503D4BB9D00A87BC9 /* MenuMeterUptime.m */; };
-		6349C11424BB733300C6FC99 /* smc_reader.c in Sources */ = {isa = PBXBuildFile; fileRef = F75EBE2F235B6F3600876CF7 /* smc_reader.c */; };
+		6349C11424BB733300C6FC99 /* smc_reader.m in Sources */ = {isa = PBXBuildFile; fileRef = F75EBE2F235B6F3600876CF7 /* smc_reader.m */; };
 		6349C11524BB733300C6FC99 /* MenuMeterCPUTopProcesses.m in Sources */ = {isa = PBXBuildFile; fileRef = D602BB90207F9561004984C1 /* MenuMeterCPUTopProcesses.m */; };
 		6349C11624BB733300C6FC99 /* MenuMeterMemStats.m in Sources */ = {isa = PBXBuildFile; fileRef = D45F12E203D48A1C00A87BC9 /* MenuMeterMemStats.m */; };
 		6349C11724BB733300C6FC99 /* MenuMeterDiskSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC96503D49AF700A87BC9 /* MenuMeterDiskSpace.m */; };
@@ -294,7 +294,7 @@
 		D602BB8F207F9561004984C1 /* MenuMeterCPUTopProcesses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuMeterCPUTopProcesses.h; path = MenuExtras/MenuMeterCPU/MenuMeterCPUTopProcesses.h; sourceTree = "<group>"; };
 		D602BB90207F9561004984C1 /* MenuMeterCPUTopProcesses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPUTopProcesses.m; path = MenuExtras/MenuMeterCPU/MenuMeterCPUTopProcesses.m; sourceTree = "<group>"; };
 		F75EBE2E235B6F3600876CF7 /* smc_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smc_reader.h; sourceTree = "<group>"; };
-		F75EBE2F235B6F3600876CF7 /* smc_reader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = smc_reader.c; sourceTree = "<group>"; };
+		F75EBE2F235B6F3600876CF7 /* smc_reader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = smc_reader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -587,7 +587,7 @@
 			isa = PBXGroup;
 			children = (
 				F75EBE2E235B6F3600876CF7 /* smc_reader.h */,
-				F75EBE2F235B6F3600876CF7 /* smc_reader.c */,
+				F75EBE2F235B6F3600876CF7 /* smc_reader.m */,
 				3325978B25BE7DB10070CE37 /* applesilicon_hardware_reader.m */,
 				3325978F25BE7DCA0070CE37 /* applesilicon_hardware_reader.h */,
 				3391A11625C66B5F00B83705 /* TemperatureReader.h */,
@@ -831,7 +831,7 @@
 				33883CF823655C9900B8AC14 /* MenuMetersMenuExtraBase.m in Sources */,
 				3325978C25BE7DB10070CE37 /* applesilicon_hardware_reader.m in Sources */,
 				33883CF923655C9900B8AC14 /* MenuMeterUptime.m in Sources */,
-				33883CFA23655C9900B8AC14 /* smc_reader.c in Sources */,
+				33883CFA23655C9900B8AC14 /* smc_reader.m in Sources */,
 				33883CFB23655C9900B8AC14 /* MenuMeterCPUTopProcesses.m in Sources */,
 				33883CFC23655C9900B8AC14 /* MenuMeterMemStats.m in Sources */,
 				33883CFD23655C9900B8AC14 /* MenuMeterDiskSpace.m in Sources */,
@@ -863,7 +863,7 @@
 				6349C11224BB733300C6FC99 /* MenuMetersMenuExtraBase.m in Sources */,
 				3325979325BE7DD00070CE37 /* applesilicon_hardware_reader.m in Sources */,
 				6349C11324BB733300C6FC99 /* MenuMeterUptime.m in Sources */,
-				6349C11424BB733300C6FC99 /* smc_reader.c in Sources */,
+				6349C11424BB733300C6FC99 /* smc_reader.m in Sources */,
 				6349C11524BB733300C6FC99 /* MenuMeterCPUTopProcesses.m in Sources */,
 				6349C11624BB733300C6FC99 /* MenuMeterMemStats.m in Sources */,
 				6349C11724BB733300C6FC99 /* MenuMeterDiskSpace.m in Sources */,

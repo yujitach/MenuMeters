@@ -104,4 +104,6 @@ kern_return_t SMCReadKey(SMCCode key, SMCKeyValue *val);
 kern_return_t SMCReadKeysCount(UInt32 *count);
 kern_return_t SMCReadKeyAtIndex(UInt32 index, SMCKeyValue *val);
 
+NSDictionary* SMCHumanReadableDescriptions(void);
+
 #endif /* smc_reader_h */
