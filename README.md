@@ -1,5 +1,5 @@
 # MenuMeters
-My fork of MenuMeters for El Capitan, Sierra, High Sierra, Mojave and Catalina.
+My fork of MenuMeters for El Capitan, Sierra, High Sierra, Mojave, Catalina and Big Sur.
 
 # Usage:
 If you just want to use it, please go to http://member.ipmu.jp/yuji.tachikawa/MenuMetersElCapitan/ or https://github.com/yujitach/MenuMeters/releases and download the binary. The detailed installation instruction is given in the former.
