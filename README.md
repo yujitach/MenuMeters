@@ -6,7 +6,13 @@ If you just want to use it, please go to http://member.ipmu.jp/yuji.tachikawa/Me
 
 # Other versions & related open source softwares:
 
-If you run Mojave and higher, https://github.com/exelban/stats is another menubar monitor which has a more modern look and feel, often offers more capability, and is maintained actively. It is heavily recommended.
+If you run sufficiently new mac OS, try one of
+
+- https://github.com/exelban/stats
+- https://iglance.github.io
+- https://github.com/gao-sun/eul
+
+which are all menubar monitors with more modern look and feel and more capability. What is more, they are maintained actively. They are heavily recommended.
 
 There are also further forks of my version of MenuMeters, which implement more features. You might want to try them out:
 
