@@ -72,7 +72,9 @@ NSDictionary*AppleSiliconTemperatureDictionary(void)
             double temp = IOHIDEventGetFloatValue(event, IOHIDEventFieldBase(kIOHIDEventTypeTemperature));
             dict[name]=@(temp);
         }
-        CFRelease(event);
+        if (event) {
+            CFRelease(event);
+        }
     }
     
     CFRelease(matchingsrvs);
