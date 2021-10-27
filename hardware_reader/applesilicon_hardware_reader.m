@@ -29,7 +29,7 @@ IOHIDEventSystemClientRef IOHIDEventSystemClientCreate(CFAllocatorRef allocator)
 int IOHIDEventSystemClientSetMatching(IOHIDEventSystemClientRef client, CFDictionaryRef match);
 int IOHIDEventSystemClientSetMatchingMultiple(IOHIDEventSystemClientRef client, CFArrayRef match);
 IOHIDEventRef IOHIDServiceClientCopyEvent(IOHIDServiceClientRef, int64_t , int32_t, int64_t);
-CFStringRef IOHIDServiceClientCopyProperty(IOHIDServiceClientRef service, CFStringRef property);
+CFTypeRef _Nullable IOHIDServiceClientCopyProperty(IOHIDServiceClientRef service, CFStringRef key);
 IOHIDFloat IOHIDEventGetFloatValue(IOHIDEventRef event, int32_t field);
 
 //extern uint64_t my_mhz(void);
