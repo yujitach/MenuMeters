@@ -119,11 +119,11 @@ enum {
 
 // Colors
 											// Moss green
-#define kNetTransmitColorDefault			[NSColor colorWithDeviceRed:0.0f green:0.5f blue:0.25f alpha:1.0f]
+#define kNetTransmitColorDefault			[NSColor systemGreenColor]
 											// Brick red
-#define kNetReceiveColorDefault				[NSColor colorWithDeviceRed:0.5f green:0.0f blue:0.0f alpha:1.0f]
+#define kNetReceiveColorDefault				[NSColor systemRedColor]
 											// Light grey
-#define kNetInactiveColorDefault			[NSColor darkGrayColor]
+#define kNetInactiveColorDefault			[NSColor secondaryLabelColor]
 
 
 
