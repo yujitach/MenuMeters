@@ -59,6 +59,7 @@
 	// Cached dictionary of menu items that can be updated
 	NSMutableDictionary				*updateMenuItems;
 	NSFont							*throughputFont;
+	BOOL 							tallMenuBar;
 
 } // MenuMeterNetExtra
 
