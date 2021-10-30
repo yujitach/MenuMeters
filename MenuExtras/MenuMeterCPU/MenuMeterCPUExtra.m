@@ -413,9 +413,9 @@
 
 		// Update paths (adding baseline)
 		[userPath lineToPoint:NSMakePoint(offset + renderPosition,
-										  (((system + user) > 1 ? 1 : (system + user)) * renderHeight) + 0.5f)];
+										  (((system + user) > 1 ? 1 : (system + user)) * renderHeight) + 0.5)];
 		[systemPath lineToPoint:NSMakePoint(offset + renderPosition,
-											(system * renderHeight) + 0.5f)];
+											(system * renderHeight) + 0.5)];
 	}
 
 	// Return to lower edge (fill will close the graph)
@@ -444,7 +444,7 @@
 									NSForegroundColorAttributeName,
 									nil];
 	NSAttributedString *cacheText = [[NSAttributedString alloc]
-									 initWithString:[NSString stringWithFormat:@"%d%%", (int)roundf(load * 100.0f)]
+									 initWithString:[NSString stringWithFormat:@"%d%%", (int)roundf(load * 100.0)]
 									 attributes:textAttributes];
 	return cacheText;
 }
@@ -452,7 +452,7 @@
 
 
 	// Current load (if available)
-	double system=0,user=0;
+	double system=0, user=0;
 	[self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
 	float totalLoad = system + user;
 	if (totalLoad > 1) totalLoad = 1;
@@ -504,27 +504,27 @@
 
 - (void)renderSingleTemperatureIntoImage:(NSImage *)image atOffset:(float)offset {
 	float_t celsius = [cpuInfo cpuProximityTemperature];
-	float_t fahrenheit=celsius*1.8+32;
-	NSString*temperatureString=@"";
+	float_t fahrenheit = celsius * 1.8 + 32;
+	NSString *temperatureString=@"";
 	switch ([ourPrefs cpuTemperatureUnit]){
 		case kCPUTemperatureUnitCelsius:
-			temperatureString=[NSString stringWithFormat:@"%.1f℃", celsius];
-			if(celsius<-100){
-				temperatureString=@"??℃";
+			temperatureString = [NSString stringWithFormat:@"%.1f℃", celsius];
+			if (celsius<-100){
+				temperatureString = @"??℃";
 			}
 			break;
 		case kCPUTemperatureUnitFahrenheit:
-			if (fahrenheit>=100){
-				temperatureString=[NSString stringWithFormat:@"%d℉", (int)fahrenheit];
+			if (fahrenheit >= 100){
+				temperatureString = [NSString stringWithFormat:@"%d℉", (int)fahrenheit];
 			} else {
-				temperatureString=[NSString stringWithFormat:@"%.1f℉", fahrenheit];
+				temperatureString = [NSString stringWithFormat:@"%.1f℉", fahrenheit];
 			}
-			if (celsius<-100){
-				temperatureString=@"??℉";
+			if (celsius < -100){
+				temperatureString = @"??℉";
 			}
 			break;
 		default:
-			temperatureString=@"???";
+			temperatureString = @"???";
 	}
 	[image lockFocus];
 	NSAttributedString *renderTemperatureString = [self renderTemperatureStringForString:temperatureString];
@@ -574,11 +574,11 @@
 	}
 
 	// Paths
-	NSBezierPath *rightCapPath = [NSBezierPath bezierPathWithRect:NSMakeRect((x + width) - 2.0f, y, 1.0f, height - 1.0f)];
+	NSBezierPath *rightCapPath = [NSBezierPath bezierPathWithRect:NSMakeRect((x + width) - 2.0, y, 1.0, height - 1.0)];
 
-	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0f, y, (width - 2.0f) * ((user + system) > 1 ? 1 : (user + system)), height - 1.0f)];
+	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0, y, (width - 2.0) * ((user + system) > 1 ? 1 : (user + system)), height - 1.0)];
 
-	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0f, y, (width - 2.0f) * system, height - 1.0f)];
+	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0, y, (width - 2.0) * system, height - 1.0)];
 
 	// Draw
 	[image lockFocus];
@@ -696,25 +696,24 @@
 //  Prefs
 //
 ///////////////////////////////////////////////////////////////
--(float)baselineOffset
-{
-	float offset=1.0f;
+-(float)baselineOffset {
+	float offset = 1.0;
 	if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
-		offset=+0.5f;
+		offset = 0.5;
 	}
 	if([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit){
-		offset = +0.0f;
+		offset = 0.0;
 	}
 	return offset;
 }
--(float)fontSize
-{
-	float fontSize=14;
+
+-(float)fontSize {
+	float fontSize = 14;
 	if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
 		fontSize = 11;
 	}
 	if([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit){
-		fontSize = 9.5f;
+		fontSize = 9.5;
 	}
 	return fontSize;
 }
@@ -733,12 +732,12 @@
 	systemColor = [self colorByAdjustingForLightDark:[ourPrefs cpuSystemColor]];
 	temperatureColor = [self colorByAdjustingForLightDark:[ourPrefs cpuTemperatureColor]];
 
-	int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs]?[cpuInfo numberOfCores]:[cpuInfo numberOfCPUs];
+	int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs] ? [cpuInfo numberOfCores] : [cpuInfo numberOfCPUs];
 
 	if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
 		// Calc the new width
-		NSAttributedString*string=[self percentStringForLoad:[ourPrefs cpuSumAllProcsPercent]?[cpuInfo numberOfCPUs]:1.0f
-													andColor:fgMenuThemeColor];
+		NSAttributedString *string = [self percentStringForLoad:[ourPrefs cpuSumAllProcsPercent] ? [cpuInfo numberOfCPUs] : 1.0
+													   andColor:fgMenuThemeColor];
 		percentWidth = (float)round([string size].width) + kCPUPercentDisplayBorderWidth;
 	}
 

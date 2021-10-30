@@ -49,9 +49,9 @@ typedef enum {
 #define kDiskSpaceForceBaseTwoPref		@"DiskSpaceForceBaseTwo"
 
 // Timer
-#define kDiskUpdateIntervalMin			0.1f
-#define kDiskUpdateIntervalMax			5.0f
-#define kDiskUpdateIntervalDefault		0.3f
+#define kDiskUpdateIntervalMin			0.1
+#define kDiskUpdateIntervalMax			5.0
+#define kDiskUpdateIntervalDefault		0.3
 
 // Image sets
 #define kDiskImageSets					[NSArray arrayWithObjects: @"Color Arrows", @"Arrows", \

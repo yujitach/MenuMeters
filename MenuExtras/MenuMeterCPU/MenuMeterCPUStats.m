@@ -302,7 +302,7 @@ uint32_t packageCount;
 		NSMutableArray *sorted = [NSMutableArray array];
 		processorCount=(natural_t)[loadInfo count];
 		for (natural_t i = 0; i < processorCount; i++) {
-			float maxSum = 0.0f;
+			float maxSum = 0.0;
 			natural_t maxIndex = 0;
 			for (natural_t j = 0; j < (processorCount - i); j++) {
 				MenuMeterCPULoad *load = [loadInfo objectAtIndex: j];

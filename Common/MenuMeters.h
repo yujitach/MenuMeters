@@ -94,4 +94,4 @@
 #define kMenuDoubleIndentFormat			@"        %@"
 #define kMenuTripleIndentFormat			@"            %@"
 
-#define kBorderAlpha 0.8f
+#define kBorderAlpha 0.8

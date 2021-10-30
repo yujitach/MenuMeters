@@ -152,31 +152,31 @@
 	if (![[NSWorkspace sharedWorkspace] launchApplication:@"Activity Monitor.app"]) {
 		NSLog(@"MenuMeter unable to launch the Activity Monitor.");
 	}
-	BOOL x=[[NSUserDefaults standardUserDefaults] boolForKey:@"activityMonitorOpenSpecificPanes"];
+	BOOL x = [[NSUserDefaults standardUserDefaults] boolForKey:@"activityMonitorOpenSpecificPanes"];
 	if (!x)
 		return;
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(),^{
 		// if(@available(macOS 10.15,*)){
-		int tab=1;
+		int tab = 1;
 		if ([self isKindOfClass:[MenuMeterCPUExtra class]]){
-			tab=1;
+			tab = 1;
 		}
 		// on some Mac's there is a "GPU" tab at the 2nd position.
 		// So the rest needs to be addressed from the last
-		if([self isKindOfClass:[MenuMeterDiskExtra class]]){
-			tab=-2;
+		if ([self isKindOfClass:[MenuMeterDiskExtra class]]){
+			tab = -2;
 		}
 		if ([self isKindOfClass:[MenuMeterMemExtra class]]){
-			tab=-4;
+			tab = -4;
 		}
 		if ([self isKindOfClass:[MenuMeterNetExtra class]]){
-			tab=-1;
+			tab = -1;
 		}
 		NSString *source=[NSString stringWithFormat:@"tell application \"System Events\" to tell process \"Activity Monitor\" to click radio button %@ of radio group 1 of group 2 of toolbar of window 1", @(tab)];
-		NSAppleScript *script=[[NSAppleScript alloc] initWithSource:source];
-		NSDictionary *errorDict=nil;
+		NSAppleScript *script = [[NSAppleScript alloc] initWithSource:source];
+		NSDictionary *errorDict = nil;
 		[script executeAndReturnError:&errorDict];
-		if(errorDict){
+		if (errorDict){
 			NSLog(@"%@",errorDict);
 		}
 		//}
@@ -193,11 +193,11 @@
 									action:@selector(openMenuMetersPref:)
 							 keyEquivalent:@""];
 	[menuItem setTarget:self];
-
 }
+
 -(BOOL)isDark
 {
-	if (@available(macOS 10.14,*)){
+	if (@available(macOS 10.14, *)){
 		// https://github.com/ruiaureliano/macOS-Appearance/blob/master/Appearance/Source/AppDelegate.swift
 		return [statusItem.button.effectiveAppearance.name containsString:@"ark"];
 	}
@@ -214,9 +214,10 @@
 		return isDark;
 	}
 }
+
 -(NSColor*)menuBarTextColor
 {
-	if(@available(macOS 10.14,*)){
+	if (@available(macOS 10.14, *)){
 		return [NSColor labelColor];
 	}
 	if (self.isDark){
@@ -224,29 +225,30 @@
 	}
 	return [NSColor blackColor];
 }
+
 -(CGFloat)height
 {
-	CGFloat height=statusItem.button.frame.size.height;
+	CGFloat height = statusItem.button.frame.size.height;
 	// height is sometimes zero here, which causes a lot of headaches if untreated...
-	if(height<10){
-		height=22; // the value before Big Sur.
+	if (height < 10){
+		height = 22; // the value before Big Sur.
 	}
 	return height;
 }
 - (void)setupAppearance {
-	if(@available(macOS 10.14,*)){
+	if (@available(macOS 10.14, *)){
 		[NSAppearance setCurrentAppearance:statusItem.button.effectiveAppearance];
 	}
 }
 #pragma mark NSMenuDelegate
-- (void)menuNeedsUpdate:(NSMenu*)menu {
+- (void)menuNeedsUpdate:(NSMenu *)menu {
 	statusItem.menu = self.menu;
 	statusItem.menu.delegate = self;
 }
-- (void)menuWillOpen:(NSMenu*)menu {
+- (void)menuWillOpen:(NSMenu *)menu {
 	_isMenuVisible = YES;
 }
-- (void)menuDidClose:(NSMenu*)menu {
+- (void)menuDidClose:(NSMenu *)menu {
 	_isMenuVisible = NO;
 }
 

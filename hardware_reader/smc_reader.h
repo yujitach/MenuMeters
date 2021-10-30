@@ -41,7 +41,7 @@
 #define UI32_TO_UINT32(bytes)	(bytes[0] << 24 | bytes[1] << 16 | bytes[2] << 8 | bytes[3])
 #define UI16_TO_UINT32(bytes)	(bytes[0] << 8 | bytes[1])
 #define UI8_TO_UINT32(bytes)	(bytes[0])
-#define SP78_TO_CELSIUS(bytes)	(UI16_TO_UINT32(bytes) / 256.0F)
+#define SP78_TO_CELSIUS(bytes)	(UI16_TO_UINT32(bytes) / 256.0)
 #define FPE2_TO_UINT32(bytes)	((bytes[0] << 6) + (bytes[1] >> 2))
 #define FLAG_TO_UINT32(bytes)	(bytes[0])
 

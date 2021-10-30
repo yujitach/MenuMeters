@@ -46,7 +46,7 @@
 	}
 
 	// Prefetch the data first time
-	[self netStatsForInterval:1.0f];
+	[self netStatsForInterval:1.0];
 
 	return self;
 
