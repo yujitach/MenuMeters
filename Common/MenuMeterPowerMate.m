@@ -1,24 +1,24 @@
 //
 //  MenuMeterPowerMate.m
 //
-//	PowerMate support
+//  PowerMate support
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterPowerMate.h"
@@ -27,7 +27,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and constants
+//  Private methods and constants
 //
 ///////////////////////////////////////////////////////////////
 
@@ -42,7 +42,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	IOKit notification callbacks
+//  IOKit notification callbacks
 //
 ///////////////////////////////////////////////////////////////
 
@@ -61,7 +61,7 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -151,21 +151,21 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 	// Install notifications for Powermate devices
 	err = IOServiceAddMatchingNotification(notifyPort,
-                                           kIOMatchedNotification,
+										   kIOMatchedNotification,
 										   matchingDict,
 										   DeviceMatched,
-                                           (__bridge void *)(self), &deviceMatchedIterator);
+										   (__bridge void *)(self), &deviceMatchedIterator);
 	if (err != KERN_SUCCESS) {
-        CFRelease(terminatedDict);
+		CFRelease(terminatedDict);
 
 		return nil;
 	}
 
-    err = IOServiceAddMatchingNotification(notifyPort,
-                                           kIOTerminatedNotification,
+	err = IOServiceAddMatchingNotification(notifyPort,
+										   kIOTerminatedNotification,
 										   terminatedDict,
 										   DeviceTerminated,
-                                           (__bridge void *)(self), &deviceTerminatedIterator);
+										   (__bridge void *)(self), &deviceTerminatedIterator);
 	if (err != KERN_SUCCESS) {
 		return nil;
 	}
@@ -195,7 +195,7 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Public interface
+//  Public interface
 //
 ///////////////////////////////////////////////////////////////
 
@@ -323,7 +323,7 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Timer callback
+//  Timer callback
 //
 ///////////////////////////////////////////////////////////////
 
@@ -374,7 +374,7 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Device state changes
+//  Device state changes
 //
 ///////////////////////////////////////////////////////////////
 

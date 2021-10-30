@@ -1,24 +1,24 @@
 //
 //  MenuMeterNetExtra.m
 //
-//	Menu Extra implementation
+//  Menu Extra implementation
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterNetExtra.h"
@@ -26,7 +26,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and constants
+//  Private methods and constants
 //
 ///////////////////////////////////////////////////////////////
 
@@ -69,7 +69,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Localized strings
+//  Localized strings
 //
 ///////////////////////////////////////////////////////////////
 
@@ -92,7 +92,7 @@
 #define kSelectInterfaceTitle			@"Display this interface"
 #define kCopyIPv4Title					@"Copy IPv4 address"
 #define kCopyIPv6Title					@"Copy IPv6 address"
-#define kResetTrafficTotalsTitle        @"Reset traffic totals"
+#define kResetTrafficTotalsTitle		@"Reset traffic totals"
 #define kPPPConnectTitle				@"Connect"
 #define kPPPDisconnectTitle				@"Disconnect"
 #define kNoInterfaceErrorMessage		@"No Active Interfaces"
@@ -130,7 +130,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/unload/dealloc
+//  init/unload/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -138,13 +138,13 @@
 
 - init {
 
-    self = [super initWithBundleID:kNetMenuBundleID];
+	self = [super initWithBundleID:kNetMenuBundleID];
 	if (!self) {
 		return nil;
 	}
 
-    ourPrefs = [MenuMeterDefaults sharedMenuMeterDefaults];
-    if (!ourPrefs) {
+	ourPrefs = [MenuMeterDefaults sharedMenuMeterDefaults];
+	if (!ourPrefs) {
 		NSLog(@"MenuMeterCPU unable to connect to preferences. Abort.");
 		return nil;
 	}
@@ -172,7 +172,7 @@
 
 	// Set the menu extra view up
 
-    throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];
+	throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];
 
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
@@ -191,33 +191,32 @@
 	// And configure directly from prefs on first load
 	[self configFromPrefs:nil];
 
-    // And hand ourself back to SystemUIServer
+	// And hand ourself back to SystemUIServer
 	NSLog(@"MenuMeterNet loaded.");
-    return self;
+	return self;
 
 } // initWithBundle
 
- // dealloc
+// dealloc
 
 ///////////////////////////////////////////////////////////////
 //
-//	NSMenuExtra view callbacks
+//  NSMenuExtra view callbacks
 //
 ///////////////////////////////////////////////////////////////
 
 - (NSImage *)image {
 
-        [self setupAppearance];
-    
+	[self setupAppearance];
+
 	// Image to render into (and return to view)
-	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-                                                                     self.height-1)];
+	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth, self.height-1)];
 	if (!currentImage) return nil;
 
 	// Don't render without data
 	if (![netHistoryData count]) return nil;
 
-    int netDisplayModePrefs = [ourPrefs netDisplayMode];
+	int netDisplayModePrefs = [ourPrefs netDisplayMode];
 	// Draw displays
 	if (netDisplayModePrefs & kNetDisplayGraph) {
 		[self renderGraphIntoImage:currentImage];
@@ -265,34 +264,34 @@
 			NSString *speed = nil;
 			// Best guess if this is an active interface, default to assume it is active
 			BOOL isActiveInterface = YES;
-			
-            if ([details objectForKey:@"linkactive"]) {
+
+			if ([details objectForKey:@"linkactive"]) {
 				isActiveInterface = [[details objectForKey:@"linkactive"] boolValue];
 			}
-			
-            if ([details objectForKey:@"pppstatus"]) {
+
+			if ([details objectForKey:@"pppstatus"]) {
 				if ([(NSNumber *)[[details objectForKey:@"pppstatus"] objectForKey:@"status"] unsignedIntValue] == PPP_IDLE) {
 					isActiveInterface = NO;
 				}
 			}
-			
-            // Calc speed
+
+			// Calc speed
 			if ([details objectForKey:@"linkspeed"] && isActiveInterface) {
 				if ([[details objectForKey:@"linkspeed"] doubleValue] < 0) {
 					speed = nil;
 				} else if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000000) {
 					speed = [NSString stringWithFormat:@" %.0f %@",
-								([[details objectForKey:@"linkspeed"] doubleValue] / 1000000000),
-								[localizedStrings objectForKey:kGbpsLabel]];
+							 ([[details objectForKey:@"linkspeed"] doubleValue] / 1000000000),
+							 [localizedStrings objectForKey:kGbpsLabel]];
 				} else if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000) {
 					speed = [NSString stringWithFormat:@" %.0f %@",
-								([[details objectForKey:@"linkspeed"] doubleValue] / 1000000),
-								[localizedStrings objectForKey:kMbpsLabel]];
+							 ([[details objectForKey:@"linkspeed"] doubleValue] / 1000000),
+							 [localizedStrings objectForKey:kMbpsLabel]];
 				} else {
 					speed = [NSString stringWithFormat:@" %@ %@",
-								[bytesFormatter stringForObjectValue:
-									[NSNumber numberWithDouble:([[details objectForKey:@"linkspeed"] doubleValue] / 1000)]],
-								[localizedStrings objectForKey:kKbpsLabel]];
+							 [bytesFormatter stringForObjectValue:
+							  [NSNumber numberWithDouble:([[details objectForKey:@"linkspeed"] doubleValue] / 1000)]],
+							 [localizedStrings objectForKey:kKbpsLabel]];
 				}
 			}
 			// Weird string cat because some of these values may not be present
@@ -302,21 +301,21 @@
 				// If there is a PPP name use it too
 				if ([details objectForKey:@"devicepppname"]) {
 					interfaceDescription = [NSString stringWithFormat:@"%@ (%@, %@)",
-												interfaceDescription,
-												[details objectForKey:@"devicename"],
-												[details objectForKey:@"devicepppname"]];
+											interfaceDescription,
+											[details objectForKey:@"devicename"],
+											[details objectForKey:@"devicepppname"]];
 				} else {
 					interfaceDescription = [NSString stringWithFormat:@"%@ (%@)",
-												interfaceDescription,
-												[details objectForKey:@"devicename"]];
+											interfaceDescription,
+											[details objectForKey:@"devicename"]];
 				}
 			}
 			if (speed || [details objectForKey:@"connectiontype"]) {
 				interfaceDescription = [NSString stringWithFormat:@"%@ -%@%@",
-											interfaceDescription,
-											([details objectForKey:@"connectiontype"] ?
-												[NSString stringWithFormat:@" %@", [details objectForKey:@"connectiontype"]] : @""),
-											(speed ? speed : @"")];
+										interfaceDescription,
+										([details objectForKey:@"connectiontype"] ?
+										 [NSString stringWithFormat:@" %@", [details objectForKey:@"connectiontype"]] : @""),
+										(speed ? speed : @"")];
 			}
 			NSMenuItem *titleItem = (NSMenuItem *)[extraMenu addItemWithTitle:interfaceDescription action:nil keyEquivalent:@""];
 			// PPP Status
@@ -338,7 +337,7 @@
 				switch ([(NSNumber *)[[details objectForKey:@"pppstatus"] objectForKey:@"status"] unsignedIntValue]) {
 					case PPP_IDLE:
 						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																					[localizedStrings objectForKey:kPPPNoConnectTitle]]
+																				   [localizedStrings objectForKey:kPPPNoConnectTitle]]
 																		   action:nil
 																	keyEquivalent:@""];
 						break;
@@ -353,7 +352,7 @@
 					case PPP_ONHOLD:
 					case PPP_WAITONBUSY:
 						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																					[localizedStrings objectForKey:kPPPConnectingTitle]]
+																				   [localizedStrings objectForKey:kPPPConnectingTitle]]
 																		   action:nil
 																	keyEquivalent:@""];
 						break;
@@ -365,9 +364,9 @@
 							uint32_t mins = secs / 60;
 							secs %= 60;
 							pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																							[NSString stringWithFormat:
-																								[localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
-																								hours, mins, secs]]
+																					   [NSString stringWithFormat:
+																						[localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
+																						hours, mins, secs]]
 																			   action:nil
 																		keyEquivalent:@""];
 						} else {
@@ -379,7 +378,7 @@
 					case PPP_TERMINATE:
 					case PPP_DISCONNECTLINK:
 						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
-																					[localizedStrings objectForKey:kPPPDisconnectingTitle]]
+																				   [localizedStrings objectForKey:kPPPDisconnectingTitle]]
 																		   action:nil
 																	keyEquivalent:@""];
 						break;
@@ -423,21 +422,21 @@
 				}
 			} else {
 				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-													[localizedStrings objectForKey:kTCPIPInactiveTitle]]
+											  [localizedStrings objectForKey:kTCPIPInactiveTitle]]
 									  action:nil
 							   keyEquivalent:@""] setEnabled:NO];
 			}
 			// AppleTalk
 			if ([details objectForKey:@"appletalknetid"]) {
 				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
-												[localizedStrings objectForKey:kAppleTalkTitle]]
+											  [localizedStrings objectForKey:kAppleTalkTitle]]
 									  action:nil
 							   keyEquivalent:@""] setEnabled:NO];
 				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-													[NSString stringWithFormat:[localizedStrings objectForKey:kAppleTalkFormat],
-														[details objectForKey:@"appletalknetid"],
-														[details objectForKey:@"appletalknodeid"],
-														[details objectForKey:@"appletalkzone"]]]
+											  [NSString stringWithFormat:[localizedStrings objectForKey:kAppleTalkFormat],
+											   [details objectForKey:@"appletalknetid"],
+											   [details objectForKey:@"appletalknodeid"],
+											   [details objectForKey:@"appletalkzone"]]]
 									  action:nil
 							   keyEquivalent:@""] setEnabled:NO];
 			}
@@ -464,19 +463,19 @@
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
 					NSMenuItem *throughputItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																								[NSString stringWithFormat:@"%@ %@",
-																									[localizedStrings objectForKey:kTxLabel],
-																									[self throughputStringForBytes:[throughputOutNumber doubleValue]
-																														inInterval:[sampleIntervalNum doubleValue]]]]
-																				   action:nil
-																			keyEquivalent:@""];
+																							[NSString stringWithFormat:@"%@ %@",
+																							 [localizedStrings objectForKey:kTxLabel],
+																							 [self throughputStringForBytes:[throughputOutNumber doubleValue]
+																												 inInterval:[sampleIntervalNum doubleValue]]]]
+																					action:nil
+																			 keyEquivalent:@""];
 					[throughputItem setEnabled:NO];
 					[interfaceUpdateMenuItems setObject:throughputItem forKey:@"deltaoutitem"];
 					throughputItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																					[NSString stringWithFormat:@"%@ %@",
-																						 [localizedStrings objectForKey:kRxLabel],
-																						 [self throughputStringForBytes:[throughputInNumber doubleValue]
-																											 inInterval:[sampleIntervalNum doubleValue]]]]
+																				[NSString stringWithFormat:@"%@ %@",
+																				 [localizedStrings objectForKey:kRxLabel],
+																				 [self throughputStringForBytes:[throughputInNumber doubleValue]
+																									 inInterval:[sampleIntervalNum doubleValue]]]]
 																		action:nil
 																 keyEquivalent:@""];
 					[throughputItem setEnabled:NO];
@@ -489,7 +488,7 @@
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
 					NSMenuItem *peakItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																						[self throughputStringForBytesPerSecond:[peakNumber doubleValue]]]
+																					  [self throughputStringForBytesPerSecond:[peakNumber doubleValue]]]
 																			  action:nil
 																	   keyEquivalent:@""];
 					[peakItem setEnabled:NO];
@@ -503,7 +502,7 @@
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
 					NSMenuItem *totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-                                                                                                           [self trafficStringForNumber:throughputOutNumber withLabel:[localizedStrings objectForKey:kTxLabel]]]
+																					   [self trafficStringForNumber:throughputOutNumber withLabel:[localizedStrings objectForKey:kTxLabel]]]
 																			   action:nil
 																		keyEquivalent:@""];
 					[totalItem setEnabled:NO];
@@ -565,7 +564,7 @@
 				[pppControlItem setRepresentedObject:[details objectForKey:@"service"]];
 				[interfaceSubmenu addItem:[NSMenuItem separatorItem]];
 			}
-            
+
 			// Add interface selection submenus
 			BOOL hadInterfaceSelector = NO;
 			if ([[details objectForKey:@"primary"] boolValue]) {
@@ -581,7 +580,7 @@
 				}
 				hadInterfaceSelector = YES;
 			}
-            
+
 			// Other choose interface
 			if ([details objectForKey:@"devicename"]) {
 				NSMenuItem *interfaceSwitchItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kSelectInterfaceTitle]
@@ -595,15 +594,15 @@
 				}
 				hadInterfaceSelector = YES;
 			}
-			
-            if (hadInterfaceSelector) {
+
+			if (hadInterfaceSelector) {
 				[interfaceSubmenu addItem:[NSMenuItem separatorItem]];
 			}
-            
+
 			// Checkmark the interface menu if we haven't found one already
 			if ([[ourPrefs netPreferInterface] isEqualToString:kNetPrimaryInterface] && [[details objectForKey:@"primary"] boolValue]) {
-					// This is the primary and the primary is preferred
-					[titleItem setState:NSOnState];
+				// This is the primary and the primary is preferred
+				[titleItem setState:NSOnState];
 			} else if (preferredInterfaceConfig && [details objectForKey:@"devicename"]) {
 				// Is this device the one being graphed?
 				if ([[details objectForKey:@"devicename"] isEqualToString:[preferredInterfaceConfig objectForKey:@"name"]] ||
@@ -613,10 +612,10 @@
 			} else if (preferredInterfaceConfig && [details objectForKey:@"devicepppname"]) {
 				if ([[details objectForKey:@"devicepppname"] isEqualToString:[preferredInterfaceConfig objectForKey:@"name"]] ||
 					[[details objectForKey:@"devicepppname"] isEqualToString:[preferredInterfaceConfig objectForKey:@"statname"]]) {
-                    [titleItem setState:NSOnState];
+					[titleItem setState:NSOnState];
 				}
 			}
-			
+
 			// Copy IP
 			NSMenuItem *copyIPItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kCopyIPv4Title]
 																			   action:@selector(copyAddress:)
@@ -638,13 +637,13 @@
 					[copyIPItem setEnabled:NO];
 				}
 			}
-            if ([details objectForKey:@"devicename"]) {
-                NSMenuItem*resetTotals = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kResetTrafficTotalsTitle]
-                                                                       action:@selector(resetTotals:)
-                                                                keyEquivalent:@""];
-                [resetTotals setTarget:self];
-                [resetTotals setRepresentedObject:[details objectForKey:@"devicename"]];
-            }
+			if ([details objectForKey:@"devicename"]) {
+				NSMenuItem*resetTotals = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kResetTrafficTotalsTitle]
+																				   action:@selector(resetTotals:)
+																			keyEquivalent:@""];
+				[resetTotals setTarget:self];
+				[resetTotals setRepresentedObject:[details objectForKey:@"devicename"]];
+			}
 		}
 	} else {
 		[[extraMenu addItemWithTitle:[localizedStrings objectForKey:kNoInterfaceErrorMessage]
@@ -675,7 +674,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Image renderers
+//  Image renderers
 //
 ///////////////////////////////////////////////////////////////
 
@@ -995,25 +994,25 @@
 	if (!sampleIntervalNum && ([sampleIntervalNum doubleValue] > 0)) {
 		sampleInterval = [sampleIntervalNum doubleValue];
 	}
-	
+
 	NSString *txString = [self menubarThroughputStringForBytes:txValue inInterval:sampleInterval];
 	NSString *rxString = [self menubarThroughputStringForBytes:rxValue inInterval:sampleInterval];
 	NSAttributedString *renderTxString = [[NSAttributedString alloc]
-												initWithString:txString
-													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																	throughputFont,
-																	NSFontAttributeName,
-																	interfaceUp ? txColor : inactiveColor,
-																	NSForegroundColorAttributeName,
-																	nil]];
+										  initWithString:txString
+										  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+													  throughputFont,
+													  NSFontAttributeName,
+													  interfaceUp ? txColor : inactiveColor,
+													  NSForegroundColorAttributeName,
+													  nil]];
 	NSAttributedString *renderRxString = [[NSAttributedString alloc]
-												initWithString:rxString
-													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																	throughputFont,
-																	NSFontAttributeName,
-																	interfaceUp ? rxColor : inactiveColor,
-																	NSForegroundColorAttributeName,
-																	nil]];
+										  initWithString:rxString
+										  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+													  throughputFont,
+													  NSFontAttributeName,
+													  interfaceUp ? rxColor : inactiveColor,
+													  NSForegroundColorAttributeName,
+													  nil]];
 
 	// Draw
 	[image lockFocus];
@@ -1047,7 +1046,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Timer callbacks
+//  Timer callbacks
 //
 ///////////////////////////////////////////////////////////////
 
@@ -1064,25 +1063,25 @@
 
 	// Load new net data
 	NSDictionary *netLoad = [netStats netStatsForInterval:currentSampleInterval];
-    if(netLoad){ // fix for https://github.com/yujitach/MenuMeters/issues/120
-	// Add to history (at least one)
-	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
-		if ([netHistoryData count] >= [ourPrefs netGraphLength]) {
-			[netHistoryData removeObjectsInRange:NSMakeRange(0, [netHistoryData count] - [ourPrefs netGraphLength] + 1)];
+	if(netLoad){ // fix for https://github.com/yujitach/MenuMeters/issues/120
+		// Add to history (at least one)
+		if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
+			if ([netHistoryData count] >= [ourPrefs netGraphLength]) {
+				[netHistoryData removeObjectsInRange:NSMakeRange(0, [netHistoryData count] - [ourPrefs netGraphLength] + 1)];
+			}
+			if ([netHistoryIntervals count] >= [ourPrefs netGraphLength]) {
+				[netHistoryIntervals removeObjectsInRange:NSMakeRange(0, [netHistoryIntervals count] - [ourPrefs netGraphLength] + 1)];
+			}
+		} else {
+			[netHistoryData removeAllObjects];
+			[netHistoryIntervals removeAllObjects];
 		}
-		if ([netHistoryIntervals count] >= [ourPrefs netGraphLength]) {
-			[netHistoryIntervals removeObjectsInRange:NSMakeRange(0, [netHistoryIntervals count] - [ourPrefs netGraphLength] + 1)];
-		}
-	} else {
-		[netHistoryData removeAllObjects];
-		[netHistoryIntervals removeAllObjects];
-	}
-	[netHistoryData addObject:netLoad];
-	[netHistoryIntervals addObject:[NSNumber numberWithDouble:currentSampleInterval]];
+		[netHistoryData addObject:netLoad];
+		[netHistoryIntervals addObject:[NSNumber numberWithDouble:currentSampleInterval]];
 
-	// Update for next sample
-	lastSampleDate = [NSDate date];
-    }
+		// Update for next sample
+		lastSampleDate = [NSDate date];
+	}
 	// If the menu is down force it to update
 	if (self.isMenuVisible) {
 		[self updateMenuWhenDown];
@@ -1117,7 +1116,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[localizedStrings objectForKey:kPPPNoConnectTitle]]);
+											 [localizedStrings objectForKey:kPPPNoConnectTitle]]);
 					break;
 				case PPP_INITIALIZE:
 				case PPP_CONNECTLINK:
@@ -1132,7 +1131,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[localizedStrings objectForKey:kPPPConnectingTitle]]);
+											 [localizedStrings objectForKey:kPPPConnectingTitle]]);
 					break;
 				case PPP_RUNNING:
 					if ([[details objectForKey:@"pppstatus"] objectForKey:@"timeElapsed"]) {
@@ -1144,9 +1143,9 @@
 						LiveUpdateMenuItemTitle(extraMenu,
 												[extraMenu indexOfItem:pppMenuItem],
 												[NSString stringWithFormat:kMenuDoubleIndentFormat,
-													[NSString stringWithFormat:
-														[localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
-														hours, mins, secs]]);
+												 [NSString stringWithFormat:
+												  [localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
+												  hours, mins, secs]]);
 					} else {
 						LiveUpdateMenuItemTitle(extraMenu,
 												[extraMenu indexOfItem:pppMenuItem],
@@ -1159,7 +1158,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[localizedStrings objectForKey:kPPPDisconnectingTitle]]);
+											 [localizedStrings objectForKey:kPPPDisconnectingTitle]]);
 			};
 		}
 		// Throughput updates
@@ -1174,9 +1173,9 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[NSString stringWithFormat:@"%@ %@",
-													[localizedStrings objectForKey:kTxLabel],
-													[self throughputStringForBytes:[throughputNumber doubleValue] inInterval:[sampleIntervalNum doubleValue]]]]);
+											 [NSString stringWithFormat:@"%@ %@",
+											  [localizedStrings objectForKey:kTxLabel],
+											  [self throughputStringForBytes:[throughputNumber doubleValue] inInterval:[sampleIntervalNum doubleValue]]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"deltainitem"];
 				throughputNumber = [throughputDetails objectForKey:@"deltain"];
@@ -1184,9 +1183,9 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[NSString stringWithFormat:@"%@ %@",
-													[localizedStrings objectForKey:kRxLabel],
-													[self throughputStringForBytes:[throughputNumber doubleValue] inInterval:[sampleIntervalNum doubleValue]]]]);
+											 [NSString stringWithFormat:@"%@ %@",
+											  [localizedStrings objectForKey:kRxLabel],
+											  [self throughputStringForBytes:[throughputNumber doubleValue] inInterval:[sampleIntervalNum doubleValue]]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"totaloutitem"];
 				throughputNumber = [throughputDetails objectForKey:@"totalout"];
@@ -1202,7 +1201,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[self trafficStringForNumber:throughputNumber withLabel:[localizedStrings objectForKey:kRxLabel]]]);
+											 [self trafficStringForNumber:throughputNumber withLabel:[localizedStrings objectForKey:kRxLabel]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"peakitem"];
 				throughputNumber = [throughputDetails objectForKey:@"peak"];
@@ -1210,7 +1209,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[self throughputStringForBytesPerSecond:[throughputNumber doubleValue]]]);
+											 [self throughputStringForBytesPerSecond:[throughputNumber doubleValue]]]);
 				}
 			}
 		}
@@ -1223,7 +1222,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Menu actions
+//  Menu actions
 //
 ///////////////////////////////////////////////////////////////
 
@@ -1252,9 +1251,9 @@
 } // openInternetConnect
 - (void)resetTotals:(id)sender
 {
-    NSString *interfaceName = [sender representedObject];
-    if (!interfaceName) return;
-    [netStats resetTotalsForInterfaceName:interfaceName];
+	NSString *interfaceName = [sender representedObject];
+	if (!interfaceName) return;
+	[netStats resetTotalsForInterfaceName:interfaceName];
 }
 - (void)switchDisplay:(id)sender {
 
@@ -1271,7 +1270,7 @@
 	[ourPrefs syncWithDisk];
 	// Send the notification to the pref pane
 	[[NSNotificationCenter defaultCenter] postNotificationName:kPrefPaneBundleID
-																   object:kPrefChangeNotification];
+														object:kPrefChangeNotification];
 
 } // switchDisplay
 
@@ -1293,10 +1292,10 @@
 	if ([sender representedObject]) {
 		// SC connection
 		SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
-												kCFAllocatorDefault,
-												(CFStringRef)[sender representedObject],
-												NULL,
-												NULL);
+																				   kCFAllocatorDefault,
+																				   (CFStringRef)[sender representedObject],
+																				   NULL,
+																				   NULL);
 		// Undoc preference values
 		CFArrayRef connectionOptionList = CFPreferencesCopyValue((CFStringRef)[sender representedObject],
 																 kAppleNetworkConnectDefaultsDomain,
@@ -1319,10 +1318,10 @@
 
 	if ([sender representedObject]) {
 		SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
-											   kCFAllocatorDefault,
-											   (CFStringRef)[sender representedObject],
-											   NULL,
-											   NULL);
+																				   kCFAllocatorDefault,
+																				   (CFStringRef)[sender representedObject],
+																				   NULL,
+																				   NULL);
 		if (connection) {
 			SCNetworkConnectionStop(connection, TRUE);
 			CFRelease(connection);
@@ -1333,26 +1332,26 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Pref routines
+//  Pref routines
 //
 ///////////////////////////////////////////////////////////////
 
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
-    [super configDisplay:kNetMenuBundleID  fromPrefs:ourPrefs withTimerInterval:[ourPrefs netInterval]];
+	[super configDisplay:kNetMenuBundleID  fromPrefs:ourPrefs withTimerInterval:[ourPrefs netInterval]];
 #endif
 
 	// Update prefs
 	[ourPrefs syncWithDisk];
 
 	// Cache colors to skip archiver
-        txColor = [self colorByAdjustingForLightDark:[ourPrefs netTransmitColor]];
-        rxColor = [self colorByAdjustingForLightDark:[ourPrefs netReceiveColor]];
-        inactiveColor = [self colorByAdjustingForLightDark:[ourPrefs netInactiveColor]];
+	txColor = [self colorByAdjustingForLightDark:[ourPrefs netTransmitColor]];
+	rxColor = [self colorByAdjustingForLightDark:[ourPrefs netReceiveColor]];
+	inactiveColor = [self colorByAdjustingForLightDark:[ourPrefs netInactiveColor]];
 
 	// Generate arrow bezier path offset as needed for current display mode
 	float arrowOffset =  0;
-    float viewHeight = self.height;
+	float viewHeight = self.height;
 	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
 		arrowOffset = [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 	}
@@ -1379,17 +1378,17 @@
 
 	// Prerender throughput labels
 	NSAttributedString *renderTxString = [[NSAttributedString alloc]
-											initWithString:[localizedStrings objectForKey:kTxLabel]
-												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																throughputFont, NSFontAttributeName,
-																txColor, NSForegroundColorAttributeName,
-																nil]];
+										  initWithString:[localizedStrings objectForKey:kTxLabel]
+										  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+													  throughputFont, NSFontAttributeName,
+													  txColor, NSForegroundColorAttributeName,
+													  nil]];
 	NSAttributedString *renderRxString = [[NSAttributedString alloc]
-											initWithString:[localizedStrings objectForKey:kRxLabel]
-												attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																throughputFont, NSFontAttributeName,
-																rxColor, NSForegroundColorAttributeName,
-																nil]];
+										  initWithString:[localizedStrings objectForKey:kRxLabel]
+										  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+													  throughputFont, NSFontAttributeName,
+													  rxColor, NSForegroundColorAttributeName,
+													  nil]];
 	if ([renderTxString size].width > [renderRxString size].width) {
 		throughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
 		inactiveThroughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
@@ -1408,17 +1407,17 @@
 	}
 	[throughputLabel unlockFocus];
 	renderTxString = [[NSAttributedString alloc]
-						initWithString:[localizedStrings objectForKey:kTxLabel]
-							attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											throughputFont, NSFontAttributeName,
-											inactiveColor, NSForegroundColorAttributeName,
-											nil]];
+					  initWithString:[localizedStrings objectForKey:kTxLabel]
+					  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+								  throughputFont, NSFontAttributeName,
+								  inactiveColor, NSForegroundColorAttributeName,
+								  nil]];
 	renderRxString = [[NSAttributedString alloc]
-						initWithString:[localizedStrings objectForKey:kRxLabel]
-							attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											throughputFont, NSFontAttributeName,
-											inactiveColor, NSForegroundColorAttributeName,
-											nil]];
+					  initWithString:[localizedStrings objectForKey:kRxLabel]
+					  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+								  throughputFont, NSFontAttributeName,
+								  inactiveColor, NSForegroundColorAttributeName,
+								  nil]];
 	[inactiveThroughputLabel lockFocus];
 	// No descenders, render lower
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
@@ -1447,42 +1446,42 @@
 		// Deal with localizable throughput suffix
 		float suffixMaxWidth = 0;
 		NSAttributedString *throughString = [[NSAttributedString alloc]
-												initWithString:[NSString stringWithFormat:@"999.9%@",
-																[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kBitPerSecondLabel : kBytePerSecondLabel]]
-													attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-																	throughputFont, NSFontAttributeName,
-																	nil]];
+											 initWithString:[NSString stringWithFormat:@"999.9%@",
+															 [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kBitPerSecondLabel : kBytePerSecondLabel]]
+											 attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+														 throughputFont, NSFontAttributeName,
+														 nil]];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
 		throughString = [[NSAttributedString alloc]
-							initWithString:[NSString stringWithFormat:@"999.9%@",
-												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kKbPerSecondLabel : kKBPerSecondLabel]]
-								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-												throughputFont, NSFontAttributeName,
-												nil]];
+						 initWithString:[NSString stringWithFormat:@"999.9%@",
+										 [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kKbPerSecondLabel : kKBPerSecondLabel]]
+						 attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+									 throughputFont, NSFontAttributeName,
+									 nil]];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
 		throughString = [[NSAttributedString alloc]
-							initWithString:[NSString stringWithFormat:@"999.9%@",
-												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kMbPerSecondLabel : kMBPerSecondLabel]]
-								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-												throughputFont, NSFontAttributeName,
-												nil]];
+						 initWithString:[NSString stringWithFormat:@"999.9%@",
+										 [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kMbPerSecondLabel : kMBPerSecondLabel]]
+						 attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+									 throughputFont, NSFontAttributeName,
+									 nil]];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
 		throughString = [[NSAttributedString alloc]
-							initWithString:[NSString stringWithFormat:@"999.9%@",
-												[localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kGbPerSecondLabel : kGBPerSecondLabel]]
-								attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-												throughputFont, NSFontAttributeName,
-												nil]];
+						 initWithString:[NSString stringWithFormat:@"999.9%@",
+										 [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kGbPerSecondLabel : kGBPerSecondLabel]]
+						 attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+									 throughputFont, NSFontAttributeName,
+									 nil]];
 		if ([throughString size].width > suffixMaxWidth) {
 			suffixMaxWidth = (float)[throughString size].width;
 		}
-            menuWidth += ceilf(suffixMaxWidth); 
+		menuWidth += ceilf(suffixMaxWidth);
 	}
 	// If more than one display is present we need to add a gaps
 	if (displayCount) {
@@ -1490,12 +1489,12 @@
 	}
 
 	// Force initial update
-    statusItem.button.image=self.image;
+	statusItem.button.image=self.image;
 } // configFromPrefs
 
 ///////////////////////////////////////////////////////////////
 //
-//	Data formatting
+//  Data formatting
 //
 ///////////////////////////////////////////////////////////////
 

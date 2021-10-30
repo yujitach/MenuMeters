@@ -1,29 +1,29 @@
 //
 //  MenuMeterMem.h
 //
-// 	Constants and other definitions for the Memory Meter
+//  Constants and other definitions for the Memory Meter
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 ///////////////////////////////////////////////////////////////
 //
-//	Constants
+//  Constants
 //
 ///////////////////////////////////////////////////////////////
 
@@ -44,14 +44,14 @@
 #define kMemVMPageInfoMenuIndex				7
 #define kMemVMCacheInfoMenuIndex			8
 #define kMemVMFaultInfoMenuIndex			9
-#define kMemMemPressureInfoMenuIndex                    11
+#define kMemMemPressureInfoMenuIndex		11
 #define kMemSwapCountInfoMenuIndex			13
 #define kMemSwapMaxCountInfoMenuIndex		14
 #define kMemSwapSizeInfoMenuIndex			15
 
 ///////////////////////////////////////////////////////////////
 //
-//	Preference information
+//  Preference information
 //
 ///////////////////////////////////////////////////////////////
 
@@ -59,7 +59,7 @@
 #define kMemIntervalPref					@"MemInterval"
 #define kMemDisplayModePref					@"MemDisplayMode"
 #define kMemUsedFreeLabelPref				@"MemUsedFreeLabel"
-#define kMemPressurePref				@"MemPressure"
+#define kMemPressurePref					@"MemPressure"
 #define kMemPageIndicatorPref				@"MemPagingIndicator"
 #define kMemGraphLengthPref					@"MemGraphLength"
 #define kMemFreeColorPref					@"MemFreeColor"
@@ -83,7 +83,7 @@ enum {
 // Used/Free label
 #define kMemUsedFreeLabelDefault			YES
 
-#define kMemPressureDefault           NO
+#define kMemPressureDefault					NO
 
 // Page indicator
 #define kMemPageIndicatorDefault			NO

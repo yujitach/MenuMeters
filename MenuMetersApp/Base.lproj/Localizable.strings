@@ -1,9 +1,9 @@
 "Open MenuMeters preferences" = "Open MenuMeters preferences";
-//	In the interest of improving localizability most strings in MenuMeters
-//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
-//	convention. If localization requires different ordering of the parameters you
-//	can reorder the items (leaving the %1$ notations in place) and NSString will
-//	put the items in the right order
+// In the interest of improving localizability most strings in MenuMeters
+// are exposed as NSString format strings, including the %1$, %2$ parameter placement
+// convention. If localization requires different ordering of the parameters you
+// can reorder the items (leaving the %1$ notations in place) and NSString will
+// put the items in the right order
 
 // Processor title menu item (second title is used on multi-CPU systems)
 "Processor:" = "Processor:";
@@ -60,11 +60,11 @@
 
 // Displayed when CPU load, load average, or task count fails to return info
 "No info available" = "No info available";
-//	In the interest of improving localizability most strings in MenuMeters
-//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
-//	convention. If localization requires different ordering of the parameters you
-//	can reorder the items (leaving the %1$ notations in place) and NSString will
-//	put the items in the right order
+// In the interest of improving localizability most strings in MenuMeters
+// are exposed as NSString format strings, including the %1$, %2$ parameter placement
+// convention. If localization requires different ordering of the parameters you
+// can reorder the items (leaving the %1$ notations in place) and NSString will
+// put the items in the right order
 
 // Strings used for disk space free/used/total labels
 // Note that the actual disk space float format is automatically localized
@@ -79,11 +79,11 @@
 "GB" = "GB";
 "Memory Pressure:" = "Memory Pressure:";
 "%@%%\t(level %@)" = "%@%%\t(level %@)";
-//	In the interest of improving localizability most strings in MenuMeters
-//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
-//	convention. If localization requires different ordering of the parameters you
-//	can reorder the items (leaving the %1$ notations in place) and NSString will
-//	put the items in the right order
+// In the interest of improving localizability most strings in MenuMeters
+// are exposed as NSString format strings, including the %1$, %2$ parameter placement
+// convention. If localization requires different ordering of the parameters you
+// can reorder the items (leaving the %1$ notations in place) and NSString will
+// put the items in the right order
 
 // Menubar display labels used in free/total mode
 "U:" = "U:";
@@ -139,11 +139,11 @@
 "%@ total swap space" = "%1$@ total swap space";
 // Swap space including used info (Tiger only)
 "%@ total swap space (%@ used)" = "%1$@ total swap space (%2$@ used)";
-//	In the interest of improving localizability most strings in MenuMeters
-//	are exposed as NSString format strings, including the %1$, %2$ parameter placement
-//	convention. If localization requires different ordering of the parameters you
-//	can reorder the items (leaving the %1$ notations in place) and NSString will
-//	put the items in the right order
+// In the interest of improving localizability most strings in MenuMeters
+// are exposed as NSString format strings, including the %1$, %2$ parameter placement
+// convention. If localization requires different ordering of the parameters you
+// can reorder the items (leaving the %1$ notations in place) and NSString will
+// put the items in the right order
 
 // Menubar display labels for throughput, Tx and Rx also used for Tx and Rx menu items
 "Tx:" = "Tx:";

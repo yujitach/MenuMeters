@@ -1,24 +1,24 @@
 //
 //  MenuMeterDiskSpace.m
 //
-// 	Reader object for disk space statistics
+//  Reader object for disk space statistics
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterDiskSpace.h"
@@ -26,7 +26,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and functions
+//  Private methods and functions
 //
 ///////////////////////////////////////////////////////////////
 
@@ -44,7 +44,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 ///////////////////////////////////////////////////////////////
 //
-//	Localized strings
+//  Localized strings
 //
 ///////////////////////////////////////////////////////////////
 
@@ -58,7 +58,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -92,7 +92,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 ///////////////////////////////////////////////////////////////
 //
-//	Disk space info
+//  Disk space info
 //
 ///////////////////////////////////////////////////////////////
 
@@ -113,7 +113,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 		// We only view local volumes, which isn't easy (are FUSE volumes local?)
 		// Just look at filesystem type.
 		if(!strcmp(mountInfo[i].f_fstypename, "hfs") ||
-                   !strcmp(mountInfo[i].f_fstypename, "apfs") ||
+			!strcmp(mountInfo[i].f_fstypename, "apfs") ||
 			!strcmp(mountInfo[i].f_fstypename, "ufs") ||
 			!strcmp(mountInfo[i].f_fstypename, "msdos") ||
 			!strcmp(mountInfo[i].f_fstypename, "exfat") ||
@@ -185,7 +185,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 			// Store the data into the array
 			[diskSpaceDetails addObject:diskStats];
 
- 		} // end of filesystem type check
+		} // end of filesystem type check
 	} // end of mount loop
 
 	// Sort by device, this matches most users expectations best
@@ -204,7 +204,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 ///////////////////////////////////////////////////////////////
 //
-//	Utility
+//  Utility
 //
 ///////////////////////////////////////////////////////////////
 

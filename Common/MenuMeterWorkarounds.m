@@ -1,26 +1,26 @@
 //
 //  MenuMeterWorkarounds.m
 //
-//	Various workarounds for old OS bugs that may not be applicable
+//  Various workarounds for old OS bugs that may not be applicable
 //  (or compilable) on newer OS versions. To prevent conflicts
 //  everything here is __private_extern__.
 //
-//	Copyright (c) 2009-2014 Alex Harper
+//  Copyright (c) 2009-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterWorkarounds.h"
@@ -91,7 +91,7 @@ __private_extern__ BOOL OSIsMavericksOrLater(void) {
 }
 
 __private_extern__ void LiveUpdateMenuItemTitle(NSMenu *menu, CFIndex index, NSString *title) {
-    LiveUpdateMenuItemTitleAndVisibility(menu, index, title, NO);
+	LiveUpdateMenuItemTitleAndVisibility(menu, index, title, NO);
 }
 
 __private_extern__ void LiveUpdateMenuItemTitleAndVisibility(NSMenu *menu, CFIndex index, NSString *title, BOOL hidden) {
@@ -115,9 +115,9 @@ __private_extern__ void LiveUpdateMenuItemTitleAndVisibility(NSMenu *menu, CFInd
 									(CFStringRef)title);
 	}
 #endif
-    if (title)
-        [[menu itemAtIndex:index] setTitle:title];
-    [[menu itemAtIndex:index] setHidden:hidden];
+	if (title)
+		[[menu itemAtIndex:index] setTitle:title];
+	[[menu itemAtIndex:index] setHidden:hidden];
 
 } // LiveUpdateMenuItemTitle
 

@@ -1,24 +1,24 @@
 //
 //  MenuMeterCPUStats.m
 //
-// 	Reader object for CPU information and load
+//  Reader object for CPU information and load
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterCPUStats.h"
@@ -32,7 +32,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods
+//  Private methods
 //
 ///////////////////////////////////////////////////////////////
 
@@ -44,7 +44,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Localized strings
+//  Localized strings
 //
 ///////////////////////////////////////////////////////////////
 
@@ -54,11 +54,11 @@
 #define kNoInfoErrorMessage					@"No info available"
 #define kHyperThreadsPerCoreFormat			@" (%@ hyperthreads per core)"
 #define kPhysicalCoresFormat				@"%@%@ physical cores"
-#define kCPUPowerLimitStatusFormat               @"speed %@%%, scheduler %@%%"
+#define kCPUPowerLimitStatusFormat			@"speed %@%%, scheduler %@%%"
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -95,37 +95,37 @@ uint32_t packageCount;
 	}
 
 	// Gather the clock rate string
-    uint32_t clockRate = [self clockFrequency];
-    if (clockRate > 1000000000) {
-        clockSpeed = [NSString stringWithFormat:@"%@GHz",
-                            [twoDigitFloatFormatter stringForObjectValue:
-                                [NSNumber numberWithFloat:(float)clockRate / 1000000000]]];
-    } else {
-        clockSpeed = [NSString stringWithFormat:@"%dMHz", clockRate / 1000000];
-    }
-    if (!clockSpeed) {
-        return nil;
-    }
+	uint32_t clockRate = [self clockFrequency];
+	if (clockRate > 1000000000) {
+		clockSpeed = [NSString stringWithFormat:@"%@GHz",
+					  [twoDigitFloatFormatter stringForObjectValue:
+					   [NSNumber numberWithFloat:(float)clockRate / 1000000000]]];
+	} else {
+		clockSpeed = [NSString stringWithFormat:@"%dMHz", clockRate / 1000000];
+	}
+	if (!clockSpeed) {
+		return nil;
+	}
 
 	// Gather the cpu count
 
-    size_t sysctlLength = sizeof(cpuCount);
-    int mib[2] = { CTL_HW, HW_NCPU };
+	size_t sysctlLength = sizeof(cpuCount);
+	int mib[2] = { CTL_HW, HW_NCPU };
 	if (sysctl(mib, 2, &cpuCount, &sysctlLength, NULL, 0)) {
 		return nil;
 	}
 
-    size_t size=sizeof(coreCount);
-    if(sysctlbyname("hw.physicalcpu", &coreCount, &size, NULL, 0)){
-        coreCount=cpuCount;
-    }
+	size_t size=sizeof(coreCount);
+	if(sysctlbyname("hw.physicalcpu", &coreCount, &size, NULL, 0)){
+		coreCount=cpuCount;
+	}
 
-    size=sizeof(packageCount);
-    if(sysctlbyname("hw.packages", &packageCount, &size, NULL, 0)){
-        packageCount=1;
-    }
+	size=sizeof(packageCount);
+	if(sysctlbyname("hw.packages", &packageCount, &size, NULL, 0)){
+		packageCount=1;
+	}
 
-    
+
 	// Set up our mach host and default processor set for later calls
 	machHost = mach_host_self();
 	processor_set_default(machHost, &processorSet);
@@ -160,7 +160,7 @@ uint32_t packageCount;
 
 ///////////////////////////////////////////////////////////////
 //
-//	CPU info
+//  CPU info
 //
 ///////////////////////////////////////////////////////////////
 
@@ -181,30 +181,30 @@ uint32_t packageCount;
 } // numberOfCPUs
 
 - (uint32_t)numberOfCores {
-    return coreCount;
+	return coreCount;
 } 
 
 -(NSString*)packages{
-    if(packageCount==1){
-        return @"";
-    }else{
-        return [NSString stringWithFormat:@"%@x ",@(packageCount)];
-    }
+	if(packageCount==1){
+		return @"";
+	}else{
+		return [NSString stringWithFormat:@"%@x ",@(packageCount)];
+	}
 }
 - (NSString *)processorDescription {
 	return [NSString stringWithFormat:@"%@%@ @ %@", [self packages], [self cpuName], [self cpuSpeed]];
 } // processorDescription
 - (NSString *)coreDescription {
-    NSString*hyperinfo=@"";
-    if(cpuCount!=coreCount){
-        hyperinfo=[NSString stringWithFormat:[localizedStrings objectForKey:kHyperThreadsPerCoreFormat],@(cpuCount/coreCount)];
-    }
-    return [NSString stringWithFormat:@"%@%@", [NSString stringWithFormat:[localizedStrings objectForKey:kPhysicalCoresFormat],[self packages],@(coreCount/packageCount)],hyperinfo];
+	NSString*hyperinfo=@"";
+	if(cpuCount!=coreCount){
+		hyperinfo=[NSString stringWithFormat:[localizedStrings objectForKey:kHyperThreadsPerCoreFormat],@(cpuCount/coreCount)];
+	}
+	return [NSString stringWithFormat:@"%@%@", [NSString stringWithFormat:[localizedStrings objectForKey:kPhysicalCoresFormat],[self packages],@(coreCount/packageCount)],hyperinfo];
 } // coreDescription
 
 ///////////////////////////////////////////////////////////////
 //
-//	Load info
+//  Load info
 //
 ///////////////////////////////////////////////////////////////
 
@@ -214,12 +214,12 @@ uint32_t packageCount;
 	mach_msg_type_number_t count = PROCESSOR_SET_LOAD_INFO_COUNT;
 	kern_return_t err = processor_set_statistics(processorSet, PROCESSOR_SET_LOAD_INFO,
 												 (processor_set_info_t)&loadInfo, &count);
-    
+
 	if (err != KERN_SUCCESS) {
 		return [localizedStrings objectForKey:kNoInfoErrorMessage];
 	} else {
 		return [NSString stringWithFormat:[localizedStrings objectForKey:kTaskThreadFormat],
-					loadInfo.task_count, loadInfo.thread_count];
+				loadInfo.task_count, loadInfo.thread_count];
 	}
 
 } // currentProcessorTasks
@@ -232,9 +232,9 @@ uint32_t packageCount;
 		return [localizedStrings objectForKey:kNoInfoErrorMessage];
 	} else {
 		return [NSString stringWithFormat:[localizedStrings objectForKey:kLoadAverageFormat],
-					[twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[0]]],
-					[twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[1]]],
-					[twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[2]]]];
+				[twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[0]]],
+				[twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[1]]],
+				[twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[2]]]];
 	}
 
 } // loadAverage
@@ -283,7 +283,7 @@ uint32_t packageCount;
 		total = system + user + idle;
 
 		float normalize = (total < 1) ? 1 : (1.0 / total);
-		
+
 		MenuMeterCPULoad *load = [[MenuMeterCPULoad alloc] init];
 		load.system = system * normalize;
 		load.user = user * normalize;
@@ -297,26 +297,26 @@ uint32_t packageCount;
 		}
 	}
 
-    // Sort the load if necessary
-    if (sorted == YES) {
-        NSMutableArray *sorted = [NSMutableArray array];
-        processorCount=(natural_t)[loadInfo count];
-        for (natural_t i = 0; i < processorCount; i++) {
-            float maxSum = 0.0f;
-            natural_t maxIndex = 0;
-            for (natural_t j = 0; j < (processorCount - i); j++) {
-                MenuMeterCPULoad *load = [loadInfo objectAtIndex: j];
-                float sum = load.system + load.user;
-                if (sum > maxSum) {
-                    maxSum = sum;
-                    maxIndex = j;
-                }
-            }
-            [sorted addObject: [loadInfo objectAtIndex: maxIndex]];
-            [loadInfo removeObjectAtIndex: maxIndex];
-        }
-        loadInfo = sorted;
-    }
+	// Sort the load if necessary
+	if (sorted == YES) {
+		NSMutableArray *sorted = [NSMutableArray array];
+		processorCount=(natural_t)[loadInfo count];
+		for (natural_t i = 0; i < processorCount; i++) {
+			float maxSum = 0.0f;
+			natural_t maxIndex = 0;
+			for (natural_t j = 0; j < (processorCount - i); j++) {
+				MenuMeterCPULoad *load = [loadInfo objectAtIndex: j];
+				float sum = load.system + load.user;
+				if (sum > maxSum) {
+					maxSum = sum;
+					maxIndex = j;
+				}
+			}
+			[sorted addObject: [loadInfo objectAtIndex: maxIndex]];
+			[loadInfo removeObjectAtIndex: maxIndex];
+		}
+		loadInfo = sorted;
+	}
 
 	// Dealloc
 	vm_deallocate(mach_task_self(), (vm_address_t)processorTickInfo, (vm_size_t)(processorInfoCount * sizeof(natural_t)));
@@ -327,16 +327,16 @@ uint32_t packageCount;
 } // currentLoad
 
 - (float_t)cpuProximityTemperature {
-    NSString*sensor=[[MenuMeterDefaults sharedMenuMeterDefaults] cpuTemperatureSensor];
-    if([sensor isEqualToString:kCPUTemperatureSensorDefault]){
-        sensor=[TemperatureReader defaultSensor];
-    }
-    return [TemperatureReader temperatureOfSensorWithName:sensor];
+	NSString*sensor=[[MenuMeterDefaults sharedMenuMeterDefaults] cpuTemperatureSensor];
+	if([sensor isEqualToString:kCPUTemperatureSensorDefault]){
+		sensor=[TemperatureReader defaultSensor];
+	}
+	return [TemperatureReader temperatureOfSensorWithName:sensor];
 } // cpuProximityTemperature
 
 ///////////////////////////////////////////////////////////////
 //
-//	Utility
+//  Utility
 //
 ///////////////////////////////////////////////////////////////
 
@@ -344,30 +344,30 @@ uint32_t packageCount;
 
 #if  1
 
-    char cpumodel[64];
-    size_t size = sizeof(cpumodel);
-    if (!sysctlbyname("machdep.cpu.brand_string", cpumodel, &size, NULL, 0)){
-        NSString*s=[NSString stringWithUTF8String:cpumodel];
-        NSRange r;
-        r=[s rangeOfString:@"@"];
-        if(r.location!=NSNotFound){
-            s=[s substringToIndex:r.location];
-        }
-        r=[s rangeOfString:@"CPU"];
-        if(r.location!=NSNotFound){
-            s=[s substringToIndex:r.location];
-        }
-        s=[s stringByReplacingOccurrencesOfString:@"(TM)" withString:@"™"];
-        s=[s stringByReplacingOccurrencesOfString:@"(R)" withString:@"®"];
-        
-        NXArchInfo const *archInfo = NXGetLocalArchInfo();
-        if (archInfo) {
-            s = [s stringByAppendingFormat:@" (%@)",[NSString stringWithCString:archInfo->description]];
-        }
-        
-        return s;
-    }
-    return @"???";
+	char cpumodel[64];
+	size_t size = sizeof(cpumodel);
+	if (!sysctlbyname("machdep.cpu.brand_string", cpumodel, &size, NULL, 0)){
+		NSString*s=[NSString stringWithUTF8String:cpumodel];
+		NSRange r;
+		r=[s rangeOfString:@"@"];
+		if(r.location!=NSNotFound){
+			s=[s substringToIndex:r.location];
+		}
+		r=[s rangeOfString:@"CPU"];
+		if(r.location!=NSNotFound){
+			s=[s substringToIndex:r.location];
+		}
+		s=[s stringByReplacingOccurrencesOfString:@"(TM)" withString:@"™"];
+		s=[s stringByReplacingOccurrencesOfString:@"(R)" withString:@"®"];
+
+		NXArchInfo const *archInfo = NXGetLocalArchInfo();
+		if (archInfo) {
+			s = [s stringByAppendingFormat:@" (%@)",[NSString stringWithCString:archInfo->description]];
+		}
+
+		return s;
+	}
+	return @"???";
 #else
 	// Start with nothing
 	NSString					*prettyName = @"Unknown CPU";
@@ -401,39 +401,40 @@ uint32_t packageCount;
 } // _cpuPrettyName
 
 - (UInt32) clockFrequency {
-    uint32_t clockRate = 0;
+	uint32_t clockRate = 0;
 
-    // First try with sysctl
-    int mib[2] = { CTL_HW, HW_CPU_FREQ };
-    size_t sysctlLength = sizeof(clockRate);
-    int res = sysctl(mib, 2, &clockRate, &sysctlLength, NULL, 0);
+	// First try with sysctl
+	int mib[2] = { CTL_HW, HW_CPU_FREQ };
+	size_t sysctlLength = sizeof(clockRate);
+	int res = sysctl(mib, 2, &clockRate, &sysctlLength, NULL, 0);
 
-    // Try using IOKit
-    if (res != 0) {
-        mach_port_t platformExpertDevice = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
-        CFTypeRef platformClockFrequency = IORegistryEntryCreateCFProperty(platformExpertDevice, CFSTR("clock-frequency"), kCFAllocatorDefault, 0);
-        if (CFGetTypeID(platformClockFrequency) == CFDataGetTypeID()) {
-            const CFDataRef platformClockFrequencyData = (const CFDataRef) platformClockFrequency;
-            const UInt8* clockFreqBytes = CFDataGetBytePtr(platformClockFrequencyData);
-            clockRate = CFSwapInt32BigToHost(*(UInt32*)(clockFreqBytes)) * 1000;
-            CFRelease(platformClockFrequency);
-        }
-        IOObjectRelease(platformExpertDevice);
-    }
+	// Try using IOKit
+	if (res != 0) {
+		mach_port_t platformExpertDevice = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"));
+		CFTypeRef platformClockFrequency = IORegistryEntryCreateCFProperty(platformExpertDevice, CFSTR("clock-frequency"), kCFAllocatorDefault, 0);
+		if (CFGetTypeID(platformClockFrequency) == CFDataGetTypeID()) {
+			const CFDataRef platformClockFrequencyData = (const CFDataRef) platformClockFrequency;
+			const UInt8* clockFreqBytes = CFDataGetBytePtr(platformClockFrequencyData);
+			clockRate = CFSwapInt32BigToHost(*(UInt32*)(clockFreqBytes)) * 1000;
+			CFRelease(platformClockFrequency);
+		}
+		IOObjectRelease(platformExpertDevice);
+	}
 
-    return clockRate;
+	return clockRate;
 } // getClockFrequency
-- (NSString*)cpuPowerLimitStatus
-{
-    CFDictionaryRef dic=NULL;
-    IOPMCopyCPUPowerStatus(&dic);
-    if(dic){
-        NSDictionary*d=CFBridgingRelease(dic);
-        NSNumber*speedLimit=d[[NSString stringWithUTF8String:kIOPMCPUPowerLimitProcessorSpeedKey]];
-        NSNumber*schedulerLimit=d[[NSString stringWithUTF8String:kIOPMCPUPowerLimitSchedulerTimeKey]];
-        return [NSString stringWithFormat:[localizedStrings objectForKey:kCPUPowerLimitStatusFormat],speedLimit,schedulerLimit];
-    }else{
-        return nil;
-    }
+
+- (NSString *)cpuPowerLimitStatus {
+	CFDictionaryRef dic = NULL;
+	IOPMCopyCPUPowerStatus(&dic);
+	if (dic) {
+		NSDictionary *d = CFBridgingRelease(dic);
+		NSNumber *speedLimit = d[[NSString stringWithUTF8String:kIOPMCPUPowerLimitProcessorSpeedKey]];
+		NSNumber *schedulerLimit = d[[NSString stringWithUTF8String:kIOPMCPUPowerLimitSchedulerTimeKey]];
+		return [NSString stringWithFormat:[localizedStrings objectForKey:kCPUPowerLimitStatusFormat],speedLimit,schedulerLimit];
+	}
+	else {
+		return nil;
+	}
 }
 @end

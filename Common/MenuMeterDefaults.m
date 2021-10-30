@@ -1,24 +1,24 @@
 //
-//	MenuMeterDefaults.m
+//  MenuMeterDefaults.m
 //
-//	Preference (defaults) file reader/writer
+//  Preference (defaults) file reader/writer
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterDefaults.h"
@@ -30,7 +30,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private
+//  Private
 //
 ///////////////////////////////////////////////////////////////
 
@@ -39,13 +39,13 @@
 
 // Datatype read/write
 - (double)loadDoublePref:(NSString *)prefName lowBound:(double)lowBound
-				highBound:(double)highBound defaultValue:(double)defaultValue;
+			   highBound:(double)highBound defaultValue:(double)defaultValue;
 - (void)saveDoublePref:(NSString *)prefName value:(double)value;
 - (int)loadIntPref:(NSString *)prefName lowBound:(int)lowBound
-		  highBound:(int)highBound defaultValue:(int)defaultValue;
+		 highBound:(int)highBound defaultValue:(int)defaultValue;
 - (void)saveIntPref:(NSString *)prefName value:(int)value;
 - (int)loadBitFlagPref:(NSString *)prefName validFlags:(int)flags
-          defaultValue:(int)defaultValue;
+		  defaultValue:(int)defaultValue;
 - (void)saveBitFlagPref:(NSString *)prefName value:(int)value;
 #ifndef ELCAPITAN
 - (BOOL)loadBoolPref:(NSString *)prefName defaultValue:(BOOL)defaultValue;
@@ -60,7 +60,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -68,39 +68,39 @@
 #define kMigratedFromRagingMenaceToYujitach @"migratedFromRagingMenaceToYujitach"
 + (void)movePreferencesIfNecessary
 {
-    if([[NSUserDefaults standardUserDefaults] boolForKey:kMigratedFromRagingMenaceToYujitach])
-        return;
-    NSData*data=[NSData dataWithContentsOfFile:[[NSString stringWithFormat:@"~/Library/Preferences/%@.plist", kMenuMeterDefaultsDomain] stringByExpandingTildeInPath]];
-    if(data){
-        NSError*error=nil;
-        NSDictionary*dict=[NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:nil error:&error];
-        if(dict){
-            NSData*defaultData=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:kMenuMeterDefaultsDomain ofType:@"plist"]];
-            NSDictionary*defaultDict=[NSPropertyListSerialization propertyListWithData:defaultData options:NSPropertyListImmutable format:nil error:nil];
-            for(NSString*key in [dict allKeys]){
-                NSLog(@"migrating %@", key);
-                NSObject*value=[dict objectForKey:key];
-                NSObject*defaultValue=[defaultDict objectForKey:key];
-                if([value isEqualTo:defaultValue]){
-                    NSLog(@"\t%@ has default value; no need to copy",key);
-                }else{
-                    NSLog(@"\t%@ has non-default value; copying",key);
-                    [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:key] forKey:key];
-                }
-            }
-        }else{
-            NSLog(@"error reading old pref plist: %@",error);
-        }
-    }
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kMigratedFromRagingMenaceToYujitach];
+	if([[NSUserDefaults standardUserDefaults] boolForKey:kMigratedFromRagingMenaceToYujitach])
+		return;
+	NSData*data=[NSData dataWithContentsOfFile:[[NSString stringWithFormat:@"~/Library/Preferences/%@.plist", kMenuMeterDefaultsDomain] stringByExpandingTildeInPath]];
+	if(data){
+		NSError*error=nil;
+		NSDictionary*dict=[NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:nil error:&error];
+		if(dict){
+			NSData*defaultData=[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:kMenuMeterDefaultsDomain ofType:@"plist"]];
+			NSDictionary*defaultDict=[NSPropertyListSerialization propertyListWithData:defaultData options:NSPropertyListImmutable format:nil error:nil];
+			for(NSString*key in [dict allKeys]){
+				NSLog(@"migrating %@", key);
+				NSObject*value=[dict objectForKey:key];
+				NSObject*defaultValue=[defaultDict objectForKey:key];
+				if([value isEqualTo:defaultValue]){
+					NSLog(@"\t%@ has default value; no need to copy",key);
+				}else{
+					NSLog(@"\t%@ has non-default value; copying",key);
+					[[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:key] forKey:key];
+				}
+			}
+		}else{
+			NSLog(@"error reading old pref plist: %@",error);
+		}
+	}
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kMigratedFromRagingMenaceToYujitach];
 }
 + (MenuMeterDefaults*)sharedMenuMeterDefaults
 {
-    static MenuMeterDefaults*foo=nil;
-    if(!foo){
-        foo=[[MenuMeterDefaults alloc] init];
-    }
-    return foo;
+	static MenuMeterDefaults*foo=nil;
+	if(!foo){
+		foo=[[MenuMeterDefaults alloc] init];
+	}
+	return foo;
 }
 - (id)init {
 
@@ -126,7 +126,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Pref read/write
+//  Pref read/write
 //
 ///////////////////////////////////////////////////////////////
 
@@ -135,7 +135,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	CPU menu prefs
+//  CPU menu prefs
 //
 ///////////////////////////////////////////////////////////////
 
@@ -160,10 +160,10 @@
 } // cpuPercentDisplay
 
 - (int)cpuMaxProcessCount {
-    return [self loadIntPref:kCPUMaxProcessCountPref
-                    lowBound:kCPUProcessCountMin
-                   highBound:kCPUrocessCountMax
-                defaultValue:kCPUProcessCountDefault];
+	return [self loadIntPref:kCPUMaxProcessCountPref
+					lowBound:kCPUProcessCountMin
+				   highBound:kCPUrocessCountMax
+				defaultValue:kCPUProcessCountDefault];
 } // cpuMaxProcessCount
 
 - (int)cpuGraphLength {
@@ -174,17 +174,17 @@
 } // cpuGraphLength
 
 - (int)cpuHorizontalRows {
-    return [self loadIntPref:kCPUHorizontalRowsPref
-                    lowBound:kCPUHorizontalRowsMin
-                    highBound:kCPUHorizontalRowsMax
-                defaultValue:kCPUHorizontalRowsDefault];
+	return [self loadIntPref:kCPUHorizontalRowsPref
+					lowBound:kCPUHorizontalRowsMin
+				   highBound:kCPUHorizontalRowsMax
+				defaultValue:kCPUHorizontalRowsDefault];
 } // cpuHorizontalRows
 
 - (int)cpuMenuWidth {
-    return [self loadIntPref:kCPUMenuWidthPref
-                    lowBound:kCPUMenuWidthMin
-                    highBound:kCPUMenuWidthMax
-                defaultValue:kCPUMenuWidthDefault];
+	return [self loadIntPref:kCPUMenuWidthPref
+					lowBound:kCPUMenuWidthMin
+				   highBound:kCPUMenuWidthMax
+				defaultValue:kCPUMenuWidthDefault];
 } // cpuMenuWidth
 
 - (BOOL)cpuAvgAllProcs {
@@ -214,16 +214,16 @@
 				defaultValue:kCPUPowerMateModeDefault];
 } // cpuPowerMateMode
 - (int)cpuTemperatureUnit {
-    return [self loadIntPref:kCPUTemperatureUnit
-                    lowBound:kCPUTemperatureUnitCelsius
-                   highBound:kCPUTemperatureUnitFahrenheit
-                defaultValue:kCPUTemperatureUnitCelsius];
+	return [self loadIntPref:kCPUTemperatureUnit
+					lowBound:kCPUTemperatureUnitCelsius
+				   highBound:kCPUTemperatureUnitFahrenheit
+				defaultValue:kCPUTemperatureUnitCelsius];
 }
 - (NSString*)cpuTemperatureSensor{
-    return [self loadStringPref:kCPUTemperatureSensor defaultValue:kCPUTemperatureSensorDefault];
+	return [self loadStringPref:kCPUTemperatureSensor defaultValue:kCPUTemperatureSensorDefault];
 }
 -(void)saveCpuTemperatureSensor:(NSString *)name{
-    [self saveStringPref:kCPUTemperatureSensor value:name];
+	[self saveStringPref:kCPUTemperatureSensor value:name];
 }
 - (NSColor *)cpuSystemColor {
 	return [self loadColorPref:kCPUSystemColorPref defaultValue:kCPUSystemColorDefault];
@@ -234,11 +234,11 @@
 } // cpuUserColor
 
 - (BOOL)cpuShowTemperature {
-    return [self loadBoolPref:kCPUShowTemperature defaultValue:kCPUShowTemperatureDefault];
+	return [self loadBoolPref:kCPUShowTemperature defaultValue:kCPUShowTemperatureDefault];
 }
 
 - (NSColor *)cpuTemperatureColor {
-    return [self loadColorPref:kCPUTemperatureColor defaultValue:kCPUTemperatureColorDefault];
+	return [self loadColorPref:kCPUTemperatureColor defaultValue:kCPUTemperatureColorDefault];
 } //cpuTemperatureColor
 
 - (void)saveCpuInterval:(double)interval {
@@ -254,7 +254,7 @@
 } // saveCpuPercentSplit
 
 - (void)saveCpuMaxProcessCount:(int)maxCount {
-    [self saveIntPref:kCPUMaxProcessCountPref value:maxCount];
+	[self saveIntPref:kCPUMaxProcessCountPref value:maxCount];
 } // saveCpuMaxProcessCount
 
 - (void)saveCpuGraphLength:(int)length {
@@ -262,11 +262,11 @@
 } // saveCpuGraphLength
 
 - (void)saveCpuHorizontalRows:(int)rows {
-    [self saveIntPref:kCPUHorizontalRowsPref value:rows];
+	[self saveIntPref:kCPUHorizontalRowsPref value:rows];
 } // saveCpuHorizontalRows
 
 - (void)saveCpuMenuWidth:(int)rows {
-    [self saveIntPref:kCPUMenuWidthPref value:rows];
+	[self saveIntPref:kCPUMenuWidthPref value:rows];
 } // saveCpuMenuWidth
 
 - (void)saveCpuAvgAllProcs:(BOOL)average {
@@ -294,15 +294,15 @@
 } // saveCpuPowerMateMode
 
 - (void)saveCpuTemperatureUnit:(int)unit {
-    [self saveIntPref:kCPUTemperatureUnit value:unit];
+	[self saveIntPref:kCPUTemperatureUnit value:unit];
 } // saveCpuPowerMateMode
 
 - (void)saveCpuTemperature:(BOOL)show {
-    [self saveBoolPref: kCPUShowTemperature value:show];
+	[self saveBoolPref: kCPUShowTemperature value:show];
 } // saveCpuTemperature
 
 - (void)saveCpuTemperatureColor:(NSColor *)color {
-    [self saveColorPref:kCPUTemperatureColor value:color];
+	[self saveColorPref:kCPUTemperatureColor value:color];
 }
 
 - (void)saveCpuSystemColor:(NSColor *)color {
@@ -315,7 +315,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Disk menu prefs
+//  Disk menu prefs
 //
 ///////////////////////////////////////////////////////////////
 
@@ -359,7 +359,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Mem menu prefs
+//  Mem menu prefs
 //
 ///////////////////////////////////////////////////////////////
 
@@ -386,7 +386,7 @@
 } // memUsedFreeLabel
 
 - (BOOL)memPressure {
-  return [self loadBoolPref:kMemPressurePref defaultValue:kMemPressureDefault];
+	return [self loadBoolPref:kMemPressurePref defaultValue:kMemPressureDefault];
 } // memUsedFreeLabel
 
 - (int)memGraphLength {
@@ -441,7 +441,7 @@
 } // saveMemUsedFreeLabel
 
 - (void)saveMemPressure:(BOOL)label {
-  [self saveBoolPref:kMemPressurePref value:label];
+	[self saveBoolPref:kMemPressurePref value:label];
 } // saveMemPressure
 
 - (void)saveMemPageIndicator:(BOOL)indicator {
@@ -486,7 +486,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Net menu prefs
+//  Net menu prefs
 //
 ///////////////////////////////////////////////////////////////
 
@@ -626,15 +626,15 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Datatype read/write
+//  Datatype read/write
 //
 ///////////////////////////////////////////////////////////////
 
 - (double)loadDoublePref:(NSString *)prefName lowBound:(double)lowBound
-				highBound:(double)highBound defaultValue:(double)defaultValue {
+			   highBound:(double)highBound defaultValue:(double)defaultValue {
 
 	double returnVal = defaultValue;
-    NSNumber *prefValue = [[NSUserDefaults standardUserDefaults] objectForKey:prefName];
+	NSNumber *prefValue = [[NSUserDefaults standardUserDefaults] objectForKey:prefName];
 	if (prefValue && [prefValue isKindOfClass:[NSNumber class]]) {
 		returnVal = [prefValue doubleValue];
 		// Floating point comparison needs some margin of error. Scale up
@@ -650,84 +650,84 @@
 } // _loadDoublePref
 
 - (void)saveDoublePref:(NSString *)prefName value:(double)value {
-    [[NSUserDefaults standardUserDefaults] setDouble:value forKey:prefName];
+	[[NSUserDefaults standardUserDefaults] setDouble:value forKey:prefName];
 } // _saveDoublePref
 
 - (int)loadIntPref:(NSString *)prefName lowBound:(int)lowBound
-		  highBound:(int)highBound defaultValue:(int)defaultValue {
+		 highBound:(int)highBound defaultValue:(int)defaultValue {
 
-    int returnValue=defaultValue;
-    if([[NSUserDefaults standardUserDefaults] objectForKey:prefName]){
-        returnValue=(int)[[NSUserDefaults standardUserDefaults] integerForKey:prefName];
-    }
-    if(returnValue > highBound || returnValue < lowBound){
-        returnValue = defaultValue;
-    }
+	int returnValue=defaultValue;
+	if([[NSUserDefaults standardUserDefaults] objectForKey:prefName]){
+		returnValue=(int)[[NSUserDefaults standardUserDefaults] integerForKey:prefName];
+	}
+	if(returnValue > highBound || returnValue < lowBound){
+		returnValue = defaultValue;
+	}
 	return (int) returnValue;
 
 } // _loadIntPref
 
 - (void)saveIntPref:(NSString *)prefname value:(int)value {
-    [[NSUserDefaults standardUserDefaults] setInteger:value forKey:prefname];
+	[[NSUserDefaults standardUserDefaults] setInteger:value forKey:prefname];
 } // _saveIntPref
 
 - (int)loadBitFlagPref:(NSString *)prefName validFlags:(int)flags defaultValue:(int)defaultValue {
 
-    if([[NSUserDefaults standardUserDefaults] objectForKey:prefName]){
-        int returnValue=(int)[[NSUserDefaults standardUserDefaults] integerForKey:prefName];
-        if (((returnValue | flags) == flags)) {
-            return returnValue;
-        }
-    }
+	if([[NSUserDefaults standardUserDefaults] objectForKey:prefName]){
+		int returnValue=(int)[[NSUserDefaults standardUserDefaults] integerForKey:prefName];
+		if (((returnValue | flags) == flags)) {
+			return returnValue;
+		}
+	}
 	return defaultValue;
 
 } // _loadBitFlagPref
 
 - (void)saveBitFlagPref:(NSString *)prefName value:(int)value {
-    [[NSUserDefaults standardUserDefaults] setInteger:value forKey:prefName];
+	[[NSUserDefaults standardUserDefaults] setInteger:value forKey:prefName];
 } // _saveBitFlagPref
 
 - (BOOL)loadBoolPref:(NSString *)prefName defaultValue:(BOOL)defaultValue {
 
-    if([[NSUserDefaults standardUserDefaults] objectForKey:prefName]){
-        return [[NSUserDefaults standardUserDefaults] boolForKey:prefName];
-    }
-    return defaultValue;
+	if([[NSUserDefaults standardUserDefaults] objectForKey:prefName]){
+		return [[NSUserDefaults standardUserDefaults] boolForKey:prefName];
+	}
+	return defaultValue;
 } // _loadBoolPref
 
 - (void)saveBoolPref:(NSString *)prefName value:(BOOL)value {
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:prefName];
+	[[NSUserDefaults standardUserDefaults] setBool:value forKey:prefName];
 } // _saveBoolPref
 
 - (NSColor *)loadColorPref:(NSString *)prefName defaultValue:(NSColor *)defaultValue {
 
-    NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:prefName];
-    if(data){
-        NSColor*color=[NSUnarchiver unarchiveObjectWithData:data];
-        if(color){
-            return color;
-        }
+	NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:prefName];
+	if(data){
+		NSColor*color=[NSUnarchiver unarchiveObjectWithData:data];
+		if(color){
+			return color;
+		}
 	}
-    return defaultValue;
+	return defaultValue;
 } // _loadColorPref
 
 - (void)saveColorPref:(NSString *)prefName value:(NSColor *)value {
 	if (value) {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:value] forKey:prefName];
+		[[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:value] forKey:prefName];
 	}
 } // _saveColorPref
 
 - (NSString *)loadStringPref:(NSString *)prefName defaultValue:(NSString *)defaultValue {
 
-    NSString*s=[[NSUserDefaults standardUserDefaults] objectForKey:prefName];
-    if(s){
-        return s;
-    }
-    return defaultValue;
+	NSString*s=[[NSUserDefaults standardUserDefaults] objectForKey:prefName];
+	if(s){
+		return s;
+	}
+	return defaultValue;
 } // _loadStringPref
 
 - (void)saveStringPref:(NSString *)prefName value:(NSString *)value {
-    [[NSUserDefaults standardUserDefaults] setObject:value forKey:prefName];
+	[[NSUserDefaults standardUserDefaults] setObject:value forKey:prefName];
 } // _saveStringPref
 
 @end

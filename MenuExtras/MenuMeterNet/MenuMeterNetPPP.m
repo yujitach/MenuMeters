@@ -1,24 +1,24 @@
 //
 //  MenuMeterNetPPP.m
 //
-// 	Talk to pppconfd
+//  Talk to pppconfd
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterNetPPP.h"
@@ -26,70 +26,70 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	PPP interface from Apple PPPLib
+//  PPP interface from Apple PPPLib
 //
 ///////////////////////////////////////////////////////////////
 
 // PPP local socket path
-#define kPPPSocketPath	 	"/var/run/pppconfd\0"
+#define kPPPSocketPath		"/var/run/pppconfd\0"
 
 // Typedef for PPP messages, from Apple PPPLib
 struct ppp_msg_hdr {
-    u_int16_t 		m_flags; 	// special flags
-    u_int16_t 		m_type; 	// type of the message
-    u_int32_t 		m_result; 	// error code of notification message
-    u_int32_t 		m_cookie;	// user param
-    u_int32_t 		m_link;		// link for this message
-    u_int32_t 		m_len;		// len of the following data
+	u_int16_t		m_flags;	// special flags
+	u_int16_t		m_type;		// type of the message
+	u_int32_t		m_result;	// error code of notification message
+	u_int32_t		m_cookie;	// user param
+	u_int32_t		m_link;		// link for this message
+	u_int32_t		m_len;		// len of the following data
 };
 
 // PPP command codes, also from Apple PPPLib
 enum {
-    PPP_VERSION = 1,
-    PPP_STATUS,
-    PPP_CONNECT,
-    PPP_DISCONNECT = 5,
-    PPP_GETOPTION,
-    PPP_SETOPTION,
-    PPP_ENABLE_EVENT,
-    PPP_DISABLE_EVENT,
-    PPP_EVENT,
-    PPP_GETNBLINKS,
-    PPP_GETLINKBYINDEX,
-    PPP_GETLINKBYSERVICEID,
-    PPP_GETLINKBYIFNAME,
-    PPP_SUSPEND,
-    PPP_RESUME
+	PPP_VERSION = 1,
+	PPP_STATUS,
+	PPP_CONNECT,
+	PPP_DISCONNECT = 5,
+	PPP_GETOPTION,
+	PPP_SETOPTION,
+	PPP_ENABLE_EVENT,
+	PPP_DISABLE_EVENT,
+	PPP_EVENT,
+	PPP_GETNBLINKS,
+	PPP_GETLINKBYINDEX,
+	PPP_GETLINKBYSERVICEID,
+	PPP_GETLINKBYIFNAME,
+	PPP_SUSPEND,
+	PPP_RESUME
 };
 
 // And the PPP status struct
 struct ppp_status {
-    // connection stats
-    u_int32_t 		status;
-    union {
-        struct connected {
-            u_int32_t 		timeElapsed;
-            u_int32_t 		timeRemaining;
-            // bytes stats
-            u_int32_t 		inBytes;
-            u_int32_t 		inPackets;
-            u_int32_t 		inErrors;
-            u_int32_t 		outBytes;
-            u_int32_t 		outPackets;
-            u_int32_t 		outErrors;
-        } run;
-        struct disconnected {
-            u_int32_t 		lastDiscCause;
-        } disc;
-        struct waitonbusy {
-            u_int32_t 		timeRemaining;
-        } busy;
-    } s;
+	// connection stats
+	u_int32_t				status;
+	union {
+		struct connected {
+			u_int32_t		timeElapsed;
+			u_int32_t		timeRemaining;
+			// bytes stats
+			u_int32_t		inBytes;
+			u_int32_t		inPackets;
+			u_int32_t		inErrors;
+			u_int32_t		outBytes;
+			u_int32_t		outPackets;
+			u_int32_t		outErrors;
+		} run;
+		struct disconnected {
+			u_int32_t		lastDiscCause;
+		} disc;
+		struct waitonbusy {
+			u_int32_t		timeRemaining;
+		} busy;
+	} s;
 };
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods
+//  Private methods
 //
 ///////////////////////////////////////////////////////////////
 
@@ -102,7 +102,7 @@ struct ppp_status {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Singleton
+//  Singleton
 //
 ///////////////////////////////////////////////////////////////
 
@@ -125,7 +125,7 @@ static id gSharedPPP = nil;
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -164,7 +164,7 @@ static id gSharedPPP = nil;
 
 ///////////////////////////////////////////////////////////////
 //
-//	PPP status
+//  PPP status
 //
 ///////////////////////////////////////////////////////////////
 
@@ -192,22 +192,22 @@ static id gSharedPPP = nil;
 	struct ppp_status *pppStatus = (struct ppp_status *)[statusReply bytes];
 	if (pppStatus->status == PPP_RUNNING) {
 		return [NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithUnsignedInt:pppStatus->status],
-					@"status",
-					[NSNumber numberWithUnsignedInt:pppStatus->s.run.inBytes],
-					@"inBytes",
-					[NSNumber numberWithUnsignedInt:pppStatus->s.run.outBytes],
-					@"outBytes",
-					[NSNumber numberWithUnsignedInt:pppStatus->s.run.timeElapsed],
-					@"timeElapsed",
-					[NSNumber numberWithUnsignedInt:pppStatus->s.run.timeRemaining],
-					@"timeRemaining",
-					nil];
+				[NSNumber numberWithUnsignedInt:pppStatus->status],
+				@"status",
+				[NSNumber numberWithUnsignedInt:pppStatus->s.run.inBytes],
+				@"inBytes",
+				[NSNumber numberWithUnsignedInt:pppStatus->s.run.outBytes],
+				@"outBytes",
+				[NSNumber numberWithUnsignedInt:pppStatus->s.run.timeElapsed],
+				@"timeElapsed",
+				[NSNumber numberWithUnsignedInt:pppStatus->s.run.timeRemaining],
+				@"timeRemaining",
+				nil];
 	} else {
 		return [NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithUnsignedInt:pppStatus->status],
-					@"status",
-					nil];
+				[NSNumber numberWithUnsignedInt:pppStatus->status],
+				@"status",
+				nil];
 	}
 
 } // statusForInterfaceName
@@ -258,7 +258,7 @@ static id gSharedPPP = nil;
 
 ///////////////////////////////////////////////////////////////
 //
-//	PPP control
+//  PPP control
 //
 ///////////////////////////////////////////////////////////////
 
@@ -310,7 +310,7 @@ static id gSharedPPP = nil;
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private Methods
+//  Private Methods
 //
 ///////////////////////////////////////////////////////////////
 

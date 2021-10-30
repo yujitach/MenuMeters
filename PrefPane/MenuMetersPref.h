@@ -1,24 +1,24 @@
 //
 //  MenuMetersPrefPane.h
 //
-//	MenuMeters pref panel
+//  MenuMeters pref panel
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import <PreferencePanes/PreferencePanes.h>
@@ -51,34 +51,34 @@ NSWindowController<NSWindowDelegate>
 	CFRunLoopSourceRef				scRunSource;
 	// Main controls
 	IBOutlet NSTabView				*prefTabs;
-    __unsafe_unretained IBOutlet NSTextView *aboutView;
-    // CPU pane controlsaverage
+	__unsafe_unretained IBOutlet NSTextView *aboutView;
+	// CPU pane controlsaverage
 	IBOutlet NSButton				*cpuMeterToggle;
-    __weak IBOutlet NSButton *cpuPercentage;
-    __weak IBOutlet NSButton *cpuGraph;
-    __weak IBOutlet NSButton *cpuThermometer;
-    __weak IBOutlet NSButton *cpuHorizontalThermometer;
-    
-    IBOutlet NSButton               *cpuTemperatureToggle;
-    __weak IBOutlet NSPopUpButton *cpuTemperatureUnit;
+	__weak IBOutlet NSButton *cpuPercentage;
+	__weak IBOutlet NSButton *cpuGraph;
+	__weak IBOutlet NSButton *cpuThermometer;
+	__weak IBOutlet NSButton *cpuHorizontalThermometer;
+
+	IBOutlet NSButton				*cpuTemperatureToggle;
+	__weak IBOutlet NSPopUpButton	*cpuTemperatureUnit;
 	IBOutlet NSTextField			*cpuIntervalDisplay;
 	IBOutlet NSSlider				*cpuInterval;
 	IBOutlet NSPopUpButton			*cpuPercentMode;
 	IBOutlet NSTextField			*cpuPercentModeLabel;
-    IBOutlet NSSlider               *cpuMaxProcessCount;
-    IBOutlet NSTextField            *cpuMaxProcessCountCountLabel;
+	IBOutlet NSSlider				*cpuMaxProcessCount;
+	IBOutlet NSTextField			*cpuMaxProcessCountCountLabel;
 	IBOutlet NSSlider				*cpuGraphWidth;
 	IBOutlet NSTextField			*cpuGraphWidthLabel;
 	IBOutlet NSSlider				*cpuHorizontalRows;
 	IBOutlet NSTextField			*cpuHorizontalRowsLabel;
-    IBOutlet NSSlider               *cpuMenuWidth;
+	IBOutlet NSSlider				*cpuMenuWidth;
 	IBOutlet NSTextField			*cpuMenuWidthLabel;
-	IBOutlet NSPopUpButton				*cpuMultipleCPU;
+	IBOutlet NSPopUpButton			*cpuMultipleCPU;
 	IBOutlet NSButton				*cpuPowerMate;
 	IBOutlet NSPopUpButton			*cpuPowerMateMode;
 	IBOutlet NSColorWell			*cpuUserColor;
-    IBOutlet NSColorWell            *cpuTemperatureColor;
-    IBOutlet NSPopUpButton* cpuTemperatureSensor;
+	IBOutlet NSColorWell			*cpuTemperatureColor;
+	IBOutlet NSPopUpButton			*cpuTemperatureSensor;
 	IBOutlet NSTextField			*cpuUserColorLabel;
 	IBOutlet NSColorWell			*cpuSystemColor;
 	IBOutlet NSTextField			*cpuSystemColorLabel;
@@ -101,13 +101,13 @@ NSWindowController<NSWindowDelegate>
 	IBOutlet NSColorWell			*memInactiveColor;
 	IBOutlet NSColorWell			*memWiredColor;
 	IBOutlet NSColorWell			*memCompressedColor;
-        IBOutlet NSColorWell			*memFreeColor;
+	IBOutlet NSColorWell			*memFreeColor;
 	IBOutlet NSColorWell			*memUsedColor;
 	IBOutlet NSColorWell			*memPageinColor;
 	IBOutlet NSTextField			*memPageinColorLabel;
 	IBOutlet NSColorWell			*memPageoutColor;
 	IBOutlet NSTextField			*memPageoutColorLabel;
-        IBOutlet NSButton               *memPressureMode;
+	IBOutlet NSButton				*memPressureMode;
 	// Net pane controls
 	IBOutlet NSButton				*netMeterToggle;
 	IBOutlet NSPopUpButton			*netDisplayMode;
@@ -129,8 +129,8 @@ NSWindowController<NSWindowDelegate>
 	IBOutlet NSColorWell			*netTxColor;
 	IBOutlet NSColorWell			*netRxColor;
 	IBOutlet NSColorWell			*netInactiveColor;
-    __weak IBOutlet NSPopUpButton *updateIntervalButton;
-    IBOutlet NSView					*sparkleUIContainer;
+	__weak IBOutlet NSPopUpButton	*updateIntervalButton;
+	IBOutlet NSView					*sparkleUIContainer;
 } // MenuMetersPref
 
 // Pref pane standard methods
@@ -139,9 +139,9 @@ NSWindowController<NSWindowDelegate>
 - (void)didUnselect;
 
 #ifdef SPARKLE
--(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_;
+-(instancetype)initWithAboutFileName:(NSString *)about andUpdater:(SUUpdater *)updater_;
 #else
--(instancetype)initWithAboutFileName:(NSString*)about;
+-(instancetype)initWithAboutFileName:(NSString *)about;
 #endif
 // IB Targets
 -(IBAction)openAbout:(id)sender;

@@ -1,24 +1,24 @@
 //
 //  MenuMeterMemStats.m
 //
-// 	Reader object for VM info
+//  Reader object for VM info
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterMemStats.h"
@@ -27,7 +27,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Definitions for 64-bit from 10.9+ so we can still use old SDKs.
+//  Definitions for 64-bit from 10.9+ so we can still use old SDKs.
 //
 ///////////////////////////////////////////////////////////////
 #ifndef ELCAPITAN
@@ -69,7 +69,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and constants
+//  Private methods and constants
 //
 ///////////////////////////////////////////////////////////////
 
@@ -85,7 +85,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 ///////////////////////////////////////////////////////////////
 //
-//	Load
+//  Load
 //
 ///////////////////////////////////////////////////////////////
 
@@ -95,7 +95,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -128,12 +128,12 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 } // init
 
- // dealloc
+// dealloc
 
 
 ///////////////////////////////////////////////////////////////
 //
-//	 Mem usage info
+//  Mem usage info
 //
 ///////////////////////////////////////////////////////////////
 
@@ -186,31 +186,31 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	totalRAM = active + inactive + wired + free;
 
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithDouble:(double)totalRAM / 1048576], @"totalmb",
-				// There has been much confusion amongst users over what "Used" and "Free" meant.
-				// In older versions "Used" included inactive pages, which tends to grow
-				// over time from lazy reclamation. This led to reports of "leaks".
-				// Current implementation seems to better match actual expectations. even though
-				// its not exactly correct (inactive pages may be modified).
-				[NSNumber numberWithDouble:(double)(free + inactive) / 1048576], @"freemb",
-				[NSNumber numberWithDouble:(double)(active + wired) / 1048576], @"usedmb",
-				[NSNumber numberWithDouble:(double)active / 1048576], @"activemb",
-				[NSNumber numberWithDouble:(double)inactive / 1048576], @"inactivemb",
-				[NSNumber numberWithDouble:(double)wired / 1048576], @"wiremb",
-				[NSNumber numberWithDouble:(double)free / 1048576], @"freepagemb",
-				// No compressed pages
-				[NSNumber numberWithDouble:0.0], @"compressedmb",
-				[NSNumber numberWithDouble:0.0], @"uncompressedmb",
-				// Again, double casts to block sign extension
-				[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.hits)], @"hits",
-				[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.lookups)], @"lookups",
-				[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.pageins)], @"pageins",
-				[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.pageouts)], @"pageouts",
-				[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.faults)], @"faults",
-				[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.cow_faults)], @"cowfaults",
-				[NSNumber numberWithUnsignedLongLong:(uint64_t)deltaPageIn], @"deltapageins",
-				[NSNumber numberWithUnsignedLongLong:(uint64_t)deltaPageOut], @"deltapageouts",
-				nil];
+			[NSNumber numberWithDouble:(double)totalRAM / 1048576], @"totalmb",
+			// There has been much confusion amongst users over what "Used" and "Free" meant.
+			// In older versions "Used" included inactive pages, which tends to grow
+			// over time from lazy reclamation. This led to reports of "leaks".
+			// Current implementation seems to better match actual expectations. even though
+			// its not exactly correct (inactive pages may be modified).
+			[NSNumber numberWithDouble:(double)(free + inactive) / 1048576], @"freemb",
+			[NSNumber numberWithDouble:(double)(active + wired) / 1048576], @"usedmb",
+			[NSNumber numberWithDouble:(double)active / 1048576], @"activemb",
+			[NSNumber numberWithDouble:(double)inactive / 1048576], @"inactivemb",
+			[NSNumber numberWithDouble:(double)wired / 1048576], @"wiremb",
+			[NSNumber numberWithDouble:(double)free / 1048576], @"freepagemb",
+			// No compressed pages
+			[NSNumber numberWithDouble:0.0], @"compressedmb",
+			[NSNumber numberWithDouble:0.0], @"uncompressedmb",
+			// Again, double casts to block sign extension
+			[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.hits)], @"hits",
+			[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.lookups)], @"lookups",
+			[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.pageins)], @"pageins",
+			[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.pageouts)], @"pageouts",
+			[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.faults)], @"faults",
+			[NSNumber numberWithUnsignedLongLong:(uint64_t)((natural_t)vmStats32.cow_faults)], @"cowfaults",
+			[NSNumber numberWithUnsignedLongLong:(uint64_t)deltaPageIn], @"deltapageins",
+			[NSNumber numberWithUnsignedLongLong:(uint64_t)deltaPageOut], @"deltapageouts",
+			nil];
 } // memStats32
 
 - (NSDictionary *)memStats64 {
@@ -250,43 +250,43 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	// Update total
 	totalRAM = active + inactive + wired + free + compressed;
 
-  int memory_pressure_level;
-  size_t length = sizeof(int);
-  
-  sysctlbyname("kern.memorystatus_vm_pressure_level", &memory_pressure_level, &length, nil, 0);
+	int memory_pressure_level;
+	size_t length = sizeof(int);
 
-    int memory_pressure=[self memPressure];
-  
+	sysctlbyname("kern.memorystatus_vm_pressure_level", &memory_pressure_level, &length, nil, 0);
+
+	int memory_pressure=[self memPressure];
+
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-				[NSNumber numberWithDouble:(double)totalRAM / 1048576], @"totalmb",
-				// See discussion in 32 bit code for historical difference between free/used.
-				// By that standard compressed pages are probably active (OS compressing
-				// rather than purging).
-				[NSNumber numberWithDouble:(double)(free + inactive) / 1048576], @"freemb",
-				[NSNumber numberWithDouble:(double)(active + wired  + compressed) / 1048576], @"usedmb",
-				[NSNumber numberWithDouble:(double)active / 1048576], @"activemb",
-				[NSNumber numberWithDouble:(double)inactive / 1048576], @"inactivemb",
-				[NSNumber numberWithDouble:(double)wired / 1048576], @"wiremb",
-				[NSNumber numberWithDouble:(double)free / 1048576], @"freepagemb",
-				[NSNumber numberWithDouble:(double)compressed / 1048576], @"compressedmb",
-				[NSNumber numberWithDouble:(double)uncompressed / 1048576], @"uncompressedmb",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.hits], @"hits",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.lookups], @"lookups",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.pageins], @"pageins",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.pageouts], @"pageouts",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.faults], @"faults",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.cow_faults], @"cowfaults",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.purges], @"purges",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.purgeable_count], @"purgeable_count",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.speculative_count], @"speculative_count",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.decompressions], @"decompressions",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.compressions], @"compressions",
-				[NSNumber numberWithUnsignedLongLong:vmStats64.compressions], @"compressions",
-				[NSNumber numberWithUnsignedLongLong:deltaPageIn], @"deltapageins",
-				[NSNumber numberWithUnsignedLongLong:deltaPageOut], @"deltapageouts",
-        [NSNumber numberWithInt:memory_pressure], @"mempress",
-                [NSNumber numberWithInt:memory_pressure_level], @"mempresslevel",
-				nil];
+			[NSNumber numberWithDouble:(double)totalRAM / 1048576], @"totalmb",
+			// See discussion in 32 bit code for historical difference between free/used.
+			// By that standard compressed pages are probably active (OS compressing
+			// rather than purging).
+			[NSNumber numberWithDouble:(double)(free + inactive) / 1048576], @"freemb",
+			[NSNumber numberWithDouble:(double)(active + wired  + compressed) / 1048576], @"usedmb",
+			[NSNumber numberWithDouble:(double)active / 1048576], @"activemb",
+			[NSNumber numberWithDouble:(double)inactive / 1048576], @"inactivemb",
+			[NSNumber numberWithDouble:(double)wired / 1048576], @"wiremb",
+			[NSNumber numberWithDouble:(double)free / 1048576], @"freepagemb",
+			[NSNumber numberWithDouble:(double)compressed / 1048576], @"compressedmb",
+			[NSNumber numberWithDouble:(double)uncompressed / 1048576], @"uncompressedmb",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.hits], @"hits",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.lookups], @"lookups",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.pageins], @"pageins",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.pageouts], @"pageouts",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.faults], @"faults",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.cow_faults], @"cowfaults",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.purges], @"purges",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.purgeable_count], @"purgeable_count",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.speculative_count], @"speculative_count",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.decompressions], @"decompressions",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.compressions], @"compressions",
+			[NSNumber numberWithUnsignedLongLong:vmStats64.compressions], @"compressions",
+			[NSNumber numberWithUnsignedLongLong:deltaPageIn], @"deltapageins",
+			[NSNumber numberWithUnsignedLongLong:deltaPageOut], @"deltapageouts",
+			[NSNumber numberWithInt:memory_pressure], @"mempress",
+			[NSNumber numberWithInt:memory_pressure_level], @"mempresslevel",
+			nil];
 } // memStats64
 
 - (NSDictionary *)memStats {
@@ -318,12 +318,12 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 		while ((currentFile = [dirEnum nextObject])) {
 			NSString *currentFileFullPath = [swapPath stringByAppendingPathComponent:currentFile];
 			if ([currentFile hasPrefix:swapPrefix] &&
-					[fm fileExistsAtPath:currentFileFullPath isDirectory:&isDir] &&
-					!isDir) {
+				[fm fileExistsAtPath:currentFileFullPath isDirectory:&isDir] &&
+				!isDir) {
 				swapCount++;
 				swapSize += [[[fm attributesOfItemAtPath:currentFileFullPath
-										  error:nil]
-								objectForKey:NSFileSize] unsignedLongLongValue];
+												   error:nil]
+							  objectForKey:NSFileSize] unsignedLongLongValue];
 			}
 		}
 	}
@@ -348,28 +348,28 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	}
 
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-				swapPath, @"swappath",
-				[NSNumber numberWithUnsignedInt:swapCount], @"swapcount",
-				[NSNumber numberWithUnsignedInt:peakSwapFiles], @"swapcountpeak",
-				[NSNumber numberWithUnsignedLongLong:swapSize / 1048576], @"swapsizemb",
-				[NSNumber numberWithUnsignedLongLong:swapUsed / 1048576], @"swapusedmb",
-				[NSNumber numberWithBool:encrypted], @"swapencrypted",
-				nil];
+			swapPath, @"swappath",
+			[NSNumber numberWithUnsignedInt:swapCount], @"swapcount",
+			[NSNumber numberWithUnsignedInt:peakSwapFiles], @"swapcountpeak",
+			[NSNumber numberWithUnsignedLongLong:swapSize / 1048576], @"swapsizemb",
+			[NSNumber numberWithUnsignedLongLong:swapUsed / 1048576], @"swapusedmb",
+			[NSNumber numberWithBool:encrypted], @"swapencrypted",
+			nil];
 
 } // swapStats
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods
+//  Private methods
 //
 ///////////////////////////////////////////////////////////////
 
 - (void)initializeSwapPath {
 /* this code seems to cause hangs for some users.
-   in any case, dynamic_pager is launched on demand from long time ago, and
-   you can't get the changed swap file path in this method, as far as I understand.
-   the rest is kept for historical interest.
-   this should fix https://github.com/yujitach/MenuMeters/issues/124 .
+	in any case, dynamic_pager is launched on demand from long time ago, and
+	you can't get the changed swap file path in this method, as far as I understand.
+	the rest is kept for historical interest.
+	this should fix https://github.com/yujitach/MenuMeters/issues/124 .
 	// We need to figure out where the swap file is. This information
 	// is not published by dynamic_pager to sysctl. We can't get dynamic_pager's
 	// arg list directed using sysctl because its UID 0. So we have to do some
@@ -429,33 +429,33 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	else {
 		NSLog(@"MenuMeterMemStats unable to locate dynamic_pager args. Assume default.");
  */
-    // and now we provide a modern code to get the info via sysctl.
-    // Apparently there are still people who changes the swap file path... see
-    // https://github.com/yujitach/MenuMeters/issues/164
-    char swapfileprefix[1024];
-    size_t size = sizeof(swapfileprefix);
-    if (!sysctlbyname("vm.swapfileprefix", swapfileprefix, &size, NULL, 0)){
-        NSString*x=[NSString stringWithUTF8String:swapfileprefix];
-        swapPrefix=[x lastPathComponent];
-        swapPath=[[x stringByDeletingLastPathComponent] stringByAppendingString:@"/"];
-    }else{
+	// and now we provide a modern code to get the info via sysctl.
+	// Apparently there are still people who changes the swap file path... see
+	// https://github.com/yujitach/MenuMeters/issues/164
+	char swapfileprefix[1024];
+	size_t size = sizeof(swapfileprefix);
+	if (!sysctlbyname("vm.swapfileprefix", swapfileprefix, &size, NULL, 0)){
+		NSString *x = [NSString stringWithUTF8String:swapfileprefix];
+		swapPrefix = [x lastPathComponent];
+		swapPath = [[x stringByDeletingLastPathComponent] stringByAppendingString:@"/"];
+	}
+	else {
 		swapPath = kDefaultSwapPath;
 		swapPrefix = kDefaultSwapPrefix;
-    }
-
+	}
 } // initializeSwapPath
 
-- (int)memPressure
-{
-    // taken from https://github.com/tramdas/memstatpoller/blob/38fbb15efc9b28db508d21ef557c89b4b29fd94e/main.c#L95
-    int error;
-    int level=0;
-    // This is how AAPL's memory_pressure tool reports "System-wide memory free percentage":
-    //error = memorystatus_get_level((user_addr_t) level);
-    error = syscall(SYS_memorystatus_get_level, &level);
-    if(error){
-        NSLog(@"memorystatus_get_level failed: error=%@ errorno=%@ (%s)",@(error),@(errno),strerror(errno));
-    }
-    return level;
+- (int)memPressure {
+	// taken from https://github.com/tramdas/memstatpoller/blob/38fbb15efc9b28db508d21ef557c89b4b29fd94e/main.c#L95
+	int error;
+	int level=0;
+	// This is how AAPL's memory_pressure tool reports "System-wide memory free percentage":
+	//error = memorystatus_get_level((user_addr_t) level);
+	error = syscall(SYS_memorystatus_get_level, &level);
+	if (error) {
+		NSLog(@"memorystatus_get_level failed: error=%@ errorno=%@ (%s)", @(error), @(errno), strerror(errno));
+	}
+	return level;
 }
+
 @end

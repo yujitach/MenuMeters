@@ -34,52 +34,52 @@ IOHIDFloat IOHIDEventGetFloatValue(IOHIDEventRef event, int32_t field);
 
 //extern uint64_t my_mhz(void);
 //extern void mybat(void);
-    //  Primary Usage Page:
-    //    kHIDPage_AppleVendor                        = 0xff00,
-    //    kHIDPage_AppleVendorTemperatureSensor       = 0xff05,
-    //    kHIDPage_AppleVendorPowerSensor             = 0xff08,
-    //
-    //  Primary Usage:
-    //    kHIDUsage_AppleVendor_TemperatureSensor     = 0x0005,
-    //    kHIDUsage_AppleVendorPowerSensor_Current    = 0x0002,
-    //    kHIDUsage_AppleVendorPowerSensor_Voltage    = 0x0003,
-    // See IOHIDFamily/AppleHIDUsageTables.h for more information
-    // https://opensource.apple.com/source/IOHIDFamily/IOHIDFamily-701.60.2/IOHIDFamily/AppleHIDUsageTables.h.auto.html
+//	Primary Usage Page:
+//		kHIDPage_AppleVendor							= 0xff00,
+//		kHIDPage_AppleVendorTemperatureSensor			= 0xff05,
+//		kHIDPage_AppleVendorPowerSensor				= 0xff08,
+//
+//	Primary Usage:
+//		kHIDUsage_AppleVendor_TemperatureSensor		= 0x0005,
+//		kHIDUsage_AppleVendorPowerSensor_Current		= 0x0002,
+//		kHIDUsage_AppleVendorPowerSensor_Voltage		= 0x0003,
+// See IOHIDFamily/AppleHIDUsageTables.h for more information
+// https://opensource.apple.com/source/IOHIDFamily/IOHIDFamily-701.60.2/IOHIDFamily/AppleHIDUsageTables.h.auto.html
 
 
-#define IOHIDEventFieldBase(type)   (type << 16)
-#define kIOHIDEventTypeTemperature  15
-#define kIOHIDEventTypePower        25
+#define IOHIDEventFieldBase(type)		(type << 16)
+#define kIOHIDEventTypeTemperature		15
+#define kIOHIDEventTypePower			25
 
 NSDictionary*AppleSiliconTemperatureDictionary(void)
 {
-    NSDictionary*thermalSensors=@{@"PrimaryUsagePage":@(0xff00),@"PrimaryUsage":@(5)};
-
-   
-    IOHIDEventSystemClientRef system = IOHIDEventSystemClientCreate(kCFAllocatorDefault); // in CFBase.h = NULL
-    // ... this is the same as using kCFAllocatorDefault or the return value from CFAllocatorGetDefault()
-    IOHIDEventSystemClientSetMatching(system, (__bridge CFDictionaryRef)thermalSensors);
-    CFArrayRef matchingsrvs = IOHIDEventSystemClientCopyServices(system); // matchingsrvs = matching services
+	NSDictionary*thermalSensors=@{@"PrimaryUsagePage":@(0xff00),@"PrimaryUsage":@(5)};
 
 
-    NSMutableDictionary*dict=[NSMutableDictionary dictionary];
-    long count = CFArrayGetCount(matchingsrvs);
-    for (int i = 0; i < count; i++) {
-        IOHIDServiceClientRef sc = (IOHIDServiceClientRef)CFArrayGetValueAtIndex(matchingsrvs, i);
-        NSString* name = CFBridgingRelease(IOHIDServiceClientCopyProperty(sc, CFSTR("Product"))); // here we use ...CopyProperty
-        IOHIDEventRef event = IOHIDServiceClientCopyEvent(sc, kIOHIDEventTypeTemperature, 0, 0); // here we use ...CopyEvent
-        if (name && event) {
-            double temp = IOHIDEventGetFloatValue(event, IOHIDEventFieldBase(kIOHIDEventTypeTemperature));
-            dict[name]=@(temp);
-        }
-        if (event) {
-            CFRelease(event);
-        }
-    }
-    
-    CFRelease(matchingsrvs);
-    CFRelease(system);
-    
-    return dict;
-    
+	IOHIDEventSystemClientRef system = IOHIDEventSystemClientCreate(kCFAllocatorDefault); // in CFBase.h = NULL
+	// ... this is the same as using kCFAllocatorDefault or the return value from CFAllocatorGetDefault()
+	IOHIDEventSystemClientSetMatching(system, (__bridge CFDictionaryRef)thermalSensors);
+	CFArrayRef matchingsrvs = IOHIDEventSystemClientCopyServices(system); // matchingsrvs = matching services
+
+
+	NSMutableDictionary*dict=[NSMutableDictionary dictionary];
+	long count = CFArrayGetCount(matchingsrvs);
+	for (int i = 0; i < count; i++) {
+		IOHIDServiceClientRef sc = (IOHIDServiceClientRef)CFArrayGetValueAtIndex(matchingsrvs, i);
+		NSString* name = CFBridgingRelease(IOHIDServiceClientCopyProperty(sc, CFSTR("Product"))); // here we use ...CopyProperty
+		IOHIDEventRef event = IOHIDServiceClientCopyEvent(sc, kIOHIDEventTypeTemperature, 0, 0); // here we use ...CopyEvent
+		if (name && event) {
+			double temp = IOHIDEventGetFloatValue(event, IOHIDEventFieldBase(kIOHIDEventTypeTemperature));
+			dict[name]=@(temp);
+		}
+		if (event) {
+			CFRelease(event);
+		}
+	}
+
+	CFRelease(matchingsrvs);
+	CFRelease(system);
+
+	return dict;
+
 }

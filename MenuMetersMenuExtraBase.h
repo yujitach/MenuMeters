@@ -13,8 +13,8 @@
 
 @interface MenuMetersMenuExtraBase : NSObject <NSMenuDelegate>
 {
-    NSStatusItem* statusItem;
-    NSTimer* updateTimer;
+	NSStatusItem* statusItem;
+	NSTimer* updateTimer;
 }
 -(NSColor*)colorByAdjustingForLightDark:(NSColor*)c;
 - (NSImage*)image;
@@ -35,6 +35,6 @@
 @end
 
 #define NSMenuExtra MenuMetersMenuExtraBase
-#define kOpenMenuMetersPref                 @"Open MenuMeters preferences"
-#define kOpenActivityMonitorTitle            @"Open Activity Monitor"
+#define kOpenMenuMetersPref					@"Open MenuMeters preferences"
+#define kOpenActivityMonitorTitle			@"Open Activity Monitor"
 

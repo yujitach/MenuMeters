@@ -1,24 +1,24 @@
 //
 //  MenuMeterNetConfig.m
 //
-// 	Reader object for network config info
+//  Reader object for network config info
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterNetConfig.h"
@@ -26,12 +26,12 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and constants
+//  Private methods and constants
 //
 ///////////////////////////////////////////////////////////////
 
 // Speed defines
-#define kInterfaceDefaultSpeed 			-1
+#define kInterfaceDefaultSpeed			-1
 #define kModemInterfaceDefaultSpeed		56000
 
 @interface MenuMeterNetConfig (PrivateMethods)
@@ -42,7 +42,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	SystemConfiguration notification callbacks
+//  SystemConfiguration notification callbacks
 //
 ///////////////////////////////////////////////////////////////
 
@@ -54,7 +54,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -91,9 +91,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	if (!SCDynamicStoreSetNotificationKeys(scSession,
 										   (CFArrayRef)[NSArray arrayWithObjects:
-															@"State:/Network/Global/IPv4",
-															@"Setup:/Network/Global/IPv4",
-															@"State:/Network/Interface", nil],
+														@"State:/Network/Global/IPv4",
+														@"Setup:/Network/Global/IPv4",
+														@"State:/Network/Interface", nil],
 										   (CFArrayRef)[NSArray arrayWithObjects:
 														@"State:/Network/Interface.*", nil])) {
 		NSLog(@"MenuMeterNetConfig unable to install notification keys.");
@@ -134,14 +134,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 ///////////////////////////////////////////////////////////////
 //
-//	Network config info
+//  Network config info
 //
 ///////////////////////////////////////////////////////////////
 
 - (NSString *)computerName {
 
 	CFStringRef name = SCDynamicStoreCopyComputerName(scSession, NULL);
-    return (NSString *)CFBridgingRelease(name);
+	return (NSString *)CFBridgingRelease(name);
 
 } // computerName
 
@@ -159,17 +159,17 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		NSString *primaryName = [self primaryInterfaceName];
 		if (service && (statName || primaryName)) {
 			return [NSDictionary dictionaryWithObjectsAndKeys:
-						service,
-						@"service",
-						(statName ? statName : primaryName),
-						@"statname",
-						[self speedForServiceID:service],
-						@"speed",
-						kNetPrimaryInterface,
-						@"name",
-						[NSNumber numberWithBool:[self interfaceNameIsUp:(statName ? statName : primaryName)]],
-						@"interfaceup",
-						nil];
+					service,
+					@"service",
+					(statName ? statName : primaryName),
+					@"statname",
+					[self speedForServiceID:service],
+					@"speed",
+					kNetPrimaryInterface,
+					@"name",
+					[NSNumber numberWithBool:[self interfaceNameIsUp:(statName ? statName : primaryName)]],
+					@"interfaceup",
+					nil];
 		} else {
 			return nil;
 		}
@@ -179,17 +179,17 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSString *statName = [self underlyingInterfaceNameForServiceID:service];
 	if (service && statName) {
 		return [NSDictionary dictionaryWithObjectsAndKeys:
-					service,
-					@"service",
-					statName,
-					@"statname",
-					[self speedForServiceID:service],
-					@"speed",
-					name,
-					@"name",
-					[NSNumber numberWithBool:[self interfaceNameIsUp:statName]],
-					@"interfaceup",
-					nil];
+				service,
+				@"service",
+				statName,
+				@"statname",
+				[self speedForServiceID:service],
+				@"speed",
+				name,
+				@"name",
+				[NSNumber numberWithBool:[self interfaceNameIsUp:statName]],
+				@"interfaceup",
+				nil];
 	}
 	return nil;
 
@@ -247,13 +247,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		}
 		// Get the interface name
 		NSDictionary *serviceDict = [self sysconfigValueForKey:
-										[NSString stringWithFormat:@"Setup:/Network/Service/%@", serviceID]];
+									 [NSString stringWithFormat:@"Setup:/Network/Service/%@", serviceID]];
 		if ([serviceDict objectForKey:@"UserDefinedName"]) {
 			[interfaceDetail setObject:[serviceDict objectForKey:@"UserDefinedName"] forKey:@"name"];
 		}
 		// Get interface details
 		NSDictionary *interfaceDict = [self sysconfigValueForKey:
-											[NSString stringWithFormat:@"Setup:/Network/Service/%@/Interface", serviceID]];
+									   [NSString stringWithFormat:@"Setup:/Network/Service/%@/Interface", serviceID]];
 		if (!interfaceDict) {
 			// If the details aren't present then skip, we can learn nothing here
 			continue;
@@ -280,7 +280,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		}
 		// Now get info that may or may not be there, starting with PPP name
 		NSDictionary *pppDict = [self sysconfigValueForKey:
-									[NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
+								 [NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
 		if ([pppDict objectForKey:@"InterfaceName"]) {
 			[interfaceDetail setObject:[pppDict objectForKey:@"InterfaceName"] forKey:@"devicepppname"];
 		}
@@ -294,34 +294,34 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		}
 		// IPv4 info
 		NSDictionary *ipDict = [self sysconfigValueForKey:
-									[NSString stringWithFormat:@"State:/Network/Service/%@/IPv4", serviceID]];
+								[NSString stringWithFormat:@"State:/Network/Service/%@/IPv4", serviceID]];
 		if ([ipDict objectForKey:@"Addresses"]) {
 			[interfaceDetail setObject:[ipDict objectForKey:@"Addresses"] forKey:@"ipv4addresses"];
 		}
 		// IPv6 info
 		if ([interfaceDetail objectForKey:@"devicename"]) {
 			ipDict = [self sysconfigValueForKey:
-						[NSString stringWithFormat:@"State:/Network/Interface/%@/IPv6",
-							[interfaceDetail objectForKey:@"devicename"]]];
+					  [NSString stringWithFormat:@"State:/Network/Interface/%@/IPv6",
+					   [interfaceDetail objectForKey:@"devicename"]]];
 			if ([ipDict objectForKey:@"Addresses"]) {
 				[interfaceDetail setObject:[ipDict objectForKey:@"Addresses"] forKey:@"ipv6addresses"];
 			}
 		}
 		// Appletalk
 		NSDictionary *appletalkDict = [self sysconfigValueForKey:
-											[NSString stringWithFormat:@"State:/Network/Interface/%@/AppleTalk",
-												[interfaceDetail objectForKey:@"devicename"]]];
+									   [NSString stringWithFormat:@"State:/Network/Interface/%@/AppleTalk",
+										[interfaceDetail objectForKey:@"devicename"]]];
 		if ([appletalkDict objectForKey:@"NetworkID"] &&
-				[appletalkDict objectForKey:@"NodeID"] &&
-				[appletalkDict objectForKey:@"DefaultZone"]) {
+			[appletalkDict objectForKey:@"NodeID"] &&
+			[appletalkDict objectForKey:@"DefaultZone"]) {
 			[interfaceDetail setObject:[appletalkDict objectForKey:@"NetworkID"] forKey:@"appletalknetid"];
 			[interfaceDetail setObject:[appletalkDict objectForKey:@"NodeID"] forKey:@"appletalknodeid"];
 			[interfaceDetail setObject:[appletalkDict objectForKey:@"DefaultZone"] forKey:@"appletalkzone"];
 		}
 		// Link status
 		NSDictionary *linkDict = [self sysconfigValueForKey:
-										[NSString stringWithFormat:@"State:/Network/Interface/%@/Link",
-											[interfaceDetail objectForKey:@"devicename"]]];
+								  [NSString stringWithFormat:@"State:/Network/Interface/%@/Link",
+								   [interfaceDetail objectForKey:@"devicename"]]];
 		if ([linkDict objectForKey:@"Active"]) {
 			[interfaceDetail setObject:[linkDict objectForKey:@"Active"] forKey:@"linkactive"];
 		}
@@ -335,14 +335,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 			} else if ([[interfaceDetail objectForKey:@"devicename"] isEqualToString:@"modem"]) {
 				// Modem data can be had from config framework
 				NSDictionary *modemDict = [self sysconfigValueForKey:
-												[NSString stringWithFormat:@"State:/Network/Service/%@/Modem", serviceID]];
+										   [NSString stringWithFormat:@"State:/Network/Service/%@/Modem", serviceID]];
 				if ([modemDict objectForKey:@"ConnectSpeed"]) {
 					// Its a modem, but is it connected?
 					pppDict = [self sysconfigValueForKey:
-									[NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
+							   [NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
 					if ([pppDict objectForKey:@"Status"] &&
-							([[pppDict objectForKey:@"Status"] intValue] == PPP_RUNNING) &&
-							[pppDict objectForKey:@"ConnectSpeed"]) {
+						([[pppDict objectForKey:@"Status"] intValue] == PPP_RUNNING) &&
+						[pppDict objectForKey:@"ConnectSpeed"]) {
 						[interfaceDetail setObject:[pppDict objectForKey:@"ConnectSpeed"] forKey:@"linkspeed"];
 					}
 				}
@@ -405,9 +405,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 	// Get interface details
 	NSDictionary *interfaceDict = [self sysconfigValueForKey:
-									[NSString stringWithFormat:@"Setup:/Network/Service/%@/Interface", serviceID]];
+								   [NSString stringWithFormat:@"Setup:/Network/Service/%@/Interface", serviceID]];
 	NSDictionary *pppDict = [self sysconfigValueForKey:
-								[NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
+							 [NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
 	// Check for PPP first
 	if ([pppDict objectForKey:@"InterfaceName"]) {
 		[cachedServiceToName setObject:[pppDict objectForKey:@"InterfaceName"] forKey:serviceID];
@@ -445,13 +445,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	while ((serviceID = [servicesEnum nextObject])) {
 		// Get interface details
 		NSDictionary *interfaceDict = [self sysconfigValueForKey:
-										[NSString stringWithFormat:@"Setup:/Network/Service/%@/Interface", serviceID]];
+									   [NSString stringWithFormat:@"Setup:/Network/Service/%@/Interface", serviceID]];
 		if ([[interfaceDict objectForKey:@"DeviceName"] isEqualToString:interfaceName]) {
 			[cachedNameToService setObject:serviceID forKey:interfaceName];
 			return serviceID;
 		}
 		NSDictionary *pppDict = [self sysconfigValueForKey:
-									[NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
+								 [NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
 		if ([[pppDict objectForKey:@"InterfaceName"] isEqualToString:interfaceName]) {
 			[cachedNameToService setObject:serviceID forKey:interfaceName];
 			return serviceID;
@@ -519,9 +519,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// PPPoE connections. Try to work around by finding the underlying ethernet
 	// interface for these connections.
 	NSDictionary *interfaceDict = [self sysconfigValueForKey:
-										[NSString stringWithFormat:@"Setup:/Network/Service/%@/Interface", serviceID]];
+								   [NSString stringWithFormat:@"Setup:/Network/Service/%@/Interface", serviceID]];
 	NSDictionary *pppDict = [self sysconfigValueForKey:
-								[NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
+							 [NSString stringWithFormat:@"State:/Network/Service/%@/PPP", serviceID]];
 	// Check for PPP name
 	if ([pppDict objectForKey:@"InterfaceName"]) {
 		// There appears to be a bug in pppconfd's handling of bytes sent for
@@ -560,7 +560,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if ([interfaceName hasPrefix:@"en"]) {
 		// Ethernet
 		NSDictionary *linkDict = [self sysconfigValueForKey:
-									[NSString stringWithFormat:@"State:/Network/Interface/%@/Link", interfaceName]];
+								  [NSString stringWithFormat:@"State:/Network/Interface/%@/Link", interfaceName]];
 		if ([linkDict objectForKey:@"Active"]) {
 			[cachedInterfaceUp setObject:[linkDict objectForKey:@"Active"] forKey:interfaceName];
 			return [[linkDict objectForKey:@"Active"] boolValue];
@@ -584,109 +584,109 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods
+//  Private methods
 //
 ///////////////////////////////////////////////////////////////
 
 // taken from https://stackoverflow.com/a/12310154/239243
 - (NSString *)runCommand:(NSString *)commandToRun
 {
-    NSTask *task = [[NSTask alloc] init];
-    [task setLaunchPath:@"/bin/sh"];
+	NSTask *task = [[NSTask alloc] init];
+	[task setLaunchPath:@"/bin/sh"];
 
-    NSArray *arguments = [NSArray arrayWithObjects:
-                          @"-c" ,
-                          [NSString stringWithFormat:@"%@", commandToRun],
-                          nil];
-//    NSLog(@"run command:%@", commandToRun);
-    [task setArguments:arguments];
+	NSArray *arguments = [NSArray arrayWithObjects:
+						  @"-c" ,
+						  [NSString stringWithFormat:@"%@", commandToRun],
+						  nil];
+	// NSLog(@"run command:%@", commandToRun);
+	[task setArguments:arguments];
 
-    NSPipe *pipe = [NSPipe pipe];
-    [task setStandardOutput:pipe];
-    [task setStandardError:pipe];
+	NSPipe *pipe = [NSPipe pipe];
+	[task setStandardOutput:pipe];
+	[task setStandardError:pipe];
 
-    NSFileHandle *file = [pipe fileHandleForReading];
-    
-    [task launch];
+	NSFileHandle *file = [pipe fileHandleForReading];
 
-    NSData *data = [file readDataToEndOfFile];
-    [file closeFile];
+	[task launch];
 
-    NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return output;
+	NSData *data = [file readDataToEndOfFile];
+	[file closeFile];
+
+	NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	return output;
 }
 
 - (NSNumber *)speedForInterfaceName:(NSString*)bsdInterface{
-    {
-        NSDictionary* airportDict=[self sysconfigValueForKey:[NSString stringWithFormat:@"Setup:/Network/Interface/%@/AirPort",bsdInterface]];
-        if(airportDict){
-            NSNumber* x = [self speedForAirport];
-            if(x){
-                return x;
-            }
-        }
-    }
-    {
-        NSNumber* x=[self speedForInterfaceNameViaIOKit:bsdInterface];
-        if(x){
-            return x;
-        }
-    }
-    {
-        NSNumber* x=[self speedForInterfaceNameViaIfConfig:bsdInterface];
-        if(x){
-            return x;
-        }
-    }
-    return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
+	{
+		NSDictionary* airportDict=[self sysconfigValueForKey:[NSString stringWithFormat:@"Setup:/Network/Interface/%@/AirPort",bsdInterface]];
+		if(airportDict){
+			NSNumber* x = [self speedForAirport];
+			if(x){
+				return x;
+			}
+		}
+	}
+	{
+		NSNumber* x=[self speedForInterfaceNameViaIOKit:bsdInterface];
+		if(x){
+			return x;
+		}
+	}
+	{
+		NSNumber* x=[self speedForInterfaceNameViaIfConfig:bsdInterface];
+		if(x){
+			return x;
+		}
+	}
+	return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
 }
 - (NSNumber*)speedForAirport
 {
-    NSString*line=[self runCommand:@"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep maxRate"];
-    NSRange r=[line rangeOfString:@":"];
-    if(r.location==NSNotFound){
-        return nil;
-    }
-    line=[line substringFromIndex:r.location+1];
-    return [NSNumber numberWithDouble:[line doubleValue]*1000*1000];
+	NSString*line=[self runCommand:@"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep maxRate"];
+	NSRange r=[line rangeOfString:@":"];
+	if(r.location==NSNotFound){
+		return nil;
+	}
+	line=[line substringFromIndex:r.location+1];
+	return [NSNumber numberWithDouble:[line doubleValue]*1000*1000];
 }
 - (NSNumber *)speedForInterfaceNameViaIfConfig:(NSString *)bsdInterface {
 
 	if (!bsdInterface) return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
-    NSLog(@"getting the speed for %@",bsdInterface);
-    /* The old way to get the speed via IOKit no longer reliably works, most probably due to the slow move to DriverKit.
-     The link speed as reported by NetworkUtility.app can also be obtained by ifconfig, whose source code is available at
-     https://opensource.apple.com/source/network_cmds/network_cmds-596/ifconfig.tproj/
-    e.g. for Catalina. Unfortunately the ioctl used there is not exposed in the standard development headers, although you can presumably use it by copying the content of the private headers.
-     Here instead I just directly call ifconfig.
-     */
-    NSString*line=[self runCommand:[NSString stringWithFormat:@"ifconfig -v %@ | egrep 'link rate|uplink'",bsdInterface]];
-    if([line containsString:@"does not"]){
-         return [NSNumber numberWithLong:0];
-    }
-    NSRange r=[line rangeOfString:@"/"];
-    if(r.location==NSNotFound){
-        r=[line rangeOfString:@": "];
-    }
-    if(r.location==NSNotFound){
-        return [NSNumber numberWithLong:0];
-    }
-    line=[line substringFromIndex:r.location+1];
-    double factor=1;
-    if((r=[line rangeOfString:@"Gbps"]).location!=NSNotFound){
-        factor=1000*1000*1000;
-    }else if((r=[line rangeOfString:@"Mbps"]).location!=NSNotFound){
-        factor=1000*1000;
-    }else if((r=[line rangeOfString:@"Kbps"]).location!=NSNotFound){
-        factor=1000;
-    }else if((r=[line rangeOfString:@"bps"]).location!=NSNotFound){
-        factor=1;
-    }else{
-        factor=0;
-    }
-    
-    line=[line substringToIndex:r.location];
-    return [NSNumber numberWithDouble:[line doubleValue]*factor];
+	NSLog(@"getting the speed for %@",bsdInterface);
+	/* The old way to get the speed via IOKit no longer reliably works, most probably due to the slow move to DriverKit.
+	 The link speed as reported by NetworkUtility.app can also be obtained by ifconfig, whose source code is available at
+	 https://opensource.apple.com/source/network_cmds/network_cmds-596/ifconfig.tproj/
+	 e.g. for Catalina. Unfortunately the ioctl used there is not exposed in the standard development headers, although you can presumably use it by copying the content of the private headers.
+	 Here instead I just directly call ifconfig.
+	 */
+	NSString*line=[self runCommand:[NSString stringWithFormat:@"ifconfig -v %@ | egrep 'link rate|uplink'",bsdInterface]];
+	if([line containsString:@"does not"]){
+		return [NSNumber numberWithLong:0];
+	}
+	NSRange r=[line rangeOfString:@"/"];
+	if(r.location==NSNotFound){
+		r=[line rangeOfString:@": "];
+	}
+	if(r.location==NSNotFound){
+		return [NSNumber numberWithLong:0];
+	}
+	line=[line substringFromIndex:r.location+1];
+	double factor=1;
+	if((r=[line rangeOfString:@"Gbps"]).location!=NSNotFound){
+		factor=1000*1000*1000;
+	}else if((r=[line rangeOfString:@"Mbps"]).location!=NSNotFound){
+		factor=1000*1000;
+	}else if((r=[line rangeOfString:@"Kbps"]).location!=NSNotFound){
+		factor=1000;
+	}else if((r=[line rangeOfString:@"bps"]).location!=NSNotFound){
+		factor=1;
+	}else{
+		factor=0;
+	}
+
+	line=[line substringToIndex:r.location];
+	return [NSNumber numberWithDouble:[line doubleValue]*factor];
 }
 - (NSNumber *)speedForInterfaceNameViaIOKit:(NSString *)bsdInterface {
 	// Get the speed from IOKit
@@ -695,7 +695,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 								 IOBSDNameMatching(masterPort, kNilOptions, [bsdInterface UTF8String]),
 								 &iterator);
 	// If we didn't get an iterator guess 10Mbit
-    if (!iterator) return nil;
+	if (!iterator) return nil;
 
 	// Otherwise poke around IOKit
 	io_registry_entry_t	regEntry = IOIteratorNext(iterator);
@@ -720,12 +720,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	if (linkSpeed && ([linkSpeed unsignedLongLongValue] > 0)) {
 		return linkSpeed;
 	} else {
-        return nil;
+		return nil;
 	}
 } // speedForInterfaceName
 
 - (NSDictionary *)sysconfigValueForKey:(NSString *)key {
-
 	return (NSDictionary *)CFBridgingRelease(SCDynamicStoreCopyValue(scSession, (CFStringRef)key));
 } // sysconfigValueForKey
 

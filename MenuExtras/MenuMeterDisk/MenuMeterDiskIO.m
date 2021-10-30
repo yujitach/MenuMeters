@@ -1,24 +1,24 @@
 //
 //  MenuMeterDiskIO.m
 //
-// 	Reader object for disk IO statistics
+//  Reader object for disk IO statistics
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterDiskIO.h"
@@ -27,7 +27,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and constants
+//  Private methods and constants
 //
 ///////////////////////////////////////////////////////////////
 
@@ -37,7 +37,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	IOKit notification callbacks
+//  IOKit notification callbacks
 //
 ///////////////////////////////////////////////////////////////
 
@@ -50,7 +50,7 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -118,7 +118,7 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Disk activity
+//  Disk activity
 //
 ///////////////////////////////////////////////////////////////
 
@@ -140,7 +140,7 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 	uint64_t totalRead = 0, totalWrite = 0;
 	while ((driveEntry = IOIteratorNext(blockDeviceIterator))) {
 
- 		// Get the statistics for this drive
+		// Get the statistics for this drive
 		NSDictionary* statistics = CFBridgingRelease(IORegistryEntryCreateCFProperty(driveEntry,
 																	 CFSTR(kIOBlockStorageDriverStatisticsKey),
 																	 kCFAllocatorDefault,
@@ -191,7 +191,7 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Device state changes
+//  Device state changes
 //
 ///////////////////////////////////////////////////////////////
 

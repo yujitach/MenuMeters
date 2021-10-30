@@ -1,24 +1,24 @@
 //
 //  MenuMeterNetStats.m
 //
-// 	Reader object for network throughput info
+//  Reader object for network throughput info
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterNetStats.h"
@@ -27,7 +27,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -61,23 +61,23 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//	Net usage info, based mostly on code found in
-//	XResourceGraph which got it in turn from gkrellm.
-//	It reads data from the routing tables using sysctl,
-//	which, unlike the kernel memory reads used in netstat
-// 	and top, does not require root access
+//  Net usage info, based mostly on code found in
+//  XResourceGraph which got it in turn from gkrellm.
+//  It reads data from the routing tables using sysctl,
+//  which, unlike the kernel memory reads used in netstat
+//  and top, does not require root access
 //
 ///////////////////////////////////////////////////////////////
-- (void)resetTotalsForInterfaceName:(NSString*)interfaceName
-{
-    NSDictionary *oldStats = [lastData objectForKey:interfaceName];
-    if(oldStats){
-        NSMutableDictionary*x=[oldStats mutableCopy];
-        x[@"totalin"]=@(0);
-        x[@"totalout"]=@(0);
-        lastData[interfaceName]=x;
-    }
+- (void)resetTotalsForInterfaceName:(NSString *)interfaceName {
+	NSDictionary *oldStats = [lastData objectForKey:interfaceName];
+	if(oldStats){
+		NSMutableDictionary *x = [oldStats mutableCopy];
+		x[@"totalin"] = @(0);
+		x[@"totalout"] = @(0);
+		lastData[interfaceName] = x;
+	}
 }
+
 - (NSDictionary *)netStatsForInterval:(NSTimeInterval)sampleInterval {
 
 	// Get sizing info from sysctl and resize as needed.
