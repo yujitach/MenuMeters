@@ -58,8 +58,6 @@
 // Data formatting
 - (NSString *)throughputStringForBytesPerSecond:(double)bps;
 - (NSString *)throughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval;
-- (NSString *)menubarThroughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval;
-- (NSString *)throughputStringForBytesPerSecond:(double)bps withSpace:(Boolean)wantSpace;
 - (NSString *)trafficStringForNumber:(NSNumber *)throughputNumber withLabel:(NSString *)directionLabel;
 - (NSUInteger)scaleDown:(double *)num usingBase:(NSUInteger)base withLimit:(NSUInteger)limit;
 - (NSString *)stringifyNumber:(double)num withUnitLabel:(NSString *)label andFormat:(NSString *)format;
@@ -997,22 +995,15 @@
 
 	NSString *txString = [self menubarThroughputStringForBytes:txValue inInterval:sampleInterval];
 	NSString *rxString = [self menubarThroughputStringForBytes:rxValue inInterval:sampleInterval];
+	NSDictionary *attributes = @{NSFontAttributeName: throughputFont,
+								 NSForegroundColorAttributeName: interfaceUp ? txColor : inactiveColor};
 	NSAttributedString *renderTxString = [[NSAttributedString alloc]
 										  initWithString:txString
-										  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-													  throughputFont,
-													  NSFontAttributeName,
-													  interfaceUp ? txColor : inactiveColor,
-													  NSForegroundColorAttributeName,
-													  nil]];
+										  attributes:attributes];
+	attributes = @{NSFontAttributeName: throughputFont,
+								 NSForegroundColorAttributeName: interfaceUp ? rxColor : inactiveColor};
 	NSAttributedString *renderRxString = [[NSAttributedString alloc]
 										  initWithString:rxString
-										  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-													  throughputFont,
-													  NSFontAttributeName,
-													  interfaceUp ? rxColor : inactiveColor,
-													  NSForegroundColorAttributeName,
-													  nil]];
 
 	// Draw
 	[image lockFocus];
@@ -1378,57 +1369,55 @@
 	[downArrow setLineWidth:0.6f];
 
 	// Prerender throughput labels
+	NSDictionary *attributes = @{NSFontAttributeName: throughputFont,
+								 NSForegroundColorAttributeName: txColor};
 	NSAttributedString *renderTxString = [[NSAttributedString alloc]
 										  initWithString:[localizedStrings objectForKey:kTxLabel]
-										  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-													  throughputFont, NSFontAttributeName,
-													  txColor, NSForegroundColorAttributeName,
-													  nil]];
+										  attributes:attributes];
+	attributes = @{NSFontAttributeName: throughputFont,
+				   NSForegroundColorAttributeName: rxColor};
 	NSAttributedString *renderRxString = [[NSAttributedString alloc]
 										  initWithString:[localizedStrings objectForKey:kRxLabel]
-										  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-													  throughputFont, NSFontAttributeName,
-													  rxColor, NSForegroundColorAttributeName,
-													  nil]];
-	if ([renderTxString size].width > [renderRxString size].width) {
-		throughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
-		inactiveThroughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
-	} else {
-		throughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderRxString size].width, viewHeight)];
-		inactiveThroughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderRxString size].width, viewHeight)];
+										  attributes:attributes];
+
+	NSSize renderTxSize = renderTxString.size;
+	NSSize renderRxSize = renderRxString.size;
+
+	NSSize throughputLabelSize;
+	if (renderTxSize.width > renderRxSize.width) {
+		throughputLabelSize = renderTxSize;
 	}
-	[throughputLabel lockFocus];
-	// No descenders, render lower
+	else {
+		throughputLabelSize = renderRxSize;
+	}
+	NSPoint renderRxPoint;
+	NSPoint renderTxPoint;
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-		[renderRxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-		[renderTxString drawAtPoint:NSMakePoint(0, -1)];
-	} else {
-		[renderTxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-		[renderRxString drawAtPoint:NSMakePoint(0, -1)];
+		renderRxPoint = NSMakePoint(0, floor(viewHeight / 2) - 2);
+		renderTxPoint = NSMakePoint(0, -1);
 	}
-	[throughputLabel unlockFocus];
+	else {
+		renderTxPoint = NSMakePoint(0, floor(viewHeight / 2) - 2);
+		renderRxPoint = NSMakePoint(0, -1);
+	}
+	throughputLabel = [NSImage imageWithSize:throughputLabelSize flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+		[renderRxString drawAtPoint:renderRxPoint];
+		[renderTxString drawAtPoint:renderTxPoint];
+		return YES;
+	}];
+	attributes = @{NSFontAttributeName: throughputFont,
+				   NSForegroundColorAttributeName: inactiveColor};
 	renderTxString = [[NSAttributedString alloc]
 					  initWithString:[localizedStrings objectForKey:kTxLabel]
-					  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-								  throughputFont, NSFontAttributeName,
-								  inactiveColor, NSForegroundColorAttributeName,
-								  nil]];
+					  attributes:attributes];
 	renderRxString = [[NSAttributedString alloc]
 					  initWithString:[localizedStrings objectForKey:kRxLabel]
-					  attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-								  throughputFont, NSFontAttributeName,
-								  inactiveColor, NSForegroundColorAttributeName,
-								  nil]];
-	[inactiveThroughputLabel lockFocus];
-	// No descenders, render lower
-	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-		[renderRxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-		[renderTxString drawAtPoint:NSMakePoint(0, -1)];
-	} else {
-		[renderTxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-		[renderRxString drawAtPoint:NSMakePoint(0, -1)];
-	}
-	[inactiveThroughputLabel unlockFocus];
+					  attributes:attributes];
+	inactiveThroughputLabel = [NSImage imageWithSize:throughputLabelSize flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
+		[renderRxString drawAtPoint:renderRxPoint];
+		[renderTxString drawAtPoint:renderTxPoint];
+		return YES;
+	}];
 
 	// Fix our menu view size to match our config
 	menuWidth = 0;
@@ -1445,44 +1434,31 @@
 		displayCount++;
 		if ([ourPrefs netThroughputLabel]) menuWidth += (float)ceil([throughputLabel size].width);
 		// Deal with localizable throughput suffix
-		float suffixMaxWidth = 0;
-		NSAttributedString *throughString = [[NSAttributedString alloc]
-											 initWithString:[NSString stringWithFormat:@"999.9%@",
-															 [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kBitPerSecondLabel : kBytePerSecondLabel]]
-											 attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-														 throughputFont, NSFontAttributeName,
-														 nil]];
-		if ([throughString size].width > suffixMaxWidth) {
-			suffixMaxWidth = (float)[throughString size].width;
+		CGFloat suffixMaxWidth = 0;
+
+		NSDictionary *attributes = @{NSFontAttributeName: throughputFont};
+		NSSize numberSize = [@"999.9\u2009" sizeWithAttributes:attributes];
+
+		NSSize suffixSize;
+		suffixSize = [kBitPerSecondLabel sizeWithAttributes:attributes];
+		if (suffixSize.width > suffixMaxWidth) {
+			suffixMaxWidth = suffixSize.width;
 		}
-		throughString = [[NSAttributedString alloc]
-						 initWithString:[NSString stringWithFormat:@"999.9%@",
-										 [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kKbPerSecondLabel : kKBPerSecondLabel]]
-						 attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-									 throughputFont, NSFontAttributeName,
-									 nil]];
-		if ([throughString size].width > suffixMaxWidth) {
-			suffixMaxWidth = (float)[throughString size].width;
+		suffixSize = [kKbPerSecondLabel sizeWithAttributes:attributes];
+		if (suffixSize.width > suffixMaxWidth) {
+			suffixMaxWidth = suffixSize.width;
 		}
-		throughString = [[NSAttributedString alloc]
-						 initWithString:[NSString stringWithFormat:@"999.9%@",
-										 [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kMbPerSecondLabel : kMBPerSecondLabel]]
-						 attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-									 throughputFont, NSFontAttributeName,
-									 nil]];
-		if ([throughString size].width > suffixMaxWidth) {
-			suffixMaxWidth = (float)[throughString size].width;
+		suffixSize = [kMbPerSecondLabel sizeWithAttributes:attributes];
+		if (suffixSize.width > suffixMaxWidth) {
+			suffixMaxWidth = suffixSize.width;
 		}
-		throughString = [[NSAttributedString alloc]
-						 initWithString:[NSString stringWithFormat:@"999.9%@",
-										 [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kGbPerSecondLabel : kGBPerSecondLabel]]
-						 attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-									 throughputFont, NSFontAttributeName,
-									 nil]];
-		if ([throughString size].width > suffixMaxWidth) {
-			suffixMaxWidth = (float)[throughString size].width;
+		suffixSize = [kGbPerSecondLabel sizeWithAttributes:attributes];
+		if (suffixSize.width > suffixMaxWidth) {
+			suffixMaxWidth = suffixSize.width;
 		}
-		menuWidth += ceilf(suffixMaxWidth);
+		suffixMaxWidth += numberSize.width;
+
+		menuWidth += ceil(suffixMaxWidth);
 	}
 	// If more than one display is present we need to add a gaps
 	if (displayCount) {
@@ -1499,12 +1475,6 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (NSString *)throughputStringForBytesPerSecond:(double)bps {
-
-	return [self throughputStringForBytesPerSecond:bps withSpace:YES];
-
-} // throughputStringForBytesPerSecond
-
 - (NSString *)throughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval {
 
 	if (interval <= 0) return nil;
@@ -1512,14 +1482,7 @@
 
 } // throughputStringForBytes:inInterval:
 
-- (NSString *)menubarThroughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval {
-
-	if (interval <= 0) return nil;
-	return [self throughputStringForBytesPerSecond:bytes / interval withSpace:NO];
-
-} // menubarThroughputStringForBytes:inInterval:
-
-- (NSString *)throughputStringForBytesPerSecond:(double)bps withSpace:(Boolean)wantSpace {
+- (NSString *)throughputStringForBytesPerSecond:(double)bps {
 
 	NSArray *labels = @[kBytePerSecondLabel, kKBPerSecondLabel, kMBPerSecondLabel, kGBPerSecondLabel];
 	int kilo = kKiloBinary;
@@ -1542,11 +1505,7 @@
 		format = @"%.0f";
 	}
 
-	if (wantSpace) {
-		format = [NSString stringWithFormat:@"%@ %%@", format];
-	} else {
-		format = [NSString stringWithFormat:@"%@%%@", format];
-	}
+	format = [NSString stringWithFormat:@"%@\u2009%%@", format];
 
 	return [self stringifyNumber:bps withUnitLabel:unitLabel andFormat:format];
 
