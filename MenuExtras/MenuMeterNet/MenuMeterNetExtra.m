@@ -136,7 +136,7 @@
 
 @implementation MenuMeterNetExtra
 
-- init {
+- (instancetype)init {
 
     self = [super initWithBundleID:kNetMenuBundleID];
 	if (!self) {

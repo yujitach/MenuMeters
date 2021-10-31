@@ -86,7 +86,8 @@
 {
     float cpuTemperatureDisplayWidth;
 }
-- init {
+
+- (instancetype)init {
 
 	self = [super initWithBundleID:kCPUMenuBundleID];
     NSBundle*bundle=[NSBundle mainBundle];
