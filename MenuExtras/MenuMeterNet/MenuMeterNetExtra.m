@@ -36,11 +36,11 @@
 
 // Image renderers
 
-- (void)renderGraphIntoImage:(NSImage *)image;
+- (void)renderGraphImageSize:(NSSize)imageSize;
 
-- (void)renderActivityIntoImage:(NSImage *)image;
+- (void)renderActivityImageSize:(NSSize)imageSize;
 
-- (void)renderThroughputIntoImage:(NSImage *)image;
+- (void)renderThroughputImageSize:(NSSize)imageSize;
 
 // Timer callbacks
 
@@ -71,10 +71,6 @@
 - (NSString *)throughputStringForBytesPerSecond:(double)bps;
 
 - (NSString *)throughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval;
-
-- (NSString *)menubarThroughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval;
-
-- (NSString *)throughputStringForBytesPerSecond:(double)bps withSpace:(Boolean)wantSpace;
 
 - (NSString *)trafficStringForNumber:(NSNumber *)throughputNumber withLabel:(NSString *)directionLabel;
 
@@ -187,11 +183,17 @@
 	// Disable menu autoenabling
 	[extraMenu setAutoenablesItems:NO];
 
-	// Menu is regenerated in the menu method always so no futher setup
-
-	// Set the menu extra view up
-
-	throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5 weight:NSFontWeightRegular];
+	// TODO: move the following into MenuMetersPref ??
+	CGFloat menuBarHeight = [[NSApp mainMenu] menuBarHeight];
+	if (menuBarHeight > 23) { // on MacBooks with notch. (TODO: or when "Menu bar size" is set to "large" system preferences?)
+		NSArray *screens = NSScreen.screens;
+		tallMenuBar = screens.count == 1; // If there is a screen attached, it has its own (small) menu and I can’t distinguish the two right now.
+	}
+	throughputFont = [NSFont monospacedDigitSystemFontOfSize:tallMenuBar ? 12 : 9.5 weight:NSFontWeightRegular];
+	NSFont *traitFont = [NSFontManager.sharedFontManager convertFont:throughputFont toHaveTrait:NSCondensedFontMask];
+	if (traitFont) {
+		throughputFont = traitFont;
+	}
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.
@@ -227,27 +229,29 @@
 
 	[self setupAppearance];
 
-	// Image to render into (and return to view)
-	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize(menuWidth, self.height - 1)];
-	if (!currentImage)
-		return nil;
-
 	// Don't render without data
 	if (![netHistoryData count])
 		return nil;
 
+	// Image to render into (and return to view)
+	NSSize imageSize = NSMakeSize(menuWidth, self.height);
 	int netDisplayModePrefs = [ourPrefs netDisplayMode];
-	// Draw displays
-	if (netDisplayModePrefs & kNetDisplayGraph) {
-		[self renderGraphIntoImage:currentImage];
-	}
-	if (netDisplayModePrefs & kNetDisplayArrows) {
-		[self renderActivityIntoImage:currentImage];
-	}
-	if (netDisplayModePrefs & kNetDisplayThroughput) {
-		[self renderThroughputIntoImage:currentImage];
-	}
 
+	NSImage *currentImage = [NSImage imageWithSize:imageSize
+										   flipped:NO
+									drawingHandler:^BOOL(NSRect dstRect) {
+		// Draw displays
+		if (netDisplayModePrefs & kNetDisplayGraph) {
+			[self renderGraphImageSize:imageSize];
+		}
+		if (netDisplayModePrefs & kNetDisplayArrows) {
+			[self renderActivityImageSize:imageSize];
+		}
+		if (netDisplayModePrefs & kNetDisplayThroughput) {
+			[self renderThroughputImageSize:imageSize];
+		}
+		return YES;
+	}];
 	// Send it back for the view to render
 	return currentImage;
 
@@ -715,12 +719,11 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)renderGraphIntoImage:(NSImage *)image {
+- (void)renderGraphImageSize:(NSSize)imageSize {
 
 	// Cache style and other values for duration of this method
 	int graphStyle = [ourPrefs netGraphStyle];
 	BOOL rxOnTop = ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) ? YES : NO;
-	NSSize imageSize = [image size];
 	float graphHeight = (float)floor((imageSize.height - 1) / 2);
 
 	// Graph paths
@@ -909,7 +912,6 @@
 	}
 
 	// Draw
-	[image lockFocus];
 	if (![preferredInterfaceConfig objectForKey:@"interfaceup"]) {
 		[inactiveColor set];
 		[topPath fill];
@@ -929,12 +931,9 @@
 			[topPath fill];
 		}
 	}
-	[[NSColor blackColor] set];
-	[image unlockFocus];
-
 } // renderGraphIntoImage
 
-- (void)renderActivityIntoImage:(NSImage *)image {
+- (void)renderActivityImageSize:(NSSize)imageSize {
 
 	// Get scale (scale is based on latest primary data, not historical)
 	float scaleFactor = 0;
@@ -1016,8 +1015,7 @@
 		rxValue = 0;
 	}
 
-	// Lock on image and draw
-	[image lockFocus];
+	// Draw
 	if ([[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue]) {
 		if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
 			[[rxColor colorWithAlphaComponent:rxValue] set];
@@ -1045,14 +1043,9 @@
 		[upArrow stroke];
 		[downArrow stroke];
 	}
-
-	// Reset color and unlock
-	[[NSColor blackColor] set];
-	[image unlockFocus];
-
 } // renderActivityIntoImage
 
-- (void)renderThroughputIntoImage:(NSImage *)image {
+- (void)renderThroughputImageSize:(NSSize)imageSize {
 
 	// Get the primary stats
 	double txValue = 0;
@@ -1078,31 +1071,22 @@
 	if (!sampleIntervalNum && ([sampleIntervalNum doubleValue] > 0)) {
 		sampleInterval = [sampleIntervalNum doubleValue];
 	}
+	NSString *txString = [self throughputStringForBytes:txValue inInterval:sampleInterval];
+	NSString *rxString = [self throughputStringForBytes:rxValue inInterval:sampleInterval];
 
-	NSString *txString = [self menubarThroughputStringForBytes:txValue inInterval:sampleInterval];
-	NSString *rxString = [self menubarThroughputStringForBytes:rxValue inInterval:sampleInterval];
+	NSDictionary *attributes = @{NSFontAttributeName: throughputFont,
+								 NSForegroundColorAttributeName: interfaceUp ? txColor : inactiveColor};
 	NSAttributedString *renderTxString = [[NSAttributedString alloc]
 		initWithString:txString
-			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 throughputFont,
-										 NSFontAttributeName,
-										 interfaceUp ? txColor : inactiveColor,
-										 NSForegroundColorAttributeName,
-										 nil]];
+			attributes:attributes];
+	attributes = @{NSFontAttributeName: throughputFont,
+				   NSForegroundColorAttributeName: interfaceUp ? rxColor : inactiveColor};
 	NSAttributedString *renderRxString = [[NSAttributedString alloc]
 		initWithString:rxString
-			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 throughputFont,
-										 NSFontAttributeName,
-										 interfaceUp ? rxColor : inactiveColor,
-										 NSForegroundColorAttributeName,
-										 nil]];
-
-	// Draw
-	[image lockFocus];
+			attributes:attributes];
 	// Draw label if needed
-	float labelOffset = 0;
 	if ([ourPrefs netThroughputLabel]) {
+		CGFloat labelOffset = 0;
 		if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
 			labelOffset += [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 		}
@@ -1117,16 +1101,18 @@
 		}
 	}
 	// No descenders, so render lower
+	NSPoint rxPos;
+	NSPoint txPos;
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-		[renderRxString drawAtPoint:NSMakePoint(ceil(menuWidth - [renderRxString size].width), floor([image size].height / 2) - 1)];
-		[renderTxString drawAtPoint:NSMakePoint(ceil(menuWidth - [renderTxString size].width), -1)];
+		rxPos = NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), floor(imageSize.height / 2) - 1);
+		txPos = NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), tallMenuBar ? -3 : -1);
 	}
 	else {
-		[renderTxString drawAtPoint:NSMakePoint(ceil(menuWidth - [renderTxString size].width), floor([image size].height / 2) - 1)];
-		[renderRxString drawAtPoint:NSMakePoint(ceil(menuWidth - [renderRxString size].width), -1)];
+		txPos = NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), floor(imageSize.height / 2) - 1);
+		rxPos = NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), tallMenuBar ? -3 : -1);
 	}
-	[image unlockFocus];
-
+	[renderTxString drawAtPoint:txPos];
+	[renderRxString drawAtPoint:rxPos];
 } // renderThroughputIntoImage
 
 ///////////////////////////////////////////////////////////////
@@ -1136,7 +1122,6 @@
 ///////////////////////////////////////////////////////////////
 
 - (void)timerFired:(NSTimer *)timer {
-
 	// Get new config
 	preferredInterfaceConfig = [netConfig interfaceConfigForInterfaceName:[ourPrefs netPreferInterface]];
 
@@ -1458,82 +1443,80 @@
 	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
 		arrowOffset = [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 	}
-	upArrow = [NSBezierPath bezierPath];
-	[upArrow moveToPoint:NSMakePoint(arrowOffset + (kNetArrowDisplayWidth / 2) + 0.5, viewHeight - 3.5)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + 0.5, viewHeight - 7.5)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + 2.5, viewHeight - 7.5)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + 2.5, viewHeight - 10.5)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5, viewHeight - 10.5)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5, viewHeight - 7.5)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 0.5, viewHeight - 7.5)];
-	[upArrow closePath];
-	[upArrow setLineWidth:0.6];
-	downArrow = [NSBezierPath bezierPath];
-	[downArrow moveToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth / 2 + 0.5, 2.5)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + 0.5, 6.5)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + 2.5, 6.5)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + 2.5, 9.5)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5, 9.5)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5, 6.5)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 0.5, 6.5)];
-	[downArrow closePath];
-	[downArrow setLineWidth:0.6];
+	NSBezierPath *arrow = [NSBezierPath bezierPath];
+	[arrow moveToPoint:NSMakePoint(kNetArrowDisplayWidth / 2 + 0.5, tallMenuBar ? 0.5 : 2.5)];
+	[arrow lineToPoint:NSMakePoint(0.5, tallMenuBar ? 5.5 : 6.5)];
+	[arrow lineToPoint:NSMakePoint(2.5, tallMenuBar ? 5.5 : 6.5)];
+	[arrow lineToPoint:NSMakePoint(2.5, tallMenuBar ? 9.5 : 9.5)];
+	[arrow lineToPoint:NSMakePoint(kNetArrowDisplayWidth - 2.5, tallMenuBar ? 9.5 : 9.5)];
+	[arrow lineToPoint:NSMakePoint(kNetArrowDisplayWidth - 2.5, tallMenuBar ? 5.5 : 6.5)];
+	[arrow lineToPoint:NSMakePoint(kNetArrowDisplayWidth - 0.5, tallMenuBar ? 5.5 : 6.5)];
+	[arrow closePath];
+	[arrow setLineWidth:0.8];
+	upArrow = [arrow copy];
+	NSAffineTransform *transform = [NSAffineTransform new];
+	[transform translateXBy:arrowOffset yBy:viewHeight];
+	[transform scaleXBy:1 yBy:-1];
+	[upArrow transformUsingAffineTransform:transform];
+	downArrow = [arrow copy];
+	transform = [NSAffineTransform new];
+	[transform translateXBy:arrowOffset yBy:0];
+	[downArrow transformUsingAffineTransform:transform];
 
 	// Prerender throughput labels
+	NSDictionary *attributes = @{NSFontAttributeName: throughputFont,
+								 NSForegroundColorAttributeName: txColor};
 	NSAttributedString *renderTxString = [[NSAttributedString alloc]
 		initWithString:[localizedStrings objectForKey:kTxLabel]
-			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 throughputFont, NSFontAttributeName,
-										 txColor, NSForegroundColorAttributeName,
-										 nil]];
+			attributes:attributes];
+	attributes = @{NSFontAttributeName: throughputFont,
+				   NSForegroundColorAttributeName: rxColor};
 	NSAttributedString *renderRxString = [[NSAttributedString alloc]
 		initWithString:[localizedStrings objectForKey:kRxLabel]
-			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 throughputFont, NSFontAttributeName,
-										 rxColor, NSForegroundColorAttributeName,
-										 nil]];
-	if ([renderTxString size].width > [renderRxString size].width) {
-		throughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
-		inactiveThroughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
+			attributes:attributes];
+
+	NSSize renderTxSize = renderTxString.size;
+	NSSize renderRxSize = renderRxString.size;
+
+	NSSize throughputLabelSize;
+	if (renderTxSize.width > renderRxSize.width) {
+		throughputLabelSize = renderTxSize;
 	}
 	else {
-		throughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderRxString size].width, viewHeight)];
-		inactiveThroughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderRxString size].width, viewHeight)];
+		throughputLabelSize = renderRxSize;
 	}
-	[throughputLabel lockFocus];
-	// No descenders, render lower
+	NSPoint renderRxPoint;
+	NSPoint renderTxPoint;
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-		[renderRxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-		[renderTxString drawAtPoint:NSMakePoint(0, -1)];
+		renderRxPoint = NSMakePoint(0, floor(viewHeight / 2) - 2);
+		renderTxPoint = NSMakePoint(0, -1);
 	}
 	else {
-		[renderTxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-		[renderRxString drawAtPoint:NSMakePoint(0, -1)];
+		renderTxPoint = NSMakePoint(0, floor(viewHeight / 2) - 2);
+		renderRxPoint = NSMakePoint(0, -1);
 	}
-	[throughputLabel unlockFocus];
+	throughputLabel = [NSImage imageWithSize:throughputLabelSize
+									 flipped:NO
+							  drawingHandler:^BOOL(NSRect dstRect) {
+								  [renderRxString drawAtPoint:renderRxPoint];
+								  [renderTxString drawAtPoint:renderTxPoint];
+								  return YES;
+							  }];
+	attributes = @{NSFontAttributeName: throughputFont,
+				   NSForegroundColorAttributeName: inactiveColor};
 	renderTxString = [[NSAttributedString alloc]
 		initWithString:[localizedStrings objectForKey:kTxLabel]
-			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 throughputFont, NSFontAttributeName,
-										 inactiveColor, NSForegroundColorAttributeName,
-										 nil]];
+			attributes:attributes];
 	renderRxString = [[NSAttributedString alloc]
 		initWithString:[localizedStrings objectForKey:kRxLabel]
-			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 throughputFont, NSFontAttributeName,
-										 inactiveColor, NSForegroundColorAttributeName,
-										 nil]];
-	[inactiveThroughputLabel lockFocus];
-	// No descenders, render lower
-	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-		[renderRxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-		[renderTxString drawAtPoint:NSMakePoint(0, -1)];
-	}
-	else {
-		[renderTxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-		[renderRxString drawAtPoint:NSMakePoint(0, -1)];
-	}
-	[inactiveThroughputLabel unlockFocus];
+			attributes:attributes];
+	inactiveThroughputLabel = [NSImage imageWithSize:throughputLabelSize
+											 flipped:NO
+									  drawingHandler:^BOOL(NSRect dstRect) {
+										  [renderRxString drawAtPoint:renderRxPoint];
+										  [renderTxString drawAtPoint:renderTxPoint];
+										  return YES;
+									  }];
 
 	// Fix our menu view size to match our config
 	menuWidth = 0;
@@ -1551,44 +1534,31 @@
 		if ([ourPrefs netThroughputLabel])
 			menuWidth += (float)ceil([throughputLabel size].width);
 		// Deal with localizable throughput suffix
-		float suffixMaxWidth = 0;
-		NSAttributedString *throughString = [[NSAttributedString alloc]
-			initWithString:[NSString stringWithFormat:@"999.9%@",
-													  [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kBitPerSecondLabel : kBytePerSecondLabel]]
-				attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											 throughputFont, NSFontAttributeName,
-											 nil]];
-		if ([throughString size].width > suffixMaxWidth) {
-			suffixMaxWidth = (float)[throughString size].width;
+		CGFloat suffixMaxWidth = 0;
+
+		NSDictionary *attributes = @{NSFontAttributeName: throughputFont};
+		NSSize numberSize = [@"999.9\u2009" sizeWithAttributes:attributes];
+
+		NSSize suffixSize;
+		suffixSize = [kBitPerSecondLabel sizeWithAttributes:attributes];
+		if (suffixSize.width > suffixMaxWidth) {
+			suffixMaxWidth = suffixSize.width;
 		}
-		throughString = [[NSAttributedString alloc]
-			initWithString:[NSString stringWithFormat:@"999.9%@",
-													  [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kKbPerSecondLabel : kKBPerSecondLabel]]
-				attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											 throughputFont, NSFontAttributeName,
-											 nil]];
-		if ([throughString size].width > suffixMaxWidth) {
-			suffixMaxWidth = (float)[throughString size].width;
+		suffixSize = [kKbPerSecondLabel sizeWithAttributes:attributes];
+		if (suffixSize.width > suffixMaxWidth) {
+			suffixMaxWidth = suffixSize.width;
 		}
-		throughString = [[NSAttributedString alloc]
-			initWithString:[NSString stringWithFormat:@"999.9%@",
-													  [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kMbPerSecondLabel : kMBPerSecondLabel]]
-				attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											 throughputFont, NSFontAttributeName,
-											 nil]];
-		if ([throughString size].width > suffixMaxWidth) {
-			suffixMaxWidth = (float)[throughString size].width;
+		suffixSize = [kMbPerSecondLabel sizeWithAttributes:attributes];
+		if (suffixSize.width > suffixMaxWidth) {
+			suffixMaxWidth = suffixSize.width;
 		}
-		throughString = [[NSAttributedString alloc]
-			initWithString:[NSString stringWithFormat:@"999.9%@",
-													  [localizedStrings objectForKey:[ourPrefs netThroughputBits] ? kGbPerSecondLabel : kGBPerSecondLabel]]
-				attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											 throughputFont, NSFontAttributeName,
-											 nil]];
-		if ([throughString size].width > suffixMaxWidth) {
-			suffixMaxWidth = (float)[throughString size].width;
+		suffixSize = [kGbPerSecondLabel sizeWithAttributes:attributes];
+		if (suffixSize.width > suffixMaxWidth) {
+			suffixMaxWidth = suffixSize.width;
 		}
-		menuWidth += ceilf(suffixMaxWidth);
+		suffixMaxWidth += numberSize.width;
+
+		menuWidth += ceil(suffixMaxWidth);
 	}
 	// If more than one display is present we need to add a gaps
 	if (displayCount) {
@@ -1605,12 +1575,6 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (NSString *)throughputStringForBytesPerSecond:(double)bps {
-
-	return [self throughputStringForBytesPerSecond:bps withSpace:YES];
-
-} // throughputStringForBytesPerSecond
-
 - (NSString *)throughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval {
 
 	if (interval <= 0)
@@ -1619,15 +1583,7 @@
 
 } // throughputStringForBytes:inInterval:
 
-- (NSString *)menubarThroughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval {
-
-	if (interval <= 0)
-		return nil;
-	return [self throughputStringForBytesPerSecond:bytes / interval withSpace:NO];
-
-} // menubarThroughputStringForBytes:inInterval:
-
-- (NSString *)throughputStringForBytesPerSecond:(double)bps withSpace:(Boolean)wantSpace {
+- (NSString *)throughputStringForBytesPerSecond:(double)bps {
 
 	NSArray *labels = @[kBytePerSecondLabel, kKBPerSecondLabel, kMBPerSecondLabel, kGBPerSecondLabel];
 	int kilo = kKiloBinary;
@@ -1650,12 +1606,7 @@
 		format = @"%.0f";
 	}
 
-	if (wantSpace) {
-		format = [NSString stringWithFormat:@"%@ %%@", format];
-	}
-	else {
-		format = [NSString stringWithFormat:@"%@%%@", format];
-	}
+	format = [NSString stringWithFormat:@"%@\u2009%%@", format];
 
 	return [self stringifyNumber:bps withUnitLabel:unitLabel andFormat:format];
 
