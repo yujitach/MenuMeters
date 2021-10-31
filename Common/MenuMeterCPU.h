@@ -142,8 +142,8 @@ enum {
 
 // Colors
 // Maraschino
-#define kCPUSystemColorDefault [NSColor colorWithDeviceRed:1.0f green:0.0f blue:0.0f alpha:1.0f]
+#define kCPUSystemColorDefault [NSColor colorWithDeviceRed:1.0 green:0.0 blue:0.0 alpha:1.0]
 // Midnight blue
-#define kCPUUserColorDefault [NSColor colorWithDeviceRed:0.0f green:0.0f blue:0.5f alpha:1.0f]
+#define kCPUUserColorDefault [NSColor colorWithDeviceRed:0.0 green:0.0 blue:0.5 alpha:1.0]
 // Orange
-#define kCPUTemperatureColorDefault [NSColor colorWithDeviceRed:1.0f green:0.647f blue:0.0f alpha:1.0f]
+#define kCPUTemperatureColorDefault [NSColor colorWithDeviceRed:1.0 green:0.647 blue:0.0 alpha:1.0]

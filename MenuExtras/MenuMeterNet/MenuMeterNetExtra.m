@@ -191,7 +191,7 @@
 
 	// Set the menu extra view up
 
-	throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];
+	throughputFont = [NSFont monospacedDigitSystemFontOfSize:9.5 weight:NSFontWeightRegular];
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.
@@ -228,8 +228,7 @@
 	[self setupAppearance];
 
 	// Image to render into (and return to view)
-	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-																	 self.height - 1)];
+	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize(menuWidth, self.height - 1)];
 	if (!currentImage)
 		return nil;
 
@@ -729,21 +728,21 @@
 	NSBezierPath *bottomPath = [NSBezierPath bezierPath];
 	if ((graphStyle == kNetGraphStyleOpposed) || (graphStyle == kNetGraphStyleInverseOpposed)) {
 		[bottomPath moveToPoint:NSMakePoint(0, 0)];
-		[bottomPath lineToPoint:NSMakePoint(0, 0.5f)];
+		[bottomPath lineToPoint:NSMakePoint(0, 0.5)];
 		[topPath moveToPoint:NSMakePoint(0, imageSize.height)];
-		[topPath lineToPoint:NSMakePoint(0, imageSize.height - 0.5f)];
+		[topPath lineToPoint:NSMakePoint(0, imageSize.height - 0.5)];
 	}
 	else if (graphStyle == kNetGraphStyleCentered) {
 		[topPath moveToPoint:NSMakePoint(0, graphHeight + 1)];
-		[topPath lineToPoint:NSMakePoint(0, graphHeight + 1.5f)];
+		[topPath lineToPoint:NSMakePoint(0, graphHeight + 1.5)];
 		[bottomPath moveToPoint:NSMakePoint(0, graphHeight)];
-		[bottomPath lineToPoint:NSMakePoint(0, graphHeight - 0.5f)];
+		[bottomPath lineToPoint:NSMakePoint(0, graphHeight - 0.5)];
 	}
 	else {
 		[topPath moveToPoint:NSMakePoint(0, graphHeight + 1)];
-		[topPath lineToPoint:NSMakePoint(0, graphHeight + 1.5f)];
+		[topPath lineToPoint:NSMakePoint(0, graphHeight + 1.5)];
 		[bottomPath moveToPoint:NSMakePoint(0, 0)];
-		[bottomPath lineToPoint:NSMakePoint(0, 0.5f)];
+		[bottomPath lineToPoint:NSMakePoint(0, 0.5)];
 	}
 
 	// Get scale (scale is based on latest primary data, not historical)
@@ -785,7 +784,7 @@
 
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
-	float renderHeight = graphHeight - 0.5f; // Save room for baseline
+	float renderHeight = graphHeight - 0.5; // Save room for baseline
 	for (renderPosition = 0; renderPosition < [ourPrefs netGraphLength]; renderPosition++) {
 		// No data at this position?
 		if ((renderPosition >= [netHistoryData count]) ||
@@ -849,63 +848,63 @@
 		// Update paths
 		if (graphStyle == kNetGraphStyleInverseOpposed) {
 			if (rxOnTop) {
-				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (rxValue * renderHeight) - 0.5f)];
-				[bottomPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (rxValue * renderHeight) - 0.5)];
+				[bottomPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + 0.5)];
 			}
 			else {
-				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (txValue * renderHeight) - 0.5f)];
-				[bottomPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (txValue * renderHeight) - 0.5)];
+				[bottomPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + 0.5)];
 			}
 		}
 		else if (graphStyle == kNetGraphStyleOpposed) {
 			if (rxOnTop) {
-				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (txValue * renderHeight) - 0.5f)];
-				[bottomPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (txValue * renderHeight) - 0.5)];
+				[bottomPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + 0.5)];
 			}
 			else {
-				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (rxValue * renderHeight) - 0.5f)];
-				[bottomPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (rxValue * renderHeight) - 0.5)];
+				[bottomPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + 0.5)];
 			}
 		}
 		else if (graphStyle == kNetGraphStyleCentered) {
 			if (rxOnTop) {
-				[topPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + graphHeight + 1.5f)];
-				[bottomPath lineToPoint:NSMakePoint(renderPosition, graphHeight - (txValue * renderHeight) - 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + graphHeight + 1.5)];
+				[bottomPath lineToPoint:NSMakePoint(renderPosition, graphHeight - (txValue * renderHeight) - 0.5)];
 			}
 			else {
-				[topPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + graphHeight + 1.5f)];
-				[bottomPath lineToPoint:NSMakePoint(renderPosition, graphHeight - (rxValue * renderHeight) - 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + graphHeight + 1.5)];
+				[bottomPath lineToPoint:NSMakePoint(renderPosition, graphHeight - (rxValue * renderHeight) - 0.5)];
 			}
 		}
 		else {
 			if (rxOnTop) {
-				[topPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + graphHeight + 1.5f)];
-				[bottomPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + graphHeight + 1.5)];
+				[bottomPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + 0.5)];
 			}
 			else {
-				[topPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + graphHeight + 1.5f)];
-				[bottomPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + graphHeight + 1.5)];
+				[bottomPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + 0.5)];
 			}
 		}
 	}
 
 	// Return to lower edge (fill will close the graph)
 	if ((graphStyle == kNetGraphStyleOpposed) || (graphStyle == kNetGraphStyleInverseOpposed)) {
-		[topPath lineToPoint:NSMakePoint(renderPosition - 1, imageSize.height - 0.5f)];
+		[topPath lineToPoint:NSMakePoint(renderPosition - 1, imageSize.height - 0.5)];
 		[topPath lineToPoint:NSMakePoint(renderPosition - 1, imageSize.height)];
-		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, 0.5f)];
+		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, 0.5)];
 		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
 	}
 	else if (graphStyle == kNetGraphStyleCentered) {
-		[topPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight + 1.5f)];
+		[topPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight + 1.5)];
 		[topPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight + 1)];
-		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight - 0.5f)];
+		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight - 0.5)];
 		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight)];
 	}
 	else {
-		[topPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight + 1.5f)];
+		[topPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight + 1.5)];
 		[topPath lineToPoint:NSMakePoint(renderPosition - 1, graphHeight + 1)];
-		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, 0.5f)];
+		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, 0.5)];
 		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
 	}
 
@@ -1119,12 +1118,12 @@
 	}
 	// No descenders, so render lower
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-		[renderRxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), (float)floor([image size].height / 2) - 1)];
-		[renderTxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), -1)];
+		[renderRxString drawAtPoint:NSMakePoint(ceil(menuWidth - [renderRxString size].width), floor([image size].height / 2) - 1)];
+		[renderTxString drawAtPoint:NSMakePoint(ceil(menuWidth - [renderTxString size].width), -1)];
 	}
 	else {
-		[renderTxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), (float)floor([image size].height / 2) - 1)];
-		[renderRxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), -1)];
+		[renderTxString drawAtPoint:NSMakePoint(ceil(menuWidth - [renderTxString size].width), floor([image size].height / 2) - 1)];
+		[renderRxString drawAtPoint:NSMakePoint(ceil(menuWidth - [renderRxString size].width), -1)];
 	}
 	[image unlockFocus];
 
@@ -1459,25 +1458,25 @@
 		arrowOffset = [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 	}
 	upArrow = [NSBezierPath bezierPath];
-	[upArrow moveToPoint:NSMakePoint(arrowOffset + (kNetArrowDisplayWidth / 2) + 0.5f, viewHeight - 3.5f)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + 0.5f, viewHeight - 7.5f)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + 2.5f, viewHeight - 7.5f)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + 2.5f, viewHeight - 10.5f)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5f, viewHeight - 10.5f)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5f, viewHeight - 7.5f)];
-	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 0.5f, viewHeight - 7.5f)];
+	[upArrow moveToPoint:NSMakePoint(arrowOffset + (kNetArrowDisplayWidth / 2) + 0.5, viewHeight - 3.5)];
+	[upArrow lineToPoint:NSMakePoint(arrowOffset + 0.5, viewHeight - 7.5)];
+	[upArrow lineToPoint:NSMakePoint(arrowOffset + 2.5, viewHeight - 7.5)];
+	[upArrow lineToPoint:NSMakePoint(arrowOffset + 2.5, viewHeight - 10.5)];
+	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5, viewHeight - 10.5)];
+	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5, viewHeight - 7.5)];
+	[upArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 0.5, viewHeight - 7.5)];
 	[upArrow closePath];
-	[upArrow setLineWidth:0.6f];
+	[upArrow setLineWidth:0.6];
 	downArrow = [NSBezierPath bezierPath];
-	[downArrow moveToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth / 2 + 0.5f, 2.5f)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + 0.5f, 6.5f)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + 2.5f, 6.5f)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + 2.5f, 9.5f)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5f, 9.5f)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5f, 6.5f)];
-	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 0.5f, 6.5f)];
+	[downArrow moveToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth / 2 + 0.5, 2.5)];
+	[downArrow lineToPoint:NSMakePoint(arrowOffset + 0.5, 6.5)];
+	[downArrow lineToPoint:NSMakePoint(arrowOffset + 2.5, 6.5)];
+	[downArrow lineToPoint:NSMakePoint(arrowOffset + 2.5, 9.5)];
+	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5, 9.5)];
+	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 2.5, 6.5)];
+	[downArrow lineToPoint:NSMakePoint(arrowOffset + kNetArrowDisplayWidth - 0.5, 6.5)];
 	[downArrow closePath];
-	[downArrow setLineWidth:0.6f];
+	[downArrow setLineWidth:0.6];
 
 	// Prerender throughput labels
 	NSAttributedString *renderTxString = [[NSAttributedString alloc]

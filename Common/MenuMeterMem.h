@@ -100,18 +100,18 @@ enum {
 
 // Colors
 // Clover
-#define kMemFreeColorDefault [NSColor colorWithDeviceRed:0.0f green:0.5f blue:0.0f alpha:1.0f]
+#define kMemFreeColorDefault [NSColor colorWithDeviceRed:0.0 green:0.5 blue:0.0 alpha:1.0]
 // Cayenne
-#define kMemUsedColorDefault [NSColor colorWithDeviceRed:0.5f green:0.0f blue:0.0f alpha:1.0f]
+#define kMemUsedColorDefault [NSColor colorWithDeviceRed:0.5 green:0.0 blue:0.0 alpha:1.0]
 // Lime
-#define kMemActiveColorDefault [NSColor colorWithDeviceRed:0.5f green:1.0f blue:0.0f alpha:1.0f]
+#define kMemActiveColorDefault [NSColor colorWithDeviceRed:0.5 green:1.0 blue:0.0 alpha:1.0]
 // Color between Aluminum and Magnesium
 // (used to be Alumnium, but that was a bit dark)
-#define kMemInactiveColorDefault [NSColor colorWithDeviceRed:0.7f green:0.7f blue:0.7f alpha:1.0f]
+#define kMemInactiveColorDefault [NSColor colorWithDeviceRed:0.7 green:0.7 blue:0.7 alpha:1.0]
 // Orchid
-#define kMemWireColorDefault [NSColor colorWithDeviceRed:0.4f green:0.4f blue:1.0f alpha:1.0f]
+#define kMemWireColorDefault [NSColor colorWithDeviceRed:0.4 green:0.4 blue:1.0 alpha:1.0]
 // Maroon
-#define kMemCompressedColorDefault [NSColor colorWithDeviceRed:0.5f green:0.0f blue:0.25f alpha:1.0f]
+#define kMemCompressedColorDefault [NSColor colorWithDeviceRed:0.5 green:0.0 blue:0.25 alpha:1.0]
 // Blue
 #define kMemPageInColorDefault [NSColor blueColor]
 // Red

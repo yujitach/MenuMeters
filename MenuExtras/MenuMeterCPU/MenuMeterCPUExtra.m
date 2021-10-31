@@ -227,8 +227,7 @@
 - (NSImage *)image {
 	[self setupAppearance];
 	// Image to render into (and return to view)
-	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-																	 self.height - 1)];
+	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth, self.height - 1)];
 	if (!currentImage)
 		return nil;
 
@@ -238,7 +237,7 @@
 
 	uint32_t cpuCount = [cpuInfo numberOfCPUs];
 	uint32_t stride = [ourPrefs cpuAvgLowerHalfProcs] ? [cpuInfo numberOfCPUs] / [cpuInfo numberOfCores] : 1;
-	float renderOffset = 0.0f;
+	float renderOffset = 0.0;
 	// Horizontal CPU thermometer is handled differently because it has to
 	// manage rows and columns in a very different way from normal horizontal
 	// layout
@@ -272,10 +271,10 @@
 		// Calculate a thermometer height
 		float thermometerHeight = ((imageHeight - 2) / rowCount);
 		for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum += stride) {
-			float xOffset = renderOffset + ((cpuNum / rowCount) * columnWidth) + 1.0f;
+			float xOffset = renderOffset + ((cpuNum / rowCount) * columnWidth) + 1.0;
 			float yOffset = (imageHeight -
 							 (((cpuNum % rowCount) + 1) * thermometerHeight)) -
-							1.0f;
+							1.0;
 			[self renderHorizontalThermometerIntoImage:currentImage forProcessor:cpuNum atX:xOffset andY:yOffset withWidth:columnWidth andHeight:thermometerHeight];
 		}
 	}
@@ -416,7 +415,7 @@
 	[userPath moveToPoint:NSMakePoint(offset, 0)];
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
-	float renderHeight = (float)[image size].height - 0.5f; // Save space for baseline
+	float renderHeight = (float)[image size].height - 0.5; // Save space for baseline
 	int cpuGraphLength = [ourPrefs cpuGraphLength];
 	for (renderPosition = 0; renderPosition < cpuGraphLength; renderPosition++) {
 		// No data at this position?
@@ -429,9 +428,9 @@
 
 		// Update paths (adding baseline)
 		[userPath lineToPoint:NSMakePoint(offset + renderPosition,
-										  (((system + user) > 1 ? 1 : (system + user)) * renderHeight) + 0.5f)];
+										  (((system + user) > 1 ? 1 : (system + user)) * renderHeight) + 0.5)];
 		[systemPath lineToPoint:NSMakePoint(offset + renderPosition,
-											(system * renderHeight) + 0.5f)];
+											(system * renderHeight) + 0.5)];
 	}
 
 	// Return to lower edge (fill will close the graph)
@@ -482,8 +481,8 @@
 
 	[image lockFocus];
 	NSAttributedString *string = [self percentStringForLoad:totalLoad andColor:fgMenuThemeColor];
-	[string drawAtPoint:NSMakePoint(offset + percentWidth - ceilf((float)[string size].width) - 1,
-									(float)(([image size].height - [string size].height) / 2) + self.baselineOffset)];
+	[string drawAtPoint:NSMakePoint(offset + percentWidth - ceil([string size].width) - 1,
+									(([image size].height - [string size].height) / 2) + self.baselineOffset)];
 	[image unlockFocus];
 
 } // renderSinglePercentIntoImage:forProcessor:atOffset:
@@ -505,8 +504,8 @@
 	NSAttributedString *userString = [self percentStringForLoad:user andColor:userColor];
 	[image lockFocus];
 	[systemString drawAtPoint:NSMakePoint(offset + percentWidth - [systemString size].width - 1, -1)];
-	[userString drawAtPoint:NSMakePoint(offset + percentWidth - (float)[userString size].width - 1,
-										(float)floor([image size].height / 2) - 1)];
+	[userString drawAtPoint:NSMakePoint(offset + percentWidth - [userString size].width - 1,
+										floor([image size].height / 2) - 1)];
 	[image unlockFocus];
 
 } // renderSplitPercentIntoImage:forProcessor:atOffset:
@@ -547,8 +546,8 @@
 	[image lockFocus];
 	NSAttributedString *renderTemperatureString = [self renderTemperatureStringForString:temperatureString];
 	[renderTemperatureString drawAtPoint:NSMakePoint(
-											 cpuTemperatureDisplayWidth - (float)round([renderTemperatureString size].width) - 1,
-											 (float)(([image size].height - [renderTemperatureString size].height) / 2 + self.baselineOffset))];
+											 cpuTemperatureDisplayWidth - round([renderTemperatureString size].width) - 1,
+											 (([image size].height - [renderTemperatureString size].height) / 2 + self.baselineOffset))];
 	[image unlockFocus];
 } // renderSingleTemperatureIntoImage:atOffset:
 
@@ -561,12 +560,12 @@
 	}
 
 	// Paths
-	float thermometerTotalHeight = (float)[image size].height - 3.0f;
-	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kCPUThermometerDisplayWidth - 3,
+	float thermometerTotalHeight = (float)[image size].height - 3.0;
+	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5, 1.5, kCPUThermometerDisplayWidth - 3,
 																		 thermometerTotalHeight * ((user + system) > 1 ? 1 : (user + system)))];
-	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kCPUThermometerDisplayWidth - 3,
+	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5, 1.5, kCPUThermometerDisplayWidth - 3,
 																		   thermometerTotalHeight * system)];
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kCPUThermometerDisplayWidth - 3, thermometerTotalHeight)];
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5, 1.5, kCPUThermometerDisplayWidth - 3, thermometerTotalHeight)];
 
 	// Draw
 	[image lockFocus];
@@ -591,11 +590,11 @@
 	}
 
 	// Paths
-	NSBezierPath *rightCapPath = [NSBezierPath bezierPathWithRect:NSMakeRect((x + width) - 2.0f, y, 1.0f, height - 1.0f)];
+	NSBezierPath *rightCapPath = [NSBezierPath bezierPathWithRect:NSMakeRect((x + width) - 2.0, y, 1.0, height - 1.0)];
 
-	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0f, y, (width - 2.0f) * ((user + system) > 1 ? 1 : (user + system)), height - 1.0f)];
+	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0, y, (width - 2.0) * ((user + system) > 1 ? 1 : (user + system)), height - 1.0)];
 
-	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0f, y, (width - 2.0f) * system, height - 1.0f)];
+	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0, y, (width - 2.0) * system, height - 1.0)];
 
 	// Draw
 	[image lockFocus];
@@ -722,23 +721,23 @@
 ///////////////////////////////////////////////////////////////
 
 - (float)baselineOffset {
-	float offset = 1.0f;
+	float offset = 1.0;
 	if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
-		offset = +0.5f;
+		offset = 0.5;
 	}
 	if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
-		offset = +0.0f;
+		offset = 0.0;
 	}
 	return offset;
 }
 
 - (float)fontSize {
-	float fontSize = 14;
+	float fontSize = 14.0;
 	if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
-		fontSize = 11;
+		fontSize = 11.0;
 	}
 	if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
-		fontSize = 9.5f;
+		fontSize = 9.5;
 	}
 	return fontSize;
 }

@@ -98,9 +98,7 @@ uint32_t packageCount;
 	// Gather the clock rate string
 	uint32_t clockRate = [self clockFrequency];
 	if (clockRate > 1000000000) {
-		clockSpeed = [NSString stringWithFormat:@"%@GHz",
-												[twoDigitFloatFormatter stringForObjectValue:
-																			[NSNumber numberWithFloat:(float)clockRate / 1000000000]]];
+		clockSpeed = [NSString stringWithFormat:@"%@GHz", [twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithDouble:clockRate / 1000000000]]];
 	}
 	else {
 		clockSpeed = [NSString stringWithFormat:@"%dMHz", clockRate / 1000000];
@@ -239,9 +237,9 @@ uint32_t packageCount;
 	}
 	else {
 		return [NSString stringWithFormat:[localizedStrings objectForKey:kLoadAverageFormat],
-										  [twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[0]]],
-										  [twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[1]]],
-										  [twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithFloat:(float)loads[2]]]];
+										  [twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithDouble:loads[0]]],
+										  [twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithDouble:loads[1]]],
+										  [twoDigitFloatFormatter stringForObjectValue:[NSNumber numberWithDouble:loads[2]]]];
 	}
 
 } // loadAverage
@@ -314,7 +312,7 @@ uint32_t packageCount;
 		NSMutableArray *sorted = [NSMutableArray array];
 		processorCount = (natural_t)[loadInfo count];
 		for (natural_t i = 0; i < processorCount; i++) {
-			float maxSum = 0.0f;
+			float maxSum = 0.0;
 			natural_t maxIndex = 0;
 			for (natural_t j = 0; j < (processorCount - i); j++) {
 				MenuMeterCPULoad *load = [loadInfo objectAtIndex:j];
