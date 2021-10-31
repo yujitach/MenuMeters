@@ -283,6 +283,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSEnumerator *diskImageSetEnum = [kDiskImageSets objectEnumerator];
 	[diskImageSet removeAllItems];
 	NSString *imageSetName = nil;
+	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 	while ((imageSetName = [diskImageSetEnum nextObject])) {
 		[diskImageSet addItemWithTitle:[[NSBundle bundleForClass:[self class]]
 										   localizedStringForKey:imageSetName
@@ -303,27 +304,22 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[netIntervalDisplay setFormatter:intervalFormatter];
 
 	// Configure the scale menu to contain images and enough space
-	[[netScaleCalc itemAtIndex:kNetScaleCalcLinear] setImage:[[NSImage alloc] initWithContentsOfFile:[[self bundle]
-																										 pathForResource:@"LinearScale"
-																												  ofType:@"tiff"]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcLinear] setTitle:[NSString stringWithFormat:@"  %@",
-																						[[netScaleCalc itemAtIndex:kNetScaleCalcLinear] title]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot] setImage:[[NSImage alloc] initWithContentsOfFile:[[self bundle]
-																											 pathForResource:@"SquareRootScale"
-																													  ofType:@"tiff"]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot] setTitle:[NSString stringWithFormat:@"  %@",
-																							[[netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot] title]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot] setImage:[[NSImage alloc] initWithContentsOfFile:[[self bundle]
-																										   pathForResource:@"CubeRootScale"
-																													ofType:@"tiff"]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot] setTitle:[NSString stringWithFormat:@"  %@",
-																						  [[netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot] title]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setImage:[[NSImage alloc] initWithContentsOfFile:[[self bundle]
-																									  pathForResource:@"LogScale"
-																											   ofType:@"tiff"]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setTitle:[NSString stringWithFormat:@"  %@",
-																					 [[netScaleCalc itemAtIndex:kNetScaleCalcLog] title]]];
+	NSMenuItem *item;
+	item = [netScaleCalc itemAtIndex:kNetScaleCalcLinear];
+	item.image = [bundle imageForResource:@"LinearScale"];
+	item.title = [@"  %@" stringByAppendingString:item.title];
 
+	item = [netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot];
+	item.image = [bundle imageForResource:@"SquareRootScale"];
+	item.title = [@"  %@" stringByAppendingString:item.title];
+
+	item = [netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot];
+	item.image = [bundle imageForResource:@"CubeRootScale"];
+	item.title = [@"  %@" stringByAppendingString:item.title];
+
+	item = [netScaleCalc itemAtIndex:kNetScaleCalcLog];
+	item.image = [bundle imageForResource:@"LogScale"];
+	item.title = [@"  %@" stringByAppendingString:item.title];
 	{
 		NSString *oldAppPath = [@"~/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMetersApp.app" stringByExpandingTildeInPath];
 		EMCLoginItem *oldItem = [EMCLoginItem loginItemWithPath:oldAppPath];
@@ -340,7 +336,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	system("killall MenuMetersApp");
 	{
-		EMCLoginItem *thisItem = [EMCLoginItem loginItemWithBundle:[NSBundle mainBundle]];
+		EMCLoginItem *thisItem = [EMCLoginItem loginItemWithBundle:bundle];
 		if (!thisItem.isLoginItem) {
 			[thisItem addLoginItem];
 		}
