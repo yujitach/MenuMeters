@@ -212,7 +212,7 @@
 	[self configFromPrefs:nil];
 
 	// And hand ourself back to SystemUIServer
-	NSLog(@"MenuMeterCPU loaded.");
+	MMLog(@"MenuMeterCPU loaded.");
 	return self;
 
 } // initWithBundle

@@ -56,7 +56,7 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 
 @implementation MenuMeterDiskIO
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {

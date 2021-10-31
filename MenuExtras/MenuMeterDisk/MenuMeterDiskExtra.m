@@ -99,7 +99,7 @@
 	displayedActivity = kDiskActivityIdle;
 
 	// And hand ourself back to SystemUIServer
-	NSLog(@"MenuMeterDisk loaded.");
+	MMLog(@"MenuMeterDisk loaded.");
 	return self;
 
 } // initWithBundle

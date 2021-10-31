@@ -403,7 +403,7 @@
 - (void)renderPieImageSize:(NSSize)imageSize {
 
 	// Load current stats
-	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
+	float totalMB = 1.0, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
 	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
 	if (currentMemStats) {
 		totalMB = [[currentMemStats objectForKey:@"totalmb"] floatValue];

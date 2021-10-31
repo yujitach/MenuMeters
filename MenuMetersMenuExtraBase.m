@@ -19,7 +19,7 @@
 @implementation MenuMetersMenuExtraBase
 
 - (NSColor *)colorByAdjustingForLightDark:(NSColor *)c {
-	return [c blendedColorWithFraction:[[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"] / 100 ofColor:self.isDark ? [[NSColor whiteColor] colorWithAlphaComponent:[c alphaComponent]] : [[NSColor blackColor] colorWithAlphaComponent:[c alphaComponent]]];
+	return [c blendedColorWithFraction:[[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"] / 100 ofColor:[NSColor colorWithWhite:self.isDark alpha:[c alphaComponent]]];
 }
 
 - (instancetype)initWithBundleID:(NSString *)bundleID {
@@ -189,12 +189,12 @@
 
 - (void)addStandardMenuEntriesTo:(NSMenu *)extraMenu {
 	NSMenuItem *menuItem = [extraMenu addItemWithTitle:NSLocalizedString(kOpenActivityMonitorTitle, kOpenActivityMonitorTitle)
-															  action:@selector(openActivityMonitor:)
-													   keyEquivalent:@""];
+												action:@selector(openActivityMonitor:)
+										 keyEquivalent:@""];
 	[menuItem setTarget:self];
 	menuItem = [extraMenu addItemWithTitle:NSLocalizedString(kOpenMenuMetersPref, kOpenMenuMetersPref)
-												  action:@selector(openMenuMetersPref:)
-										   keyEquivalent:@""];
+									action:@selector(openMenuMetersPref:)
+							 keyEquivalent:@""];
 	[menuItem setTarget:self];
 }
 

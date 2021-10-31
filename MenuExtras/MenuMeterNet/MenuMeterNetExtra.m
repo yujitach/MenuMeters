@@ -1404,10 +1404,10 @@
 
 	if ([sender representedObject]) {
 		SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
-																				   kCFAllocatorDefault,
-																				   (CFStringRef)[sender representedObject],
-																				   NULL,
-																				   NULL);
+			kCFAllocatorDefault,
+			(CFStringRef)[sender representedObject],
+			NULL,
+			NULL);
 		if (connection) {
 			SCNetworkConnectionStop(connection, TRUE);
 			CFRelease(connection);
