@@ -303,19 +303,19 @@
 				}
 				else if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000000) {
 					speed = [NSString stringWithFormat:@" %.0f %@",
-													   ([[details objectForKey:@"linkspeed"] doubleValue] / 1000000000),
-													   [localizedStrings objectForKey:kGbpsLabel]];
+							 ([[details objectForKey:@"linkspeed"] doubleValue] / 1000000000),
+							 [localizedStrings objectForKey:kGbpsLabel]];
 				}
 				else if ([[details objectForKey:@"linkspeed"] doubleValue] > 1000000) {
 					speed = [NSString stringWithFormat:@" %.0f %@",
-													   ([[details objectForKey:@"linkspeed"] doubleValue] / 1000000),
-													   [localizedStrings objectForKey:kMbpsLabel]];
+							 ([[details objectForKey:@"linkspeed"] doubleValue] / 1000000),
+							 [localizedStrings objectForKey:kMbpsLabel]];
 				}
 				else {
 					speed = [NSString stringWithFormat:@" %@ %@",
-													   [bytesFormatter stringForObjectValue:
-																		   [NSNumber numberWithDouble:([[details objectForKey:@"linkspeed"] doubleValue] / 1000)]],
-													   [localizedStrings objectForKey:kKbpsLabel]];
+							 [bytesFormatter stringForObjectValue:
+							  [NSNumber numberWithDouble:([[details objectForKey:@"linkspeed"] doubleValue] / 1000)]],
+							 [localizedStrings objectForKey:kKbpsLabel]];
 				}
 			}
 			// Weird string cat because some of these values may not be present
@@ -325,23 +325,23 @@
 				// If there is a PPP name use it too
 				if ([details objectForKey:@"devicepppname"]) {
 					interfaceDescription = [NSString stringWithFormat:@"%@ (%@, %@)",
-																	  interfaceDescription,
-																	  [details objectForKey:@"devicename"],
-																	  [details objectForKey:@"devicepppname"]];
+											interfaceDescription,
+											[details objectForKey:@"devicename"],
+											[details objectForKey:@"devicepppname"]];
 				}
 				else {
 					interfaceDescription = [NSString stringWithFormat:@"%@ (%@)",
-																	  interfaceDescription,
-																	  [details objectForKey:@"devicename"]];
+											interfaceDescription,
+											[details objectForKey:@"devicename"]];
 				}
 			}
 			if (speed || [details objectForKey:@"connectiontype"]) {
 				interfaceDescription = [NSString stringWithFormat:@"%@ -%@%@",
-																  interfaceDescription,
-																  ([details objectForKey:@"connectiontype"] ? [NSString stringWithFormat:@" %@", [details objectForKey:@"connectiontype"]] : @""),
-																  (speed ? speed : @"")];
+										interfaceDescription,
+										([details objectForKey:@"connectiontype"] ? [NSString stringWithFormat:@" %@", [details objectForKey:@"connectiontype"]] : @""),
+										(speed ? speed : @"")];
 			}
-			NSMenuItem *titleItem = (NSMenuItem *)[extraMenu addItemWithTitle:interfaceDescription action:nil keyEquivalent:@""];
+			NSMenuItem *titleItem = [extraMenu addItemWithTitle:interfaceDescription action:nil keyEquivalent:@""];
 			// PPP Status
 			if ([details objectForKey:@"pppstatus"]) {
 				// PPP is present
@@ -350,7 +350,7 @@
 				// Use the connection type title for PPP when we can
 				if ([details objectForKey:@"connectiontype"]) {
 					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
-																			[NSString stringWithFormat:@"%@:", [details objectForKey:@"connectiontype"]]]
+												  [NSString stringWithFormat:@"%@:", [details objectForKey:@"connectiontype"]]]
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
 				}
@@ -361,10 +361,10 @@
 				}
 				switch ([(NSNumber *)[[details objectForKey:@"pppstatus"] objectForKey:@"status"] unsignedIntValue]) {
 					case PPP_IDLE:
-						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																											 [localizedStrings objectForKey:kPPPNoConnectTitle]]
-																		   action:nil
-																	keyEquivalent:@""];
+						pppStatusItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
+																	 [localizedStrings objectForKey:kPPPNoConnectTitle]]
+															 action:nil
+													  keyEquivalent:@""];
 						break;
 					case PPP_INITIALIZE:
 					case PPP_CONNECTLINK:
@@ -376,10 +376,10 @@
 					case PPP_HOLDOFF:
 					case PPP_ONHOLD:
 					case PPP_WAITONBUSY:
-						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																											 [localizedStrings objectForKey:kPPPConnectingTitle]]
-																		   action:nil
-																	keyEquivalent:@""];
+						pppStatusItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
+																	 [localizedStrings objectForKey:kPPPConnectingTitle]]
+															 action:nil
+													  keyEquivalent:@""];
 						break;
 					case PPP_RUNNING:
 						if ([[details objectForKey:@"pppstatus"] objectForKey:@"timeElapsed"]) {
@@ -388,25 +388,25 @@
 							secs %= (60 * 60);
 							uint32_t mins = secs / 60;
 							secs %= 60;
-							pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																												 [NSString stringWithFormat:
-																															   [localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
-																															   hours, mins, secs]]
-																			   action:nil
-																		keyEquivalent:@""];
+							pppStatusItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
+																		 [NSString stringWithFormat:
+																		  [localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
+																		  hours, mins, secs]]
+																 action:nil
+														  keyEquivalent:@""];
 						}
 						else {
-							pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat, kPPPConnectedTitle]
-																			   action:nil
-																		keyEquivalent:@""];
+							pppStatusItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat, kPPPConnectedTitle]
+																 action:nil
+														  keyEquivalent:@""];
 						}
 						break;
 					case PPP_TERMINATE:
 					case PPP_DISCONNECTLINK:
-						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
-																											 [localizedStrings objectForKey:kPPPDisconnectingTitle]]
-																		   action:nil
-																	keyEquivalent:@""];
+						pppStatusItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
+																	 [localizedStrings objectForKey:kPPPDisconnectingTitle]]
+															 action:nil
+													  keyEquivalent:@""];
 						break;
 				};
 				if (pppStatusItem) {
@@ -450,21 +450,21 @@
 			}
 			else {
 				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																		[localizedStrings objectForKey:kTCPIPInactiveTitle]]
+											  [localizedStrings objectForKey:kTCPIPInactiveTitle]]
 									  action:nil
 							   keyEquivalent:@""] setEnabled:NO];
 			}
 			// AppleTalk
 			if ([details objectForKey:@"appletalknetid"]) {
 				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
-																		[localizedStrings objectForKey:kAppleTalkTitle]]
+											  [localizedStrings objectForKey:kAppleTalkTitle]]
 									  action:nil
 							   keyEquivalent:@""] setEnabled:NO];
 				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																		[NSString stringWithFormat:[localizedStrings objectForKey:kAppleTalkFormat],
-																								   [details objectForKey:@"appletalknetid"],
-																								   [details objectForKey:@"appletalknodeid"],
-																								   [details objectForKey:@"appletalkzone"]]]
+											  [NSString stringWithFormat:[localizedStrings objectForKey:kAppleTalkFormat],
+											   [details objectForKey:@"appletalknetid"],
+											   [details objectForKey:@"appletalknodeid"],
+											   [details objectForKey:@"appletalkzone"]]]
 									  action:nil
 							   keyEquivalent:@""] setEnabled:NO];
 			}
@@ -491,22 +491,22 @@
 					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [localizedStrings objectForKey:kThroughputTitle]]
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
-					NSMenuItem *throughputItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																													  [NSString stringWithFormat:@"%@ %@",
-																																				 [localizedStrings objectForKey:kTxLabel],
-																																				 [self throughputStringForBytes:[throughputOutNumber doubleValue]
-																																									 inInterval:[sampleIntervalNum doubleValue]]]]
-																					action:nil
-																			 keyEquivalent:@""];
+					NSMenuItem *throughputItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
+																			  [NSString stringWithFormat:@"%@ %@",
+																			   [localizedStrings objectForKey:kTxLabel],
+																			   [self throughputStringForBytes:[throughputOutNumber doubleValue]
+																								   inInterval:[sampleIntervalNum doubleValue]]]]
+																	  action:nil
+															   keyEquivalent:@""];
 					[throughputItem setEnabled:NO];
 					[interfaceUpdateMenuItems setObject:throughputItem forKey:@"deltaoutitem"];
-					throughputItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																										  [NSString stringWithFormat:@"%@ %@",
-																																	 [localizedStrings objectForKey:kRxLabel],
-																																	 [self throughputStringForBytes:[throughputInNumber doubleValue]
-																																						 inInterval:[sampleIntervalNum doubleValue]]]]
-																		action:nil
-																 keyEquivalent:@""];
+					throughputItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
+																  [NSString stringWithFormat:@"%@ %@",
+																   [localizedStrings objectForKey:kRxLabel],
+																   [self throughputStringForBytes:[throughputInNumber doubleValue]
+																					   inInterval:[sampleIntervalNum doubleValue]]]]
+														  action:nil
+												   keyEquivalent:@""];
 					[throughputItem setEnabled:NO];
 					[interfaceUpdateMenuItems setObject:throughputItem forKey:@"deltainitem"];
 				}
@@ -516,10 +516,10 @@
 					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [localizedStrings objectForKey:kPeakThroughputTitle]]
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
-					NSMenuItem *peakItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																												[self throughputStringForBytesPerSecond:[peakNumber doubleValue]]]
-																			  action:nil
-																	   keyEquivalent:@""];
+					NSMenuItem *peakItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
+																		[self throughputStringForBytesPerSecond:[peakNumber doubleValue]]]
+																action:nil
+														 keyEquivalent:@""];
 					[peakItem setEnabled:NO];
 					[interfaceUpdateMenuItems setObject:peakItem forKey:@"peakitem"];
 				}
@@ -530,18 +530,18 @@
 					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [localizedStrings objectForKey:kTrafficTotalTitle]]
 										  action:nil
 								   keyEquivalent:@""] setEnabled:NO];
-					NSMenuItem *totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																												 [self trafficStringForNumber:throughputOutNumber
-																																	withLabel:[localizedStrings objectForKey:kTxLabel]]]
-																			   action:nil
-																		keyEquivalent:@""];
+					NSMenuItem *totalItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
+																		 [self trafficStringForNumber:throughputOutNumber
+																							withLabel:[localizedStrings objectForKey:kTxLabel]]]
+																 action:nil
+														  keyEquivalent:@""];
 					[totalItem setEnabled:NO];
 					[interfaceUpdateMenuItems setObject:totalItem forKey:@"totaloutitem"];
-					totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																									 [self trafficStringForNumber:throughputInNumber
-																														withLabel:[localizedStrings objectForKey:kRxLabel]]]
-																   action:nil
-															keyEquivalent:@""];
+					totalItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
+															 [self trafficStringForNumber:throughputInNumber
+																				withLabel:[localizedStrings objectForKey:kRxLabel]]]
+													 action:nil
+											  keyEquivalent:@""];
 					[totalItem setEnabled:NO];
 					[interfaceUpdateMenuItems setObject:totalItem forKey:@"totalinitem"];
 				}
@@ -565,9 +565,9 @@
 				NSMenuItem *pppControlItem = nil;
 				switch ([(NSNumber *)[[details objectForKey:@"pppstatus"] objectForKey:@"status"] unsignedIntValue]) {
 					case PPP_IDLE:
-						pppControlItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kPPPConnectTitle]
-																				   action:@selector(pppConnect:)
-																			keyEquivalent:@""];
+						pppControlItem = [interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kPPPConnectTitle]
+																	 action:@selector(pppConnect:)
+															  keyEquivalent:@""];
 						break;
 					case PPP_INITIALIZE:
 					case PPP_CONNECTLINK:
@@ -580,15 +580,15 @@
 					case PPP_ONHOLD:
 					case PPP_WAITONBUSY:
 					case PPP_RUNNING:
-						pppControlItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kPPPDisconnectTitle]
-																				   action:@selector(pppDisconnect:)
-																			keyEquivalent:@""];
+						pppControlItem = [interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kPPPDisconnectTitle]
+																	 action:@selector(pppDisconnect:)
+															  keyEquivalent:@""];
 						break;
 					case PPP_TERMINATE:
 					case PPP_DISCONNECTLINK:
-						pppControlItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kPPPConnectTitle]
-																				   action:@selector(pppConnect:)
-																			keyEquivalent:@""];
+						pppControlItem = [interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kPPPConnectTitle]
+																	 action:@selector(pppConnect:)
+															  keyEquivalent:@""];
 						break;
 				};
 				[pppControlItem setTarget:self];
@@ -599,9 +599,9 @@
 			// Add interface selection submenus
 			BOOL hadInterfaceSelector = NO;
 			if ([[details objectForKey:@"primary"] boolValue]) {
-				NSMenuItem *primarySwitchItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kSelectPrimaryInterfaceTitle]
-																						  action:@selector(switchDisplay:)
-																				   keyEquivalent:@""];
+				NSMenuItem *primarySwitchItem = [interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kSelectPrimaryInterfaceTitle]
+																			action:@selector(switchDisplay:)
+																	 keyEquivalent:@""];
 				[primarySwitchItem setRepresentedObject:kNetPrimaryInterface];
 				[primarySwitchItem setTarget:self];
 				if ([[ourPrefs netPreferInterface] isEqualToString:kNetPrimaryInterface]) {
@@ -615,9 +615,9 @@
 
 			// Other choose interface
 			if ([details objectForKey:@"devicename"]) {
-				NSMenuItem *interfaceSwitchItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kSelectInterfaceTitle]
-																							action:@selector(switchDisplay:)
-																					 keyEquivalent:@""];
+				NSMenuItem *interfaceSwitchItem = [interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kSelectInterfaceTitle]
+																			  action:@selector(switchDisplay:)
+																	   keyEquivalent:@""];
 				[interfaceSwitchItem setRepresentedObject:[details objectForKey:@"devicename"]];
 				[interfaceSwitchItem setTarget:self];
 				// Disable if this is preferred
@@ -651,9 +651,9 @@
 			}
 
 			// Copy IP
-			NSMenuItem *copyIPItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kCopyIPv4Title]
-																			   action:@selector(copyAddress:)
-																		keyEquivalent:@""];
+			NSMenuItem *copyIPItem = [interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kCopyIPv4Title]
+																 action:@selector(copyAddress:)
+														  keyEquivalent:@""];
 			[copyIPItem setTarget:self];
 			if ([[details objectForKey:@"ipv4addresses"] count]) {
 				[copyIPItem setRepresentedObject:[details objectForKey:@"ipv4addresses"]];
@@ -662,9 +662,9 @@
 				[copyIPItem setEnabled:NO];
 			}
 			if ([[details objectForKey:@"ipv6addresses"] count]) {
-				copyIPItem = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kCopyIPv6Title]
-																	   action:@selector(copyAddress:)
-																keyEquivalent:@""];
+				copyIPItem = [interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kCopyIPv6Title]
+														 action:@selector(copyAddress:)
+												  keyEquivalent:@""];
 				[copyIPItem setTarget:self];
 				if ([[details objectForKey:@"ipv6addresses"] count]) {
 					[copyIPItem setRepresentedObject:[details objectForKey:@"ipv6addresses"]];
@@ -674,9 +674,9 @@
 				}
 			}
 			if ([details objectForKey:@"devicename"]) {
-				NSMenuItem *resetTotals = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kResetTrafficTotalsTitle]
-																					action:@selector(resetTotals:)
-																			 keyEquivalent:@""];
+				NSMenuItem *resetTotals = [interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kResetTrafficTotalsTitle]
+																	  action:@selector(resetTotals:)
+															   keyEquivalent:@""];
 				[resetTotals setTarget:self];
 				[resetTotals setRepresentedObject:[details objectForKey:@"devicename"]];
 			}
@@ -1203,7 +1203,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																	   [localizedStrings objectForKey:kPPPNoConnectTitle]]);
+											 [localizedStrings objectForKey:kPPPNoConnectTitle]]);
 					break;
 				case PPP_INITIALIZE:
 				case PPP_CONNECTLINK:
@@ -1218,7 +1218,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																	   [localizedStrings objectForKey:kPPPConnectingTitle]]);
+											 [localizedStrings objectForKey:kPPPConnectingTitle]]);
 					break;
 				case PPP_RUNNING:
 					if ([[details objectForKey:@"pppstatus"] objectForKey:@"timeElapsed"]) {
@@ -1230,9 +1230,9 @@
 						LiveUpdateMenuItemTitle(extraMenu,
 												[extraMenu indexOfItem:pppMenuItem],
 												[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																		   [NSString stringWithFormat:
-																						 [localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
-																						 hours, mins, secs]]);
+												 [NSString stringWithFormat:
+												  [localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
+												  hours, mins, secs]]);
 					}
 					else {
 						LiveUpdateMenuItemTitle(extraMenu,
@@ -1246,7 +1246,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																	   [localizedStrings objectForKey:kPPPDisconnectingTitle]]);
+											 [localizedStrings objectForKey:kPPPDisconnectingTitle]]);
 			};
 		}
 		// Throughput updates
@@ -1261,10 +1261,10 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																	   [NSString stringWithFormat:@"%@ %@",
-																								  [localizedStrings objectForKey:kTxLabel],
-																								  [self throughputStringForBytes:[throughputNumber doubleValue]
-																													  inInterval:[sampleIntervalNum doubleValue]]]]);
+											 [NSString stringWithFormat:@"%@ %@",
+											  [localizedStrings objectForKey:kTxLabel],
+											  [self throughputStringForBytes:[throughputNumber doubleValue]
+																  inInterval:[sampleIntervalNum doubleValue]]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"deltainitem"];
 				throughputNumber = [throughputDetails objectForKey:@"deltain"];
@@ -1272,10 +1272,10 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																	   [NSString stringWithFormat:@"%@ %@",
-																								  [localizedStrings objectForKey:kRxLabel],
-																								  [self throughputStringForBytes:[throughputNumber doubleValue]
-																													  inInterval:[sampleIntervalNum doubleValue]]]]);
+											 [NSString stringWithFormat:@"%@ %@",
+											  [localizedStrings objectForKey:kRxLabel],
+											  [self throughputStringForBytes:[throughputNumber doubleValue]
+																  inInterval:[sampleIntervalNum doubleValue]]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"totaloutitem"];
 				throughputNumber = [throughputDetails objectForKey:@"totalout"];
@@ -1283,8 +1283,8 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																	   [self trafficStringForNumber:throughputNumber
-																						  withLabel:[localizedStrings objectForKey:kTxLabel]]]);
+											 [self trafficStringForNumber:throughputNumber
+																withLabel:[localizedStrings objectForKey:kTxLabel]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"totalinitem"];
 				throughputNumber = [throughputDetails objectForKey:@"totalin"];
@@ -1292,8 +1292,8 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																	   [self trafficStringForNumber:throughputNumber
-																						  withLabel:[localizedStrings objectForKey:kRxLabel]]]);
+											 [self trafficStringForNumber:throughputNumber
+																withLabel:[localizedStrings objectForKey:kRxLabel]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"peakitem"];
 				throughputNumber = [throughputDetails objectForKey:@"peak"];
@@ -1301,7 +1301,7 @@
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
 											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																	   [self throughputStringForBytesPerSecond:[throughputNumber doubleValue]]]);
+											 [self throughputStringForBytesPerSecond:[throughputNumber doubleValue]]]);
 				}
 			}
 		}
@@ -1389,10 +1389,11 @@
 	if ([sender representedObject]) {
 		// SC connection
 		SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
-			kCFAllocatorDefault,
-			(CFStringRef)[sender representedObject],
-			NULL,
-			NULL);
+																				   kCFAllocatorDefault,
+																				   (CFStringRef)[sender representedObject],
+																				   NULL,
+																				   NULL);
+
 		// Undoc preference values
 		CFArrayRef connectionOptionList = CFPreferencesCopyValue((CFStringRef)[sender representedObject],
 																 kAppleNetworkConnectDefaultsDomain,
@@ -1418,10 +1419,10 @@
 
 	if ([sender representedObject]) {
 		SCNetworkConnectionRef connection = SCNetworkConnectionCreateWithServiceID(
-			kCFAllocatorDefault,
-			(CFStringRef)[sender representedObject],
-			NULL,
-			NULL);
+																				   kCFAllocatorDefault,
+																				   (CFStringRef)[sender representedObject],
+																				   NULL,
+																				   NULL);
 		if (connection) {
 			SCNetworkConnectionStop(connection, TRUE);
 			CFRelease(connection);
@@ -1439,8 +1440,8 @@
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
 	[super configDisplay:kNetMenuBundleID
-				fromPrefs:ourPrefs
-		withTimerInterval:[ourPrefs netInterval]];
+			   fromPrefs:ourPrefs
+	   withTimerInterval:[ourPrefs netInterval]];
 #endif
 
 	// Update prefs
@@ -1591,7 +1592,7 @@
 	}
 	// If more than one display is present we need to add a gaps
 	if (displayCount) {
-		menuWidth += ((displayCount - 1) * kNetDisplayGapWidth);
+		menuWidth += (displayCount - 1) * kNetDisplayGapWidth;
 	}
 
 	// Force initial update

@@ -450,7 +450,6 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 		swapPath = kDefaultSwapPath;
 		swapPrefix = kDefaultSwapPrefix;
 	}
-
 } // initializeSwapPath
 
 - (int)memPressure {

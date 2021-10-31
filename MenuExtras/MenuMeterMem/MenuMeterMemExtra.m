@@ -530,7 +530,7 @@
 												  usedMB,
 												  [localizedStrings objectForKey:kMBLabel]]
 			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 [NSFont monospacedDigitSystemFontOfSize:9.5f
+										 [NSFont monospacedDigitSystemFontOfSize:9.5
 																		  weight:NSFontWeightRegular],
 										 NSFontAttributeName,
 										 usedColor, NSForegroundColorAttributeName,
@@ -541,7 +541,7 @@
 												  freeMB,
 												  [localizedStrings objectForKey:kMBLabel]]
 			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 [NSFont monospacedDigitSystemFontOfSize:9.5f
+										 [NSFont monospacedDigitSystemFontOfSize:9.5
 																		  weight:NSFontWeightRegular],
 										 NSFontAttributeName,
 										 freeColor, NSForegroundColorAttributeName,
@@ -878,7 +878,7 @@
 	NSAttributedString *renderString = [[NSAttributedString alloc]
 		initWithString:countString
 			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 [NSFont monospacedDigitSystemFontOfSize:9.5f
+										 [NSFont monospacedDigitSystemFontOfSize:9.5
 																		  weight:NSFontWeightRegular],
 										 NSFontAttributeName,
 										 fgMenuThemeColor, NSForegroundColorAttributeName,
@@ -887,7 +887,7 @@
 	// Also draw low to ignore descenders
 	NSSize renderSize = [renderString size];
 	[renderString drawAtPoint:NSMakePoint(menuWidth - kMemPagingDisplayWidth +
-											  roundf((kMemPagingDisplayWidth - (float)renderSize.width) / 2.0),
+											  round((kMemPagingDisplayWidth - renderSize.width) / 2.0),
 										  4.0)]; // Just hardcode the vertical offset
 
 	// Unlock focus
@@ -978,7 +978,7 @@
 										   value:nil
 										   table:nil]
 			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 [NSFont monospacedDigitSystemFontOfSize:9.5f
+										 [NSFont monospacedDigitSystemFontOfSize:9.5
 																		  weight:NSFontWeightRegular],
 										 NSFontAttributeName,
 										 usedColor, NSForegroundColorAttributeName,
@@ -989,7 +989,7 @@
 										   value:nil
 										   table:nil]
 			attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-										 [NSFont monospacedDigitSystemFontOfSize:9.5f
+										 [NSFont monospacedDigitSystemFontOfSize:9.5
 																		  weight:NSFontWeightRegular],
 										 NSFontAttributeName,
 										 freeColor, NSForegroundColorAttributeName,
@@ -1004,7 +1004,7 @@
 	}
 	[numberLabelPrerender lockFocus];
 	// No descenders so render both lines lower than normal
-	[renderUString drawAtPoint:NSMakePoint(0, (float)floor([numberLabelPrerender size].height / 2) - 1)];
+	[renderUString drawAtPoint:NSMakePoint(0, floor([numberLabelPrerender size].height / 2.0) - 1)];
 	[renderFString drawAtPoint:NSMakePoint(0, -1)];
 	[numberLabelPrerender unlockFocus];
 
@@ -1014,7 +1014,7 @@
 		NSAttributedString *renderMBString = [[NSAttributedString alloc]
 			initWithString:[localizedStrings objectForKey:kMBLabel]
 				attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-											 [NSFont monospacedDigitSystemFontOfSize:9.5f
+											 [NSFont monospacedDigitSystemFontOfSize:9.5
 																			  weight:NSFontWeightRegular],
 											 NSFontAttributeName,
 											 nil]];

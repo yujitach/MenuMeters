@@ -690,7 +690,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	/* The old way to get the speed via IOKit no longer reliably works, most probably due to the slow move to DriverKit.
 	 The link speed as reported by NetworkUtility.app can also be obtained by ifconfig, whose source code is available at
 	 https://opensource.apple.com/source/network_cmds/network_cmds-596/ifconfig.tproj/
-	e.g. for Catalina. Unfortunately the ioctl used there is not exposed in the standard development headers, although you can presumably use it by copying the content of the private headers.
+	 e.g. for Catalina. Unfortunately the ioctl used there is not exposed in the standard development headers, although you can presumably use it by copying the content of the private headers.
 	 Here instead I just directly call ifconfig.
 	 */
 	NSString *line = [self runCommand:[NSString stringWithFormat:@"ifconfig -v %@ | egrep 'link rate|uplink'", bsdInterface]];

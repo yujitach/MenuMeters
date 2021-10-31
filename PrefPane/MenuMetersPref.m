@@ -271,7 +271,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 }
 ///////////////////////////////////////////////////////////////
 //
-//    Pref pane standard methods
+//  Pref pane standard methods
 //
 ///////////////////////////////////////////////////////////////
 
@@ -884,7 +884,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[memPageinColor setEnabled:NO];
 		[memPageoutColor setEnabled:NO];
 	}
-	/*    if (([memDisplayMode indexOfSelectedItem] +1) == kMemDisplayBar) {
+	/* if (([memDisplayMode indexOfSelectedItem] +1) == kMemDisplayBar) {
 			[memPressureMode setEnabled:YES];
 		}
 		else {

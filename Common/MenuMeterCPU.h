@@ -29,8 +29,8 @@
 
 // Widths of the various displays
 #define kCPUPercentDisplayBorderWidth 2
-#define kCPUThermometerDisplayWidth 11.0f
-#define kCPUDisplayMultiProcGapWidth 5
+#define kCPUThermometerDisplayWidth 9
+#define kCPUDisplayMultiProcGapWidth 1
 #define kCPULabelOnlyWidth 25
 
 // Menu item indexes
@@ -103,9 +103,9 @@ enum {
 #define kCPUPowerMateModeDefault kCPUPowerMateGlow
 
 // Timer
-#define kCPUUpdateIntervalMin 0.5f
-#define kCPUUpdateIntervalMax 10.0f
-#define kCPUUpdateIntervalDefault 1.0f
+#define kCPUUpdateIntervalMin 0.5
+#define kCPUUpdateIntervalMax 10.0
+#define kCPUUpdateIntervalDefault 1.0
 
 // Graph display
 #define kCPUGraphWidthMin 11
