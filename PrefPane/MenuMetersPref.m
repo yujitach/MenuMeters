@@ -286,10 +286,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSString *imageSetName = nil;
 	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 	while ((imageSetName = [diskImageSetEnum nextObject])) {
-		[diskImageSet addItemWithTitle:[[NSBundle bundleForClass:[self class]]
-										   localizedStringForKey:imageSetName
-														   value:nil
-														   table:@"DiskImageSet"]];
+		[diskImageSet addItemWithTitle:[bundle localizedStringForKey:imageSetName value:nil table:@"DiskImageSet"]];
 	}
 
 	// Set up a NSFormatter for use printing timers
@@ -523,7 +520,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		r |= kCPUDisplayGraph;
 	if ([cpuThermometer state] == NSOnState)
 		r |= kCPUDisplayThermometer;
-	if ([cpuHorizontalThermometer state] == NSOnState)
+	else if ([cpuHorizontalThermometer state] == NSOnState)
 		r |= kCPUDisplayHorizontalThermometer;
 	return r;
 }
@@ -541,6 +538,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 	// Save changes
 	if (sender == cpuPercentage || sender == cpuGraph || sender == cpuThermometer || sender == cpuHorizontalThermometer) {
+
+		if (sender == cpuThermometer && cpuThermometer.state == NSOnState) {
+			cpuHorizontalThermometer.state = NSOffState;
+		}
+		else if (sender == cpuHorizontalThermometer && cpuHorizontalThermometer.state == NSOnState) {
+			cpuThermometer.state = NSOffState;
+		}
 		[ourPrefs saveCpuDisplayMode:[self cpuDisplayMode]];
 	}
 	else if (sender == cpuTemperatureToggle) {
@@ -564,7 +568,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveCpuPercentDisplay:(int)[cpuPercentMode indexOfSelectedItem]];
 	}
 	else if (sender == cpuMaxProcessCount) {
-		[ourPrefs saveCpuMaxProcessCount:(int)[cpuMaxProcessCount intValue]];
+		[ourPrefs saveCpuMaxProcessCount:[cpuMaxProcessCount intValue]];
 	}
 	else if (sender == cpuGraphWidth) {
 		[ourPrefs saveCpuGraphLength:[cpuGraphWidth intValue]];
@@ -639,19 +643,19 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 
 	// Update controls
-	[cpuPercentage setState:([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) ? NSOnState : NSOffState];
-	[cpuGraph setState:([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) ? NSOnState : NSOffState];
-	[cpuThermometer setState:([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) ? NSOnState : NSOffState];
-	[cpuHorizontalThermometer setState:([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) ? NSOnState : NSOffState];
+	int cpuDisplayMode = [ourPrefs cpuDisplayMode];
+	[cpuPercentage setState:(cpuDisplayMode & kCPUDisplayPercent) ? NSOnState : NSOffState];
+	[cpuGraph setState:(cpuDisplayMode & kCPUDisplayGraph) ? NSOnState : NSOffState];
+	[cpuThermometer setState:(cpuDisplayMode & kCPUDisplayThermometer) ? NSOnState : NSOffState];
+	[cpuHorizontalThermometer setState:(cpuDisplayMode & kCPUDisplayHorizontalThermometer) ? NSOnState : NSOffState];
+
 	if ([cpuHorizontalThermometer state] == NSOnState) {
 		[cpuPercentage setEnabled:NO];
 		[cpuGraph setEnabled:NO];
-		[cpuThermometer setEnabled:NO];
 	}
 	else {
 		[cpuPercentage setEnabled:YES];
 		[cpuGraph setEnabled:YES];
-		[cpuThermometer setEnabled:YES];
 	}
 	[cpuTemperatureToggle setState:[ourPrefs cpuShowTemperature]];
 	[cpuTemperatureUnit selectItemAtIndex:[ourPrefs cpuTemperatureUnit]];
@@ -660,7 +664,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];
 	[cpuMaxProcessCount setIntValue:[ourPrefs cpuMaxProcessCount]];
 	[cpuMaxProcessCountCountLabel setStringValue:[NSString stringWithFormat:NSLocalizedString(@"(%d)", @"DO NOT LOCALIZE!!!"),
-																			(short)[ourPrefs cpuMaxProcessCount]]];
+																			[ourPrefs cpuMaxProcessCount]]];
 	[cpuGraphWidth setIntValue:[ourPrefs cpuGraphLength]];
 	[cpuHorizontalRows setIntValue:[ourPrefs cpuHorizontalRows]];
 	[cpuMenuWidth setIntValue:[ourPrefs cpuMenuWidth]];
