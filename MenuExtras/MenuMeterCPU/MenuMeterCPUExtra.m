@@ -456,9 +456,16 @@
 
 - (NSAttributedString *)percentStringForLoad:(float)load andColor:(NSColor *)color {
 	float fontSize = self.fontSize;
+	if ([cpuInfo numberOfCPUs] > 8) {
+		fontSize -= 2;
+	}
+	NSFont *percentFont = [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular];
+	NSFont *traitFont = [NSFontManager.sharedFontManager convertFont:percentFont toHaveTrait:NSCondensedFontMask];
+	if (traitFont) {
+		percentFont = traitFont;
+	}
 	NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-													 [NSFont monospacedDigitSystemFontOfSize:fontSize
-																					  weight:NSFontWeightRegular],
+													 percentFont,
 													 NSFontAttributeName,
 													 color,
 													 NSForegroundColorAttributeName,
@@ -511,13 +518,17 @@
 } // renderSplitPercentIntoImage:forProcessor:atOffset:
 
 - (NSAttributedString *)renderTemperatureStringForString:(NSString *)temperatureString {
+	NSFont *temperatureFont = [NSFont monospacedDigitSystemFontOfSize:self.fontSize weight:NSFontWeightRegular];
+	NSFont *traitFont = [NSFontManager.sharedFontManager convertFont:temperatureFont toHaveTrait:NSCondensedFontMask];
+	if (traitFont) {
+		temperatureFont = traitFont;
+	}
 	NSDictionary *attributes = @{
-		NSFontAttributeName: [NSFont monospacedDigitSystemFontOfSize:self.fontSize weight:NSFontWeightRegular],
+		NSFontAttributeName: temperatureFont,
 		NSForegroundColorAttributeName: temperatureColor
 	};
-	return [[NSAttributedString alloc]
-		initWithString:temperatureString
-			attributes:attributes];
+	return [[NSAttributedString alloc] initWithString:temperatureString
+										   attributes:attributes];
 }
 
 - (void)renderSingleTemperatureImageSize:(NSSize)imageSize atOffset:(float)offset {
