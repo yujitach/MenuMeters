@@ -3,7 +3,7 @@
 //
 //  Constants and other definitions for the Memory Meter
 //
-// Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
 //  This file is part of MenuMeters.
 //

@@ -3,7 +3,7 @@
 //
 //  PowerMate support, based on sample code from Griffin
 //
-// Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
 //  This file is part of MenuMeters.
 //

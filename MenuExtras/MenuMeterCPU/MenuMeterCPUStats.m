@@ -3,7 +3,7 @@
 //
 //  Reader object for CPU information and load
 //
-// Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
 //  This file is part of MenuMeters.
 //

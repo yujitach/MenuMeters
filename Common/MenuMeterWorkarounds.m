@@ -5,7 +5,7 @@
 //  (or compilable) on newer OS versions. To prevent conflicts
 //  everything here is __private_extern__.
 //
-// Copyright (c) 2009-2014 Alex Harper
+//  Copyright (c) 2009-2014 Alex Harper
 //
 //  This file is part of MenuMeters.
 //
