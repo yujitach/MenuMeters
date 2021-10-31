@@ -452,6 +452,7 @@
 	[userPath fill];
 	[systemColor set];
 	[systemPath fill];
+
 } // renderHistoryGraphImageSize:forProcessor:atOffset:
 
 - (NSAttributedString *)percentStringForLoad:(float)load andColor:(NSColor *)color {
@@ -491,14 +492,15 @@
 	}
 
 	NSAttributedString *string = [self percentStringForLoad:totalLoad andColor:fgMenuThemeColor];
-	[string drawAtPoint:NSMakePoint(offset + percentWidth - ceil([string size].width) - 1,
-									((imageSize.height - [string size].height) / 2) + self.baselineOffset)];
+	NSPoint pos = NSMakePoint(offset + percentWidth - ceil([string size].width) - 1,
+							  ((imageSize.height - [string size].height) / 2) + self.baselineOffset);
+	[string drawAtPoint:pos];
 
 } // renderSinglePercentImageSize:forProcessor:atOffset:
 
 - (void)renderSplitPercentImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset {
 
-	double system, user;
+	double system = 0, user = 0;
 	[self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
 	if ((system < 0) || (user < 0)) {
 		return;
@@ -537,8 +539,10 @@
 	NSString *temperatureString = @"";
 	switch ([ourPrefs cpuTemperatureUnit]) {
 		case kCPUTemperatureUnitCelsius:
-			temperatureString = [NSString stringWithFormat:@"%.1f℃", celsius];
-			if (celsius < -100) {
+			if (celsius > -100) {
+				temperatureString = [NSString stringWithFormat:@"%d℃", (int)round(celsius)];
+			}
+			else {
 				temperatureString = @"??℃";
 			}
 			break;
@@ -566,7 +570,7 @@
 
 - (void)renderThermometerImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset {
 
-	double system, user;
+	double system = 0, user = 0;
 	[self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
 	if ((system < 0) || (user < 0)) {
 		return;
@@ -586,19 +590,20 @@
 	NSBezierPath *framePath = [NSBezierPath bezierPathWithRoundedRect:thermometerFrame xRadius:2 yRadius:2];
 	[NSGraphicsContext saveGraphicsState];
 	[framePath addClip];
-	[[fgMenuThemeColor colorWithAlphaComponent:0.2] set];
+	[[fgMenuThemeColor colorWithAlphaComponent:0.2] setFill];
 	[framePath fill];
 
-	[userColor set];
+	[userColor setFill];
 	[userPath fill];
 
-	[systemColor set];
+	[systemColor setFill];
 	[systemPath fill];
 	[NSGraphicsContext restoreGraphicsState];
+
 } // renderThermometerIntoImage:forProcessor:atOffset:
 
 - (void)renderHorizontalThermometerImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atX:(float)x andY:(float)y withWidth:(float)width andHeight:(float)height {
-	double system, user;
+	double system = 0, user = 0;
 	[self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
 	if ((system < 0) || (user < 0)) {
 		return;
@@ -848,8 +853,11 @@
 			  atPosition:(NSInteger)position
 			returnSystem:(double *)system
 			  returnUser:(double *)user {
-	NSArray *currentLoad = [loadHistory lastObject];
-	if (position != -1) {
+	NSArray *currentLoad;
+	if (position < 0) {
+		currentLoad = [loadHistory lastObject];
+	}
+	else {
 		currentLoad = [loadHistory objectAtIndex:position];
 	}
 	if (!currentLoad || ([currentLoad count] < processor)) {
