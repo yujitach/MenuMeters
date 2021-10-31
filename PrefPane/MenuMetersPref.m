@@ -697,7 +697,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 			[cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
 		} else {
 			[cpuPercentMode setEnabled:NO];
-			[cpuPercentModeLabel setTextColor:[NSColor lightGrayColor]];
+			[cpuPercentModeLabel setTextColor:[NSColor disabledControlTextColor]];
 		}
 	 */
 	if ([cpuGraph state] == NSOnState) {
@@ -706,7 +706,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[cpuGraphWidth setEnabled:NO];
-		[cpuGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
+		[cpuGraphWidthLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 	if ([cpuHorizontalThermometer state] == NSOnState) {
 		[cpuHorizontalRows setEnabled:YES];
@@ -716,9 +716,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[cpuHorizontalRows setEnabled:NO];
-		[cpuHorizontalRowsLabel setTextColor:[NSColor lightGrayColor]];
+		[cpuHorizontalRowsLabel setTextColor:[NSColor disabledControlTextColor]];
 		[cpuMenuWidth setEnabled:NO];
-		[cpuMenuWidthLabel setTextColor:[NSColor lightGrayColor]];
+		[cpuMenuWidthLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 	/*	if ((([cpuDisplayMode indexOfSelectedItem] + 1) & (kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)) ||
 			((([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) &&
@@ -730,8 +730,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	/*	} else {
 			[cpuUserColor setEnabled:NO];
 			[cpuSystemColor setEnabled:NO];
-			[cpuUserColorLabel setTextColor:[NSColor lightGrayColor]];
-			[cpuSystemColorLabel setTextColor:[NSColor lightGrayColor]];
+			[cpuUserColorLabel setTextColor:[NSColor disabledControlTextColor]];
+			[cpuSystemColorLabel setTextColor:[NSColor disabledControlTextColor]];
 		}*/
 
 	// Write prefs and notify
@@ -872,7 +872,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[memGraphWidth setEnabled:NO];
-		[memGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
+		[memGraphWidthLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 	if ([memPageIndicator state] == NSOnState) {
 		[memPageinColorLabel setTextColor:[NSColor controlTextColor]];
@@ -881,8 +881,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[memPageoutColor setEnabled:YES];
 	}
 	else {
-		[memPageinColorLabel setTextColor:[NSColor lightGrayColor]];
-		[memPageoutColorLabel setTextColor:[NSColor lightGrayColor]];
+		[memPageinColorLabel setTextColor:[NSColor disabledControlTextColor]];
+		[memPageoutColorLabel setTextColor:[NSColor disabledControlTextColor]];
 		[memPageinColor setEnabled:NO];
 		[memPageoutColor setEnabled:NO];
 	}
@@ -1029,9 +1029,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[netGraphStyle setEnabled:NO];
-		[netGraphStyleLabel setTextColor:[NSColor lightGrayColor]];
+		[netGraphStyleLabel setTextColor:[NSColor disabledControlTextColor]];
 		[netGraphWidth setEnabled:NO];
-		[netGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
+		[netGraphWidthLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 	if ((([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayArrows) ||
 		(([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayGraph)) {
@@ -1042,9 +1042,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[netScaleMode setEnabled:NO];
-		[netScaleModeLabel setTextColor:[NSColor lightGrayColor]];
+		[netScaleModeLabel setTextColor:[NSColor disabledControlTextColor]];
 		[netScaleCalc setEnabled:NO];
-		[netScaleCalcLabel setTextColor:[NSColor lightGrayColor]];
+		[netScaleCalcLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 
 	// Write prefs and notify
