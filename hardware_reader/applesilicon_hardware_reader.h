@@ -9,5 +9,6 @@
 #define applesilicon_hardware_reader_h
 
 extern NSDictionary *AppleSiliconTemperatureDictionary(void);
+extern float AppleSiliconTemperatureForName(NSString *name);
 
 #endif /* applesilicon_hardware_reader_h */

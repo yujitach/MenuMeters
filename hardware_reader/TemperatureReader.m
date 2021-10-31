@@ -56,15 +56,16 @@
 #elif TARGET_CPU_ARM64
 		@"SOC MTR Temp Sensor0";
 #endif
-	if (![self sensorNames])
+	NSArray *sensorNames = [self sensorNames];
+	if (!sensorNames)
 		return candidate;
-	if ([[self sensorNames] containsObject:candidate])
+	if ([sensorNames containsObject:candidate])
 		return candidate;
-	for (NSString *sensor in [self sensorNames]) {
+	for (NSString *sensor in sensorNames) {
 		if ([sensor hasPrefix:@"TC"])
 			return sensor;
 	}
-	return [self sensorNames][0];
+	return sensorNames[0];
 }
 
 + (NSString *)displayNameForSensor:(NSString *)name {
@@ -105,7 +106,7 @@
 	}
 	return celsius;
 #elif TARGET_CPU_ARM64
-	return [(NSNumber *)AppleSiliconTemperatureDictionary()[name] floatValue];
+	return AppleSiliconTemperatureForName(name);
 #endif
 }
 
