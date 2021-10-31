@@ -559,7 +559,7 @@
 
 	NSAttributedString *renderTemperatureString = [self renderTemperatureStringForString:temperatureString];
 	NSPoint pos = NSMakePoint(
-		cpuTemperatureDisplayWidth - round([renderTemperatureString size].width) - 1,
+		cpuTemperatureDisplayWidth - round([renderTemperatureString size].width) - 3,
 		((imageSize.height - [renderTemperatureString size].height) / 2 + self.baselineOffset));
 	[renderTemperatureString drawAtPoint:pos];
 } // renderSingleTemperatureIntoImage:atOffset:
@@ -730,7 +730,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (float)baselineOffset {
-	float offset = 1.0;
+	float offset = 0.0;
 	if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
 		offset = 0.5;
 	}
@@ -774,7 +774,7 @@
 		// Calc the new width
 		NSAttributedString *string = [self percentStringForLoad:[ourPrefs cpuSumAllProcsPercent] ? [cpuInfo numberOfCPUs] : 1.0
 													   andColor:fgMenuThemeColor];
-		percentWidth = (float)round([string size].width) + kCPUPercentDisplayBorderWidth;
+		percentWidth = (float)round([string size].width); // + kCPUPercentDisplayBorderWidth;
 	}
 
 	// Fix our menu size to match our new config
