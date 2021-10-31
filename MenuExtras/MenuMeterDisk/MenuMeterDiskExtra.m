@@ -51,7 +51,7 @@
 
 @implementation MenuMeterDiskExtra
 
-- init {
+- (instancetype)init {
 
 	self = [super initWithBundleID:kDiskMenuBundleID];
 	if (!self) {

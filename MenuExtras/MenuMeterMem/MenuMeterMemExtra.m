@@ -98,7 +98,7 @@
 
 @implementation MenuMeterMemExtra
 
-- init {
+- (instancetype)init {
 
 	self = [super initWithBundleID:kMemMenuBundleID];
 	NSBundle *bundle = [NSBundle mainBundle];
