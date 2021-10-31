@@ -164,6 +164,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSMutableAttributedString *x = [[NSMutableAttributedString alloc] initWithURL:[NSURL fileURLWithPath:pathToRTF] options:@{} documentAttributes:nil error:nil];
 	[x addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, x.length)];
 	[aboutView.textStorage appendAttributedString:x];
+	aboutView.textContainerInset = NSMakeSize(12, 8);
 }
 
 - (void)initCommon:(NSString *)about {
