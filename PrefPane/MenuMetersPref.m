@@ -658,6 +658,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	[cpuTemperatureToggle setState:[ourPrefs cpuShowTemperature]];
 	[cpuTemperatureUnit selectItemAtIndex:[ourPrefs cpuTemperatureUnit]];
+	if ([cpuTemperatureToggle state] == NSOnState) {
+		[cpuTemperatureSensor setEnabled:YES];
+	}
+	else {
+		[cpuTemperatureSensor setEnabled:NO];
+	}
+
 	[cpuInterval setDoubleValue:[ourPrefs cpuInterval]];
 	[cpuPercentMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];
@@ -690,14 +697,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuTemperatureColor setColor:[ourPrefs cpuTemperatureColor]];
 	[cpuIntervalDisplay takeDoubleValueFrom:cpuInterval];
 
-	/*	if ([cpuPercentage state]==NSOnState) {
-			[cpuPercentMode setEnabled:YES];
-			[cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
-		} else {
-			[cpuPercentMode setEnabled:NO];
-			[cpuPercentModeLabel setTextColor:[NSColor disabledControlTextColor]];
-		}
-	 */
+	if ([cpuPercentage state] == NSOnState) {
+		[cpuPercentMode setEnabled:YES];
+	}
+	else {
+		[cpuPercentMode setEnabled:NO];
+	}
+
 	if ([cpuGraph state] == NSOnState) {
 		[cpuGraphWidth setEnabled:YES];
 		[cpuGraphWidthLabel setTextColor:[NSColor controlTextColor]];

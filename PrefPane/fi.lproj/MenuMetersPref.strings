@@ -180,8 +180,8 @@
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1007"; */
 "1007.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "Update interval (seconds):"; ObjectID = "1010"; */
-"1010.title" = "Päivitysväli (sekunteina):";
+/* Class = "NSTextFieldCell"; title = "Update interval:"; ObjectID = "1010"; */
+"1010.title" = "Päivitysväli:";
 
 /* Class = "NSTextFieldCell"; title = "Selecting a volume from the disk menu"; ObjectID = "1011"; */
 "1011.title" = "Taltion valinta levyvalikosta";
@@ -192,8 +192,8 @@
 /* Class = "NSButtonCell"; title = "Display CPU Menu Meter"; ObjectID = "1014"; */
 "1014.title" = "Näytä prosessorin Menu Meter";
 
-/* Class = "NSTextFieldCell"; title = "Update interval (seconds):"; ObjectID = "1017"; */
-"1017.title" = "Päivitysväli (sekunteina):";
+/* Class = "NSTextFieldCell"; title = "Update interval:"; ObjectID = "1017"; */
+"1017.title" = "Päivitysväli:";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1018"; */
 "1018.title" = "x";
@@ -231,8 +231,8 @@
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1033"; */
 "1033.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "Update interval (seconds):"; ObjectID = "1035"; */
-"1035.title" = "Päivitysväli (sekunteina):";
+/* Class = "NSTextFieldCell"; title = "Update interval:"; ObjectID = "1035"; */
+"1035.title" = "Päivitysväli:";
 
 /* Class = "NSButtonCell"; title = "Show Used/Free labels"; ObjectID = "1037"; */
 "1037.title" = "Näytä Käytössä/vapaana-nimiöt";
@@ -279,8 +279,8 @@
 /* Class = "NSButtonCell"; title = "Display Network Menu Meter"; ObjectID = "1054"; */
 "1054.title" = "Näytä verkon Menu Meter";
 
-/* Class = "NSTextFieldCell"; title = "Update interval (seconds):"; ObjectID = "1056"; */
-"1056.title" = "Päivitysväli (sekunteina):";
+/* Class = "NSTextFieldCell"; title = "Update interval:"; ObjectID = "1056"; */
+"1056.title" = "Päivitysväli:";
 
 /* Class = "NSTextFieldCell"; title = "Transmit"; ObjectID = "1057"; */
 "1057.title" = "Lähetys";

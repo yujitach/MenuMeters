@@ -180,8 +180,8 @@
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1007"; */
 "1007.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "Aktualisierungsintervall (Sekunden):"; ObjectID = "1010"; */
-"1010.title" = "Aktualisierungsintervall (Sekunden):";
+/* Class = "NSTextFieldCell"; title = "Aktualisierungsintervall"; ObjectID = "1010"; */
+"1010.title" = "Aktualisierungsintervall";
 
 /* Class = "NSTextFieldCell"; title = "Auswählen eines Volume aus dem Menü"; ObjectID = "1011"; */
 "1011.title" = "Auswählen eines Volume aus dem Menü";
@@ -192,8 +192,8 @@
 /* Class = "NSButtonCell"; title = "CPU Menu Meter zeigen"; ObjectID = "1014"; */
 "1014.title" = "CPU Menu Meter zeigen";
 
-/* Class = "NSTextFieldCell"; title = "Aktualisierungsintervall (Sekunden):"; ObjectID = "1017"; */
-"1017.title" = "Aktualisierungsintervall (Sekunden):";
+/* Class = "NSTextFieldCell"; title = "Aktualisierungsintervall"; ObjectID = "1017"; */
+"1017.title" = "Aktualisierungsintervall";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1018"; */
 "1018.title" = "x";
@@ -204,14 +204,14 @@
 /* Class = "NSTextFieldCell"; title = "Systemauslastung"; ObjectID = "1020"; */
 "1020.title" = "Systemauslastung";
 
-/* Class = "NSTextFieldCell"; title = "Prozentsatz zeigen als:"; ObjectID = "1022"; */
-"1022.title" = "Prozentsatz zeigen als:";
+/* Class = "NSTextFieldCell"; title = "Prozentsatz zeigen als"; ObjectID = "1022"; */
+"1022.title" = "Prozentsatz zeigen als";
 
 /* Class = "NSButtonCell"; title = "Durchschnitt für alle Prozessoren zusammen anzeigen"; ObjectID = "1024"; */
 "1024.title" = "Durchschnitt für alle Prozessoren zusammen anzeigen";
 
-/* Class = "NSTextFieldCell"; title = "Breite der Grafik:"; ObjectID = "1025"; */
-"1025.title" = "Breite der Grafik:";
+/* Class = "NSTextFieldCell"; title = "Breite der Grafik"; ObjectID = "1025"; */
+"1025.title" = "Breite";
 
 /* Class = "NSTextFieldCell"; title = "Prozentsatzoptionen"; ObjectID = "1026"; */
 "1026.title" = "Prozentsatzoptionen";
@@ -226,7 +226,7 @@
 "1029.title" = "Farben";
 
 /* Class = "NSButtonCell"; title = "PowerMate zeigt CPU-Benutzung durch"; ObjectID = "1030"; */
-"1030.title" = "PowerMate zeigt CPU-Benutzung durch";
+"1030.title" = "PowerMate zeigt CPU-Benutzung";
 
 /* Class = "NSButtonCell"; title = "Speicher Menu Meter zeigen"; ObjectID = "1032"; */
 "1032.title" = "Speicher Menu Meter zeigen";
@@ -234,8 +234,8 @@
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1033"; */
 "1033.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "Aktualisierungsintervall (Sekunden):"; ObjectID = "1035"; */
-"1035.title" = "Aktualisierungsintervall (Sekunden):";
+/* Class = "NSTextFieldCell"; title = "Aktualisierungsintervall"; ObjectID = "1035"; */
+"1035.title" = "Aktualisierungsintervall";
 
 /* Class = "NSButtonCell"; title = "Benutzt/Frei beschriften"; ObjectID = "1037"; */
 "1037.title" = "Benutzt/Frei beschriften";
@@ -258,8 +258,8 @@
 /* Class = "NSTextFieldCell"; title = "Aktivität"; ObjectID = "1043"; */
 "1043.title" = "Aktivität";
 
-/* Class = "NSTextFieldCell"; title = "Breite der Grafik:"; ObjectID = "1044"; */
-"1044.title" = "Breite der Grafik:";
+/* Class = "NSTextFieldCell"; title = "Breite"; ObjectID = "1044"; */
+"1044.title" = "Breite";
 
 /* Class = "NSTextFieldCell"; title = "Grafikoptionen"; ObjectID = "1045"; */
 "1045.title" = "Grafikoptionen";
@@ -285,8 +285,8 @@
 /* Class = "NSButtonCell"; title = "Netzwerk Menu Meter zeigen"; ObjectID = "1054"; */
 "1054.title" = "Netzwerk Menu Meter zeigen";
 
-/* Class = "NSTextFieldCell"; title = "Aktualisierungsintervall (Sekunden):"; ObjectID = "1056"; */
-"1056.title" = "Aktualisierungsintervall (Sekunden):";
+/* Class = "NSTextFieldCell"; title = "Aktualisierungsintervall (Sekunden)"; ObjectID = "1056"; */
+"1056.title" = "Aktualisierungsintervall";
 
 /* Class = "NSTextFieldCell"; title = "Senden"; ObjectID = "1057"; */
 "1057.title" = "Senden";
@@ -300,11 +300,11 @@
 /* Class = "NSButtonCell"; title = "Werte unter 1KB/Sek. ignorieren"; ObjectID = "1061"; */
 "1061.title" = "Werte unter 1KB/Sek. ignorieren";
 
-/* Class = "NSTextFieldCell"; title = "Grafikart:"; ObjectID = "1062"; */
-"1062.title" = "Grafikart:";
+/* Class = "NSTextFieldCell"; title = "Grafikart"; ObjectID = "1062"; */
+"1062.title" = "Grafikart";
 
-/* Class = "NSTextFieldCell"; title = "Breite der Grafik:"; ObjectID = "1063"; */
-"1063.title" = "Breite der Grafik:";
+/* Class = "NSTextFieldCell"; title = "Breite"; ObjectID = "1063"; */
+"1063.title" = "Breite";
 
 /* Class = "NSTextFieldCell"; title = "Durchsatzanzeige"; ObjectID = "1065"; */
 "1065.title" = "Durchsatzanzeige";
@@ -315,20 +315,20 @@
 /* Class = "NSTextFieldCell"; title = "Farben"; ObjectID = "1067"; */
 "1067.title" = "Farben";
 
-/* Class = "NSTextFieldCell"; title = "Angezeigte Schnittstelle:"; ObjectID = "1068"; */
-"1068.title" = "Angezeigte Schnittstelle:";
+/* Class = "NSTextFieldCell"; title = "Angezeigte Schnittstelle"; ObjectID = "1068"; */
+"1068.title" = "Angezeigte Schnittstelle";
 
 /* Class = "NSTextFieldCell"; title = "Allgemein"; ObjectID = "1070"; */
 "1070.title" = "Allgemein";
 
-/* Class = "NSTextFieldCell"; title = "Maßstab der Anzeige:"; ObjectID = "1071"; */
-"1071.title" = "Maßstab der Anzeige:";
+/* Class = "NSTextFieldCell"; title = "Maßstab der Anzeige"; ObjectID = "1071"; */
+"1071.title" = "Maßstab der Anzeige";
 
-/* Class = "NSTextFieldCell"; title = "Skalierung der Anzeige:"; ObjectID = "1073"; */
-"1073.title" = "Skalierung der Anzeige:";
+/* Class = "NSTextFieldCell"; title = "Skalierung der Anzeige"; ObjectID = "1073"; */
+"1073.title" = "Skalierung der Anzeige";
 
-/* Class = "NSTextFieldCell"; title = "Anzeigeausrichtung:"; ObjectID = "1075"; */
-"1075.title" = "Anzeigeausrichtung:";
+/* Class = "NSTextFieldCell"; title = "Anzeigeausrichtung"; ObjectID = "1075"; */
+"1075.title" = "Anzeigeausrichtung";
 
 /* Class = "NSTextFieldCell"; title = "Inaktiv"; ObjectID = "1077"; */
 "1077.title" = "Inaktiv";
@@ -339,8 +339,8 @@
 /* Class = "NSButtonCell"; title = "Sort by CPU usage"; ObjectID = ""; */
 ".title" = "Sort by CPU usage";
 
-/* Class = "NSTextFieldCell"; title = "Horizontal Rows:"; ObjectID = ""; */
-".title" = "Horizontal Rows:";
+/* Class = "NSTextFieldCell"; title = "Horizontal Rows"; ObjectID = ""; */
+".title" = "Rows";
 
 /* Class = "NSTextFieldCell"; title = "Thermometer Display"; ObjectID = ""; */
 ".title" = "Thermometer Display";
@@ -351,8 +351,8 @@
 /* Class = "NSButtonCell"; title = "Show average for least utilized processors as single display"; ObjectID = ""; */
 ".title" = "Show average for least utilized processors as single display";
 
-/* Class = "NSTextFieldCell"; title = "Horizontal Width:"; ObjectID = ""; */
-".title" = "Horizontal Width:";
+/* Class = "NSTextFieldCell"; title = "Horizontal Width"; ObjectID = ""; */
+".title" = "Width";
 
 /* Class = "NSButtonCell"; title = "Zeige Speicherdruck"; ObjectID = "Ve2-cJ-Q8P"; */
 "Ve2-cJ-Q8P.title" = "Zeige Speicherdruck";
@@ -406,16 +406,16 @@
 "p2Z-13-y3b.title" = "Prozessoptionen";
 
 /* title = "Processes to show:"; ObjectID = "rhi-NX-C3L"; */
-"rhi-NX-C3L.title" = "Max. Prozesse:";
+"rhi-NX-C3L.title" = "Max. Prozesse";
 
 /* title = "Horizontal Thermometer Display"; ObjectID = "1094"; */
 "1094.title" = "Thermometeroptionen";
 
-/* title = "Horizontal Rows:"; ObjectID = "1088"; */
-"1088.title" = "Horizontale Reihen";
+/* title = "Rows"; ObjectID = "1088"; */
+"1088.title" = "Reihen";
 
-/* title = "Horizontal Width:"; ObjectID = "1117"; */
-"1117.title" = "Horizontale Breite";
+/* title = "Width"; ObjectID = "1117"; */
+"1117.title" = "Breite";
 
 /* title = "pure black/white"; ObjectID = "ayz-p2-XC5"; */
 "ayz-p2-XC5.title" = "Schwarz-Weiß";
@@ -423,11 +423,11 @@
 /* title = "original"; ObjectID = "FPO-Jo-ubG"; */
 "FPO-Jo-ubG.title" = "Original";
 
-/* title = "Color tint:"; ObjectID = "mAZ-f2-5AJ"; */
-"mAZ-f2-5AJ.title" = "Farbton:";
+/* title = "Color tint"; ObjectID = "mAZ-f2-5AJ"; */
+"mAZ-f2-5AJ.title" = "Farbton";
 
-/* title = "Activity monitor:"; ObjectID = "CDM-3t-gon"; */
-"CDM-3t-gon.title" = "Aktivitätsanzeige:";
+/* title = "Activity monitor"; ObjectID = "CDM-3t-gon"; */
+"CDM-3t-gon.title" = "Aktivitätsanzeige";
 
 /* title = "Opens specific  panes"; ObjectID = "phH-yJ-I6O"; */
 "phH-yJ-I6O.title" = "Öffnet entsprechende Kategorien";
