@@ -174,6 +174,8 @@
 									  lowBound:kNetDisplayOrientTxRx
 									 highBound:kNetDisplayOrientRxTx
 								  defaultValue:kNetDisplayOrientationDefault];
+
+	_tintPercentage = [[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"];
 }
 
 ///////////////////////////////////////////////////////////////

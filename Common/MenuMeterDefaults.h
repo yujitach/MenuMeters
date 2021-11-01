@@ -250,4 +250,6 @@
 
 @property (readonly) BOOL tallMenuBar;
 
+@property (assign) float tintPercentage;
+
 @end

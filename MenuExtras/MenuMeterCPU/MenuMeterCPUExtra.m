@@ -323,6 +323,10 @@
 		return YES;
 	}];
 
+	if (ourPrefs.tintPercentage > 98) {
+		currentImage.template = YES;
+	}
+
 	// Send it back for the view to render
 	return currentImage;
 
