@@ -294,83 +294,72 @@
 	if (!(currentMemStats && currentSwapStats)) return;
 
 	// Usage
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-				[NSString stringWithFormat:[localizedStrings objectForKey:kUsageFormat],
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kUsageFormat],
 					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"usedmb"]],
 					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freemb"]],
-					[memIntMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"totalmb"]]]];
+					[memIntMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"totalmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemUsageInfoMenuIndex, title);
 	// Wired
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-				[NSString stringWithFormat:[localizedStrings objectForKey:kActiveWiredFormat],
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kActiveWiredFormat],
 					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"activemb"]],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"wiremb"]]]];
+					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"wiremb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemActiveWiredInfoMenuIndex, title);
 	// Inactive/Free
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-				[NSString stringWithFormat:[localizedStrings objectForKey:kInactiveFreeFormat],
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kInactiveFreeFormat],
 					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"inactivemb"]],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freepagemb"]]]];
+					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freepagemb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemInactiveFreeInfoMenuIndex, title);
 	// Compressed
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-				[NSString stringWithFormat:[localizedStrings objectForKey:kCompressedFormat],
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kCompressedFormat],
 					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"compressedmb"]],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"uncompressedmb"]]]];
+					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"uncompressedmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemCompressedInfoMenuIndex, title);
 	// VM paging
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-				[NSString stringWithFormat:[localizedStrings objectForKey:kVMPagingFormat],
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kVMPagingFormat],
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"pageins"]],
-					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"pageouts"]]]];
+					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"pageouts"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMPageInfoMenuIndex, title);
 	// VM cache
 	const double divisor = [[currentMemStats objectForKey:@"lookups"] doubleValue];
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-				[NSString stringWithFormat:[localizedStrings objectForKey:kVMCacheFormat],
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kVMCacheFormat],
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"lookups"]],
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"hits"]],
 					[percentFormatter stringForObjectValue:
 						[NSNumber numberWithDouble:
                             divisor == 0.0 ? 0.0 :
                             (double)(([[currentMemStats objectForKey:@"hits"] doubleValue] /
-									  divisor) * 100.0)]]]];
+									  divisor) * 100.0)]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMCacheInfoMenuIndex, title);
 	// VM fault
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-				[NSString stringWithFormat:[localizedStrings objectForKey:kVMFaultCopyOnWriteFormat],
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kVMFaultCopyOnWriteFormat],
 					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"faults"]],
-					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"cowfaults"]]]];
+					[prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"cowfaults"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMFaultInfoMenuIndex, title);
     
-        title=[NSString stringWithFormat:kMenuIndentFormat,
-               [NSString stringWithFormat:[localizedStrings objectForKey:kMemPressureFormat],[currentMemStats objectForKey:@"mempress"],[currentMemStats objectForKey:@"mempresslevel"]]];
+        title=[NSString stringWithFormat:[localizedStrings objectForKey:kMemPressureFormat],[currentMemStats objectForKey:@"mempress"],[currentMemStats objectForKey:@"mempresslevel"]];
         LiveUpdateMenuItemTitle(extraMenu, kMemMemPressureInfoMenuIndex, title);
     
 	// Swap count/path, Tiger swap encryptioninfo from Michael Nordmeyer (http://goodyworks.com)
 	if ([[currentSwapStats objectForKey:@"swapencrypted"] boolValue]) {
-		title = [NSString stringWithFormat:kMenuIndentFormat,
-					[NSString stringWithFormat:
+		title = [NSString stringWithFormat:
 						(([[currentSwapStats objectForKey:@"swapcount"] unsignedIntValue] != 1) ?
 							[localizedStrings objectForKey:kMultiEncryptedSwapFormat] :
 							[localizedStrings objectForKey:kSingleEncryptedSwapFormat]),
 						[prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcount"]],
-						[currentSwapStats objectForKey:@"swappath"]]];
+						[currentSwapStats objectForKey:@"swappath"]];
 	}
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapCountInfoMenuIndex, title);
 	// Swap max
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-				[NSString stringWithFormat:
+	title = [NSString stringWithFormat:
 					(([[currentSwapStats objectForKey:@"swapcountpeak"] unsignedIntValue] != 1) ?
 						[localizedStrings objectForKey:kMaxMultiSwapFormat] :
 						[localizedStrings objectForKey:kMaxSingleSwapFormat]),
-					[prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcountpeak"]]]];
+					[prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcountpeak"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapMaxCountInfoMenuIndex, title);
 	// Swap size, Tiger swap used path from Michael Nordmeyer (http://goodyworks.com)
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-		[NSString stringWithFormat:[localizedStrings objectForKey:kSwapSizeUsedFormat],
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kSwapSizeUsedFormat],
 			[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapsizemb"]],
-			[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapusedmb"]]]];
+			[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapusedmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapSizeInfoMenuIndex, title);
 
 } // updateMenuContent

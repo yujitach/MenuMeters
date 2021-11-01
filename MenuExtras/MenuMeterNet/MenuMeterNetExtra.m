@@ -317,21 +317,20 @@
 				NSMenuItem *pppStatusItem = nil;
 				// Use the connection type title for PPP when we can
 				if ([details objectForKey:@"connectiontype"]) {
-					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
-												  [NSString stringWithFormat:@"%@:", [details objectForKey:@"connectiontype"]]]
-										  action:nil
-								   keyEquivalent:@""] setEnabled:NO];
+					NSMenuItem *item = [extraMenu addItemWithTitle:[NSString stringWithFormat:@"%@:", [details objectForKey:@"connectiontype"]]
+															action:nil
+													 keyEquivalent:@""];
+					[item setEnabled:NO];
+					[item setIndentationLevel:1];
 				} else {
-					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [localizedStrings objectForKey:kPPPTitle]]
-										  action:nil
-								   keyEquivalent:@""] setEnabled:NO];
+					NSMenuItem *item = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kPPPTitle] action:nil keyEquivalent:@""];
+					[item setEnabled:NO];
+					[item setIndentationLevel:1];
 				}
 				switch ([(NSNumber *)[[details objectForKey:@"pppstatus"] objectForKey:@"status"] unsignedIntValue]) {
 					case PPP_IDLE:
-						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																					[localizedStrings objectForKey:kPPPNoConnectTitle]]
-																		   action:nil
-																	keyEquivalent:@""];
+						pppStatusItem = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kPPPNoConnectTitle] action:nil keyEquivalent:@""];
+						[pppStatusItem setIndentationLevel:2];
 						break;
 					case PPP_INITIALIZE:
 					case PPP_CONNECTLINK:
@@ -343,10 +342,8 @@
 					case PPP_HOLDOFF:
 					case PPP_ONHOLD:
 					case PPP_WAITONBUSY:
-						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																					[localizedStrings objectForKey:kPPPConnectingTitle]]
-																		   action:nil
-																	keyEquivalent:@""];
+						pppStatusItem = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kPPPConnectingTitle] action:nil keyEquivalent:@""];
+						[pppStatusItem setIndentationLevel:2];
 						break;
 					case PPP_RUNNING:
 						if ([[details objectForKey:@"pppstatus"] objectForKey:@"timeElapsed"]) {
@@ -355,24 +352,25 @@
 							secs %= (60 * 60);
 							uint32_t mins = secs / 60;
 							secs %= 60;
-							pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																							[NSString stringWithFormat:
-																								[localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
-																								hours, mins, secs]]
-																			   action:nil
-																		keyEquivalent:@""];
+							pppStatusItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:
+																		 [localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
+																		 hours, mins, secs]
+																 action:nil
+														  keyEquivalent:@""];
+							[pppStatusItem setIndentationLevel:2];
 						} else {
-							pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat, kPPPConnectedTitle]
-																			   action:nil
-																		keyEquivalent:@""];
+							pppStatusItem = [extraMenu addItemWithTitle:kPPPConnectedTitle
+																 action:nil
+														  keyEquivalent:@""];
+							[pppStatusItem setIndentationLevel:2];
 						}
 						break;
 					case PPP_TERMINATE:
 					case PPP_DISCONNECTLINK:
-						pppStatusItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
-																					[localizedStrings objectForKey:kPPPDisconnectingTitle]]
-																		   action:nil
-																	keyEquivalent:@""];
+						pppStatusItem = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kPPPDisconnectingTitle]
+															 action:nil
+													  keyEquivalent:@""];
+						[pppStatusItem setIndentationLevel:1];
 						break;
 				};
 				if (pppStatusItem) {
@@ -381,56 +379,64 @@
 				}
 			}
 			// TCP/IP
-			[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [localizedStrings objectForKey:kTCPIPTitle]]
-								  action:nil
-						   keyEquivalent:@""] setEnabled:NO];
+			NSInteger itemIdx = extraMenu.numberOfItems;
+
 			if ([[details objectForKey:@"ipv4addresses"] count] && [[details objectForKey:@"ipv6addresses"] count]) {
-				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat, [localizedStrings objectForKey:kIPv4Title]]
-									  action:nil
-							   keyEquivalent:@""] setEnabled:NO];
+				NSMenuItem *item = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kIPv4Title] action:nil keyEquivalent:@""];
+				[item setEnabled:NO];
+				[item setIndentationLevel:2];
 				NSEnumerator *addressEnum = [[details objectForKey:@"ipv4addresses"] objectEnumerator];
 				NSString *address = nil;
 				while ((address = [addressEnum nextObject])) {
-					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuTripleIndentFormat, address]
-										  action:nil
-								   keyEquivalent:@""] setEnabled:NO];
+					item = [extraMenu addItemWithTitle:address action:nil keyEquivalent:@""];
+					[item setEnabled:NO];
+					[item setIndentationLevel:3];
 				}
-				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat, [localizedStrings objectForKey:kIPv6Title]]
-									  action:nil
-							   keyEquivalent:@""] setEnabled:NO];
+				item = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kIPv6Title] action:nil keyEquivalent:@""];
+				[item setEnabled:NO];
+				[item setIndentationLevel:2];
 				addressEnum = [[details objectForKey:@"ipv6addresses"] objectEnumerator];
 				while ((address = [addressEnum nextObject])) {
-					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuTripleIndentFormat, address]
-										  action:nil
-								   keyEquivalent:@""] setEnabled:NO];
+					item = [extraMenu addItemWithTitle:address action:nil keyEquivalent:@""];
+					[item setEnabled:NO];
+					[item setIndentationLevel:3];
 				}
 			} else if ([[details objectForKey:@"ipv4addresses"] count]) {
 				NSEnumerator *addressEnum = [[details objectForKey:@"ipv4addresses"] objectEnumerator];
 				NSString *address = nil;
 				while ((address = [addressEnum nextObject])) {
-					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat, address]
-										  action:nil
-								   keyEquivalent:@""] setEnabled:NO];
+					NSMenuItem *item = [extraMenu addItemWithTitle:address action:nil keyEquivalent:@""];
+					[item setEnabled:NO];
+					[item setIndentationLevel:2];
 				}
 			} else {
-				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-													[localizedStrings objectForKey:kTCPIPInactiveTitle]]
+				NSMenuItem *item = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kTCPIPInactiveTitle]
 									  action:nil
-							   keyEquivalent:@""] setEnabled:NO];
+							   keyEquivalent:@""];
+				[item setEnabled:NO];
+				[item setIndentationLevel:2];
+				itemIdx = -1;
+			}
+			if (itemIdx > 0) {
+				NSMenuItem *item = [extraMenu insertItemWithTitle:[localizedStrings objectForKey:kTCPIPTitle] action:nil keyEquivalent:@"" atIndex:itemIdx];
+				[item setEnabled:NO];
+				[item setIndentationLevel:1];
 			}
 			// AppleTalk
 			if ([details objectForKey:@"appletalknetid"]) {
-				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat,
-												[localizedStrings objectForKey:kAppleTalkTitle]]
-									  action:nil
-							   keyEquivalent:@""] setEnabled:NO];
-				[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-													[NSString stringWithFormat:[localizedStrings objectForKey:kAppleTalkFormat],
-														[details objectForKey:@"appletalknetid"],
-														[details objectForKey:@"appletalknodeid"],
-														[details objectForKey:@"appletalkzone"]]]
-									  action:nil
-							   keyEquivalent:@""] setEnabled:NO];
+				NSMenuItem *item = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kAppleTalkTitle]
+														action:nil
+												 keyEquivalent:@""];
+				[item setEnabled:NO];
+				[item setIndentationLevel:1];
+				item = [extraMenu addItemWithTitle:[NSString stringWithFormat:[localizedStrings objectForKey:kAppleTalkFormat],
+													[details objectForKey:@"appletalknetid"],
+													[details objectForKey:@"appletalknodeid"],
+													[details objectForKey:@"appletalkzone"]]
+											action:nil
+									 keyEquivalent:@""];
+				[item setEnabled:NO];
+				[item setIndentationLevel:1];
 			}
 			// Throughput
 			NSNumber *sampleIntervalNum = [netHistoryIntervals lastObject];
@@ -451,59 +457,67 @@
 				NSNumber *throughputOutNumber = [throughputDetails objectForKey:@"deltaout"];
 				NSNumber *throughputInNumber = [throughputDetails objectForKey:@"deltain"];
 				if (throughputOutNumber && throughputInNumber) {
-					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [localizedStrings objectForKey:kThroughputTitle]]
-										  action:nil
-								   keyEquivalent:@""] setEnabled:NO];
-					NSMenuItem *throughputItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																								[NSString stringWithFormat:@"%@ %@",
-																									[localizedStrings objectForKey:kTxLabel],
-																									[self throughputStringForBytes:[throughputOutNumber doubleValue]
-																														inInterval:[sampleIntervalNum doubleValue]]]]
-																				   action:nil
-																			keyEquivalent:@""];
+					NSMenuItem *item = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kThroughputTitle]
+															action:nil
+													 keyEquivalent:@""];
+					[item setEnabled:NO];
+					[item setIndentationLevel:1];
+					NSMenuItem *throughputItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:@"%@ %@",
+																			  [localizedStrings objectForKey:kTxLabel],
+																			  [self throughputStringForBytes:[throughputOutNumber doubleValue]
+																								  inInterval:[sampleIntervalNum doubleValue]]]
+																	  action:nil
+															   keyEquivalent:@""];
 					[throughputItem setEnabled:NO];
+					[throughputItem setIndentationLevel:2];
 					[interfaceUpdateMenuItems setObject:throughputItem forKey:@"deltaoutitem"];
-					throughputItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																					[NSString stringWithFormat:@"%@ %@",
-																						 [localizedStrings objectForKey:kRxLabel],
-																						 [self throughputStringForBytes:[throughputInNumber doubleValue]
-																											 inInterval:[sampleIntervalNum doubleValue]]]]
-																		action:nil
-																 keyEquivalent:@""];
+					throughputItem = [extraMenu addItemWithTitle:[NSString stringWithFormat:@"%@ %@",
+																  [localizedStrings objectForKey:kRxLabel],
+																  [self throughputStringForBytes:[throughputInNumber doubleValue]
+																					  inInterval:[sampleIntervalNum doubleValue]]]
+														  action:nil
+												   keyEquivalent:@""];
 					[throughputItem setEnabled:NO];
+					[throughputItem setIndentationLevel:2];
 					[interfaceUpdateMenuItems setObject:throughputItem forKey:@"deltainitem"];
 				}
 				// Add peak throughput
 				NSNumber *peakNumber = [throughputDetails objectForKey:@"peak"];
 				if (peakNumber) {
-					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [localizedStrings objectForKey:kPeakThroughputTitle]]
-										  action:nil
-								   keyEquivalent:@""] setEnabled:NO];
-					NSMenuItem *peakItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																						[self throughputStringForBytesPerSecond:[peakNumber doubleValue]]]
-																			  action:nil
-																	   keyEquivalent:@""];
+					NSMenuItem *item = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kPeakThroughputTitle]
+															action:nil
+													 keyEquivalent:@""];
+					[item setEnabled:NO];
+					[item setIndentationLevel:1];
+					NSMenuItem *peakItem = [extraMenu addItemWithTitle:[self throughputStringForBytesPerSecond:[peakNumber doubleValue]]
+																action:nil
+														 keyEquivalent:@""];
 					[peakItem setEnabled:NO];
+					[peakItem setIndentationLevel:2];
 					[interfaceUpdateMenuItems setObject:peakItem forKey:@"peakitem"];
 				}
 				// Add traffic totals
 				throughputOutNumber = [throughputDetails objectForKey:@"totalout"];
 				throughputInNumber = [throughputDetails objectForKey:@"totalin"];
 				if (throughputOutNumber && throughputInNumber) {
-					[[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [localizedStrings objectForKey:kTrafficTotalTitle]]
-										  action:nil
-								   keyEquivalent:@""] setEnabled:NO];
-					NSMenuItem *totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-                                                                                                           [self trafficStringForNumber:throughputOutNumber withLabel:[localizedStrings objectForKey:kTxLabel]]]
-																			   action:nil
-																		keyEquivalent:@""];
+					NSMenuItem *item = [extraMenu addItemWithTitle:[localizedStrings objectForKey:kTrafficTotalTitle]
+															action:nil
+													 keyEquivalent:@""];
+					[item setEnabled:NO];
+					[item setIndentationLevel:1];
+					NSMenuItem *totalItem = [extraMenu addItemWithTitle:[self trafficStringForNumber:throughputOutNumber
+																						   withLabel:[localizedStrings objectForKey:kTxLabel]]
+																 action:nil
+														  keyEquivalent:@""];
 					[totalItem setEnabled:NO];
+					[totalItem setIndentationLevel:2];
 					[interfaceUpdateMenuItems setObject:totalItem forKey:@"totaloutitem"];
-					totalItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuDoubleIndentFormat,
-																		   [self trafficStringForNumber:throughputInNumber withLabel:[localizedStrings objectForKey:kRxLabel]]]
-																   action:nil
-															keyEquivalent:@""];
+					totalItem = [extraMenu addItemWithTitle:[self trafficStringForNumber:throughputInNumber
+																			   withLabel:[localizedStrings objectForKey:kRxLabel]]
+													 action:nil
+											  keyEquivalent:@""];
 					[totalItem setEnabled:NO];
+					[totalItem setIndentationLevel:2];
 					[interfaceUpdateMenuItems setObject:totalItem forKey:@"totalinitem"];
 				}
 				// Store the name to use in throughput reads for items we will update later
@@ -1097,8 +1111,7 @@
 				case PPP_IDLE:
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
-											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[localizedStrings objectForKey:kPPPNoConnectTitle]]);
+											[localizedStrings objectForKey:kPPPNoConnectTitle]);
 					break;
 				case PPP_INITIALIZE:
 				case PPP_CONNECTLINK:
@@ -1112,8 +1125,7 @@
 				case PPP_WAITONBUSY:
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
-											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[localizedStrings objectForKey:kPPPConnectingTitle]]);
+											[localizedStrings objectForKey:kPPPConnectingTitle]);
 					break;
 				case PPP_RUNNING:
 					if ([[details objectForKey:@"pppstatus"] objectForKey:@"timeElapsed"]) {
@@ -1124,14 +1136,13 @@
 						secs %= 60;
 						LiveUpdateMenuItemTitle(extraMenu,
 												[extraMenu indexOfItem:pppMenuItem],
-												[NSString stringWithFormat:kMenuDoubleIndentFormat,
-													[NSString stringWithFormat:
+												[NSString stringWithFormat:
 														[localizedStrings objectForKey:kPPPConnectedWithTimeTitle],
-														hours, mins, secs]]);
+														hours, mins, secs]);
 					} else {
 						LiveUpdateMenuItemTitle(extraMenu,
 												[extraMenu indexOfItem:pppMenuItem],
-												[NSString stringWithFormat:kMenuDoubleIndentFormat, kPPPConnectedTitle]);
+												kPPPConnectedTitle);
 					}
 					break;
 					break;
@@ -1139,8 +1150,7 @@
 				case PPP_DISCONNECTLINK:
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:pppMenuItem],
-											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[localizedStrings objectForKey:kPPPDisconnectingTitle]]);
+											[localizedStrings objectForKey:kPPPDisconnectingTitle]);
 			};
 		}
 		// Throughput updates
@@ -1154,44 +1164,41 @@
 				if (targetItem && throughputNumber) {
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
-											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[NSString stringWithFormat:@"%@ %@",
+											[NSString stringWithFormat:@"%@ %@",
 													[localizedStrings objectForKey:kTxLabel],
-													[self throughputStringForBytes:[throughputNumber doubleValue] inInterval:[sampleIntervalNum doubleValue]]]]);
+													[self throughputStringForBytes:[throughputNumber doubleValue] inInterval:[sampleIntervalNum doubleValue]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"deltainitem"];
 				throughputNumber = [throughputDetails objectForKey:@"deltain"];
 				if (targetItem && throughputNumber) {
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
-											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[NSString stringWithFormat:@"%@ %@",
+											[NSString stringWithFormat:@"%@ %@",
 													[localizedStrings objectForKey:kRxLabel],
-													[self throughputStringForBytes:[throughputNumber doubleValue] inInterval:[sampleIntervalNum doubleValue]]]]);
+													[self throughputStringForBytes:[throughputNumber doubleValue] inInterval:[sampleIntervalNum doubleValue]]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"totaloutitem"];
 				throughputNumber = [throughputDetails objectForKey:@"totalout"];
 				if (targetItem && throughputNumber) {
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
-											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-											 [self trafficStringForNumber:throughputNumber withLabel:[localizedStrings objectForKey:kTxLabel]]]);
+											[self trafficStringForNumber:throughputNumber
+															   withLabel:[localizedStrings objectForKey:kTxLabel]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"totalinitem"];
 				throughputNumber = [throughputDetails objectForKey:@"totalin"];
 				if (targetItem && throughputNumber) {
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
-											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[self trafficStringForNumber:throughputNumber withLabel:[localizedStrings objectForKey:kRxLabel]]]);
+											[self trafficStringForNumber:throughputNumber
+															   withLabel:[localizedStrings objectForKey:kRxLabel]]);
 				}
 				targetItem = [updateInfoForService objectForKey:@"peakitem"];
 				throughputNumber = [throughputDetails objectForKey:@"peak"];
 				if (targetItem && throughputNumber) {
 					LiveUpdateMenuItemTitle(extraMenu,
 											[extraMenu indexOfItem:targetItem],
-											[NSString stringWithFormat:kMenuDoubleIndentFormat,
-												[self throughputStringForBytesPerSecond:[throughputNumber doubleValue]]]);
+											[self throughputStringForBytesPerSecond:[throughputNumber doubleValue]]);
 				}
 			}
 		}
