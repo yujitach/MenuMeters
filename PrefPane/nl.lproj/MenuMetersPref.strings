@@ -1,372 +1,330 @@
 
-/* Class = "NSWindow"; title = "MenuMeters"; ObjectID = "779"; */
-"779.title" = "MenuMeters";
+/* MenuMeters */
+"12.title" = "MenuMeters";
 
-/* Class = "NSTabViewItem"; label = "Schijf"; ObjectID = "782"; */
-"782.label" = "Schijf";
+/* Disk */
+"100.label" = "Disk";
 
-/* Class = "NSButtonCell"; title = "Toon schijf-MenuMeter"; ObjectID = "785"; */
-"785.title" = "Toon schijf-MenuMeter";
+/* CPU */
+"102.label" = "CPU";
 
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "787"; */
-"787.title" = "x";
+/* Memory */
+"103.label" = "Memory";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "792"; */
-"792.title" = "OtherViews";
+/* Network */
+"105.label" = "Network";
 
-/* Class = "NSMenuItem"; title = "ImageSet"; ObjectID = "793"; */
-"793.title" = "ImageSet";
+/* ImageSet */
+"203.title" = "ImageSet";
 
-/* Class = "NSTextFieldCell"; title = "Ververs iedere (seconden):"; ObjectID = "795"; */
-"795.title" = "Ververs iedere (seconden):";
+/* Usage Bar */
+"219.title" = "Usage Bar";
 
-/* Class = "NSTextFieldCell"; title = "Kiezen van een volume uit het menu"; ObjectID = "797"; */
-"797.title" = "Kiezen van een volume uit het menu";
+/* Usage Chart */
+"225.title" = "Usage Chart";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "800"; */
-"800.title" = "OtherViews";
+/* Throughput */
+"294.title" = "Throughput";
 
-/* Class = "NSMenuItem"; title = "verwijdert het volume"; ObjectID = "801"; */
-"801.title" = "verwijdert het volume";
+/* Arrows */
+"297.title" = "Arrows";
 
-/* Class = "NSMenuItem"; title = "opent het volume in de Finder"; ObjectID = "802"; */
-"802.title" = "opent het volume in de Finder";
+/* Arrows and Throughput */
+"299.title" = "Arrows and Throughput";
 
-/* Class = "NSTextFieldCell"; title = "Kiezen met ingedrukte Optietoets heeft de andere functie"; ObjectID = "804"; */
-"804.title" = "Kiezen met ingedrukte Optietoets heeft de andere functie";
+/* Graph */
+"314.title" = "Graph";
 
-/* Class = "NSTabViewItem"; label = "CPU"; ObjectID = "805"; */
-"805.label" = "CPU";
+/* Graph and Arrows */
+"363.title" = "Graph and Arrows";
 
-/* Class = "NSButtonCell"; title = "Toon CPU-MenuMeter"; ObjectID = "808"; */
-"808.title" = "Toon CPU-MenuMeter";
+/* Graph and Throughput */
+"365.title" = "Graph and Throughput";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "811"; */
-"811.title" = "OtherViews";
+/* Graph, Arrows and Throughput */
+"366.title" = "Graph, Arrows and Throughput";
 
-/* Class = "NSMenuItem"; title = "Grafiek en thermometer"; ObjectID = "812"; */
-"812.title" = "Grafiek en thermometer";
+/* Total (large text) */
+"384.title" = "Total (large text)";
 
-/* Class = "NSMenuItem"; title = "Percentage en thermometer"; ObjectID = "813"; */
-"813.title" = "Percentage en thermometer";
+/* User and System (small text) */
+"385.title" = "User and System (small text)";
 
-/* Class = "NSMenuItem"; title = "Grafiek, percentage en thermometer"; ObjectID = "814"; */
-"814.title" = "Grafiek, percentage en thermometer";
+/* Total (medium text) */
+"386.title" = "Total (medium text)";
 
-/* Class = "NSMenuItem"; title = "Thermometer"; ObjectID = "815"; */
-"815.title" = "Thermometer";
+/* Opposed */
+"404.title" = "Opposed";
 
-/* Class = "NSMenuItem"; title = "Grafiek en percentage"; ObjectID = "816"; */
-"816.title" = "Grafiek en percentage";
+/* Standard */
+"406.title" = "Standard";
 
-/* Class = "NSMenuItem"; title = "Percentage"; ObjectID = "817"; */
-"817.title" = "Percentage";
+/* Centered */
+"407.title" = "Centered";
 
-/* Class = "NSMenuItem"; title = "Grafiek"; ObjectID = "818"; */
-"818.title" = "Grafiek";
+/* Usage History Graph */
+"472.title" = "Usage History Graph";
 
-/* Class = "NSTextFieldCell"; title = "Ververs iedere (seconden):"; ObjectID = "822"; */
-"822.title" = "Ververs iedere (seconden):";
+/* pulse */
+"478.title" = "pulse";
 
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "824"; */
-"824.title" = "x";
+/* glow */
+"479.title" = "glow";
 
-/* Class = "NSTextFieldCell"; title = "Gebruiker"; ObjectID = "828"; */
-"828.title" = "Gebruiker";
+/* Primary (automatic) */
+"487.title" = "Primary (automatic)";
 
-/* Class = "NSTextFieldCell"; title = "Systeem"; ObjectID = "830"; */
-"830.title" = "Systeem";
+/* inverse glow */
+"497.title" = "inverse glow";
 
-/* Class = "NSButtonCell"; title = "Anti-alias kleine tekst"; ObjectID = "832"; */
-"832.title" = "Anti-alias kleine tekst";
+/* inverse pulse */
+"498.title" = "inverse pulse";
 
-/* Class = "NSTextFieldCell"; title = "Toon percentage als:"; ObjectID = "836"; */
-"836.title" = "Toon percentage als:";
+/* opens the volume */
+"500.title" = "opens the volume";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "839"; */
-"839.title" = "OtherViews";
+/* unmounts/ejects the volume */
+"502.title" = "unmounts/ejects the volume";
 
-/* Class = "NSMenuItem"; title = "Totaal (gemiddeld)"; ObjectID = "840"; */
-"840.title" = "Totaal (gemiddeld)";
+/* Used/Free Totals */
+"508.title" = "Used/Free Totals";
 
-/* Class = "NSMenuItem"; title = "Gebruiker en systeem (klein)"; ObjectID = "841"; */
-"841.title" = "Gebruiker en systeem (klein)";
+/* Interface speed */
+"525.title" = "Interface speed";
 
-/* Class = "NSMenuItem"; title = "Totaal (groot)"; ObjectID = "842"; */
-"842.title" = "Totaal (groot)";
+/* Peak traffic */
+"526.title" = "Peak traffic";
 
-/* Class = "NSButtonCell"; title = "Toon gemiddelde voor meer CPU's in één weergave"; ObjectID = "844"; */
-"844.title" = "Toon gemiddelde voor meer CPU's in één weergave";
+/* Linear */
+"541.title" = "Linear";
 
-/* Class = "NSTextFieldCell"; title = "'nice'"; ObjectID = "847"; */
-"847.title" = "'nice'";
+/* Logarithmic */
+"545.title" = "Logarithmic";
 
-/* Class = "NSTextFieldCell"; title = "Breedte:"; ObjectID = "849"; */
-"849.title" = "Breedte:";
+/* Cube root */
+"556.title" = "Cube root";
 
-/* Class = "NSTextFieldCell"; title = "Percentage-weergave"; ObjectID = "851"; */
-"851.title" = "Percentage-weergave";
+/* Square root */
+"557.title" = "Square root";
 
-/* Class = "NSTextFieldCell"; title = "Grafiekweergave"; ObjectID = "854"; */
-"854.title" = "Grafiekweergave";
+/* Transmit/Receive */
+"590.title" = "Transmit/Receive";
 
-/* Class = "NSTextFieldCell"; title = "Algemeen"; ObjectID = "1008"; */
-"1008.title" = "Algemeen";
+/* Receive/Transmit */
+"592.title" = "Receive/Transmit";
 
-/* Class = "NSTextFieldCell"; title = "Kleuren"; ObjectID = "1011"; */
-"1011.title" = "Kleuren";
+/* Inverse Opposed */
+"613.title" = "Inverse Opposed";
 
-/* Class = "NSButtonCell"; title = "PowerMate toont CPU-gebruik als"; ObjectID = "1014"; */
-"1014.title" = "PowerMate toont CPU-gebruik als";
+/* Display Disk Activity Menu Meter */
+"1006.title" = "Display Disk Activity Menu Meter";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1017"; */
-"1017.title" = "OtherViews";
+/* x */
+"1007.title" = "x";
 
-/* Class = "NSMenuItem"; title = "inverse pulse"; ObjectID = "1018"; */
-"1018.title" = "inverse pulse";
-
-/* Class = "NSMenuItem"; title = "inverse glow"; ObjectID = "1019"; */
-"1019.title" = "inverse glow";
-
-/* Class = "NSMenuItem"; title = "glow"; ObjectID = "1020"; */
-"1020.title" = "glow";
-
-/* Class = "NSMenuItem"; title = "pulse"; ObjectID = "1021"; */
-"1021.title" = "pulse";
-
-/* Class = "NSTabViewItem"; label = "Geheugen"; ObjectID = "1022"; */
-"871.label" = "Geheugen";
-
-/* Class = "NSButtonCell"; title = "Toon geheugen-MenuMeter"; ObjectID = "1025"; */
-"1025.title" = "Toon geheugen-MenuMeter";
-
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1027"; */
-"1027.title" = "x";
-
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1030"; */
-"1030.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "Totalen vrij / gebruikt"; ObjectID = "1031"; */
-"1031.title" = "Totalen vrij / gebruikt";
-
-/* Class = "NSMenuItem"; title = "Geschiedenis"; ObjectID = "1032"; */
-"1032.title" = "Geschiedenis";
-
-/* Class = "NSMenuItem"; title = "Taartgrafiek"; ObjectID = "1033"; */
-"1033.title" = "Taartgrafiek";
-
-/* Class = "NSMenuItem"; title = "Staafgrafiek"; ObjectID = "1034"; */
-"1034.title" = "Staafgrafiek";
-
-/* Class = "NSTextFieldCell"; title = "Ververs iedere (seconden):"; ObjectID = "1036"; */
-"1036.title" = "Ververs iedere (seconden):";
-
-/* Class = "NSButtonCell"; title = "Anti-alias tekst"; ObjectID = "1040"; */
-"1040.title" = "Anti-alias tekst";
-
-/* Class = "NSButtonCell"; title = "Toon labels voor vrij / gebruikt"; ObjectID = "1042"; */
-"1042.title" = "Toon labels voor vrij / gebruikt";
-
-/* Class = "NSTextFieldCell"; title = "Algemeen"; ObjectID = "1044"; */
-"1044.title" = "Algemeen";
-
-/* Class = "NSButtonCell"; title = "Toon indicatie van 'paging'-activiteit"; ObjectID = "1047"; */
-"1047.title" = "Toon indicatie van 'paging'-activiteit";
-
-/* Class = "NSTextFieldCell"; title = "Kleuren"; ObjectID = "1049"; */
-"1049.title" = "Kleuren";
-
-/* Class = "NSTextFieldCell"; title = "page-in"; ObjectID = "1053"; */
-"1053.title" = "page-in";
-
-/* Class = "NSTextFieldCell"; title = "page-out"; ObjectID = "1056"; */
-"1056.title" = "page-out";
-
-/* Class = "NSTextFieldCell"; title = "paging"; ObjectID = "1059"; */
-"1059.title" = "paging";
-
-/* Class = "NSTextFieldCell"; title = "Grafiekbreedte"; ObjectID = "1061"; */
-"1061.title" = "Grafiekbreedte";
-
-/* Class = "NSTextFieldCell"; title = "Weergave"; ObjectID = "1063"; */
-"1063.title" = "Weergave";
-
-/* Class = "NSTextFieldCell"; title = "Actief"; ObjectID = "1074"; */
-"1074.title" = "Actief";
-
-/* Class = "NSTextFieldCell"; title = "Inactief"; ObjectID = "1076"; */
-"1076.title" = "Inactief";
-
-/* Class = "NSTextFieldCell"; title = "'wired'"; ObjectID = "1078"; */
-"1078.title" = "'wired'";
-
-/* Class = "NSTextFieldCell"; title = "Vrij"; ObjectID = "932"; */
-"932.title" = "Vrij";
-
-/* Class = "NSTextFieldCell"; title = "Gebruikt"; ObjectID = "934"; */
-"934.title" = "Gebruikt";
-
-/* Class = "NSTabViewItem"; label = "Netwerk"; ObjectID = ""; */
-"936.label" = "Netwerk";
-
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "941"; */
-"941.title" = "x";
-
-/* Class = "NSButtonCell"; title = "Toon netwerk-MenuMeter"; ObjectID = ""; */
-".title" = "Toon netwerk-MenuMeter";
-
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = ""; */
-".title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "Grafiek, pijlen en doorvoer"; ObjectID = ""; */
-".title" = "Grafiek, pijlen en doorvoer";
-
-/* Class = "NSMenuItem"; title = "Grafiek en doorvoer"; ObjectID = "948"; */
-"948.title" = "Grafiek en doorvoer";
-
-/* Class = "NSMenuItem"; title = "Grafiek en pijlen"; ObjectID = "949"; */
-"949.title" = "Grafiek en pijlen";
-
-/* Class = "NSMenuItem"; title = "Grafiek"; ObjectID = "950"; */
-"950.title" = "Grafiek";
-
-/* Class = "NSMenuItem"; title = "Pijlen en doorvoer"; ObjectID = "951"; */
-"951.title" = "Pijlen en doorvoer";
-
-/* Class = "NSMenuItem"; title = "Pijlen"; ObjectID = "952"; */
-"952.title" = "Pijlen";
-
-/* Class = "NSMenuItem"; title = "Doorvoer"; ObjectID = "953"; */
-"953.title" = "Doorvoer";
-
-/* Class = "NSTextFieldCell"; title = "Ververs iedere (seconden):"; ObjectID = "955"; */
-"955.title" = "Ververs iedere (seconden):";
-
-/* Class = "NSButtonCell"; title = "Anti-alias tekst"; ObjectID = "957"; */
-"957.title" = "Anti-alias tekst";
-
-/* Class = "NSTextFieldCell"; title = "Verzenden"; ObjectID = "959"; */
-"959.title" = "Verzenden";
-
-/* Class = "NSTextFieldCell"; title = "Ontvangen"; ObjectID = "961"; */
-"961.title" = "Ontvangen";
-
-/* Class = "NSButtonCell"; title = "Toon labels (Tx/Rx)"; ObjectID = "967"; */
-"967.title" = "Toon labels (Tx/Rx)";
-
-/* Class = "NSButtonCell"; title = "Negeer waarden kleiner dan 1KB/s"; ObjectID = "969"; */
-"969.title" = "Negeer waarden kleiner dan 1KB/s";
-
-/* Class = "NSTextFieldCell"; title = "Stijl:"; ObjectID = "971"; */
-"971.title" = "Stijl:";
-
-/* Class = "NSTextFieldCell"; title = "Breedte:"; ObjectID = "973"; */
-"973.title" = "Breedte:";
-
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "976"; */
-"976.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "Tegenover elkaar, omgekeerd"; ObjectID = "977"; */
-"977.title" = "Tegenover elkaar, omgekeerd";
-
-/* Class = "NSMenuItem"; title = "Gecentreerd"; ObjectID = "978"; */
-"978.title" = "Gecentreerd";
-
-/* Class = "NSMenuItem"; title = "Standaard"; ObjectID = "979"; */
-"979.title" = "Standaard";
-
-/* Class = "NSMenuItem"; title = "Tegenover elkaar"; ObjectID = "980"; */
-"980.title" = "Tegenover elkaar";
-
-/* Class = "NSTextFieldCell"; title = "Weergave - Doorvoer"; ObjectID = "982"; */
-"982.title" = "Weergave - Doorvoer";
-
-/* Class = "NSTextFieldCell"; title = "Weergave - Grafiek"; ObjectID = "985"; */
-"985.title" = "Weergave - Grafiek";
-
-/* Class = "NSTextFieldCell"; title = "Kleuren"; ObjectID = "988"; */
-"988.title" = "Kleuren";
-
-/* Class = "NSTextFieldCell"; title = "Voorkeursinterface:"; ObjectID = "991"; */
-"991.title" = "Voorkeursinterface:";
-
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "994"; */
-"994.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "Primair (automatisch)"; ObjectID = "995"; */
-"995.title" = "Primair (automatisch)";
-
-/* Class = "NSTextFieldCell"; title = "Algemeen"; ObjectID = "997"; */
-"997.title" = "Algemeen";
-
-/* Class = "NSTextFieldCell"; title = "Weergave schaalt op:"; ObjectID = "1000"; */
-"1000.title" = "Weergave schaalt op:";
-
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1003"; */
-"1003.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "Piekverkeer"; ObjectID = "1004"; */
-"1004.title" = "Piekverkeer";
-
-/* Class = "NSMenuItem"; title = "Snelheid"; ObjectID = "1005"; */
-"1005.title" = "Snelheid";
-
-/* Class = "NSTextFieldCell"; title = "Schaalmethode:"; ObjectID = "1007"; */
-"1007.title" = "Schaalmethode:";
-
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1010"; */
+/* Update interval: */
 "1010.title" = "OtherViews";
 
-/* Class = "NSMenuItem"; title = "Wortel"; ObjectID = "1011"; */
+/* Selecting a volume from the disk menu */
 "1011.title" = "Wortel";
 
-/* Class = "NSMenuItem"; title = "Derdemachtswortel"; ObjectID = "1012"; */
-"1012.title" = "Derdemachtswortel";
-
-/* Class = "NSMenuItem"; title = "Logarithmisch"; ObjectID = "1013"; */
+/* (Holding the Option key will reverse the behavior) */
 "1013.title" = "Logarithmisch";
 
-/* Class = "NSMenuItem"; title = "Linear"; ObjectID = "1014"; */
+/* Display CPU Menu Meter */
 "1014.title" = "Linear";
 
-/* Class = "NSButtonCell"; title = "Toon basislijn"; ObjectID = "1016"; */
-"1016.title" = "Toon basislijn";
+/* Update interval: */
+"1017.title" = "OtherViews";
 
-/* Class = "NSTextFieldCell"; title = "Oriëntatie weergave:"; ObjectID = "1018"; */
-"1018.title" = "Oriëntatie weergave:";
+/* x */
+"1018.title" = "x";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1021"; */
-"1021.title" = "OtherViews";
+/* User */
+"1019.title" = "inverse glow";
 
-/* Class = "NSMenuItem"; title = "Ontvangen - Verzenden"; ObjectID = "1022"; */
-"1022.title" = "Ontvangen - Verzenden";
+/* System */
+"1020.title" = "glow";
 
-/* Class = "NSMenuItem"; title = "Verzenden - Ontvangen"; ObjectID = "1023"; */
-"1023.title" = "Verzenden - Ontvangen";
-
-/* Class = "NSTextFieldCell"; title = "Niet actief"; ObjectID = "1025"; */
+/* Width */
 "1025.title" = "Niet actief";
 
-/* Class = "NSTextFieldCell"; title = "MenuMeters, © 2002-2009 Alex Harper (http://www.ragingmenace.com)"; ObjectID = "1028"; */
-"1028.title" = "MenuMeters, © 2002-2009 Alex Harper (http://www.ragingmenace.com)";
+/* PowerMate shows CPU usage */
+"1030.title" = "OtherViews";
 
-/* Class = "NSButtonCell"; title = "Sort by CPU usage"; ObjectID = "1157"; */
-"1157.title" = "Sort by CPU usage";
+/* Display Memory Menu Meter */
+"1032.title" = "Geschiedenis";
 
-/* Class = "NSTextFieldCell"; title = "Horizontal Rows:"; ObjectID = "1166"; */
-"1166.title" = "Horizontal Rows:";
+/* x */
+"1033.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "Thermometer Display"; ObjectID = "1167"; */
-"1167.title" = "Thermometer Display";
+/* Update interval: */
+"1035.title" = "Update interval:";
 
-/* Class = "NSMenuItem"; title = "Horizontal Thermometer"; ObjectID = "1170"; */
-"1170.title" = "Horizontal Thermometer";
+/* Show Used/Free labels */
+"1037.title" = "Show Used/Free labels";
 
-/* Class = "NSTextFieldCell"; title = "Horizontal Width:"; ObjectID = "1174"; */
-"1174.title" = "Horizontal Width:";
+/* Show paging activity indicator */
+"1039.title" = "Show paging activity indicator";
 
-/* Class = "NSButtonCell"; title = "Show average for least utilized processors as single display"; ObjectID = "1176"; */
-"1176.title" = "Show average for least utilized processors as single display";
+/* Pagein */
+"1041.title" = "Pagein";
 
-/* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "7N2-dZ-F90"; */
-"7N2-dZ-F90.title" = "Display memory pressure";
+/* Pageout */
+"1042.title" = "Toon labels voor vrij / gebruikt";
+
+/* Graph width: */
+"1044.title" = "Algemeen";
+
+/* Active */
+"1047.title" = "Toon indicatie van ’paging’-activiteit";
+
+/* Inactive */
+"1048.title" = "Inactive";
+
+/* Wired */
+"1049.title" = "Kleuren";
+
+/* Free */
+"1050.title" = "Free";
+
+/* Used */
+"1051.title" = "Used";
+
+/* x */
+"1053.title" = "x";
+
+/* Display Network Menu Meter */
+"1054.title" = "Display Network Menu Meter";
+
+/* Update interval: */
+"1056.title" = "page-out";
+
+/* Transmit */
+"1057.title" = "Transmit";
+
+/* Receive */
+"1058.title" = "Receive";
+
+/* Show throughput labels (Tx/Rx) */
+"1060.title" = "Show throughput labels (Tx/Rx)";
+
+/* Ignore values below 1K/s */
+"1061.title" = "Grafiekbreedte";
+
+/* Graph style: */
+"1062.title" = "Graph style:";
+
+/* Graph width: */
+"1063.title" = "Weergave";
+
+/* Display prefers interface: */
+"1068.title" = "Display prefers interface:";
+
+/* Display scales to: */
+"1071.title" = "Display scales to:";
+
+/* Display scaling: */
+"1073.title" = "Display scaling:";
+
+/* Display orientation: */
+"1075.title" = "Display orientation:";
+
+/* Inactive */
+"1077.title" = "Inactive";
+
+/* Rows */
+"1088.title" = "Rows";
+
+/* Width */
+"1117.title" = "Width";
+
+/* (%d) */
+"2NH-iF-l28.title" = "(%d)";
+
+/* the sum of all cores */
+"5Lg-aP-TSR.title" = "the sum of all cores";
+
+/* the average of all cores */
+"BYT-hf-ygS.title" = "the average of all cores";
+
+/* Temperature */
+"C4n-F2-kuL.title" = "Temperature";
+
+/* Activity monitor: */
+"CDM-3t-gon.title" = "Activity monitor:";
+
+/* all cores sorted */
+"CG1-40-AVC.title" = "all cores sorted";
+
+/* Sensor */
+"FHP-25-5gM.title" = "Sensor";
+
+/* original */
+"FPO-Jo-ubG.title" = "original";
+
+/* About */
+"FSw-QC-dn2.label" = "About";
+
+/* physical cores only */
+"H5f-hN-vQV.title" = "physical cores only";
+
+/* Graph */
+"IS4-Xc-psg.title" = "Graph";
+
+/* Percentage */
+"Jeh-C2-Wwp.title" = "Percentage";
+
+/* Show bits per second */
+"K7W-5f-1U8.title" = "Show bits per second";
+
+/* Once per week */
+"LmO-Ij-G7M.title" = "Once per week";
+
+/* Once per month */
+"PuG-eZ-jRm.title" = "Once per month";
+
+/* Never */
+"STJ-3R-khe.title" = "Never";
+
+/* Check updates now */
+"XYi-uP-QCD.title" = "Check updates now";
+
+/* Display memory pressure */
+"aOw-Lj-aWS.title" = "Display memory pressure";
+
+/* pure black/white */
+"ayz-p2-XC5.title" = "pure black/white";
+
+/* Compressed */
+"ex0-hf-q5R.title" = "Compressed";
+
+/* CPU Temperature */
+"fiY-Fv-rRZ.title" = "CPU Temperature";
+
+/* Show */
+"k2d-Cg-pqL.title" = "Show";
+
+/* Once per day */
+"lh5-j8-SRe.title" = "Once per day";
+
+/* Color tint: */
+"mAZ-f2-5AJ.title" = "Color tint:";
+
+/* Opens specific panes */
+"phH-yJ-I6O.title" = "Opens specific panes";
+
+/* Vertical bar */
+"r6t-Zl-sS4.title" = "Vertical bar";
+
+/* Processes to show: */
+"rhi-NX-C3L.title" = "Processes to show:";
+
+/* Horizontal bar */
+"spo-WT-wCm.title" = "Horizontal bar";
+
+/* Automatic update check interval: */
+"tug-YR-k7T.title" = "Automatic update check interval:";
+
+/* all cores, including hyperthreaded ones */
+"vbH-jV-tUr.title" = "all cores, including hyperthreaded ones";

@@ -1,39 +1,38 @@
 //
 //  MenuMeterDiskSpace.m
 //
-// 	Reader object for disk space statistics
+//  Reader object for disk space statistics
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterDiskSpace.h"
 
-
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and functions
+//  Private methods and functions
 //
 ///////////////////////////////////////////////////////////////
 
 @interface MenuMeterDiskSpace (PrivateMethods)
+
 - (NSString *)spaceString:(float)space;
 @end
-
 
 static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDictionary *b, void *context) {
 
@@ -41,36 +40,33 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 } // SortDiskEntryByDeviceString
 
+///////////////////////////////////////////////////////////////
+//
+//  Localized strings
+//
+///////////////////////////////////////////////////////////////
+
+#define kUsedSpaceFormat @"%@ Used"
+#define kFreeSpaceFormat @"%@ Free"
+#define kTotalSpaceFormat @"%@ Total"
+#define kKBLabel @"KB"
+#define kMBLabel @"MB"
+#define kGBLabel @"GB"
 
 ///////////////////////////////////////////////////////////////
 //
-//	Localized strings
-//
-///////////////////////////////////////////////////////////////
-
-#define	kUsedSpaceFormat		@"%@ Used"
-#define	kFreeSpaceFormat		@"%@ Free"
-#define	kTotalSpaceFormat		@"%@ Total"
-#define kKBLabel				@"KB"
-#define kMBLabel				@"MB"
-#define kGBLabel				@"GB"
-
-
-///////////////////////////////////////////////////////////////
-//
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
 @implementation MenuMeterDiskSpace
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-
 
 	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
 	// (mike.fischer at fi-works.de) for use in MenuMeters.
@@ -88,11 +84,11 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 } // init
 
- // dealloc
+// dealloc
 
 ///////////////////////////////////////////////////////////////
 //
-//	Disk space info
+//  Disk space info
 //
 ///////////////////////////////////////////////////////////////
 
@@ -112,8 +108,8 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 	for (int i = 0; i < mountCount; i++) {
 		// We only view local volumes, which isn't easy (are FUSE volumes local?)
 		// Just look at filesystem type.
-		if(!strcmp(mountInfo[i].f_fstypename, "hfs") ||
-                   !strcmp(mountInfo[i].f_fstypename, "apfs") ||
+		if (!strcmp(mountInfo[i].f_fstypename, "hfs") ||
+			!strcmp(mountInfo[i].f_fstypename, "apfs") ||
 			!strcmp(mountInfo[i].f_fstypename, "ufs") ||
 			!strcmp(mountInfo[i].f_fstypename, "msdos") ||
 			!strcmp(mountInfo[i].f_fstypename, "exfat") ||
@@ -127,8 +123,8 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 			// Build a NSString from the path
 			NSString *mountPath = [[NSFileManager defaultManager]
-									stringWithFileSystemRepresentation:mountInfo[i].f_mntonname
-									length:strlen(mountInfo[i].f_mntonname)];
+				stringWithFileSystemRepresentation:mountInfo[i].f_mntonname
+											length:strlen(mountInfo[i].f_mntonname)];
 
 			// NSFileManger used to report stale volume names and many other
 			// bugs. Again, probably fixed in new OS versions, but stick with
@@ -173,20 +169,21 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 			// Store
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kTotalSpaceFormat],
-									[self spaceString:((float)mountInfo[i].f_blocks * (float)mountInfo[i].f_bsize)]]
+															[self spaceString:(float)(mountInfo[i].f_blocks * mountInfo[i].f_bsize)]]
 						  forKey:@"total"];
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kFreeSpaceFormat],
-									[self spaceString:((float)mountInfo[i].f_bavail * (float)mountInfo[i].f_bsize)]]
+															[self spaceString:(float)(mountInfo[i].f_bavail * mountInfo[i].f_bsize)]]
 						  forKey:@"free"];
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kUsedSpaceFormat],
-									[self spaceString:(((float)mountInfo[i].f_blocks -
-														(float)mountInfo[i].f_bavail) * (float)mountInfo[i].f_bsize)]]
+															[self spaceString:(float)((mountInfo[i].f_blocks -
+																					mountInfo[i].f_bavail) *
+																					mountInfo[i].f_bsize)]]
 						  forKey:@"used"];
 			// Store the data into the array
 			[diskSpaceDetails addObject:diskStats];
 
- 		} // end of filesystem type check
-	} // end of mount loop
+		} // end of filesystem type check
+	}	  // end of mount loop
 
 	// Sort by device, this matches most users expectations best
 	[diskSpaceDetails sortUsingFunction:&SortDiskEntryByDeviceString context:NULL];
@@ -204,7 +201,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 ///////////////////////////////////////////////////////////////
 //
-//	Utility
+//  Utility
 //
 ///////////////////////////////////////////////////////////////
 
@@ -213,30 +210,35 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 	if (useBaseTen) {
 		if (space > 1000000000) {
 			return [NSString stringWithFormat:@"%@%@",
-					[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000000000]],
-					[localizedStrings objectForKey:kGBLabel]];
-		} else if (space > 1000000) {
-			return [NSString stringWithFormat:@"%@%@",
-					[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000000]],
-					[localizedStrings objectForKey:kMBLabel]];
-		} else {
-			return [NSString stringWithFormat:@"%@%@",
-					[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000]],
-					[localizedStrings objectForKey:kKBLabel]];
+											  [spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000000000]],
+											  [localizedStrings objectForKey:kGBLabel]];
 		}
-	} else {
+		else if (space > 1000000) {
+			return [NSString stringWithFormat:@"%@%@",
+											  [spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000000]],
+											  [localizedStrings objectForKey:kMBLabel]];
+		}
+		else {
+			return [NSString stringWithFormat:@"%@%@",
+											  [spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000]],
+											  [localizedStrings objectForKey:kKBLabel]];
+		}
+	}
+	else {
 		if (space > 1073741824) {
 			return [NSString stringWithFormat:@"%@%@",
-				[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1073741824]],
-				[localizedStrings objectForKey:kGBLabel]];
-		} else if (space > 1048576) {
+											  [spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1073741824]],
+											  [localizedStrings objectForKey:kGBLabel]];
+		}
+		else if (space > 1048576) {
 			return [NSString stringWithFormat:@"%@%@",
-				[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1048576]],
-				[localizedStrings objectForKey:kMBLabel]];
-		} else {
+											  [spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1048576]],
+											  [localizedStrings objectForKey:kMBLabel]];
+		}
+		else {
 			return [NSString stringWithFormat:@"%@%@",
-				[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1024]],
-				[localizedStrings objectForKey:kKBLabel]];
+											  [spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1024]],
+											  [localizedStrings objectForKey:kKBLabel]];
 		}
 	}
 

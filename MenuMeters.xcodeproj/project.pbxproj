@@ -79,6 +79,8 @@
 		33B440112594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */; };
 		33B440122594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33B440102594675E00CBBEDF /* com.ragingmenace.MenuMeters.plist */; };
 		33F0921923673DAC00953CAB /* releases.html in Resources */ = {isa = PBXBuildFile; fileRef = 33F0921823673DAC00953CAB /* releases.html */; };
+		56834990272F332C0024B69D /* MenuMeterCPU.m in Sources */ = {isa = PBXBuildFile; fileRef = 5683498F272F332C0024B69D /* MenuMeterCPU.m */; };
+		56834991272F332C0024B69D /* MenuMeterCPU.m in Sources */ = {isa = PBXBuildFile; fileRef = 5683498F272F332C0024B69D /* MenuMeterCPU.m */; };
 		6349C10924BB733300C6FC99 /* EMCLoginItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 908780A91FB087D70053DDC5 /* EMCLoginItem.m */; };
 		6349C10A24BB733300C6FC99 /* MenuMeterDiskExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EC95D03D49AE400A87BC9 /* MenuMeterDiskExtra.m */; };
 		6349C10B24BB733300C6FC99 /* MenuMeterWorkarounds.m in Sources */ = {isa = PBXBuildFile; fileRef = D48A79F41018B051008E3207 /* MenuMeterWorkarounds.m */; };
@@ -196,6 +198,7 @@
 		538B152824465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
 		538B152924465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/DiskImageSet.strings; sourceTree = "<group>"; };
 		538B152A24465532008BAFC2 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5683498F272F332C0024B69D /* MenuMeterCPU.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MenuMeterCPU.m; path = Common/MenuMeterCPU.m; sourceTree = "<group>"; };
 		6349C15124BB733300C6FC99 /* MenuMeters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuMeters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9023745A1E91612100B096A8 /* InfoPlistPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistPreprocessor.h; sourceTree = "<group>"; };
 		908780A71FB087B90053DDC5 /* EMCLoginItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMCLoginItem.h; sourceTree = "<group>"; };
@@ -395,6 +398,7 @@
 				3345DD2E1B6BEFDE003843FC /* MenuMetersMenuExtraBase.m */,
 				D4510D9104F2F0FD00A87BC9 /* MenuMeters.h */,
 				D40DB4C403D260E800A87BC9 /* MenuMeterCPU.h */,
+				5683498F272F332C0024B69D /* MenuMeterCPU.m */,
 				D40DB4C503D260E800A87BC9 /* MenuMeterDisk.h */,
 				D40DB4C203D260E800A87BC9 /* MenuMeterMem.h */,
 				D40DB4C603D260E800A87BC9 /* MenuMeterNet.h */,
@@ -834,6 +838,7 @@
 				33883CFA23655C9900B8AC14 /* smc_reader.m in Sources */,
 				33883CFB23655C9900B8AC14 /* MenuMeterCPUTopProcesses.m in Sources */,
 				33883CFC23655C9900B8AC14 /* MenuMeterMemStats.m in Sources */,
+				56834990272F332C0024B69D /* MenuMeterCPU.m in Sources */,
 				33883CFD23655C9900B8AC14 /* MenuMeterDiskSpace.m in Sources */,
 				33883CFE23655C9900B8AC14 /* MenuMeterDiskIO.m in Sources */,
 				33883D3423655CBF00B8AC14 /* MenuMetersPref.m in Sources */,
@@ -866,6 +871,7 @@
 				6349C11424BB733300C6FC99 /* smc_reader.m in Sources */,
 				6349C11524BB733300C6FC99 /* MenuMeterCPUTopProcesses.m in Sources */,
 				6349C11624BB733300C6FC99 /* MenuMeterMemStats.m in Sources */,
+				56834991272F332C0024B69D /* MenuMeterCPU.m in Sources */,
 				6349C11724BB733300C6FC99 /* MenuMeterDiskSpace.m in Sources */,
 				6349C11824BB733300C6FC99 /* MenuMeterDiskIO.m in Sources */,
 				6349C11924BB733300C6FC99 /* MenuMetersPref.m in Sources */,

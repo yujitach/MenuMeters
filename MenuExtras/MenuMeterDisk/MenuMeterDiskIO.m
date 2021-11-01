@@ -1,62 +1,62 @@
 //
 //  MenuMeterDiskIO.m
 //
-// 	Reader object for disk IO statistics
+//  Reader object for disk IO statistics
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterDiskIO.h"
 #import <mach/mach_port.h>
 
-
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and constants
+//  Private methods and constants
 //
 ///////////////////////////////////////////////////////////////
 
 @interface MenuMeterDiskIO (PrivateMethods)
--(void)blockDeviceChanged:(io_iterator_t)iterator;
+
+- (void)blockDeviceChanged:(io_iterator_t)iterator;
 @end
 
 ///////////////////////////////////////////////////////////////
 //
-//	IOKit notification callbacks
+//  IOKit notification callbacks
 //
 ///////////////////////////////////////////////////////////////
 
 static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 
-	if (ref) [(__bridge MenuMeterDiskIO *)ref blockDeviceChanged:iterator];
+	if (ref)
+		[(__bridge MenuMeterDiskIO *)ref blockDeviceChanged:iterator];
 
 } // BlockDeviceChanged
 
-
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
 @implementation MenuMeterDiskIO
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {
@@ -79,7 +79,7 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 	CFRunLoopAddSource(CFRunLoopGetCurrent(), notifyRunSource, kCFRunLoopDefaultMode);
 
 	// Install notifications for block storage devices
-	err = IOServiceAddMatchingNotification(notifyPort,  kIOPublishNotification,
+	err = IOServiceAddMatchingNotification(notifyPort, kIOPublishNotification,
 										   IOServiceMatching(kIOBlockStorageDriverClass),
 										   BlockDeviceChanged, (__bridge void *)(self), &blockDevicePublishedIterator);
 	if (err != KERN_SUCCESS) {
@@ -105,20 +105,25 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 
 - (void)dealloc {
 
-	if (blockDeviceIterator) IOObjectRelease(blockDeviceIterator);
-	if (blockDevicePublishedIterator) IOObjectRelease(blockDevicePublishedIterator);
-	if (blockDeviceTerminatedIterator) IOObjectRelease(blockDeviceTerminatedIterator);
+	if (blockDeviceIterator)
+		IOObjectRelease(blockDeviceIterator);
+	if (blockDevicePublishedIterator)
+		IOObjectRelease(blockDevicePublishedIterator);
+	if (blockDeviceTerminatedIterator)
+		IOObjectRelease(blockDeviceTerminatedIterator);
 	if (notifyRunSource) {
 		CFRunLoopRemoveSource(CFRunLoopGetCurrent(), notifyRunSource, kCFRunLoopDefaultMode);
 	}
-	if (notifyPort) IONotificationPortDestroy(notifyPort);
-	if (masterPort) mach_port_deallocate(mach_task_self(), masterPort);
+	if (notifyPort)
+		IONotificationPortDestroy(notifyPort);
+	if (masterPort)
+		mach_port_deallocate(mach_task_self(), masterPort);
 
 } // dealloc
 
 ///////////////////////////////////////////////////////////////
 //
-//	Disk activity
+//  Disk activity
 //
 ///////////////////////////////////////////////////////////////
 
@@ -130,7 +135,7 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 														 IOServiceMatching(kIOBlockStorageDriverClass),
 														 &blockDeviceIterator);
 		if (err != KERN_SUCCESS) {
-			return kDiskActivityIdle;  // Best we can do
+			return kDiskActivityIdle; // Best we can do
 		}
 	}
 
@@ -140,22 +145,22 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 	uint64_t totalRead = 0, totalWrite = 0;
 	while ((driveEntry = IOIteratorNext(blockDeviceIterator))) {
 
- 		// Get the statistics for this drive
-		NSDictionary* statistics = CFBridgingRelease(IORegistryEntryCreateCFProperty(driveEntry,
-																	 CFSTR(kIOBlockStorageDriverStatisticsKey),
-																	 kCFAllocatorDefault,
-																	 kNilOptions));
+		// Get the statistics for this drive
+		NSDictionary *statistics = CFBridgingRelease(IORegistryEntryCreateCFProperty(driveEntry,
+																					 CFSTR(kIOBlockStorageDriverStatisticsKey),
+																					 kCFAllocatorDefault,
+																					 kNilOptions));
 		// If we got the statistics block for this device then we can add it to our totals
 		if (statistics) {
 			// Get total bytes read
 			NSNumber *statNumber = (NSNumber *)[statistics objectForKey:
-													(NSString *)CFSTR(kIOBlockStorageDriverStatisticsBytesReadKey)];
+															   (NSString *)CFSTR(kIOBlockStorageDriverStatisticsBytesReadKey)];
 			if (statNumber) {
 				totalRead += [statNumber unsignedLongLongValue];
 			}
 			// Bytes written
 			statNumber = (NSNumber *)[statistics objectForKey:
-													(NSString *)CFSTR(kIOBlockStorageDriverStatisticsBytesWrittenKey)];
+													 (NSString *)CFSTR(kIOBlockStorageDriverStatisticsBytesWrittenKey)];
 			if (statNumber) {
 				totalWrite += [statNumber unsignedLongLongValue];
 			}
@@ -178,9 +183,11 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 	DiskIOActivityType activity = kDiskActivityIdle;
 	if ((totalRead != previousTotalRead) && (totalWrite != previousTotalWrite)) {
 		activity = kDiskActivityReadWrite;
-	} else if (totalRead != previousTotalRead) {
+	}
+	else if (totalRead != previousTotalRead) {
 		activity = kDiskActivityRead;
-	} else if (totalWrite != previousTotalWrite) {
+	}
+	else if (totalWrite != previousTotalWrite) {
 		activity = kDiskActivityWrite;
 	}
 	previousTotalRead = totalRead;
@@ -191,14 +198,15 @@ static void BlockDeviceChanged(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Device state changes
+//  Device state changes
 //
 ///////////////////////////////////////////////////////////////
 
--(void)blockDeviceChanged:(io_iterator_t)iterator {
+- (void)blockDeviceChanged:(io_iterator_t)iterator {
 
 	// Remove the current drive iterator, forcing its recreation later
-	if (blockDeviceIterator) IOObjectRelease(blockDeviceIterator);
+	if (blockDeviceIterator)
+		IOObjectRelease(blockDeviceIterator);
 	blockDeviceIterator = MACH_PORT_NULL;
 
 	// Drain the iterator

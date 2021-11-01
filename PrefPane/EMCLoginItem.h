@@ -10,20 +10,31 @@
 @interface EMCLoginItem : NSObject
 
 - (instancetype)init;
+
 - (instancetype)initWithBundle:(NSBundle *)bundle;
+
 - (instancetype)initWithPath:(NSString *)path;
 
 - (BOOL)isLoginItem;
+
 - (void)addLoginItem;
+
 - (void)removeLoginItem;
+
 - (void)addAfterLast;
+
 - (void)addAfterFirst;
+
 - (void)addAfterItemWithPath:(NSString *)path;
+
 - (void)addAfterBundle:(NSBundle *)bundle;
+
 - (void)setIconRef:(IconRef)iconRef;
 
 + (instancetype)loginItem;
+
 + (instancetype)loginItemWithBundle:(NSBundle *)bundle;
+
 + (instancetype)loginItemWithPath:(NSString *)path;
 
 @end

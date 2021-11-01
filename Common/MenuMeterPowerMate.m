@@ -1,67 +1,69 @@
 //
 //  MenuMeterPowerMate.m
 //
-//	PowerMate support
+//  PowerMate support
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterPowerMate.h"
 #import <mach/mach_port.h>
 
-
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and constants
+//  Private methods and constants
 //
 ///////////////////////////////////////////////////////////////
 
 @interface MenuMeterPowerMate (PrivateMethods)
--(void)glowRamp:(NSTimer *)timer;
--(void)deviceMatched:(io_iterator_t)iterator;
--(void)deviceTerminated:(io_iterator_t)iterator;
+
+- (void)glowRamp:(NSTimer *)timer;
+
+- (void)deviceMatched:(io_iterator_t)iterator;
+
+- (void)deviceTerminated:(io_iterator_t)iterator;
 @end
 
 #define kGlowRampInterval 0.05
 
-
 ///////////////////////////////////////////////////////////////
 //
-//	IOKit notification callbacks
+//  IOKit notification callbacks
 //
 ///////////////////////////////////////////////////////////////
 
 static void DeviceMatched(void *ref, io_iterator_t iterator) {
 
-	if (ref) [(__bridge MenuMeterPowerMate *)ref deviceMatched:iterator];
+	if (ref)
+		[(__bridge MenuMeterPowerMate *)ref deviceMatched:iterator];
 
 } // DeviceMatched
 
 static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
-	if (ref) [(__bridge MenuMeterPowerMate *)ref deviceTerminated:iterator];
+	if (ref)
+		[(__bridge MenuMeterPowerMate *)ref deviceTerminated:iterator];
 
 } // DeviceTerminated
 
-
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -70,9 +72,10 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 + (BOOL)powermateAttached {
 
 	// Check for device
-	mach_port_t	localMasterPort = 0;
+	mach_port_t localMasterPort = 0;
 	kern_return_t err = IOMasterPort(MACH_PORT_NULL, &localMasterPort);
-	if ((err != KERN_SUCCESS) || !localMasterPort) return NO;
+	if ((err != KERN_SUCCESS) || !localMasterPort)
+		return NO;
 
 	// Construct a matching dict
 	CFMutableDictionaryRef matchingDict = IOServiceMatching("IOUSBDevice");
@@ -105,7 +108,7 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 } // powermateAttached
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {
@@ -151,21 +154,21 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 	// Install notifications for Powermate devices
 	err = IOServiceAddMatchingNotification(notifyPort,
-                                           kIOMatchedNotification,
+										   kIOMatchedNotification,
 										   matchingDict,
 										   DeviceMatched,
-                                           (__bridge void *)(self), &deviceMatchedIterator);
+										   (__bridge void *)(self), &deviceMatchedIterator);
 	if (err != KERN_SUCCESS) {
-        CFRelease(terminatedDict);
+		CFRelease(terminatedDict);
 
 		return nil;
 	}
 
-    err = IOServiceAddMatchingNotification(notifyPort,
-                                           kIOTerminatedNotification,
+	err = IOServiceAddMatchingNotification(notifyPort,
+										   kIOTerminatedNotification,
 										   terminatedDict,
 										   DeviceTerminated,
-                                           (__bridge void *)(self), &deviceTerminatedIterator);
+										   (__bridge void *)(self), &deviceTerminatedIterator);
 	if (err != KERN_SUCCESS) {
 		return nil;
 	}
@@ -181,21 +184,26 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 - (void)dealloc {
 
-	[rampTimer invalidate];  // Runloop releases
-	if (deviceInterface) (*deviceInterface)->Release(deviceInterface);
-	if (deviceMatchedIterator) IOObjectRelease(deviceMatchedIterator);
-	if (deviceTerminatedIterator) IOObjectRelease(deviceTerminatedIterator);
+	[rampTimer invalidate]; // Runloop releases
+	if (deviceInterface)
+		(*deviceInterface)->Release(deviceInterface);
+	if (deviceMatchedIterator)
+		IOObjectRelease(deviceMatchedIterator);
+	if (deviceTerminatedIterator)
+		IOObjectRelease(deviceTerminatedIterator);
 	if (notifyRunSource) {
 		CFRunLoopRemoveSource(CFRunLoopGetCurrent(), notifyRunSource, kCFRunLoopDefaultMode);
 	}
-	if (notifyPort) IONotificationPortDestroy(notifyPort);
-	if (masterPort) mach_port_deallocate(mach_task_self(), masterPort);
+	if (notifyPort)
+		IONotificationPortDestroy(notifyPort);
+	if (masterPort)
+		mach_port_deallocate(mach_task_self(), masterPort);
 
 } // dealloc
 
 ///////////////////////////////////////////////////////////////
 //
-//	Public interface
+//  Public interface
 //
 ///////////////////////////////////////////////////////////////
 
@@ -205,25 +213,29 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	[rampTimer invalidate];
 	rampTimer = nil;
 
-	if (!(devicePresent && deviceInterface)) return;
+	if (!(devicePresent && deviceInterface))
+		return;
 
 	// Sanity
-	if (level > 1.0) level = 1.0;
-	if (level < 0) level = 0;
+	if (level > 1.0)
+		level = 1.0;
+	if (level < 0)
+		level = 0;
 
 	// Clear pulsing
 	[self stopPulse];
 
 	// Store and clear ramp
 	lastGlowLevel = level;
-	targetGlowLevel =level;
+	targetGlowLevel = level;
 	rampGlowStep = 0;
 
 	// Only 128 levels of glow
 	UInt16 targetGlow = 128 * level;
-	if (targetGlow > 128) targetGlow = 128;
+	if (targetGlow > 128)
+		targetGlow = 128;
 
-	IOUSBDevRequest	usbRequest;
+	IOUSBDevRequest usbRequest;
 	usbRequest.bmRequestType = 0x41;
 	usbRequest.bRequest = 0x01;
 	usbRequest.wValue = 0x01;
@@ -240,17 +252,21 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	[rampTimer invalidate];
 	rampTimer = nil;
 
-	if (!(devicePresent && deviceInterface)) return;
+	if (!(devicePresent && deviceInterface))
+		return;
 
 	// Sanity
-	if (level > 1.0) level = 1.0;
-	if (level < 0) level = 0;
+	if (level > 1.0)
+		level = 1.0;
+	if (level < 0)
+		level = 0;
 
 	// Clear pulsing
 	[self stopPulse];
 
 	// We tick every kGlowRampInterval seconds, is the interval too short?
-	if (interval <= kGlowRampInterval) [self setGlow:level];
+	if (interval <= kGlowRampInterval)
+		[self setGlow:level];
 
 	// Calc steps. We're happy with steps that are actually finer
 	// than the device can handle.
@@ -272,14 +288,17 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 - (void)setPulse:(double)rate {
 
-	if (!(devicePresent && deviceInterface)) return;
+	if (!(devicePresent && deviceInterface))
+		return;
 
 	// Sanity
-	if (rate > 1.0) rate = 1.0;
-	if (rate < 0) rate = 0;
+	if (rate > 1.0)
+		rate = 1.0;
+	if (rate < 0)
+		rate = 0;
 
 	// Turn on pulsing on
-	IOUSBDevRequest	usbRequest;
+	IOUSBDevRequest usbRequest;
 	usbRequest.bmRequestType = 0x41;
 	usbRequest.bRequest = 0x01;
 	usbRequest.wValue = 0x03;
@@ -298,9 +317,11 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	uint8_t pulseRate = 24 * rate;
 	if (pulseRate > 2) {
 		usbRequest.wIndex = 0x02 | (pulseRate << 8);
-	} else if (pulseRate == 2) {
+	}
+	else if (pulseRate == 2) {
 		usbRequest.wIndex = 0x0001;
-	} else {
+	}
+	else {
 		usbRequest.wIndex = (2 - pulseRate) << 8;
 	}
 	(*deviceInterface)->DeviceRequest(deviceInterface, &usbRequest);
@@ -309,8 +330,9 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 - (void)stopPulse {
 
-	if (!(devicePresent && deviceInterface)) return;
-	IOUSBDevRequest	usbRequest;
+	if (!(devicePresent && deviceInterface))
+		return;
+	IOUSBDevRequest usbRequest;
 	usbRequest.bmRequestType = 0x41;
 	usbRequest.bRequest = 0x01;
 	usbRequest.wValue = 0x03;
@@ -323,11 +345,11 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Timer callback
+//  Timer callback
 //
 ///////////////////////////////////////////////////////////////
 
--(void)glowRamp:(NSTimer *)timer {
+- (void)glowRamp:(NSTimer *)timer {
 
 	// Sanity checks
 	if (!(devicePresent && deviceInterface)) {
@@ -338,18 +360,21 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 	// Calc next level
 	double newLevel = lastGlowLevel + rampGlowStep;
-	if (newLevel > 1.0) newLevel = 1.0;
-	if (newLevel < 0) newLevel = 0;
+	if (newLevel > 1.0)
+		newLevel = 1.0;
+	if (newLevel < 0)
+		newLevel = 0;
 
 	// If we've met the target return to the normal code path
 	if (rampGlowStep > 0) {
 		if (newLevel > targetGlowLevel) {
-			[self setGlow:targetGlowLevel];  // Cancels timer
+			[self setGlow:targetGlowLevel]; // Cancels timer
 			return;
 		}
-	} else {
+	}
+	else {
 		if (newLevel < targetGlowLevel) {
-			[self setGlow:targetGlowLevel];  // Cancels timer
+			[self setGlow:targetGlowLevel]; // Cancels timer
 			return;
 		}
 	}
@@ -357,9 +382,10 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 	// Intermediate level set from here
 	// Only 128 levels of glow
 	UInt16 targetGlow = 128 * newLevel;
-	if (targetGlow > 128) targetGlow = 128;
+	if (targetGlow > 128)
+		targetGlow = 128;
 
-	IOUSBDevRequest	usbRequest;
+	IOUSBDevRequest usbRequest;
 	usbRequest.bmRequestType = 0x41;
 	usbRequest.bRequest = 0x01;
 	usbRequest.wValue = 0x01;
@@ -374,14 +400,15 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 ///////////////////////////////////////////////////////////////
 //
-//	Device state changes
+//  Device state changes
 //
 ///////////////////////////////////////////////////////////////
 
--(void)deviceMatched:(io_iterator_t)iterator {
+- (void)deviceMatched:(io_iterator_t)iterator {
 
 	io_service_t pmDevice = IOIteratorNext(iterator);
-	if (!pmDevice) return;
+	if (!pmDevice)
+		return;
 
 	// Drain the iterator
 	io_service_t otherDevice = IOIteratorNext(iterator);
@@ -406,9 +433,7 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 		IOObjectRelease(pmDevice);
 		return;
 	}
-	HRESULT queryErr = (*plugInInterface)->QueryInterface(plugInInterface,
-														  CFUUIDGetUUIDBytes(kIOUSBDeviceInterfaceID),
-														  (LPVOID)&deviceInterface);
+	HRESULT queryErr = (*plugInInterface)->QueryInterface(plugInInterface, CFUUIDGetUUIDBytes(kIOUSBDeviceInterfaceID), (LPVOID)&deviceInterface);
 	IODestroyPlugInInterface(plugInInterface);
 	if (queryErr || !deviceInterface) {
 		IOObjectRelease(pmDevice);
@@ -427,11 +452,12 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 } // _deviceMatched:
 
--(void)deviceTerminated:(io_iterator_t)iterator {
+- (void)deviceTerminated:(io_iterator_t)iterator {
 
 	// Assume any termination is our device (again, no attempt to handle
 	// multiple devices)
-	if (deviceInterface) (*deviceInterface)->Release(deviceInterface);
+	if (deviceInterface)
+		(*deviceInterface)->Release(deviceInterface);
 	deviceInterface = NULL;
 	devicePresent = NO;
 

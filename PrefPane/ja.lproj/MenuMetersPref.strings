@@ -1,357 +1,330 @@
 
-/* Class = "NSWindow"; title = "MenuMeters"; ObjectID = "12"; */
+/* MenuMeters */
 "12.title" = "MenuMeters";
 
-/* Class = "NSTabViewItem"; label = "ディスク"; ObjectID = "100"; */
+/* Disk */
 "100.label" = "ディスク";
 
-/* Class = "NSTabViewItem"; label = "CPU"; ObjectID = "102"; */
+/* CPU */
 "102.label" = "CPU";
 
-/* Class = "NSTabViewItem"; label = "メモリー"; ObjectID = "103"; */
+/* Memory */
 "103.label" = "メモリー";
 
-/* Class = "NSTabViewItem"; label = "ネットワーク"; ObjectID = "105"; */
+/* Network */
 "105.label" = "ネットワーク";
 
-/* Class = "NSMenuItem"; title = "グラフ"; ObjectID = "145"; */
-"IS4-Xc-psg.title" = "グラフ";
-
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "146"; */
-"146.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "パーセント"; ObjectID = "148"; */
-"Jeh-C2-Wwp.title" = "パーセント";
-
-/* Class = "NSMenuItem"; title = "グラフ & パーセント"; ObjectID = "149"; */
-"149.title" = "グラフ & パーセント";
-
-/* Class = "NSMenuItem"; title = "ImageSet"; ObjectID = "203"; */
+/* ImageSet */
 "203.title" = "ImageSet";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "206"; */
-"206.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "バーグラフ"; ObjectID = "219"; */
+/* Usage Bar */
 "219.title" = "バーグラフ";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "223"; */
-"223.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "円グラフ"; ObjectID = "225"; */
+/* Usage Chart */
 "225.title" = "円グラフ";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "293"; */
-"293.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "スループット"; ObjectID = "294"; */
+/* Throughput */
 "294.title" = "スループット";
 
-/* Class = "NSMenuItem"; title = "矢印"; ObjectID = "297"; */
+/* Arrows */
 "297.title" = "矢印";
 
-/* Class = "NSMenuItem"; title = "矢印 & スループット"; ObjectID = "299"; */
+/* Arrows and Throughput */
 "299.title" = "矢印 & スループット";
 
-/* Class = "NSMenuItem"; title = "グラフ"; ObjectID = "314"; */
+/* Graph */
 "314.title" = "グラフ";
 
-/* Class = "NSMenuItem"; title = "レベルメータ"; ObjectID = "357"; */
-"r6t-Zl-sS4.title" = "垂直レベルメータ";
-"spo-WT-wCm.title" = "水平レベルメータ";
-/* Class = "NSMenuItem"; title = "グラフ & パーセント & レベルメータ"; ObjectID = "358"; */
-"358.title" = "グラフ & パーセント & レベルメータ";
-
-/* Class = "NSMenuItem"; title = "パーセント & レベルメータ"; ObjectID = "359"; */
-"359.title" = "パーセント & レベルメータ";
-
-/* Class = "NSMenuItem"; title = "グラフ & レベルメータ"; ObjectID = "360"; */
-"360.title" = "グラフ & レベルメータ";
-
-/* Class = "NSMenuItem"; title = "グラフ & 矢印"; ObjectID = "363"; */
+/* Graph and Arrows */
 "363.title" = "グラフ & 矢印";
 
-/* Class = "NSMenuItem"; title = "グラフ & スループット"; ObjectID = "365"; */
+/* Graph and Throughput */
 "365.title" = "グラフ & スループット";
 
-/* Class = "NSMenuItem"; title = "グラフ & 矢印 & スループット"; ObjectID = "366"; */
+/* Graph, Arrows and Throughput */
 "366.title" = "グラフ & 矢印 & スループット";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "382"; */
-"382.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "合計 (テキスト大)"; ObjectID = "384"; */
+/* Total (large text) */
 "384.title" = "合計 (テキスト大)";
 
-/* Class = "NSMenuItem"; title = "ユーザー & システム (テキスト小)"; ObjectID = "385"; */
+/* User and System (small text) */
 "385.title" = "ユーザー & システム (テキスト小)";
 
-/* Class = "NSMenuItem"; title = "合計 (テキスト中)"; ObjectID = "386"; */
+/* Total (medium text) */
 "386.title" = "合計 (テキスト中)";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "403"; */
-"403.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "上下に"; ObjectID = "404"; */
+/* Opposed */
 "404.title" = "上下に";
 
-/* Class = "NSMenuItem"; title = "スタンダード"; ObjectID = "406"; */
+/* Standard */
 "406.title" = "スタンダード";
 
-/* Class = "NSMenuItem"; title = "中央に"; ObjectID = "407"; */
+/* Centered */
 "407.title" = "中央に";
 
-/* Class = "NSMenuItem"; title = "ヒストリーグラフ"; ObjectID = "472"; */
+/* Usage History Graph */
 "472.title" = "ヒストリーグラフ";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "477"; */
-"477.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "パルス"; ObjectID = "478"; */
+/* pulse */
 "478.title" = "パルス";
 
-/* Class = "NSMenuItem"; title = "グロー"; ObjectID = "479"; */
+/* glow */
 "479.title" = "グロー";
 
-/* Class = "NSMenuItem"; title = "プライマリ (自動)"; ObjectID = "487"; */
+/* Primary (automatic) */
 "487.title" = "プライマリ (自動)";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "489"; */
-"489.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "グロー (逆)"; ObjectID = "497"; */
+/* inverse glow */
 "497.title" = "グロー (逆)";
 
-/* Class = "NSMenuItem"; title = "パルス (逆)"; ObjectID = "498"; */
+/* inverse pulse */
 "498.title" = "パルス (逆)";
 
-/* Class = "NSMenuItem"; title = "ボリュームを開く"; ObjectID = "500"; */
+/* opens the volume */
 "500.title" = "ボリュームを開く";
 
-/* Class = "NSMenuItem"; title = "アンマウント／取り出し"; ObjectID = "502"; */
+/* unmounts/ejects the volume */
 "502.title" = "アンマウント／取り出し";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "503"; */
-"503.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "使用量／空き容量の合計"; ObjectID = "508"; */
+/* Used/Free Totals */
 "508.title" = "使用量／空き容量の合計";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "522"; */
-"522.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "インターフェース速度"; ObjectID = "525"; */
+/* Interface speed */
 "525.title" = "インターフェース速度";
 
-/* Class = "NSMenuItem"; title = "トラフィックのピーク"; ObjectID = "526"; */
+/* Peak traffic */
 "526.title" = "トラフィックのピーク";
 
-/* Class = "NSMenuItem"; title = "線状で"; ObjectID = "541"; */
+/* Linear */
 "541.title" = "線状で";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "542"; */
-"542.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "対数で"; ObjectID = "545"; */
+/* Logarithmic */
 "545.title" = "対数で";
 
-/* Class = "NSMenuItem"; title = "立方根で"; ObjectID = "556"; */
+/* Cube root */
 "556.title" = "立方根で";
 
-/* Class = "NSMenuItem"; title = "平方根で"; ObjectID = "557"; */
+/* Square root */
 "557.title" = "平方根で";
 
-/* Class = "NSMenuItem"; title = "送信／受信の順"; ObjectID = "590"; */
+/* Transmit/Receive */
 "590.title" = "送信／受信の順";
 
-/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "591"; */
-"591.title" = "OtherViews";
-
-/* Class = "NSMenuItem"; title = "受信／送信の順"; ObjectID = "592"; */
+/* Receive/Transmit */
 "592.title" = "受信／送信の順";
 
-/* Class = "NSMenuItem"; title = "上下逆に"; ObjectID = "613"; */
+/* Inverse Opposed */
 "613.title" = "上下逆に";
 
-/* Class = "NSButtonCell"; title = "ディスクメータを表示："; ObjectID = "1006"; */
-"1006.title" = "ディスクメータを表示：";
+/* Display Disk Activity Menu Meter */
+"1006.title" = "ディスクメータを表示";
 
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1007"; */
+/* x */
 "1007.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "更新間隔 (秒)："; ObjectID = "1010"; */
-"1010.title" = "更新間隔 (秒)：";
+/* Update interval: */
+"1010.title" = "更新間隔";
 
-/* Class = "NSTextFieldCell"; title = "メニューからボリューム選択した時："; ObjectID = "1011"; */
-"1011.title" = "メニューからボリューム選択した時：";
+/* Selecting a volume from the disk menu */
+"1011.title" = "メニューからボリューム選択した時";
 
-/* Class = "NSTextFieldCell"; title = "(Option キーを押すと取り消す事ができます)"; ObjectID = "1013"; */
+/* (Holding the Option key will reverse the behavior) */
 "1013.title" = "(Option キーを押すと取り消す事ができます)";
 
-/* Class = "NSButtonCell"; title = "CPU メータを表示："; ObjectID = "1014"; */
-"1014.title" = "CPU メータを表示：";
+/* Display CPU Menu Meter */
+"1014.title" = "CPU メータを表示";
 
-/* Class = "NSTextFieldCell"; title = "更新間隔 (秒)："; ObjectID = "1017"; */
-"1017.title" = "更新間隔 (秒)：";
+/* Update interval: */
+"1017.title" = "更新間隔";
 
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1018"; */
+/* x */
 "1018.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "ユーザー"; ObjectID = "1019"; */
+/* User */
 "1019.title" = "ユーザー";
 
-/* Class = "NSTextFieldCell"; title = "システム"; ObjectID = "1020"; */
+/* System */
 "1020.title" = "システム";
 
-/* Class = "NSTextFieldCell"; title = "表示内容："; ObjectID = "1022"; */
-"1022.title" = "表示内容：";
+/* Width */
+"1025.title" = "幅";
 
-/* Class = "NSButtonCell"; title = "マルチプロセッサの場合は平均値を表示"; ObjectID = "1024"; */
-"1024.title" = "マルチプロセッサの場合は平均値を表示";
+/* PowerMate shows CPU usage */
+"1030.title" = "PowerMate で CPU 使用表示";
 
-/* Class = "NSTextFieldCell"; title = "幅："; ObjectID = "1025"; */
-"1025.title" = "幅：";
+/* Display Memory Menu Meter */
+"1032.title" = "メモリーメータを表示";
 
-/* Class = "NSTextFieldCell"; title = "パーセント表示オプション"; ObjectID = "1026"; */
-"1026.title" = "パーセント表示オプション";
-
-/* Class = "NSTextFieldCell"; title = "グラフ表示オプション"; ObjectID = "1027"; */
-"1027.title" = "グラフ表示オプション";
-
-/* Class = "NSTextFieldCell"; title = "その他のオプション"; ObjectID = "1028"; */
-"1028.title" = "その他のオプション";
-
-/* Class = "NSTextFieldCell"; title = "カラーオプション"; ObjectID = "1029"; */
-"1029.title" = "カラーオプション";
-
-/* Class = "NSButtonCell"; title = "PowerMate での CPU 使用表示："; ObjectID = "1030"; */
-"1030.title" = "PowerMate での CPU 使用表示：";
-
-/* Class = "NSButtonCell"; title = "メモリーメータを表示："; ObjectID = "1032"; */
-"1032.title" = "メモリーメータを表示：";
-
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1033"; */
+/* x */
 "1033.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "更新間隔 (秒)："; ObjectID = "1035"; */
-"1035.title" = "更新間隔 (秒)：";
+/* Update interval: */
+"1035.title" = "更新間隔";
 
-/* Class = "NSButtonCell"; title = "use (使用量)／free (空き容量) のラベルを付ける"; ObjectID = "1037"; */
+/* Show Used/Free labels */
 "1037.title" = "use (使用量)／free (空き容量) のラベルを付ける";
 
-/* Class = "NSTextFieldCell"; title = "一般オプション"; ObjectID = "1038"; */
-"1038.title" = "一般オプション";
-
-/* Class = "NSButtonCell"; title = "ページングインジケータを表示"; ObjectID = "1039"; */
+/* Show paging activity indicator */
 "1039.title" = "ページングインジケータを表示";
 
-/* Class = "NSTextFieldCell"; title = "カラーオプションオプション"; ObjectID = "1040"; */
-"1040.title" = "カラーオプションオプション";
-
-/* Class = "NSTextFieldCell"; title = "ページイン"; ObjectID = "1041"; */
+/* Pagein */
 "1041.title" = "ページイン";
 
-/* Class = "NSTextFieldCell"; title = "ページアウト"; ObjectID = "1042"; */
+/* Pageout */
 "1042.title" = "ページアウト";
 
-/* Class = "NSTextFieldCell"; title = "ページングレート"; ObjectID = "1043"; */
-"1043.title" = "ページングレート";
+/* Graph width: */
+"1044.title" = "幅";
 
-/* Class = "NSTextFieldCell"; title = "幅："; ObjectID = "1044"; */
-"1044.title" = "幅：";
-
-/* Class = "NSTextFieldCell"; title = "グラフ表示オプション"; ObjectID = "1045"; */
-"1045.title" = "グラフ表示オプション";
-
-/* Class = "NSTextFieldCell"; title = "アクティブ"; ObjectID = "1047"; */
+/* Active */
 "1047.title" = "アクティブ";
 
-/* Class = "NSTextFieldCell"; title = "インアクティブ"; ObjectID = "1048"; */
+/* Inactive */
 "1048.title" = "インアクティブ";
 
-/* Class = "NSTextFieldCell"; title = "ワイアード"; ObjectID = "1049"; */
+/* Wired */
 "1049.title" = "ワイアード";
 
-/* Class = "NSTextFieldCell"; title = "Free"; ObjectID = "1050"; */
+/* Free */
 "1050.title" = "Free";
 
-/* Class = "NSTextFieldCell"; title = "Used"; ObjectID = "1051"; */
+/* Used */
 "1051.title" = "Used";
 
-/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1053"; */
+/* x */
 "1053.title" = "x";
 
-/* Class = "NSButtonCell"; title = "ネットワークメータを表示："; ObjectID = "1054"; */
-"1054.title" = "ネットワークメータを表示：";
+/* Display Network Menu Meter */
+"1054.title" = "ネットワークメータを表示";
 
-/* Class = "NSTextFieldCell"; title = "更新間隔 (秒)："; ObjectID = "1056"; */
-"1056.title" = "更新間隔 (秒)：";
+/* Update interval: */
+"1056.title" = "更新間隔";
 
-/* Class = "NSTextFieldCell"; title = "送信"; ObjectID = "1057"; */
+/* Transmit */
 "1057.title" = "送信";
 
-/* Class = "NSTextFieldCell"; title = "受信"; ObjectID = "1058"; */
+/* Receive */
 "1058.title" = "受信";
 
-/* Class = "NSButtonCell"; title = "out (送信)／in (受信) のラベルを付ける"; ObjectID = "1060"; */
+/* Show throughput labels (Tx/Rx) */
 "1060.title" = "out (送信)／in (受信) のラベルを付ける";
 
-/* Class = "NSButtonCell"; title = "1KB/秒以下のスループットを無視"; ObjectID = "1061"; */
+/* Ignore values below 1K/s */
 "1061.title" = "1KB/秒以下のスループットを無視";
 
-/* Class = "NSTextFieldCell"; title = "表示タイプ："; ObjectID = "1062"; */
-"1062.title" = "表示タイプ：";
+/* Graph style: */
+"1062.title" = "表示タイプ";
 
-/* Class = "NSTextFieldCell"; title = "幅："; ObjectID = "1063"; */
-"1063.title" = "幅：";
+/* Graph width: */
+"1063.title" = "幅";
 
-/* Class = "NSTextFieldCell"; title = "スループット表示オプション"; ObjectID = "1065"; */
-"1065.title" = "スループット表示オプション";
+/* Display prefers interface: */
+"1068.title" = "インターフェース表示";
 
-/* Class = "NSTextFieldCell"; title = "グラフ表示オプション"; ObjectID = "1066"; */
-"1066.title" = "グラフ表示オプション";
+/* Display scales to: */
+"1071.title" = "表示内容";
 
-/* Class = "NSTextFieldCell"; title = "カラーオプション"; ObjectID = "1067"; */
-"1067.title" = "カラーオプション";
+/* Display scaling: */
+"1073.title" = "スケール";
 
-/* Class = "NSTextFieldCell"; title = "インターフェース表示："; ObjectID = "1068"; */
-"1068.title" = "インターフェース表示：";
+/* Display orientation: */
+"1075.title" = "表示方向";
 
-/* Class = "NSTextFieldCell"; title = "一般オプション"; ObjectID = "1070"; */
-"1070.title" = "一般オプション";
-
-/* Class = "NSTextFieldCell"; title = "表示内容："; ObjectID = "1071"; */
-"1071.title" = "表示内容：";
-
-/* Class = "NSTextFieldCell"; title = "スケール："; ObjectID = "1073"; */
-"1073.title" = "スケール：";
-
-/* Class = "NSTextFieldCell"; title = "表示方向："; ObjectID = "1075"; */
-"1075.title" = "表示方向：";
-
-/* Class = "NSTextFieldCell"; title = "インアクティブ"; ObjectID = "1077"; */
+/* Inactive */
 "1077.title" = "インアクティブ";
 
-/* Class = "NSTextFieldCell"; title = "MenuMeters, © 2002-2009 Alex Harper (http://www.ragingmenace.com)"; ObjectID = "1078"; */
-"1078.title" = "MenuMeters, © 2002-2009 Alex Harper (http://www.ragingmenace.com)";
+/* Rows */
+"1088.title" = "Rows";
 
-/* Class = "NSButtonCell"; title = "Sort by CPU usage"; ObjectID = ""; */
-".title" = "Sort by CPU usage";
+/* Width */
+"1117.title" = "Width";
 
-/* Class = "NSTextFieldCell"; title = "Horizontal Rows:"; ObjectID = ""; */
-".title" = "Horizontal Rows:";
+/* (%d) */
+"2NH-iF-l28.title" = "(%d)";
 
-/* Class = "NSTextFieldCell"; title = "Thermometer Display"; ObjectID = ""; */
-".title" = "Thermometer Display";
+/* the sum of all cores */
+"5Lg-aP-TSR.title" = "the sum of all cores";
 
-/* Class = "NSMenuItem"; title = "Horizontal Thermometer"; ObjectID = "941"; */
-"941.title" = "Horizontal Thermometer";
+/* the average of all cores */
+"BYT-hf-ygS.title" = "the average of all cores";
 
-/* Class = "NSButtonCell"; title = "Show average for least utilized processors as single display"; ObjectID = ""; */
-".title" = "Show average for least utilized processors as single display";
+/* Temperature */
+"C4n-F2-kuL.title" = "Temperature";
 
-/* Class = "NSTextFieldCell"; title = "Horizontal Width:"; ObjectID = ""; */
-".title" = "Horizontal Width:";
+/* Activity monitor: */
+"CDM-3t-gon.title" = "Activity monitor:";
 
-/* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "IdA-68-Ayg"; */
-"IdA-68-Ayg.title" = "Display memory pressure";
+/* all cores sorted */
+"CG1-40-AVC.title" = "all cores sorted";
+
+/* Sensor */
+"FHP-25-5gM.title" = "Sensor";
+
+/* original */
+"FPO-Jo-ubG.title" = "original";
+
+/* About */
+"FSw-QC-dn2.label" = "About";
+
+/* physical cores only */
+"H5f-hN-vQV.title" = "physical cores only";
+
+/* Graph */
+"IS4-Xc-psg.title" = "グラフ";
+
+/* Percentage */
+"Jeh-C2-Wwp.title" = "パーセント";
+
+/* Show bits per second */
+"K7W-5f-1U8.title" = "Show bits per second";
+
+/* Once per week */
+"LmO-Ij-G7M.title" = "Once per week";
+
+/* Once per month */
+"PuG-eZ-jRm.title" = "Once per month";
+
+/* Never */
+"STJ-3R-khe.title" = "Never";
+
+/* Check updates now */
+"XYi-uP-QCD.title" = "Check updates now";
+
+/* Display memory pressure */
+"aOw-Lj-aWS.title" = "Display memory pressure";
+
+/* pure black/white */
+"ayz-p2-XC5.title" = "pure black/white";
+
+/* Compressed */
+"ex0-hf-q5R.title" = "Compressed";
+
+/* CPU Temperature */
+"fiY-Fv-rRZ.title" = "CPU Temperature";
+
+/* Show */
+"k2d-Cg-pqL.title" = "Show";
+
+/* Once per day */
+"lh5-j8-SRe.title" = "Once per day";
+
+/* Color tint: */
+"mAZ-f2-5AJ.title" = "Color tint:";
+
+/* Opens specific panes */
+"phH-yJ-I6O.title" = "Opens specific panes";
+
+/* Vertical bar */
+"r6t-Zl-sS4.title" = "垂直レベルメータ";
+
+/* Processes to show: */
+"rhi-NX-C3L.title" = "Processes to show:";
+
+/* Horizontal bar */
+"spo-WT-wCm.title" = "水平レベルメータ";
+
+/* Automatic update check interval: */
+"tug-YR-k7T.title" = "Automatic update check interval:";
+
+/* all cores, including hyperthreaded ones */
+"vbH-jV-tUr.title" = "all cores, including hyperthreaded ones";

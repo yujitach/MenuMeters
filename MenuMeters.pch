@@ -1,24 +1,24 @@
 //
-//	MenuMeters.pch
+//  MenuMeters.pch
 //
-//	Prefix header for MenuMeters
+//  Prefix header for MenuMeters
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #ifdef __OBJC__
@@ -32,3 +32,9 @@
 #import <ApplicationServices/ApplicationServices.h>
 #import <IOKit/IOKitLib.h>
 #import <Security/Security.h>
+
+#ifdef DEBUG
+#define	MMLog(args...)			(void)printf("%i %s: %s\n", __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:args] UTF8String])
+#else
+#define	MMLog(args...)			// stubbed out
+#endif

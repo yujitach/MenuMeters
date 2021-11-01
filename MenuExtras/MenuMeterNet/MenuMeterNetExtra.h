@@ -1,64 +1,64 @@
 //
 //  MenuMeterNetExtra.h
 //
-//	Menu Extra implementation
+//  Menu Extra implementation
 //
-//	Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#import <Cocoa/Cocoa.h>
-#import <Carbon/Carbon.h>
-#import "MenuMeters.h"
 #import "MenuMeterDefaults.h"
 #import "MenuMeterNet.h"
 #import "MenuMeterNetConfig.h"
-#import "MenuMeterNetStats.h"
 #import "MenuMeterNetPPP.h"
+#import "MenuMeterNetStats.h"
 #import "MenuMeterWorkarounds.h"
-
+#import "MenuMeters.h"
+#import <Carbon/Carbon.h>
+#import <Cocoa/Cocoa.h>
 
 @interface MenuMeterNetExtra : NSMenuExtra {
 
 	// Menu Extra necessities
-	NSMenu 							*extraMenu;
+	NSMenu *extraMenu;
 	// Pref object
-	MenuMeterDefaults				*ourPrefs;
+	MenuMeterDefaults *ourPrefs;
 	// Info gatherers/controllers
-	MenuMeterNetConfig				*netConfig;
-	MenuMeterNetStats				*netStats;
-	MenuMeterNetPPP					*pppControl;
+	MenuMeterNetConfig *netConfig;
+	MenuMeterNetStats *netStats;
+	MenuMeterNetPPP *pppControl;
 	// Formatters for localization
-	NSNumberFormatter				*bytesFormatter, *prettyIntFormatter;
+	NSNumberFormatter *bytesFormatter, *prettyIntFormatter;
 	// Cached colors
-	NSColor							*txColor, *rxColor, *inactiveColor;
+	NSColor *txColor, *rxColor, *inactiveColor;
 	// Cached bezier paths
-	NSBezierPath					*upArrow, *downArrow;
+	NSBezierPath *upArrow, *downArrow;
 	// Cached prerendered text
-	NSImage							*throughputLabel, *inactiveThroughputLabel;
+	NSImage *throughputLabel, *inactiveThroughputLabel;
 	// The length of the menu item
-	float							menuWidth;
+	float menuWidth;
 	// Historical data samples and current interface config
-	NSDate							*lastSampleDate;
-	NSMutableArray					*netHistoryData, *netHistoryIntervals;
-	NSDictionary					*preferredInterfaceConfig;
+	NSDate *lastSampleDate;
+	NSMutableArray *netHistoryData, *netHistoryIntervals;
+	NSDictionary *preferredInterfaceConfig;
 	// Cached dictionary of menu items that can be updated
-	NSMutableDictionary				*updateMenuItems;
-	NSFont							*throughputFont;
+	NSMutableDictionary *updateMenuItems;
+	NSFont *throughputFont;
+	BOOL tallMenuBar;
 
 } // MenuMeterNetExtra
 
