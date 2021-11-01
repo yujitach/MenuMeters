@@ -1066,10 +1066,14 @@
 	}
 
 	// Construct strings
-	double sampleInterval = [ourPrefs netInterval];
+
+	double sampleInterval;
 	NSNumber *sampleIntervalNum = [netHistoryIntervals lastObject];
-	if (!sampleIntervalNum && ([sampleIntervalNum doubleValue] > 0)) {
+	if (sampleIntervalNum && ([sampleIntervalNum doubleValue] > 0)) {
 		sampleInterval = [sampleIntervalNum doubleValue];
+	}
+	else {
+		sampleInterval = [ourPrefs netInterval];
 	}
 	NSString *txString = [self throughputStringForBytes:txValue inInterval:sampleInterval];
 	NSString *rxString = [self throughputStringForBytes:rxValue inInterval:sampleInterval];
