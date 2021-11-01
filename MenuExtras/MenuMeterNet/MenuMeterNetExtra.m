@@ -189,7 +189,7 @@
 		NSArray *screens = NSScreen.screens;
 		tallMenuBar = screens.count == 1; // If there is a screen attached, it has its own (small) menu and I can’t distinguish the two right now.
 	}
-	throughputFont = [NSFont monospacedDigitSystemFontOfSize:tallMenuBar ? 12 : 9.5 weight:NSFontWeightRegular];
+	throughputFont = [NSFont monospacedDigitSystemFontOfSize:tallMenuBar ? 11 : 9.5 weight:NSFontWeightLight];
 	NSFont *traitFont = [NSFontManager.sharedFontManager convertFont:throughputFont toHaveTrait:NSCondensedFontMask];
 	if (traitFont) {
 		throughputFont = traitFont;
