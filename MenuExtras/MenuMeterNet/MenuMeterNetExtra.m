@@ -1249,7 +1249,6 @@
 
 	// Update prefs
 	[ourPrefs saveNetPreferInterface:interfaceName];
-	[ourPrefs syncWithDisk];
 	// Send the notification to the pref pane
 	[[NSNotificationCenter defaultCenter] postNotificationName:kPrefPaneBundleID
 																   object:kPrefChangeNotification];
@@ -1322,9 +1321,6 @@
 #ifdef ELCAPITAN
     [super configDisplay:kNetMenuBundleID  fromPrefs:ourPrefs withTimerInterval:[ourPrefs netInterval]];
 #endif
-
-	// Update prefs
-	[ourPrefs syncWithDisk];
 
 	// Cache colors to skip archiver
         txColor = [self colorByAdjustingForLightDark:[ourPrefs netTransmitColor]];

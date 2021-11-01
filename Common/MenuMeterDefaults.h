@@ -35,9 +35,6 @@
 + (void)movePreferencesIfNecessary;
 + (MenuMeterDefaults*)sharedMenuMeterDefaults;
 
-// Pref read/write
-- (void)syncWithDisk;
-
 // CPU menu prefs
 - (double)cpuInterval;
 - (int)cpuDisplayMode;

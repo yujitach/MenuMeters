@@ -435,7 +435,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (void)menuExtraChangedPrefs:(NSNotification *)notification {
 
 	if (ourPrefs) {
-		[ourPrefs syncWithDisk];
 		[self cpuPrefChange:nil];
 		[self diskPrefChange:nil];
 		[self memPrefChange:nil];
@@ -685,8 +684,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[cpuSystemColorLabel setTextColor:[NSColor disabledControlTextColor]];
 	}*/
 
-	// Write prefs and notify
-	[ourPrefs syncWithDisk];
+	// Notify
 	if ([self isExtraWithBundleIDLoaded:kCPUMenuBundleID]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:kCPUMenuBundleID
 																	   object:kPrefChangeNotification
@@ -722,8 +720,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[diskSelectMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[diskSelectMode selectItemAtIndex:[ourPrefs diskSelectMode]];
 
-	// Write prefs and notify
-	[ourPrefs syncWithDisk];
+	// Notify
 	if ([self isExtraWithBundleIDLoaded:kDiskMenuBundleID]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:kDiskMenuBundleID
 																	   object:kPrefChangeNotification
@@ -824,8 +821,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [memPressureMode setEnabled:NO];
     }*/
 
-	// Write prefs and notify
-	[ourPrefs syncWithDisk];
+	// Notify
 	if ([self isExtraWithBundleIDLoaded:kMemMenuBundleID]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:kMemMenuBundleID
 																	   object:kPrefChangeNotification
@@ -960,8 +956,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[netScaleCalcLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 
-	// Write prefs and notify
-	[ourPrefs syncWithDisk];
+	// Notify
 	if ([self isExtraWithBundleIDLoaded:kNetMenuBundleID]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:kNetMenuBundleID
 																	   object:kPrefChangeNotification
@@ -979,7 +974,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (void)loadExtraAtURL:(NSURL *)extraURL withID:(NSString *)bundleID {
 #ifdef ELCAPITAN
     [ourPrefs saveBoolPref:bundleID value:YES];
-    [ourPrefs syncWithDisk];
     [[NSNotificationCenter defaultCenter] postNotificationName:bundleID
                                                                    object:kPrefChangeNotification
                                                                  userInfo:nil];
@@ -1024,7 +1018,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 - (void)removeExtraWithBundleID:(NSString *)bundleID {
     [ourPrefs saveBoolPref:bundleID value:NO];
-    [ourPrefs syncWithDisk];
     [[NSNotificationCenter defaultCenter] postNotificationName:bundleID
                                                                    object:kPrefChangeNotification
      userInfo:nil];

@@ -374,9 +374,6 @@
     [super configDisplay:kDiskMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs diskInterval]];
 #endif
 
-	// Update prefs
-	[ourPrefs syncWithDisk];
-
 	// Handle menubar theme changes
 	fgMenuThemeColor = self.menuBarTextColor;
 	

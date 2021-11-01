@@ -117,10 +117,8 @@
 
 - (void)dealloc {
 
-	// Save back
-	[self syncWithDisk];
-
 	// Super do its thing
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
 } // dealloc
 
@@ -136,14 +134,6 @@
     });
     return isCatalinaOrLater;
 }
-///////////////////////////////////////////////////////////////
-//
-//	Pref read/write
-//
-///////////////////////////////////////////////////////////////
-
-- (void)syncWithDisk {
-} // syncFromDisk
 
 ///////////////////////////////////////////////////////////////
 //
