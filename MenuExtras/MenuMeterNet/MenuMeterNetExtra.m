@@ -1123,8 +1123,8 @@
 		txPos = NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), ourPrefs.tallMenuBar ? -3 : -1);
 	}
 	else {
-		txPos = NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), floor(imageSize.height / 2) - 1);
-		rxPos = NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), ourPrefs.tallMenuBar ? -3 : -1);
+		txPos = NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), floor(imageSize.height / 2) - (ourPrefs.tallMenuBar ? 1 : 2));
+		rxPos = NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), - (ourPrefs.tallMenuBar ? 3 : 1));
 	}
 	[renderTxString drawAtPoint:txPos];
 	[renderRxString drawAtPoint:rxPos];
