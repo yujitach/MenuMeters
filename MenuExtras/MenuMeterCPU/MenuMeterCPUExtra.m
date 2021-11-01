@@ -137,71 +137,72 @@
 
 	// Add processor info which never changes
 	if ([cpuInfo numberOfCPUs] != 1) {
-		menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kMultiProcessorTitle value:nil table:nil]
-													  action:nil
-											   keyEquivalent:@""];
+		menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kMultiProcessorTitle value:nil table:nil]
+										action:nil
+								 keyEquivalent:@""];
 	}
 	else {
-		menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kSingleProcessorTitle value:nil table:nil]
-													  action:nil
-											   keyEquivalent:@""];
+		menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kSingleProcessorTitle value:nil table:nil]
+										action:nil
+								 keyEquivalent:@""];
 	}
 	[menuItem setEnabled:NO];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [cpuInfo processorDescription]]
-												  action:nil
-										   keyEquivalent:@""];
+	menuItem = [extraMenu addItemWithTitle:[cpuInfo processorDescription]
+									action:nil
+							 keyEquivalent:@""];
 	[menuItem setEnabled:NO];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[NSString stringWithFormat:kMenuIndentFormat, [cpuInfo coreDescription]]
-												  action:nil
-										   keyEquivalent:@""];
+	[menuItem setIndentationLevel:1];
+	menuItem = [extraMenu addItemWithTitle:[cpuInfo coreDescription]
+									action:nil
+							 keyEquivalent:@""];
 	[menuItem setEnabled:NO];
-
+	[menuItem setIndentationLevel:1];
 	// Add uptime title and blank for uptime display
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kUptimeTitle value:nil table:nil]
+	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kUptimeTitle value:nil table:nil]
 												  action:nil
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
 	// Add task title and blanks for task display
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kTaskThreadTitle value:nil table:nil]
+	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kTaskThreadTitle value:nil table:nil]
 												  action:nil
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
 	// Add load title and blanks for load display
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kLoadAverageTitle value:nil table:nil]
+	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kLoadAverageTitle value:nil table:nil]
 												  action:nil
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kCPUPowerLimitStatusTitle value:nil table:nil]
+	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kCPUPowerLimitStatusTitle value:nil table:nil]
 												  action:nil
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
 	// Add top kCPUrocessCountMax most CPU intensive processes
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kProcessTitle value:nil table:nil]
+	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kProcessTitle value:nil table:nil]
 												  action:nil
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 
 	// as this list is "static" unfortunately we need all of the kCPUrocessCountMax menu items and hide/show later the un-wanted/wanted ones
 	for (NSInteger ndx = 0; ndx < kCPUrocessCountMax; ++ndx) {
-		menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+		menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
 		[menuItem setEnabled:NO];
 	}
 
 	// And the "Open Process Viewer"/"Open Activity Monitor" and "Open Console" item
 	[extraMenu addItem:[NSMenuItem separatorItem]];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenConsoleTitle value:nil table:nil]
+	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kOpenConsoleTitle value:nil table:nil]
 												  action:@selector(openConsole:)
 										   keyEquivalent:@""];
 	[menuItem setTarget:self];
@@ -330,21 +331,21 @@
 - (NSMenu *)menu {
 
 	// Update the various displays starting with uptime
-	NSString *title = [NSString stringWithFormat:kMenuIndentFormat, [uptimeInfo uptime]];
+	NSString *title = [uptimeInfo uptime];
 	if (title)
 		LiveUpdateMenuItemTitle(extraMenu, kCPUUptimeInfoMenuIndex, title);
 
 	// Tasks
-	title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo currentProcessorTasks]];
+	title = [cpuInfo currentProcessorTasks];
 	if (title)
 		LiveUpdateMenuItemTitle(extraMenu, kCPUTaskInfoMenuIndex, title);
 
 	// Load
-	title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo loadAverage]];
+	title = [cpuInfo loadAverage];
 	if (title)
 		LiveUpdateMenuItemTitle(extraMenu, kCPULoadInfoMenuIndex, title);
 
-	title = [NSString stringWithFormat:kMenuIndentFormat, [cpuInfo cpuPowerLimitStatus]];
+	title = [cpuInfo cpuPowerLimitStatus];
 	if (title)
 		LiveUpdateMenuItemTitle(extraMenu, kCPUPowerLimitInfoMenuIndex, title);
 
@@ -355,7 +356,7 @@
 		if (ndx < processes.count) {
 			NSString *name = processes[ndx][kProcessListItemProcessNameKey];
 			float percent = [processes[ndx][kProcessListItemCPUKey] floatValue];
-			title = [NSString stringWithFormat:kMenuIndentFormat, [NSString stringWithFormat:@"%@ (%.1f%%)", name, percent]];
+			title = [NSString stringWithFormat:@"%@ (%.1f%%)", name, percent];
 			NSMenuItem *mi = [extraMenu itemAtIndex:kCPUProcessMenuIndex + ndx];
 			mi.title = title;
 			mi.hidden = title.length == 0;
