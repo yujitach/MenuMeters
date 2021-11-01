@@ -1655,7 +1655,8 @@
 
 - (NSString *)stringifyNumber:(double)num withUnitLabel:(NSString *)label andFormat:(NSString *)format {
 
-	return [NSString stringWithFormat:format, num, [localizedStrings objectForKey:label]];
+	return [NSString stringWithFormat:format, num, label];
+	//return [NSString stringWithFormat:format, num, [localizedStrings objectForKey:label]];
 
 } // stringifyNumber:withUnitLabel:andFormat:
 
