@@ -138,21 +138,15 @@
 
 - (void)dealloc {
 
-	// Save back
-	[self syncWithDisk];
-
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
 } // dealloc
 
 ///////////////////////////////////////////////////////////////
 //
-//  Pref read/write
+//  Cache
 //
 ///////////////////////////////////////////////////////////////
-
-- (void)syncWithDisk {
-} // syncFromDisk
 
 - (void)resetCaches:(id)sender {
 	_cpuDisplayMode = -1;

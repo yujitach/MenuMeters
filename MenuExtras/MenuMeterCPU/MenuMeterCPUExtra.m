@@ -762,9 +762,6 @@
 				fromPrefs:ourPrefs
 		withTimerInterval:[ourPrefs cpuInterval]];
 #endif
-	// Update prefs
-	[ourPrefs syncWithDisk];
-
 	// Handle menubar theme changes
 	fgMenuThemeColor = self.menuBarTextColor;
 
