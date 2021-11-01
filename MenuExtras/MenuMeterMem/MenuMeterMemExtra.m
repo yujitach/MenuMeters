@@ -557,7 +557,9 @@
 
 	// Draw
 	NSRect barFrame = NSMakeRect(0, 0, kMemThermometerDisplayWidth, imageSize.height);
-
+	if (!ourPrefs.tallMenuBar) {
+		barFrame = NSInsetRect(barFrame, 0, 1);
+	}
 	NSRect pressureRect = barFrame;
 	pressureRect.size.height *= pressure;
 

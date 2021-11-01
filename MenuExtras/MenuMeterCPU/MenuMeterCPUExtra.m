@@ -579,6 +579,9 @@
 
 	// Paths
 	NSRect thermometerFrame = NSMakeRect(offset, 0, kCPUThermometerDisplayWidth, imageSize.height);
+	if (!ourPrefs.tallMenuBar) {
+		thermometerFrame = NSInsetRect(thermometerFrame, 0, 1);
+	}
 	NSRect userRect = thermometerFrame;
 	userRect.size.height *= (user + system) > 1 ? 1 : (user + system);
 	NSRect systemRect = thermometerFrame;
