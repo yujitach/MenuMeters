@@ -248,4 +248,6 @@
 
 - (void)saveNetPreferInterface:(NSString *)interface;
 
+@property (readonly) BOOL tallMenuBar;
+
 @end
