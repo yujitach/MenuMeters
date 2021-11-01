@@ -81,6 +81,10 @@
 	BOOL _cpuAvgAllProcs;
 	int _cpuGraphLength;
 	int _cpuPercentDisplay;
+	BOOL _netThroughput1KBound;
+	BOOL _netThroughputBits;
+	BOOL _netThroughputLabel;
+	int _netDisplayOrientation;
 }
 
 #define kMigratedFromRagingMenaceToYujitach @"migratedFromRagingMenaceToYujitach"
@@ -153,6 +157,13 @@
 	_cpuAvgAllProcs = [self loadBoolPref:kCPUAvgAllProcsPref defaultValue:kCPUAvgAllProcsDefault];
 	_cpuGraphLength = -1;
 	_cpuPercentDisplay = -1;
+	_netThroughput1KBound = [self loadBoolPref:kNetThroughput1KBoundPref defaultValue:kNetThroughput1KBoundDefault];
+	_netThroughputBits = [self loadBoolPref:kNetThroughput1KBoundPref defaultValue:kNetThroughput1KBoundDefault];
+	_netThroughputLabel = [self loadBoolPref:kNetThroughputLabelPref defaultValue:kNetThroughputLabelDefault];
+	_netDisplayOrientation = [self loadIntPref:kNetDisplayOrientationPref
+									  lowBound:kNetDisplayOrientTxRx
+									 highBound:kNetDisplayOrientRxTx
+								  defaultValue:kNetDisplayOrientationDefault];
 }
 
 ///////////////////////////////////////////////////////////////
@@ -549,10 +560,7 @@
 } // netDisplayMode
 
 - (int)netDisplayOrientation {
-	return [self loadIntPref:kNetDisplayOrientationPref
-					lowBound:kNetDisplayOrientTxRx
-				   highBound:kNetDisplayOrientRxTx
-				defaultValue:kNetDisplayOrientationDefault];
+	return _netDisplayOrientation;
 } // netDisplayOrientation
 
 - (int)netScaleMode {
@@ -570,15 +578,15 @@
 } // netScaleCalc
 
 - (BOOL)netThroughputLabel {
-	return [self loadBoolPref:kNetThroughputLabelPref defaultValue:kNetThroughputLabelDefault];
+	return _netThroughputLabel;
 } // netThroughputLabel
 
 - (BOOL)netThroughput1KBound {
-	return [self loadBoolPref:kNetThroughput1KBoundPref defaultValue:kNetThroughput1KBoundDefault];
+	return _netThroughput1KBound;
 } // netThroughput1KBound
 
 - (BOOL)netThroughputBits {
-	return [self loadBoolPref:kNetThroughputBitsPref defaultValue:kNetThroughputBitsDefault];
+	return _netThroughputBits;
 } // netThroughputBits
 
 - (int)netGraphStyle {
