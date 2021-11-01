@@ -758,8 +758,8 @@
 	temperatureColor = [self colorByAdjustingForLightDark:[ourPrefs cpuTemperatureColor]];
 
 	int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs] ? [cpuInfo numberOfCores] : [cpuInfo numberOfCPUs];
-
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
+	int cpuDisplayMode = [ourPrefs cpuDisplayMode];
+	if (cpuDisplayMode & kCPUDisplayPercent) {
 		// Calc the new width
 		NSAttributedString *string = [self percentStringForLoad:[ourPrefs cpuSumAllProcsPercent] ? [cpuInfo numberOfCPUs] : 1.0
 													   andColor:fgMenuThemeColor];
@@ -768,20 +768,21 @@
 
 	// Fix our menu size to match our new config
 	menuWidth = 0;
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) {
+	if (cpuDisplayMode & kCPUDisplayHorizontalThermometer) {
 		menuWidth = [ourPrefs cpuMenuWidth];
 	}
 	else {
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
-			menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * percentWidth);
+		BOOL cpuAvgAllProcs = [ourPrefs cpuAvgAllProcs];
+		if (cpuDisplayMode & kCPUDisplayPercent) {
+			menuWidth += ((cpuAvgAllProcs ? 1 : numberOfCPUs) * percentWidth);
 		}
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
-			menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * [ourPrefs cpuGraphLength]);
+		if (cpuDisplayMode & kCPUDisplayGraph) {
+			menuWidth += ((cpuAvgAllProcs ? 1 : numberOfCPUs) * [ourPrefs cpuGraphLength]);
 		}
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) {
-			menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * kCPUThermometerDisplayWidth);
+		if (cpuDisplayMode & kCPUDisplayThermometer) {
+			menuWidth += ((cpuAvgAllProcs ? 1 : numberOfCPUs) * kCPUThermometerDisplayWidth);
 		}
-		if (![ourPrefs cpuAvgAllProcs] && (numberOfCPUs > 1)) {
+		if (!cpuAvgAllProcs && (numberOfCPUs > 1)) {
 			menuWidth += ((numberOfCPUs - 1) * kCPUDisplayMultiProcGapWidth);
 		}
 	}
@@ -789,7 +790,7 @@
 		cpuTemperatureDisplayWidth = 1 + [self renderTemperatureStringForString:@"66.6℃"].size.width;
 		menuWidth += cpuTemperatureDisplayWidth;
 	}
-	if (![ourPrefs cpuShowTemperature] && [ourPrefs cpuDisplayMode] == 0) {
+	if (![ourPrefs cpuShowTemperature] && cpuDisplayMode == 0) {
 		menuWidth = kCPULabelOnlyWidth;
 	}
 	// Handle PowerMate
