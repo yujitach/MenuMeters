@@ -975,7 +975,7 @@
 	// Construct strings
 	double sampleInterval = [ourPrefs netInterval];
 	NSNumber *sampleIntervalNum = [netHistoryIntervals lastObject];
-	if (!sampleIntervalNum && ([sampleIntervalNum doubleValue] > 0)) {
+	if (sampleIntervalNum && ([sampleIntervalNum doubleValue] > 0)) {
 		sampleInterval = [sampleIntervalNum doubleValue];
 	}
 	
