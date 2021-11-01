@@ -10,3 +10,9 @@ Build
 .DS_Store 
 xcuserdata/
 notarized_product/
+misc/
+notarize
+prenotarized_zip/
+staple-and-upload
+upload
+upload-old
