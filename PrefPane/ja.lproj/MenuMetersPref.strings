@@ -173,26 +173,26 @@
 /* Class = "NSMenuItem"; title = "上下逆に"; ObjectID = "613"; */
 "613.title" = "上下逆に";
 
-/* Class = "NSButtonCell"; title = "ディスクメータを表示："; ObjectID = "1006"; */
-"1006.title" = "ディスクメータを表示：";
+/* Class = "NSButtonCell"; title = "ディスクメータを表示"; ObjectID = "1006"; */
+"1006.title" = "ディスクメータを表示";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1007"; */
 "1007.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "更新間隔 (秒)："; ObjectID = "1010"; */
-"1010.title" = "更新間隔 (秒)：";
+/* Class = "NSTextFieldCell"; title = "更新間隔"; ObjectID = "1010"; */
+"1010.title" = "更新間隔";
 
-/* Class = "NSTextFieldCell"; title = "メニューからボリューム選択した時："; ObjectID = "1011"; */
-"1011.title" = "メニューからボリューム選択した時：";
+/* Class = "NSTextFieldCell"; title = "メニューからボリューム選択した時"; ObjectID = "1011"; */
+"1011.title" = "メニューからボリューム選択した時";
 
 /* Class = "NSTextFieldCell"; title = "(Option キーを押すと取り消す事ができます)"; ObjectID = "1013"; */
 "1013.title" = "(Option キーを押すと取り消す事ができます)";
 
-/* Class = "NSButtonCell"; title = "CPU メータを表示："; ObjectID = "1014"; */
-"1014.title" = "CPU メータを表示：";
+/* Class = "NSButtonCell"; title = "CPU メータを表示"; ObjectID = "1014"; */
+"1014.title" = "CPU メータを表示";
 
-/* Class = "NSTextFieldCell"; title = "更新間隔 (秒)："; ObjectID = "1017"; */
-"1017.title" = "更新間隔 (秒)：";
+/* Class = "NSTextFieldCell"; title = "更新間隔"; ObjectID = "1017"; */
+"1017.title" = "更新間隔";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1018"; */
 "1018.title" = "x";
@@ -203,14 +203,14 @@
 /* Class = "NSTextFieldCell"; title = "システム"; ObjectID = "1020"; */
 "1020.title" = "システム";
 
-/* Class = "NSTextFieldCell"; title = "表示内容："; ObjectID = "1022"; */
-"1022.title" = "表示内容：";
+/* Class = "NSTextFieldCell"; title = "表示内容"; ObjectID = "1022"; */
+"1022.title" = "表示内容";
 
 /* Class = "NSButtonCell"; title = "マルチプロセッサの場合は平均値を表示"; ObjectID = "1024"; */
 "1024.title" = "マルチプロセッサの場合は平均値を表示";
 
-/* Class = "NSTextFieldCell"; title = "幅："; ObjectID = "1025"; */
-"1025.title" = "幅：";
+/* Class = "NSTextFieldCell"; title = "幅"; ObjectID = "1025"; */
+"1025.title" = "幅";
 
 /* Class = "NSTextFieldCell"; title = "パーセント表示オプション"; ObjectID = "1026"; */
 "1026.title" = "パーセント表示オプション";
@@ -224,17 +224,17 @@
 /* Class = "NSTextFieldCell"; title = "カラーオプション"; ObjectID = "1029"; */
 "1029.title" = "カラーオプション";
 
-/* Class = "NSButtonCell"; title = "PowerMate での CPU 使用表示："; ObjectID = "1030"; */
-"1030.title" = "PowerMate での CPU 使用表示：";
+/* Class = "NSButtonCell"; title = "PowerMate での CPU 使用表示"; ObjectID = "1030"; */
+"1030.title" = "PowerMate で CPU 使用表示";
 
-/* Class = "NSButtonCell"; title = "メモリーメータを表示："; ObjectID = "1032"; */
-"1032.title" = "メモリーメータを表示：";
+/* Class = "NSButtonCell"; title = "メモリーメータを表示"; ObjectID = "1032"; */
+"1032.title" = "メモリーメータを表示";
 
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1033"; */
 "1033.title" = "x";
 
-/* Class = "NSTextFieldCell"; title = "更新間隔 (秒)："; ObjectID = "1035"; */
-"1035.title" = "更新間隔 (秒)：";
+/* Class = "NSTextFieldCell"; title = "更新間隔"; ObjectID = "1035"; */
+"1035.title" = "更新間隔";
 
 /* Class = "NSButtonCell"; title = "use (使用量)／free (空き容量) のラベルを付ける"; ObjectID = "1037"; */
 "1037.title" = "use (使用量)／free (空き容量) のラベルを付ける";
@@ -257,8 +257,8 @@
 /* Class = "NSTextFieldCell"; title = "ページングレート"; ObjectID = "1043"; */
 "1043.title" = "ページングレート";
 
-/* Class = "NSTextFieldCell"; title = "幅："; ObjectID = "1044"; */
-"1044.title" = "幅：";
+/* Class = "NSTextFieldCell"; title = "幅"; ObjectID = "1044"; */
+"1044.title" = "幅";
 
 /* Class = "NSTextFieldCell"; title = "グラフ表示オプション"; ObjectID = "1045"; */
 "1045.title" = "グラフ表示オプション";
@@ -281,11 +281,11 @@
 /* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1053"; */
 "1053.title" = "x";
 
-/* Class = "NSButtonCell"; title = "ネットワークメータを表示："; ObjectID = "1054"; */
-"1054.title" = "ネットワークメータを表示：";
+/* Class = "NSButtonCell"; title = "ネットワークメータを表示"; ObjectID = "1054"; */
+"1054.title" = "ネットワークメータを表示";
 
-/* Class = "NSTextFieldCell"; title = "更新間隔 (秒)："; ObjectID = "1056"; */
-"1056.title" = "更新間隔 (秒)：";
+/* Class = "NSTextFieldCell"; title = "更新間隔"; ObjectID = "1056"; */
+"1056.title" = "更新間隔";
 
 /* Class = "NSTextFieldCell"; title = "送信"; ObjectID = "1057"; */
 "1057.title" = "送信";
@@ -299,11 +299,11 @@
 /* Class = "NSButtonCell"; title = "1KB/秒以下のスループットを無視"; ObjectID = "1061"; */
 "1061.title" = "1KB/秒以下のスループットを無視";
 
-/* Class = "NSTextFieldCell"; title = "表示タイプ："; ObjectID = "1062"; */
-"1062.title" = "表示タイプ：";
+/* Class = "NSTextFieldCell"; title = "表示タイプ"; ObjectID = "1062"; */
+"1062.title" = "表示タイプ";
 
-/* Class = "NSTextFieldCell"; title = "幅："; ObjectID = "1063"; */
-"1063.title" = "幅：";
+/* Class = "NSTextFieldCell"; title = "幅"; ObjectID = "1063"; */
+"1063.title" = "幅";
 
 /* Class = "NSTextFieldCell"; title = "スループット表示オプション"; ObjectID = "1065"; */
 "1065.title" = "スループット表示オプション";
@@ -314,20 +314,20 @@
 /* Class = "NSTextFieldCell"; title = "カラーオプション"; ObjectID = "1067"; */
 "1067.title" = "カラーオプション";
 
-/* Class = "NSTextFieldCell"; title = "インターフェース表示："; ObjectID = "1068"; */
-"1068.title" = "インターフェース表示：";
+/* Class = "NSTextFieldCell"; title = "インターフェース表示"; ObjectID = "1068"; */
+"1068.title" = "インターフェース表示";
 
 /* Class = "NSTextFieldCell"; title = "一般オプション"; ObjectID = "1070"; */
 "1070.title" = "一般オプション";
 
-/* Class = "NSTextFieldCell"; title = "表示内容："; ObjectID = "1071"; */
-"1071.title" = "表示内容：";
+/* Class = "NSTextFieldCell"; title = "表示内容"; ObjectID = "1071"; */
+"1071.title" = "表示内容";
 
-/* Class = "NSTextFieldCell"; title = "スケール："; ObjectID = "1073"; */
-"1073.title" = "スケール：";
+/* Class = "NSTextFieldCell"; title = "スケール"; ObjectID = "1073"; */
+"1073.title" = "スケール";
 
-/* Class = "NSTextFieldCell"; title = "表示方向："; ObjectID = "1075"; */
-"1075.title" = "表示方向：";
+/* Class = "NSTextFieldCell"; title = "表示方向"; ObjectID = "1075"; */
+"1075.title" = "表示方向";
 
 /* Class = "NSTextFieldCell"; title = "インアクティブ"; ObjectID = "1077"; */
 "1077.title" = "インアクティブ";

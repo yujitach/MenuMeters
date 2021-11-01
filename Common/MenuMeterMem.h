@@ -28,13 +28,13 @@
 ///////////////////////////////////////////////////////////////
 
 // Widths of the various displays
-#define kMemPieDisplayWidth 17.0f
-#define kMemNumberDisplayShortWidth 20.0f
-#define kMemNumberDisplayLongWidth 26.0f
-#define kMemNumberDisplayExtraLongWidth 34.0f
-#define kMemThermometerDisplayWidth 11.0f
-#define kMemPagingDisplayWidth 17.0f
-#define kMemPagingDisplayGapWidth 4.0f
+#define kMemPieDisplayWidth 17.0
+#define kMemNumberDisplayShortWidth 20.0
+#define kMemNumberDisplayLongWidth 26.0
+#define kMemNumberDisplayExtraLongWidth 34.0
+#define kMemThermometerDisplayWidth 11.0
+#define kMemPagingDisplayWidth 17.0
+#define kMemPagingDisplayGapWidth 4.0
 
 // Menu item indexes
 #define kMemUsageInfoMenuIndex 1

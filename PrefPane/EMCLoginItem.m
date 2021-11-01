@@ -19,7 +19,7 @@
 	IconRef _iconRef;
 }
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
 
 	if (self) {
@@ -123,12 +123,16 @@
 
 			if (LSSharedFileListItemResolve(loginItem, 0, &itemUrl, NULL) == noErr) {
 				if (CFEqual(itemUrl, url)) {
+					CFRelease(loginItemsArray);
 					return YES;
 				}
 			}
 			else {
 				NSLog(@"Error: LSSharedFileListItemResolve failed.");
 			}
+		}
+		if (loginItemsArray) {
+			CFRelease(loginItemsArray);
 		}
 	}
 	else {
@@ -191,11 +195,14 @@
 
 		if (LSSharedFileListItemResolve(loginItem, 0, &itemUrl, NULL) == noErr) {
 			if (CFEqual(itemUrl, path)) {
+				CFRelease(loginItemsArray);
 				return loginItem;
 			}
 		}
 	}
-
+	if (loginItemsArray) {
+		CFRelease(loginItemsArray);
+	}
 	return nil;
 }
 
@@ -227,7 +234,9 @@
 				NSLog(@"Warning: LSSharedFileListItemResolve failed, could not resolve item.");
 			}
 		}
-
+		if (loginItemsArray) {
+			CFRelease(loginItemsArray);
+		}
 		if (!removed) {
 			NSLog(@"Error: could not find login item to remove.");
 		}

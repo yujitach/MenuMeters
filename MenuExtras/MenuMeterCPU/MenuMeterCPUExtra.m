@@ -33,15 +33,15 @@
 
 // Image renderers
 
-- (void)renderHistoryGraphIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset;
+- (void)renderHistoryGraphImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset;
 
-- (void)renderSinglePercentIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset;
+- (void)renderSinglePercentImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset;
 
-- (void)renderSplitPercentIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset;
+- (void)renderSplitPercentImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset;
 
-- (void)renderThermometerIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset;
+- (void)renderThermometerImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset;
 
-- (void)renderHorizontalThermometerIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atX:(float)x andY:(float)y withWidth:(float)width andHeight:(float)height;
+- (void)renderHorizontalThermometerImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atX:(float)x andY:(float)y withWidth:(float)width andHeight:(float)height;
 
 // Timer callbacks
 
@@ -212,7 +212,7 @@
 	[self configFromPrefs:nil];
 
 	// And hand ourself back to SystemUIServer
-	NSLog(@"MenuMeterCPU loaded.");
+	MMLog(@"MenuMeterCPU loaded.");
 	return self;
 
 } // initWithBundle
@@ -226,92 +226,101 @@
 ///////////////////////////////////////////////////////////////
 
 - (NSImage *)image {
-	[self setupAppearance];
-	// Image to render into (and return to view)
-	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth, self.height - 1)];
-	if (!currentImage)
-		return nil;
 
 	// Don't render without data
 	if (![loadHistory count])
 		return nil;
 
+	[self setupAppearance];
+
+	NSSize imageSize = NSMakeSize(menuWidth, self.height - 1);
+
 	uint32_t cpuCount = [cpuInfo numberOfCPUs];
 	uint32_t stride = [ourPrefs cpuAvgLowerHalfProcs] ? [cpuInfo numberOfCPUs] / [cpuInfo numberOfCores] : 1;
-	float renderOffset = 0.0;
-	// Horizontal CPU thermometer is handled differently because it has to
-	// manage rows and columns in a very different way from normal horizontal
-	// layout
-	if (![ourPrefs cpuShowTemperature] && [ourPrefs cpuDisplayMode] == 0) {
-		[currentImage lockFocus];
-		NSAttributedString *cpuString = [[NSAttributedString alloc]
-			initWithString:@"CPU"
-				attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont monospacedDigitSystemFontOfSize:[NSFont smallSystemFontSize] weight:NSFontWeightRegular],
-																	  NSFontAttributeName, fgMenuThemeColor, NSForegroundColorAttributeName,
-																	  nil]];
-		[cpuString drawAtPoint:NSMakePoint(
-								   kCPULabelOnlyWidth - (float)round([cpuString size].width) - 1,
-								   (float)(([currentImage size].height - [cpuString size].height) / 2) + self.baselineOffset)];
-		[currentImage unlockFocus];
-		return currentImage;
-	}
-	if ([ourPrefs cpuShowTemperature]) {
-		[self renderSingleTemperatureIntoImage:currentImage atOffset:renderOffset];
-		renderOffset += cpuTemperatureDisplayWidth;
-	}
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) {
-		// Calculate the minimum number of columns that will be needed
-		uint32_t rowCount = [ourPrefs cpuHorizontalRows];
-		// ceil(A/B) for ints is equal (A+B-1)/B
-		uint32_t columnCount = (cpuCount + rowCount - 1) / rowCount;
-		//((cpuCount - 1) / [ourPrefs cpuHorizontalRows]) + 1;
-		// Calculate a column width
-		float columnWidth = (menuWidth - 1.0f) / columnCount;
-		// Image height
-		float imageHeight = (float)([currentImage size].height);
-		// Calculate a thermometer height
-		float thermometerHeight = ((imageHeight - 2) / rowCount);
-		for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum += stride) {
-			float xOffset = renderOffset + ((cpuNum / rowCount) * columnWidth) + 1.0;
-			float yOffset = (imageHeight -
-							 (((cpuNum % rowCount) + 1) * thermometerHeight)) -
-							1.0;
-			[self renderHorizontalThermometerIntoImage:currentImage forProcessor:cpuNum atX:xOffset andY:yOffset withWidth:columnWidth andHeight:thermometerHeight];
+	BOOL cpuShowTemperature = [ourPrefs cpuShowTemperature];
+	int cpuDisplayMode = [ourPrefs cpuDisplayMode];
+	MenuMeterDefaults *prefs = ourPrefs;
+	// Image to render into (and return to view)
+	NSImage *currentImage = [NSImage imageWithSize:imageSize
+										   flipped:NO
+									drawingHandler:^BOOL(NSRect dstRect) {
+		// Horizontal CPU thermometer is handled differently because it has to
+		// manage rows and columns in a very different way from normal horizontal
+		// layout
+		float renderOffset = 0.0;
+		if (!cpuShowTemperature && cpuDisplayMode == 0) {
+			NSDictionary *attributes = @{
+				NSFontAttributeName: [NSFont monospacedDigitSystemFontOfSize:[NSFont smallSystemFontSize] weight:NSFontWeightRegular],
+				NSForegroundColorAttributeName: self->fgMenuThemeColor
+			};
+			NSAttributedString *cpuString = [[NSAttributedString alloc]
+											 initWithString:@"CPU"
+											 attributes:attributes];
+			NSPoint pos = NSMakePoint(
+									  kCPULabelOnlyWidth - round([cpuString size].width) - 1,
+									  ((imageSize.height - [cpuString size].height) / 2) + self.baselineOffset);
+			[cpuString drawAtPoint:pos];
+			return YES;
 		}
-	}
-	else {
-		// Loop by processor
-		int cpuDisplayModePrefs = [ourPrefs cpuDisplayMode];
-		for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum += stride) {
-
-			// Render graph if needed
-			if (cpuDisplayModePrefs & kCPUDisplayGraph) {
-				[self renderHistoryGraphIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
-				// Adjust render offset
-				renderOffset += [ourPrefs cpuGraphLength];
-			}
-			// Render percent if needed
-			if (cpuDisplayModePrefs & kCPUDisplayPercent) {
-				if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
-					[self renderSplitPercentIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
-				}
-				else {
-					[self renderSinglePercentIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
-				}
-				renderOffset += percentWidth;
-			}
-			if (cpuDisplayModePrefs & kCPUDisplayThermometer) {
-				[self renderThermometerIntoImage:currentImage forProcessor:cpuNum atOffset:renderOffset];
-				renderOffset += kCPUThermometerDisplayWidth;
-			}
-			// At end of each proc adjust spacing
-			renderOffset += kCPUDisplayMultiProcGapWidth;
-
-			// If we're averaging all we're done on first iteration
-			if ([ourPrefs cpuAvgAllProcs])
-				break;
+		if (cpuShowTemperature) {
+			[self renderSingleTemperatureImageSize:imageSize atOffset:renderOffset];
+			renderOffset += self->cpuTemperatureDisplayWidth;
 		}
-	}
+		if (cpuDisplayMode & kCPUDisplayHorizontalThermometer) {
+			// Calculate the minimum number of columns that will be needed
+			uint32_t rowCount = [prefs cpuHorizontalRows];
+			// ceil(A/B) for ints is equal (A+B-1)/B
+			uint32_t columnCount = (cpuCount + rowCount - 1) / rowCount;
+			//((cpuCount - 1) / [prefs cpuHorizontalRows]) + 1;
+			// Calculate a column width
+			float columnWidth = (self->menuWidth - 1.0) / columnCount;
+			// Image height
+			float imageHeight = (float)imageSize.height;
+			// Calculate a thermometer height
+			float thermometerHeight = ((imageHeight - 2) / rowCount);
+			for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum += stride) {
+				float xOffset = renderOffset + ((cpuNum / rowCount) * columnWidth) + 1.0;
+				float yOffset = (imageHeight -
+								 ((cpuNum % rowCount) + 1) * thermometerHeight) -
+				1.0;
+				[self renderHorizontalThermometerImageSize:imageSize forProcessor:cpuNum atX:xOffset andY:yOffset withWidth:columnWidth andHeight:thermometerHeight];
+			}
+		}
+		else {
+			// Loop by processor
+			int cpuDisplayModePrefs = [prefs cpuDisplayMode];
+			for (uint32_t cpuNum = 0; cpuNum < cpuCount; cpuNum += stride) {
+
+				// Render graph if needed
+				if (cpuDisplayModePrefs & kCPUDisplayGraph) {
+					[self renderHistoryGraphImageSize:imageSize forProcessor:cpuNum atOffset:renderOffset];
+					// Adjust render offset
+					renderOffset += [prefs cpuGraphLength];
+				}
+				// Render percent if needed
+				if (cpuDisplayModePrefs & kCPUDisplayPercent) {
+					if ([prefs cpuPercentDisplay] == kCPUPercentDisplaySplit) {
+						[self renderSplitPercentImageSize:imageSize forProcessor:cpuNum atOffset:renderOffset];
+					}
+					else {
+						[self renderSinglePercentImageSize:imageSize forProcessor:cpuNum atOffset:renderOffset];
+					}
+					renderOffset += self->percentWidth;
+				}
+				if (cpuDisplayModePrefs & kCPUDisplayThermometer) {
+					[self renderThermometerImageSize:imageSize forProcessor:cpuNum atOffset:renderOffset];
+					renderOffset += kCPUThermometerDisplayWidth;
+				}
+				// At end of each proc adjust spacing
+				renderOffset += kCPUDisplayMultiProcGapWidth;
+
+				// If we're averaging all we're done on first iteration
+				if ([prefs cpuAvgAllProcs])
+					break;
+			}
+		}
+		return YES;
+	}];
 
 	// Send it back for the view to render
 	return currentImage;
@@ -376,7 +385,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//    NSMenuDelegate
+//  NSMenuDelegate
 //
 ///////////////////////////////////////////////////////////////
 
@@ -403,7 +412,7 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)renderHistoryGraphIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
+- (void)renderHistoryGraphImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset {
 
 	// Construct paths
 	NSBezierPath *systemPath = [NSBezierPath bezierPath];
@@ -416,7 +425,7 @@
 	[userPath moveToPoint:NSMakePoint(offset, 0)];
 	// Loop over pixels in desired width until we're out of data
 	int renderPosition = 0;
-	float renderHeight = (float)[image size].height - 0.5; // Save space for baseline
+	float renderHeight = (float)imageSize.height - 0.5; // Save space for baseline
 	int cpuGraphLength = [ourPrefs cpuGraphLength];
 	for (renderPosition = 0; renderPosition < cpuGraphLength; renderPosition++) {
 		// No data at this position?
@@ -439,34 +448,36 @@
 	[systemPath lineToPoint:NSMakePoint(offset + renderPosition - 1, 0)];
 
 	// Draw
-	[image lockFocus];
 	[userColor set];
 	[userPath fill];
 	[systemColor set];
 	[systemPath fill];
 
-	// Clean up
-	[[NSColor blackColor] set];
-	[image unlockFocus];
-
-} // renderHistoryGraphIntoImage:forProcessor:atOffset:
+} // renderHistoryGraphImageSize:forProcessor:atOffset:
 
 - (NSAttributedString *)percentStringForLoad:(float)load andColor:(NSColor *)color {
 	float fontSize = self.fontSize;
+	if ([cpuInfo numberOfCPUs] > 8) {
+		fontSize -= 2;
+	}
+	NSFont *percentFont = [NSFont monospacedDigitSystemFontOfSize:fontSize weight:NSFontWeightRegular];
+	NSFont *traitFont = [NSFontManager.sharedFontManager convertFont:percentFont toHaveTrait:NSCondensedFontMask];
+	if (traitFont) {
+		percentFont = traitFont;
+	}
 	NSDictionary *textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-													 [NSFont monospacedDigitSystemFontOfSize:fontSize
-																					  weight:NSFontWeightRegular],
+													 percentFont,
 													 NSFontAttributeName,
 													 color,
 													 NSForegroundColorAttributeName,
 													 nil];
 	NSAttributedString *cacheText = [[NSAttributedString alloc]
-		initWithString:[NSString stringWithFormat:@"%d%%", (int)roundf(load * 100.0f)]
+		initWithString:[NSString stringWithFormat:@"%d%%", (int)roundf(load * 100.0)]
 			attributes:textAttributes];
 	return cacheText;
 }
 
-- (void)renderSinglePercentIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
+- (void)renderSinglePercentImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset {
 
 	// Current load (if available)
 	double system = 0, user = 0;
@@ -480,17 +491,16 @@
 		totalLoad *= [cpuInfo numberOfCPUs];
 	}
 
-	[image lockFocus];
 	NSAttributedString *string = [self percentStringForLoad:totalLoad andColor:fgMenuThemeColor];
-	[string drawAtPoint:NSMakePoint(offset + percentWidth - ceil([string size].width) - 1,
-									(([image size].height - [string size].height) / 2) + self.baselineOffset)];
-	[image unlockFocus];
+	NSPoint pos = NSMakePoint(offset + percentWidth - ceil([string size].width) - 1,
+							  ((imageSize.height - [string size].height) / 2) + self.baselineOffset);
+	[string drawAtPoint:pos];
 
-} // renderSinglePercentIntoImage:forProcessor:atOffset:
+} // renderSinglePercentImageSize:forProcessor:atOffset:
 
-- (void)renderSplitPercentIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
+- (void)renderSplitPercentImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset {
 
-	double system, user;
+	double system = 0, user = 0;
 	[self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
 	if ((system < 0) || (user < 0)) {
 		return;
@@ -503,30 +513,36 @@
 	// Get the prerendered text and draw
 	NSAttributedString *systemString = [self percentStringForLoad:system andColor:systemColor];
 	NSAttributedString *userString = [self percentStringForLoad:user andColor:userColor];
-	[image lockFocus];
 	[systemString drawAtPoint:NSMakePoint(offset + percentWidth - [systemString size].width - 1, -1)];
 	[userString drawAtPoint:NSMakePoint(offset + percentWidth - [userString size].width - 1,
-										floor([image size].height / 2) - 1)];
-	[image unlockFocus];
+										floor(imageSize.height / 2) - 1)];
 
 } // renderSplitPercentIntoImage:forProcessor:atOffset:
 
 - (NSAttributedString *)renderTemperatureStringForString:(NSString *)temperatureString {
-	return [[NSAttributedString alloc]
-		initWithString:temperatureString
-			attributes:[NSDictionary dictionaryWithObjectsAndKeys:[NSFont monospacedDigitSystemFontOfSize:self.fontSize weight:NSFontWeightRegular],
-																  NSFontAttributeName, temperatureColor, NSForegroundColorAttributeName,
-																  nil]];
+	NSFont *temperatureFont = [NSFont monospacedDigitSystemFontOfSize:self.fontSize weight:NSFontWeightRegular];
+	NSFont *traitFont = [NSFontManager.sharedFontManager convertFont:temperatureFont toHaveTrait:NSCondensedFontMask];
+	if (traitFont) {
+		temperatureFont = traitFont;
+	}
+	NSDictionary *attributes = @{
+		NSFontAttributeName: temperatureFont,
+		NSForegroundColorAttributeName: temperatureColor
+	};
+	return [[NSAttributedString alloc] initWithString:temperatureString
+										   attributes:attributes];
 }
 
-- (void)renderSingleTemperatureIntoImage:(NSImage *)image atOffset:(float)offset {
+- (void)renderSingleTemperatureImageSize:(NSSize)imageSize atOffset:(float)offset {
 	float_t celsius = [cpuInfo cpuProximityTemperature];
 	float_t fahrenheit = celsius * 1.8 + 32;
 	NSString *temperatureString = @"";
 	switch ([ourPrefs cpuTemperatureUnit]) {
 		case kCPUTemperatureUnitCelsius:
-			temperatureString = [NSString stringWithFormat:@"%.1f℃", celsius];
-			if (celsius < -100) {
+			if (celsius > -100) {
+				temperatureString = [NSString stringWithFormat:@"%d℃", (int)round(celsius)];
+			}
+			else {
 				temperatureString = @"??℃";
 			}
 			break;
@@ -544,47 +560,50 @@
 		default:
 			temperatureString = @"???";
 	}
-	[image lockFocus];
+
 	NSAttributedString *renderTemperatureString = [self renderTemperatureStringForString:temperatureString];
-	[renderTemperatureString drawAtPoint:NSMakePoint(
-											 cpuTemperatureDisplayWidth - round([renderTemperatureString size].width) - 1,
-											 (([image size].height - [renderTemperatureString size].height) / 2 + self.baselineOffset))];
-	[image unlockFocus];
+	NSPoint pos = NSMakePoint(
+		cpuTemperatureDisplayWidth - round([renderTemperatureString size].width) - 3,
+		((imageSize.height - [renderTemperatureString size].height) / 2 + self.baselineOffset));
+	[renderTemperatureString drawAtPoint:pos];
 } // renderSingleTemperatureIntoImage:atOffset:
 
-- (void)renderThermometerIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atOffset:(float)offset {
+- (void)renderThermometerImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atOffset:(float)offset {
 
-	double system, user;
+	double system = 0, user = 0;
 	[self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
 	if ((system < 0) || (user < 0)) {
 		return;
 	}
 
 	// Paths
-	float thermometerTotalHeight = (float)[image size].height - 3.0;
-	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5, 1.5, kCPUThermometerDisplayWidth - 3,
-																		 thermometerTotalHeight * ((user + system) > 1 ? 1 : (user + system)))];
-	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5, 1.5, kCPUThermometerDisplayWidth - 3,
-																		   thermometerTotalHeight * system)];
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5, 1.5, kCPUThermometerDisplayWidth - 3, thermometerTotalHeight)];
+	NSRect thermometerFrame = NSMakeRect(offset, 0, kCPUThermometerDisplayWidth, imageSize.height);
+	NSRect userRect = thermometerFrame;
+	userRect.size.height *= (user + system) > 1 ? 1 : (user + system);
+	NSRect systemRect = thermometerFrame;
+	systemRect.size.height *= system;
+
+	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:userRect];
+	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:systemRect];
 
 	// Draw
-	[image lockFocus];
-	[userColor set];
-	[userPath fill];
-	[systemColor set];
-	[systemPath fill];
-	[[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
-	[framePath stroke];
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRoundedRect:thermometerFrame xRadius:2 yRadius:2];
+	[NSGraphicsContext saveGraphicsState];
+	[framePath addClip];
+	[[fgMenuThemeColor colorWithAlphaComponent:0.2] setFill];
+	[framePath fill];
 
-	// Reset
-	[[NSColor blackColor] set];
-	[image unlockFocus];
+	[userColor setFill];
+	[userPath fill];
+
+	[systemColor setFill];
+	[systemPath fill];
+	[NSGraphicsContext restoreGraphicsState];
 
 } // renderThermometerIntoImage:forProcessor:atOffset:
 
-- (void)renderHorizontalThermometerIntoImage:(NSImage *)image forProcessor:(uint32_t)processor atX:(float)x andY:(float)y withWidth:(float)width andHeight:(float)height {
-	double system, user;
+- (void)renderHorizontalThermometerImageSize:(NSSize)imageSize forProcessor:(uint32_t)processor atX:(float)x andY:(float)y withWidth:(float)width andHeight:(float)height {
+	double system = 0, user = 0;
 	[self getCPULoadForCPU:processor atPosition:-1 returnSystem:&system returnUser:&user];
 	if ((system < 0) || (user < 0)) {
 		return;
@@ -598,19 +617,13 @@
 	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(x + 1.0, y, (width - 2.0) * system, height - 1.0)];
 
 	// Draw
-	[image lockFocus];
 	[userColor set];
 	[userPath fill];
 	[systemColor set];
 	[systemPath fill];
 	[[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
 	[rightCapPath fill];
-
-	// Reset
-	[[NSColor blackColor] set];
-	[image unlockFocus];
-
-} // renderHorizontalThermometerIntoImage:forProcessor:atX:andY:withWidth:andHeight:
+} // renderHorizontalThermometerImageSize:forProcessor:atX:andY:withWidth:andHeight:
 
 ///////////////////////////////////////////////////////////////
 //
@@ -722,7 +735,7 @@
 ///////////////////////////////////////////////////////////////
 
 - (float)baselineOffset {
-	float offset = 1.0;
+	float offset = 0.0;
 	if ([ourPrefs cpuPercentDisplay] == kCPUPercentDisplaySmall) {
 		offset = 0.5;
 	}
@@ -749,9 +762,6 @@
 				fromPrefs:ourPrefs
 		withTimerInterval:[ourPrefs cpuInterval]];
 #endif
-	// Update prefs
-	[ourPrefs syncWithDisk];
-
 	// Handle menubar theme changes
 	fgMenuThemeColor = self.menuBarTextColor;
 
@@ -761,30 +771,31 @@
 	temperatureColor = [self colorByAdjustingForLightDark:[ourPrefs cpuTemperatureColor]];
 
 	int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs] ? [cpuInfo numberOfCores] : [cpuInfo numberOfCPUs];
-
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
+	int cpuDisplayMode = [ourPrefs cpuDisplayMode];
+	if (cpuDisplayMode & kCPUDisplayPercent) {
 		// Calc the new width
-		NSAttributedString *string = [self percentStringForLoad:[ourPrefs cpuSumAllProcsPercent] ? [cpuInfo numberOfCPUs] : 1.0f
+		NSAttributedString *string = [self percentStringForLoad:[ourPrefs cpuSumAllProcsPercent] ? [cpuInfo numberOfCPUs] : 1.0
 													   andColor:fgMenuThemeColor];
-		percentWidth = (float)round([string size].width) + kCPUPercentDisplayBorderWidth;
+		percentWidth = (float)round([string size].width); // + kCPUPercentDisplayBorderWidth;
 	}
 
 	// Fix our menu size to match our new config
 	menuWidth = 0;
-	if ([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) {
+	if (cpuDisplayMode & kCPUDisplayHorizontalThermometer) {
 		menuWidth = [ourPrefs cpuMenuWidth];
 	}
 	else {
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
-			menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * percentWidth);
+		BOOL cpuAvgAllProcs = [ourPrefs cpuAvgAllProcs];
+		if (cpuDisplayMode & kCPUDisplayPercent) {
+			menuWidth += ((cpuAvgAllProcs ? 1 : numberOfCPUs) * percentWidth);
 		}
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) {
-			menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * [ourPrefs cpuGraphLength]);
+		if (cpuDisplayMode & kCPUDisplayGraph) {
+			menuWidth += ((cpuAvgAllProcs ? 1 : numberOfCPUs) * [ourPrefs cpuGraphLength]);
 		}
-		if ([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) {
-			menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * kCPUThermometerDisplayWidth);
+		if (cpuDisplayMode & kCPUDisplayThermometer) {
+			menuWidth += ((cpuAvgAllProcs ? 1 : numberOfCPUs) * kCPUThermometerDisplayWidth);
 		}
-		if (![ourPrefs cpuAvgAllProcs] && (numberOfCPUs > 1)) {
+		if (!cpuAvgAllProcs && (numberOfCPUs > 1)) {
 			menuWidth += ((numberOfCPUs - 1) * kCPUDisplayMultiProcGapWidth);
 		}
 	}
@@ -792,7 +803,7 @@
 		cpuTemperatureDisplayWidth = 1 + [self renderTemperatureStringForString:@"66.6℃"].size.width;
 		menuWidth += cpuTemperatureDisplayWidth;
 	}
-	if (![ourPrefs cpuShowTemperature] && [ourPrefs cpuDisplayMode] == 0) {
+	if (![ourPrefs cpuShowTemperature] && cpuDisplayMode == 0) {
 		menuWidth = kCPULabelOnlyWidth;
 	}
 	// Handle PowerMate
@@ -839,8 +850,11 @@
 			  atPosition:(NSInteger)position
 			returnSystem:(double *)system
 			  returnUser:(double *)user {
-	NSArray *currentLoad = [loadHistory lastObject];
-	if (position != -1) {
+	NSArray *currentLoad;
+	if (position < 0) {
+		currentLoad = [loadHistory lastObject];
+	}
+	else {
 		currentLoad = [loadHistory objectAtIndex:position];
 	}
 	if (!currentLoad || ([currentLoad count] < processor)) {

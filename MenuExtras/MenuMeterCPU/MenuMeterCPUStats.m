@@ -68,7 +68,7 @@ uint32_t cpuCount;
 uint32_t coreCount;
 uint32_t packageCount;
 
-- (id)init {
+- (instancetype)init {
 
 	// Allow super to init
 	self = [super init];
@@ -165,15 +165,11 @@ uint32_t packageCount;
 ///////////////////////////////////////////////////////////////
 
 - (NSString *)cpuName {
-
 	return cpuName;
-
 } // cpuName
 
 - (NSString *)cpuSpeed {
-
 	return clockSpeed;
-
 } // cpuSpeed
 
 - (uint32_t)numberOfCPUs {
@@ -188,9 +184,7 @@ uint32_t packageCount;
 	if (packageCount == 1) {
 		return @"";
 	}
-	else {
-		return [NSString stringWithFormat:@"%@x ", @(packageCount)];
-	}
+	return [NSString stringWithFormat:@"%@x ", @(packageCount)];
 }
 
 - (NSString *)processorDescription {
@@ -372,7 +366,7 @@ uint32_t packageCount;
 
 		NXArchInfo const *archInfo = NXGetLocalArchInfo();
 		if (archInfo) {
-			s = [s stringByAppendingFormat:@" (%@)", [NSString stringWithCString:archInfo->description]];
+			s = [s stringByAppendingFormat:@" (%s)", archInfo->description];
 		}
 
 		return s;
@@ -428,9 +422,13 @@ uint32_t packageCount;
 			const CFDataRef platformClockFrequencyData = (const CFDataRef)platformClockFrequency;
 			const UInt8 *clockFreqBytes = CFDataGetBytePtr(platformClockFrequencyData);
 			clockRate = CFSwapInt32BigToHost(*(UInt32 *)(clockFreqBytes)) * 1000;
+		}
+		if (platformClockFrequency) {
 			CFRelease(platformClockFrequency);
 		}
-		IOObjectRelease(platformExpertDevice);
+		if (platformExpertDevice) {
+			IOObjectRelease(platformExpertDevice);
+		}
 	}
 
 	return clockRate;

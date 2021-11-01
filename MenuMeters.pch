@@ -32,3 +32,9 @@
 #import <ApplicationServices/ApplicationServices.h>
 #import <IOKit/IOKitLib.h>
 #import <Security/Security.h>
+
+#ifdef DEBUG
+#define	MMLog(args...)			(void)printf("%i %s: %s\n", __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:args] UTF8String])
+#else
+#define	MMLog(args...)			// stubbed out
+#endif
