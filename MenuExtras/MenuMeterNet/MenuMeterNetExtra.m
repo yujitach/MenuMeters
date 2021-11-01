@@ -1628,11 +1628,21 @@
 
 - (NSString *)throughputStringForBytesPerSecond:(double)bps withSpace:(Boolean)wantSpace {
 
-	NSArray *labels = @[kBytePerSecondLabel, kKBPerSecondLabel, kMBPerSecondLabel, kGBPerSecondLabel];
-	int kilo = kKiloBinary;
-
-	if ([ourPrefs netThroughputBits]) {
-		labels = @[kBitPerSecondLabel, kKbPerSecondLabel, kMbPerSecondLabel, kGbPerSecondLabel];
+	static NSArray *labelsBytes = nil;
+	static NSArray *labelsBits = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		labelsBytes = @[kBytePerSecondLabel, kKBPerSecondLabel, kMBPerSecondLabel, kGBPerSecondLabel];
+		labelsBits = @[kBitPerSecondLabel, kKbPerSecondLabel, kMbPerSecondLabel, kGbPerSecondLabel];
+	});
+	int kilo;
+	NSArray *labels;
+	if (![ourPrefs netThroughputBits]) {
+		labels = labelsBytes;
+		kilo = kKiloBinary;
+	}
+	else {
+		labels = labelsBits;
 		kilo = kKiloDecimal;
 		bps *= 8;
 	}
