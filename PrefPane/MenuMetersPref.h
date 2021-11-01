@@ -39,9 +39,8 @@
 #import <Sparkle/Sparkle.h>
 #endif
 
-
 @interface MenuMetersPref :
-NSWindowController<NSWindowDelegate>
+NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate> 
 {
 
 	// Our preferences
