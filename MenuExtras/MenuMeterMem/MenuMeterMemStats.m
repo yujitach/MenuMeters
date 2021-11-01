@@ -1,64 +1,64 @@
 //
 //  MenuMeterMemStats.m
 //
-// 	Reader object for VM info
+//  Reader object for VM info
 //
-//	Copyright (c) 2002-2014 Alex Harper
+// Copyright (c) 2002-2014 Alex Harper
 //
-// 	This file is part of MenuMeters.
+//  This file is part of MenuMeters.
 //
-// 	MenuMeters is free software; you can redistribute it and/or modify
-// 	it under the terms of the GNU General Public License version 2 as
+//  MenuMeters is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License version 2 as
 //  published by the Free Software Foundation.
 //
-// 	MenuMeters is distributed in the hope that it will be useful,
-// 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-// 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// 	GNU General Public License for more details.
+//  MenuMeters is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-// 	You should have received a copy of the GNU General Public License
-// 	along with MenuMeters; if not, write to the Free Software
-// 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+//  You should have received a copy of the GNU General Public License
+//  along with MenuMeters; if not, write to the Free Software
+//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
 #import "MenuMeterMemStats.h"
-#include <sys/sysctl.h>
 #include <sys/syscall.h>
+#include <sys/sysctl.h>
 
 ///////////////////////////////////////////////////////////////
 //
-//	Definitions for 64-bit from 10.9+ so we can still use old SDKs.
+//  Definitions for 64-bit from 10.9+ so we can still use old SDKs.
 //
 ///////////////////////////////////////////////////////////////
 #ifndef ELCAPITAN
 struct vm_statistics64 {
-	natural_t	free_count;
-	natural_t	active_count;
-	natural_t	inactive_count;
-	natural_t	wire_count;
-	uint64_t	zero_fill_count;
-	uint64_t	reactivations;
-	uint64_t	pageins;
-	uint64_t	pageouts;
-	uint64_t	faults;
-	uint64_t	cow_faults;
-	uint64_t	lookups;
-	uint64_t	hits;
-	uint64_t	purges;
-	natural_t	purgeable_count;
-	natural_t	speculative_count;
-	uint64_t	decompressions;
-	uint64_t	compressions;
-	uint64_t	swapins;
-	uint64_t	swapouts;
-	natural_t	compressor_page_count;
-	natural_t	throttled_count;
-	natural_t	external_page_count;
-	natural_t	internal_page_count;
-	uint64_t	total_uncompressed_pages_in_compressor;
+	natural_t free_count;
+	natural_t active_count;
+	natural_t inactive_count;
+	natural_t wire_count;
+	uint64_t zero_fill_count;
+	uint64_t reactivations;
+	uint64_t pageins;
+	uint64_t pageouts;
+	uint64_t faults;
+	uint64_t cow_faults;
+	uint64_t lookups;
+	uint64_t hits;
+	uint64_t purges;
+	natural_t purgeable_count;
+	natural_t speculative_count;
+	uint64_t decompressions;
+	uint64_t compressions;
+	uint64_t swapins;
+	uint64_t swapouts;
+	natural_t compressor_page_count;
+	natural_t throttled_count;
+	natural_t external_page_count;
+	natural_t internal_page_count;
+	uint64_t total_uncompressed_pages_in_compressor;
 } __attribute__((aligned(8)));
-typedef struct vm_statistics64	vm_statistics64_data_t;
-typedef integer_t	*host_info64_t;
+typedef struct vm_statistics64 vm_statistics64_data_t;
+typedef integer_t *host_info64_t;
 #endif
 typedef kern_return_t (*host_statistics64_Ptr)(host_t host_priv,
 											   host_flavor_t flavor,
@@ -69,15 +69,16 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods and constants
+//  Private methods and constants
 //
 ///////////////////////////////////////////////////////////////
 
 // Default strings for swap file login
-#define kDefaultSwapPath		@"/private/var/vm/"
-#define kDefaultSwapPrefix		@"swapfile"
+#define kDefaultSwapPath @"/private/var/vm/"
+#define kDefaultSwapPrefix @"swapfile"
 
 @interface MenuMeterMemStats (PrivateMethods)
+
 - (void)initializeSwapPath;
 @end
 
@@ -85,7 +86,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 ///////////////////////////////////////////////////////////////
 //
-//	Load
+//  Load
 //
 ///////////////////////////////////////////////////////////////
 
@@ -95,7 +96,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 ///////////////////////////////////////////////////////////////
 //
-//	init/dealloc
+//  init/dealloc
 //
 ///////////////////////////////////////////////////////////////
 
@@ -128,12 +129,11 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 
 } // init
 
- // dealloc
-
+// dealloc
 
 ///////////////////////////////////////////////////////////////
 //
-//	 Mem usage info
+//   Mem usage info
 //
 ///////////////////////////////////////////////////////////////
 
@@ -153,7 +153,8 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	uint64_t deltaPageIn = 0, deltaPageOut = 0;
 	if ((natural_t)vmStats32.pageins >= lastPageIn) {
 		deltaPageIn = (natural_t)vmStats32.pageins - lastPageIn;
-	} else {
+	}
+	else {
 #ifdef __LP64__
 		// 64-bit rollover? Nothing sane we can do
 		deltaPageIn = (natural_t)vmStats32.pageins;
@@ -163,7 +164,8 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	}
 	if ((natural_t)vmStats32.pageouts >= lastPageOut) {
 		deltaPageOut = (natural_t)vmStats32.pageouts - lastPageOut;
-	} else {
+	}
+	else {
 #ifdef __LP64__
 		// 64-bit rollover? Nothing sane we can do
 		deltaPageOut = (natural_t)vmStats32.pageouts;
@@ -218,7 +220,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	vm_statistics64_data_t vmStats64;
 	bzero(&vmStats64, sizeof(vm_statistics64_data_t));
 	// HOST_VM_INFO64_COUNT
-	mach_msg_type_number_t vmCount = (mach_msg_type_number_t)(sizeof(vm_statistics64_data_t)/sizeof(integer_t));
+	mach_msg_type_number_t vmCount = (mach_msg_type_number_t)(sizeof(vm_statistics64_data_t) / sizeof(integer_t));
 	if (host_statistics64_Impl(selfHost, 4 /* HOST_VM_INFO64 */, (host_info64_t)&vmStats64, &vmCount) != KERN_SUCCESS) {
 		return nil;
 	}
@@ -227,12 +229,14 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	uint64_t deltaPageIn = 0, deltaPageOut = 0;
 	if (vmStats64.pageins >= lastPageIn) {
 		deltaPageIn = vmStats64.pageins - lastPageIn;
-	} else {
+	}
+	else {
 		deltaPageIn = vmStats64.pageins;
 	}
 	if (vmStats64.pageouts >= lastPageOut) {
 		deltaPageOut = vmStats64.pageouts - lastPageOut;
-	} else {
+	}
+	else {
 		deltaPageOut = vmStats64.pageouts;
 	}
 	// Update history
@@ -250,20 +254,20 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	// Update total
 	totalRAM = active + inactive + wired + free + compressed;
 
-  int memory_pressure_level;
-  size_t length = sizeof(int);
-  
-  sysctlbyname("kern.memorystatus_vm_pressure_level", &memory_pressure_level, &length, nil, 0);
+	int memory_pressure_level;
+	size_t length = sizeof(int);
 
-    int memory_pressure=[self memPressure];
-  
+	sysctlbyname("kern.memorystatus_vm_pressure_level", &memory_pressure_level, &length, nil, 0);
+
+	int memory_pressure = [self memPressure];
+
 	return [NSDictionary dictionaryWithObjectsAndKeys:
 				[NSNumber numberWithDouble:(double)totalRAM / 1048576], @"totalmb",
 				// See discussion in 32 bit code for historical difference between free/used.
 				// By that standard compressed pages are probably active (OS compressing
 				// rather than purging).
 				[NSNumber numberWithDouble:(double)(free + inactive) / 1048576], @"freemb",
-				[NSNumber numberWithDouble:(double)(active + wired  + compressed) / 1048576], @"usedmb",
+				[NSNumber numberWithDouble:(double)(active + wired + compressed) / 1048576], @"usedmb",
 				[NSNumber numberWithDouble:(double)active / 1048576], @"activemb",
 				[NSNumber numberWithDouble:(double)inactive / 1048576], @"inactivemb",
 				[NSNumber numberWithDouble:(double)wired / 1048576], @"wiremb",
@@ -284,15 +288,16 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 				[NSNumber numberWithUnsignedLongLong:vmStats64.compressions], @"compressions",
 				[NSNumber numberWithUnsignedLongLong:deltaPageIn], @"deltapageins",
 				[NSNumber numberWithUnsignedLongLong:deltaPageOut], @"deltapageouts",
-        [NSNumber numberWithInt:memory_pressure], @"mempress",
-                [NSNumber numberWithInt:memory_pressure_level], @"mempresslevel",
+				[NSNumber numberWithInt:memory_pressure], @"mempress",
+				[NSNumber numberWithInt:memory_pressure_level], @"mempresslevel",
 				nil];
 } // memStats64
 
 - (NSDictionary *)memStats {
 	if (isMavericksOrLater) {
 		return [self memStats64];
-	} else {
+	}
+	else {
 		return [self memStats32];
 	}
 } // memStats
@@ -303,7 +308,8 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	// but that occassionally crashed on load. So now we defer as much as possible
 	if (!swapPath) {
 		[self initializeSwapPath];
-		if (!swapPath) return nil;
+		if (!swapPath)
+			return nil;
 	}
 
 	// Does the path exist? How many files?
@@ -318,12 +324,13 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 		while ((currentFile = [dirEnum nextObject])) {
 			NSString *currentFileFullPath = [swapPath stringByAppendingPathComponent:currentFile];
 			if ([currentFile hasPrefix:swapPrefix] &&
-					[fm fileExistsAtPath:currentFileFullPath isDirectory:&isDir] &&
-					!isDir) {
+				[fm fileExistsAtPath:currentFileFullPath
+						 isDirectory:&isDir] &&
+				!isDir) {
 				swapCount++;
 				swapSize += [[[fm attributesOfItemAtPath:currentFileFullPath
-										  error:nil]
-								objectForKey:NSFileSize] unsignedLongLongValue];
+												   error:nil]
+					objectForKey:NSFileSize] unsignedLongLongValue];
 			}
 		}
 	}
@@ -337,7 +344,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	BOOL encrypted = NO;
 	uint64_t swapUsed = 0;
 	if (isTigerOrLater) {
-		int	swapMIB[] = { CTL_VM, 5 };
+		int swapMIB[] = {CTL_VM, 5};
 		struct xsw_usage swapUsage;
 		size_t swapUsageSize = sizeof(swapUsage);
 		memset(&swapUsage, 0, sizeof(swapUsage));
@@ -348,114 +355,115 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 	}
 
 	return [NSDictionary dictionaryWithObjectsAndKeys:
-				swapPath, @"swappath",
-				[NSNumber numberWithUnsignedInt:swapCount], @"swapcount",
-				[NSNumber numberWithUnsignedInt:peakSwapFiles], @"swapcountpeak",
-				[NSNumber numberWithUnsignedLongLong:swapSize / 1048576], @"swapsizemb",
-				[NSNumber numberWithUnsignedLongLong:swapUsed / 1048576], @"swapusedmb",
-				[NSNumber numberWithBool:encrypted], @"swapencrypted",
-				nil];
+							 swapPath, @"swappath",
+							 [NSNumber numberWithUnsignedInt:swapCount], @"swapcount",
+							 [NSNumber numberWithUnsignedInt:peakSwapFiles], @"swapcountpeak",
+							 [NSNumber numberWithUnsignedLongLong:swapSize / 1048576], @"swapsizemb",
+							 [NSNumber numberWithUnsignedLongLong:swapUsed / 1048576], @"swapusedmb",
+							 [NSNumber numberWithBool:encrypted], @"swapencrypted",
+							 nil];
 
 } // swapStats
 
 ///////////////////////////////////////////////////////////////
 //
-//	Private methods
+//  Private methods
 //
 ///////////////////////////////////////////////////////////////
 
 - (void)initializeSwapPath {
-/* this code seems to cause hangs for some users.
-   in any case, dynamic_pager is launched on demand from long time ago, and
-   you can't get the changed swap file path in this method, as far as I understand.
-   the rest is kept for historical interest.
-   this should fix https://github.com/yujitach/MenuMeters/issues/124 .
-	// We need to figure out where the swap file is. This information
-	// is not published by dynamic_pager to sysctl. We can't get dynamic_pager's
-	// arg list directed using sysctl because its UID 0. So we have to do some
-	// parsing of ps -axww output to get the info.
-	NSTask *psTask = [[NSTask alloc] init];
-	[psTask setLaunchPath:@"/bin/ps"];
-	[psTask setArguments:[NSArray arrayWithObjects:@"-axww", nil]];
-	NSPipe *psPipe = [[NSPipe alloc] init];
-	[psTask setStandardOutput:psPipe];
-	NSFileHandle *psHandle = [psPipe fileHandleForReading];
+	/* this code seems to cause hangs for some users.
+	   in any case, dynamic_pager is launched on demand from long time ago, and
+	   you can't get the changed swap file path in this method, as far as I understand.
+	   the rest is kept for historical interest.
+	   this should fix https://github.com/yujitach/MenuMeters/issues/124 .
+		// We need to figure out where the swap file is. This information
+		// is not published by dynamic_pager to sysctl. We can't get dynamic_pager's
+		// arg list directed using sysctl because its UID 0. So we have to do some
+		// parsing of ps -axww output to get the info.
+		NSTask *psTask = [[NSTask alloc] init];
+		[psTask setLaunchPath:@"/bin/ps"];
+		[psTask setArguments:[NSArray arrayWithObjects:@"-axww", nil]];
+		NSPipe *psPipe = [[NSPipe alloc] init];
+		[psTask setStandardOutput:psPipe];
+		NSFileHandle *psHandle = [psPipe fileHandleForReading];
 
-	// Do the launch in an exception block. Old style block for 10.2 compatibility.
-	// Accumulate all results into a single string for parse.
-	NSMutableString *psOutput = [@"" mutableCopy];
-	NSMutableString *swapFullPath = [NSMutableString string];
-	BOOL taskLaunched = NO;
-	NS_DURING
-		[psTask launch];
-		while ([psTask isRunning]) {
-			[psOutput appendString:[[NSString alloc] initWithData:[psHandle availableData]
-														   encoding:NSUTF8StringEncoding]];
-			usleep(250000);
-		}
-	NS_HANDLER
-		// Catch
-		NSLog(@"MenuMeterMemStats unable to launch '/bin/ps'.");
-		taskLaunched = NO;
-		psOutput = nil;
-	NS_ENDHANDLER
-	if (psOutput) {
-		NSArray *psSplit = [psOutput componentsSeparatedByString:@"\n"];
-		NSEnumerator *psLineWalk = [psSplit objectEnumerator];
-		NSString *psLine = nil;
-		while ((psLine = [psLineWalk nextObject])) {
-			NSArray *psArgSplit = [psLine componentsSeparatedByString:@" "];
-			if (([psArgSplit containsObject:@"dynamic_pager"] || [psArgSplit containsObject:@"/sbin/dynamic_pager"]) &&
-					[psArgSplit containsObject:@"-F"]) {
-				// Consume all arguments till the next arg. This would fail
-				// on the path "/my/silly -swappath/" but is that really something
-				// we need to worry about?
-				for (CFIndex argIndex = [psArgSplit indexOfObject:@"-F"] + 1; argIndex < [psArgSplit count]; argIndex++) {
-					NSString *currentArg = [psArgSplit objectAtIndex:argIndex];
-					if ([currentArg hasPrefix:@"-"]) break;
-					if ([swapFullPath length]) [swapFullPath appendString:@" "];
-					[swapFullPath appendString:currentArg];
-				}
+		// Do the launch in an exception block. Old style block for 10.2 compatibility.
+		// Accumulate all results into a single string for parse.
+		NSMutableString *psOutput = [@"" mutableCopy];
+		NSMutableString *swapFullPath = [NSMutableString string];
+		BOOL taskLaunched = NO;
+		NS_DURING
+			[psTask launch];
+			while ([psTask isRunning]) {
+				[psOutput appendString:[[NSString alloc] initWithData:[psHandle availableData]
+															   encoding:NSUTF8StringEncoding]];
+				usleep(250000);
 			}
-			if (![swapFullPath isEqualToString:@""]) break;
+		NS_HANDLER
+			// Catch
+			NSLog(@"MenuMeterMemStats unable to launch '/bin/ps'.");
+			taskLaunched = NO;
+			psOutput = nil;
+		NS_ENDHANDLER
+		if (psOutput) {
+			NSArray *psSplit = [psOutput componentsSeparatedByString:@"\n"];
+			NSEnumerator *psLineWalk = [psSplit objectEnumerator];
+			NSString *psLine = nil;
+			while ((psLine = [psLineWalk nextObject])) {
+				NSArray *psArgSplit = [psLine componentsSeparatedByString:@" "];
+				if (([psArgSplit containsObject:@"dynamic_pager"] || [psArgSplit containsObject:@"/sbin/dynamic_pager"]) &&
+						[psArgSplit containsObject:@"-F"]) {
+					// Consume all arguments till the next arg. This would fail
+					// on the path "/my/silly -swappath/" but is that really something
+					// we need to worry about?
+					for (CFIndex argIndex = [psArgSplit indexOfObject:@"-F"] + 1; argIndex < [psArgSplit count]; argIndex++) {
+						NSString *currentArg = [psArgSplit objectAtIndex:argIndex];
+						if ([currentArg hasPrefix:@"-"]) break;
+						if ([swapFullPath length]) [swapFullPath appendString:@" "];
+						[swapFullPath appendString:currentArg];
+					}
+				}
+				if (![swapFullPath isEqualToString:@""]) break;
+			}
 		}
-	}
 
-	// Did we get it?
-	if (![swapFullPath isEqualToString:@""]) {
-		swapPath = [swapFullPath stringByDeletingLastPathComponent];
-		swapPrefix = [swapFullPath lastPathComponent];
+		// Did we get it?
+		if (![swapFullPath isEqualToString:@""]) {
+			swapPath = [swapFullPath stringByDeletingLastPathComponent];
+			swapPrefix = [swapFullPath lastPathComponent];
+		}
+		else {
+			NSLog(@"MenuMeterMemStats unable to locate dynamic_pager args. Assume default.");
+	 */
+	// and now we provide a modern code to get the info via sysctl.
+	// Apparently there are still people who changes the swap file path... see
+	// https://github.com/yujitach/MenuMeters/issues/164
+	char swapfileprefix[1024];
+	size_t size = sizeof(swapfileprefix);
+	if (!sysctlbyname("vm.swapfileprefix", swapfileprefix, &size, NULL, 0)) {
+		NSString *x = [NSString stringWithUTF8String:swapfileprefix];
+		swapPrefix = [x lastPathComponent];
+		swapPath = [[x stringByDeletingLastPathComponent] stringByAppendingString:@"/"];
 	}
 	else {
-		NSLog(@"MenuMeterMemStats unable to locate dynamic_pager args. Assume default.");
- */
-    // and now we provide a modern code to get the info via sysctl.
-    // Apparently there are still people who changes the swap file path... see
-    // https://github.com/yujitach/MenuMeters/issues/164
-    char swapfileprefix[1024];
-    size_t size = sizeof(swapfileprefix);
-    if (!sysctlbyname("vm.swapfileprefix", swapfileprefix, &size, NULL, 0)){
-        NSString*x=[NSString stringWithUTF8String:swapfileprefix];
-        swapPrefix=[x lastPathComponent];
-        swapPath=[[x stringByDeletingLastPathComponent] stringByAppendingString:@"/"];
-    }else{
 		swapPath = kDefaultSwapPath;
 		swapPrefix = kDefaultSwapPrefix;
-    }
+	}
 
 } // initializeSwapPath
 
-- (int)memPressure
-{
-    // taken from https://github.com/tramdas/memstatpoller/blob/38fbb15efc9b28db508d21ef557c89b4b29fd94e/main.c#L95
-    int error;
-    int level=0;
-    // This is how AAPL's memory_pressure tool reports "System-wide memory free percentage":
-    //error = memorystatus_get_level((user_addr_t) level);
-    error = syscall(SYS_memorystatus_get_level, &level);
-    if(error){
-        NSLog(@"memorystatus_get_level failed: error=%@ errorno=%@ (%s)",@(error),@(errno),strerror(errno));
-    }
-    return level;
+- (int)memPressure {
+	// taken from https://github.com/tramdas/memstatpoller/blob/38fbb15efc9b28db508d21ef557c89b4b29fd94e/main.c#L95
+	int error;
+	int level = 0;
+	// This is how AAPL's memory_pressure tool reports "System-wide memory free percentage":
+	// error = memorystatus_get_level((user_addr_t) level);
+	error = syscall(SYS_memorystatus_get_level, &level);
+	if (error) {
+		NSLog(@"memorystatus_get_level failed: error=%@ errorno=%@ (%s)", @(error), @(errno), strerror(errno));
+	}
+	return level;
 }
+
 @end

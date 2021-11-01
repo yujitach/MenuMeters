@@ -1,0 +1,32 @@
+BasedOnStyle: LLVM
+UseTab: Always
+TabWidth: 4
+IndentWidth: 4
+AlignEscapedNewlinesLeft: true
+AllowShortIfStatementsOnASingleLine: false
+ColumnLimit: 0
+IndentCaseLabels: true
+ObjCBlockIndentWidth: 4
+
+# Like Stroustrup but do not wrap braces after function definitions.
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: false
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterObjCDeclaration: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: true
+  BeforeElse: true
+  IndentBraces: false
+
+DerivePointerAlignment: false
+PointerAlignment: Right
+
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortBlocksOnASingleLine: true
+ObjCSpaceAfterProperty: true
+SpacesInContainerLiterals: false
