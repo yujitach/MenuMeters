@@ -1585,11 +1585,21 @@
 
 - (NSString *)throughputStringForBytesPerSecond:(double)bps {
 
-	NSArray *labels = @[kBytePerSecondLabel, kKBPerSecondLabel, kMBPerSecondLabel, kGBPerSecondLabel];
-	int kilo = kKiloBinary;
-
-	if ([ourPrefs netThroughputBits]) {
-		labels = @[kBitPerSecondLabel, kKbPerSecondLabel, kMbPerSecondLabel, kGbPerSecondLabel];
+	static NSArray *labelsBytes = nil;
+	static NSArray *labelsBits = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		labelsBytes = @[kBytePerSecondLabel, kKBPerSecondLabel, kMBPerSecondLabel, kGBPerSecondLabel];
+		labelsBits = @[kBitPerSecondLabel, kKbPerSecondLabel, kMbPerSecondLabel, kGbPerSecondLabel];
+	});
+	int kilo;
+	NSArray *labels;
+	if (![ourPrefs netThroughputBits]) {
+		labels = labelsBytes;
+		kilo = kKiloBinary;
+	}
+	else {
+		labels = labelsBits;
 		kilo = kKiloDecimal;
 		bps *= 8;
 	}
@@ -1605,9 +1615,7 @@
 	if (labelIndex == 0 || bps >= 1000) {
 		format = @"%.0f";
 	}
-
-	format = [NSString stringWithFormat:@"%@\u2009%%@", format];
-
+	format = [format stringByAppendingString:@"\u2009%@"];
 	return [self stringifyNumber:bps withUnitLabel:unitLabel andFormat:format];
 
 } // throughputStringForBytesPerSecond:withFormat:
