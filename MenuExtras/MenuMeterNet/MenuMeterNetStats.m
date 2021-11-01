@@ -3,7 +3,7 @@
 //
 //  Reader object for network throughput info
 //
-// Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
 //  This file is part of MenuMeters.
 //
@@ -46,7 +46,7 @@
 	}
 
 	// Prefetch the data first time
-	[self netStatsForInterval:1.0f];
+	[self netStatsForInterval:1.0];
 
 	return self;
 

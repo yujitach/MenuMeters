@@ -3,7 +3,7 @@
 //
 //  Menu Extra implementation
 //
-// Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
 //  This file is part of MenuMeters.
 //
@@ -98,7 +98,7 @@
 
 @implementation MenuMeterMemExtra
 
-- init {
+- (instancetype)init {
 
 	self = [super initWithBundleID:kMemMenuBundleID];
 	NSBundle *bundle = [NSBundle mainBundle];
@@ -437,7 +437,7 @@
 	[image lockFocus];
 	NSBezierPath *renderPath = nil;
 	float totalArc = 0;
-	NSPoint pieCenter = NSMakePoint(kMemPieDisplayWidth / 2, (float)[image size].height / 2);
+	NSPoint pieCenter = NSMakePoint(kMemPieDisplayWidth / 2, [image size].height / 2);
 
 	// Draw wired
 	renderPath = [NSBezierPath bezierPath];
@@ -494,11 +494,11 @@
 	if (totalArc < 1) {
 		renderPath = [NSBezierPath bezierPath];
 		[renderPath appendBezierPathWithArcWithCenter:pieCenter
-											   radius:(kMemPieDisplayWidth / 2) - 0.5f // Inset radius slightly
+											   radius:(kMemPieDisplayWidth / 2) - 0.5 // Inset radius slightly
 										   startAngle:(360 * totalArc) + 90
 											 endAngle:450
 											clockwise:NO];
-		[renderPath setLineWidth:0.6f]; // Lighter line
+		[renderPath setLineWidth:0.6]; // Lighter line
 		[renderPath stroke];
 	}
 
@@ -553,9 +553,9 @@
 	}
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
 	// No descenders so render lower
-	[renderUString drawAtPoint:NSMakePoint(textWidth - (float)round([renderUString size].width),
-										   (float)floor([image size].height / 2) - 1)];
-	[renderFString drawAtPoint:NSMakePoint(textWidth - (float)round([renderFString size].width), -1)];
+	[renderUString drawAtPoint:NSMakePoint(textWidth - round([renderUString size].width),
+										   floor([image size].height / 2) - 1)];
+	[renderFString drawAtPoint:NSMakePoint(textWidth - round([renderFString size].width), -1)];
 
 	// Unlock focus
 	[image unlockFocus];
@@ -564,10 +564,10 @@
 
 - (void)renderPressureBar:(NSImage *)image {
 	// Load current stats
-	float pressure = 0.2f;
+	float pressure = 0.2;
 	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
 	if (currentMemStats) {
-		pressure = [[currentMemStats objectForKey:@"mempress"] intValue] / 100.0f;
+		pressure = [[currentMemStats objectForKey:@"mempress"] intValue] / 100.0;
 	}
 
 	if (pressure < 0) {
@@ -576,11 +576,11 @@
 
 	// Lock focus and draw
 	[image lockFocus];
-	float thermometerTotalHeight = (float)[image size].height - 3.0f;
+	float thermometerTotalHeight = (float)[image size].height - 3.0;
 
-	NSBezierPath *pressurePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight * pressure)];
+	NSBezierPath *pressurePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3, thermometerTotalHeight * pressure)];
 
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
 
 	[activeColor set];
 	[pressurePath fill];
@@ -635,17 +635,17 @@
 
 	// Lock focus and draw
 	[image lockFocus];
-	float thermometerTotalHeight = (float)[image size].height - 3.0f;
+	float thermometerTotalHeight = (float)[image size].height - 3.0;
 
-	NSBezierPath *wirePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+	NSBezierPath *wirePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3,
 																		 thermometerTotalHeight * (wireMB / totalMB))];
-	NSBezierPath *activePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+	NSBezierPath *activePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3,
 																		   thermometerTotalHeight * ((wireMB + activeMB) / totalMB))];
-	NSBezierPath *compressedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+	NSBezierPath *compressedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3,
 																			   thermometerTotalHeight * ((wireMB + activeMB + compressedMB) / totalMB))];
-	NSBezierPath *inactivePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
+	NSBezierPath *inactivePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3,
 																			 thermometerTotalHeight * ((wireMB + activeMB + compressedMB + inactiveMB) / totalMB))];
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
 	[inactiveColor set];
 	[inactivePath fill];
 	[compressedColor set];
@@ -829,9 +829,9 @@
 
 	// Set up the pageout path
 	NSBezierPath *arrow = [NSBezierPath bezierPath];
-	[arrow moveToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 0.5f, 1)];
-	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) + 4.5f, 5.0f)];
-	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 5.5f, 5.0f)];
+	[arrow moveToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0 + (menuWidth - kMemPagingDisplayWidth) - 0.5, 1)];
+	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0 + (menuWidth - kMemPagingDisplayWidth) + 4.5, 5.0)];
+	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0 + (menuWidth - kMemPagingDisplayWidth) - 5.5, 5.0)];
 	[arrow closePath];
 	// Draw
 	if (pageIns) {
@@ -842,16 +842,16 @@
 			[[NSColor darkGrayColor] set];
 		}
 		else {
-			[[pageInColor colorWithAlphaComponent:0.25f] set];
+			[[pageInColor colorWithAlphaComponent:0.25] set];
 		}
 	}
 	[arrow fill];
 
 	// Set up the pagein path
 	arrow = [NSBezierPath bezierPath];
-	[arrow moveToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 0.5f, indicatorHeight - 1)];
-	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) + 4.5f, indicatorHeight - 5.0f)];
-	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0f + (menuWidth - kMemPagingDisplayWidth) - 5.5f, indicatorHeight - 5.0f)];
+	[arrow moveToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0 + (menuWidth - kMemPagingDisplayWidth) - 0.5, indicatorHeight - 1)];
+	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0 + (menuWidth - kMemPagingDisplayWidth) + 4.5, indicatorHeight - 5.0)];
+	[arrow lineToPoint:NSMakePoint(kMemPagingDisplayWidth / 2.0 + (menuWidth - kMemPagingDisplayWidth) - 5.5, indicatorHeight - 5.0)];
 	[arrow closePath];
 	// Draw
 	if (pageOuts) {
@@ -862,7 +862,7 @@
 			[[NSColor darkGrayColor] set];
 		}
 		else {
-			[[pageOutColor colorWithAlphaComponent:0.25f] set];
+			[[pageOutColor colorWithAlphaComponent:0.25] set];
 		}
 	}
 	[arrow fill];
@@ -887,8 +887,8 @@
 	// Also draw low to ignore descenders
 	NSSize renderSize = [renderString size];
 	[renderString drawAtPoint:NSMakePoint(menuWidth - kMemPagingDisplayWidth +
-											  roundf((kMemPagingDisplayWidth - (float)renderSize.width) / 2.0f),
-										  4.0f)]; // Just hardcode the vertical offset
+											  roundf((kMemPagingDisplayWidth - (float)renderSize.width) / 2.0),
+										  4.0)]; // Just hardcode the vertical offset
 
 	// Unlock focus
 	[image unlockFocus];

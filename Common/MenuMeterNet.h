@@ -3,7 +3,7 @@
 //
 //  Constants and other definitions for the Net Meter
 //
-// Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
 //  This file is part of MenuMeters.
 //
@@ -118,8 +118,8 @@ enum {
 
 // Colors
 // Moss green
-#define kNetTransmitColorDefault [NSColor colorWithDeviceRed:0.0f green:0.5f blue:0.25f alpha:1.0f]
+#define kNetTransmitColorDefault [NSColor colorWithDeviceRed:0.0 green:0.5 blue:0.25 alpha:1.0]
 // Brick red
-#define kNetReceiveColorDefault [NSColor colorWithDeviceRed:0.5f green:0.0f blue:0.0f alpha:1.0f]
+#define kNetReceiveColorDefault [NSColor colorWithDeviceRed:0.5 green:0.0 blue:0.0 alpha:1.0]
 // Light grey
 #define kNetInactiveColorDefault [NSColor darkGrayColor]

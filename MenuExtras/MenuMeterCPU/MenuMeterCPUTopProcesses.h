@@ -3,7 +3,7 @@
 //
 //  Reader object for top CPU hogging process list
 //
-// Copyright (c) 2018 Hofi
+//  Copyright (c) 2018 Hofi
 //
 //  This file is part of MenuMeters.
 //

@@ -3,7 +3,7 @@
 //
 //  Reader object for disk space statistics
 //
-// Copyright (c) 2002-2014 Alex Harper
+//  Copyright (c) 2002-2014 Alex Harper
 //
 //  This file is part of MenuMeters.
 //
@@ -169,15 +169,15 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 			// Store
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kTotalSpaceFormat],
-															[self spaceString:((float)mountInfo[i].f_blocks * (float)mountInfo[i].f_bsize)]]
+															[self spaceString:(float)(mountInfo[i].f_blocks * mountInfo[i].f_bsize)]]
 						  forKey:@"total"];
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kFreeSpaceFormat],
-															[self spaceString:((float)mountInfo[i].f_bavail * (float)mountInfo[i].f_bsize)]]
+															[self spaceString:(float)(mountInfo[i].f_bavail * mountInfo[i].f_bsize)]]
 						  forKey:@"free"];
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kUsedSpaceFormat],
-															[self spaceString:(((float)mountInfo[i].f_blocks -
-																				(float)mountInfo[i].f_bavail) *
-																			   (float)mountInfo[i].f_bsize)]]
+															[self spaceString:(float)((mountInfo[i].f_blocks -
+																					mountInfo[i].f_bavail) *
+																					mountInfo[i].f_bsize)]]
 						  forKey:@"used"];
 			// Store the data into the array
 			[diskSpaceDetails addObject:diskStats];
