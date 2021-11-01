@@ -123,7 +123,7 @@
 	NSAlert *alert = [[NSAlert alloc] init];
 	alert.messageText = NSLocalizedString(@"Please move the app after downloading it", @"");
 	[alert addButtonWithTitle:NSLocalizedString(@"OK, I quit the app and move it", @"")];
-	alert.informativeText = NSLocalizedString(@"Please move the app to, say, /Applications, using your mouse/trackpad, not from the command line. \n\nApple decided that they don't allow the app to auto-update otherwise. \n\nI am sorry for the inconvenience.", @"");
+	alert.informativeText = NSLocalizedString(@"Please move the app to, say, /Applications, using your mouse/trackpad, not from the command line. \n\nApple decided that they don’t allow the app to auto-update otherwise. \n\nI am sorry for the inconvenience.", @"");
 	[alert runModal];
 	[NSApp terminate:nil];
 }

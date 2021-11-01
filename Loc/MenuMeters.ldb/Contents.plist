@@ -1,0 +1,3604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundles</key>
+	<array>
+		<dict>
+			<key>associated Xcode projects</key>
+			<array/>
+			<key>change date</key>
+			<date>2001-01-01T00:00:00Z</date>
+			<key>class</key>
+			<string>BLBundleObject</string>
+			<key>errors</key>
+			<array/>
+			<key>files</key>
+			<array>
+				<dict>
+					<key>attachments</key>
+					<dict/>
+					<key>change date</key>
+					<date>2021-11-01T09:55:45Z</date>
+					<key>class</key>
+					<string>BLStringsFileObject</string>
+					<key>errors</key>
+					<array/>
+					<key>flags</key>
+					<integer>0</integer>
+					<key>hash</key>
+					<string>69b42c3fc4ff81c58c108e4da86becb2
+</string>
+					<key>name</key>
+					<string>MenuMetersPref.strings</string>
+					<key>objects</key>
+					<array>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>MenuMeters</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>12.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>MenuMeters</string>
+								<key>en</key>
+								<string>MenuMeters</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Disk</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>100.label</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Festplatte</string>
+								<key>en</key>
+								<string>Disk</string>
+								<key>fi</key>
+								<string>Levy</string>
+								<key>fr</key>
+								<string>Disque</string>
+								<key>it</key>
+								<string>Disco</string>
+								<key>ja</key>
+								<string>ディスク</string>
+								<key>zh-Hans</key>
+								<string>磁盘</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>CPU</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>102.label</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>CPU</string>
+								<key>en</key>
+								<string>CPU</string>
+								<key>fi</key>
+								<string>Prosessori</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Memory</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>103.label</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Speicher</string>
+								<key>en</key>
+								<string>Memory</string>
+								<key>fi</key>
+								<string>Muisti</string>
+								<key>fr</key>
+								<string>Mémoire</string>
+								<key>it</key>
+								<string>Memoria</string>
+								<key>ja</key>
+								<string>メモリー</string>
+								<key>zh-Hans</key>
+								<string>内存</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Network</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>105.label</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Netzwerk</string>
+								<key>en</key>
+								<string>Network</string>
+								<key>fi</key>
+								<string>Verkko</string>
+								<key>fr</key>
+								<string>Réseau</string>
+								<key>ja</key>
+								<string>ネットワーク</string>
+								<key>zh-Hans</key>
+								<string>网络</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Graph</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>IS4-Xc-psg.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Grafik</string>
+								<key>en</key>
+								<string>Graph</string>
+								<key>fi</key>
+								<string>Kuvaaja</string>
+								<key>fr</key>
+								<string>Graphique</string>
+								<key>it</key>
+								<string>Grafico</string>
+								<key>ja</key>
+								<string>グラフ</string>
+								<key>zh-Hans</key>
+								<string>曲线</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Percentage</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Jeh-C2-Wwp.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Prozentsatz</string>
+								<key>en</key>
+								<string>Percentage</string>
+								<key>fi</key>
+								<string>Prosenttiluku</string>
+								<key>fr</key>
+								<string>Pourcentage</string>
+								<key>it</key>
+								<string>Percentuale</string>
+								<key>ja</key>
+								<string>パーセント</string>
+								<key>zh-Hans</key>
+								<string>百分比</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>ImageSet</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>2</integer>
+							<key>key</key>
+							<string>203.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>ImageSet</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Usage Bar</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>219.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Balken</string>
+								<key>en</key>
+								<string>Usage Bar</string>
+								<key>fi</key>
+								<string>Käyttöpalkki</string>
+								<key>fr</key>
+								<string>Barre d’usage</string>
+								<key>it</key>
+								<string>Barra Uso</string>
+								<key>ja</key>
+								<string>バーグラフ</string>
+								<key>zh-Hans</key>
+								<string>使用条状图</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Usage Chart</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>225.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Diagramm</string>
+								<key>en</key>
+								<string>Usage Chart</string>
+								<key>fi</key>
+								<string>Käyttökaavio</string>
+								<key>fr</key>
+								<string>Diagramme</string>
+								<key>it</key>
+								<string>Grafico Uso</string>
+								<key>ja</key>
+								<string>円グラフ</string>
+								<key>zh-Hans</key>
+								<string>使用饼图</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Throughput</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>294.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Durchsatz</string>
+								<key>en</key>
+								<string>Throughput</string>
+								<key>fi</key>
+								<string>Siirtonopeus</string>
+								<key>fr</key>
+								<string>Texte</string>
+								<key>ja</key>
+								<string>スループット</string>
+								<key>zh-Hans</key>
+								<string>吞吐量</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Arrows</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>297.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Pfeile</string>
+								<key>en</key>
+								<string>Arrows</string>
+								<key>fi</key>
+								<string>Nuolet</string>
+								<key>fr</key>
+								<string>Flèches</string>
+								<key>it</key>
+								<string>Frecce</string>
+								<key>ja</key>
+								<string>矢印</string>
+								<key>zh-Hans</key>
+								<string>箭头</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Arrows and Throughput</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>299.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Pfeile und Durchsatz</string>
+								<key>en</key>
+								<string>Arrows and Throughput</string>
+								<key>fi</key>
+								<string>Nuolet ja siirtonopeus</string>
+								<key>fr</key>
+								<string>Flèches &amp; Texte</string>
+								<key>it</key>
+								<string>Frecce e Throughput</string>
+								<key>ja</key>
+								<string>矢印 &amp; スループット</string>
+								<key>zh-Hans</key>
+								<string>箭头和吞吐量</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Graph</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>314.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Grafik</string>
+								<key>en</key>
+								<string>Graph</string>
+								<key>fi</key>
+								<string>Kuvaaja</string>
+								<key>fr</key>
+								<string>Graphique</string>
+								<key>it</key>
+								<string>Grafico</string>
+								<key>ja</key>
+								<string>グラフ</string>
+								<key>zh-Hans</key>
+								<string>曲线</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Vertical bar</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>r6t-Zl-sS4.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Vertikales Balkendiagramm</string>
+								<key>en</key>
+								<string>Vertical bar</string>
+								<key>fi</key>
+								<string>Pystysuora pylväskaavio</string>
+								<key>fr</key>
+								<string>Barres verticales</string>
+								<key>it</key>
+								<string>Barre verticali</string>
+								<key>ja</key>
+								<string>垂直レベルメータ</string>
+								<key>zh-Hans</key>
+								<string>垂直条形图</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Horizontal bar</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>spo-WT-wCm.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Horizontales Balkendiagramm</string>
+								<key>en</key>
+								<string>Horizontal bar</string>
+								<key>fi</key>
+								<string>Vaakasuora pylväskaavio</string>
+								<key>fr</key>
+								<string>Barres horizontales</string>
+								<key>it</key>
+								<string>Barre orizzontali</string>
+								<key>ja</key>
+								<string>水平レベルメータ</string>
+								<key>zh-Hans</key>
+								<string>水平条形图</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Graph and Arrows</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>363.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Grafik und Pfeile</string>
+								<key>en</key>
+								<string>Graph and Arrows</string>
+								<key>fi</key>
+								<string>Kuvaaja ja nuolet</string>
+								<key>fr</key>
+								<string>Graphique &amp; Flèches</string>
+								<key>it</key>
+								<string>Grafico e Frecce</string>
+								<key>ja</key>
+								<string>グラフ &amp; 矢印</string>
+								<key>zh-Hans</key>
+								<string>曲线和箭头</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Graph and Throughput</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>365.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Grafik und Durchsatz</string>
+								<key>en</key>
+								<string>Graph and Throughput</string>
+								<key>fi</key>
+								<string>Kuvaaja ja siirtonopeus</string>
+								<key>fr</key>
+								<string>Graphique &amp; Texte</string>
+								<key>it</key>
+								<string>Grafico e Throughput</string>
+								<key>ja</key>
+								<string>グラフ &amp; スループット</string>
+								<key>zh-Hans</key>
+								<string>曲线和吞吐量</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Graph, Arrows and Throughput</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>366.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Grafik, Pfeile und Durchsatz</string>
+								<key>en</key>
+								<string>Graph, Arrows and Throughput</string>
+								<key>fi</key>
+								<string>Kuvaaja, nuolet ja siirtonopeus</string>
+								<key>fr</key>
+								<string>Graphique, Flèches &amp; Texte</string>
+								<key>it</key>
+								<string>Grafico, Frecce e Throughput</string>
+								<key>ja</key>
+								<string>グラフ &amp; 矢印 &amp; スループット</string>
+								<key>zh-Hans</key>
+								<string>曲线、箭头和吞吐量</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Total (large text)</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>384.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Gesamt (große Schrift)</string>
+								<key>en</key>
+								<string>Total (large text)</string>
+								<key>fi</key>
+								<string>Kokonaisosuus (suuri teksti)</string>
+								<key>fr</key>
+								<string>Total (texte large)</string>
+								<key>it</key>
+								<string>Totale (testo grande)</string>
+								<key>ja</key>
+								<string>合計 (テキスト大)</string>
+								<key>zh-Hans</key>
+								<string>合计(大文字)</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>User and System (small text)</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>385.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Benutzer und System (kleine Schrift)</string>
+								<key>en</key>
+								<string>User and System (small text)</string>
+								<key>fi</key>
+								<string>Käyttäjä ja järjestelmä (pieni teksti)</string>
+								<key>fr</key>
+								<string>Utilisateur &amp; Système (texte petit)</string>
+								<key>it</key>
+								<string>Utente e Sistema (testo piccolo)</string>
+								<key>ja</key>
+								<string>ユーザー &amp; システム (テキスト小)</string>
+								<key>zh-Hans</key>
+								<string>用户和系统(小文字)</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Total (medium text)</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>386.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Gesamt (mittlere Schrift)</string>
+								<key>en</key>
+								<string>Total (medium text)</string>
+								<key>fi</key>
+								<string>Kokonaisosuus (keskikokoinen teksti)</string>
+								<key>fr</key>
+								<string>Total (texte moyen)</string>
+								<key>it</key>
+								<string>Totale (testo medio)</string>
+								<key>ja</key>
+								<string>合計 (テキスト中)</string>
+								<key>zh-Hans</key>
+								<string>合计(中文字)</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Opposed</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>404.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Von oben und unten ausgehend</string>
+								<key>en</key>
+								<string>Opposed</string>
+								<key>fi</key>
+								<string>Vastakkainen</string>
+								<key>fr</key>
+								<string>Sens opposé</string>
+								<key>it</key>
+								<string>Opposto</string>
+								<key>ja</key>
+								<string>上下に</string>
+								<key>zh-Hans</key>
+								<string>天地</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Standard</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>406.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Standard</string>
+								<key>en</key>
+								<string>Standard</string>
+								<key>fi</key>
+								<string>Tavallinen</string>
+								<key>ja</key>
+								<string>スタンダード</string>
+								<key>zh-Hans</key>
+								<string>标准</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Centered</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>407.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Von der Mitte ausgehend</string>
+								<key>en</key>
+								<string>Centered</string>
+								<key>fi</key>
+								<string>Keskitetty</string>
+								<key>fr</key>
+								<string>Centré</string>
+								<key>it</key>
+								<string>Centrato</string>
+								<key>ja</key>
+								<string>中央に</string>
+								<key>zh-Hans</key>
+								<string>居中</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Usage History Graph</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>472.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Historie als Grafik</string>
+								<key>en</key>
+								<string>Usage History Graph</string>
+								<key>fi</key>
+								<string>Käyttöhistorian kuvaaja</string>
+								<key>fr</key>
+								<string>Historique d’usage</string>
+								<key>it</key>
+								<string>Grafico Cronologia Uso</string>
+								<key>ja</key>
+								<string>ヒストリーグラフ</string>
+								<key>zh-Hans</key>
+								<string>使用历史曲线</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>pulse</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>478.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>pulsieren</string>
+								<key>en</key>
+								<string>pulse</string>
+								<key>fi</key>
+								<string>pulssina</string>
+								<key>fr</key>
+								<string>clignotant</string>
+								<key>it</key>
+								<string>pulsazione</string>
+								<key>ja</key>
+								<string>パルス</string>
+								<key>zh-Hans</key>
+								<string>脉搏</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>glow</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>479.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>leuchten</string>
+								<key>en</key>
+								<string>glow</string>
+								<key>fi</key>
+								<string>hohtona</string>
+								<key>fr</key>
+								<string>s’illuminant</string>
+								<key>it</key>
+								<string>luce</string>
+								<key>ja</key>
+								<string>グロー</string>
+								<key>zh-Hans</key>
+								<string>发光</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Primary (automatic)</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>487.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Primäre Schnittstelle (automatisch)</string>
+								<key>en</key>
+								<string>Primary (automatic)</string>
+								<key>fi</key>
+								<string>Ensisijainen (automaattinen)</string>
+								<key>fr</key>
+								<string>Primaire (automatique)</string>
+								<key>it</key>
+								<string>Primaria (automatico)</string>
+								<key>ja</key>
+								<string>プライマリ (自動)</string>
+								<key>zh-Hans</key>
+								<string>主要(自动)</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>inverse glow</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>497.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>inverses leuchten</string>
+								<key>en</key>
+								<string>inverse glow</string>
+								<key>fi</key>
+								<string>käänteisenä hohtona</string>
+								<key>fr</key>
+								<string>illumination inversée</string>
+								<key>it</key>
+								<string>luce inversa</string>
+								<key>ja</key>
+								<string>グロー (逆)</string>
+								<key>zh-Hans</key>
+								<string>反发光</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>inverse pulse</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>498.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>inverses pulsieren</string>
+								<key>en</key>
+								<string>inverse pulse</string>
+								<key>fi</key>
+								<string>käänteisenä pulssina</string>
+								<key>fr</key>
+								<string>clignotement inversé</string>
+								<key>it</key>
+								<string>pulsazione inversa</string>
+								<key>ja</key>
+								<string>パルス (逆)</string>
+								<key>zh-Hans</key>
+								<string>反脉搏</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>opens the volume</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>500.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>öffnet das Volume</string>
+								<key>en</key>
+								<string>opens the volume</string>
+								<key>fi</key>
+								<string>avaa taltion</string>
+								<key>fr</key>
+								<string>ouvre le volume dans le Finder</string>
+								<key>it</key>
+								<string>apre il volume</string>
+								<key>ja</key>
+								<string>ボリュームを開く</string>
+								<key>zh-Hans</key>
+								<string>打开宗卷</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>unmounts/ejects the volume</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>502.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>wirft das Volume aus</string>
+								<key>en</key>
+								<string>unmounts/ejects the volume</string>
+								<key>fi</key>
+								<string>poistaa taltion näkyvistä</string>
+								<key>fr</key>
+								<string>démonte et éjecte le volume</string>
+								<key>it</key>
+								<string>smonta/espelle il volume</string>
+								<key>ja</key>
+								<string>アンマウント／取り出し</string>
+								<key>zh-Hans</key>
+								<string>卸下/推出宗卷</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Used/Free Totals</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>508.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Benutzt/Frei Summen</string>
+								<key>en</key>
+								<string>Used/Free Totals</string>
+								<key>fi</key>
+								<string>Käytössä/vapaana</string>
+								<key>fr</key>
+								<string>Totaux Utilisée/Libre</string>
+								<key>it</key>
+								<string>Totali Usata/Libera</string>
+								<key>ja</key>
+								<string>使用量／空き容量の合計</string>
+								<key>zh-Hans</key>
+								<string>已使用/可用合计</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Interface speed</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>525.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Schnittstellengeschwindigkeit</string>
+								<key>en</key>
+								<string>Interface speed</string>
+								<key>fi</key>
+								<string>Verkkoliitännän nopeus</string>
+								<key>fr</key>
+								<string>Vitesse du trafic sur l’interface</string>
+								<key>it</key>
+								<string>Velocità Interfaccia</string>
+								<key>ja</key>
+								<string>インターフェース速度</string>
+								<key>zh-Hans</key>
+								<string>接口速度</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Peak traffic</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>526.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Größter Durchsatz</string>
+								<key>en</key>
+								<string>Peak traffic</string>
+								<key>fi</key>
+								<string>Siirtonopeuden huippu</string>
+								<key>fr</key>
+								<string>Vitesse max. du trafic</string>
+								<key>it</key>
+								<string>Picco traffico</string>
+								<key>ja</key>
+								<string>トラフィックのピーク</string>
+								<key>zh-Hans</key>
+								<string>尖峰流量</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Linear</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>541.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Linear</string>
+								<key>en</key>
+								<string>Linear</string>
+								<key>fi</key>
+								<string>Lineaarinen</string>
+								<key>fr</key>
+								<string>Linéaire</string>
+								<key>it</key>
+								<string>Lineare</string>
+								<key>ja</key>
+								<string>線状で</string>
+								<key>zh-Hans</key>
+								<string>线性</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Logarithmic</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>545.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Logarithmisch</string>
+								<key>en</key>
+								<string>Logarithmic</string>
+								<key>fi</key>
+								<string>Logaritminen</string>
+								<key>fr</key>
+								<string>Logarithmique </string>
+								<key>it</key>
+								<string>Logaritmica</string>
+								<key>ja</key>
+								<string>対数で</string>
+								<key>zh-Hans</key>
+								<string>对数</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Cube root</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>556.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Kubikwurzel</string>
+								<key>en</key>
+								<string>Cube root</string>
+								<key>fi</key>
+								<string>Kuutiojuuri</string>
+								<key>fr</key>
+								<string>Cubique</string>
+								<key>it</key>
+								<string>Radice cubica</string>
+								<key>ja</key>
+								<string>立方根で</string>
+								<key>zh-Hans</key>
+								<string>立方根</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Square root</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>557.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Quadratwurzel</string>
+								<key>en</key>
+								<string>Square root</string>
+								<key>fi</key>
+								<string>Neliöjuuri</string>
+								<key>fr</key>
+								<string>Carrée</string>
+								<key>it</key>
+								<string>Radice quadrata</string>
+								<key>ja</key>
+								<string>平方根で</string>
+								<key>zh-Hans</key>
+								<string>平方根</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Transmit/Receive</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>590.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Senden/Empfangen</string>
+								<key>en</key>
+								<string>Transmit/Receive</string>
+								<key>fi</key>
+								<string>Lähetys/vastaanotto</string>
+								<key>fr</key>
+								<string>Transmission/Réception</string>
+								<key>it</key>
+								<string>Trasmetti/Ricevi</string>
+								<key>ja</key>
+								<string>送信／受信の順</string>
+								<key>zh-Hans</key>
+								<string>发送/接收</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Receive/Transmit</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>592.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Empfangen/Senden</string>
+								<key>en</key>
+								<string>Receive/Transmit</string>
+								<key>fi</key>
+								<string>Vastaanotto/lähetys</string>
+								<key>fr</key>
+								<string>Réception/Transmission</string>
+								<key>it</key>
+								<string>Ricevi/Trasmetti</string>
+								<key>ja</key>
+								<string>受信／送信の順</string>
+								<key>zh-Hans</key>
+								<string>接收/发送</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Inverse Opposed</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>613.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Von unten und oben ausgehend</string>
+								<key>en</key>
+								<string>Inverse Opposed</string>
+								<key>fi</key>
+								<string>Käänteinen vastakkainen</string>
+								<key>fr</key>
+								<string>Opposition inversée</string>
+								<key>it</key>
+								<string>Estremi Invertiti</string>
+								<key>ja</key>
+								<string>上下逆に</string>
+								<key>zh-Hans</key>
+								<string>交换天地</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display Disk Activity Menu Meter</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1006.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Festplattenaktivität Menu Meter zeigen</string>
+								<key>en</key>
+								<string>Display Disk Activity Menu Meter</string>
+								<key>fi</key>
+								<string>Näytä levyaktiivisuuden Menu Meter</string>
+								<key>fr</key>
+								<string>Afficher le menu d’Activité du disque</string>
+								<key>it</key>
+								<string>Mostra Menu Meter Attività Disco</string>
+								<key>ja</key>
+								<string>ディスクメータを表示</string>
+								<key>zh-Hans</key>
+								<string>显示磁盘活动菜单仪表</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>x</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>2</integer>
+							<key>key</key>
+							<string>1007.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>x</string>
+								<key>nl</key>
+								<string>Schaalmethode:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Update interval:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1010.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Aktualisierungsintervall</string>
+								<key>en</key>
+								<string>Update interval:</string>
+								<key>fi</key>
+								<string>Päivitysväli:</string>
+								<key>fr</key>
+								<string>Intervalle de mise à jour : </string>
+								<key>it</key>
+								<string>Intervallo Aggiornamento:</string>
+								<key>ja</key>
+								<string>更新間隔</string>
+								<key>nl</key>
+								<string>OtherViews</string>
+								<key>zh-Hans</key>
+								<string>更新间隔：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Selecting a volume from the disk menu</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1011.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Auswählen eines Volume aus dem Menü</string>
+								<key>en</key>
+								<string>Selecting a volume from the disk menu</string>
+								<key>fi</key>
+								<string>Taltion valinta levyvalikosta</string>
+								<key>fr</key>
+								<string>La sélection d’un volume dans le menu :</string>
+								<key>it</key>
+								<string>Selezionare un volume dal menu disco</string>
+								<key>ja</key>
+								<string>メニューからボリューム選択した時</string>
+								<key>nl</key>
+								<string>Wortel</string>
+								<key>zh-Hans</key>
+								<string>从磁盘菜单选择宗卷</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>(Holding the Option key will reverse the behavior)</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1013.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>(Bei gedrückter Optionstaste [⌥] wird das jeweils andere Verhalten aktiv)</string>
+								<key>en</key>
+								<string>(Holding the Option key will reverse the behavior)</string>
+								<key>fi</key>
+								<string>(Optio-näppäimen pohjassa pitäminen valitsee toisen toiminnon)</string>
+								<key>fr</key>
+								<string>(Maintenir la touche Option pour inverser le comportement)</string>
+								<key>it</key>
+								<string>(Mantenendo premuto il tasto Opzione viene invertito il comportamento)</string>
+								<key>ja</key>
+								<string>(Option キーを押すと取り消す事ができます)</string>
+								<key>nl</key>
+								<string>Logarithmisch</string>
+								<key>zh-Hans</key>
+								<string>(按着 Option 键将使动作相反)</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display CPU Menu Meter</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1014.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>CPU Menu Meter zeigen</string>
+								<key>en</key>
+								<string>Display CPU Menu Meter</string>
+								<key>fi</key>
+								<string>Näytä prosessorin Menu Meter</string>
+								<key>fr</key>
+								<string>Afficher le menu CPU</string>
+								<key>it</key>
+								<string>Mostra Menu Meter CPU</string>
+								<key>ja</key>
+								<string>CPU メータを表示</string>
+								<key>nl</key>
+								<string>Linear</string>
+								<key>zh-Hans</key>
+								<string>显示 CPU 菜单仪表</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Update interval:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1017.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Aktualisierungsintervall</string>
+								<key>en</key>
+								<string>Update interval:</string>
+								<key>fi</key>
+								<string>Päivitysväli:</string>
+								<key>fr</key>
+								<string>Intervalle de mise à jour :</string>
+								<key>it</key>
+								<string>Intervallo Aggiornamento:</string>
+								<key>ja</key>
+								<string>更新間隔</string>
+								<key>nl</key>
+								<string>OtherViews</string>
+								<key>zh-Hans</key>
+								<string>更新间隔：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>x</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>2</integer>
+							<key>key</key>
+							<string>1018.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>x</string>
+								<key>nl</key>
+								<string>Oriëntatie weergave:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>User</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1019.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Benutzerauslastung</string>
+								<key>en</key>
+								<string>User</string>
+								<key>fi</key>
+								<string>Käyttäjä</string>
+								<key>fr</key>
+								<string>Charge utilisateur</string>
+								<key>it</key>
+								<string>Carico Utente</string>
+								<key>ja</key>
+								<string>ユーザー</string>
+								<key>nl</key>
+								<string>inverse glow</string>
+								<key>zh-Hans</key>
+								<string>用户载入</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>System</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1020.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Systemauslastung</string>
+								<key>en</key>
+								<string>System</string>
+								<key>fi</key>
+								<string>Järjestelmä</string>
+								<key>fr</key>
+								<string>Charge système</string>
+								<key>it</key>
+								<string>Carico Sistema</string>
+								<key>ja</key>
+								<string>システム</string>
+								<key>nl</key>
+								<string>glow</string>
+								<key>zh-Hans</key>
+								<string>系统载入</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Width</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1025.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Breite</string>
+								<key>en</key>
+								<string>Width</string>
+								<key>fi</key>
+								<string>Kuvaajan leveys:</string>
+								<key>fr</key>
+								<string>Largeur du graphique :</string>
+								<key>it</key>
+								<string>Larghezza Grafico:</string>
+								<key>ja</key>
+								<string>幅</string>
+								<key>nl</key>
+								<string>Niet actief</string>
+								<key>zh-Hans</key>
+								<string>曲线宽度：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>PowerMate shows CPU usage</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1030.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>PowerMate zeigt CPU-Benutzung</string>
+								<key>en</key>
+								<string>PowerMate shows CPU usage</string>
+								<key>fi</key>
+								<string>PowerMate näyttää käytön</string>
+								<key>fr</key>
+								<string>Le PowerMate affiche l’usage CPU</string>
+								<key>it</key>
+								<string>PowerMate mostra uso CPU</string>
+								<key>ja</key>
+								<string>PowerMate で CPU 使用表示</string>
+								<key>nl</key>
+								<string>OtherViews</string>
+								<key>zh-Hans</key>
+								<string>PowerMate 显示 CPU 使用情况为</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display Memory Menu Meter</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1032.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Speicher Menu Meter zeigen</string>
+								<key>en</key>
+								<string>Display Memory Menu Meter</string>
+								<key>fi</key>
+								<string>Näytä muistin Menu Meter</string>
+								<key>fr</key>
+								<string>Afficher le menu Mémoire</string>
+								<key>it</key>
+								<string>Mostra Menu Meter Memoria</string>
+								<key>ja</key>
+								<string>メモリーメータを表示</string>
+								<key>nl</key>
+								<string>Geschiedenis</string>
+								<key>zh-Hans</key>
+								<string>显示内存菜单仪表</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>x</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>2</integer>
+							<key>key</key>
+							<string>1033.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>x</string>
+								<key>nl</key>
+								<string>Taartgrafiek</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Update interval:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1035.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Aktualisierungsintervall</string>
+								<key>en</key>
+								<string>Update interval:</string>
+								<key>fi</key>
+								<string>Päivitysväli:</string>
+								<key>fr</key>
+								<string>Intervalle de mise à jour : </string>
+								<key>it</key>
+								<string>Intervallo Aggiornamento:</string>
+								<key>ja</key>
+								<string>更新間隔</string>
+								<key>zh-Hans</key>
+								<string>更新间隔：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Show Used/Free labels</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1037.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Benutzt/Frei beschriften</string>
+								<key>en</key>
+								<string>Show Used/Free labels</string>
+								<key>fi</key>
+								<string>Näytä Käytössä/vapaana-nimiöt</string>
+								<key>fr</key>
+								<string>Afficher les préfixes (Utilisée/Libre)</string>
+								<key>it</key>
+								<string>Mostra etichette Usata/Libera</string>
+								<key>ja</key>
+								<string>use (使用量)／free (空き容量) のラベルを付ける</string>
+								<key>zh-Hans</key>
+								<string>显示已使用/可用标签</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Show paging activity indicator</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1039.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Ein-/Auslagerungsaktivität zeigen</string>
+								<key>en</key>
+								<string>Show paging activity indicator</string>
+								<key>fi</key>
+								<string>Näytä sivutusaktiivisuuden indikaattori</string>
+								<key>fr</key>
+								<string>Afficher l’indicateur d’activité de la pagination</string>
+								<key>it</key>
+								<string>Mostra indicatore attività di paging</string>
+								<key>ja</key>
+								<string>ページングインジケータを表示</string>
+								<key>zh-Hans</key>
+								<string>显示分页中活动检视器</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Pagein</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1041.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Lesen</string>
+								<key>en</key>
+								<string>Pagein</string>
+								<key>fi</key>
+								<string>Sisäänsivutus</string>
+								<key>it</key>
+								<string>Pagine in entr.</string>
+								<key>ja</key>
+								<string>ページイン</string>
+								<key>zh-Hans</key>
+								<string>分页输入</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Pageout</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1042.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Schreiben</string>
+								<key>en</key>
+								<string>Pageout</string>
+								<key>fi</key>
+								<string>Ulossivutus</string>
+								<key>it</key>
+								<string>Pagine in usc.</string>
+								<key>ja</key>
+								<string>ページアウト</string>
+								<key>nl</key>
+								<string>Toon labels voor vrij / gebruikt</string>
+								<key>zh-Hans</key>
+								<string>分页输出</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Graph width:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1044.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Breite</string>
+								<key>en</key>
+								<string>Graph width:</string>
+								<key>fi</key>
+								<string>Kuvaajan leveys:</string>
+								<key>fr</key>
+								<string>Largeur du graphique :</string>
+								<key>it</key>
+								<string>Larghezza Grafico:</string>
+								<key>ja</key>
+								<string>幅</string>
+								<key>nl</key>
+								<string>Algemeen</string>
+								<key>zh-Hans</key>
+								<string>曲线宽度：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Active</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1047.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Aktiv</string>
+								<key>en</key>
+								<string>Active</string>
+								<key>fi</key>
+								<string>Aktiivinen</string>
+								<key>it</key>
+								<string>Attiva</string>
+								<key>ja</key>
+								<string>アクティブ</string>
+								<key>nl</key>
+								<string>Toon indicatie van ’paging’-activiteit</string>
+								<key>zh-Hans</key>
+								<string>已激活</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Inactive</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1048.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Inaktiv</string>
+								<key>en</key>
+								<string>Inactive</string>
+								<key>fi</key>
+								<string>Epäaktiivinen</string>
+								<key>it</key>
+								<string>Inattiva</string>
+								<key>ja</key>
+								<string>インアクティブ</string>
+								<key>zh-Hans</key>
+								<string>未激活</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Wired</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1049.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Reserviert</string>
+								<key>en</key>
+								<string>Wired</string>
+								<key>fi</key>
+								<string>Lukittu</string>
+								<key>fr</key>
+								<string>Liée</string>
+								<key>ja</key>
+								<string>ワイアード</string>
+								<key>nl</key>
+								<string>Kleuren</string>
+								<key>zh-Hans</key>
+								<string>联动</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Free</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1050.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Frei</string>
+								<key>en</key>
+								<string>Free</string>
+								<key>fi</key>
+								<string>Vapaana</string>
+								<key>fr</key>
+								<string>Libre</string>
+								<key>zh-Hans</key>
+								<string>可用</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Used</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1051.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Benutzt</string>
+								<key>en</key>
+								<string>Used</string>
+								<key>fi</key>
+								<string>Käytetty</string>
+								<key>fr</key>
+								<string>Utilisée</string>
+								<key>zh-Hans</key>
+								<string>已使用</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>x</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>2</integer>
+							<key>key</key>
+							<string>1053.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>x</string>
+								<key>nl</key>
+								<string>page-in</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display Network Menu Meter</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1054.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Netzwerk Menu Meter zeigen</string>
+								<key>en</key>
+								<string>Display Network Menu Meter</string>
+								<key>fi</key>
+								<string>Näytä verkon Menu Meter</string>
+								<key>fr</key>
+								<string>Afficher le menu Réseau</string>
+								<key>it</key>
+								<string>Mostra Menu Meter Network</string>
+								<key>ja</key>
+								<string>ネットワークメータを表示</string>
+								<key>zh-Hans</key>
+								<string>显示网络菜单仪表</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Update interval:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1056.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Aktualisierungsintervall</string>
+								<key>en</key>
+								<string>Update interval:</string>
+								<key>fi</key>
+								<string>Päivitysväli:</string>
+								<key>fr</key>
+								<string>Intervalle de mise à jour:</string>
+								<key>it</key>
+								<string>Intervallo Aggiornamento:</string>
+								<key>ja</key>
+								<string>更新間隔</string>
+								<key>nl</key>
+								<string>page-out</string>
+								<key>zh-Hans</key>
+								<string>更新间隔：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Transmit</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1057.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Senden</string>
+								<key>en</key>
+								<string>Transmit</string>
+								<key>fi</key>
+								<string>Lähetys</string>
+								<key>fr</key>
+								<string>Transmission</string>
+								<key>it</key>
+								<string>Trasmetti</string>
+								<key>ja</key>
+								<string>送信</string>
+								<key>zh-Hans</key>
+								<string>发送</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Receive</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1058.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Empfangen</string>
+								<key>en</key>
+								<string>Receive</string>
+								<key>fi</key>
+								<string>Vastaanotto</string>
+								<key>fr</key>
+								<string>Réception</string>
+								<key>it</key>
+								<string>Ricevi</string>
+								<key>ja</key>
+								<string>受信</string>
+								<key>zh-Hans</key>
+								<string>接收</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Show throughput labels (Tx/Rx)</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1060.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Durchsatz beschriften (Tx/Rx)</string>
+								<key>en</key>
+								<string>Show throughput labels (Tx/Rx)</string>
+								<key>fi</key>
+								<string>Näytä siirtonopeuden nimiöt (Läh/Vast)</string>
+								<key>fr</key>
+								<string>Afficher les préfixes (Tx/Rx)</string>
+								<key>it</key>
+								<string>Mostra etichette throughput (Tx/Rx)</string>
+								<key>ja</key>
+								<string>out (送信)／in (受信) のラベルを付ける</string>
+								<key>zh-Hans</key>
+								<string>显示吞吐量标签(发/收)</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Ignore values below 1K/s</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1061.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Werte unter 1KB/Sek. ignorieren</string>
+								<key>en</key>
+								<string>Ignore values below 1K/s</string>
+								<key>fi</key>
+								<string>Älä huomioi alle 1 kB/s arvoja</string>
+								<key>fr</key>
+								<string>Ignorer les valeurs inférieures à 1Ko/s</string>
+								<key>it</key>
+								<string>Ignora valori sotto 1KB/s</string>
+								<key>ja</key>
+								<string>1KB/秒以下のスループットを無視</string>
+								<key>nl</key>
+								<string>Grafiekbreedte</string>
+								<key>zh-Hans</key>
+								<string>忽略低于 1KB/s 的数值</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Graph style:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1062.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Grafikart</string>
+								<key>en</key>
+								<string>Graph style:</string>
+								<key>fi</key>
+								<string>Kuvaajan tyyli:</string>
+								<key>fr</key>
+								<string>Style du graphique :</string>
+								<key>it</key>
+								<string>Stile grafico:</string>
+								<key>ja</key>
+								<string>表示タイプ</string>
+								<key>zh-Hans</key>
+								<string>曲线样式：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Graph width:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1063.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Breite</string>
+								<key>en</key>
+								<string>Graph width:</string>
+								<key>fi</key>
+								<string>Kuvaajan leveys:</string>
+								<key>fr</key>
+								<string>Largeur du graphique :</string>
+								<key>it</key>
+								<string>Larghezza Grafico:</string>
+								<key>ja</key>
+								<string>幅</string>
+								<key>nl</key>
+								<string>Weergave</string>
+								<key>zh-Hans</key>
+								<string>曲线宽度：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display prefers interface:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1068.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Angezeigte Schnittstelle</string>
+								<key>en</key>
+								<string>Display prefers interface:</string>
+								<key>fi</key>
+								<string>Näkymän oletusverkkoliitäntä:</string>
+								<key>fr</key>
+								<string>Interface préférée :</string>
+								<key>it</key>
+								<string>Mostra interfaccia preferita:</string>
+								<key>ja</key>
+								<string>インターフェース表示</string>
+								<key>zh-Hans</key>
+								<string>显示选择的接口：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display scales to:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1071.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Maßstab der Anzeige</string>
+								<key>en</key>
+								<string>Display scales to:</string>
+								<key>fi</key>
+								<string>Näkymän arvoalueen määrää:</string>
+								<key>fr</key>
+								<string>Échelles :</string>
+								<key>it</key>
+								<string>Scala Visualizzazione su:</string>
+								<key>ja</key>
+								<string>表示内容</string>
+								<key>zh-Hans</key>
+								<string>显示进位：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display scaling:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1073.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Skalierung der Anzeige</string>
+								<key>en</key>
+								<string>Display scaling:</string>
+								<key>fi</key>
+								<string>Näkymän mittakaava:</string>
+								<key>fr</key>
+								<string>Graduation :</string>
+								<key>it</key>
+								<string>Scala Visualizzazione:</string>
+								<key>ja</key>
+								<string>スケール</string>
+								<key>zh-Hans</key>
+								<string>显示进位中：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display orientation:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1075.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Anzeigeausrichtung</string>
+								<key>en</key>
+								<string>Display orientation:</string>
+								<key>fi</key>
+								<string>Näkymän suunta:</string>
+								<key>fr</key>
+								<string>Affichage :</string>
+								<key>it</key>
+								<string>Orientamento Visualizzazione:</string>
+								<key>ja</key>
+								<string>表示方向</string>
+								<key>zh-Hans</key>
+								<string>显示方向：</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Inactive</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1077.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Inaktiv</string>
+								<key>en</key>
+								<string>Inactive</string>
+								<key>fi</key>
+								<string>Epäaktiivisuus</string>
+								<key>it</key>
+								<string>Inattivo</string>
+								<key>ja</key>
+								<string>インアクティブ</string>
+								<key>zh-Hans</key>
+								<string>未激活</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Show bits per second</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>K7W-5f-1U8.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Als Bits/Sek. anzeigen</string>
+								<key>en</key>
+								<string>Show bits per second</string>
+								<key>fi</key>
+								<string>Näytä nopeudet bitteinä sekunnissa</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>About</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>FSw-QC-dn2.label</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Über</string>
+								<key>en</key>
+								<string>About</string>
+								<key>fi</key>
+								<string>Tietoja</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Check updates now</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>XYi-uP-QCD.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Nach Updates suchen</string>
+								<key>en</key>
+								<string>Check updates now</string>
+								<key>fi</key>
+								<string>Tarkasta päivitykset...</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Automatic update check interval:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>tug-YR-k7T.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Automatische Updates: </string>
+								<key>en</key>
+								<string>Automatic update check interval:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Never</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>STJ-3R-khe.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Nie</string>
+								<key>en</key>
+								<string>Never</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Once per day</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>lh5-j8-SRe.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Täglich</string>
+								<key>en</key>
+								<string>Once per day</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Once per week</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>LmO-Ij-G7M.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Wöchentlich</string>
+								<key>en</key>
+								<string>Once per week</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Once per month</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>PuG-eZ-jRm.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Monatlich</string>
+								<key>en</key>
+								<string>Once per month</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Show</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>k2d-Cg-pqL.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Zeige:</string>
+								<key>en</key>
+								<string>Show</string>
+								<key>fi</key>
+								<string>Näytä:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>all cores, including hyperthreaded ones</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>vbH-jV-tUr.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>alle Kerne, inkl. Hyperthreat</string>
+								<key>en</key>
+								<string>all cores, including hyperthreaded ones</string>
+								<key>fi</key>
+								<string>kaikki ytimet, myös hypersäikeistetyt</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>physical cores only</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>H5f-hN-vQV.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>nur pysikalische Kerne</string>
+								<key>en</key>
+								<string>physical cores only</string>
+								<key>fi</key>
+								<string>vain fyysiset ytimet</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>the average of all cores</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>BYT-hf-ygS.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Durchschnitt aller Kerne</string>
+								<key>en</key>
+								<string>the average of all cores</string>
+								<key>fi</key>
+								<string>kaikkien ydinten keskiarvo</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>the sum of all cores</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>5Lg-aP-TSR.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Summe aller Kerne</string>
+								<key>en</key>
+								<string>the sum of all cores</string>
+								<key>fi</key>
+								<string>kaikkien ydinten summa</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>all cores sorted</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>CG1-40-AVC.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>alle Kerne</string>
+								<key>en</key>
+								<string>all cores sorted</string>
+								<key>fi</key>
+								<string>kaikki ytimet lajiteltuina</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Processes to show:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>rhi-NX-C3L.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Max. Prozesse</string>
+								<key>en</key>
+								<string>Processes to show:</string>
+								<key>fi</key>
+								<string>Näytettävät prosessit:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Rows</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1088.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Reihen</string>
+								<key>en</key>
+								<string>Rows</string>
+								<key>fi</key>
+								<string>Vaakarivit:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Width</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>1117.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Breite</string>
+								<key>en</key>
+								<string>Width</string>
+								<key>fi</key>
+								<string>Vaakaleveys:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>pure black/white</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>ayz-p2-XC5.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Schwarz-Weiß</string>
+								<key>en</key>
+								<string>pure black/white</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>original</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>FPO-Jo-ubG.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Original</string>
+								<key>en</key>
+								<string>original</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Color tint:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>mAZ-f2-5AJ.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Farbton</string>
+								<key>en</key>
+								<string>Color tint:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Activity monitor:</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>CDM-3t-gon.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Aktivitätsanzeige</string>
+								<key>en</key>
+								<string>Activity monitor:</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Opens specific panes</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>phH-yJ-I6O.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Öffnet entsprechende Kategorien</string>
+								<key>en</key>
+								<string>Opens specific panes</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>(%d)</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>2</integer>
+							<key>key</key>
+							<string>2NH-iF-l28.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>(%d)</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Temperature</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>C4n-F2-kuL.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Temperatur</string>
+								<key>en</key>
+								<string>Temperature</string>
+								<key>fi</key>
+								<string>Lämpötila</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Sensor</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>FHP-25-5gM.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Sensor</string>
+								<key>en</key>
+								<string>Sensor</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Display memory pressure</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>aOw-Lj-aWS.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Speicher Druck anzeigen</string>
+								<key>en</key>
+								<string>Display memory pressure</string>
+								<key>fi</key>
+								<string>Näytä muistin käyttö</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Compressed</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>ex0-hf-q5R.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Komprimiert</string>
+								<key>en</key>
+								<string>Compressed</string>
+								<key>fi</key>
+								<string>Pakattu</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>CPU Temperature</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>fiY-Fv-rRZ.title</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>CPU Temperatur</string>
+								<key>en</key>
+								<string>CPU Temperature</string>
+							</dict>
+						</dict>
+					</array>
+					<key>old objects</key>
+					<array/>
+					<key>plist file</key>
+					<false/>
+				</dict>
+				<dict>
+					<key>attachments</key>
+					<dict/>
+					<key>change date</key>
+					<date>2020-04-10T11:44:03Z</date>
+					<key>class</key>
+					<string>BLStringsFileObject</string>
+					<key>errors</key>
+					<array/>
+					<key>flags</key>
+					<integer>0</integer>
+					<key>hash</key>
+					<string>fb66896aabf0aab35d94439984b80e8d
+</string>
+					<key>name</key>
+					<string>DiskImageSet.strings</string>
+					<key>objects</key>
+					<array>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Strings for menu abort sheet</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Menu Extra Could Not Load</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Menu Extra konnte nicht geladen werden!</string>
+								<key>en</key>
+								<string>Menu Extra Could Not Load</string>
+								<key>fr</key>
+								<string>Chargement de Menu Extra impossible</string>
+								<key>it</key>
+								<string>Impossibile Caricare Menu Extra</string>
+								<key>ja</key>
+								<string>メニューエクストラが読み込めません。</string>
+								<key>nl</key>
+								<string>De Menu-extra kon niet worden geladen</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Strings for menu abort sheet</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>For instructions on enabling third-party menu extras please see the documentation.</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Bitte folgen Sie der Anleitung zur Aktivierung von „Menu Extras“.</string>
+								<key>en</key>
+								<string>For instructions on enabling third-party menu extras please see the documentation.</string>
+								<key>fr</key>
+								<string>Pour des instructions sur l’activation des extras menus tierces parties, reportez-vous à la documentation.</string>
+								<key>it</key>
+								<string>Per istruzioni su come attivare i menu extra di terze parti vedere la documentazione.</string>
+								<key>ja</key>
+								<string>サードパーティ製のメニューエクストラを利用するにはマニュアルをご覧下さい。</string>
+								<key>nl</key>
+								<string>Raadpleeg de documentatie voor informatie over het mogelijk maken van niet-Apple menu-extra\'s.</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Strings for the disk icon sets</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Color Arrows</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Farbige Pfeile</string>
+								<key>en</key>
+								<string>Color Arrows</string>
+								<key>fi</key>
+								<string>Värinuolet</string>
+								<key>fr</key>
+								<string>Flèches de couleurs</string>
+								<key>it</key>
+								<string>Frecce Colorate</string>
+								<key>ja</key>
+								<string>矢印 (緑／赤)</string>
+								<key>nl</key>
+								<string>Gekleurde pijltjes</string>
+								<key>zh-Hans</key>
+								<string>彩色箭头</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Strings for the disk icon sets</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Arrows</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Pfeile</string>
+								<key>en</key>
+								<string>Arrows</string>
+								<key>fi</key>
+								<string>Nuolet</string>
+								<key>fr</key>
+								<string>Flèches</string>
+								<key>it</key>
+								<string>Frecce</string>
+								<key>ja</key>
+								<string>矢印</string>
+								<key>nl</key>
+								<string>Pijltjes</string>
+								<key>zh-Hans</key>
+								<string>箭头</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Strings for the disk icon sets</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Lights</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Lämpchen</string>
+								<key>en</key>
+								<string>Lights</string>
+								<key>fi</key>
+								<string>Valot</string>
+								<key>fr</key>
+								<string>Leds</string>
+								<key>it</key>
+								<string>Luci</string>
+								<key>ja</key>
+								<string>ライト</string>
+								<key>nl</key>
+								<string>Lampjes</string>
+								<key>zh-Hans</key>
+								<string>灯</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Strings for the disk icon sets</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Aqua Lights</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>„Aqua“-Leuchten</string>
+								<key>en</key>
+								<string>Aqua Lights</string>
+								<key>fi</key>
+								<string>Aqua-valot</string>
+								<key>fr</key>
+								<string>Leds Aqua</string>
+								<key>it</key>
+								<string>Luci Aqua</string>
+								<key>ja</key>
+								<string>アクアライト</string>
+								<key>nl</key>
+								<string>Aqua-lampjes</string>
+								<key>zh-Hans</key>
+								<string>Aqua 灯</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Strings for the disk icon sets</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Disk Arrows</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Pfeile auf Festplatte</string>
+								<key>en</key>
+								<string>Disk Arrows</string>
+								<key>fi</key>
+								<string>Levy ja nuolet</string>
+								<key>fr</key>
+								<string>Flèches disque</string>
+								<key>it</key>
+								<string>Frecce Disco</string>
+								<key>ja</key>
+								<string>ディスクに矢印</string>
+								<key>nl</key>
+								<string>Disk-pijltjes</string>
+								<key>zh-Hans</key>
+								<string>磁盘箭头</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>Strings for the disk icon sets</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Disk Arrows (large)</string>
+							<key>localizations</key>
+							<dict>
+								<key>de</key>
+								<string>Große Pfeile auf Festplatte</string>
+								<key>en</key>
+								<string>Disk Arrows (large)</string>
+								<key>fi</key>
+								<string>Levy ja nuolet (suuret)</string>
+								<key>fr</key>
+								<string>Flèches disque (larges)</string>
+								<key>it</key>
+								<string>Frecce Disco (grandi)</string>
+								<key>ja</key>
+								<string>ディスクに矢印 (大)</string>
+								<key>nl</key>
+								<string>Grote disk-pijltjes</string>
+								<key>zh-Hans</key>
+								<string>磁盘箭头(大)</string>
+							</dict>
+						</dict>
+					</array>
+					<key>old objects</key>
+					<array/>
+					<key>plist file</key>
+					<false/>
+				</dict>
+			</array>
+			<key>flags</key>
+			<integer>0</integer>
+			<key>name</key>
+			<string>../PrefPane</string>
+			<key>naming style</key>
+			<integer>1</integer>
+			<key>referencing style</key>
+			<integer>1</integer>
+			<key>user name</key>
+			<string>PrefPane</string>
+		</dict>
+		<dict>
+			<key>associated Xcode projects</key>
+			<array>
+				<string>../MenuMeters.xcodeproj</string>
+			</array>
+			<key>change date</key>
+			<date>2001-01-01T00:00:00Z</date>
+			<key>class</key>
+			<string>BLBundleObject</string>
+			<key>errors</key>
+			<array/>
+			<key>files</key>
+			<array>
+				<dict>
+					<key>attachments</key>
+					<dict/>
+					<key>change date</key>
+					<date>2021-11-01T09:55:43Z</date>
+					<key>class</key>
+					<string>BLStringsFileObject</string>
+					<key>errors</key>
+					<array/>
+					<key>flags</key>
+					<integer>1</integer>
+					<key>hash</key>
+					<string>86b3cc2154ac27470771b87e202ae176
+</string>
+					<key>name</key>
+					<string>Localizable.strings</string>
+					<key>objects</key>
+					<array>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>OK, I quit the app and move it</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>OK, I quit the app and move it</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Please move the app after downloading it</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>Please move the app after downloading it</string>
+							</dict>
+						</dict>
+						<dict>
+							<key>change date</key>
+							<date>2001-01-01T00:00:00Z</date>
+							<key>class</key>
+							<string>BLStringKeyObject</string>
+							<key>comment</key>
+							<string>No comment provided by engineer.</string>
+							<key>errors</key>
+							<array/>
+							<key>flags</key>
+							<integer>0</integer>
+							<key>key</key>
+							<string>Please move the app to, say, /Applications, using your mouse/trackpad, not from the command line. 
+
+Apple decided that they don’t allow the app to auto-update otherwise. 
+
+I am sorry for the inconvenience.</string>
+							<key>localizations</key>
+							<dict>
+								<key>en</key>
+								<string>Please move the app to, say, /Applications, using your mouse/trackpad, not from the command line. 
+
+Apple decided that they don’t allow the app to auto-update otherwise. 
+
+I am sorry for the inconvenience.</string>
+							</dict>
+						</dict>
+					</array>
+					<key>old objects</key>
+					<array/>
+					<key>plist file</key>
+					<false/>
+				</dict>
+			</array>
+			<key>flags</key>
+			<integer>0</integer>
+			<key>name</key>
+			<string>../MenuMetersApp</string>
+			<key>naming style</key>
+			<integer>1</integer>
+			<key>referencing style</key>
+			<integer>1</integer>
+			<key>user name</key>
+			<string>MenuMetersApp</string>
+		</dict>
+	</array>
+	<key>languages</key>
+	<array>
+		<string>en</string>
+		<string>it</string>
+		<string>nl</string>
+		<string>zh-Hans</string>
+		<string>ja</string>
+		<string>de</string>
+		<string>fr</string>
+		<string>fi</string>
+	</array>
+	<key>preferences</key>
+	<dict>
+		<key>XcodeAddMissingFiles</key>
+		<true/>
+		<key>XcodeFileLimit</key>
+		<real>75</real>
+		<key>XcodeHasFileLimit</key>
+		<true/>
+		<key>XcodeHasLanguageLimit</key>
+		<true/>
+		<key>XcodeLanguageLimit</key>
+		<real>90</real>
+		<key>XcodeRemoveNotMatchingFiles</key>
+		<false/>
+		<key>autotranslateNewStrings</key>
+		<false/>
+		<key>compressLocalizationFiles</key>
+		<false/>
+		<key>deactivateEmptyStrings</key>
+		<true/>
+		<key>deactivatePlaceholderStrings</key>
+		<true/>
+		<key>defaultBundleNaming</key>
+		<integer>1</integer>
+		<key>defaultBundleReferencing</key>
+		<integer>1</integer>
+		<key>embedDictionary</key>
+		<true/>
+		<key>embedDictionaryGuesses</key>
+		<false/>
+		<key>importEmptyStrings</key>
+		<true/>
+		<key>includeInterfacePreview</key>
+		<false/>
+		<key>markAutotranslatedAsNotChanged</key>
+		<true/>
+		<key>rescanXcodeProjects</key>
+		<false/>
+		<key>saveCompressed</key>
+		<false/>
+		<key>updateXcodeProjects</key>
+		<false/>
+		<key>valueChangesResetStrings</key>
+		<false/>
+	</dict>
+	<key>reference language</key>
+	<string>en</string>
+	<key>version</key>
+	<integer>6</integer>
+</dict>
+</plist>
