@@ -68,7 +68,7 @@
 		}];
 		statusItem.button.image=canvas;*/
 }
-
+/*
 - (void)timerXired:(id)notused {
 	NSImage *oldCanvas = statusItem.button.image;
 	NSImage *canvas = oldCanvas;
@@ -90,7 +90,7 @@
 		[statusItem.button displayRectIgnoringOpacity:statusItem.button.bounds];
 	}
 }
-
+*/
 - (void)configDisplay:(NSString *)bundleID fromPrefs:(MenuMeterDefaults *)ourPrefs withTimerInterval:(NSTimeInterval)interval {
 	if ([ourPrefs loadBoolPref:bundleID defaultValue:YES]) {
 		if (!statusItem) {
