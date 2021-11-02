@@ -63,7 +63,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 @implementation MenuMeterNetConfig
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {
@@ -629,7 +629,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 									  @"-c",
 									  [NSString stringWithFormat:@"%@", commandToRun],
 									  nil];
-	//    NSLog(@"run command:%@", commandToRun);
+	// NSLog(@"run command:%@", commandToRun);
 	[task setArguments:arguments];
 
 	NSPipe *pipe = [NSPipe pipe];
@@ -765,7 +765,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // speedForInterfaceName
 
 - (NSDictionary *)sysconfigValueForKey:(NSString *)key {
-
 	return (NSDictionary *)CFBridgingRelease(SCDynamicStoreCopyValue(scSession, (CFStringRef)key));
 } // sysconfigValueForKey
 

@@ -100,7 +100,7 @@ static host_statistics64_Ptr host_statistics64_Impl = NULL;
 //
 ///////////////////////////////////////////////////////////////
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
 	if (!self) {
 		return nil;

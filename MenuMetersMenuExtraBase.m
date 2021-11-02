@@ -189,12 +189,12 @@
 
 - (void)addStandardMenuEntriesTo:(NSMenu *)extraMenu {
 	NSMenuItem *menuItem = [extraMenu addItemWithTitle:NSLocalizedString(kOpenActivityMonitorTitle, kOpenActivityMonitorTitle)
-															  action:@selector(openActivityMonitor:)
-													   keyEquivalent:@""];
+												action:@selector(openActivityMonitor:)
+										 keyEquivalent:@""];
 	[menuItem setTarget:self];
 	menuItem = [extraMenu addItemWithTitle:NSLocalizedString(kOpenMenuMetersPref, kOpenMenuMetersPref)
-												  action:@selector(openMenuMetersPref:)
-										   keyEquivalent:@""];
+									action:@selector(openMenuMetersPref:)
+							 keyEquivalent:@""];
 	[menuItem setTarget:self];
 }
 

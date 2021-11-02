@@ -61,7 +61,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 @implementation MenuMeterDiskSpace
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {

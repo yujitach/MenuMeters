@@ -44,7 +44,7 @@
 
 @implementation MenuMeterUptime
 
-- (id)init {
+- (instancetype)init {
 
 	// Allow super to init
 	self = [super init];
