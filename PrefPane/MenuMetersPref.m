@@ -297,10 +297,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[intervalFormatter setFormat:@"###0.0\u2009s"];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-	intervalFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:intervalFormatter]];
+	// intervalFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:intervalFormatter]];
 	// Now set the formatters
 	[cpuIntervalDisplay setFormatter:intervalFormatter];
 	[diskIntervalDisplay setFormatter:intervalFormatter];
+    [memIntervalDisplay setFormatter:intervalFormatter];
 	[netIntervalDisplay setFormatter:intervalFormatter];
 
 	// Configure the scale menu to contain images and enough space
