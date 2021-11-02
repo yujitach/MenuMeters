@@ -376,7 +376,7 @@
 
 ///////////////////////////////////////////////////////////////
 //
-//    NSMenuDelegate
+//  NSMenuDelegate
 //
 ///////////////////////////////////////////////////////////////
 
@@ -764,7 +764,7 @@
 
 	if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
 		// Calc the new width
-		NSAttributedString *string = [self percentStringForLoad:[ourPrefs cpuSumAllProcsPercent] ? [cpuInfo numberOfCPUs] : 1.0f
+		NSAttributedString *string = [self percentStringForLoad:[ourPrefs cpuSumAllProcsPercent] ? [cpuInfo numberOfCPUs] : 1.0
 													   andColor:fgMenuThemeColor];
 		percentWidth = (float)round([string size].width) + kCPUPercentDisplayBorderWidth;
 	}

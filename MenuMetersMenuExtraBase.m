@@ -59,7 +59,7 @@
 
 - (void)timerFired:(id)notused {
 	statusItem.button.image = self.image;
-	/*    NSImage*image=self.image;
+	/* NSImage*image=self.image;
 		NSImage*canvas=[NSImage imageWithSize:image.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
 			[[[NSColor systemGrayColor] colorWithAlphaComponent:.3] setFill];
 			[NSBezierPath fillRect:(CGRect) {.size = image.size}];
@@ -160,7 +160,7 @@
 	if (!x)
 		return;
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-		//        if(@available(macOS 10.15,*)){
+		// if(@available(macOS 10.15,*)){
 		int tab = 1;
 		if ([self isKindOfClass:[MenuMeterCPUExtra class]]) {
 			tab = 1;
@@ -183,16 +183,16 @@
 		if (errorDict) {
 			NSLog(@"%@", errorDict);
 		}
-		//        }
+		// }
 	});
 } // openActivityMonitor
 
 - (void)addStandardMenuEntriesTo:(NSMenu *)extraMenu {
-	NSMenuItem *menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:NSLocalizedString(kOpenActivityMonitorTitle, kOpenActivityMonitorTitle)
+	NSMenuItem *menuItem = [extraMenu addItemWithTitle:NSLocalizedString(kOpenActivityMonitorTitle, kOpenActivityMonitorTitle)
 															  action:@selector(openActivityMonitor:)
 													   keyEquivalent:@""];
 	[menuItem setTarget:self];
-	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:NSLocalizedString(kOpenMenuMetersPref, kOpenMenuMetersPref)
+	menuItem = [extraMenu addItemWithTitle:NSLocalizedString(kOpenMenuMetersPref, kOpenMenuMetersPref)
 												  action:@selector(openMenuMetersPref:)
 										   keyEquivalent:@""];
 	[menuItem setTarget:self];
