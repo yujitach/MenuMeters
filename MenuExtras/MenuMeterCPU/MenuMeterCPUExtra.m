@@ -146,6 +146,7 @@
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 
 	// Add task title and blanks for task display
@@ -154,6 +155,7 @@
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 
 	// Add load title and blanks for load display
@@ -162,6 +164,7 @@
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 
 	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kCPUPowerLimitStatusTitle value:nil table:nil]
@@ -169,6 +172,7 @@
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 
 	// Add top kCPUrocessCountMax most CPU intensive processes
@@ -180,6 +184,7 @@
 	// as this list is "static" unfortunately we need all of the kCPUrocessCountMax menu items and hide/show later the un-wanted/wanted ones
 	for (NSInteger ndx = 0; ndx < kCPUrocessCountMax; ++ndx) {
 		menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+        menuItem.indentationLevel=1;
 		[menuItem setEnabled:NO];
 	}
 

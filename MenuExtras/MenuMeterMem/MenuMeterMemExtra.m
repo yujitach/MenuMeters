@@ -121,6 +121,7 @@
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 
 	// Add memory page stats title and placeholders
@@ -129,10 +130,13 @@
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 
 	// Add VM stats menu items and placeholders
@@ -141,10 +145,13 @@
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 
         // add items for memory pressure
@@ -153,6 +160,7 @@
                                            keyEquivalent:@""];
         [menuItem setEnabled:NO];
         menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+	    menuItem.indentationLevel=1;
         [menuItem setEnabled:NO];
 
 	// Swap file stats menu item and placeholders
@@ -161,10 +169,13 @@
 										   keyEquivalent:@""];
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
 	menuItem = (NSMenuItem *)[extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
+    menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
     [extraMenu addItem:[NSMenuItem separatorItem]];
     [self addStandardMenuEntriesTo:extraMenu];
@@ -178,7 +189,8 @@
 	[tempFormat setFormat:[NSString stringWithFormat:@"#,##0.0%@", [localizedStrings objectForKey:kMBLabel]]];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-	memFloatMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
+    // memFloatMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
+    memFloatMBFormatter = tempFormat;
 	[tempFormat setFormat:[NSString stringWithFormat:@"#,##0%@", [localizedStrings objectForKey:kMBLabel]]];
 	memIntMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	[tempFormat setFormat:@"#,##0"];
