@@ -262,6 +262,11 @@
 		}
 		return YES;
 	}];
+
+	if (ourPrefs.tintPercentage > 98) {
+		currentImage.template = YES;
+	}
+
 	// Send it back for the view to render
 	return currentImage;
 
@@ -557,7 +562,9 @@
 
 	// Draw
 	NSRect barFrame = NSMakeRect(0, 0, kMemThermometerDisplayWidth, imageSize.height);
-
+	if (!ourPrefs.tallMenuBar) {
+		barFrame = NSInsetRect(barFrame, 0, 1);
+	}
 	NSRect pressureRect = barFrame;
 	pressureRect.size.height *= pressure;
 

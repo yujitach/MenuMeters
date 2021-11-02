@@ -248,4 +248,8 @@
 
 - (void)saveNetPreferInterface:(NSString *)interface;
 
+@property (readonly) BOOL tallMenuBar;
+
+@property (assign) float tintPercentage;
+
 @end

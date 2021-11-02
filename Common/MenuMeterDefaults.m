@@ -85,7 +85,10 @@
 	BOOL _netThroughputBits;
 	BOOL _netThroughputLabel;
 	int _netDisplayOrientation;
+	BOOL _tallMenuBar;
 }
+
+@synthesize tallMenuBar = _tallMenuBar;
 
 #define kMigratedFromRagingMenaceToYujitach @"migratedFromRagingMenaceToYujitach"
 
@@ -136,6 +139,13 @@
 	}
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetCaches:) name:NSUserDefaultsDidChangeNotification object:NULL];
 	[self resetCaches:self];
+
+	CGFloat menuBarHeight = [[NSApp mainMenu] menuBarHeight];
+	if (menuBarHeight > 23) { // on MacBooks with notch. (TODO: or when "Menu bar size" is set to "large" system preferences?)
+		NSArray *screens = NSScreen.screens;
+		_tallMenuBar = screens.count == 1; // If there is a screen attached, it has its own (small) menu and I can’t distinguish the two right now.
+	}
+
 	return self;
 
 } // init
@@ -164,6 +174,8 @@
 									  lowBound:kNetDisplayOrientTxRx
 									 highBound:kNetDisplayOrientRxTx
 								  defaultValue:kNetDisplayOrientationDefault];
+
+	_tintPercentage = [[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"];
 }
 
 ///////////////////////////////////////////////////////////////

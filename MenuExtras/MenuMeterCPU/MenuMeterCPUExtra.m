@@ -323,6 +323,10 @@
 		return YES;
 	}];
 
+	if (ourPrefs.tintPercentage > 98) {
+		currentImage.template = YES;
+	}
+
 	// Send it back for the view to render
 	return currentImage;
 
@@ -579,6 +583,9 @@
 
 	// Paths
 	NSRect thermometerFrame = NSMakeRect(offset, 0, kCPUThermometerDisplayWidth, imageSize.height);
+	if (!ourPrefs.tallMenuBar) {
+		thermometerFrame = NSInsetRect(thermometerFrame, 0, 1);
+	}
 	NSRect userRect = thermometerFrame;
 	userRect.size.height *= (user + system) > 1 ? 1 : (user + system);
 	NSRect systemRect = thermometerFrame;

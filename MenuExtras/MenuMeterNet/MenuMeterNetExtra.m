@@ -183,13 +183,7 @@
 	// Disable menu autoenabling
 	[extraMenu setAutoenablesItems:NO];
 
-	// TODO: move the following into MenuMetersPref ??
-	CGFloat menuBarHeight = [[NSApp mainMenu] menuBarHeight];
-	if (menuBarHeight > 23) { // on MacBooks with notch. (TODO: or when "Menu bar size" is set to "large" system preferences?)
-		NSArray *screens = NSScreen.screens;
-		tallMenuBar = screens.count == 1; // If there is a screen attached, it has its own (small) menu and I can’t distinguish the two right now.
-	}
-	throughputFont = [NSFont monospacedDigitSystemFontOfSize:tallMenuBar ? 11 : 9.5 weight:NSFontWeightLight];
+	throughputFont = [NSFont monospacedDigitSystemFontOfSize:ourPrefs.tallMenuBar ? 11 : 9.5 weight:NSFontWeightLight];
 	NSFont *traitFont = [NSFontManager.sharedFontManager convertFont:throughputFont toHaveTrait:NSCondensedFontMask];
 	if (traitFont) {
 		throughputFont = traitFont;
@@ -252,6 +246,11 @@
 		}
 		return YES;
 	}];
+
+	if (ourPrefs.tintPercentage > 98) {
+		currentImage.template = YES;
+	}
+
 	// Send it back for the view to render
 	return currentImage;
 
@@ -1120,12 +1119,12 @@
 	NSPoint rxPos;
 	NSPoint txPos;
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-		rxPos = NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), floor(imageSize.height / 2) - 1);
-		txPos = NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), tallMenuBar ? -3 : -1);
+		rxPos = NSMakePoint(ceil(menuWidth - [renderRxString size].width), floor(imageSize.height / 2) - 1);
+		txPos = NSMakePoint(ceil(menuWidth - [renderTxString size].width), ourPrefs.tallMenuBar ? -3 : -1);
 	}
 	else {
-		txPos = NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), floor(imageSize.height / 2) - 1);
-		rxPos = NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), tallMenuBar ? -3 : -1);
+		txPos = NSMakePoint(ceil(menuWidth - [renderTxString size].width), floor(imageSize.height / 2) - (ourPrefs.tallMenuBar ? 1 : 2));
+		rxPos = NSMakePoint(ceil(menuWidth - [renderRxString size].width), - (ourPrefs.tallMenuBar ? 3 : 1));
 	}
 	[renderTxString drawAtPoint:txPos];
 	[renderRxString drawAtPoint:rxPos];
@@ -1447,6 +1446,7 @@
 		arrowOffset = [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 	}
 	NSBezierPath *arrow = [NSBezierPath bezierPath];
+	BOOL tallMenuBar = ourPrefs.tallMenuBar;
 	[arrow moveToPoint:NSMakePoint(kNetArrowDisplayWidth / 2 + 0.5, tallMenuBar ? 0.5 : 2.5)];
 	[arrow lineToPoint:NSMakePoint(0.5, tallMenuBar ? 5.5 : 6.5)];
 	[arrow lineToPoint:NSMakePoint(2.5, tallMenuBar ? 5.5 : 6.5)];

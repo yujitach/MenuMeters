@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MenuMetersPref">
             <connections>
-                <outlet property="_window" destination="12" id="119"/>
                 <outlet property="aboutView" destination="U5D-Mp-8pb" id="K8R-8s-GRK"/>
                 <outlet property="cpuGraph" destination="EKe-a8-Y3G" id="7v8-zm-U0A"/>
                 <outlet property="cpuGraphWidth" destination="172" id="179"/>
@@ -85,6 +84,7 @@
                 <outlet property="prefTabs" destination="99" id="117"/>
                 <outlet property="sparkleUIContainer" destination="d2S-NP-QJd" id="LcX-MV-ZDl"/>
                 <outlet property="updateIntervalButton" destination="0K2-bO-QtW" id="Klq-pn-RHu"/>
+                <outlet property="window" destination="12" id="moN-me-CZa"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -104,7 +104,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
-                            <tabViewItem label="CPU" identifier="1" id="102">
+                            <tabViewItem label="CPU" identifier="cpu" id="102">
                                 <view key="view" id="98">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -550,7 +550,7 @@
                                     </subviews>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Disk" identifier="2" id="100">
+                            <tabViewItem label="Disk" identifier="internaldrive" id="100">
                                 <view key="view" id="101">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -654,7 +654,7 @@
                                     </subviews>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Memory" identifier="" id="103">
+                            <tabViewItem label="Memory" identifier="memorychip" id="103">
                                 <view key="view" id="104">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -953,7 +953,7 @@
                                     </subviews>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Network" identifier="" id="105">
+                            <tabViewItem label="Network" identifier="network" id="105">
                                 <view key="view" id="106">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1316,7 +1316,7 @@
                                     </subviews>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="About" identifier="" id="FSw-QC-dn2">
+                            <tabViewItem label="About" identifier="info.circle" id="FSw-QC-dn2">
                                 <view key="view" id="WIu-YG-nD2">
                                     <rect key="frame" x="10" y="33" width="548" height="606"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1456,6 +1456,9 @@
                     </tabView>
                 </subviews>
             </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="A3K-kv-Xtd"/>
+            </connections>
             <point key="canvasLocation" x="139" y="146.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="mKC-fV-MVM"/>

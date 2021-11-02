@@ -109,7 +109,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // scChangeCallback
 
 @implementation MenuMetersPref {
-	IBOutlet NSWindow *_window;
 #ifdef SPARKLE
 	SUUpdater *updater;
 #endif
@@ -169,8 +168,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 - (void)initCommon:(NSString *)about {
 	[self loadWindow];
-	self.window = _window;
-	[self.window setDelegate:self];
 	[self mainViewDidLoad];
 	[self willSelect];
 	[self setupAboutTab:about];
@@ -179,7 +176,62 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[self.window makeKeyAndOrderFront:self];
 	}
 	[self setupSparkleUI];
+
+	if (@available(macOS 10.16, *)) {
+		NSToolbar *toolbar = [NSToolbar new];
+		toolbar.delegate = self;
+		self.window.toolbar = toolbar;
+		self.window.toolbarStyle = NSWindowToolbarStylePreference;
+
+		prefTabs.tabViewType = NSNoTabsNoBorder;
+		NSString *selectedIdentifier = prefTabs.selectedTabViewItem.identifier;
+		[self.window.toolbar setSelectedItemIdentifier:selectedIdentifier];
+		prefTabs.delegate = self;
+	}
 }
+
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
+	NSMutableArray *items = [NSMutableArray new];
+	for (NSTabViewItem *tabItem in prefTabs.tabViewItems) {
+		NSString *identifier = tabItem.identifier;
+		[items addObject:identifier];
+	}
+	return items;
+}
+
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar {
+	return [self toolbarDefaultItemIdentifiers:toolbar];
+}
+
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {
+	return [self toolbarDefaultItemIdentifiers:toolbar];
+}
+
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdent willBeInsertedIntoToolbar:(BOOL)willBeInserted {
+	NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdent];
+	NSUInteger tabIdx = [prefTabs indexOfTabViewItemWithIdentifier:itemIdent];
+	NSTabViewItem *tabItem = [prefTabs tabViewItemAtIndex:tabIdx];
+	item.paletteLabel = tabItem.label;
+	item.label = tabItem.label;
+	item.action = @selector(toolbarSelection:);
+	if (@available(macOS 10.16, *)) {
+		item.image = [NSImage imageWithSystemSymbolName:itemIdent accessibilityDescription:@""];
+	}
+	return item;
+}
+
+- (IBAction)toolbarSelection:(id)sender {
+	NSString *itemIdent = [(NSToolbarItem*)sender itemIdentifier];
+	NSUInteger tabIdx = [prefTabs indexOfTabViewItemWithIdentifier:itemIdent];
+	NSTabViewItem *tabItem = [prefTabs tabViewItemAtIndex:tabIdx];
+	[prefTabs selectTabViewItem:tabItem];
+}
+
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
+	NSString *itemIdent = [tabViewItem identifier];
+	[self.window.toolbar setSelectedItemIdentifier:itemIdent];
+}
+
 #ifdef SPARKLE
 
 - (instancetype)initWithAboutFileName:(NSString *)about andUpdater:(SUUpdater *)updater_ {
