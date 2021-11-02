@@ -109,7 +109,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // scChangeCallback
 
 @implementation MenuMetersPref {
-	IBOutlet NSWindow *_window;
 #ifdef SPARKLE
 	SUUpdater *updater;
 #endif
@@ -164,12 +163,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSMutableAttributedString *x = [[NSMutableAttributedString alloc] initWithURL:[NSURL fileURLWithPath:pathToRTF] options:@{} documentAttributes:nil error:nil];
 	[x addAttribute:NSForegroundColorAttributeName value:[NSColor textColor] range:NSMakeRange(0, x.length)];
 	[aboutView.textStorage appendAttributedString:x];
+	aboutView.textContainerInset = NSMakeSize(12, 8);
 }
 
 - (void)initCommon:(NSString *)about {
 	[self loadWindow];
-	self.window = _window;
-	[self.window setDelegate:self];
 	[self mainViewDidLoad];
 	[self willSelect];
 	[self setupAboutTab:about];
@@ -178,7 +176,62 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[self.window makeKeyAndOrderFront:self];
 	}
 	[self setupSparkleUI];
+
+	if (@available(macOS 10.16, *)) {
+		NSToolbar *toolbar = [NSToolbar new];
+		toolbar.delegate = self;
+		self.window.toolbar = toolbar;
+		self.window.toolbarStyle = NSWindowToolbarStylePreference;
+
+		prefTabs.tabViewType = NSNoTabsNoBorder;
+		NSString *selectedIdentifier = prefTabs.selectedTabViewItem.identifier;
+		[self.window.toolbar setSelectedItemIdentifier:selectedIdentifier];
+		prefTabs.delegate = self;
+	}
 }
+
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
+	NSMutableArray *items = [NSMutableArray new];
+	for (NSTabViewItem *tabItem in prefTabs.tabViewItems) {
+		NSString *identifier = tabItem.identifier;
+		[items addObject:identifier];
+	}
+	return items;
+}
+
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar *)toolbar {
+	return [self toolbarDefaultItemIdentifiers:toolbar];
+}
+
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {
+	return [self toolbarDefaultItemIdentifiers:toolbar];
+}
+
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdent willBeInsertedIntoToolbar:(BOOL)willBeInserted {
+	NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdent];
+	NSUInteger tabIdx = [prefTabs indexOfTabViewItemWithIdentifier:itemIdent];
+	NSTabViewItem *tabItem = [prefTabs tabViewItemAtIndex:tabIdx];
+	item.paletteLabel = tabItem.label;
+	item.label = tabItem.label;
+	item.action = @selector(toolbarSelection:);
+	if (@available(macOS 10.16, *)) {
+		item.image = [NSImage imageWithSystemSymbolName:itemIdent accessibilityDescription:@""];
+	}
+	return item;
+}
+
+- (IBAction)toolbarSelection:(id)sender {
+	NSString *itemIdent = [(NSToolbarItem*)sender itemIdentifier];
+	NSUInteger tabIdx = [prefTabs indexOfTabViewItemWithIdentifier:itemIdent];
+	NSTabViewItem *tabItem = [prefTabs tabViewItemAtIndex:tabIdx];
+	[prefTabs selectTabViewItem:tabItem];
+}
+
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
+	NSString *itemIdent = [tabViewItem identifier];
+	[self.window.toolbar setSelectedItemIdentifier:itemIdent];
+}
+
 #ifdef SPARKLE
 
 - (instancetype)initWithAboutFileName:(NSString *)about andUpdater:(SUUpdater *)updater_ {
@@ -283,17 +336,15 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSEnumerator *diskImageSetEnum = [kDiskImageSets objectEnumerator];
 	[diskImageSet removeAllItems];
 	NSString *imageSetName = nil;
+	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 	while ((imageSetName = [diskImageSetEnum nextObject])) {
-		[diskImageSet addItemWithTitle:[[NSBundle bundleForClass:[self class]]
-										   localizedStringForKey:imageSetName
-														   value:nil
-														   table:@"DiskImageSet"]];
+		[diskImageSet addItemWithTitle:[bundle localizedStringForKey:imageSetName value:nil table:@"DiskImageSet"]];
 	}
 
 	// Set up a NSFormatter for use printing timers
 	NSNumberFormatter *intervalFormatter = [[NSNumberFormatter alloc] init];
 	[intervalFormatter setLocalizesFormat:YES];
-	[intervalFormatter setFormat:@"###0.0"];
+	[intervalFormatter setFormat:@"###0.0\u2009s"];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
 	intervalFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:intervalFormatter]];
@@ -303,27 +354,22 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[netIntervalDisplay setFormatter:intervalFormatter];
 
 	// Configure the scale menu to contain images and enough space
-	[[netScaleCalc itemAtIndex:kNetScaleCalcLinear] setImage:[[NSImage alloc] initWithContentsOfFile:[[self bundle]
-																										 pathForResource:@"LinearScale"
-																												  ofType:@"tiff"]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcLinear] setTitle:[NSString stringWithFormat:@"  %@",
-																						[[netScaleCalc itemAtIndex:kNetScaleCalcLinear] title]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot] setImage:[[NSImage alloc] initWithContentsOfFile:[[self bundle]
-																											 pathForResource:@"SquareRootScale"
-																													  ofType:@"tiff"]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot] setTitle:[NSString stringWithFormat:@"  %@",
-																							[[netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot] title]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot] setImage:[[NSImage alloc] initWithContentsOfFile:[[self bundle]
-																										   pathForResource:@"CubeRootScale"
-																													ofType:@"tiff"]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot] setTitle:[NSString stringWithFormat:@"  %@",
-																						  [[netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot] title]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setImage:[[NSImage alloc] initWithContentsOfFile:[[self bundle]
-																									  pathForResource:@"LogScale"
-																											   ofType:@"tiff"]]];
-	[[netScaleCalc itemAtIndex:kNetScaleCalcLog] setTitle:[NSString stringWithFormat:@"  %@",
-																					 [[netScaleCalc itemAtIndex:kNetScaleCalcLog] title]]];
+	NSMenuItem *item;
+	item = [netScaleCalc itemAtIndex:kNetScaleCalcLinear];
+	item.image = [bundle imageForResource:@"LinearScale"];
+	item.title = [@"  %@" stringByAppendingString:item.title];
 
+	item = [netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot];
+	item.image = [bundle imageForResource:@"SquareRootScale"];
+	item.title = [@"  %@" stringByAppendingString:item.title];
+
+	item = [netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot];
+	item.image = [bundle imageForResource:@"CubeRootScale"];
+	item.title = [@"  %@" stringByAppendingString:item.title];
+
+	item = [netScaleCalc itemAtIndex:kNetScaleCalcLog];
+	item.image = [bundle imageForResource:@"LogScale"];
+	item.title = [@"  %@" stringByAppendingString:item.title];
 	{
 		NSString *oldAppPath = [@"~/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMetersApp.app" stringByExpandingTildeInPath];
 		EMCLoginItem *oldItem = [EMCLoginItem loginItemWithPath:oldAppPath];
@@ -340,7 +386,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	system("killall MenuMetersApp");
 	{
-		EMCLoginItem *thisItem = [EMCLoginItem loginItemWithBundle:[NSBundle mainBundle]];
+		EMCLoginItem *thisItem = [EMCLoginItem loginItemWithBundle:bundle];
 		if (!thisItem.isLoginItem) {
 			[thisItem addLoginItem];
 		}
@@ -459,7 +505,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 - (void)menuExtraChangedPrefs:(NSNotification *)notification {
 
 	if (ourPrefs) {
-		[ourPrefs syncWithDisk];
 		[self cpuPrefChange:nil];
 		[self diskPrefChange:nil];
 		[self memPrefChange:nil];
@@ -526,7 +571,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		r |= kCPUDisplayGraph;
 	if ([cpuThermometer state] == NSOnState)
 		r |= kCPUDisplayThermometer;
-	if ([cpuHorizontalThermometer state] == NSOnState)
+	else if ([cpuHorizontalThermometer state] == NSOnState)
 		r |= kCPUDisplayHorizontalThermometer;
 	return r;
 }
@@ -544,6 +589,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 	// Save changes
 	if (sender == cpuPercentage || sender == cpuGraph || sender == cpuThermometer || sender == cpuHorizontalThermometer) {
+
+		if (sender == cpuThermometer && cpuThermometer.state == NSOnState) {
+			cpuHorizontalThermometer.state = NSOffState;
+		}
+		else if (sender == cpuHorizontalThermometer && cpuHorizontalThermometer.state == NSOnState) {
+			cpuThermometer.state = NSOffState;
+		}
 		[ourPrefs saveCpuDisplayMode:[self cpuDisplayMode]];
 	}
 	else if (sender == cpuTemperatureToggle) {
@@ -567,7 +619,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveCpuPercentDisplay:(int)[cpuPercentMode indexOfSelectedItem]];
 	}
 	else if (sender == cpuMaxProcessCount) {
-		[ourPrefs saveCpuMaxProcessCount:(int)[cpuMaxProcessCount intValue]];
+		[ourPrefs saveCpuMaxProcessCount:[cpuMaxProcessCount intValue]];
 	}
 	else if (sender == cpuGraphWidth) {
 		[ourPrefs saveCpuGraphLength:[cpuGraphWidth intValue]];
@@ -642,19 +694,19 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 
 	// Update controls
-	[cpuPercentage setState:([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) ? NSOnState : NSOffState];
-	[cpuGraph setState:([ourPrefs cpuDisplayMode] & kCPUDisplayGraph) ? NSOnState : NSOffState];
-	[cpuThermometer setState:([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) ? NSOnState : NSOffState];
-	[cpuHorizontalThermometer setState:([ourPrefs cpuDisplayMode] & kCPUDisplayHorizontalThermometer) ? NSOnState : NSOffState];
+	int cpuDisplayMode = [ourPrefs cpuDisplayMode];
+	[cpuPercentage setState:(cpuDisplayMode & kCPUDisplayPercent) ? NSOnState : NSOffState];
+	[cpuGraph setState:(cpuDisplayMode & kCPUDisplayGraph) ? NSOnState : NSOffState];
+	[cpuThermometer setState:(cpuDisplayMode & kCPUDisplayThermometer) ? NSOnState : NSOffState];
+	[cpuHorizontalThermometer setState:(cpuDisplayMode & kCPUDisplayHorizontalThermometer) ? NSOnState : NSOffState];
+
 	if ([cpuHorizontalThermometer state] == NSOnState) {
 		[cpuPercentage setEnabled:NO];
 		[cpuGraph setEnabled:NO];
-		[cpuThermometer setEnabled:NO];
 	}
 	else {
 		[cpuPercentage setEnabled:YES];
 		[cpuGraph setEnabled:YES];
-		[cpuThermometer setEnabled:YES];
 	}
 	[cpuTemperatureToggle setState:[ourPrefs cpuShowTemperature]];
 	[cpuTemperatureUnit selectItemAtIndex:[ourPrefs cpuTemperatureUnit]];
@@ -663,7 +715,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuPercentMode selectItemAtIndex:[ourPrefs cpuPercentDisplay]];
 	[cpuMaxProcessCount setIntValue:[ourPrefs cpuMaxProcessCount]];
 	[cpuMaxProcessCountCountLabel setStringValue:[NSString stringWithFormat:NSLocalizedString(@"(%d)", @"DO NOT LOCALIZE!!!"),
-																			(short)[ourPrefs cpuMaxProcessCount]]];
+																			[ourPrefs cpuMaxProcessCount]]];
 	[cpuGraphWidth setIntValue:[ourPrefs cpuGraphLength]];
 	[cpuHorizontalRows setIntValue:[ourPrefs cpuHorizontalRows]];
 	[cpuMenuWidth setIntValue:[ourPrefs cpuMenuWidth]];
@@ -695,7 +747,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 			[cpuPercentModeLabel setTextColor:[NSColor controlTextColor]];
 		} else {
 			[cpuPercentMode setEnabled:NO];
-			[cpuPercentModeLabel setTextColor:[NSColor lightGrayColor]];
+			[cpuPercentModeLabel setTextColor:[NSColor disabledControlTextColor]];
 		}
 	 */
 	if ([cpuGraph state] == NSOnState) {
@@ -704,7 +756,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[cpuGraphWidth setEnabled:NO];
-		[cpuGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
+		[cpuGraphWidthLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 	if ([cpuHorizontalThermometer state] == NSOnState) {
 		[cpuHorizontalRows setEnabled:YES];
@@ -714,9 +766,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[cpuHorizontalRows setEnabled:NO];
-		[cpuHorizontalRowsLabel setTextColor:[NSColor lightGrayColor]];
+		[cpuHorizontalRowsLabel setTextColor:[NSColor disabledControlTextColor]];
 		[cpuMenuWidth setEnabled:NO];
-		[cpuMenuWidthLabel setTextColor:[NSColor lightGrayColor]];
+		[cpuMenuWidthLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 	/*	if ((([cpuDisplayMode indexOfSelectedItem] + 1) & (kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)) ||
 			((([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) &&
@@ -728,12 +780,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	/*	} else {
 			[cpuUserColor setEnabled:NO];
 			[cpuSystemColor setEnabled:NO];
-			[cpuUserColorLabel setTextColor:[NSColor lightGrayColor]];
-			[cpuSystemColorLabel setTextColor:[NSColor lightGrayColor]];
+			[cpuUserColorLabel setTextColor:[NSColor disabledControlTextColor]];
+			[cpuSystemColorLabel setTextColor:[NSColor disabledControlTextColor]];
 		}*/
 
-	// Write prefs and notify
-	[ourPrefs syncWithDisk];
+	// Notify
 	if ([self isExtraWithBundleIDLoaded:kCPUMenuBundleID]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:kCPUMenuBundleID
 															object:kPrefChangeNotification
@@ -772,8 +823,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[diskSelectMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[diskSelectMode selectItemAtIndex:[ourPrefs diskSelectMode]];
 
-	// Write prefs and notify
-	[ourPrefs syncWithDisk];
+	// Notify
 	if ([self isExtraWithBundleIDLoaded:kDiskMenuBundleID]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:kDiskMenuBundleID
 															object:kPrefChangeNotification
@@ -870,7 +920,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[memGraphWidth setEnabled:NO];
-		[memGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
+		[memGraphWidthLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 	if ([memPageIndicator state] == NSOnState) {
 		[memPageinColorLabel setTextColor:[NSColor controlTextColor]];
@@ -879,8 +929,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[memPageoutColor setEnabled:YES];
 	}
 	else {
-		[memPageinColorLabel setTextColor:[NSColor lightGrayColor]];
-		[memPageoutColorLabel setTextColor:[NSColor lightGrayColor]];
+		[memPageinColorLabel setTextColor:[NSColor disabledControlTextColor]];
+		[memPageoutColorLabel setTextColor:[NSColor disabledControlTextColor]];
 		[memPageinColor setEnabled:NO];
 		[memPageoutColor setEnabled:NO];
 	}
@@ -891,8 +941,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 			[memPressureMode setEnabled:NO];
 		}*/
 
-	// Write prefs and notify
-	[ourPrefs syncWithDisk];
+	// Notify
 	if ([self isExtraWithBundleIDLoaded:kMemMenuBundleID]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:kMemMenuBundleID
 															object:kPrefChangeNotification
@@ -1027,9 +1076,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[netGraphStyle setEnabled:NO];
-		[netGraphStyleLabel setTextColor:[NSColor lightGrayColor]];
+		[netGraphStyleLabel setTextColor:[NSColor disabledControlTextColor]];
 		[netGraphWidth setEnabled:NO];
-		[netGraphWidthLabel setTextColor:[NSColor lightGrayColor]];
+		[netGraphWidthLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 	if ((([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayArrows) ||
 		(([netDisplayMode indexOfSelectedItem] + 1) & kNetDisplayGraph)) {
@@ -1040,13 +1089,12 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	else {
 		[netScaleMode setEnabled:NO];
-		[netScaleModeLabel setTextColor:[NSColor lightGrayColor]];
+		[netScaleModeLabel setTextColor:[NSColor disabledControlTextColor]];
 		[netScaleCalc setEnabled:NO];
-		[netScaleCalcLabel setTextColor:[NSColor lightGrayColor]];
+		[netScaleCalcLabel setTextColor:[NSColor disabledControlTextColor]];
 	}
 
-	// Write prefs and notify
-	[ourPrefs syncWithDisk];
+	// Notify
 	if ([self isExtraWithBundleIDLoaded:kNetMenuBundleID]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:kNetMenuBundleID
 															object:kPrefChangeNotification
@@ -1063,9 +1111,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 - (void)loadExtraAtURL:(NSURL *)extraURL withID:(NSString *)bundleID {
 #ifdef ELCAPITAN
-	[ourPrefs saveBoolPref:bundleID
-					 value:YES];
-	[ourPrefs syncWithDisk];
+	[ourPrefs saveBoolPref:bundleID value:YES];
 	[[NSNotificationCenter defaultCenter] postNotificationName:bundleID
 														object:kPrefChangeNotification
 													  userInfo:nil];
@@ -1110,7 +1156,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 - (void)removeExtraWithBundleID:(NSString *)bundleID {
 	[ourPrefs saveBoolPref:bundleID value:NO];
-	[ourPrefs syncWithDisk];
 	[[NSNotificationCenter defaultCenter] postNotificationName:bundleID
 														object:kPrefChangeNotification
 													  userInfo:nil];

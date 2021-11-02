@@ -37,17 +37,17 @@
 
 // Image renderers
 
-- (void)renderPieIntoImage:(NSImage *)image;
+- (void)renderPieImageSize:(NSSize)imageSize;
 
-- (void)renderNumbersIntoImage:(NSImage *)image;
+- (void)renderNumbersImageSize:(NSSize)imageSize;
 
-- (void)renderBarIntoImage:(NSImage *)image;
+- (void)renderBarImageSize:(NSSize)imageSize;
 
-- (void)renderPressureBar:(NSImage *)image;
+- (void)renderPressureBarImageSize:(NSSize)imageSize;
 
-- (void)renderMemHistoryIntoImage:(NSImage *)image;
+- (void)renderMemHistoryImageSize:(NSSize)imageSize;
 
-- (void)renderPageIndicatorIntoImage:(NSImage *)image;
+- (void)renderPageIndicatorImageSize:(NSSize)imageSize;
 
 // Timer callbacks
 
@@ -221,41 +221,50 @@
 ///////////////////////////////////////////////////////////////
 
 - (NSImage *)image {
-	[self setupAppearance];
-
-	// Image to render into (and return to view)
-	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize(menuWidth,
-																	 self.height - 1)];
 
 	// Don't render without data
 	if (![memHistory count])
 		return nil;
 
-	switch ([ourPrefs memDisplayMode]) {
-		case kMemDisplayPie:
-			[self renderPieIntoImage:currentImage];
-			break;
-		case kMemDisplayNumber:
-			[self renderNumbersIntoImage:currentImage];
-			break;
-		case kMemDisplayBar:
-			if ([ourPrefs memPressure] == true) {
-				[self renderPressureBar:currentImage];
-			}
-			else {
-				[self renderBarIntoImage:currentImage];
-			}
-			break;
-		case kMemDisplayGraph:
-			if ([ourPrefs memPressure]) {
-				[self renderPressureHistoryIntoImage:currentImage];
-			}
-			else {
-				[self renderMemHistoryIntoImage:currentImage];
-			}
-	}
-	if ([ourPrefs memPageIndicator]) {
-		[self renderPageIndicatorIntoImage:currentImage];
+	[self setupAppearance];
+
+	NSSize imageSize = NSMakeSize(menuWidth, self.height - 1);
+	// Image to render into (and return to view)
+	MenuMeterDefaults *prefs = ourPrefs;
+	NSImage *currentImage = [NSImage imageWithSize:imageSize
+										   flipped:NO
+									drawingHandler:^BOOL(NSRect dstRect) {
+		switch ([prefs memDisplayMode]) {
+			case kMemDisplayPie:
+				[self renderPieImageSize:imageSize];
+				break;
+			case kMemDisplayNumber:
+				[self renderNumbersImageSize:imageSize];
+				break;
+			case kMemDisplayBar:
+				if ([prefs memPressure]) {
+					[self renderPressureBarImageSize:imageSize];
+				}
+				else {
+					[self renderBarImageSize:imageSize];
+				}
+				break;
+			case kMemDisplayGraph:
+				if ([prefs memPressure]) {
+					[self renderPressureHistoryImageSize:imageSize];
+				}
+				else {
+					[self renderMemHistoryImageSize:imageSize];
+				}
+		}
+		if ([prefs memPageIndicator]) {
+			[self renderPageIndicatorImageSize:imageSize];
+		}
+		return YES;
+	}];
+
+	if (ourPrefs.tintPercentage > 98) {
+		currentImage.template = YES;
 	}
 
 	// Send it back for the view to render
@@ -315,77 +324,66 @@
 		return;
 
 	// Usage
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kUsageFormat],
-																  [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"usedmb"]],
-																  [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freemb"]],
-																  [memIntMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"totalmb"]]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kUsageFormat],
+			 [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"usedmb"]],
+			 [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freemb"]],
+			 [memIntMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"totalmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemUsageInfoMenuIndex, title);
 	// Wired
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kActiveWiredFormat],
-																  [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"activemb"]],
-																  [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"wiremb"]]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kActiveWiredFormat],
+			 [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"activemb"]],
+			 [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"wiremb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemActiveWiredInfoMenuIndex, title);
 	// Inactive/Free
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kInactiveFreeFormat],
-																  [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"inactivemb"]],
-																  [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freepagemb"]]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kInactiveFreeFormat],
+			 [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"inactivemb"]],
+			 [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freepagemb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemInactiveFreeInfoMenuIndex, title);
 	// Compressed
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kCompressedFormat],
-																  [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"compressedmb"]],
-																  [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"uncompressedmb"]]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kCompressedFormat],
+			 [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"compressedmb"]],
+			 [memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"uncompressedmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemCompressedInfoMenuIndex, title);
 	// VM paging
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kVMPagingFormat],
-																  [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"pageins"]],
-																  [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"pageouts"]]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kVMPagingFormat],
+			 [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"pageins"]],
+			 [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"pageouts"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMPageInfoMenuIndex, title);
 	// VM cache
 	const double divisor = [[currentMemStats objectForKey:@"lookups"] doubleValue];
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kVMCacheFormat],
-																  [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"lookups"]],
-																  [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"hits"]],
-																  [percentFormatter stringForObjectValue:
-																						[NSNumber numberWithDouble:
-																									  divisor == 0.0 ? 0.0 : (double)(([[currentMemStats objectForKey:@"hits"] doubleValue] / divisor) * 100.0)]]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kVMCacheFormat],
+			 [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"lookups"]],
+			 [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"hits"]],
+			 [percentFormatter stringForObjectValue:
+			  [NSNumber numberWithDouble:
+			   divisor == 0.0 ? 0.0 : (double)(([[currentMemStats objectForKey:@"hits"] doubleValue] / divisor) * 100.0)]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMCacheInfoMenuIndex, title);
 	// VM fault
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kVMFaultCopyOnWriteFormat],
-																  [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"faults"]],
-																  [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"cowfaults"]]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kVMFaultCopyOnWriteFormat],
+			 [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"faults"]],
+			 [prettyIntFormatter stringForObjectValue:[currentMemStats objectForKey:@"cowfaults"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemVMFaultInfoMenuIndex, title);
 
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kMemPressureFormat], [currentMemStats objectForKey:@"mempress"], [currentMemStats objectForKey:@"mempresslevel"]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kMemPressureFormat], [currentMemStats objectForKey:@"mempress"], [currentMemStats objectForKey:@"mempresslevel"]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemMemPressureInfoMenuIndex, title);
 
 	// Swap count/path, Tiger swap encryptioninfo from Michael Nordmeyer (http://goodyworks.com)
 	if ([[currentSwapStats objectForKey:@"swapencrypted"] boolValue]) {
-		title = [NSString stringWithFormat:kMenuIndentFormat,
-										   [NSString stringWithFormat:
-														 (([[currentSwapStats objectForKey:@"swapcount"] unsignedIntValue] != 1) ? [localizedStrings objectForKey:kMultiEncryptedSwapFormat] : [localizedStrings objectForKey:kSingleEncryptedSwapFormat]),
-														 [prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcount"]],
-														 [currentSwapStats objectForKey:@"swappath"]]];
+		title = [NSString stringWithFormat:
+				 (([[currentSwapStats objectForKey:@"swapcount"] unsignedIntValue] != 1) ? [localizedStrings objectForKey:kMultiEncryptedSwapFormat] : [localizedStrings objectForKey:kSingleEncryptedSwapFormat]),
+				 [prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcount"]],
+				 [currentSwapStats objectForKey:@"swappath"]];
 	}
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapCountInfoMenuIndex, title);
 	// Swap max
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:
-													 (([[currentSwapStats objectForKey:@"swapcountpeak"] unsignedIntValue] != 1) ? [localizedStrings objectForKey:kMaxMultiSwapFormat] : [localizedStrings objectForKey:kMaxSingleSwapFormat]),
-													 [prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcountpeak"]]]];
+	title = [NSString stringWithFormat:
+			 (([[currentSwapStats objectForKey:@"swapcountpeak"] unsignedIntValue] != 1) ? [localizedStrings objectForKey:kMaxMultiSwapFormat] : [localizedStrings objectForKey:kMaxSingleSwapFormat]),
+			 [prettyIntFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapcountpeak"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapMaxCountInfoMenuIndex, title);
 	// Swap size, Tiger swap used path from Michael Nordmeyer (http://goodyworks.com)
-	title = [NSString stringWithFormat:kMenuIndentFormat,
-									   [NSString stringWithFormat:[localizedStrings objectForKey:kSwapSizeUsedFormat],
-																  [memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapsizemb"]],
-																  [memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapusedmb"]]]];
+	title = [NSString stringWithFormat:[localizedStrings objectForKey:kSwapSizeUsedFormat],
+			 [memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapsizemb"]],
+			 [memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapusedmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapSizeInfoMenuIndex, title);
 
 } // updateMenuContent
@@ -396,10 +394,10 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)renderPieIntoImage:(NSImage *)image {
+- (void)renderPieImageSize:(NSSize)imageSize {
 
 	// Load current stats
-	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
+	float totalMB = 1.0, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
 	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
 	if (currentMemStats) {
 		totalMB = [[currentMemStats objectForKey:@"totalmb"] floatValue];
@@ -433,11 +431,10 @@
 		compressedMB = totalMB;
 	};
 
-	// Lock focus and draw curves around a center
-	[image lockFocus];
+	// Draw curves around a center
 	NSBezierPath *renderPath = nil;
 	float totalArc = 0;
-	NSPoint pieCenter = NSMakePoint(kMemPieDisplayWidth / 2, [image size].height / 2);
+	NSPoint pieCenter = NSMakePoint(kMemPieDisplayWidth / 2, imageSize.height / 2);
 
 	// Draw wired
 	renderPath = [NSBezierPath bezierPath];
@@ -501,13 +498,9 @@
 		[renderPath setLineWidth:0.6]; // Lighter line
 		[renderPath stroke];
 	}
-
-	// Unlock focus
-	[image unlockFocus];
-
 } // renderPieIntoImage
 
-- (void)renderNumbersIntoImage:(NSImage *)image {
+- (void)renderNumbersImageSize:(NSSize)imageSize {
 
 	// Read in the RAM data
 	double freeMB = 0, usedMB = 0;
@@ -520,9 +513,6 @@
 		freeMB = 0;
 	if (usedMB < 0)
 		usedMB = 0;
-
-	// Lock focus
-	[image lockFocus];
 
 	// Construct strings
 	NSAttributedString *renderUString = [[NSAttributedString alloc]
@@ -554,15 +544,11 @@
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
 	// No descenders so render lower
 	[renderUString drawAtPoint:NSMakePoint(textWidth - round([renderUString size].width),
-										   floor([image size].height / 2) - 1)];
+										   floor(imageSize.height / 2) - 1)];
 	[renderFString drawAtPoint:NSMakePoint(textWidth - round([renderFString size].width), -1)];
-
-	// Unlock focus
-	[image unlockFocus];
-
 } // renderNumbersIntoImage
 
-- (void)renderPressureBar:(NSImage *)image {
+- (void)renderPressureBarImageSize:(NSSize)imageSize {
 	// Load current stats
 	float pressure = 0.2;
 	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
@@ -574,32 +560,35 @@
 		pressure = 0;
 	};
 
-	// Lock focus and draw
-	[image lockFocus];
-	float thermometerTotalHeight = (float)[image size].height - 3.0;
+	// Draw
+	NSRect barFrame = NSMakeRect(0, 0, kMemThermometerDisplayWidth, imageSize.height);
+	if (!ourPrefs.tallMenuBar) {
+		barFrame = NSInsetRect(barFrame, 0, 1);
+	}
+	NSRect pressureRect = barFrame;
+	pressureRect.size.height *= pressure;
 
-	NSBezierPath *pressurePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3, thermometerTotalHeight * pressure)];
+	NSBezierPath *pressurePath = [NSBezierPath bezierPathWithRect:pressureRect];
 
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRoundedRect:barFrame xRadius:2 yRadius:2];
+
+	[NSGraphicsContext saveGraphicsState];
+	[framePath addClip];
+	[[fgMenuThemeColor colorWithAlphaComponent:0.2] set];
+	[framePath fill];
 
 	[activeColor set];
 	[pressurePath fill];
+	[NSGraphicsContext restoreGraphicsState];
 
-	[[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
-
-	[framePath stroke];
-
-	// Reset
-	[[NSColor blackColor] set];
-	[image unlockFocus];
 }
 
 //  Bar mode memory view contributed by Bernhard Baehr
 
-- (void)renderBarIntoImage:(NSImage *)image {
+- (void)renderBarImageSize:(NSSize)imageSize {
 
 	// Load current stats
-	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
+	float totalMB = 1.0, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
 	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
 	if (currentMemStats) {
 		totalMB = [[currentMemStats objectForKey:@"totalmb"] floatValue];
@@ -633,19 +622,36 @@
 		compressedMB = totalMB;
 	};
 
-	// Lock focus and draw
-	[image lockFocus];
-	float thermometerTotalHeight = (float)[image size].height - 3.0;
+	// Draw
+	NSRect barFrame = NSMakeRect(0, 0, kMemThermometerDisplayWidth, imageSize.height);
 
-	NSBezierPath *wirePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3,
-																		 thermometerTotalHeight * (wireMB / totalMB))];
-	NSBezierPath *activePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3,
-																		   thermometerTotalHeight * ((wireMB + activeMB) / totalMB))];
-	NSBezierPath *compressedPath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3,
-																			   thermometerTotalHeight * ((wireMB + activeMB + compressedMB) / totalMB))];
-	NSBezierPath *inactivePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3,
-																			 thermometerTotalHeight * ((wireMB + activeMB + compressedMB + inactiveMB) / totalMB))];
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5, 1.5, kMemThermometerDisplayWidth - 3, thermometerTotalHeight)];
+	NSRect wireRect = barFrame;
+	wireRect.size.height *= wireMB / totalMB;
+
+	NSRect activeRect = barFrame;
+	activeRect.size.height *= (wireMB + activeMB) / totalMB;
+
+	NSRect compressedRect = barFrame;
+	compressedRect.size.height *= (wireMB + activeMB + compressedMB) / totalMB;
+
+	NSRect inactiveRect = barFrame;
+	inactiveRect.size.height *= (wireMB + activeMB + compressedMB + inactiveMB) / totalMB;
+
+	NSBezierPath *wirePath = [NSBezierPath bezierPathWithRect:wireRect];
+	
+	NSBezierPath *activePath = [NSBezierPath bezierPathWithRect:activeRect];
+
+	NSBezierPath *compressedPath = [NSBezierPath bezierPathWithRect:compressedRect];
+
+	NSBezierPath *inactivePath = [NSBezierPath bezierPathWithRect:inactiveRect];
+
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRoundedRect:barFrame xRadius:2 yRadius:2];
+
+	[NSGraphicsContext saveGraphicsState];
+	[framePath addClip];
+	[[fgMenuThemeColor colorWithAlphaComponent:0.2] set];
+	[framePath fill];
+
 	[inactiveColor set];
 	[inactivePath fill];
 	[compressedColor set];
@@ -654,16 +660,11 @@
 	[activePath fill];
 	[wireColor set];
 	[wirePath fill];
-	[[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
-	[framePath stroke];
-
-	// Reset
-	[[NSColor blackColor] set];
-	[image unlockFocus];
+	[NSGraphicsContext restoreGraphicsState];
 
 } // renderBarIntoImage
 
-- (void)renderPressureHistoryIntoImage:(NSImage *)image {
+- (void)renderPressureHistoryImageSize:(NSSize)imageSize {
 
 	// Construct paths
 	NSBezierPath *activePath = [NSBezierPath bezierPath];
@@ -675,7 +676,7 @@
 	int renderPosition = 0;
 	// Graph height does not include baseline, reserve the space for real data
 	// since memory usage can never be zero.
-	float renderHeight = (float)[image size].height;
+	float renderHeight = (float)imageSize.height;
 	for (renderPosition = 0; renderPosition < [ourPrefs memGraphLength]; renderPosition++) {
 
 		// No data at this position?
@@ -703,17 +704,11 @@
 	[activePath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
 
 	// Render the graph
-	[image lockFocus];
 	[activeColor set];
 	[activePath fill];
-
-	// Clean up
-	[[NSColor blackColor] set];
-	[image unlockFocus];
-
 } // renderMemHistoryIntoImages
 
-- (void)renderMemHistoryIntoImage:(NSImage *)image {
+- (void)renderMemHistoryImageSize:(NSSize)imageSize {
 
 	// Construct paths
 	NSBezierPath *wirePath = [NSBezierPath bezierPath];
@@ -733,7 +728,7 @@
 	int renderPosition = 0;
 	// Graph height does not include baseline, reserve the space for real data
 	// since memory usage can never be zero.
-	float renderHeight = (float)[image size].height;
+	float renderHeight = (float)imageSize.height;
 	for (renderPosition = 0; renderPosition < [ourPrefs memGraphLength]; renderPosition++) {
 
 		// No data at this position?
@@ -792,7 +787,6 @@
 	[wirePath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
 
 	// Render the graph
-	[image lockFocus];
 	[inactiveColor set];
 	[inactivePath fill];
 	[compressedColor set];
@@ -801,17 +795,12 @@
 	[activePath fill];
 	[wireColor set];
 	[wirePath fill];
-
-	// Clean up
-	[[NSColor blackColor] set];
-	[image unlockFocus];
-
 } // renderMemHistoryIntoImages
 
 // Paging indicator from Bernhard Baehr. Originally an overlay to the bar display, I liked
 // it so much I broke the display out so it could be used with any mode.
 
-- (void)renderPageIndicatorIntoImage:(NSImage *)image {
+- (void)renderPageIndicatorImageSize:(NSSize)imageSize {
 
 	// Read in the paging deltas
 	uint64_t pageIns = 0, pageOuts = 0;
@@ -821,9 +810,8 @@
 		pageOuts = [[currentMemStats objectForKey:@"deltapageouts"] unsignedLongLongValue];
 	}
 
-	// Lock focus and get height
-	[image lockFocus];
-	float indicatorHeight = (float)[image size].height;
+	// Get height
+	float indicatorHeight = imageSize.height;
 
 	BOOL darkTheme = self.isDark;
 
@@ -889,10 +877,6 @@
 	[renderString drawAtPoint:NSMakePoint(menuWidth - kMemPagingDisplayWidth +
 											  round((kMemPagingDisplayWidth - renderSize.width) / 2.0),
 										  4.0)]; // Just hardcode the vertical offset
-
-	// Unlock focus
-	[image unlockFocus];
-
 } // renderPageIndicator
 
 ///////////////////////////////////////////////////////////////
@@ -952,9 +936,6 @@
 				fromPrefs:ourPrefs
 		withTimerInterval:[ourPrefs memInterval]];
 #endif
-
-	// Update prefs
-	[ourPrefs syncWithDisk];
 
 	// Handle menubar theme changes
 	fgMenuThemeColor = self.menuBarTextColor;

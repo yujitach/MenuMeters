@@ -108,7 +108,7 @@ static void DeviceTerminated(void *ref, io_iterator_t iterator) {
 
 } // powermateAttached
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {

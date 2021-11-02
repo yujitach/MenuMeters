@@ -63,7 +63,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 @implementation MenuMeterNetConfig
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {
@@ -629,7 +629,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 									  @"-c",
 									  [NSString stringWithFormat:@"%@", commandToRun],
 									  nil];
-	//    NSLog(@"run command:%@", commandToRun);
+	// NSLog(@"run command:%@", commandToRun);
 	[task setArguments:arguments];
 
 	NSPipe *pipe = [NSPipe pipe];
@@ -686,7 +686,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 	if (!bsdInterface)
 		return [NSNumber numberWithLong:kInterfaceDefaultSpeed];
-	NSLog(@"getting the speed for %@", bsdInterface);
+	MMLog(@"getting the speed for %@", bsdInterface);
 	/* The old way to get the speed via IOKit no longer reliably works, most probably due to the slow move to DriverKit.
 	 The link speed as reported by NetworkUtility.app can also be obtained by ifconfig, whose source code is available at
 	 https://opensource.apple.com/source/network_cmds/network_cmds-596/ifconfig.tproj/
@@ -695,7 +695,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	 */
 	NSString *line = [self runCommand:[NSString stringWithFormat:@"ifconfig -v %@ | egrep 'link rate|uplink'", bsdInterface]];
 	if ([line containsString:@"does not"]) {
-		return [NSNumber numberWithLong:0];
+		return [NSNumber numberWithInt:0];
 	}
 	NSRange r = [line rangeOfString:@"/"];
 	if (r.location == NSNotFound) {
@@ -765,7 +765,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // speedForInterfaceName
 
 - (NSDictionary *)sysconfigValueForKey:(NSString *)key {
-
 	return (NSDictionary *)CFBridgingRelease(SCDynamicStoreCopyValue(scSession, (CFStringRef)key));
 } // sysconfigValueForKey
 

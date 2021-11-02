@@ -48,27 +48,27 @@
 ///////////////////////////////////////////////////////////////
 
 // Pref dictionary keys
-#define kCPUIntervalPref @"CPUInterval"
-#define kCPUDisplayModePref @"CPUDisplayMode"
-#define kCPUPercentDisplayPref @"CPUPercentDisplayMode"
-#define kCPUMaxProcessCountPref @"CPUMaxProcessCount"
-#define kCPUGraphLengthPref @"CPUGraphLength"
-#define kCPUHorizontalRowsPref @"CPUHorizontalRows"
-#define kCPUMenuWidthPref @"CPUMenuWidth"
-#define kCPUAvgAllProcsPref @"CPUAverageMultiProcs"
-#define kCPUSumAllProcsPercentPref @"CPUSumAllProcsPercent"
+extern NSString *kCPUIntervalPref;
+extern NSString *kCPUDisplayModePref;
+extern NSString *kCPUPercentDisplayPref;
+extern NSString *kCPUMaxProcessCountPref;
+extern NSString *kCPUGraphLengthPref;
+extern NSString *kCPUHorizontalRowsPref;
+extern NSString *kCPUMenuWidthPref;
+extern NSString *kCPUAvgAllProcsPref;
+extern NSString *kCPUSumAllProcsPercentPref;
 // Note that "Lower Half" is now reused to show only physical cores
-#define kCPUAvgLowerHalfProcsPref @"CPUAverageLowerHalfProcs"
-#define kCPUSortByUsagePref @"CPUSortByUsage"
-#define kCPUSystemColorPref @"CPUSystemColor"
-#define kCPUUserColorPref @"CPUUserColor"
-#define kCPUPowerMatePref @"CPUPowerMate"
-#define kCPUPowerMateMode @"CPUPowerMateMode"
-#define kCPUShowTemperature @"CPUTemperature"
-#define kCPUTemperatureColor @"CPUTemperatureColor"
-#define kCPUTemperatureSensor @"CPUTemperatureSensor"
-#define kCPUTemperatureSensorDefault @"CPUTemperatureSensorDefault"
-#define kCPUTemperatureUnit @"CPUTemperatureUnit"
+extern NSString *kCPUAvgLowerHalfProcsPref;
+extern NSString *kCPUSortByUsagePref;
+extern NSString *kCPUSystemColorPref;
+extern NSString *kCPUUserColorPref;
+extern NSString *kCPUPowerMatePref;
+extern NSString *kCPUPowerMateMode;
+extern NSString *kCPUShowTemperature;
+extern NSString *kCPUTemperatureColor;
+extern NSString *kCPUTemperatureSensor;
+extern NSString *kCPUTemperatureSensorDefault;
+extern NSString *kCPUTemperatureUnit;
 #define kCPUTemperatureUnitCelsius 0
 #define kCPUTemperatureUnitFahrenheit 1
 // Display modes
@@ -142,8 +142,8 @@ enum {
 
 // Colors
 // Maraschino
-#define kCPUSystemColorDefault [NSColor colorWithDeviceRed:1.0 green:0.0 blue:0.0 alpha:1.0]
+#define kCPUSystemColorDefault [NSColor systemRedColor]
 // Midnight blue
-#define kCPUUserColorDefault [NSColor colorWithDeviceRed:0.0 green:0.0 blue:0.5 alpha:1.0]
+#define kCPUUserColorDefault [NSColor systemBlueColor]
 // Orange
-#define kCPUTemperatureColorDefault [NSColor colorWithDeviceRed:1.0 green:0.647 blue:0.0 alpha:1.0]
+#define kCPUTemperatureColorDefault [NSColor systemOrangeColor]

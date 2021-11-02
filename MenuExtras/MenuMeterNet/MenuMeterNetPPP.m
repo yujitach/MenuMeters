@@ -129,7 +129,7 @@ static id gSharedPPP = nil;
 //
 ///////////////////////////////////////////////////////////////
 
-- (id)init {
+- (instancetype)init {
 
 	self = [super init];
 	if (!self) {

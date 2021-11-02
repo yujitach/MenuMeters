@@ -62,7 +62,7 @@
 
 - (NSColor *)loadColorPref:(NSString *)prefName defaultValue:(NSColor *)defaultValue;
 
-- (void)saveColorPref:(NSString *)prefname value:(NSColor *)value;
+- (void)saveColorPref:(NSString *)prefName value:(NSColor *)value;
 
 - (NSString *)loadStringPref:(NSString *)prefName defaultValue:(NSString *)defaultValue;
 
@@ -76,7 +76,20 @@
 //
 ///////////////////////////////////////////////////////////////
 
-@implementation MenuMeterDefaults
+@implementation MenuMeterDefaults {
+	int _cpuDisplayMode;
+	BOOL _cpuAvgAllProcs;
+	int _cpuGraphLength;
+	int _cpuPercentDisplay;
+	BOOL _netThroughput1KBound;
+	BOOL _netThroughputBits;
+	BOOL _netThroughputLabel;
+	int _netDisplayOrientation;
+	BOOL _tallMenuBar;
+}
+
+@synthesize tallMenuBar = _tallMenuBar;
+
 #define kMigratedFromRagingMenaceToYujitach @"migratedFromRagingMenaceToYujitach"
 
 + (void)movePreferencesIfNecessary {
@@ -117,36 +130,53 @@
 	return foo;
 }
 
-- (id)init {
+- (instancetype)init {
 
 	// Allow super to init
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetCaches:) name:NSUserDefaultsDidChangeNotification object:NULL];
+	[self resetCaches:self];
 
-	// Send on back
+	CGFloat menuBarHeight = [[NSApp mainMenu] menuBarHeight];
+	if (menuBarHeight > 23) { // on MacBooks with notch. (TODO: or when "Menu bar size" is set to "large" system preferences?)
+		NSArray *screens = NSScreen.screens;
+		_tallMenuBar = screens.count == 1; // If there is a screen attached, it has its own (small) menu and I can’t distinguish the two right now.
+	}
+
 	return self;
 
 } // init
 
 - (void)dealloc {
 
-	// Save back
-	[self syncWithDisk];
-
-	// Super do its thing
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 
 } // dealloc
 
 ///////////////////////////////////////////////////////////////
 //
-//  Pref read/write
+//  Cache
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)syncWithDisk {
-} // syncFromDisk
+- (void)resetCaches:(id)sender {
+	_cpuDisplayMode = -1;
+	_cpuAvgAllProcs = [self loadBoolPref:kCPUAvgAllProcsPref defaultValue:kCPUAvgAllProcsDefault];
+	_cpuGraphLength = -1;
+	_cpuPercentDisplay = -1;
+	_netThroughput1KBound = [self loadBoolPref:kNetThroughput1KBoundPref defaultValue:kNetThroughput1KBoundDefault];
+	_netThroughputBits = [self loadBoolPref:kNetThroughput1KBoundPref defaultValue:kNetThroughput1KBoundDefault];
+	_netThroughputLabel = [self loadBoolPref:kNetThroughputLabelPref defaultValue:kNetThroughputLabelDefault];
+	_netDisplayOrientation = [self loadIntPref:kNetDisplayOrientationPref
+									  lowBound:kNetDisplayOrientTxRx
+									 highBound:kNetDisplayOrientRxTx
+								  defaultValue:kNetDisplayOrientationDefault];
+
+	_tintPercentage = [[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"];
+}
 
 ///////////////////////////////////////////////////////////////
 //
@@ -162,16 +192,24 @@
 } // cpuInterval
 
 - (int)cpuDisplayMode {
-	return [self loadBitFlagPref:kCPUDisplayModePref
-					  validFlags:(kCPUDisplayPercent | kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)
-					defaultValue:kCPUDisplayDefault];
+	if (_cpuDisplayMode > 0) {
+		return _cpuDisplayMode;
+	}
+	_cpuDisplayMode = [self loadBitFlagPref:kCPUDisplayModePref
+								 validFlags:(kCPUDisplayPercent | kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)
+							   defaultValue:kCPUDisplayDefault];
+	return _cpuDisplayMode;
 } // cpuDisplayMode
 
 - (int)cpuPercentDisplay {
-	return [self loadIntPref:kCPUPercentDisplayPref
-					lowBound:kCPUPercentDisplayLarge
-				   highBound:kCPUPercentDisplaySplit
-				defaultValue:kCPUPercentDisplayDefault];
+	if (_cpuPercentDisplay >= 0) {
+		return _cpuPercentDisplay;
+	}
+	_cpuPercentDisplay = [self loadIntPref:kCPUPercentDisplayPref
+								  lowBound:kCPUPercentDisplayLarge
+								 highBound:kCPUPercentDisplaySplit
+							  defaultValue:kCPUPercentDisplayDefault];
+	return _cpuPercentDisplay;
 } // cpuPercentDisplay
 
 - (int)cpuMaxProcessCount {
@@ -182,10 +220,14 @@
 } // cpuMaxProcessCount
 
 - (int)cpuGraphLength {
-	return [self loadIntPref:kCPUGraphLengthPref
-					lowBound:kCPUGraphWidthMin
-				   highBound:kCPUGraphWidthMax
-				defaultValue:kCPUGraphWidthDefault];
+	if (_cpuGraphLength > 0) {
+		return _cpuGraphLength;
+	}
+	_cpuGraphLength = [self loadIntPref:kCPUGraphLengthPref
+							   lowBound:kCPUGraphWidthMin
+							  highBound:kCPUGraphWidthMax
+						   defaultValue:kCPUGraphWidthDefault];
+	return _cpuGraphLength;
 } // cpuGraphLength
 
 - (int)cpuHorizontalRows {
@@ -203,7 +245,7 @@
 } // cpuMenuWidth
 
 - (BOOL)cpuAvgAllProcs {
-	return [self loadBoolPref:kCPUAvgAllProcsPref defaultValue:kCPUAvgAllProcsDefault];
+	return _cpuAvgAllProcs;
 } // cpuAvgAllProcs
 
 - (BOOL)cpuSumAllProcsPercent {
@@ -230,10 +272,17 @@
 } // cpuPowerMateMode
 
 - (int)cpuTemperatureUnit {
-	return [self loadIntPref:kCPUTemperatureUnit
-					lowBound:kCPUTemperatureUnitCelsius
-				   highBound:kCPUTemperatureUnitFahrenheit
-				defaultValue:kCPUTemperatureUnitCelsius];
+	static CFStringRef key = CFSTR("AppleTemperatureUnit");
+	static CFStringRef domain = CFSTR("Apple Global Domain");
+	CFStringRef unit = CFPreferencesCopyValue(key, domain, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+	if (!unit) {
+		return kCPUTemperatureUnitCelsius;
+	}
+	CFComparisonResult result = CFStringCompare(unit, CFSTR("Celsius"), 0);
+	if (unit) {
+		CFRelease(unit);
+	}
+	return result == kCFCompareEqualTo ? kCPUTemperatureUnitCelsius : kCPUTemperatureUnitFahrenheit;
 }
 
 - (NSString *)cpuTemperatureSensor {
@@ -523,10 +572,7 @@
 } // netDisplayMode
 
 - (int)netDisplayOrientation {
-	return [self loadIntPref:kNetDisplayOrientationPref
-					lowBound:kNetDisplayOrientTxRx
-				   highBound:kNetDisplayOrientRxTx
-				defaultValue:kNetDisplayOrientationDefault];
+	return _netDisplayOrientation;
 } // netDisplayOrientation
 
 - (int)netScaleMode {
@@ -544,15 +590,15 @@
 } // netScaleCalc
 
 - (BOOL)netThroughputLabel {
-	return [self loadBoolPref:kNetThroughputLabelPref defaultValue:kNetThroughputLabelDefault];
+	return _netThroughputLabel;
 } // netThroughputLabel
 
 - (BOOL)netThroughput1KBound {
-	return [self loadBoolPref:kNetThroughput1KBoundPref defaultValue:kNetThroughput1KBoundDefault];
+	return _netThroughput1KBound;
 } // netThroughput1KBound
 
 - (BOOL)netThroughputBits {
-	return [self loadBoolPref:kNetThroughputBitsPref defaultValue:kNetThroughputBitsDefault];
+	return _netThroughputBits;
 } // netThroughputBits
 
 - (int)netGraphStyle {
@@ -675,9 +721,11 @@
 		 highBound:(int)highBound
 	  defaultValue:(int)defaultValue {
 
-	int returnValue = defaultValue;
-	if ([[NSUserDefaults standardUserDefaults] objectForKey:prefName]) {
-		returnValue = (int)[[NSUserDefaults standardUserDefaults] integerForKey:prefName];
+	Boolean keyExistsAndHasValidFormat = NO;
+	CFIndex returnValue = CFPreferencesGetAppIntegerValue((__bridge CFStringRef)prefName, kCFPreferencesCurrentApplication, &keyExistsAndHasValidFormat);
+
+	if (!keyExistsAndHasValidFormat) {
+		return defaultValue;
 	}
 	if (returnValue > highBound || returnValue < lowBound) {
 		returnValue = defaultValue;
@@ -686,17 +734,20 @@
 
 } // _loadIntPref
 
-- (void)saveIntPref:(NSString *)prefname value:(int)value {
-	[[NSUserDefaults standardUserDefaults] setInteger:value forKey:prefname];
+- (void)saveIntPref:(NSString *)prefName value:(int)value {
+	[[NSUserDefaults standardUserDefaults] setInteger:value forKey:prefName];
 } // _saveIntPref
 
 - (int)loadBitFlagPref:(NSString *)prefName validFlags:(int)flags defaultValue:(int)defaultValue {
 
-	if ([[NSUserDefaults standardUserDefaults] objectForKey:prefName]) {
-		int returnValue = (int)[[NSUserDefaults standardUserDefaults] integerForKey:prefName];
-		if (((returnValue | flags) == flags)) {
-			return returnValue;
-		}
+	Boolean keyExistsAndHasValidFormat = NO;
+	CFIndex returnValue = CFPreferencesGetAppIntegerValue((__bridge CFStringRef)prefName, kCFPreferencesCurrentApplication, &keyExistsAndHasValidFormat);
+
+	if (!keyExistsAndHasValidFormat) {
+		return defaultValue;
+	}
+	if (((returnValue | flags) == flags)) {
+		return (int)returnValue;
 	}
 	return defaultValue;
 
@@ -707,11 +758,9 @@
 } // _saveBitFlagPref
 
 - (BOOL)loadBoolPref:(NSString *)prefName defaultValue:(BOOL)defaultValue {
-
-	if ([[NSUserDefaults standardUserDefaults] objectForKey:prefName]) {
-		return [[NSUserDefaults standardUserDefaults] boolForKey:prefName];
-	}
-	return defaultValue;
+	Boolean keyExistsAndHasValidFormat = NO;
+	Boolean result = CFPreferencesGetAppBooleanValue((__bridge CFStringRef)prefName, kCFPreferencesCurrentApplication, &keyExistsAndHasValidFormat);
+	return keyExistsAndHasValidFormat ? result : defaultValue;
 } // _loadBoolPref
 
 - (void)saveBoolPref:(NSString *)prefName value:(BOOL)value {

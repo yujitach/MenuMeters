@@ -38,10 +38,6 @@
 
 + (MenuMeterDefaults *)sharedMenuMeterDefaults;
 
-// Pref read/write
-
-- (void)syncWithDisk;
-
 // CPU menu prefs
 
 - (double)cpuInterval;
@@ -251,5 +247,9 @@
 - (void)saveNetInactiveColor:(NSColor *)color;
 
 - (void)saveNetPreferInterface:(NSString *)interface;
+
+@property (readonly) BOOL tallMenuBar;
+
+@property (assign) float tintPercentage;
 
 @end
