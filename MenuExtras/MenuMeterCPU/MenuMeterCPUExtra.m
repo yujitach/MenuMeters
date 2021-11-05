@@ -166,7 +166,7 @@
 	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
     menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
-
+#if TARGET_CPU_X86_64
 	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kCPUPowerLimitStatusTitle value:nil table:nil]
 												  action:nil
 										   keyEquivalent:@""];
@@ -174,7 +174,7 @@
 	menuItem = [extraMenu addItemWithTitle:@"" action:nil keyEquivalent:@""];
     menuItem.indentationLevel=1;
 	[menuItem setEnabled:NO];
-
+#endif
 	// Add top kCPUrocessCountMax most CPU intensive processes
 	menuItem = [extraMenu addItemWithTitle:[bundle localizedStringForKey:kProcessTitle value:nil table:nil]
 												  action:nil
@@ -314,9 +314,10 @@
 	title = [cpuInfo loadAverage];
 	if (title) LiveUpdateMenuItemTitle(extraMenu, kCPULoadInfoMenuIndex, title);
 
+#if TARGET_CPU_X86_64
     title = [cpuInfo cpuPowerLimitStatus];
     if (title) LiveUpdateMenuItemTitle(extraMenu, kCPUPowerLimitInfoMenuIndex, title);
-
+#endif
     
     // Top CPU intensive processes
     NSArray* processes = ([ourPrefs cpuMaxProcessCount] > 0 ? [cpuTopProcesses runningProcessesByCPUUsage:[ourPrefs cpuMaxProcessCount]] : nil);    
