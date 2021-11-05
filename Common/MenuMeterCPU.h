@@ -37,8 +37,12 @@
 #define kCPUUptimeInfoMenuIndex 4
 #define kCPUTaskInfoMenuIndex 6
 #define kCPULoadInfoMenuIndex 8
+#if TARGET_CPU_X86_64
 #define kCPUPowerLimitInfoMenuIndex 10
 #define kCPUProcessLabelMenuIndex 11
+#elif TARGET_CPU_ARM64
+#define kCPUProcessLabelMenuIndex 9
+#endif
 #define kCPUProcessMenuIndex (kCPUProcessLabelMenuIndex + 1)
 
 ///////////////////////////////////////////////////////////////
