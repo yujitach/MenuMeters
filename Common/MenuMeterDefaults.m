@@ -55,7 +55,7 @@
 - (void)saveColorPref:(NSString *)prefname value:(NSColor *)value;
 - (NSString *)loadStringPref:(NSString *)prefName defaultValue:(NSString *)defaultValue;
 - (void)saveStringPref:(NSString *)prefName value:(NSString *)value;
-
+- (BOOL)isCatalinaOrLater;
 @end
 
 ///////////////////////////////////////////////////////////////
@@ -124,6 +124,18 @@
 
 } // dealloc
 
+- (BOOL) isCatalinaOrLater {
+    static dispatch_once_t once;
+    static BOOL isCatalinaOrLater;
+    dispatch_once(&once,^{
+        if(@available(macOS 10.15, *)){
+            isCatalinaOrLater=YES;
+        }else{
+            isCatalinaOrLater=NO;
+        }
+    });
+    return isCatalinaOrLater;
+}
 ///////////////////////////////////////////////////////////////
 //
 //	Pref read/write
