@@ -45,8 +45,6 @@
 	MenuMeterUptime					*uptimeInfo;
 	// PowerMate support
 	MenuMeterPowerMate				*powerMate;
-	// The length of the menu item
-	float							menuWidth;
 	// Prerendered percentage text displays and their calculated width
 	float							percentWidth;
 	// Historical data samples

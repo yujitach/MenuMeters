@@ -35,14 +35,6 @@
 // Menu generation
 - (void)updateMenuContent;
 
-// Image renderers
-- (void)renderPieIntoImage:(NSImage *)image;
-- (void)renderNumbersIntoImage:(NSImage *)image;
-- (void)renderBarIntoImage:(NSImage *)image;
-- (void)renderPressureBar:(NSImage *)image;
-- (void)renderMemHistoryIntoImage:(NSImage *)image;
-- (void)renderPageIndicatorIntoImage:(NSImage *)image;
-
 // Timer callbacks
 - (void)updateMenuWhenDown;
 
@@ -215,44 +207,40 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (NSImage *)image {
+- (BOOL)renderImage {
         [self setupAppearance];
 
-	// Image to render into (and return to view)
-	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize(menuWidth,
-																	  self.height - 1)];
-
 	// Don't render without data
-	if (![memHistory count]) return nil;
+	if (![memHistory count]) return NO;
 
 	switch ([ourPrefs memDisplayMode]) {
 		case kMemDisplayPie:
-			[self renderPieIntoImage:currentImage];
+			[self renderPie];
 			break;
 		case kMemDisplayNumber:
-			[self renderNumbersIntoImage:currentImage];
+			[self renderNumbers];
 			break;
 		case kMemDisplayBar:
       if ([ourPrefs memPressure] == true) {
-        [self renderPressureBar:currentImage];
+        [self renderPressureBar];
       }
       else {
-        [self renderBarIntoImage:currentImage];
+        [self renderBar];
       }
 			break;
 		case kMemDisplayGraph:
                 if([ourPrefs memPressure]){
-                    [self renderPressureHistoryIntoImage:currentImage];
+                    [self renderPressureHistory];
                 }else{
-                    [self renderMemHistoryIntoImage:currentImage];
+                    [self renderMemHistory];
                 }
 	}
 	if ([ourPrefs memPageIndicator]) {
-		[self renderPageIndicatorIntoImage:currentImage];
+		[self renderPageIndicator];
 	}
 
 	// Send it back for the view to render
-	return currentImage;
+	return YES;
 
 } // image
 
@@ -393,7 +381,7 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)renderPieIntoImage:(NSImage *)image {
+- (void)renderPie {
 
 	// Load current stats
 	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
@@ -415,10 +403,9 @@
 	if (compressedMB > totalMB) { compressedMB = totalMB; };
 
 	// Lock focus and draw curves around a center
-	[image lockFocus];
 	NSBezierPath *renderPath = nil;
 	float totalArc = 0;
-	NSPoint pieCenter = NSMakePoint(kMemPieDisplayWidth / 2, (float)[image size].height / 2);
+	NSPoint pieCenter = NSMakePoint(kMemPieDisplayWidth / 2, (float)self.imageHeight / 2);
 
 	// Draw wired
 	renderPath = [NSBezierPath bezierPath];
@@ -483,12 +470,9 @@
 		[renderPath stroke];
 	}
 
-	// Unlock focus
-	[image unlockFocus];
-
 } // renderPieIntoImage
 
-- (void)renderNumbersIntoImage:(NSImage *)image {
+- (void)renderNumbers {
 
 	// Read in the RAM data
 	double freeMB = 0, usedMB = 0;
@@ -500,8 +484,6 @@
 	if (freeMB < 0) freeMB = 0;
 	if (usedMB < 0) usedMB = 0;
 
-	// Lock focus
-	[image lockFocus];
 
 	// Construct strings
 	NSAttributedString *renderUString = [[NSAttributedString alloc]
@@ -529,15 +511,13 @@
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
 	// No descenders so render lower
 	[renderUString drawAtPoint:NSMakePoint(textWidth - (float)round([renderUString size].width),
-										   (float)floor([image size].height / 2) - 1)];
+										   (float)floor(self.imageHeight / 2) - 1)];
 	[renderFString drawAtPoint:NSMakePoint(textWidth - (float)round([renderFString size].width), -1)];
 
-	// Unlock focus
-	[image unlockFocus];
 
 } // renderNumbersIntoImage
 
-- (void)renderPressureBar:(NSImage *)image {
+- (void)renderPressureBar {
   // Load current stats
   float pressure = 0.2f;
   NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
@@ -547,9 +527,7 @@
   
   if (pressure < 0) { pressure = 0; };
   
-  // Lock focus and draw
-  [image lockFocus];
-  float thermometerTotalHeight = (float)[image size].height - 3.0f;
+  float thermometerTotalHeight = (float)self.imageHeight - 3.0f;
   
   NSBezierPath *pressurePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3, thermometerTotalHeight * pressure)];
   
@@ -562,13 +540,10 @@
 
   [framePath stroke];
   
-  // Reset
-  [[NSColor blackColor] set];
-  [image unlockFocus];
 }
 
 //  Bar mode memory view contributed by Bernhard Baehr
-- (void)renderBarIntoImage:(NSImage *)image {
+- (void)renderBar {
 
 	// Load current stats
 	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
@@ -589,9 +564,7 @@
 	if (wireMB > totalMB) { wireMB = totalMB; };
 	if (compressedMB > totalMB) { compressedMB = totalMB; };
 
-	// Lock focus and draw
-	[image lockFocus];
-	float thermometerTotalHeight = (float)[image size].height - 3.0f;
+	float thermometerTotalHeight = (float)self.imageHeight - 3.0f;
 
 	NSBezierPath *wirePath = [NSBezierPath bezierPathWithRect:NSMakeRect(1.5f, 1.5f, kMemThermometerDisplayWidth - 3,
 																		 thermometerTotalHeight * (wireMB / totalMB))];
@@ -613,13 +586,10 @@
         [[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
 	[framePath stroke];
 
-	// Reset
-	[[NSColor blackColor] set];
-	[image unlockFocus];
 
 } // renderBarIntoImage
 
-- (void)renderPressureHistoryIntoImage:(NSImage *)image {
+- (void)renderPressureHistory {
 
     // Construct paths
     NSBezierPath *activePath =  [NSBezierPath bezierPath];
@@ -631,7 +601,7 @@
     int renderPosition = 0;
     // Graph height does not include baseline, reserve the space for real data
     // since memory usage can never be zero.
-    float renderHeight = (float)[image size].height;
+    float renderHeight = (float)self.imageHeight;
      for (renderPosition = 0; renderPosition < [ourPrefs memGraphLength]; renderPosition++) {
 
         // No data at this position?
@@ -654,17 +624,13 @@
 
 
     // Render the graph
-    [image lockFocus];
     [activeColor set];
     [activePath fill];
 
-    // Clean up
-    [[NSColor blackColor] set];
-    [image unlockFocus];
 
 } // renderMemHistoryIntoImages
 
-- (void)renderMemHistoryIntoImage:(NSImage *)image {
+- (void)renderMemHistory {
 
 	// Construct paths
 	NSBezierPath *wirePath =  [NSBezierPath bezierPath];
@@ -683,7 +649,7 @@
 	int renderPosition = 0;
 	// Graph height does not include baseline, reserve the space for real data
 	// since memory usage can never be zero.
-	float renderHeight = (float)[image size].height;
+	float renderHeight = (float)self.imageHeight;
  	for (renderPosition = 0; renderPosition < [ourPrefs memGraphLength]; renderPosition++) {
 
 		// No data at this position?
@@ -725,7 +691,6 @@
 
 
 	// Render the graph
-	[image lockFocus];
 	[inactiveColor set];
 	[inactivePath fill];
 	[compressedColor set];
@@ -735,15 +700,12 @@
 	[wireColor set];
 	[wirePath fill];
 
-	// Clean up
-	[[NSColor blackColor] set];
-	[image unlockFocus];
 
 } // renderMemHistoryIntoImages
 
 // Paging indicator from Bernhard Baehr. Originally an overlay to the bar display, I liked
 // it so much I broke the display out so it could be used with any mode.
-- (void)renderPageIndicatorIntoImage:(NSImage *)image {
+- (void)renderPageIndicator {
 
 	// Read in the paging deltas
 	uint64_t pageIns = 0, pageOuts = 0;
@@ -754,8 +716,7 @@
 	}
 
 	// Lock focus and get height
-	[image lockFocus];
-	float indicatorHeight = (float)[image size].height;
+	float indicatorHeight = (float)self.imageHeight;
 	
 	BOOL darkTheme = self.isDark;
 
@@ -815,8 +776,6 @@
 											roundf((kMemPagingDisplayWidth - (float)renderSize.width) / 2.0f),
 										  4.0f)];  // Just hardcode the vertical offset
 
-	// Unlock focus
-	[image unlockFocus];
 
 } // renderPageIndicator
 
@@ -913,10 +872,10 @@
 																nil]];
 	if ([renderUString size].width > [renderFString size].width) {
 		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderUString size].width,
-                                                                        self.height-1)];
+                                                                        self.imageHeight)];
 	} else {
 		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderFString size].width,
-                                                                        self.height-1)];
+                                                                        self.imageHeight)];
 	}
 	[numberLabelPrerender lockFocus];
 	// No descenders so render both lines lower than normal

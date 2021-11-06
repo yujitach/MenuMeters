@@ -35,10 +35,6 @@
 
 @interface MenuMeterNetExtra (PrivateMethods)
 
-// Image renderers
-- (void)renderGraphIntoImage:(NSImage *)image;
-- (void)renderActivityIntoImage:(NSImage *)image;
-- (void)renderThroughputIntoImage:(NSImage *)image;
 
 // Timer callbacks
 - (void)updateMenuWhenDown;
@@ -205,32 +201,27 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (NSImage *)image {
+- (BOOL)renderImage {
 
         [self setupAppearance];
     
-	// Image to render into (and return to view)
-	NSImage *currentImage = [[NSImage alloc] initWithSize:NSMakeSize((float)menuWidth,
-                                                                     self.height-1)];
-	if (!currentImage) return nil;
-
 	// Don't render without data
-	if (![netHistoryData count]) return nil;
+	if (![netHistoryData count]) return NO;
 
     int netDisplayModePrefs = [ourPrefs netDisplayMode];
 	// Draw displays
 	if (netDisplayModePrefs & kNetDisplayGraph) {
-		[self renderGraphIntoImage:currentImage];
+		[self renderGraph];
 	}
 	if (netDisplayModePrefs & kNetDisplayArrows) {
-		[self renderActivityIntoImage:currentImage];
+		[self renderActivity];
 	}
 	if (netDisplayModePrefs & kNetDisplayThroughput) {
-		[self renderThroughputIntoImage:currentImage];
+		[self renderThroughput];
 	}
 
 	// Send it back for the view to render
-	return currentImage;
+	return YES;
 
 } // image
 
@@ -679,13 +670,12 @@
 //
 ///////////////////////////////////////////////////////////////
 
-- (void)renderGraphIntoImage:(NSImage *)image {
+- (void)renderGraph {
 
 	// Cache style and other values for duration of this method
 	int graphStyle = [ourPrefs netGraphStyle];
 	BOOL rxOnTop = ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) ? YES : NO;
-	NSSize imageSize = [image size];
-	float graphHeight = (float)floor((imageSize.height - 1) / 2);
+	float graphHeight = (float)floor((self.imageHeight - 1) / 2);
 
 	// Graph paths
 	NSBezierPath *topPath = [NSBezierPath bezierPath];
@@ -693,8 +683,8 @@
 	if ((graphStyle == kNetGraphStyleOpposed) || (graphStyle == kNetGraphStyleInverseOpposed)) {
 		[bottomPath moveToPoint:NSMakePoint(0, 0)];
 		[bottomPath lineToPoint:NSMakePoint(0, 0.5f)];
-		[topPath moveToPoint:NSMakePoint(0, imageSize.height)];
-		[topPath lineToPoint:NSMakePoint(0, imageSize.height - 0.5f)];
+		[topPath moveToPoint:NSMakePoint(0, self.imageHeight)];
+		[topPath lineToPoint:NSMakePoint(0, self.imageHeight - 0.5f)];
 	} else if (graphStyle == kNetGraphStyleCentered) {
 		[topPath moveToPoint:NSMakePoint(0, graphHeight + 1)];
 		[topPath lineToPoint:NSMakePoint(0, graphHeight + 1.5f)];
@@ -793,18 +783,18 @@
 		// Update paths
 		if (graphStyle == kNetGraphStyleInverseOpposed) {
 			if (rxOnTop) {
-				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (rxValue * renderHeight) - 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, self.imageHeight - (rxValue * renderHeight) - 0.5f)];
 				[bottomPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + 0.5f)];
 			} else {
-				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (txValue * renderHeight) - 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, self.imageHeight - (txValue * renderHeight) - 0.5f)];
 				[bottomPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + 0.5f)];
 			}
 		} else if (graphStyle == kNetGraphStyleOpposed) {
 			if (rxOnTop) {
-				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (txValue * renderHeight) - 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, self.imageHeight - (txValue * renderHeight) - 0.5f)];
 				[bottomPath lineToPoint:NSMakePoint(renderPosition, (rxValue * renderHeight) + 0.5f)];
 			} else {
-				[topPath lineToPoint:NSMakePoint(renderPosition, imageSize.height - (rxValue * renderHeight) - 0.5f)];
+				[topPath lineToPoint:NSMakePoint(renderPosition, self.imageHeight - (rxValue * renderHeight) - 0.5f)];
 				[bottomPath lineToPoint:NSMakePoint(renderPosition, (txValue * renderHeight) + 0.5f)];
 			}
 		} else if (graphStyle == kNetGraphStyleCentered) {
@@ -828,8 +818,8 @@
 
 	// Return to lower edge (fill will close the graph)
 	if ((graphStyle == kNetGraphStyleOpposed) || (graphStyle == kNetGraphStyleInverseOpposed)) {
-		[topPath lineToPoint:NSMakePoint(renderPosition - 1, imageSize.height - 0.5f)];
-		[topPath lineToPoint:NSMakePoint(renderPosition - 1, imageSize.height)];
+		[topPath lineToPoint:NSMakePoint(renderPosition - 1, self.imageHeight - 0.5f)];
+		[topPath lineToPoint:NSMakePoint(renderPosition - 1, self.imageHeight)];
 		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, 0.5f)];
 		[bottomPath lineToPoint:NSMakePoint(renderPosition - 1, 0)];
 	} else if (graphStyle == kNetGraphStyleCentered) {
@@ -845,7 +835,6 @@
 	}
 
 	// Draw
-	[image lockFocus];
 	if (![preferredInterfaceConfig objectForKey:@"interfaceup"]) {
 		[inactiveColor set];
 		[topPath fill];
@@ -863,12 +852,10 @@
 			[topPath fill];
 		}
 	}
-	[[NSColor blackColor] set];
-	[image unlockFocus];
 
 } // renderGraphIntoImage
 
-- (void)renderActivityIntoImage:(NSImage *)image {
+- (void)renderActivity {
 
 	// Get scale (scale is based on latest primary data, not historical)
 	float scaleFactor = 0;
@@ -940,7 +927,6 @@
 	if (rxValue < 0) { rxValue = 0;	}
 
 	// Lock on image and draw
-	[image lockFocus];
 	if ([[preferredInterfaceConfig objectForKey:@"interfaceup"] boolValue]) {
 		if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
 			[[rxColor colorWithAlphaComponent:rxValue] set];
@@ -967,13 +953,10 @@
 		[downArrow stroke];
 	}
 
-	// Reset color and unlock
-	[[NSColor blackColor] set];
-	[image unlockFocus];
 
 } // renderActivityIntoImage
 
-- (void)renderThroughputIntoImage:(NSImage *)image {
+- (void)renderThroughput {
 
 	// Get the primary stats
 	double txValue = 0;
@@ -1016,7 +999,6 @@
 																	nil]];
 
 	// Draw
-	[image lockFocus];
 	// Draw label if needed
 	float labelOffset = 0;
 	if ([ourPrefs netThroughputLabel]) {
@@ -1034,14 +1016,13 @@
 	}
 	// No descenders, so render lower
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-		[renderRxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), (float)floor([image size].height / 2) - 1)];
+		[renderRxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), (float)floor(self.imageHeight / 2) - 1)];
 		[renderTxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), -1)];
 	}
 	else {
-		[renderTxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), (float)floor([image size].height / 2) - 1)];
+		[renderTxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderTxString size].width), (float)floor(self.imageHeight / 2) - 1)];
 		[renderRxString drawAtPoint:NSMakePoint((float)ceil(menuWidth - [renderRxString size].width), -1)];
 	}
-	[image unlockFocus];
 
 } // renderThroughputIntoImage
 

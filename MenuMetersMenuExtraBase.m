@@ -50,7 +50,20 @@
     NSLog(@"shouldn't happen");
     abort();
 }
+-(CGFloat)imageHeight
+{
+    return self.height-1;
+}
 -(NSImage*)image
+{
+    NSSize imageSize=NSMakeSize(menuWidth,self.imageHeight);
+    return [NSImage imageWithSize:imageSize
+                          flipped:NO
+                   drawingHandler:^BOOL(NSRect dstRect) {
+        return [self renderImage];
+    }];
+}
+-(BOOL)renderImage
 {
     NSLog(@"shouldn't happen");
     abort();

@@ -15,6 +15,7 @@
 {
     NSStatusItem* statusItem;
     NSTimer* updateTimer;
+    CGFloat menuWidth;
 }
 -(NSColor*)colorByAdjustingForLightDark:(NSColor*)c;
 - (NSImage*)image;
@@ -28,6 +29,8 @@
 - (void)setupAppearance;
 - (BOOL)isDark;
 - (CGFloat)height;
+- (CGFloat)imageHeight;
+- (BOOL)renderImage;
 -(NSColor*)menuBarTextColor;
 -(instancetype)initWithBundleID:(NSString*)bundleID;
 @property(nonatomic, readonly) BOOL isMenuVisible;

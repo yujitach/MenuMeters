@@ -49,8 +49,6 @@
 									*pageInColor, *pageOutColor;
 	// Image cache for numbers label
 	NSImage							*numberLabelPrerender;
-	// Width of the menu item
-	float							menuWidth;
 	// Width of the text display
 	float							textWidth;
 	// History data

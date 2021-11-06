@@ -50,8 +50,6 @@
 	NSBezierPath					*upArrow, *downArrow;
 	// Cached prerendered text
 	NSImage							*throughputLabel, *inactiveThroughputLabel;
-	// The length of the menu item
-	float							menuWidth;
 	// Historical data samples and current interface config
 	NSDate							*lastSampleDate;
 	NSMutableArray					*netHistoryData, *netHistoryIntervals;
