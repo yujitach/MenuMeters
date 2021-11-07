@@ -416,9 +416,11 @@ uint32_t packageCount;
             const CFDataRef platformClockFrequencyData = (const CFDataRef) platformClockFrequency;
             const UInt8* clockFreqBytes = CFDataGetBytePtr(platformClockFrequencyData);
             clockRate = CFSwapInt32BigToHost(*(UInt32*)(clockFreqBytes)) * 1000;
-            CFRelease(platformClockFrequency);
         }
-        IOObjectRelease(platformExpertDevice);
+        if(platformClockFrequency)
+            CFRelease(platformClockFrequency);
+        if(platformExpertDevice)
+            IOObjectRelease(platformExpertDevice);
     }
 
     return clockRate;

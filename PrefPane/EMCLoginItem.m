@@ -137,9 +137,9 @@
     if (loginItems)
     {
         UInt32 seed;
-        CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(loginItems, &seed);
+        NSArray* loginItemsArray = CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seed));
         
-        for (id item in (__bridge NSArray *)loginItemsArray)
+        for (id item in loginItemsArray)
         {
             LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
             CFURLRef itemUrl;
@@ -217,9 +217,9 @@
                            withPath:(CFURLRef)path
 {
     UInt32 seed;
-    CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(loginItems, &seed);
+    NSArray* loginItemsArray = CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seed));
     
-    for (id item in (__bridge NSArray *)loginItemsArray)
+    for (id item in loginItemsArray)
     {
         LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
         CFURLRef itemUrl;
@@ -245,9 +245,9 @@
     {
         BOOL removed = NO;
         UInt32 seed;
-        CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(loginItems, &seed);
+        NSArray* loginItemsArray = CFBridgingRelease(LSSharedFileListCopySnapshot(loginItems, &seed));
         
-        for (id item in (__bridge NSArray *)loginItemsArray)
+        for (id item in loginItemsArray)
         {
             LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
             CFURLRef itemUrl;
