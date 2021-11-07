@@ -51,7 +51,7 @@ IOHIDFloat IOHIDEventGetFloatValue(IOHIDEventRef event, int32_t field);
 #define kIOHIDEventTypeTemperature  15
 #define kIOHIDEventTypePower        25
 
-NSDictionary*AppleSiliconTemperatureDictionary(void)
+NSArray*AppleSiliconTemperatureSensorNames(void)
 {
     NSDictionary*thermalSensors=@{@"PrimaryUsagePage":@(0xff00),@"PrimaryUsage":@(5)};
 
@@ -59,27 +59,45 @@ NSDictionary*AppleSiliconTemperatureDictionary(void)
     IOHIDEventSystemClientRef system = IOHIDEventSystemClientCreate(kCFAllocatorDefault); // in CFBase.h = NULL
     // ... this is the same as using kCFAllocatorDefault or the return value from CFAllocatorGetDefault()
     IOHIDEventSystemClientSetMatching(system, (__bridge CFDictionaryRef)thermalSensors);
-    CFArrayRef matchingsrvs = IOHIDEventSystemClientCopyServices(system); // matchingsrvs = matching services
+    NSArray* matchingsrvs = CFBridgingRelease(IOHIDEventSystemClientCopyServices(system)); // matchingsrvs = matching services
 
 
-    NSMutableDictionary*dict=[NSMutableDictionary dictionary];
-    long count = CFArrayGetCount(matchingsrvs);
-    for (int i = 0; i < count; i++) {
-        IOHIDServiceClientRef sc = (IOHIDServiceClientRef)CFArrayGetValueAtIndex(matchingsrvs, i);
+    NSMutableArray*array=[NSMutableArray array];
+    for (NSObject* scx in matchingsrvs) {
+        IOHIDServiceClientRef sc = (__bridge IOHIDServiceClientRef)scx;
         NSString* name = CFBridgingRelease(IOHIDServiceClientCopyProperty(sc, CFSTR("Product"))); // here we use ...CopyProperty
-        IOHIDEventRef event = IOHIDServiceClientCopyEvent(sc, kIOHIDEventTypeTemperature, 0, 0); // here we use ...CopyEvent
-        if (name && event) {
-            double temp = IOHIDEventGetFloatValue(event, IOHIDEventFieldBase(kIOHIDEventTypeTemperature));
-            dict[name]=@(temp);
-        }
-        if (event) {
-            CFRelease(event);
+        if (name) {
+            [array addObject:name];
         }
     }
     
-    CFRelease(matchingsrvs);
     CFRelease(system);
     
-    return dict;
+    return array;
     
+}
+
+float AppleSiliconTemperatureForName(NSString *productName) {
+
+	NSDictionary *thermalSensors = @{@"PrimaryUsagePage": @(0xff00),
+									  @"PrimaryUsage": @(5),
+                                      @"Product":productName};
+	IOHIDEventSystemClientRef system = IOHIDEventSystemClientCreate(kCFAllocatorDefault); // in CFBase.h = NULL
+	// ... this is the same as using kCFAllocatorDefault or the return value from CFAllocatorGetDefault()
+	IOHIDEventSystemClientSetMatching(system, (__bridge CFDictionaryRef)thermalSensors);
+    NSArray* matchingsrvs = CFBridgingRelease(IOHIDEventSystemClientCopyServices(system)); // matchingsrvs = matching services
+    float temp=-273.15F;
+    if(matchingsrvs){
+        if([matchingsrvs count]>0){
+            IOHIDServiceClientRef sc = (__bridge IOHIDServiceClientRef)matchingsrvs[0];
+            IOHIDEventRef event = IOHIDServiceClientCopyEvent(sc, kIOHIDEventTypeTemperature, 0, 0); // here we use ...CopyEvent
+            if (event) {
+                temp = IOHIDEventGetFloatValue(event, IOHIDEventFieldBase(kIOHIDEventTypeTemperature));
+                CFRelease(event);
+            }
+        }
+    }
+	CFRelease(system);
+
+	return temp;
 }

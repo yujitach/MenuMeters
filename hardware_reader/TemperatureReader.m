@@ -15,6 +15,9 @@
 @implementation TemperatureReader
 +(NSArray*)sensorNames
 {
+    static dispatch_once_t once;
+    static NSArray*sensorNames;
+    dispatch_once(&once, ^{
 #if TARGET_CPU_X86_64
     if (kIOReturnSuccess == SMCOpen()) {
         UInt32 count;
@@ -31,13 +34,15 @@
             }
         }
         SMCClose();
-        return a;
+        sensorNames=a;
     }else{
-        return nil;
+        sensorNames=nil;
     }
 #elif TARGET_CPU_ARM64
-    return [[AppleSiliconTemperatureDictionary() allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    sensorNames=[AppleSiliconTemperatureSensorNames() sortedArrayUsingSelector:@selector(compare:)];
 #endif
+    });
+    return sensorNames;
 }
 +(NSString*)defaultSensor
 {
@@ -103,7 +108,7 @@
     }
     return celsius;
 #elif TARGET_CPU_ARM64
-    return [(NSNumber*)AppleSiliconTemperatureDictionary()[name] floatValue];
+	return AppleSiliconTemperatureForName(name);
 #endif
 }
 @end
