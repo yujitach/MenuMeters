@@ -19,11 +19,7 @@
 @implementation MenuMetersMenuExtraBase
 -(NSColor*)colorByAdjustingForLightDark:(NSColor*)c
 {
-    if(@available(macOS 10.13,*)){
-        if(c.type==NSColorTypeCatalog){
-            return c;
-        }
-    }
+    [self setupAppearance];
     return [c blendedColorWithFraction:[[NSUserDefaults standardUserDefaults] floatForKey:@"tintPercentage"]/100  ofColor:self.isDark?[[NSColor whiteColor] colorWithAlphaComponent:[c alphaComponent]]:[[NSColor blackColor] colorWithAlphaComponent:[c alphaComponent]]];
 }
 -(instancetype)initWithBundleID:(NSString*)bundleID
@@ -125,6 +121,11 @@
             }
             statusItem.menu = self.menu;
             statusItem.menu.delegate = self;
+            /*
+             Observing effectiveAppearance has a serious drawback when the Mac has two moniters, one with a light menubar and another with a dard menubar, which can happen since Big Sur depending on the chosen desktop pictures.
+             In such cases statusItem.button.effectiveAppearance changes each time the system redraws the statusItem.button on two menubars, making configFromPrefs: called every time.
+             Honestly, the way a single NSStatusItem behaves differently on two menubars with different appearances is undocumented, especially with a dynamically-drawn block-based image attached on a button...
+            */
             [statusItem.button addObserver:self forKeyPath:@"effectiveAppearance" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
         }
         [updateTimer invalidate];
