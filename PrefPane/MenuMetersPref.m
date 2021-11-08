@@ -317,7 +317,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSEnumerator *diskImageSetEnum = [kDiskImageSets objectEnumerator];
 	[diskImageSet removeAllItems];
 	NSString *imageSetName = nil;
-	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 	while ((imageSetName = [diskImageSetEnum nextObject])) {
 		[diskImageSet addItemWithTitle:[[NSBundle bundleForClass:[self class]]
 										   localizedStringForKey:imageSetName
@@ -337,24 +336,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[diskIntervalDisplay setFormatter:intervalFormatter];
 	[netIntervalDisplay setFormatter:intervalFormatter];
 
-	// Configure the scale menu to contain images and enough space
-	NSMenuItem *item;
-	item = [netScaleCalc itemAtIndex:kNetScaleCalcLinear];
-	item.image = [bundle imageForResource:@"LinearScale"];
-	item.title = [@"  %@" stringByAppendingString:item.title];
-
-	item = [netScaleCalc itemAtIndex:kNetScaleCalcSquareRoot];
-	item.image = [bundle imageForResource:@"SquareRootScale"];
-	item.title = [@"  %@" stringByAppendingString:item.title];
-
-	item = [netScaleCalc itemAtIndex:kNetScaleCalcCubeRoot];
-	item.image = [bundle imageForResource:@"CubeRootScale"];
-	item.title = [@"  %@" stringByAppendingString:item.title];
-
-	item = [netScaleCalc itemAtIndex:kNetScaleCalcLog];
-	item.image = [bundle imageForResource:@"LogScale"];
-	item.title = [@"  %@" stringByAppendingString:item.title];
-
+	// The scale menu used to have images but they have been long gone
+    // when the app is moved outside of System Preferences
+    // because I forgot to include the image files in the new target.
+    // Now they are eliminated from the code too ...
+    
     {
     NSString*oldAppPath=[@"~/Library/PreferencePanes/MenuMeters.prefPane/Contents/Resources/MenuMetersApp.app" stringByExpandingTildeInPath];
         EMCLoginItem*oldItem=[EMCLoginItem loginItemWithPath:oldAppPath];
