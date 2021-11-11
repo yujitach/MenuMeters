@@ -697,18 +697,22 @@
     }
     return fontSize;
 }
+-(void)setupColor:(NSNotification*)notification
+{
+    // Handle menubar theme changes
+    fgMenuThemeColor = self.menuBarTextColor;
+
+    // Cache colors to skip archiver
+    userColor = [self colorByAdjustingForLightDark:[ourPrefs cpuUserColor]];
+    systemColor = [self colorByAdjustingForLightDark:[ourPrefs cpuSystemColor]];
+    temperatureColor = [self colorByAdjustingForLightDark:[ourPrefs cpuTemperatureColor]];
+}
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
     [super configDisplay:kCPUMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs cpuInterval]];
 #endif
-	// Handle menubar theme changes
-	fgMenuThemeColor = self.menuBarTextColor;
 
-	// Cache colors to skip archiver
-	userColor = [self colorByAdjustingForLightDark:[ourPrefs cpuUserColor]];
-	systemColor = [self colorByAdjustingForLightDark:[ourPrefs cpuSystemColor]];
-        temperatureColor = [self colorByAdjustingForLightDark:[ourPrefs cpuTemperatureColor]];
-
+    [self setupColor:nil];
     int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs]?[cpuInfo numberOfCores]:[cpuInfo numberOfCPUs];
 
 	if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {

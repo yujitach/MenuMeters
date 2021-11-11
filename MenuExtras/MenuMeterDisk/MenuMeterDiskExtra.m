@@ -368,7 +368,10 @@
 //	Prefs
 //
 ///////////////////////////////////////////////////////////////
-
+-(void)setupColor:(NSNotification *)notification
+{
+    [self configFromPrefs:nil];
+}
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
     [super configDisplay:kDiskMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs diskInterval]];

@@ -828,12 +828,8 @@
 //	Prefs
 //
 ///////////////////////////////////////////////////////////////
-
-- (void)configFromPrefs:(NSNotification *)notification {
-#ifdef ELCAPITAN
-    [super configDisplay:kMemMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs memInterval]];
-#endif
-
+-(void)setupColor:(NSNotification *)notification
+{
 	// Handle menubar theme changes
         fgMenuThemeColor = self.menuBarTextColor;
 	
@@ -880,7 +876,13 @@
 	[renderUString drawAtPoint:NSMakePoint(0, (float)floor([numberLabelPrerender size].height / 2) - 1)];
 	[renderFString drawAtPoint:NSMakePoint(0, -1)];
 	[numberLabelPrerender unlockFocus];
+}
+- (void)configFromPrefs:(NSNotification *)notification {
+#ifdef ELCAPITAN
+    [super configDisplay:kMemMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs memInterval]];
+#endif
 
+    [self setupColor:nil];
 	// Figure out the length of "MB" localization
 	float mbLength = 0;
 	if ([ourPrefs memDisplayMode] == kMemDisplayNumber) {

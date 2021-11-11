@@ -20,6 +20,7 @@
 -(NSColor*)colorByAdjustingForLightDark:(NSColor*)c;
 - (NSImage*)image;
 - (NSMenu*)menu;
+-(void)setupColor:(NSNotification*)notification;
 - (void)configDisplay:(NSString*)bundleID fromPrefs:(MenuMeterDefaults*)ourPrefs withTimerInterval:(NSTimeInterval)interval;
 - (void)configFromPrefs:(NSNotification*)notification;
 - (void)timerFired:(id)timer;

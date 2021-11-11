@@ -35,7 +35,7 @@
     if(@available(macOS 10.14,*)){
     }else{
         [[NSDistributedNotificationCenter defaultCenter] addObserver:self
-                                                            selector:@selector(configFromPrefs:)
+                                                            selector:@selector(setupColor:)
                                                                 name:kAppleInterfaceThemeChangedNotification
                                                               object:nil];
     }
@@ -47,6 +47,11 @@
     abort();
 }
 -(NSMenu*)menu
+{
+    NSLog(@"shouldn't happen");
+    abort();
+}
+-(void)setupColor:(NSNotification*)notification
 {
     NSLog(@"shouldn't happen");
     abort();
@@ -149,7 +154,7 @@
         NSAppearance*old=change[NSKeyValueChangeOldKey];
         NSAppearance*new=change[NSKeyValueChangeNewKey];
         if(![old.name isEqualToString:new.name]){
-            [self configFromPrefs:nil];
+            [self setupColor:nil];
         }
     }
 
@@ -161,7 +166,7 @@
         }
     }
     if([keyPath isEqualToString:@"tintPercentage"]){
-        [self configFromPrefs:nil];
+        [self setupColor:nil];
     }
 }
 - (void)openMenuMetersPref:(id)sender
