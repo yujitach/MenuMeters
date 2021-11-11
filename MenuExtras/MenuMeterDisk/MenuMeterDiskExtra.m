@@ -89,12 +89,6 @@
 	// And configure directly from prefs on first load
 	[self configFromPrefs:nil];
 
-	// Sanity check image load
-	if (!(idleImage && readImage && writeImage && readwriteImage)) {
-		NSLog(@"MenuMeterDisk could not load activity images. Abort.");
-		return nil;
-	}
-
 	// Config initial state
 	displayedActivity = kDiskActivityIdle;
 
@@ -113,24 +107,23 @@
 ///////////////////////////////////////////////////////////////
 
 - (NSImage *)image {
-    [self setupAppearance];
-
+    BOOL isDark=self.isDark;
 	// Switch on state
 	switch (displayedActivity) {
 		case kDiskActivityIdle:
-			return idleImage;
+            return isDark?idleImageDark:idleImageLight;
 			break;
 		case kDiskActivityRead:
-			return readImage;
+            return isDark?readImageDark:readImageLight;
 			break;
 		case kDiskActivityWrite:
-			return writeImage;
+            return isDark?writeImageDark:writeImageLight;
 			break;
 		case kDiskActivityReadWrite:
-			return readwriteImage;
+            return isDark?readwriteImageDark:readwriteImageLight;
 			break;
 		default:
-			return idleImage;
+			return nil;
 	}
 
 } // image
@@ -370,37 +363,35 @@
 ///////////////////////////////////////////////////////////////
 -(void)setupColor:(NSNotification *)notification
 {
-    [self configFromPrefs:nil];
 }
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
     [super configDisplay:kDiskMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs diskInterval]];
 #endif
 
-	// Handle menubar theme changes
-	fgMenuThemeColor = self.menuBarTextColor;
+    [self setupColor:nil];
 	
-	// Decide on image set name prefix
-	NSString *imageSetNamePrefix = [kDiskImageSets objectAtIndex:[ourPrefs diskImageset]];
-	if (self.isDark) {
-		imageSetNamePrefix = [kDiskDarkImageSets objectAtIndex:[ourPrefs diskImageset]];
-	}
-
 	// Read/scale the boto disk icon for those styles that need it
 	NSImage *bootDiskIcon = [[NSWorkspace sharedWorkspace] iconForFile:@"/"];
 	[bootDiskIcon setScalesWhenResized:YES];
 	[bootDiskIcon setSize:NSMakeSize(kDiskViewWidth, kDiskViewWidth)];
 
-	// Release current images
-	idleImage = nil;
-	readImage = nil;
-	writeImage = nil;
-	readwriteImage = nil;
 
 	NSBundle *bundle = [NSBundle mainBundle];
 
 	// Setup new images as overlays or basic images
     float menubarHeight = self.height;
+
+    for(int isDark = 0; isDark<=1; isDark++){
+        // Decide on image set name prefix
+        NSString *imageSetNamePrefix = isDark?
+        [kDiskDarkImageSets objectAtIndex:[ourPrefs diskImageset]]:
+            [kDiskImageSets objectAtIndex:[ourPrefs diskImageset]];
+
+        NSImage* idleImage;
+        NSImage* readImage;
+        NSImage* writeImage;
+        NSImage* readwriteImage;
 	if ([ourPrefs diskImageset] == kDiskArrowsImageSet) {
 		// Small disk arrow is an overlay on the boot disk icon
 		idleImage = [[NSImage alloc] initWithSize:NSMakeSize(kDiskViewWidth, menubarHeight)];
@@ -487,7 +478,18 @@
 		writeImage = [bundle imageForResource:[imageSetNamePrefix stringByAppendingString:@"Write"]];
 		readwriteImage = [bundle imageForResource:[imageSetNamePrefix stringByAppendingString:@"ReadWrite"]];
 	}
-
+        if(isDark){
+            idleImageDark = idleImage;
+            readImageDark = readImage;
+            writeImageDark = writeImage;
+            readwriteImageDark = readwriteImage;
+        }else{
+            idleImageLight = idleImage;
+            readImageLight = readImage;
+            writeImageLight = writeImage;
+            readwriteImageLight = readwriteImage;
+        }
+    }
 	// Force initial update
     statusItem.button.image=self.image;
 } // configFromPrefs

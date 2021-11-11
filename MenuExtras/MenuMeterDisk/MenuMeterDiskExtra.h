@@ -41,7 +41,8 @@
 	MenuMeterDiskIO					*diskIOMonitor;
 	MenuMeterDiskSpace				*diskSpaceMonitor;
 	// Display state and images
-	NSImage							*idleImage, *readImage, *writeImage, *readwriteImage;
+	NSImage							*idleImageLight, *readImageLight, *writeImageLight, *readwriteImageLight;
+    NSImage                         *idleImageDark, *readImageDark, *writeImageDark, *readwriteImageDark;
 	DiskIOActivityType				displayedActivity;
 	// Theme support
 	NSColor							*fgMenuThemeColor;
