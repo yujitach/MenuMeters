@@ -189,8 +189,7 @@
 	[tempFormat setFormat:[NSString stringWithFormat:@"#,##0.0%@", [localizedStrings objectForKey:kMBLabel]]];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-    // memFloatMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
-    memFloatMBFormatter = tempFormat;
+    memFloatMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	[tempFormat setFormat:[NSString stringWithFormat:@"#,##0%@", [localizedStrings objectForKey:kMBLabel]]];
 	memIntMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	[tempFormat setFormat:@"#,##0"];
