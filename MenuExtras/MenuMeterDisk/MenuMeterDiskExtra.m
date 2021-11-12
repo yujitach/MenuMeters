@@ -363,6 +363,7 @@
 ///////////////////////////////////////////////////////////////
 -(void)setupColor:(NSNotification *)notification
 {
+    fgMenuThemeColor=self.menuBarTextColor;
 }
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
