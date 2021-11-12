@@ -51,15 +51,25 @@ IOHIDFloat IOHIDEventGetFloatValue(IOHIDEventRef event, int32_t field);
 #define kIOHIDEventTypeTemperature  15
 #define kIOHIDEventTypePower        25
 
+static dispatch_once_t once=0;
+static IOHIDEventSystemClientRef eventSystem;
+
+static void initEventSystem(){
+    dispatch_once(&once,^{
+        eventSystem = IOHIDEventSystemClientCreate(kCFAllocatorDefault); // in CFBase.h = NULL
+    });
+}
+
 NSArray*AppleSiliconTemperatureSensorNames(void)
 {
+    initEventSystem();
+    
     NSDictionary*thermalSensors=@{@"PrimaryUsagePage":@(0xff00),@"PrimaryUsage":@(5)};
 
    
-    IOHIDEventSystemClientRef system = IOHIDEventSystemClientCreate(kCFAllocatorDefault); // in CFBase.h = NULL
     // ... this is the same as using kCFAllocatorDefault or the return value from CFAllocatorGetDefault()
-    IOHIDEventSystemClientSetMatching(system, (__bridge CFDictionaryRef)thermalSensors);
-    NSArray* matchingsrvs = CFBridgingRelease(IOHIDEventSystemClientCopyServices(system)); // matchingsrvs = matching services
+    IOHIDEventSystemClientSetMatching(eventSystem, (__bridge CFDictionaryRef)thermalSensors);
+    NSArray* matchingsrvs = CFBridgingRelease(IOHIDEventSystemClientCopyServices(eventSystem)); // matchingsrvs = matching services
 
 
     NSMutableArray*array=[NSMutableArray array];
@@ -71,21 +81,20 @@ NSArray*AppleSiliconTemperatureSensorNames(void)
         }
     }
     
-    CFRelease(system);
     
     return array;
     
 }
 
 float AppleSiliconTemperatureForName(NSString *productName) {
+    initEventSystem();
 
 	NSDictionary *thermalSensors = @{@"PrimaryUsagePage": @(0xff00),
 									  @"PrimaryUsage": @(5),
                                       @"Product":productName};
-	IOHIDEventSystemClientRef system = IOHIDEventSystemClientCreate(kCFAllocatorDefault); // in CFBase.h = NULL
 	// ... this is the same as using kCFAllocatorDefault or the return value from CFAllocatorGetDefault()
-	IOHIDEventSystemClientSetMatching(system, (__bridge CFDictionaryRef)thermalSensors);
-    NSArray* matchingsrvs = CFBridgingRelease(IOHIDEventSystemClientCopyServices(system)); // matchingsrvs = matching services
+	IOHIDEventSystemClientSetMatching(eventSystem, (__bridge CFDictionaryRef)thermalSensors);
+    NSArray* matchingsrvs = CFBridgingRelease(IOHIDEventSystemClientCopyServices(eventSystem)); // matchingsrvs = matching services
     float temp=-273.15F;
     if(matchingsrvs){
         if([matchingsrvs count]>0){
@@ -97,7 +106,6 @@ float AppleSiliconTemperatureForName(NSString *productName) {
             }
         }
     }
-	CFRelease(system);
 
 	return temp;
 }
