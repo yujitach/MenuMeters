@@ -507,7 +507,8 @@
 
 	// Draw the prerendered label
 	if ([ourPrefs memUsedFreeLabel]) {
-		[numberLabelPrerender compositeToPoint:NSMakePoint(0,0) operation:NSCompositeSourceOver];
+        [self.uLabel drawAtPoint:NSMakePoint(0, floor(self.imageHeight / 2) - 1)];
+        [self.fLabel drawAtPoint:NSMakePoint(0, -1)];
 	}
 	// Using NSParagraphStyle to right align clipped weird, so do it manually
 	// No descenders so render lower
@@ -842,11 +843,10 @@
         compressedColor = [self colorByAdjustingForLightDark:[ourPrefs memCompressedColor]];
         pageInColor = [self colorByAdjustingForLightDark:[ourPrefs memPageInColor]];
         pageOutColor = [self colorByAdjustingForLightDark:[ourPrefs memPageOutColor]];
-
-	// Since text rendering is so CPU intensive we minimize this by
-	// prerendering what we can if we need it
-	numberLabelPrerender = nil;
-	NSAttributedString *renderUString = [[NSAttributedString alloc]
+}
+-(NSAttributedString*)uLabel
+{
+	return [[NSAttributedString alloc]
 											initWithString:[[NSBundle bundleForClass:[self class]]
 															   localizedStringForKey:kUsedLabel
 																			   value:nil
@@ -855,7 +855,10 @@
                                                             [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																usedColor, NSForegroundColorAttributeName,
 																nil]];
-	NSAttributedString *renderFString = [[NSAttributedString alloc]
+}
+-(NSAttributedString*)fLabel
+{
+    return [[NSAttributedString alloc]
 											initWithString:[[NSBundle bundleForClass:[self class]]
 																localizedStringForKey:kFreeLabel
 																				value:nil
@@ -864,18 +867,6 @@
                                                             [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																freeColor, NSForegroundColorAttributeName,
 																nil]];
-	if ([renderUString size].width > [renderFString size].width) {
-		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderUString size].width,
-                                                                        self.imageHeight)];
-	} else {
-		numberLabelPrerender = [[NSImage alloc] initWithSize:NSMakeSize([renderFString size].width,
-                                                                        self.imageHeight)];
-	}
-	[numberLabelPrerender lockFocus];
-	// No descenders so render both lines lower than normal
-	[renderUString drawAtPoint:NSMakePoint(0, (float)floor([numberLabelPrerender size].height / 2) - 1)];
-	[renderFString drawAtPoint:NSMakePoint(0, -1)];
-	[numberLabelPrerender unlockFocus];
 }
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
@@ -895,6 +886,9 @@
 	}
 
 	// Fix our menu size to match our config
+    CGFloat uWidth=self.uLabel.size.width;
+    CGFloat fWidth=self.fLabel.size.width;
+    numberLabelWidth=(uWidth>fWidth)?uWidth:fWidth;
 	menuWidth = 0;
 	switch ([ourPrefs memDisplayMode]) {
 		case kMemDisplayPie:
@@ -913,8 +907,8 @@
 				textWidth = kMemNumberDisplayShortWidth + mbLength;
 			}
 			if ([ourPrefs memUsedFreeLabel]) {
-				menuWidth += (float)ceil([numberLabelPrerender size].width);
-				textWidth += (float)ceil([numberLabelPrerender size].width);
+				menuWidth += ceil(numberLabelWidth);
+				textWidth += ceil(numberLabelWidth);
 			}
 			break;
 		case kMemDisplayBar:

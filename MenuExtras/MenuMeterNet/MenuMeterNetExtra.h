@@ -49,7 +49,7 @@
 	// Cached bezier paths
 	NSBezierPath					*upArrow, *downArrow;
 	// Cached prerendered text
-	NSImage							*throughputLabel, *inactiveThroughputLabel;
+    CGFloat throughputLabelWidth;
 	// Historical data samples and current interface config
 	NSDate							*lastSampleDate;
 	NSMutableArray					*netHistoryData, *netHistoryIntervals;

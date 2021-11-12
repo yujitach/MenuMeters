@@ -1022,11 +1022,17 @@
 		if ([ourPrefs netDisplayMode] & kNetDisplayArrows) {
 			labelOffset += kNetArrowDisplayWidth + kNetDisplayGapWidth;
 		}
-		if (interfaceUp) {
-			[throughputLabel compositeToPoint:NSMakePoint(labelOffset, 0) operation:NSCompositeSourceOver];
-		} else {
-			[inactiveThroughputLabel compositeToPoint:NSMakePoint(labelOffset, 0) operation:NSCompositeSourceOver];
-		}
+        NSAttributedString*tLabel = [self labelForKey:kTxLabel andColor:interfaceUp?txColor:inactiveColor];
+        NSAttributedString*rLabel = [self labelForKey:kRxLabel andColor:interfaceUp?rxColor:inactiveColor];
+
+        // No descenders, render lower
+        if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
+            [rLabel drawAtPoint:NSMakePoint(labelOffset, floorf(self.height / 2) - 2)];
+            [tLabel drawAtPoint:NSMakePoint(labelOffset, -1)];
+        } else {
+            [tLabel drawAtPoint:NSMakePoint(labelOffset, floorf(self.height / 2) - 2)];
+            [rLabel drawAtPoint:NSMakePoint(labelOffset, -1)];
+        }
 	}
 	// No descenders, so render lower
 	if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
@@ -1323,6 +1329,16 @@
 //	Pref routines
 //
 ///////////////////////////////////////////////////////////////
+
+-(NSAttributedString*)labelForKey:(NSString*)key andColor:(NSColor*)color
+{
+    return [[NSAttributedString alloc]
+            initWithString:[localizedStrings objectForKey:key]
+                attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                throughputFont, NSFontAttributeName,
+                                color, NSForegroundColorAttributeName,
+                                nil]];
+}
 -(void)setupColor:(NSNotification *)notification
 {
 	// Cache colors to skip archiver
@@ -1330,60 +1346,6 @@
         rxColor = [self colorByAdjustingForLightDark:[ourPrefs netReceiveColor]];
         inactiveColor = [self colorByAdjustingForLightDark:[ourPrefs netInactiveColor]];
 
-	// Generate arrow bezier path offset as needed for current display mode
-    float viewHeight = self.height;
-    // Prerender throughput labels
-    NSAttributedString *renderTxString = [[NSAttributedString alloc]
-                                            initWithString:[localizedStrings objectForKey:kTxLabel]
-                                                attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                throughputFont, NSFontAttributeName,
-                                                                txColor, NSForegroundColorAttributeName,
-                                                                nil]];
-    NSAttributedString *renderRxString = [[NSAttributedString alloc]
-                                            initWithString:[localizedStrings objectForKey:kRxLabel]
-                                                attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                throughputFont, NSFontAttributeName,
-                                                                rxColor, NSForegroundColorAttributeName,
-                                                                nil]];
-    if ([renderTxString size].width > [renderRxString size].width) {
-        throughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
-        inactiveThroughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderTxString size].width, viewHeight)];
-    } else {
-        throughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderRxString size].width, viewHeight)];
-        inactiveThroughputLabel = [[NSImage alloc] initWithSize:NSMakeSize([renderRxString size].width, viewHeight)];
-    }
-    [throughputLabel lockFocus];
-    // No descenders, render lower
-    if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-        [renderRxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-        [renderTxString drawAtPoint:NSMakePoint(0, -1)];
-    } else {
-        [renderTxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-        [renderRxString drawAtPoint:NSMakePoint(0, -1)];
-    }
-    [throughputLabel unlockFocus];
-    renderTxString = [[NSAttributedString alloc]
-                        initWithString:[localizedStrings objectForKey:kTxLabel]
-                            attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                            throughputFont, NSFontAttributeName,
-                                            inactiveColor, NSForegroundColorAttributeName,
-                                            nil]];
-    renderRxString = [[NSAttributedString alloc]
-                        initWithString:[localizedStrings objectForKey:kRxLabel]
-                            attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                            throughputFont, NSFontAttributeName,
-                                            inactiveColor, NSForegroundColorAttributeName,
-                                            nil]];
-    [inactiveThroughputLabel lockFocus];
-    // No descenders, render lower
-    if ([ourPrefs netDisplayOrientation] == kNetDisplayOrientRxTx) {
-        [renderRxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-        [renderTxString drawAtPoint:NSMakePoint(0, -1)];
-    } else {
-        [renderTxString drawAtPoint:NSMakePoint(0, floorf(viewHeight / 2) - 2)];
-        [renderRxString drawAtPoint:NSMakePoint(0, -1)];
-    }
-    [inactiveThroughputLabel unlockFocus];
 }
 - (void)configFromPrefs:(NSNotification *)notification {
 #ifdef ELCAPITAN
@@ -1391,10 +1353,17 @@
 #endif
 
     [self setupColor:nil];
-    float arrowOffset =  0;
     float viewHeight = self.height;
 
-	if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
+    NSAttributedString*tLabel = [self labelForKey:kTxLabel andColor:txColor];
+    NSAttributedString*rLabel = [self labelForKey:kRxLabel andColor:rxColor];
+    CGFloat tWidth=tLabel.size.width;
+    CGFloat rWidth=rLabel.size.width;
+    throughputLabelWidth=(tWidth>rWidth)?tWidth:rWidth;
+
+    // Generate arrow bezier path offset as needed for current display mode
+    float arrowOffset =  0;
+    if ([ourPrefs netDisplayMode] & kNetDisplayGraph) {
 		arrowOffset = [ourPrefs netGraphLength] + kNetDisplayGapWidth;
 	}
 	upArrow = [NSBezierPath bezierPath];
@@ -1433,7 +1402,7 @@
 	}
 	if ([ourPrefs netDisplayMode] & kNetDisplayThroughput) {
 		displayCount++;
-		if ([ourPrefs netThroughputLabel]) menuWidth += (float)ceil([throughputLabel size].width);
+		if ([ourPrefs netThroughputLabel]) menuWidth += ceil(throughputLabelWidth);
 		// Deal with localizable throughput suffix
 		float suffixMaxWidth = 0;
 		NSAttributedString *throughString = [[NSAttributedString alloc]

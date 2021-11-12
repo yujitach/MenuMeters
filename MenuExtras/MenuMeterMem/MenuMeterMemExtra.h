@@ -48,7 +48,7 @@
 									*activeColor, *inactiveColor, *wireColor, *compressedColor,
 									*pageInColor, *pageOutColor;
 	// Image cache for numbers label
-	NSImage							*numberLabelPrerender;
+	CGFloat							numberLabelWidth;
 	// Width of the text display
 	float							textWidth;
 	// History data
