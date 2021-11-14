@@ -1,4 +1,3 @@
-"Open MenuMeters preferences" = "Open MenuMeters preferences";
 // Processor title menu item (second title is used on multi-CPU systems)
 "Processor:" = "Processeur :";
 "Processors:" = "Processeurs :";
@@ -170,6 +169,7 @@
 "%@ %@ (%@ bytes)" = "%1$@ %2$@ (%3$@ octets)";
 
 // Menu action title strings
+"Open MenuMeters preferences" = "Ouvrir les préférences MenuMeters";
 "Open Network Utility" = "Ouvrir Utilitaire de réseau";
 "Open Network Preferences" = "Ouvrir les préférences Réseau";
 "Open Internet Connect" = "Ouvrir Connexion à Internet";
