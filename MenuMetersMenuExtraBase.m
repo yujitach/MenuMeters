@@ -114,16 +114,20 @@
     if([ourPrefs loadBoolPref:bundleID defaultValue:YES]){
         if(!statusItem){
             statusItem=[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+#if (__MAC_OS_X_VERSION_MAX_ALLOWED >= 101600)
             if(@available(macOS 11,*)){
                 // 11.0.1 does not keep the position unless autosaveName is explicitly set,
                 // see https://github.com/feedback-assistant/reports/issues/151 .
                 // This is done here in order not to lose positions on pre-macOS 11 systems.
                 statusItem.autosaveName=self.bundleID;
             }
+#endif
+#if (__MAC_OS_X_VERSION_MAX_ALLOWED >= 101200)
             if(@available(macOS 10.12,*)){
                 statusItem.behavior=NSStatusItemBehaviorRemovalAllowed;
                 [statusItem addObserver:self forKeyPath:@"visible" options:NSKeyValueObservingOptionNew context:nil];
             }
+#endif
             statusItem.menu = self.menu;
             statusItem.menu.delegate = self;
             /*
@@ -222,27 +226,30 @@
 }
 -(BOOL)isDark
 {
+#if (__MAC_OS_X_VERSION_MAX_ALLOWED >= 101400)
     if(@available(macOS 10.14,*)){
         // https://github.com/ruiaureliano/macOS-Appearance/blob/master/Appearance/Source/AppDelegate.swift
         return [statusItem.button.effectiveAppearance.name containsString:@"ark"];
-    }else{
-        // https://stackoverflow.com/questions/25207077/how-to-detect-if-os-x-is-in-dark-mode
-        // On 10.10 there is no documented API for theme, so we'll guess a couple of different ways.
-        BOOL isDark = NO;
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults synchronize];
-        NSString *interfaceStyle = [defaults stringForKey:@"AppleInterfaceStyle"];
-        if (interfaceStyle && [interfaceStyle isEqualToString:@"Dark"]) {
-            isDark = YES;
-        }
-        return isDark;
     }
+#endif
+    // https://stackoverflow.com/questions/25207077/how-to-detect-if-os-x-is-in-dark-mode
+    // On 10.10 there is no documented API for theme, so we'll guess a couple of different ways.
+    BOOL isDark = NO;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults synchronize];
+    NSString *interfaceStyle = [defaults stringForKey:@"AppleInterfaceStyle"];
+    if (interfaceStyle && [interfaceStyle isEqualToString:@"Dark"]) {
+        isDark = YES;
+    }
+    return isDark;
 }
 -(NSColor*)menuBarTextColor
 {
+#if (__MAC_OS_X_VERSION_MAX_ALLOWED >= 101400)
     if(@available(macOS 10.14,*)){
         return [NSColor labelColor];
     }
+#endif
     if (self.isDark){
         return [NSColor whiteColor];
     }
@@ -258,9 +265,11 @@
     return height;
 }
 - (void)setupAppearance {
+#if (__MAC_OS_X_VERSION_MAX_ALLOWED >= 101400)
     if(@available(macOS 10.14,*)){
         [NSAppearance setCurrentAppearance:statusItem.button.effectiveAppearance];
     }
+#endif
 }
 #pragma mark NSMenuDelegate
 - (void)menuNeedsUpdate:(NSMenu*)menu {
