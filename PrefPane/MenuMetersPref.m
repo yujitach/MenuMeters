@@ -166,6 +166,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     }
     [self setupSparkleUI];
 
+#if (__MAC_OS_X_VERSION_MAX_ALLOWED >= 101600)
 	if (@available(macOS 10.16, *)) {
 		NSToolbar *toolbar = [NSToolbar new];
 		toolbar.delegate = self;
@@ -177,6 +178,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[self.window.toolbar setSelectedItemIdentifier:selectedIdentifier];
 		prefTabs.delegate = self;
 	}
+#endif
 }
 
 - (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar *)toolbar {
@@ -203,9 +205,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	item.paletteLabel = tabItem.label;
 	item.label = tabItem.label;
 	item.action = @selector(toolbarSelection:);
+#if (__MAC_OS_X_VERSION_MAX_ALLOWED >= 101600)
 	if (@available(macOS 10.16, *)) {
 		item.image = [NSImage imageWithSystemSymbolName:itemIdent accessibilityDescription:@""];
 	}
+#endif
 	return item;
 }
 
