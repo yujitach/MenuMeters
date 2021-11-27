@@ -153,6 +153,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		08F9457D2752440700FC62A5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/MenuMetersPref.strings; sourceTree = "<group>"; };
+		08F9457E2752440700FC62A5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/DiskImageSet.strings; sourceTree = "<group>"; };
+		08F9457F2752440700FC62A5 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		330247642366CB7A00F88D61 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		330247662366CEA800F88D61 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		330611022367EA4C0016E763 /* MenuMetersMainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuMetersMainMenu.xib; sourceTree = "<group>"; };
@@ -689,6 +692,7 @@
 				Base,
 				"zh-Hans",
 				fi,
+				tr,
 			);
 			mainGroup = D40DB4A303D25F2100A87BC9;
 			productRefGroup = D40DB4B003D25F6400A87BC9 /* Products */;
@@ -891,6 +895,7 @@
 				338454112105C3BB00D4DA92 /* it */,
 				338454122105C3BD00D4DA92 /* zh-Hans */,
 				538B152824465532008BAFC2 /* fi */,
+				08F9457D2752440700FC62A5 /* tr */,
 			);
 			name = MenuMetersPref.xib;
 			sourceTree = "<group>";
@@ -907,6 +912,7 @@
 				33883D522365E63700B8AC14 /* it */,
 				33883D532365E63B00B8AC14 /* ja */,
 				538B152A24465532008BAFC2 /* fi */,
+				08F9457F2752440700FC62A5 /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -922,6 +928,7 @@
 				D4157ABD19D13C18008BD05F /* ja */,
 				330D68B72105AB950041B689 /* zh-Hans */,
 				538B152924465532008BAFC2 /* fi */,
+				08F9457E2752440700FC62A5 /* tr */,
 			);
 			name = DiskImageSet.strings;
 			sourceTree = "<group>";

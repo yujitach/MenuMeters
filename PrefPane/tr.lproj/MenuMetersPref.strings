@@ -1,0 +1,411 @@
+
+/* Class = "NSWindow"; title = "MenuMeters"; ObjectID = "12"; */
+"12.title" = "MenuMeters";
+
+/* Class = "NSTabViewItem"; label = "Disk"; ObjectID = "100"; */
+"100.label" = "Disk";
+
+/* Class = "NSTabViewItem"; label = "CPU"; ObjectID = "102"; */
+"102.label" = "CPU";
+
+/* Class = "NSTabViewItem"; label = "Memory"; ObjectID = "103"; */
+"103.label" = "Bellek";
+
+/* Class = "NSTabViewItem"; label = "Network"; ObjectID = "105"; */
+"105.label" = "Ağ";
+
+/* Class = "NSMenuItem"; title = "ImageSet"; ObjectID = "203"; */
+"203.title" = "Görsel Seti";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "206"; */
+"206.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Usage Bar"; ObjectID = "219"; */
+"219.title" = "Kullanım Çubuğu";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "223"; */
+"223.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Usage Chart"; ObjectID = "225"; */
+"225.title" = "Kullanım Grafiği";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "293"; */
+"293.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Throughput"; ObjectID = "294"; */
+"294.title" = "Veri Hacmi";
+
+/* Class = "NSMenuItem"; title = "Arrows"; ObjectID = "297"; */
+"297.title" = "Oklar";
+
+/* Class = "NSMenuItem"; title = "Arrows and Throughput"; ObjectID = "299"; */
+"299.title" = "Oklar ve Veri Hacmi";
+
+/* Class = "NSMenuItem"; title = "Graph"; ObjectID = "314"; */
+"314.title" = "Grafik";
+
+/* Class = "NSMenuItem"; title = "Graph and Arrows"; ObjectID = "363"; */
+"363.title" = "Grafik ve Oklar";
+
+/* Class = "NSMenuItem"; title = "Graph and Throughput"; ObjectID = "365"; */
+"365.title" = "Grafik ve Veri Hacmi";
+
+/* Class = "NSMenuItem"; title = "Graph, Arrows and Throughput"; ObjectID = "366"; */
+"366.title" = "Grafik, Oklar ve Veri Hacmi";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "382"; */
+"382.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Total (large text)"; ObjectID = "384"; */
+"384.title" = "Toplam (büyük metin)";
+
+/* Class = "NSMenuItem"; title = "User and System (small text)"; ObjectID = "385"; */
+"385.title" = "Kullanıcı ve Sistem (küçük metin)";
+
+/* Class = "NSMenuItem"; title = "Total (medium text)"; ObjectID = "386"; */
+"386.title" = "Toplam (orta metin)";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "403"; */
+"403.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Opposed"; ObjectID = "404"; */
+"404.title" = "Karşıt";
+
+/* Class = "NSMenuItem"; title = "Standard"; ObjectID = "406"; */
+"406.title" = "Standart";
+
+/* Class = "NSMenuItem"; title = "Centered"; ObjectID = "407"; */
+"407.title" = "Ortalanmış";
+
+/* Class = "NSMenuItem"; title = "Usage History Graph"; ObjectID = "472"; */
+"472.title" = "Kullanım Geçmişi Grafiği";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "477"; */
+"477.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "pulse"; ObjectID = "478"; */
+"478.title" = "nabız";
+
+/* Class = "NSMenuItem"; title = "glow"; ObjectID = "479"; */
+"479.title" = "parlama";
+
+/* Class = "NSMenuItem"; title = "Primary (automatic)"; ObjectID = "487"; */
+"487.title" = "Birincil (otomatik)";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "489"; */
+"489.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "inverse glow"; ObjectID = "497"; */
+"497.title" = "ters parlama";
+
+/* Class = "NSMenuItem"; title = "inverse pulse"; ObjectID = "498"; */
+"498.title" = "ters nabız";
+
+/* Class = "NSMenuItem"; title = "opens the volume"; ObjectID = "500"; */
+"500.title" = "sesi açar";
+
+/* Class = "NSMenuItem"; title = "unmounts/ejects the volume"; ObjectID = "502"; */
+"502.title" = "bölüm bağlantısını keser/çıkarır";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "503"; */
+"503.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Used/Free Totals"; ObjectID = "508"; */
+"508.title" = "Kullanılmış/Boş Toplamlar";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "522"; */
+"522.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Interface speed"; ObjectID = "525"; */
+"525.title" = "Arabirim hızı";
+
+/* Class = "NSMenuItem"; title = "Peak traffic"; ObjectID = "526"; */
+"526.title" = "Tavan trafik";
+
+/* Class = "NSMenuItem"; title = "Linear"; ObjectID = "541"; */
+"541.title" = "Doğrusal";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "542"; */
+"542.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Logarithmic"; ObjectID = "545"; */
+"545.title" = "Logaritmik";
+
+/* Class = "NSMenuItem"; title = "Cube root"; ObjectID = "556"; */
+"556.title" = "Küpkök";
+
+/* Class = "NSMenuItem"; title = "Square root"; ObjectID = "557"; */
+"557.title" = "Karekök";
+
+/* Class = "NSMenuItem"; title = "Transmit/Receive"; ObjectID = "590"; */
+"590.title" = "Aktarma/Alma";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "591"; */
+"591.title" = "Diğer Görünümler";
+
+/* Class = "NSMenuItem"; title = "Receive/Transmit"; ObjectID = "592"; */
+"592.title" = "Alma/Aktarma";
+
+/* Class = "NSMenuItem"; title = "Inverse Opposed"; ObjectID = "613"; */
+"613.title" = "Ters Karşıt";
+
+/* Class = "NSButtonCell"; title = "Display Disk Activity Menu Meter"; ObjectID = "1006"; */
+"1006.title" = "Disk Etkinliği ölçeri göster";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1007"; */
+"1007.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "Update interval (seconds):"; ObjectID = "1010"; */
+"1010.title" = "Güncelleme Aralığı (saniye):";
+
+/* Class = "NSTextFieldCell"; title = "Selecting a volume from the disk menu"; ObjectID = "1011"; */
+"1011.title" = "Disk menüsünden bir bölüm seçme";
+
+/* Class = "NSTextFieldCell"; title = "(Holding the Option key will reverse the behavior)"; ObjectID = "1013"; */
+"1013.title" = "(Option düğmesini basılı tutmak davranışı tersine çevirecektir)";
+
+/* Class = "NSButtonCell"; title = "Display CPU Menu Meter"; ObjectID = "1014"; */
+"1014.title" = "CPU ölçeri göster";
+
+/* Class = "NSTextFieldCell"; title = "Update interval (seconds):"; ObjectID = "1017"; */
+"1017.title" = "Güncelleme Aralığı (saniye):";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1018"; */
+"1018.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "User"; ObjectID = "1019"; */
+"1019.title" = "Kullanıcı";
+
+/* Class = "NSTextFieldCell"; title = "System"; ObjectID = "1020"; */
+"1020.title" = "Sistem";
+
+/* Class = "NSTextFieldCell"; title = "Display percentage as:"; ObjectID = "1022"; */
+"1022.title" = "Yüzde ekranı ölçütü:";
+
+/* Class = "NSTextFieldCell"; title = "Graph width:"; ObjectID = "1025"; */
+"1025.title" = "Grafik genişliği:";
+
+/* Class = "NSTextFieldCell"; title = "Percentage Display"; ObjectID = "1026"; */
+"1026.title" = "Yüzde Ekranı";
+
+/* Class = "NSTextFieldCell"; title = "Graph Display"; ObjectID = "1027"; */
+"1027.title" = "Grafik Ekranı";
+
+/* Class = "NSTextFieldCell"; title = "Misc"; ObjectID = "1028"; */
+"1028.title" = "Diğer";
+
+/* Class = "NSTextFieldCell"; title = "Colors"; ObjectID = "1029"; */
+"1029.title" = "Renk";
+
+/* Class = "NSButtonCell"; title = "PowerMate shows CPU usage as"; ObjectID = "1030"; */
+"1030.title" = "PowerMate CPU kullanımı ekranı:";
+
+/* Class = "NSButtonCell"; title = "Display Memory Menu Meter"; ObjectID = "1032"; */
+"1032.title" = "Bellek ölçeri görüntüle";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1033"; */
+"1033.title" = "x";
+
+/* Class = "NSTextFieldCell"; title = "Update interval (seconds):"; ObjectID = "1035"; */
+"1035.title" = "Güncelleme Aralığı (saniye):";
+
+/* Class = "NSButtonCell"; title = "Show Used/Free labels"; ObjectID = "1037"; */
+"1037.title" = "Kullanılan/Boş etiketlerini göster";
+
+/* Class = "NSTextFieldCell"; title = "General"; ObjectID = "1038"; */
+"1038.title" = "Genel";
+
+/* Class = "NSButtonCell"; title = "Show paging activity indicator"; ObjectID = "1039"; */
+"1039.title" = "Sayfalama etkinlik göstergelerini göster";
+
+/* Class = "NSTextFieldCell"; title = "Colors"; ObjectID = "1040"; */
+"1040.title" = "Renk";
+
+/* Class = "NSTextFieldCell"; title = "Pagein"; ObjectID = "1041"; */
+"1041.title" = "Sayfa girişi";
+
+/* Class = "NSTextFieldCell"; title = "Pageout"; ObjectID = "1042"; */
+"1042.title" = "Sayfa çıkışı";
+
+/* Class = "NSTextFieldCell"; title = "Graph width:"; ObjectID = "1044"; */
+"1044.title" = "Grafik genişliği:";
+
+/* Class = "NSTextFieldCell"; title = "Graph Display"; ObjectID = "1045"; */
+"1045.title" = "Grafik Ekranı";
+
+/* Class = "NSTextFieldCell"; title = "Active"; ObjectID = "1047"; */
+"1047.title" = "Etkin";
+
+/* Class = "NSTextFieldCell"; title = "Inactive"; ObjectID = "1048"; */
+"1048.title" = "Devre Dışı";
+
+/* Class = "NSTextFieldCell"; title = "Wired"; ObjectID = "1049"; */
+"1049.title" = "Bağlı";
+
+/* Class = "NSTextFieldCell"; title = "Free"; ObjectID = "1050"; */
+"1050.title" = "Boş";
+
+/* Class = "NSTextFieldCell"; title = "Used"; ObjectID = "1051"; */
+"1051.title" = "Kullanılan";
+
+/* Class = "NSTextFieldCell"; title = "x"; ObjectID = "1053"; */
+"1053.title" = "x";
+
+/* Class = "NSButtonCell"; title = "Display Network Menu Meter"; ObjectID = "1054"; */
+"1054.title" = "Ağ ölçeri göster";
+
+/* Class = "NSTextFieldCell"; title = "Update interval (seconds):"; ObjectID = "1056"; */
+"1056.title" = "Güncelleme Aralığı (saniye):";
+
+/* Class = "NSTextFieldCell"; title = "Transmit"; ObjectID = "1057"; */
+"1057.title" = "Aktarma";
+
+/* Class = "NSTextFieldCell"; title = "Receive"; ObjectID = "1058"; */
+"1058.title" = "Alma";
+
+/* Class = "NSButtonCell"; title = "Show throughput labels (Tx/Rx)"; ObjectID = "1060"; */
+"1060.title" = "Veri hacmi etiketlerini göster (Tx/Rx)";
+
+/* Class = "NSButtonCell"; title = "Ignore values below 1K/s"; ObjectID = "1061"; */
+"1061.title" = "1K/sn altındaki değerleri yok say";
+
+/* Class = "NSTextFieldCell"; title = "Graph style:"; ObjectID = "1062"; */
+"1062.title" = "Grafik stili:";
+
+/* Class = "NSTextFieldCell"; title = "Graph width:"; ObjectID = "1063"; */
+"1063.title" = "Grafik genişliği:";
+
+/* Class = "NSTextFieldCell"; title = "Throughput Display"; ObjectID = "1065"; */
+"1065.title" = "Veri Hacmi Ekranı";
+
+/* Class = "NSTextFieldCell"; title = "Graph Display"; ObjectID = "1066"; */
+"1066.title" = "Grafik Ekranı";
+
+/* Class = "NSTextFieldCell"; title = "Colors"; ObjectID = "1067"; */
+"1067.title" = "Renk";
+
+/* Class = "NSTextFieldCell"; title = "Display prefers interface:"; ObjectID = "1068"; */
+"1068.title" = "Görüntülenecek arabirim:";
+
+/* Class = "NSTextFieldCell"; title = "General"; ObjectID = "1070"; */
+"1070.title" = "Genel";
+
+/* Class = "NSTextFieldCell"; title = "Display scales to:"; ObjectID = "1071"; */
+"1071.title" = "Ölçeklenecek ekran:";
+
+/* Class = "NSTextFieldCell"; title = "Display scaling:"; ObjectID = "1073"; */
+"1073.title" = "Ekran ölçeklemesi:";
+
+/* Class = "NSTextFieldCell"; title = "Display orientation:"; ObjectID = "1075"; */
+"1075.title" = "Ekran konumlandırması:";
+
+/* Class = "NSTextFieldCell"; title = "Inactive"; ObjectID = "1077"; */
+"1077.title" = "Devre dışı";
+
+/* Class = "NSTextFieldCell"; title = "Horizontal Rows:"; ObjectID = "1088"; */
+"1088.title" = "Yatay Satırlar:";
+
+/* Class = "NSTextFieldCell"; title = "Horizontal Thermometer Display"; ObjectID = "1094"; */
+"1094.title" = "Yatay Termometre Ekranı";
+
+/* Class = "NSTextFieldCell"; title = "Horizontal Width:"; ObjectID = "1117"; */
+"1117.title" = "Yatay Genişlik:";
+
+/* Class = "NSTextFieldCell"; title = "(%d)"; ObjectID = "2NH-iF-l28"; */
+"2NH-iF-l28.title" = "(%d)";
+
+/* Class = "NSMenuItem"; title = "the sum of all cores"; ObjectID = "5Lg-aP-TSR"; */
+"5Lg-aP-TSR.title" = "tüm çekirdeklerin toplamı";
+
+/* Class = "NSButtonCell"; title = "Show CPU Temperature in"; ObjectID = "5r7-xY-4OH"; */
+"5r7-xY-4OH.title" = "CPU sıcaklığı birimi:";
+
+/* Class = "NSMenuItem"; title = "℉"; ObjectID = "89a-Te-47J"; */
+"89a-Te-47J.title" = "℉";
+
+/* Class = "NSMenuItem"; title = "the average of all cores"; ObjectID = "BYT-hf-ygS"; */
+"BYT-hf-ygS.title" = "tüm çekirdeklerin ortalaması";
+
+/* Class = "NSTextFieldCell"; title = "Sensor:"; ObjectID = "Bgr-O5-qr1"; */
+"Bgr-O5-qr1.title" = "Duyarga:";
+
+/* Class = "NSTextFieldCell"; title = "Temperature"; ObjectID = "C4n-F2-kuL"; */
+"C4n-F2-kuL.title" = "Sıcaklık";
+
+/* Class = "NSTextFieldCell"; title = "Activity monitor:"; ObjectID = "CDM-3t-gon"; */
+"CDM-3t-gon.title" = "Etkinlik Monitörü:";
+
+/* Class = "NSMenuItem"; title = "all cores sorted"; ObjectID = "CG1-40-AVC"; */
+"CG1-40-AVC.title" = "tüm çekirdekler sıralanmış";
+
+/* Class = "NSTextFieldCell"; title = "original"; ObjectID = "FPO-Jo-ubG"; */
+"FPO-Jo-ubG.title" = "orijinal";
+
+/* Class = "NSTabViewItem"; label = "About"; ObjectID = "FSw-QC-dn2"; */
+"FSw-QC-dn2.label" = "Hakkında";
+
+/* Class = "NSMenuItem"; title = "physical cores only"; ObjectID = "H5f-hN-vQV"; */
+"H5f-hN-vQV.title" = "yalnızca fiziksel çekirdekler";
+
+/* Class = "NSButtonCell"; title = "Graph"; ObjectID = "IS4-Xc-psg"; */
+"IS4-Xc-psg.title" = "Grafik";
+
+/* Class = "NSButtonCell"; title = "Percentage"; ObjectID = "Jeh-C2-Wwp"; */
+"Jeh-C2-Wwp.title" = "Yüzde";
+
+/* Class = "NSButtonCell"; title = "Show bits per second"; ObjectID = "K7W-5f-1U8"; */
+"K7W-5f-1U8.title" = "Bit/sn göster";
+
+/* Class = "NSMenuItem"; title = "Once per week"; ObjectID = "LmO-Ij-G7M"; */
+"LmO-Ij-G7M.title" = "Haftada bir";
+
+/* Class = "NSMenuItem"; title = "Once per month"; ObjectID = "PuG-eZ-jRm"; */
+"PuG-eZ-jRm.title" = "Ayda bir";
+
+/* Class = "NSMenuItem"; title = "Never"; ObjectID = "STJ-3R-khe"; */
+"STJ-3R-khe.title" = "Hiçbir zaman";
+
+/* Class = "NSMenuItem"; title = "℃"; ObjectID = "Wgg-4C-Cbe"; */
+"Wgg-4C-Cbe.title" = "℃";
+
+/* Class = "NSButtonCell"; title = "Check updates now"; ObjectID = "XYi-uP-QCD"; */
+"XYi-uP-QCD.title" = "Şimdi Denetle";
+
+/* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "aOw-Lj-aWS"; */
+"aOw-Lj-aWS.title" = "Bellek baskısını göster";
+
+/* Class = "NSTextFieldCell"; title = "pure black/white"; ObjectID = "ayz-p2-XC5"; */
+"ayz-p2-XC5.title" = "saf siyah/beyaz";
+
+/* Class = "NSTextFieldCell"; title = "Compressed"; ObjectID = "ex0-hf-q5R"; */
+"ex0-hf-q5R.title" = "Sıkıştırılmış";
+
+/* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "k2d-Cg-pqL"; */
+"k2d-Cg-pqL.title" = "Göster:";
+
+/* Class = "NSMenuItem"; title = "Once per day"; ObjectID = "lh5-j8-SRe"; */
+"lh5-j8-SRe.title" = "Günde bir";
+
+/* Class = "NSTextFieldCell"; title = "Color tint:"; ObjectID = "mAZ-f2-5AJ"; */
+"mAZ-f2-5AJ.title" = "Renk Tonu:";
+
+/* Class = "NSTextFieldCell"; title = "Process Display"; ObjectID = "p2Z-13-y3b"; */
+"p2Z-13-y3b.title" = "İşlem Ekranı";
+
+/* Class = "NSButtonCell"; title = "Opens specific panes"; ObjectID = "phH-yJ-I6O"; */
+"phH-yJ-I6O.title" = "Belirli panoları açar";
+
+/* Class = "NSButtonCell"; title = "Vertical bar"; ObjectID = "r6t-Zl-sS4"; */
+"r6t-Zl-sS4.title" = "Dikey çubuk";
+
+/* Class = "NSTextFieldCell"; title = "Processes to show:"; ObjectID = "rhi-NX-C3L"; */
+"rhi-NX-C3L.title" = "Gösterilecek işlemler: ";
+
+/* Class = "NSButtonCell"; title = "Horizontal bar"; ObjectID = "spo-WT-wCm"; */
+"spo-WT-wCm.title" = "Yatay çubuk";
+
+/* Class = "NSTextFieldCell"; title = "Automatic update check interval:"; ObjectID = "tug-YR-k7T"; */
+"tug-YR-k7T.title" = "Güncellemeleri Denetleme Sıklığı:";
+
+/* Class = "NSMenuItem"; title = "all cores, including hyperthreaded ones"; ObjectID = "vbH-jV-tUr"; */
+"vbH-jV-tUr.title" = "tüm çekirdekler, hiper iş parçacıklılar dahil";
