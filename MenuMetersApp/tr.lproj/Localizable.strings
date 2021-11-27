@@ -7,7 +7,7 @@
 
 // Processor title menu item (second title is used on multi-CPU systems)
 "Processor:" = "İşlemci:";
-"Processors:" = "İşlemci:";
+"Processors:" = "İşlemciler:";
 
 // And the format string for the processor menu display (ex: "1 PowerPC 7450 @ 800MHz")
 // Note that CPU name information ("PowerPC 7450") cannot be localized, it is
@@ -18,7 +18,7 @@
 "Uptime:" = "Çalışma Süresi:";
 
 // Uptime error (unavailable)
-"Unavailable" = "Kullanılamaz";
+"Unavailable" = "Görüntülenemiyor";
 
 // Format strings for uptime (ex: "2 days 08:16:32")
 // Multiple day format
