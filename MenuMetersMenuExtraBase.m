@@ -243,6 +243,18 @@
     }
     return isDark;
 }
+-(BOOL)isInstalledButHiddenBySystem
+{
+    NSWindow*window=statusItem.button.window;
+    if(!window){
+        return NO;
+    }
+    if([window occlusionState]&NSWindowOcclusionStateVisible){
+        return NO;
+    }else{
+        return YES;
+    }
+}
 -(NSColor*)menuBarTextColor
 {
 #if (__MAC_OS_X_VERSION_MAX_ALLOWED >= 101400)
