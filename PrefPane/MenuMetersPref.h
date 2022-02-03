@@ -130,7 +130,6 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 	IBOutlet NSColorWell			*netInactiveColor;
     __weak IBOutlet NSPopUpButton *updateIntervalButton;
     IBOutlet NSView					*sparkleUIContainer;
-    NSAlert*hiddenAlert;
     BOOL hiddenAlertIsShown;
 } // MenuMetersPref
 
