@@ -224,7 +224,23 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	NSString *itemIdent = [tabViewItem identifier];
 	[self.window.toolbar setSelectedItemIdentifier:itemIdent];
 }
-
+-(void)hiddenBySystem:(NSNotification*)notification
+{
+    if(!hiddenAlert){
+        hiddenAlert=[[NSAlert alloc] init];
+        hiddenAlert.alertStyle=NSAlertStyleCritical;
+        hiddenAlert.messageText=@"MenuMeters is hidden due to lack of space";
+        hiddenAlert.informativeText=@"Try reducing the number of CPU cores shown, etc.";
+        [hiddenAlert addButtonWithTitle:NSLocalizedString(kOpenMenuMetersPref, kOpenMenuMetersPref)];
+    }
+    if(!hiddenAlertIsShown && !(self.window.visible)){
+        hiddenAlertIsShown=YES;
+        [hiddenAlert runModal];
+        [self.window makeKeyAndOrderFront:self];
+        hiddenAlertIsShown=NO;
+    }
+    
+}
 #ifdef SPARKLE
 -(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_
 {
@@ -232,6 +248,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
     updater=updater_;
     [self initCommon:about];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(openPrefPane:) name:@"openPref" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenBySystem:) name:@"hiddenBySystem" object:nil];
     return self;
 }
 #else

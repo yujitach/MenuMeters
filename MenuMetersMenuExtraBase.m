@@ -77,6 +77,9 @@
 -(void)timerFired:(id)notused
 {
     statusItem.button.image=self.image;
+    if(self.isInstalledButHiddenBySystem){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"hiddenBySystem" object:nil];
+    }
 /*    NSImage*image=self.image;
     NSImage*canvas=[NSImage imageWithSize:image.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
         [[[NSColor systemGrayColor] colorWithAlphaComponent:.3] setFill];
