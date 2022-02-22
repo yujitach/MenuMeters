@@ -144,7 +144,7 @@
             LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
             CFURLRef itemUrl;
             
-            if (LSSharedFileListItemResolve(loginItem, 0, &itemUrl, NULL) == noErr)
+            if (LSSharedFileListItemResolve(loginItem, kLSSharedFileListNoUserInteraction|kLSSharedFileListDoNotMountVolumes, &itemUrl, NULL) == noErr)
             {
                 if (CFEqual(itemUrl, url))
                 {
@@ -224,7 +224,7 @@
         LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
         CFURLRef itemUrl;
         
-        if (LSSharedFileListItemResolve(loginItem, 0, &itemUrl, NULL) == noErr)
+        if (LSSharedFileListItemResolve(loginItem, kLSSharedFileListNoUserInteraction|kLSSharedFileListDoNotMountVolumes, &itemUrl, NULL) == noErr)
         {
             if (CFEqual(itemUrl, path))
             {
@@ -252,7 +252,7 @@
             LSSharedFileListItemRef loginItem = (__bridge LSSharedFileListItemRef)item;
             CFURLRef itemUrl;
             
-            if (LSSharedFileListItemResolve(loginItem, 0, &itemUrl, NULL) == noErr)
+            if (LSSharedFileListItemResolve(loginItem, kLSSharedFileListNoUserInteraction|kLSSharedFileListDoNotMountVolumes, &itemUrl, NULL) == noErr)
             {
                 if (CFEqual(itemUrl, url))
                 {
