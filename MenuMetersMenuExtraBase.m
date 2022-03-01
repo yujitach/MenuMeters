@@ -77,8 +77,10 @@
 -(void)timerFired:(id)notused
 {
     statusItem.button.image=self.image;
-    if(self.isInstalledButHiddenBySystem){
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"hiddenBySystem" object:nil];
+    if(@available(macOS 12,*)){
+        if(self.isInstalledButHiddenBySystem){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"hiddenBySystem" object:nil];
+        }
     }
 /*    NSImage*image=self.image;
     NSImage*canvas=[NSImage imageWithSize:image.size flipped:NO drawingHandler:^BOOL(NSRect dstRect) {
@@ -252,11 +254,13 @@
     if(!window){
         return NO;
     }
-    if([window occlusionState]&NSWindowOcclusionStateVisible){
-        return NO;
-    }else{
-        return YES;
+    NSInteger windowID=window.windowNumber;
+    NSArray*onScreenWindows=CFBridgingRelease(CGWindowListCreate(kCGWindowListOptionOnScreenOnly, kCGNullWindowID));
+    for(id x in onScreenWindows){
+        if(windowID==(NSInteger)x)
+            return NO;
     }
+    return YES;
 }
 -(NSColor*)menuBarTextColor
 {
