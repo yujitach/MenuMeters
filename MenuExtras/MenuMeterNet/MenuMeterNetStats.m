@@ -68,13 +68,14 @@
 // 	and top, does not require root access
 //
 ///////////////////////////////////////////////////////////////
-- (void)resetTotalsForInterfaceName:(NSString*)interfaceName
+- (void)resetStatsForInterfaceName:(NSString*)interfaceName
 {
     NSDictionary *oldStats = [lastData objectForKey:interfaceName];
     if(oldStats){
         NSMutableDictionary*x=[oldStats mutableCopy];
         x[@"totalin"]=@(0);
         x[@"totalout"]=@(0);
+        x[@"peak"]=@(0);
         lastData[interfaceName]=x;
     }
 }
