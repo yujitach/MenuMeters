@@ -54,7 +54,7 @@
 #define kNoInfoErrorMessage					@"No info available"
 #define kHyperThreadsPerCoreFormat			@" (%@ hyperthreads per core)"
 #define kPhysicalCoresFormat				@"%@%@ physical cores"
-#define kCPUPowerLimitStatusFormat               @"speed %@%%, scheduler %@%%"
+#define kCPUPowerLimitStatusFormat          @"speed %@%%, scheduler %@%%"
 
 ///////////////////////////////////////////////////////////////
 //
