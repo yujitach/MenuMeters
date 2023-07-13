@@ -68,7 +68,7 @@
 #define kOpenProcessViewerTitle				@"Open Process Viewer"
 #define kOpenConsoleTitle					@"Open Console"
 #define kNoInfoErrorMessage					@"No info available"
-#define kCPUPowerLimitStatusTitle @"CPU power limit:"
+#define kCPUPowerLimitStatusTitle           @"CPU power limit:"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -326,7 +326,7 @@
         if (ndx < processes.count) {
             NSString*name=processes[ndx][kProcessListItemProcessNameKey];
             float percent=[processes[ndx][kProcessListItemCPUKey] floatValue];
-            title = [NSString stringWithFormat:@"%@ (%.1f%%)", name,percent ];
+            title = [NSString localizedStringWithFormat:NSLocalizedString(@"%@ (%.1f%%)", "Process name and load percentage"), name, percent];
             NSMenuItem*mi=[extraMenu itemAtIndex: kCPUProcessMenuIndex + ndx];
             mi.title=title;
             mi.hidden=title.length==0;
@@ -435,7 +435,7 @@
                                         NSForegroundColorAttributeName,
                                         nil];
     NSAttributedString *cacheText = [[NSAttributedString alloc]
-                                            initWithString:[NSString stringWithFormat:@"%d%%", (int)roundf(load * 100.0f)]
+                                            initWithString:[NSString localizedStringWithFormat:NSLocalizedString(@"%d%%", "Percentage value"), (int)roundf(load * 100.0f)]
                                                 attributes:textAttributes];
     return cacheText;
 }
