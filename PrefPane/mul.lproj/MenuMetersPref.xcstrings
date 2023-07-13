@@ -3,7 +3,7 @@
   "strings" : {
     ".title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Sort by CPU usage\"; ObjectID = \"\";Class = \"NSTextFieldCell\"; title = \"Horizontal Rows:\"; ObjectID = \"\";Class = \"NSTextFieldCell\"; title = \"Thermometer Display\"; ObjectID = \"\";Class = \"NSButtonCell\"; title = \"Show average for least utilized processors as single display\"; ObjectID = \"\";Class = \"NSTextFieldCell\"; title = \"Horizontal Width:\"; ObjectID = \"\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -33,8 +33,14 @@
     },
     "2NH-iF-l28.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"(%d)\"; ObjectID = \"2NH-iF-l28\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "(%d)"
+          }
+        },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -50,13 +56,19 @@
       }
     },
     "5Lg-aP-TSR.title" : {
-      "comment" : "title = \"the sum of all cores\"; ObjectID = \"5Lg-aP-TSR\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"the sum of all cores\"; ObjectID = \"5Lg-aP-TSR\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Summe aller Kerne"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "the sum of all cores"
           }
         },
         "fi" : {
@@ -74,13 +86,19 @@
       }
     },
     "5r7-xY-4OH.title" : {
-      "comment" : "Class = \"NSButton\"; title = \"Zeige CPU Temperatur\"; ObjectID = \"5r7-xY-4OH\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Show CPU Temperature in\"; ObjectID = \"5r7-xY-4OH\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeige CPU Temperatur"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show CPU Temperature in"
           }
         },
         "fi" : {
@@ -99,11 +117,17 @@
     },
     "12.title" : {
       "comment" : "Class = \"NSWindow\"; title = \"MenuMeters\"; ObjectID = \"12\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "MenuMeters"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "MenuMeters"
           }
         },
@@ -153,8 +177,14 @@
     },
     "89a-Te-47J.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"℉\"; ObjectID = \"89a-Te-47J\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "℉"
+          }
+        },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -170,13 +200,19 @@
       }
     },
     "100.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"ディスク\"; ObjectID = \"100\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Disk\"; ObjectID = \"100\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Festplatte"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Disk"
           }
         },
         "fi" : {
@@ -225,11 +261,17 @@
     },
     "102.label" : {
       "comment" : "Class = \"NSTabViewItem\"; label = \"CPU\"; ObjectID = \"102\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "CPU"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "CPU"
           }
         },
@@ -278,13 +320,19 @@
       }
     },
     "103.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"メモリー\"; ObjectID = \"103\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Memory\"; ObjectID = \"103\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Speicher"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Memory"
           }
         },
         "fi" : {
@@ -332,13 +380,19 @@
       }
     },
     "105.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"ネットワーク\"; ObjectID = \"105\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Network\"; ObjectID = \"105\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Netzwerk"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Network"
           }
         },
         "fi" : {
@@ -387,7 +441,7 @@
     },
     "146.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"146\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -435,7 +489,7 @@
     },
     "149.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"グラフ & パーセント\"; ObjectID = \"149\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -477,11 +531,17 @@
     },
     "203.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"ImageSet\"; ObjectID = \"203\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "ImageSet"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "ImageSet"
           }
         },
@@ -531,11 +591,17 @@
     },
     "206.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"206\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -584,13 +650,19 @@
       }
     },
     "219.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"バーグラフ\"; ObjectID = \"219\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Usage Bar\"; ObjectID = \"219\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Balken"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Usage Bar"
           }
         },
         "fi" : {
@@ -639,11 +711,17 @@
     },
     "223.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"223\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -692,13 +770,19 @@
       }
     },
     "225.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"円グラフ\"; ObjectID = \"225\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Usage Chart\"; ObjectID = \"225\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Diagramm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Usage Chart"
           }
         },
         "fi" : {
@@ -747,11 +831,17 @@
     },
     "293.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"293\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -800,13 +890,19 @@
       }
     },
     "294.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"スループット\"; ObjectID = \"294\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Throughput\"; ObjectID = \"294\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Durchsatz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Throughput"
           }
         },
         "fi" : {
@@ -854,13 +950,19 @@
       }
     },
     "297.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"矢印\"; ObjectID = \"297\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Arrows\"; ObjectID = \"297\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pfeile"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Arrows"
           }
         },
         "fi" : {
@@ -908,13 +1010,19 @@
       }
     },
     "299.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"矢印 & スループット\"; ObjectID = \"299\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Arrows and Throughput\"; ObjectID = \"299\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pfeile und Durchsatz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Arrows and Throughput"
           }
         },
         "fi" : {
@@ -962,13 +1070,19 @@
       }
     },
     "314.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"グラフ\"; ObjectID = \"314\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Graph\"; ObjectID = \"314\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafik"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph"
           }
         },
         "fi" : {
@@ -1017,7 +1131,7 @@
     },
     "358.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"グラフ & パーセント & レベルメータ\"; ObjectID = \"358\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1059,7 +1173,7 @@
     },
     "359.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"パーセント & レベルメータ\"; ObjectID = \"359\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1101,7 +1215,7 @@
     },
     "360.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"グラフ & レベルメータ\"; ObjectID = \"360\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -1142,13 +1256,19 @@
       }
     },
     "363.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"グラフ & 矢印\"; ObjectID = \"363\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Graph and Arrows\"; ObjectID = \"363\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafik und Pfeile"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph and Arrows"
           }
         },
         "fi" : {
@@ -1196,13 +1316,19 @@
       }
     },
     "365.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"グラフ & スループット\"; ObjectID = \"365\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Graph and Throughput\"; ObjectID = \"365\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafik und Durchsatz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph and Throughput"
           }
         },
         "fi" : {
@@ -1250,13 +1376,19 @@
       }
     },
     "366.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"グラフ & 矢印 & スループット\"; ObjectID = \"366\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Graph, Arrows and Throughput\"; ObjectID = \"366\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafik, Pfeile und Durchsatz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph, Arrows and Throughput"
           }
         },
         "fi" : {
@@ -1305,11 +1437,17 @@
     },
     "382.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"382\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -1358,13 +1496,19 @@
       }
     },
     "384.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"合計 (テキスト大)\"; ObjectID = \"384\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Total (large text)\"; ObjectID = \"384\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gesamt (große Schrift)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Total (large text)"
           }
         },
         "fi" : {
@@ -1412,13 +1556,19 @@
       }
     },
     "385.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"ユーザー & システム (テキスト小)\"; ObjectID = \"385\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"User and System (small text)\"; ObjectID = \"385\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Benutzer und System (kleine Schrift)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "User and System (small text)"
           }
         },
         "fi" : {
@@ -1466,13 +1616,19 @@
       }
     },
     "386.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"合計 (テキスト中)\"; ObjectID = \"386\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Total (medium text)\"; ObjectID = \"386\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gesamt (mittlere Schrift)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Total (medium text)"
           }
         },
         "fi" : {
@@ -1521,11 +1677,17 @@
     },
     "403.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"403\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -1574,13 +1736,19 @@
       }
     },
     "404.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"上下に\"; ObjectID = \"404\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Opposed\"; ObjectID = \"404\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Von oben und unten ausgehend"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Opposed"
           }
         },
         "fi" : {
@@ -1628,12 +1796,18 @@
       }
     },
     "406.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"スタンダード\"; ObjectID = \"406\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Standard\"; ObjectID = \"406\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Standard"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Standard"
           }
         },
@@ -1682,13 +1856,19 @@
       }
     },
     "407.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"中央に\"; ObjectID = \"407\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Centered\"; ObjectID = \"407\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Von der Mitte ausgehend"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Centered"
           }
         },
         "fi" : {
@@ -1736,13 +1916,19 @@
       }
     },
     "472.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"ヒストリーグラフ\"; ObjectID = \"472\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Usage History Graph\"; ObjectID = \"472\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Historie als Grafik"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Usage History Graph"
           }
         },
         "fi" : {
@@ -1791,11 +1977,17 @@
     },
     "477.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"477\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -1844,13 +2036,19 @@
       }
     },
     "478.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"パルス\"; ObjectID = \"478\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"pulse\"; ObjectID = \"478\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "pulsieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "pulse"
           }
         },
         "fi" : {
@@ -1898,13 +2096,19 @@
       }
     },
     "479.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"グロー\"; ObjectID = \"479\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"glow\"; ObjectID = \"479\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "leuchten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "glow"
           }
         },
         "fi" : {
@@ -1952,13 +2156,19 @@
       }
     },
     "487.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"プライマリ (自動)\"; ObjectID = \"487\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Primary (automatic)\"; ObjectID = \"487\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Primäre Schnittstelle (automatisch)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Primary (automatic)"
           }
         },
         "fi" : {
@@ -2007,11 +2217,17 @@
     },
     "489.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"489\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -2060,13 +2276,19 @@
       }
     },
     "497.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"グロー (逆)\"; ObjectID = \"497\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"inverse glow\"; ObjectID = \"497\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "inverses leuchten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "inverse glow"
           }
         },
         "fi" : {
@@ -2114,13 +2336,19 @@
       }
     },
     "498.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"パルス (逆)\"; ObjectID = \"498\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"inverse pulse\"; ObjectID = \"498\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "inverses pulsieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "inverse pulse"
           }
         },
         "fi" : {
@@ -2168,13 +2396,19 @@
       }
     },
     "500.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"ボリュームを開く\"; ObjectID = \"500\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"opens the volume\"; ObjectID = \"500\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "öffnet das Volume"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "opens the volume"
           }
         },
         "fi" : {
@@ -2222,13 +2456,19 @@
       }
     },
     "502.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"アンマウント／取り出し\"; ObjectID = \"502\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"unmounts/ejects the volume\"; ObjectID = \"502\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "wirft das Volume aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "unmounts/ejects the volume"
           }
         },
         "fi" : {
@@ -2277,11 +2517,17 @@
     },
     "503.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"503\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -2330,13 +2576,19 @@
       }
     },
     "508.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"使用量／空き容量の合計\"; ObjectID = \"508\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Used/Free Totals\"; ObjectID = \"508\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Benutzt/Frei Summen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Used/Free Totals"
           }
         },
         "fi" : {
@@ -2385,11 +2637,17 @@
     },
     "522.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"522\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -2438,13 +2696,19 @@
       }
     },
     "525.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"インターフェース速度\"; ObjectID = \"525\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Interface speed\"; ObjectID = \"525\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schnittstellengeschwindigkeit"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Interface speed"
           }
         },
         "fi" : {
@@ -2492,13 +2756,19 @@
       }
     },
     "526.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"トラフィックのピーク\"; ObjectID = \"526\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Peak traffic\"; ObjectID = \"526\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Größter Durchsatz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Peak traffic"
           }
         },
         "fi" : {
@@ -2546,12 +2816,18 @@
       }
     },
     "541.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"線状で\"; ObjectID = \"541\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Linear\"; ObjectID = \"541\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Linear"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Linear"
           }
         },
@@ -2601,11 +2877,17 @@
     },
     "542.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"542\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -2654,13 +2936,19 @@
       }
     },
     "545.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"対数で\"; ObjectID = \"545\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Logarithmic\"; ObjectID = \"545\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Logarithmisch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Logarithmic"
           }
         },
         "fi" : {
@@ -2708,13 +2996,19 @@
       }
     },
     "556.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"立方根で\"; ObjectID = \"556\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Cube root\"; ObjectID = \"556\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kubikwurzel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Cube root"
           }
         },
         "fi" : {
@@ -2762,13 +3056,19 @@
       }
     },
     "557.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"平方根で\"; ObjectID = \"557\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Square root\"; ObjectID = \"557\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Quadratwurzel"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Square root"
           }
         },
         "fi" : {
@@ -2816,13 +3116,19 @@
       }
     },
     "590.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"送信／受信の順\"; ObjectID = \"590\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Transmit/Receive\"; ObjectID = \"590\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Senden/Empfangen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmit/Receive"
           }
         },
         "fi" : {
@@ -2871,11 +3177,17 @@
     },
     "591.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"591\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OtherViews"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OtherViews"
           }
         },
@@ -2924,13 +3236,19 @@
       }
     },
     "592.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"受信／送信の順\"; ObjectID = \"592\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Receive/Transmit\"; ObjectID = \"592\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Empfangen/Senden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Receive/Transmit"
           }
         },
         "fi" : {
@@ -2978,13 +3296,19 @@
       }
     },
     "613.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"上下逆に\"; ObjectID = \"613\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Inverse Opposed\"; ObjectID = \"613\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Von unten und oben ausgehend"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Inverse Opposed"
           }
         },
         "fi" : {
@@ -3033,7 +3357,7 @@
     },
     "941.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Horizontal Thermometer\"; ObjectID = \"941\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3057,7 +3381,7 @@
     },
     "944.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Horizontal Rows:\"; ObjectID = \"944\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -3069,7 +3393,7 @@
     },
     "945.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Thermometer Display\"; ObjectID = \"945\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -3081,7 +3405,7 @@
     },
     "950.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Show average for least utilized processors as single display\"; ObjectID = \"950\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -3093,7 +3417,7 @@
     },
     "954.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Horizontal Width:\"; ObjectID = \"954\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {
@@ -3104,13 +3428,19 @@
       }
     },
     "1006.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"ディスクメータを表示：\"; ObjectID = \"1006\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Display Disk Activity Menu Meter\"; ObjectID = \"1006\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Festplattenaktivität Menu Meter zeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display Disk Activity Menu Meter"
           }
         },
         "fi" : {
@@ -3159,11 +3489,17 @@
     },
     "1007.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"x\"; ObjectID = \"1007\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "x"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "x"
           }
         },
@@ -3212,13 +3548,19 @@
       }
     },
     "1010.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"更新間隔 (秒)：\"; ObjectID = \"1010\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Update interval (seconds):\"; ObjectID = \"1010\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktualisierungsintervall (Sekunden):"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Update interval (seconds):"
           }
         },
         "fi" : {
@@ -3266,13 +3608,19 @@
       }
     },
     "1011.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"メニューからボリューム選択した時：\"; ObjectID = \"1011\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Selecting a volume from the disk menu\"; ObjectID = \"1011\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Auswählen eines Volume aus dem Menü"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Selecting a volume from the disk menu"
           }
         },
         "fi" : {
@@ -3320,13 +3668,19 @@
       }
     },
     "1013.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"(Option キーを押すと取り消す事ができます)\"; ObjectID = \"1013\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"(Holding the Option key will reverse the behavior)\"; ObjectID = \"1013\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "(Bei gedrückter Optionstaste [⌥] wird das jeweils andere Verhalten aktiv)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "(Holding the Option key will reverse the behavior)"
           }
         },
         "fi" : {
@@ -3374,13 +3728,19 @@
       }
     },
     "1014.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"CPU メータを表示：\"; ObjectID = \"1014\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Display CPU Menu Meter\"; ObjectID = \"1014\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "CPU Menu Meter zeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display CPU Menu Meter"
           }
         },
         "fi" : {
@@ -3428,13 +3788,19 @@
       }
     },
     "1017.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"更新間隔 (秒)：\"; ObjectID = \"1017\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Update interval (seconds):\"; ObjectID = \"1017\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktualisierungsintervall (Sekunden):"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Update interval (seconds):"
           }
         },
         "fi" : {
@@ -3483,11 +3849,17 @@
     },
     "1018.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"x\"; ObjectID = \"1018\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "x"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "x"
           }
         },
@@ -3536,13 +3908,19 @@
       }
     },
     "1019.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"ユーザー\"; ObjectID = \"1019\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"User\"; ObjectID = \"1019\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Benutzerauslastung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "User"
           }
         },
         "fi" : {
@@ -3590,13 +3968,19 @@
       }
     },
     "1020.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"システム\"; ObjectID = \"1020\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"System\"; ObjectID = \"1020\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Systemauslastung"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "System"
           }
         },
         "fi" : {
@@ -3644,13 +4028,19 @@
       }
     },
     "1022.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"表示内容：\"; ObjectID = \"1022\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Display percentage as:\"; ObjectID = \"1022\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prozentsatz zeigen als:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display percentage as:"
           }
         },
         "fi" : {
@@ -3699,7 +4089,7 @@
     },
     "1024.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"マルチプロセッサの場合は平均値を表示\"; ObjectID = \"1024\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -3740,13 +4130,19 @@
       }
     },
     "1025.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"幅：\"; ObjectID = \"1025\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Graph width:\"; ObjectID = \"1025\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Breite der Grafik:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph width:"
           }
         },
         "fi" : {
@@ -3794,13 +4190,19 @@
       }
     },
     "1026.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"パーセント表示オプション\"; ObjectID = \"1026\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Percentage Display\"; ObjectID = \"1026\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prozentsatzoptionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Percentage Display"
           }
         },
         "fi" : {
@@ -3848,13 +4250,19 @@
       }
     },
     "1027.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"グラフ表示オプション\"; ObjectID = \"1027\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Graph Display\"; ObjectID = \"1027\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafikoptionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph Display"
           }
         },
         "fi" : {
@@ -3902,13 +4310,19 @@
       }
     },
     "1028.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"その他のオプション\"; ObjectID = \"1028\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Misc\"; ObjectID = \"1028\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sonstiges"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Misc"
           }
         },
         "fi" : {
@@ -3956,13 +4370,19 @@
       }
     },
     "1029.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"カラーオプション\"; ObjectID = \"1029\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Colors\"; ObjectID = \"1029\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Farben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Colors"
           }
         },
         "fi" : {
@@ -4010,13 +4430,19 @@
       }
     },
     "1030.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"PowerMate での CPU 使用表示：\"; ObjectID = \"1030\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"PowerMate shows CPU usage as\"; ObjectID = \"1030\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "PowerMate zeigt CPU-Benutzung durch"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "PowerMate shows CPU usage as"
           }
         },
         "fi" : {
@@ -4064,13 +4490,19 @@
       }
     },
     "1032.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"メモリーメータを表示：\"; ObjectID = \"1032\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Display Memory Menu Meter\"; ObjectID = \"1032\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Speicher Menu Meter zeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display Memory Menu Meter"
           }
         },
         "fi" : {
@@ -4119,11 +4551,17 @@
     },
     "1033.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"x\"; ObjectID = \"1033\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "x"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "x"
           }
         },
@@ -4172,13 +4610,19 @@
       }
     },
     "1035.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"更新間隔 (秒)：\"; ObjectID = \"1035\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Update interval (seconds):\"; ObjectID = \"1035\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktualisierungsintervall (Sekunden):"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Update interval (seconds):"
           }
         },
         "fi" : {
@@ -4226,13 +4670,19 @@
       }
     },
     "1037.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"use (使用量)／free (空き容量) のラベルを付ける\"; ObjectID = \"1037\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Show Used/Free labels\"; ObjectID = \"1037\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Benutzt/Frei beschriften"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show Used/Free labels"
           }
         },
         "fi" : {
@@ -4280,13 +4730,19 @@
       }
     },
     "1038.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"一般オプション\"; ObjectID = \"1038\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"General\"; ObjectID = \"1038\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allgemein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "General"
           }
         },
         "fi" : {
@@ -4334,13 +4790,19 @@
       }
     },
     "1039.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"ページングインジケータを表示\"; ObjectID = \"1039\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Show paging activity indicator\"; ObjectID = \"1039\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ein-/Auslagerungsaktivität zeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show paging activity indicator"
           }
         },
         "fi" : {
@@ -4388,13 +4850,19 @@
       }
     },
     "1040.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"カラーオプションオプション\"; ObjectID = \"1040\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Colors\"; ObjectID = \"1040\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Farben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Colors"
           }
         },
         "fi" : {
@@ -4442,13 +4910,19 @@
       }
     },
     "1041.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"ページイン\"; ObjectID = \"1041\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Pagein\"; ObjectID = \"1041\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lesen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Pagein"
           }
         },
         "fi" : {
@@ -4496,13 +4970,19 @@
       }
     },
     "1042.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"ページアウト\"; ObjectID = \"1042\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Pageout\"; ObjectID = \"1042\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schreiben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Pageout"
           }
         },
         "fi" : {
@@ -4551,7 +5031,7 @@
     },
     "1043.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"ページングレート\"; ObjectID = \"1043\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -4586,13 +5066,19 @@
       }
     },
     "1044.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"幅：\"; ObjectID = \"1044\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Graph width:\"; ObjectID = \"1044\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Breite der Grafik:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph width:"
           }
         },
         "fi" : {
@@ -4640,13 +5126,19 @@
       }
     },
     "1045.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"グラフ表示オプション\"; ObjectID = \"1045\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Graph Display\"; ObjectID = \"1045\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafikoptionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph Display"
           }
         },
         "fi" : {
@@ -4694,13 +5186,19 @@
       }
     },
     "1047.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"アクティブ\"; ObjectID = \"1047\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Active\"; ObjectID = \"1047\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktiv"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Active"
           }
         },
         "fi" : {
@@ -4748,13 +5246,19 @@
       }
     },
     "1048.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"インアクティブ\"; ObjectID = \"1048\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Inactive\"; ObjectID = \"1048\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inaktiv"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Inactive"
           }
         },
         "fi" : {
@@ -4802,13 +5306,19 @@
       }
     },
     "1049.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"ワイアード\"; ObjectID = \"1049\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Wired\"; ObjectID = \"1049\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reserviert"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Wired"
           }
         },
         "fi" : {
@@ -4857,11 +5367,17 @@
     },
     "1050.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Free\"; ObjectID = \"1050\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Free"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Free"
           }
         },
@@ -4911,11 +5427,17 @@
     },
     "1051.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Used\"; ObjectID = \"1051\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Used"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Used"
           }
         },
@@ -4965,11 +5487,17 @@
     },
     "1053.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"x\"; ObjectID = \"1053\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "x"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "x"
           }
         },
@@ -5018,13 +5546,19 @@
       }
     },
     "1054.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"ネットワークメータを表示：\"; ObjectID = \"1054\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Display Network Menu Meter\"; ObjectID = \"1054\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Netzwerk Menu Meter zeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display Network Menu Meter"
           }
         },
         "fi" : {
@@ -5072,13 +5606,19 @@
       }
     },
     "1056.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"更新間隔 (秒)：\"; ObjectID = \"1056\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Update interval (seconds):\"; ObjectID = \"1056\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktualisierungsintervall (Sekunden):"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Update interval (seconds):"
           }
         },
         "fi" : {
@@ -5126,13 +5666,19 @@
       }
     },
     "1057.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"送信\"; ObjectID = \"1057\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Transmit\"; ObjectID = \"1057\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Senden"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmit"
           }
         },
         "fi" : {
@@ -5180,13 +5726,19 @@
       }
     },
     "1058.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"受信\"; ObjectID = \"1058\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Receive\"; ObjectID = \"1058\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Empfangen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Receive"
           }
         },
         "fi" : {
@@ -5234,13 +5786,19 @@
       }
     },
     "1060.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"out (送信)／in (受信) のラベルを付ける\"; ObjectID = \"1060\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Show throughput labels (Tx/Rx)\"; ObjectID = \"1060\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Durchsatz beschriften (Tx/Rx)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show throughput labels (Tx/Rx)"
           }
         },
         "fi" : {
@@ -5288,13 +5846,19 @@
       }
     },
     "1061.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"1KB/秒以下のスループットを無視\"; ObjectID = \"1061\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Ignore values below 1K/s\"; ObjectID = \"1061\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Werte unter 1KB/Sek. ignorieren"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ignore values below 1K/s"
           }
         },
         "fi" : {
@@ -5342,13 +5906,19 @@
       }
     },
     "1062.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"表示タイプ：\"; ObjectID = \"1062\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Graph style:\"; ObjectID = \"1062\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafikart:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph style:"
           }
         },
         "fi" : {
@@ -5396,13 +5966,19 @@
       }
     },
     "1063.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"幅：\"; ObjectID = \"1063\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Graph width:\"; ObjectID = \"1063\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Breite der Grafik:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph width:"
           }
         },
         "fi" : {
@@ -5450,13 +6026,19 @@
       }
     },
     "1065.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"スループット表示オプション\"; ObjectID = \"1065\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Throughput Display\"; ObjectID = \"1065\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Durchsatzanzeige"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Throughput Display"
           }
         },
         "fi" : {
@@ -5504,13 +6086,19 @@
       }
     },
     "1066.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"グラフ表示オプション\"; ObjectID = \"1066\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Graph Display\"; ObjectID = \"1066\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafikoptionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph Display"
           }
         },
         "fi" : {
@@ -5558,13 +6146,19 @@
       }
     },
     "1067.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"カラーオプション\"; ObjectID = \"1067\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Colors\"; ObjectID = \"1067\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Farben"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Colors"
           }
         },
         "fi" : {
@@ -5612,13 +6206,19 @@
       }
     },
     "1068.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"インターフェース表示：\"; ObjectID = \"1068\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Display prefers interface:\"; ObjectID = \"1068\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Angezeigte Schnittstelle:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display prefers interface:"
           }
         },
         "fi" : {
@@ -5666,13 +6266,19 @@
       }
     },
     "1070.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"一般オプション\"; ObjectID = \"1070\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"General\"; ObjectID = \"1070\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allgemein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "General"
           }
         },
         "fi" : {
@@ -5720,13 +6326,19 @@
       }
     },
     "1071.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"表示内容：\"; ObjectID = \"1071\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Display scales to:\"; ObjectID = \"1071\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Maßstab der Anzeige:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display scales to:"
           }
         },
         "fi" : {
@@ -5774,13 +6386,19 @@
       }
     },
     "1073.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"スケール：\"; ObjectID = \"1073\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Display scaling:\"; ObjectID = \"1073\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Skalierung der Anzeige:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display scaling:"
           }
         },
         "fi" : {
@@ -5828,13 +6446,19 @@
       }
     },
     "1075.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"表示方向：\"; ObjectID = \"1075\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Display orientation:\"; ObjectID = \"1075\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anzeigeausrichtung:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display orientation:"
           }
         },
         "fi" : {
@@ -5882,13 +6506,19 @@
       }
     },
     "1077.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"インアクティブ\"; ObjectID = \"1077\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Inactive\"; ObjectID = \"1077\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inaktiv"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Inactive"
           }
         },
         "fi" : {
@@ -5937,7 +6567,7 @@
     },
     "1078.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"MenuMeters, © 2002-2009 Alex Harper (http://www.ragingmenace.com)\"; ObjectID = \"1078\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -5979,7 +6609,7 @@
     },
     "1081.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Compressed\"; ObjectID = \"1081\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -5996,13 +6626,19 @@
       }
     },
     "1088.title" : {
-      "comment" : "title = \"Horizontal Rows:\"; ObjectID = \"1088\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Horizontal Rows:\"; ObjectID = \"1088\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Horizontale Reihen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Horizontal Rows:"
           }
         },
         "fi" : {
@@ -6021,7 +6657,7 @@
     },
     "1091.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Percentage\"; ObjectID = \"1091\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -6033,7 +6669,7 @@
     },
     "1092.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Grafiek\"; ObjectID = \"1092\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -6045,7 +6681,7 @@
     },
     "1093.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Grafiek en percentage\"; ObjectID = \"1093\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -6056,13 +6692,19 @@
       }
     },
     "1094.title" : {
-      "comment" : "title = \"Horizontal Thermometer Display\"; ObjectID = \"1094\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Horizontal Thermometer Display\"; ObjectID = \"1094\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thermometeroptionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Horizontal Thermometer Display"
           }
         },
         "fi" : {
@@ -6087,7 +6729,7 @@
     },
     "1095.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Percentage en thermometer\"; ObjectID = \"1095\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "fi" : {
           "stringUnit" : {
@@ -6105,7 +6747,7 @@
     },
     "1096.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Grafiek en thermometer\"; ObjectID = \"1096\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -6117,7 +6759,7 @@
     },
     "1097.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Grafiek, percentage en thermometer\"; ObjectID = \"1097\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -6128,13 +6770,19 @@
       }
     },
     "1117.title" : {
-      "comment" : "title = \"Horizontal Width:\"; ObjectID = \"1117\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Horizontal Width:\"; ObjectID = \"1117\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Horizontale Breite"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Horizontal Width:"
           }
         },
         "fi" : {
@@ -6153,8 +6801,14 @@
     },
     "aOw-Lj-aWS.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Display memory pressure\"; ObjectID = \"aOw-Lj-aWS\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Display memory pressure"
+          }
+        },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6170,13 +6824,19 @@
       }
     },
     "ayz-p2-XC5.title" : {
-      "comment" : "title = \"pure black/white\"; ObjectID = \"ayz-p2-XC5\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"pure black/white\"; ObjectID = \"ayz-p2-XC5\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Schwarz-Weiß"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "pure black/white"
           }
         },
         "tr" : {
@@ -6189,8 +6849,14 @@
     },
     "Bgr-O5-qr1.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Sensor:\"; ObjectID = \"Bgr-O5-qr1\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor:"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6200,13 +6866,19 @@
       }
     },
     "BYT-hf-ygS.title" : {
-      "comment" : "title = \"the average of all cores\"; ObjectID = \"BYT-hf-ygS\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"the average of all cores\"; ObjectID = \"BYT-hf-ygS\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Durchschnitt aller Kerne"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "the average of all cores"
           }
         },
         "fi" : {
@@ -6225,8 +6897,14 @@
     },
     "C4n-F2-kuL.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Temperature\"; ObjectID = \"C4n-F2-kuL\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Temperature"
+          }
+        },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6242,13 +6920,19 @@
       }
     },
     "CDM-3t-gon.title" : {
-      "comment" : "title = \"Activity monitor:\"; ObjectID = \"CDM-3t-gon\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Activity monitor:\"; ObjectID = \"CDM-3t-gon\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktivitätsanzeige:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Activity monitor:"
           }
         },
         "tr" : {
@@ -6260,13 +6944,19 @@
       }
     },
     "CG1-40-AVC.title" : {
-      "comment" : "title = \"all cores sorted\"; ObjectID = \"CG1-40-AVC\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"all cores sorted\"; ObjectID = \"CG1-40-AVC\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "alle Kerne"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "all cores sorted"
           }
         },
         "fi" : {
@@ -6285,8 +6975,14 @@
     },
     "ex0-hf-q5R.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Compressed\"; ObjectID = \"ex0-hf-q5R\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Compressed"
+          }
+        },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6302,13 +6998,19 @@
       }
     },
     "FPO-Jo-ubG.title" : {
-      "comment" : "title = \"original\"; ObjectID = \"FPO-Jo-ubG\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"original\"; ObjectID = \"FPO-Jo-ubG\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Original"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "original"
           }
         },
         "tr" : {
@@ -6320,13 +7022,19 @@
       }
     },
     "FSw-QC-dn2.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; title = \"Als Bits/Sek. anzeigen\"; ObjectID = \"FSw-QC-dn2\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTabViewItem\"; label = \"About\"; ObjectID = \"FSw-QC-dn2\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Über"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "About"
           }
         },
         "fi" : {
@@ -6344,13 +7052,19 @@
       }
     },
     "H5f-hN-vQV.title" : {
-      "comment" : "title = \"physical cores only\"; ObjectID = \"H5f-hN-vQV\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"physical cores only\"; ObjectID = \"H5f-hN-vQV\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "nur pysikalische Kerne"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "physical cores only"
           }
         },
         "fi" : {
@@ -6369,7 +7083,7 @@
     },
     "IdA-68-Ayg.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Display memory pressure\"; ObjectID = \"IdA-68-Ayg\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -6380,13 +7094,19 @@
       }
     },
     "IS4-Xc-psg.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"グラフ\"; ObjectID = \"145\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Graph\"; ObjectID = \"IS4-Xc-psg\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Grafik"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Graph"
           }
         },
         "fi" : {
@@ -6428,13 +7148,19 @@
       }
     },
     "Jeh-C2-Wwp.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"パーセント\"; ObjectID = \"148\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Percentage\"; ObjectID = \"Jeh-C2-Wwp\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prozentsatz"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Percentage"
           }
         },
         "fi" : {
@@ -6477,7 +7203,7 @@
     },
     "jyb-TY-qOU.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Display memory pressure\"; ObjectID = \"jyb-TY-qOU\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "nl" : {
           "stringUnit" : {
@@ -6488,13 +7214,19 @@
       }
     },
     "k2d-Cg-pqL.title" : {
-      "comment" : "title = \"Show:\"; ObjectID = \"k2d-Cg-pqL\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Show:\"; ObjectID = \"k2d-Cg-pqL\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zeige:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show:"
           }
         },
         "fi" : {
@@ -6512,13 +7244,19 @@
       }
     },
     "K7W-5f-1U8.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Als Bits/Sek. anzeigen\"; ObjectID = \"K7W-5f-1U8\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Show bits per second\"; ObjectID = \"K7W-5f-1U8\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Als Bits/Sek. anzeigen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Show bits per second"
           }
         },
         "fi" : {
@@ -6536,13 +7274,19 @@
       }
     },
     "lh5-j8-SRe.title" : {
-      "comment" : "title = \"Once per day\"; ObjectID = \"lh5-j8-SRe\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Once per day\"; ObjectID = \"lh5-j8-SRe\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Täglich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Once per day"
           }
         },
         "tr" : {
@@ -6554,13 +7298,19 @@
       }
     },
     "LmO-Ij-G7M.title" : {
-      "comment" : "title = \"Once per week\"; ObjectID = \"LmO-Ij-G7M\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Once per week\"; ObjectID = \"LmO-Ij-G7M\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Wöchentlich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Once per week"
           }
         },
         "tr" : {
@@ -6572,13 +7322,19 @@
       }
     },
     "mAZ-f2-5AJ.title" : {
-      "comment" : "title = \"Color tint:\"; ObjectID = \"mAZ-f2-5AJ\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Color tint:\"; ObjectID = \"mAZ-f2-5AJ\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Farbton:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Color tint:"
           }
         },
         "tr" : {
@@ -6590,13 +7346,19 @@
       }
     },
     "p2Z-13-y3b.title" : {
-      "comment" : "title = \"Process Display\"; ObjectID = \"p2Z-13-y3b\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Process Display\"; ObjectID = \"p2Z-13-y3b\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prozessoptionen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Process Display"
           }
         },
         "fi" : {
@@ -6614,13 +7376,19 @@
       }
     },
     "phH-yJ-I6O.title" : {
-      "comment" : "title = \"Opens specific  panes\"; ObjectID = \"phH-yJ-I6O\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Opens specific panes\"; ObjectID = \"phH-yJ-I6O\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Öffnet entsprechende Kategorien"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Opens specific panes"
           }
         },
         "tr" : {
@@ -6632,13 +7400,19 @@
       }
     },
     "PuG-eZ-jRm.title" : {
-      "comment" : "title = \"Once per month\"; ObjectID = \"PuG-eZ-jRm\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Once per month\"; ObjectID = \"PuG-eZ-jRm\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Monatlich"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Once per month"
           }
         },
         "tr" : {
@@ -6650,13 +7424,19 @@
       }
     },
     "r6t-Zl-sS4.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"レベルメータ\"; ObjectID = \"357\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Vertical bar\"; ObjectID = \"r6t-Zl-sS4\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vertikales Balkendiagramm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Vertical bar"
           }
         },
         "fi" : {
@@ -6698,13 +7478,19 @@
       }
     },
     "rhi-NX-C3L.title" : {
-      "comment" : "title = \"Processes to show:\"; ObjectID = \"rhi-NX-C3L\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Processes to show:\"; ObjectID = \"rhi-NX-C3L\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Max. Prozesse:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Processes to show:"
           }
         },
         "fi" : {
@@ -6722,12 +7508,19 @@
       }
     },
     "spo-WT-wCm.title" : {
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Horizontal bar\"; ObjectID = \"spo-WT-wCm\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Horizontales Balkendiagramm"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Horizontal bar"
           }
         },
         "fi" : {
@@ -6769,13 +7562,19 @@
       }
     },
     "STJ-3R-khe.title" : {
-      "comment" : "title = \"Never\"; ObjectID = \"STJ-3R-khe\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Never\"; ObjectID = \"STJ-3R-khe\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nie"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Never"
           }
         },
         "tr" : {
@@ -6788,7 +7587,7 @@
     },
     "tAx-IV-Wip.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Display memory pressure\"; ObjectID = \"tAx-IV-Wip\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "it" : {
           "stringUnit" : {
@@ -6799,13 +7598,19 @@
       }
     },
     "tug-YR-k7T.title" : {
-      "comment" : "title = \"Automatic update check interval:\"; ObjectID = \"tug-YR-k7T\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Automatic update check interval:\"; ObjectID = \"tug-YR-k7T\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatische Updates: "
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Automatic update check interval:"
           }
         },
         "tr" : {
@@ -6817,13 +7622,19 @@
       }
     },
     "vbH-jV-tUr.title" : {
-      "comment" : "title = \"all cores, including hyperthreaded ones\"; ObjectID = \"vbH-jV-tUr\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSMenuItem\"; title = \"all cores, including hyperthreaded ones\"; ObjectID = \"vbH-jV-tUr\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "alle Kerne, inkl. Hyperthreat"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "all cores, including hyperthreaded ones"
           }
         },
         "fi" : {
@@ -6842,7 +7653,7 @@
     },
     "Ve2-cJ-Q8P.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Zeige Speicherdruck\"; ObjectID = \"Ve2-cJ-Q8P\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -6854,8 +7665,14 @@
     },
     "Wgg-4C-Cbe.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"℃\"; ObjectID = \"Wgg-4C-Cbe\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "℃"
+          }
+        },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6871,13 +7688,19 @@
       }
     },
     "XYi-uP-QCD.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Als Bits/Sek. anzeigen\"; ObjectID = \"XYi-uP-QCD\";",
-      "extractionState" : "migrated",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Check updates now\"; ObjectID = \"XYi-uP-QCD\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nach Updates suchen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Check updates now"
           }
         },
         "fi" : {
@@ -6896,7 +7719,7 @@
     },
     "Yhx-uB-Efv.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Display memory pressure\"; ObjectID = \"Yhx-uB-Efv\";",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "fr" : {
           "stringUnit" : {

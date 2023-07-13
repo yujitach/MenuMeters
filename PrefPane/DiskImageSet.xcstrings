@@ -2,7 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Aqua Lights" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -61,7 +61,7 @@
       }
     },
     "Arrows" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -121,7 +121,7 @@
     },
     "Color Arrows" : {
       "comment" : "Strings for the disk icon sets",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -180,7 +180,7 @@
       }
     },
     "Disk Arrows" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -239,7 +239,7 @@
       }
     },
     "Disk Arrows (large)" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -298,7 +298,7 @@
       }
     },
     "For instructions on enabling third-party menu extras please see the documentation." : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -357,7 +357,7 @@
       }
     },
     "Lights" : {
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -417,7 +417,7 @@
     },
     "Menu Extra Could Not Load" : {
       "comment" : "Strings for menu abort sheet",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -464,7 +464,7 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Menü ekstrası yüklenemedi"
+            "value" : "Menü Ekstrası Yüklenemedi"
           }
         },
         "zh-Hans" : {
