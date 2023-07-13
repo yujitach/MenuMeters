@@ -54,7 +54,7 @@ IOHIDFloat IOHIDEventGetFloatValue(IOHIDEventRef event, int32_t field);
 static dispatch_once_t once=0;
 static IOHIDEventSystemClientRef eventSystem;
 
-static void initEventSystem(){
+static void initEventSystem(void){
     dispatch_once(&once,^{
         eventSystem = IOHIDEventSystemClientCreate(kCFAllocatorDefault); // in CFBase.h = NULL
     });
