@@ -3,7 +3,7 @@
 
 static io_connect_t conn;
 
-kern_return_t SMCOpen()
+kern_return_t SMCOpen(void)
 {
     kern_return_t result;
     io_iterator_t iterator;
@@ -35,7 +35,7 @@ kern_return_t SMCOpen()
     return kIOReturnSuccess;
 }
 
-kern_return_t SMCClose()
+kern_return_t SMCClose(void)
 {
     return IOServiceClose(conn);
 }

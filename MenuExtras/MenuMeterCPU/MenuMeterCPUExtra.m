@@ -68,7 +68,7 @@
 #define kOpenProcessViewerTitle				@"Open Process Viewer"
 #define kOpenConsoleTitle					@"Open Console"
 #define kNoInfoErrorMessage					@"No info available"
-#define kCPUPowerLimitStatusTitle @"CPU power limit:"
+#define kCPUPowerLimitStatusTitle           @"CPU power limit:"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -326,7 +326,7 @@
         if (ndx < processes.count) {
             NSString*name=processes[ndx][kProcessListItemProcessNameKey];
             float percent=[processes[ndx][kProcessListItemCPUKey] floatValue];
-            title = [NSString stringWithFormat:@"%@ (%.1f%%)", name,percent ];
+            title = [NSString localizedStringWithFormat:NSLocalizedString(@"%@ (%.1f%%)", "Process name and load percentage"), name, percent];
             NSMenuItem*mi=[extraMenu itemAtIndex: kCPUProcessMenuIndex + ndx];
             mi.title=title;
             mi.hidden=title.length==0;
@@ -435,7 +435,7 @@
                                         NSForegroundColorAttributeName,
                                         nil];
     NSAttributedString *cacheText = [[NSAttributedString alloc]
-                                            initWithString:[NSString stringWithFormat:@"%d%%", (int)roundf(load * 100.0f)]
+                                            initWithString:[NSString localizedStringWithFormat:NSLocalizedString(@"%d%%", "Percentage value"), (int)roundf(load * 100.0f)]
                                                 attributes:textAttributes];
     return cacheText;
 }
@@ -490,33 +490,44 @@
 }
 - (void)renderSingleTemperatureAtOffset:(float)offset {
     float_t celsius = [cpuInfo cpuProximityTemperature];
-    float_t fahrenheit=celsius*1.8+32;
-    NSString*temperatureString=@"";
-    switch([ourPrefs cpuTemperatureUnit]){
+    float_t fahrenheit = celsius * 1.8 + 32;
+    NSString *temperatureString = @"";
+    
+    NSNumberFormatter *temperatureFormatter = [[NSNumberFormatter alloc] init];
+    temperatureFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    temperatureFormatter.minimumFractionDigits = 1;
+    temperatureFormatter.maximumFractionDigits = 1;
+    
+    switch ([ourPrefs cpuTemperatureUnit]) {
         case kCPUTemperatureUnitCelsius:
-            temperatureString=[NSString stringWithFormat:@"%.1f℃", celsius];
-            if(celsius<-100){
-                temperatureString=@"??℃";
+            temperatureString = [NSString stringWithFormat:@"%@℃",
+                                 [temperatureFormatter stringFromNumber:@(celsius)]];
+            if (celsius < -100) {
+                temperatureString = @"??℃";
             }
             break;
         case kCPUTemperatureUnitFahrenheit:
-            if(fahrenheit>=100){
-                temperatureString=[NSString stringWithFormat:@"%d℉", (int)fahrenheit];
-            }else{
-                temperatureString=[NSString stringWithFormat:@"%.1f℉", fahrenheit];
+            if (fahrenheit >= 100) {
+                temperatureString = [NSString stringWithFormat:@"%@℉",
+                                     [temperatureFormatter stringFromNumber:@((int)fahrenheit)]];
+            } else {
+                temperatureString = [NSString stringWithFormat:@"%@℉",
+                                     [temperatureFormatter stringFromNumber:@(fahrenheit)]];
             }
-            if(celsius<-100){
-                temperatureString=@"??℉";
+            if (celsius < -100) {
+                temperatureString = @"??℉";
             }
             break;
         default:
-            temperatureString=@"???";
+            temperatureString = @"???";
     }
-    NSAttributedString *renderTemperatureString =[self renderTemperatureStringForString:temperatureString];
+    
+    NSAttributedString *renderTemperatureString = [self renderTemperatureStringForString:temperatureString];
+    
     [renderTemperatureString drawAtPoint:NSMakePoint(
-         cpuTemperatureDisplayWidth - (float)round([renderTemperatureString size].width) - 1,
-         (float)((self.imageHeight-[renderTemperatureString size].height) / 2+self.baselineOffset)
-    )];
+                                                     cpuTemperatureDisplayWidth - (float)round([renderTemperatureString size].width) - 1,
+                                                     (float)((self.imageHeight - [renderTemperatureString size].height) / 2 + self.baselineOffset)
+                                                     )];
 } // renderSingleTemperatureIntoImage:atOffset:
 
 
