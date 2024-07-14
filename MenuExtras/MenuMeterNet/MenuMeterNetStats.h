@@ -46,5 +46,5 @@
 
 // Net usage info
 - (NSDictionary *)netStatsForInterval:(NSTimeInterval)sampleInterval;
-- (void)resetTotalsForInterfaceName:(NSString*)interfaceName;
+- (void)resetStatsForInterfaceName:(NSString*)interfaceName;
 @end

@@ -183,7 +183,7 @@
 "Display this interface" = "このネットワークポートを表示";
 "Copy IPv4 address" = "IPv4 アドレスをコピーする";
 "Copy IPv6 address" = "IPv6 アドレスをコピーする";
-"Reset traffic totals" = "トラフィック合計をリセット";
+"Reset traffic stats" = "トラフィック統計のリセット";
 "Connect" = "接続";
 "Disconnect" = "切断";
 

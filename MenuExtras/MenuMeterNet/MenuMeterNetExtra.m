@@ -88,7 +88,7 @@
 #define kSelectInterfaceTitle			@"Display this interface"
 #define kCopyIPv4Title					@"Copy IPv4 address"
 #define kCopyIPv6Title					@"Copy IPv6 address"
-#define kResetTrafficTotalsTitle        @"Reset traffic totals"
+#define kResetTrafficStatsTitle         @"Reset traffic stats"
 #define kPPPConnectTitle				@"Connect"
 #define kPPPDisconnectTitle				@"Disconnect"
 #define kNoInterfaceErrorMessage		@"No Active Interfaces"
@@ -644,11 +644,11 @@
 				}
 			}
             if ([details objectForKey:@"devicename"]) {
-                NSMenuItem*resetTotals = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kResetTrafficTotalsTitle]
-                                                                       action:@selector(resetTotals:)
+                NSMenuItem*resetStats = (NSMenuItem *)[interfaceSubmenu addItemWithTitle:[localizedStrings objectForKey:kResetTrafficStatsTitle]
+                                                                       action:@selector(resetStats:)
                                                                 keyEquivalent:@""];
-                [resetTotals setTarget:self];
-                [resetTotals setRepresentedObject:[details objectForKey:@"devicename"]];
+                [resetStats setTarget:self];
+                [resetStats setRepresentedObject:[details objectForKey:@"devicename"]];
             }
 		}
 	} else {
@@ -1244,11 +1244,11 @@
 	}
 
 } // openInternetConnect
-- (void)resetTotals:(id)sender
+- (void)resetStats:(id)sender
 {
     NSString *interfaceName = [sender representedObject];
     if (!interfaceName) return;
-    [netStats resetTotalsForInterfaceName:interfaceName];
+    [netStats resetStatsForInterfaceName:interfaceName];
 }
 - (void)switchDisplay:(id)sender {
 
