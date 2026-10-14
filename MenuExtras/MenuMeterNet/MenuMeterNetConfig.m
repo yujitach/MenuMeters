@@ -69,9 +69,10 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 	// Get the PPP data puller
 	pppGatherer = [MenuMeterNetPPP sharedPPP];
+	// pppconfd is legacy (dial-up/PPP) and is missing on recent macOS.
+	// PPP info is optional, so carry on without it.
 	if (!pppGatherer) {
-		NSLog(@"MenuMeterNetConfig unable to establish pppconfd session.");
-		return nil;
+		NSLog(@"MenuMeterNetConfig: pppconfd unavailable, PPP info disabled.");
 	}
 
 	// Connect to SystemConfiguration
@@ -126,9 +127,13 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
 - (void)dealloc {
 
-	CFRunLoopRemoveSource(CFRunLoopGetCurrent(), scRunSource, kCFRunLoopDefaultMode);
-	CFRelease(scSession);
-	mach_port_deallocate(mach_task_self(), masterPort);
+	// init can bail out early, so any of these may never have been created.
+	if (scRunSource) {
+		CFRunLoopRemoveSource(CFRunLoopGetCurrent(), scRunSource, kCFRunLoopDefaultMode);
+		CFRelease(scRunSource);
+	}
+	if (scSession) CFRelease(scSession);
+	if (masterPort) mach_port_deallocate(mach_task_self(), masterPort);
 
 } // dealloc
 

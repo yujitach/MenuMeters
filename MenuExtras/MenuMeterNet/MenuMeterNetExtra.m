@@ -151,7 +151,7 @@
 	pppControl = [MenuMeterNetPPP sharedPPP];
 	netHistoryData = [NSMutableArray array];
 	netHistoryIntervals = [NSMutableArray array];
-	if (!(netConfig && netStats && pppControl && netHistoryData)) {
+	if (!(netConfig && netStats && netHistoryData)) {
 		NSLog(@"MenuMeterNet unable to load data gatherers/controllers. Abort.");
 		return nil;
 	}

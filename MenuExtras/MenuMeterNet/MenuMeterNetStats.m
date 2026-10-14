@@ -41,8 +41,7 @@
 	// Establish or connection to the PPP data gatherer
 	pppGatherer = [MenuMeterNetPPP sharedPPP];
 	if (!pppGatherer) {
-		NSLog(@"MenuMeterNetStats unable to connect to PPP data gatherer. Abort.");
-		return nil;
+		NSLog(@"MenuMeterNetStats: PPP data gatherer unavailable, continuing without it.");
 	}
 
 	// Prefetch the data first time
