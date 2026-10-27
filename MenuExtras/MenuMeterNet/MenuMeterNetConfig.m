@@ -5,6 +5,11 @@
 //
 //	Copyright (c) 2002-2014 Alex Harper
 //
+//	Changed 2026-10-14 by Alexander Botev: starts when pppconfd is missing,
+//	as on macOS 27.2, and its cleanup skips what init never made.
+//	Changed 2026-10-27 by Joe Moreno: without pppconfd, a ppp interface
+//	counts as up, as other interfaces do.
+//
 // 	This file is part of MenuMeters.
 //
 // 	MenuMeters is free software; you can redistribute it and/or modify
