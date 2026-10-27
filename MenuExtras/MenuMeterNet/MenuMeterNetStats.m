@@ -125,10 +125,11 @@
 		// Load in old statistics for this interface
 		NSDictionary *oldStats = [lastData objectForKey:interfaceName];
 
-		if ([interfaceName hasPrefix:@"ppp"]) {
+		if ([interfaceName hasPrefix:@"ppp"] && pppGatherer) {
 			// We handle PPP connections using data directly from ppp subsystem. On
 			// old systems this was required because the outbytes from sysctl was
-			// always zero.
+			// always zero. Without pppconfd (its socket is missing on macOS 27.2
+			// and recent updates) the sysctl counters below are used instead.
 			NSDictionary *pppStats = [pppGatherer statusForInterfaceName:interfaceName];
 			// Stats are only valid if PPP is running
 			if ([[pppStats objectForKey:@"status"] intValue] == PPP_RUNNING) {

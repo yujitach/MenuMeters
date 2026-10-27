@@ -570,8 +570,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 			[cachedInterfaceUp setObject:[linkDict objectForKey:@"Active"] forKey:interfaceName];
 			return [[linkDict objectForKey:@"Active"] boolValue];
 		}
-	} else if ([interfaceName hasPrefix:@"ppp"]) {
-		// PPP
+	} else if ([interfaceName hasPrefix:@"ppp"] && pppGatherer) {
+		// PPP, when pppconfd is there to ask; otherwise fall through
 		NSDictionary *pppDict = [pppGatherer statusForInterfaceName:interfaceName];
 		if ([[pppDict objectForKey:@"status"] intValue] == PPP_RUNNING) {
 			[cachedInterfaceUp setObject:[NSNumber numberWithBool:YES] forKey:interfaceName];
