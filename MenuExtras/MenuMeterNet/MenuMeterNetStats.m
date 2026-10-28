@@ -5,6 +5,11 @@
 //
 //	Copyright (c) 2002-2014 Alex Harper
 //
+//	Changed 2026-10-14 by Alexander Botev: starts when pppconfd is missing,
+//	as on macOS 27.2.
+//	Changed 2026-10-27 by Joe Moreno: without pppconfd, ppp interfaces are
+//	counted from the sysctl counters, as other interfaces are.
+//
 // 	This file is part of MenuMeters.
 //
 // 	MenuMeters is free software; you can redistribute it and/or modify
@@ -41,8 +46,7 @@
 	// Establish or connection to the PPP data gatherer
 	pppGatherer = [MenuMeterNetPPP sharedPPP];
 	if (!pppGatherer) {
-		NSLog(@"MenuMeterNetStats unable to connect to PPP data gatherer. Abort.");
-		return nil;
+		NSLog(@"MenuMeterNetStats: PPP data gatherer unavailable, continuing without it.");
 	}
 
 	// Prefetch the data first time
@@ -126,10 +130,11 @@
 		// Load in old statistics for this interface
 		NSDictionary *oldStats = [lastData objectForKey:interfaceName];
 
-		if ([interfaceName hasPrefix:@"ppp"]) {
+		if ([interfaceName hasPrefix:@"ppp"] && pppGatherer) {
 			// We handle PPP connections using data directly from ppp subsystem. On
 			// old systems this was required because the outbytes from sysctl was
-			// always zero.
+			// always zero. Without pppconfd (its socket is missing on macOS 27.2
+			// and recent updates) the sysctl counters below are used instead.
 			NSDictionary *pppStats = [pppGatherer statusForInterfaceName:interfaceName];
 			// Stats are only valid if PPP is running
 			if ([[pppStats objectForKey:@"status"] intValue] == PPP_RUNNING) {

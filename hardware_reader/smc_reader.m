@@ -1,9 +1,40 @@
+//
+//  smc_reader.m
+//  MenuMeters
+//
+//  Based on the Apple System Management Control (SMC) Tool, as also found
+//  in smcFanControl and osx-cpu-temp, whose notice follows.
+//  SMCHumanReadableDescriptions() below is modified from VirtualSMC; its
+//  license is given there.
+//
+//  Apple System Management Control (SMC) Tool
+//  Copyright (C) 2006 devnull
+//  Portions Copyright (C) 2013 Michael Wilber
+//
+//  This program is free software; you can redistribute it and/or
+//  modify it under the terms of the GNU General Public License
+//  as published by the Free Software Foundation; either version 2
+//  of the License, or (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program; if not, write to the Free Software
+//  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+//
+//  Changed 2026-10-27 by Joe Moreno: SMCOpen and SMCClose declared with
+//  (void), so the project builds with Xcode 27.
+//
+
 #include <stdio.h>
 #include "smc_reader.h"
 
 static io_connect_t conn;
 
-kern_return_t SMCOpen()
+kern_return_t SMCOpen(void)
 {
     kern_return_t result;
     io_iterator_t iterator;
@@ -35,7 +66,7 @@ kern_return_t SMCOpen()
     return kIOReturnSuccess;
 }
 
-kern_return_t SMCClose()
+kern_return_t SMCClose(void)
 {
     return IOServiceClose(conn);
 }
@@ -133,6 +164,20 @@ kern_return_t SMCReadKeyAtIndex(UInt32 index, SMCKeyValue *val)
 // in https://github.com/acidanthera/VirtualSMC/blob/master/Tools/smcread/smcread.c
 // whose license is BSD 3-Clause "New" or "Revised" License
 // https://github.com/acidanthera/VirtualSMC/blob/master/LICENSE.txt
+//
+// Copyright (c) 2017, vit9696
+//
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+//
+// 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+//
+// 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+//
+// 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <dlfcn.h>
 
