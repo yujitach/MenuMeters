@@ -226,6 +226,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 }
 -(void)hiddenBySystem:(NSNotification*)notification
 {
+    return;
+/*
     NSRunningApplication*app=[[NSWorkspace sharedWorkspace] frontmostApplication];
     if([app.bundleIdentifier isEqualToString:[NSBundle mainBundle].bundleIdentifier])
         return;
@@ -255,7 +257,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         }
         hiddenAlertIsShown=NO;
     }
-    
+  */
 }
 #ifdef SPARKLE
 -(instancetype)initWithAboutFileName:(NSString*)about andUpdater:(SUUpdater*)updater_
