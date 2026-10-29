@@ -652,12 +652,18 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 }
 - (NSNumber*)speedForAirport
 {
-    NSString*line=[self runCommand:@"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep maxRate"];
-    NSRange r=[line rangeOfString:@":"];
+    // The airport tool was deprecated in macOS 14.4 and later removed. Without it, return nil
+    // so that the caller falls back to IOKit and ifconfig, instead of parsing the shell's error.
+    NSString*airportPath=@"/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport";
+    if(![[NSFileManager defaultManager] isExecutableFileAtPath:airportPath]){
+        return nil;
+    }
+    NSString*line=[self runCommand:[NSString stringWithFormat:@"%@ -I | grep maxRate",airportPath]];
+    NSRange r=[line rangeOfString:@"maxRate:"];
     if(r.location==NSNotFound){
         return nil;
     }
-    line=[line substringFromIndex:r.location+1];
+    line=[line substringFromIndex:r.location+r.length];
     return [NSNumber numberWithDouble:[line doubleValue]*1000*1000];
 }
 - (NSNumber *)speedForInterfaceNameViaIfConfig:(NSString *)bsdInterface {
