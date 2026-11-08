@@ -110,6 +110,10 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 	// Loop the local mounts
 	NSMutableArray *diskSpaceDetails = [NSMutableArray array];
 	for (int i = 0; i < mountCount; i++) {
+		// Hide auxiliary system volumes and other mounts not intended for browsing in Finder.
+		if (mountInfo[i].f_flags & MNT_DONTBROWSE) {
+			continue;
+		}
 		// We only view local volumes, which isn't easy (are FUSE volumes local?)
 		// Just look at filesystem type.
 		if(!strcmp(mountInfo[i].f_fstypename, "hfs") ||
