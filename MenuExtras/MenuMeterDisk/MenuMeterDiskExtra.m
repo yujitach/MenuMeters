@@ -149,6 +149,12 @@
 															  action:@selector(openOrEjectVolume:)
 													   keyEquivalent:@""];
 		[item setImage:[itemImages objectAtIndex:i]];
+#if __MAC_OS_X_VERSION_MAX_ALLOWED >= 270000
+		// The image contains the entire row, so hiding it on macOS 27 leaves a blank item.
+		if (@available(macOS 27.0, *)) {
+			item.preferredImageVisibility = NSMenuItemImageVisibilityVisible;
+		}
+#endif
 		// Set the represented object to the path (for open/eject)
 		[item setRepresentedObject:[[diskSpaceData objectAtIndex:i] objectForKey:@"path"]];
 		[item setTarget:self];
