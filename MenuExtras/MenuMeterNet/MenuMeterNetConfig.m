@@ -27,6 +27,7 @@
 //
 
 #import "MenuMeterNetConfig.h"
+#import <IOKit/network/IONetworkMedium.h>
 
 
 ///////////////////////////////////////////////////////////////
@@ -43,6 +44,7 @@
 - (void)clearCaches;
 - (NSDictionary *)sysconfigValueForKey:(NSString *)key;
 - (NSNumber *)speedForInterfaceName:(NSString *)bsdInterface;
+- (NSNumber *)speedForThunderboltBridge:(NSString *)bsdInterface;
 @end
 
 ///////////////////////////////////////////////////////////////
@@ -342,6 +344,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 			if ([[interfaceDetail objectForKey:@"devicename"] hasPrefix:@"en"]) {
 				// Ethernet interface so we can ask IOKit
 				[interfaceDetail setObject:[self speedForInterfaceName:[interfaceDetail objectForKey:@"devicename"]] forKey:@"linkspeed"];
+			} else if ([[interfaceDetail objectForKey:@"devicename"] hasPrefix:@"bridge"]) {
+				NSNumber *speed = [self speedForThunderboltBridge:[interfaceDetail objectForKey:@"devicename"]];
+				if (speed) [interfaceDetail setObject:speed forKey:@"linkspeed"];
 			} else if ([[interfaceDetail objectForKey:@"devicename"] isEqualToString:@"modem"]) {
 				// Modem data can be had from config framework
 				NSDictionary *modemDict = [self sysconfigValueForKey:
@@ -624,6 +629,81 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 
     NSString *output = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return output;
+}
+
+- (NSNumber *)speedForThunderboltBridge:(NSString *)bsdInterface {
+    // The IP driver reports its nominal speed even when disconnected. Match an active
+    // bridge member to its Thunderbolt domain and use the physical connection speed.
+    NSString *bridge = [self runCommand:[NSString stringWithFormat:@"/sbin/ifconfig %@", bsdInterface]];
+    NSMutableSet *domains = [NSMutableSet set];
+    for (NSString *line in [bridge componentsSeparatedByString:@"\n"]) {
+        NSScanner *scanner = [NSScanner scannerWithString:line];
+        if (![scanner scanString:@"member:" intoString:NULL]) continue;
+        NSString *member = nil;
+        if (![scanner scanUpToCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:&member]) continue;
+        io_registry_entry_t entry = IOServiceGetMatchingService(masterPort,
+            IOBSDNameMatching(masterPort, 0, member.UTF8String));
+        if (!entry) continue;
+        io_registry_entry_t parent = 0;
+        IORegistryEntryGetParentEntry(entry, kIOServicePlane, &parent);
+        IOObjectRelease(entry);
+        if (!parent) continue;
+        NSNumber *status = CFBridgingRelease(IORegistryEntryCreateCFProperty(parent,
+            CFSTR("IOLinkStatus"), kCFAllocatorDefault, 0));
+        BOOL active = IOObjectConformsTo(parent, "AppleThunderboltIPPort") &&
+            ((status.unsignedIntValue & (kIONetworkLinkValid | kIONetworkLinkActive)) ==
+                (kIONetworkLinkValid | kIONetworkLinkActive));
+        if (!active) {
+            IOObjectRelease(parent);
+            continue;
+        }
+        entry = parent;
+        while (entry) {
+            if (IOObjectConformsTo(entry, "IOThunderboltLocalNode")) {
+                NSString *domain = CFBridgingRelease(IORegistryEntryCreateCFProperty(entry,
+                    CFSTR("Domain UUID"), kCFAllocatorDefault, 0));
+                if (domain) [domains addObject:domain];
+                IOObjectRelease(entry);
+                break;
+            }
+            parent = 0;
+            IORegistryEntryGetParentEntry(entry, kIOServicePlane, &parent);
+            IOObjectRelease(entry);
+            entry = parent;
+        }
+    }
+    // A bridge with multiple active links has no single physical link rate.
+    if (domains.count != 1) return nil;
+    NSString *xml = [self runCommand:@"LC_ALL=C /usr/sbin/system_profiler SPThunderboltDataType -xml -detailLevel mini"];
+    NSArray *report = [NSPropertyListSerialization propertyListWithData:[xml dataUsingEncoding:NSUTF8StringEncoding]
+        options:NSPropertyListImmutable format:NULL error:NULL];
+    if (![report isKindOfClass:[NSArray class]]) return nil;
+    for (NSDictionary *section in report) {
+        for (NSDictionary *bus in section[@"_items"]) {
+            if (![domains containsObject:bus[@"domain_uuid_key"]]) continue;
+            NSNumber *speed = nil;
+            for (NSString *key in bus) {
+                if (![key hasPrefix:@"receptacle_"]) continue;
+                NSDictionary *port = bus[key];
+                if (![port isKindOfClass:[NSDictionary class]] ||
+                    ![port[@"receptacle_status_key"] isEqual:@"receptacle_connected"]) continue;
+                if (speed) return nil; // Do not guess which of several connected ports carries IP.
+                NSString *rate = port[@"current_speed_key"];
+                if (![rate isKindOfClass:[NSString class]]) return nil;
+                NSScanner *scanner = [NSScanner scannerWithString:rate];
+                double value = 0;
+                NSString *unit = nil;
+                if (![scanner scanDouble:&value] || value <= 0 ||
+                    ![scanner scanUpToCharactersFromSet:[NSCharacterSet whitespaceCharacterSet] intoString:&unit] ||
+                    !scanner.isAtEnd) return nil;
+                double factor = [unit isEqual:@"Gb/s"] ? 1e9 : ([unit isEqual:@"Mb/s"] ? 1e6 : 0);
+                if (!factor) return nil;
+                speed = @(value * factor);
+            }
+            return speed;
+        }
+    }
+    return nil;
 }
 
 - (NSNumber *)speedForInterfaceName:(NSString*)bsdInterface{
