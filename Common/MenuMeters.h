@@ -62,6 +62,14 @@
 // domain
 #define kMenuMeterDefaultsDomain		@"com.ragingmenace.MenuMeters"
 
+#define kMenuMeterColorStylePref		@"MenuMeterColorStyle"
+enum {
+	kMenuMeterColorStyleOriginal = 0,
+	kMenuMeterColorStyleMonochrome,
+	kMenuMeterColorStyleCustom
+};
+#define kMenuMeterColorStyleDefault		kMenuMeterColorStyleMonochrome
+
 // Old name we no longer use
 #define kMenuMeterObsoleteDomain		@"MenuMeters"
 

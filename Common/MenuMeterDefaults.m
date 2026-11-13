@@ -27,6 +27,14 @@
 #import "MenuMeterDisk.h"
 #import "MenuMeterNet.h"
 
+static NSString * const kMeterColorStyleKeySuffix = @".ColorStyle";
+static const CGFloat kMonochromeCPUSystemWhite = 0.498045;
+static const CGFloat kMonochromeMemActiveWhite = 0.812722;
+static const CGFloat kMonochromeMemInactiveWhite = 0.640117;
+static const CGFloat kMonochromeMemWiredWhite = 0.343334;
+static const CGFloat kMonochromeMemCompressedWhite = 0.102822;
+static const CGFloat kMonochromeMemPageInWhite = 0.072070;
+static const CGFloat kMonochromeMemPageOutWhite = 0.211559;
 
 ///////////////////////////////////////////////////////////////
 //
@@ -52,6 +60,8 @@
 - (void)saveBoolPref:(NSString *)prefName value:(BOOL)value;
 #endif
 - (NSColor *)loadColorPref:(NSString *)prefName defaultValue:(NSColor *)defaultValue;
+- (NSColor *)colorForPref:(NSString *)prefName meter:(NSString *)meter
+			defaultValue:(NSColor *)defaultValue monochromeValue:(NSColor *)monochromeValue;
 - (void)saveColorPref:(NSString *)prefname value:(NSColor *)value;
 - (NSString *)loadStringPref:(NSString *)prefName defaultValue:(NSString *)defaultValue;
 - (void)saveStringPref:(NSString *)prefName value:(NSString *)value;
@@ -102,6 +112,63 @@
     }
     return foo;
 }
+- (int)colorStyleForMeter:(NSString *)meter {
+	// Keep the previous app-wide selection until this meter is changed independently.
+	int legacyStyle = [self loadIntPref:kMenuMeterColorStylePref
+					lowBound:kMenuMeterColorStyleOriginal
+			   highBound:kMenuMeterColorStyleCustom
+				defaultValue:kMenuMeterColorStyleDefault];
+	return [self loadIntPref:[meter stringByAppendingString:kMeterColorStyleKeySuffix]
+				   lowBound:kMenuMeterColorStyleOriginal
+				  highBound:kMenuMeterColorStyleCustom defaultValue:legacyStyle];
+}
+
+- (void)saveColorStyle:(int)style forMeter:(NSString *)meter {
+	[self saveIntPref:[meter stringByAppendingString:kMeterColorStyleKeySuffix] value:style];
+}
+
+- (NSColor *)colorForPref:(NSString *)prefName meter:(NSString *)meter
+			defaultValue:(NSColor *)defaultValue monochromeValue:(NSColor *)monochromeValue {
+	int style = [self colorStyleForMeter:meter];
+	if (style == kMenuMeterColorStyleCustom) {
+		return [self loadColorPref:prefName defaultValue:defaultValue];
+	}
+	return style == kMenuMeterColorStyleMonochrome ? monochromeValue : defaultValue;
+}
+
+- (void)beginCustomColorStyleForMeter:(NSString *)meter {
+	if ([self colorStyleForMeter:meter] == kMenuMeterColorStyleCustom) return;
+
+	if ([meter isEqualToString:kCPUMenuBundleID]) {
+		[self saveCpuUserColor:[self cpuUserColor]];
+		[self saveCpuSystemColor:[self cpuSystemColor]];
+		[self saveCpuTemperatureColor:[self cpuTemperatureColor]];
+		NSColor *borderColor = [self cpuThermometerBorderColor];
+		if (borderColor) {
+			[self saveCpuThermometerBorderColor:borderColor];
+		} else {
+			[[NSUserDefaults standardUserDefaults] removeObjectForKey:kCPUThermometerBorderColorPref];
+		}
+	} else if ([meter isEqualToString:kMemMenuBundleID]) {
+		[self saveMemFreeColor:[self memFreeColor]];
+		[self saveMemUsedColor:[self memUsedColor]];
+		[self saveMemActiveColor:[self memActiveColor]];
+		[self saveMemInactiveColor:[self memInactiveColor]];
+		[self saveMemWireColor:[self memWireColor]];
+		[self saveMemCompressedColor:[self memCompressedColor]];
+		[self saveMemPageInColor:[self memPageInColor]];
+		[self saveMemPageOutColor:[self memPageOutColor]];
+	} else if ([meter isEqualToString:kNetMenuBundleID]) {
+		[self saveNetTransmitColor:[self netTransmitColor]];
+		[self saveNetReceiveColor:[self netReceiveColor]];
+		[self saveNetInactiveColor:[self netInactiveColor]];
+	} else {
+		NSLog(@"Cannot edit color scheme for unknown meter: %@", meter);
+		return;
+	}
+	[self saveColorStyle:kMenuMeterColorStyleCustom forMeter:meter];
+}
+
 - (id)init {
 
 	// Allow super to init
@@ -182,6 +249,20 @@
                 defaultValue:kCPUHorizontalRowsDefault];
 } // cpuHorizontalRows
 
+- (int)cpuThermometerWidth {
+    return [self loadIntPref:kCPUThermometerWidthPref
+                    lowBound:kCPUThermometerWidthMin
+                   highBound:kCPUThermometerWidthMax
+                defaultValue:kCPUThermometerWidthDefault];
+} // cpuThermometerWidth
+
+- (int)cpuThermometerGap {
+    return [self loadIntPref:kCPUThermometerGapPref
+                    lowBound:kCPUThermometerGapMin
+                   highBound:kCPUThermometerGapMax
+                defaultValue:kCPUThermometerGapDefault];
+} // cpuThermometerGap
+
 - (int)cpuMenuWidth {
     return [self loadIntPref:kCPUMenuWidthPref
                     lowBound:kCPUMenuWidthMin
@@ -228,11 +309,12 @@
     [self saveStringPref:kCPUTemperatureSensor value:name];
 }
 - (NSColor *)cpuSystemColor {
-	return [self loadColorPref:kCPUSystemColorPref defaultValue:kCPUSystemColorDefault];
+	return [self colorForPref:kCPUSystemColorPref meter:kCPUMenuBundleID defaultValue:kCPUSystemColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:kMonochromeCPUSystemWhite alpha:1.0]];
 } // cpuSystemColor
 
 - (NSColor *)cpuUserColor {
-	return [self loadColorPref:kCPUUserColorPref defaultValue:kCPUUserColorDefault];
+	return [self colorForPref:kCPUUserColorPref meter:kCPUMenuBundleID defaultValue:kCPUUserColorDefault monochromeValue:[NSColor whiteColor]];
 } // cpuUserColor
 
 - (BOOL)cpuShowTemperature {
@@ -240,8 +322,13 @@
 }
 
 - (NSColor *)cpuTemperatureColor {
-    return [self loadColorPref:kCPUTemperatureColor defaultValue:kCPUTemperatureColorDefault];
+	return [self colorForPref:kCPUTemperatureColor meter:kCPUMenuBundleID defaultValue:kCPUTemperatureColorDefault monochromeValue:[NSColor whiteColor]];
 } //cpuTemperatureColor
+
+- (NSColor *)cpuThermometerBorderColor {
+	return [self colorForPref:kCPUThermometerBorderColorPref meter:kCPUMenuBundleID
+			defaultValue:nil monochromeValue:[[NSColor whiteColor] colorWithAlphaComponent:kBorderAlpha]];
+}
 
 - (void)saveCpuInterval:(double)interval {
 	[self saveDoublePref:kCPUIntervalPref value:interval];
@@ -266,6 +353,14 @@
 - (void)saveCpuHorizontalRows:(int)rows {
     [self saveIntPref:kCPUHorizontalRowsPref value:rows];
 } // saveCpuHorizontalRows
+
+- (void)saveCpuThermometerWidth:(int)width {
+    [self saveIntPref:kCPUThermometerWidthPref value:width];
+} // saveCpuThermometerWidth
+
+- (void)saveCpuThermometerGap:(int)gap {
+    [self saveIntPref:kCPUThermometerGapPref value:gap];
+} // saveCpuThermometerGap
 
 - (void)saveCpuMenuWidth:(int)rows {
     [self saveIntPref:kCPUMenuWidthPref value:rows];
@@ -305,6 +400,10 @@
 
 - (void)saveCpuTemperatureColor:(NSColor *)color {
     [self saveColorPref:kCPUTemperatureColor value:color];
+}
+
+- (void)saveCpuThermometerBorderColor:(NSColor *)color {
+	[self saveColorPref:kCPUThermometerBorderColorPref value:color];
 }
 
 - (void)saveCpuSystemColor:(NSColor *)color {
@@ -398,36 +497,56 @@
 				defaultValue:kMemGraphWidthDefault];
 } // memGraphLength
 
+- (int)memDecimals {
+	return [self loadIntPref:kMemDecimalsPref
+					lowBound:kMenuMeterDecimalsAdaptive
+				   highBound:kMenuMeterDecimalsTwo
+				defaultValue:kMemDecimalsDefault];
+} // memDecimals
+
+- (int)memUnits {
+	return [self loadIntPref:kMemUnitsPref
+					lowBound:kMemUnitsMB
+				   highBound:kMemUnitsAutomatic
+				defaultValue:kMemUnitsDefault];
+} // memUnits
+
 - (NSColor *)memFreeColor {
-	return [self loadColorPref:kMemFreeColorPref defaultValue:kMemFreeColorDefault];
+	return [self colorForPref:kMemFreeColorPref meter:kMemMenuBundleID defaultValue:kMemFreeColorDefault monochromeValue:[NSColor whiteColor]];
 } // memFreeColor
 
 - (NSColor *)memUsedColor {
-	return [self loadColorPref:kMemUsedColorPref defaultValue:kMemUsedColorDefault];
+	return [self colorForPref:kMemUsedColorPref meter:kMemMenuBundleID defaultValue:kMemUsedColorDefault monochromeValue:[NSColor whiteColor]];
 } // memUsedColor
 
 - (NSColor *)memActiveColor {
-	return [self loadColorPref:kMemActiveColorPref defaultValue:kMemActiveColorDefault];
+	return [self colorForPref:kMemActiveColorPref meter:kMemMenuBundleID defaultValue:kMemActiveColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:kMonochromeMemActiveWhite alpha:1.0]];
 } // memActiveColor
 
 - (NSColor *)memInactiveColor {
-	return [self loadColorPref:kMemInactiveColorPref defaultValue:kMemInactiveColorDefault];
+	return [self colorForPref:kMemInactiveColorPref meter:kMemMenuBundleID defaultValue:kMemInactiveColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:kMonochromeMemInactiveWhite alpha:1.0]];
 } // memInactiveColor
 
 - (NSColor *)memWireColor {
-	return [self loadColorPref:kMemWireColorPref defaultValue:kMemWireColorDefault];
+	return [self colorForPref:kMemWireColorPref meter:kMemMenuBundleID defaultValue:kMemWireColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:kMonochromeMemWiredWhite alpha:1.0]];
 } // memWireColor
 
 - (NSColor *)memCompressedColor {
-	return [self loadColorPref:kMemCompressedColorPref defaultValue:kMemCompressedColorDefault];
+	return [self colorForPref:kMemCompressedColorPref meter:kMemMenuBundleID defaultValue:kMemCompressedColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:kMonochromeMemCompressedWhite alpha:1.0]];
 } // memCompressedColor
 
 - (NSColor *)memPageInColor {
-	return [self loadColorPref:kMemPageInColorPref defaultValue:kMemPageInColorDefault];
+	return [self colorForPref:kMemPageInColorPref meter:kMemMenuBundleID defaultValue:kMemPageInColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:kMonochromeMemPageInWhite alpha:1.0]];
 } // memPageinColor
 
 - (NSColor *)memPageOutColor {
-	return [self loadColorPref:kMemPageOutColorPref defaultValue:kMemPageOutColorDefault];
+	return [self colorForPref:kMemPageOutColorPref meter:kMemMenuBundleID defaultValue:kMemPageOutColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:kMonochromeMemPageOutWhite alpha:1.0]];
 } // memPageoutColor
 
 - (void)saveMemInterval:(double)interval {
@@ -453,6 +572,14 @@
 - (void)saveMemGraphLength:(int)length {
 	[self saveIntPref:kMemGraphLengthPref value:length];
 } // saveMemGraphLength
+
+- (void)saveMemDecimals:(int)decimals {
+	[self saveIntPref:kMemDecimalsPref value:decimals];
+} // saveMemDecimals
+
+- (void)saveMemUnits:(int)units {
+	[self saveIntPref:kMemUnitsPref value:units];
+} // saveMemUnits
 
 - (void)saveMemFreeColor:(NSColor *)color {
 	[self saveColorPref:kMemFreeColorPref value:color];
@@ -538,6 +665,13 @@
 	return [self loadBoolPref:kNetThroughputBitsPref defaultValue:kNetThroughputBitsDefault];
 } // netThroughputBits
 
+- (int)netThroughputDecimals {
+	return [self loadIntPref:kNetThroughputDecimalsPref
+					lowBound:kMenuMeterDecimalsAdaptive
+				   highBound:kMenuMeterDecimalsTwo
+				defaultValue:kNetThroughputDecimalsDefault];
+} // netThroughputDecimals
+
 - (int)netGraphStyle {
 	return [self loadIntPref:kNetGraphStylePref
 					lowBound:kNetGraphStyleStandard
@@ -553,15 +687,15 @@
 } // netGraphLength
 
 - (NSColor *)netTransmitColor {
-	return [self loadColorPref:kNetTransmitColorPref defaultValue:kNetTransmitColorDefault];
+	return [self colorForPref:kNetTransmitColorPref meter:kNetMenuBundleID defaultValue:kNetTransmitColorDefault monochromeValue:[NSColor whiteColor]];
 } // netTransmitColor
 
 - (NSColor *)netReceiveColor {
-	return [self loadColorPref:kNetReceiveColorPref defaultValue:kNetReceiveColorDefault];
+	return [self colorForPref:kNetReceiveColorPref meter:kNetMenuBundleID defaultValue:kNetReceiveColorDefault monochromeValue:[NSColor whiteColor]];
 } // netReceiveColor
 
 - (NSColor *)netInactiveColor {
-	return [self loadColorPref:kNetInactiveColorPref defaultValue:kNetInactiveColorDefault];
+	return [self colorForPref:kNetInactiveColorPref meter:kNetMenuBundleID defaultValue:kNetInactiveColorDefault monochromeValue:[NSColor whiteColor]];
 } // netInactiveColor
 
 - (NSString *)netPreferInterface {
@@ -599,6 +733,10 @@
 - (void)saveNetThroughputBits:(BOOL)label {
 	[self saveBoolPref:kNetThroughputBitsPref value:label];
 } // saveNetThroughputBits
+
+- (void)saveNetThroughputDecimals:(int)decimals {
+	[self saveIntPref:kNetThroughputDecimalsPref value:decimals];
+} // saveNetThroughputDecimals
 
 - (void)saveNetGraphStyle:(int)style {
 	[self saveIntPref:kNetGraphStylePref value:style];

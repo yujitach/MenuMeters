@@ -29,7 +29,6 @@
 
 // Widths of the various displays
 #define kCPUPercentDisplayBorderWidth		2
-#define kCPUThermometerDisplayWidth			11.0f
 #define kCPUDisplayMultiProcGapWidth		5
 #define kCPULabelOnlyWidth         25
 
@@ -58,6 +57,8 @@
 #define kCPUMaxProcessCountPref             @"CPUMaxProcessCount"
 #define kCPUGraphLengthPref					@"CPUGraphLength"
 #define kCPUHorizontalRowsPref              @"CPUHorizontalRows"
+#define kCPUThermometerWidthPref            @"CPUThermometerWidth"
+#define kCPUThermometerGapPref              @"CPUThermometerGap"
 #define kCPUMenuWidthPref                   @"CPUMenuWidth"
 #define kCPUAvgAllProcsPref					@"CPUAverageMultiProcs"
 #define kCPUSumAllProcsPercentPref			@"CPUSumAllProcsPercent"
@@ -66,6 +67,7 @@
 #define kCPUSortByUsagePref				    @"CPUSortByUsage"
 #define kCPUSystemColorPref					@"CPUSystemColor"
 #define kCPUUserColorPref					@"CPUUserColor"
+#define kCPUThermometerBorderColorPref       @"CPUThermometerBorderColor"
 #define kCPUPowerMatePref					@"CPUPowerMate"
 #define kCPUPowerMateMode					@"CPUPowerMateMode"
 #define kCPUShowTemperature                 @"CPUTemperature"
@@ -120,6 +122,14 @@ enum {
 #define kCPUHorizontalRowsMin               1
 #define kCPUHorizontalRowsMax               8
 #define kCPUHorizontalRowsDefault           2
+
+// Vertical bar (thermometer) display
+#define kCPUThermometerWidthMin             4
+#define kCPUThermometerWidthMax             24
+#define kCPUThermometerWidthDefault         11
+#define kCPUThermometerGapMin               0
+#define kCPUThermometerGapMax               8
+#define kCPUThermometerGapDefault           5
 
 // Menu width
 #define kCPUMenuWidthMin                    60

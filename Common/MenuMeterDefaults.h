@@ -34,6 +34,9 @@
 
 + (void)movePreferencesIfNecessary;
 + (MenuMeterDefaults*)sharedMenuMeterDefaults;
+- (int)colorStyleForMeter:(NSString *)meter;
+- (void)saveColorStyle:(int)style forMeter:(NSString *)meter;
+- (void)beginCustomColorStyleForMeter:(NSString *)meter;
 
 // CPU menu prefs
 - (double)cpuInterval;
@@ -42,6 +45,8 @@
 - (int)cpuMaxProcessCount;
 - (int)cpuGraphLength;
 - (int)cpuHorizontalRows;
+- (int)cpuThermometerWidth;
+- (int)cpuThermometerGap;
 - (int)cpuMenuWidth;
 - (BOOL)cpuAvgAllProcs;
 - (BOOL)cpuSumAllProcsPercent;
@@ -55,12 +60,15 @@
 - (NSColor *)cpuSystemColor;
 - (NSColor *)cpuUserColor;
 - (NSColor *)cpuTemperatureColor;
+- (NSColor *)cpuThermometerBorderColor; // nil keeps the automatic menu bar color.
 - (void)saveCpuInterval:(double)interval;
 - (void)saveCpuDisplayMode:(int)mode;
 - (void)saveCpuPercentDisplay:(int)mode;
 - (void)saveCpuMaxProcessCount:(int)maxCount;
 - (void)saveCpuGraphLength:(int)length;
 - (void)saveCpuHorizontalRows:(int)rows;
+- (void)saveCpuThermometerWidth:(int)width;
+- (void)saveCpuThermometerGap:(int)gap;
 - (void)saveCpuMenuWidth:(int)width;
 - (void)saveCpuAvgAllProcs:(BOOL)average;
 - (void)saveCpuSumAllProcsPercent:(BOOL)sum;
@@ -72,6 +80,7 @@
 - (void)saveCpuSystemColor:(NSColor *)color;
 - (void)saveCpuUserColor:(NSColor *)color;
 - (void)saveCpuTemperatureColor:(NSColor *)color;
+- (void)saveCpuThermometerBorderColor:(NSColor *)color;
 - (void)saveCpuTemperatureUnit:(int)unit;
 - (void)saveCpuTemperatureSensor:(NSString*)name;
 
@@ -89,6 +98,8 @@
 - (int)memDisplayMode;
 - (BOOL)memUsedFreeLabel;
 - (int)memGraphLength;
+- (int)memDecimals;
+- (int)memUnits;
 - (BOOL)memPageIndicator;
 - (BOOL)memPressure;
 - (NSColor *)memFreeColor;
@@ -105,6 +116,8 @@
 - (void)saveMemUsedFreeLabel:(BOOL)label;
 - (void)saveMemPressure:(BOOL)label;
 - (void)saveMemGraphLength:(int)length;
+- (void)saveMemDecimals:(int)decimals;
+- (void)saveMemUnits:(int)units;
 - (void)saveMemFreeColor:(NSColor *)color;
 - (void)saveMemUsedColor:(NSColor *)color;
 - (void)saveMemActiveColor:(NSColor *)color;
@@ -123,6 +136,7 @@
 - (BOOL)netThroughputLabel;
 - (BOOL)netThroughput1KBound;
 - (BOOL)netThroughputBits;
+- (int)netThroughputDecimals;
 - (int)netGraphStyle;
 - (int)netGraphLength;
 - (NSColor *)netTransmitColor;
@@ -137,6 +151,7 @@
 - (void)saveNetThroughputLabel:(BOOL)label;
 - (void)saveNetThroughput1KBound:(BOOL)bound;
 - (void)saveNetThroughputBits:(BOOL)bits;
+- (void)saveNetThroughputDecimals:(int)decimals;
 - (void)saveNetGraphStyle:(int)style;
 - (void)saveNetGraphLength:(int)length;
 - (void)saveNetTransmitColor:(NSColor *)color;

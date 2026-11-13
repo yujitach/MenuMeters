@@ -39,9 +39,7 @@
 	// Info gathers
 	MenuMeterMemStats				*memStats;
 	// Formatters for numbers so we get localization correctly
-	NSNumberFormatter				*memFloatMBFormatter,
-									*memIntMBFormatter,
-									*prettyIntFormatter,
+	NSNumberFormatter				*prettyIntFormatter,
 									*percentFormatter;
 	// Colors
 	NSColor							*freeColor, *usedColor,

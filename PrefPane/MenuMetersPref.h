@@ -70,6 +70,12 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 	IBOutlet NSTextField			*cpuGraphWidthLabel;
 	IBOutlet NSSlider				*cpuHorizontalRows;
 	IBOutlet NSTextField			*cpuHorizontalRowsLabel;
+    IBOutlet NSSlider               *cpuThermometerWidth;
+    IBOutlet NSTextField            *cpuThermometerWidthLabel;
+    IBOutlet NSSlider               *cpuThermometerGap;
+    IBOutlet NSTextField            *cpuThermometerGapLabel;
+    IBOutlet NSColorWell             *cpuThermometerBorderColor;
+    IBOutlet NSTextField            *cpuThermometerBorderColorLabel;
     IBOutlet NSSlider               *cpuMenuWidth;
 	IBOutlet NSTextField			*cpuMenuWidthLabel;
 	IBOutlet NSPopUpButton				*cpuMultipleCPU;
@@ -81,6 +87,7 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 	IBOutlet NSTextField			*cpuUserColorLabel;
 	IBOutlet NSColorWell			*cpuSystemColor;
 	IBOutlet NSTextField			*cpuSystemColorLabel;
+	IBOutlet NSPopUpButton			*cpuColorStyle;
 	// Disk pane controls
 	IBOutlet NSButton				*diskMeterToggle;
 	IBOutlet NSPopUpButton			*diskImageSet;
@@ -106,7 +113,11 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 	IBOutlet NSTextField			*memPageinColorLabel;
 	IBOutlet NSColorWell			*memPageoutColor;
 	IBOutlet NSTextField			*memPageoutColorLabel;
+	IBOutlet NSTextField			*memColorStyleLabel;
+	IBOutlet NSPopUpButton			*memColorStyle;
         IBOutlet NSButton               *memPressureMode;
+	IBOutlet NSPopUpButton			*memUnits;
+	IBOutlet NSPopUpButton			*memDecimals;
 	// Net pane controls
 	IBOutlet NSButton				*netMeterToggle;
 	IBOutlet NSPopUpButton			*netDisplayMode;
@@ -121,6 +132,7 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 	IBOutlet NSButton				*netThroughputLabeling;
 	IBOutlet NSButton				*netThroughput1KBound;
 	IBOutlet NSButton				*netThroughputBits;
+	IBOutlet NSPopUpButton			*netThroughputDecimals;
 	IBOutlet NSPopUpButton			*netGraphStyle;
 	IBOutlet NSTextField			*netGraphStyleLabel;
 	IBOutlet NSSlider				*netGraphWidth;
@@ -128,6 +140,8 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 	IBOutlet NSColorWell			*netTxColor;
 	IBOutlet NSColorWell			*netRxColor;
 	IBOutlet NSColorWell			*netInactiveColor;
+	IBOutlet NSTextField			*netColorStyleLabel;
+	IBOutlet NSPopUpButton			*netColorStyle;
     __weak IBOutlet NSPopUpButton *updateIntervalButton;
     IBOutlet NSView					*sparkleUIContainer;
     BOOL hiddenAlertIsShown;
@@ -146,6 +160,7 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 // IB Targets
 -(IBAction)openAbout:(id)sender;
 - (IBAction)liveUpdateInterval:(id)sender;
+- (IBAction)colorStylePrefChange:(id)sender;
 - (IBAction)cpuPrefChange:(id)sender;
 - (IBAction)diskPrefChange:(id)sender;
 - (IBAction)memPrefChange:(id)sender;

@@ -22,6 +22,7 @@
 //
 
 #import "MenuMeterDiskSpace.h"
+#import "MenuMeterNumberFormat.h"
 
 
 ///////////////////////////////////////////////////////////////
@@ -31,7 +32,7 @@
 ///////////////////////////////////////////////////////////////
 
 @interface MenuMeterDiskSpace (PrivateMethods)
-- (NSString *)spaceString:(float)space;
+- (NSString *)spaceString:(double)space;
 @end
 
 
@@ -56,39 +57,7 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 #define kGBLabel				@"GB"
 
 
-///////////////////////////////////////////////////////////////
-//
-//	init/dealloc
-//
-///////////////////////////////////////////////////////////////
-
 @implementation MenuMeterDiskSpace
-
-- (id)init {
-
-	self = [super init];
-	if (!self) {
-		return nil;
-	}
-
-
-	// Set up a NumberFormatter for localization. This is based on code contributed by Mike Fischer
-	// (mike.fischer at fi-works.de) for use in MenuMeters.
-	NSNumberFormatter *tempFormat = [[NSNumberFormatter alloc] init];
-	[tempFormat setLocalizesFormat:YES];
-	[tempFormat setFormat:@"####0.00"];
-	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
-	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-	spaceFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
-	if (!spaceFormatter) {
-		return nil;
-	}
-
-	return self;
-
-} // init
-
- // dealloc
 
 ///////////////////////////////////////////////////////////////
 //
@@ -173,14 +142,14 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 			// Store
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kTotalSpaceFormat],
-									[self spaceString:((float)mountInfo[i].f_blocks * (float)mountInfo[i].f_bsize)]]
+									[self spaceString:((double)mountInfo[i].f_blocks * (double)mountInfo[i].f_bsize)]]
 						  forKey:@"total"];
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kFreeSpaceFormat],
-									[self spaceString:((float)mountInfo[i].f_bavail * (float)mountInfo[i].f_bsize)]]
+									[self spaceString:((double)mountInfo[i].f_bavail * (double)mountInfo[i].f_bsize)]]
 						  forKey:@"free"];
 			[diskStats setObject:[NSString stringWithFormat:[localizedStrings objectForKey:kUsedSpaceFormat],
-									[self spaceString:(((float)mountInfo[i].f_blocks -
-														(float)mountInfo[i].f_bavail) * (float)mountInfo[i].f_bsize)]]
+									[self spaceString:(((double)mountInfo[i].f_blocks -
+														(double)mountInfo[i].f_bavail) * (double)mountInfo[i].f_bsize)]]
 						  forKey:@"used"];
 			// Store the data into the array
 			[diskSpaceDetails addObject:diskStats];
@@ -208,37 +177,16 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 //
 ///////////////////////////////////////////////////////////////
 
-- (NSString *)spaceString:(float)space {
+- (NSString *)spaceString:(double)space {
 
-	if (useBaseTen) {
-		if (space > 1000000000) {
-			return [NSString stringWithFormat:@"%@%@",
-					[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000000000]],
-					[localizedStrings objectForKey:kGBLabel]];
-		} else if (space > 1000000) {
-			return [NSString stringWithFormat:@"%@%@",
-					[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000000]],
-					[localizedStrings objectForKey:kMBLabel]];
-		} else {
-			return [NSString stringWithFormat:@"%@%@",
-					[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1000]],
-					[localizedStrings objectForKey:kKBLabel]];
-		}
-	} else {
-		if (space > 1073741824) {
-			return [NSString stringWithFormat:@"%@%@",
-				[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1073741824]],
-				[localizedStrings objectForKey:kGBLabel]];
-		} else if (space > 1048576) {
-			return [NSString stringWithFormat:@"%@%@",
-				[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1048576]],
-				[localizedStrings objectForKey:kMBLabel]];
-		} else {
-			return [NSString stringWithFormat:@"%@%@",
-				[spaceFormatter stringForObjectValue:[NSNumber numberWithFloat:space / 1024]],
-				[localizedStrings objectForKey:kKBLabel]];
-		}
-	}
+	double base = useBaseTen ? kMenuMeterDecimalBase : kMenuMeterBinaryBase;
+	NSArray<NSString *> *units = @[[localizedStrings objectForKey:kKBLabel],
+					   [localizedStrings objectForKey:kMBLabel],
+					   [localizedStrings objectForKey:kGBLabel]];
+	return [MenuMeterNumberFormat scaledStringForValue:space / base
+												base:base
+											   units:units
+												mode:kMenuMeterDecimalsAdaptive];
 
 } // spaceString
 

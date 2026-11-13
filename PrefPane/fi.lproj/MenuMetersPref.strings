@@ -331,13 +331,13 @@
 "1088.title" = "Vaakarivit:";
 
 /* Class = "NSTextFieldCell"; title = "Horizontal Thermometer Display"; ObjectID = "1094"; */
-"1094.title" = "Vaakasuuntainen lämpömittarinäkymä";
+"1094.title" = "Vaakasuuntainen lämpömittarinäyttö";
 
 /* Class = "NSMenuItem"; title = "Horizontal Thermometer"; ObjectID = "1095"; */
 "1095.title" = "Vaakasuuntainen lämpömittari";
 
 /* Class = "NSTextFieldCell"; title = "Horizontal Width:"; ObjectID = "1117"; */
-"1117.title" = "Vaakaleveys:";
+"1117.title" = "Vaakasuuntainen leveys:";
 
 /* Class = "NSTextFieldCell"; title = "(%d)"; ObjectID = "2NH-iF-l28"; */
 "2NH-iF-l28.title" = "(%d)";
@@ -392,3 +392,19 @@
 
 /* Class = "NSMenuItem"; title = "all cores, including hyperthreaded ones"; ObjectID = "vbH-jV-tUr"; */
 "vbH-jV-tUr.title" = "kaikki ytimet, myös hypersäikeistetyt";
+
+"clr-style-label-cell.title" = "Väriteema:";
+"clr-style-original.title" = "Alkuperäinen";
+"clr-style-monochrome.title" = "Yksivärinen";
+"clr-style-custom.title" = "Mukautettu";
+"vbr-Hd-Cel.title" = "Pystypalkkinäyttö";
+"vbr-WL-Cel.title" = "Palkin leveys:";
+"vbr-GL-Cel.title" = "Palkkiväli:";
+"vbr-BL-Cel.title" = "Reunan väri:";
+"mem-Un-LCl.title" = "Yksiköt:";
+"mem-Un-MB1.title" = "MB";
+"mem-Un-Aut.title" = "Automaattinen (MB, GB, TB)";
+"mem-Dc-LCl.title" = "Desimaalit:";
+"mem-Dc-Ad1.title" = "Mukautuva";
+"nTd-Dc-LCl.title" = "Desimaalit:";
+"nTd-Dc-Ad1.title" = "Mukautuva";

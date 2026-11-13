@@ -21,6 +21,7 @@
 // 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
+#import "MenuMeterNumberFormat.h"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -49,6 +50,7 @@
 #define kNetThroughputLabelPref				@"NetThroughputLabel"
 #define kNetThroughput1KBoundPref			@"NetThroughput1KBound"
 #define kNetThroughputBitsPref				@"NetThroughputBits"
+#define kNetThroughputDecimalsPref			@"NetThroughputDecimals"
 #define kNetGraphStylePref					@"NetGraphStyle"
 #define kNetGraphLengthPref					@"NetGraphLength"
 #define kNetScaleModePref					@"NetScaleMode"
@@ -116,6 +118,9 @@ enum {
 
 // Thoughput Bits per second
 #define kNetThroughputBitsDefault			NO
+
+// Throughput decimal places
+#define kNetThroughputDecimalsDefault		kMenuMeterDecimalsOne
 
 // Colors
 											// Moss green
