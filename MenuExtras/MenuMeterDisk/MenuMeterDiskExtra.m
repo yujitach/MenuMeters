@@ -33,7 +33,7 @@
 @interface MenuMeterDiskExtra (PrivateMethods)
 
 // Menu content
-- (NSArray<NSAttributedString *> *)diskSpaceMenuItemTitles:(NSArray<NSDictionary *> *)driveDetails;
+- (NSArray *)diskSpaceMenuItemImages:(NSArray *)driveDetails;
 // Menu actions
 - (void)openOrEjectVolume:(id)sender;
 // Prefs
@@ -139,18 +139,18 @@
 	NSArray *diskSpaceData = [diskSpaceMonitor diskSpaceData];
 	if (!diskSpaceData || ![diskSpaceData count]) return extraMenu;
 
-	NSArray<NSAttributedString *> *titles = [self diskSpaceMenuItemTitles:diskSpaceData];
-	for (NSUInteger i = 0; i < [titles count]; i++) {
-		NSDictionary *driveDetail = [diskSpaceData objectAtIndex:i];
-		NSMenuItem *item = [extraMenu addItemWithTitle:[titles objectAtIndex:i].string
+	// Build the menu item images
+	NSArray *itemImages = [self diskSpaceMenuItemImages:diskSpaceData];
+	if ([itemImages count] != [diskSpaceData count]) return extraMenu;
+
+	// Add our menu item images
+	for (NSUInteger i = 0; i < [itemImages count]; i++) {
+		NSMenuItem *item = (NSMenuItem *)[extraMenu addItemWithTitle:@""
 															  action:@selector(openOrEjectVolume:)
 													   keyEquivalent:@""];
-		[item setAttributedTitle:[titles objectAtIndex:i]];
-		NSImage *volIcon = [[driveDetail objectForKey:@"icon"] copy];
-		[volIcon setSize:NSMakeSize(32, 32)];
-		[item setImage:volIcon];
+		[item setImage:[itemImages objectAtIndex:i]];
 		// Set the represented object to the path (for open/eject)
-		[item setRepresentedObject:[driveDetail objectForKey:@"path"]];
+		[item setRepresentedObject:[[diskSpaceData objectAtIndex:i] objectForKey:@"path"]];
 		[item setTarget:self];
 	}
     [extraMenu addItem:[NSMenuItem separatorItem]];
@@ -160,50 +160,101 @@
 
 } // menu
 
-- (NSArray<NSAttributedString *> *)diskSpaceMenuItemTitles:(NSArray<NSDictionary *> *)driveDetails {
-	NSDictionary *fontAttributes = @{
-		NSFontAttributeName: [extraMenu font]
-	};
-	CGFloat widestName = 0, widestUsed = 0, widestFree = 0;
+- (NSArray *)diskSpaceMenuItemImages:(NSArray *)driveDetails {
+
+	// Menu item content is rendered into images because it is not possible
+	// to subclass NSMenuItemView across all OS versions.
+	NSMutableArray *itemImages = [NSMutableArray array];
+	NSDictionary *stringAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+										fgMenuThemeColor,
+										NSForegroundColorAttributeName,
+										[NSFont monospacedDigitSystemFontOfSize:11.0f weight:NSFontWeightRegular],
+										NSFontAttributeName,
+										nil];
+
+	NSMutableArray *nameStrings = [NSMutableArray array],
+				   *detailStrings = [NSMutableArray array],
+				   *freeStrings = [NSMutableArray array],
+				   *usedStrings = [NSMutableArray array],
+				   *totalStrings = [NSMutableArray array];
+	double widestNameText = 0, widestDetailsText = 0,
+		   widestFreeSpaceText = 0, widestUsedSpaceText = 0,
+		   widestTotalSpaceText = 0;
+
 	for (NSDictionary *driveDetail in driveDetails) {
-		widestName = MAX(widestName, [[driveDetail objectForKey:@"name"] sizeWithAttributes:fontAttributes].width);
-		widestUsed = MAX(widestUsed, [[driveDetail objectForKey:@"used"] sizeWithAttributes:fontAttributes].width);
-		widestFree = MAX(widestFree, [[driveDetail objectForKey:@"free"] sizeWithAttributes:fontAttributes].width);
+		NSMutableAttributedString *renderString = nil;
+
+		renderString = [[NSMutableAttributedString alloc] initWithString:[driveDetail objectForKey:@"name"]];
+		[renderString addAttributes:stringAttributes range:NSMakeRange(0, [renderString length])];
+		[nameStrings addObject:renderString];
+		widestNameText = MAX(widestNameText, [renderString size].width);
+
+		renderString = [[NSMutableAttributedString alloc]
+						initWithString:[NSString stringWithFormat:@"(%@, %@)",
+									   [driveDetail objectForKey:@"device"],
+									   [driveDetail objectForKey:@"fstype"]]];
+		[renderString addAttributes:stringAttributes range:NSMakeRange(0, [renderString length])];
+		[detailStrings addObject:renderString];
+		widestDetailsText = MAX(widestDetailsText, [renderString size].width);
+
+		renderString = [[NSMutableAttributedString alloc] initWithString:[driveDetail objectForKey:@"free"]];
+		[renderString addAttributes:stringAttributes range:NSMakeRange(0, [renderString length])];
+		[freeStrings addObject:renderString];
+		widestFreeSpaceText = MAX(widestFreeSpaceText, [renderString size].width);
+
+		renderString = [[NSMutableAttributedString alloc] initWithString:[driveDetail objectForKey:@"used"]];
+		[renderString addAttributes:stringAttributes range:NSMakeRange(0, [renderString length])];
+		[usedStrings addObject:renderString];
+		widestUsedSpaceText = MAX(widestUsedSpaceText, [renderString size].width);
+
+		renderString = [[NSMutableAttributedString alloc] initWithString:[driveDetail objectForKey:@"total"]];
+		[renderString addAttributes:stringAttributes range:NSMakeRange(0, [renderString length])];
+		[totalStrings addObject:renderString];
+		widestTotalSpaceText = MAX(widestTotalSpaceText, [renderString size].width);
 	}
 
-	NSMutableParagraphStyle *nameStyle = [[NSMutableParagraphStyle alloc] init];
-	[nameStyle setTabStops:@[
-		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestName) + 15 options:@{}]
-	]];
-	NSMutableParagraphStyle *spaceStyle = [[NSMutableParagraphStyle alloc] init];
-	[spaceStyle setTabStops:@[
-		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestUsed) + 10 options:@{}],
-		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestUsed) + ceil(widestFree) + 20 options:@{}]
-	]];
+	widestNameText = ceil(widestNameText);
+	widestDetailsText = ceil(widestDetailsText);
+	widestFreeSpaceText = ceil(widestFreeSpaceText);
+	widestUsedSpaceText = ceil(widestUsedSpaceText);
+	widestTotalSpaceText = ceil(widestTotalSpaceText);
 
-	// Leave foreground colors to NSMenu, including its highlighted and dark appearances.
-	NSMutableDictionary *nameAttributes = [fontAttributes mutableCopy];
-	[nameAttributes setObject:nameStyle forKey:NSParagraphStyleAttributeName];
-	NSMutableDictionary *spaceAttributes = [fontAttributes mutableCopy];
-	[spaceAttributes setObject:spaceStyle forKey:NSParagraphStyleAttributeName];
-
-	NSMutableArray<NSAttributedString *> *titles = [NSMutableArray array];
-	for (NSDictionary *driveDetail in driveDetails) {
-		NSString *nameLine = [NSString stringWithFormat:@"%@\t(%@, %@)\n",
-							 [driveDetail objectForKey:@"name"],
-							 [driveDetail objectForKey:@"device"],
-							 [driveDetail objectForKey:@"fstype"]];
-		NSString *spaceLine = [NSString stringWithFormat:@"%@\t%@\t%@",
-							  [driveDetail objectForKey:@"used"],
-							  [driveDetail objectForKey:@"free"],
-							  [driveDetail objectForKey:@"total"]];
-		NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:nameLine attributes:nameAttributes];
-		[title appendAttributedString:[[NSAttributedString alloc] initWithString:spaceLine attributes:spaceAttributes]];
-		[titles addObject:title];
+	double finalTextWidth = widestNameText + widestDetailsText + 25;
+	if (widestFreeSpaceText + widestUsedSpaceText + widestTotalSpaceText + 30 > finalTextWidth) {
+		finalTextWidth = widestFreeSpaceText + widestUsedSpaceText + widestTotalSpaceText + 30;
 	}
-	return titles;
 
-} // diskSpaceMenuItemTitles
+	for (NSUInteger i = 0; i < [driveDetails count]; i++) {
+		NSImage *volIcon = [[driveDetails objectAtIndex:i] objectForKey:@"icon"];
+		if (!volIcon) {
+			volIcon = [[NSImage alloc] initWithSize:NSMakeSize(32, 32)];
+		}
+
+		NSImage *menuItemImage = [NSImage imageWithSize:NSMakeSize([volIcon size].width + 10 + finalTextWidth,
+																  [volIcon size].height)
+												 flipped:NO
+										  drawingHandler:^BOOL(NSRect dstRect) {
+			[volIcon compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
+			[(NSAttributedString *)[nameStrings objectAtIndex:i]
+				drawAtPoint:NSMakePoint(ceil([volIcon size].width) + 10, ceil([volIcon size].height / 2))];
+			[(NSAttributedString *)[detailStrings objectAtIndex:i]
+				drawAtPoint:NSMakePoint(ceil([volIcon size].width) + 10 + widestNameText + 15,
+										ceil([volIcon size].height / 2))];
+			[(NSAttributedString *)[usedStrings objectAtIndex:i]
+				drawAtPoint:NSMakePoint(ceil([volIcon size].width) + 10, 1)];
+			[(NSAttributedString *)[freeStrings objectAtIndex:i]
+				drawAtPoint:NSMakePoint(ceil([volIcon size].width) + 10 + widestUsedSpaceText + 10, 1)];
+			[(NSAttributedString *)[totalStrings objectAtIndex:i]
+				drawAtPoint:NSMakePoint(ceil([volIcon size].width) + 10 + widestUsedSpaceText
+										+ widestFreeSpaceText + 20, 1)];
+			return YES;
+		}];
+		[itemImages addObject:menuItemImage];
+	}
+
+	return itemImages;
+
+} // diskSpaceMenuItemImages
 
 ///////////////////////////////////////////////////////////////
 //
