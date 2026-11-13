@@ -31,8 +31,6 @@
 
 @interface MenuMeterDiskSpace : NSObject {
 
-	// NSFormatter for disk space localization
-	NSNumberFormatter	*spaceFormatter;
 	BOOL				useBaseTen;
 
 } // MenuMeterDiskSpace
