@@ -354,7 +354,12 @@
 ".title" = "Horizontal Width:";
 
 /* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "IdA-68-Ayg"; */
-"IdA-68-Ayg.title" = "Display memory pressure";
+"IdA-68-Ayg.title" = "メモリプレッシャーを表示";
+
+"clr-style-label-cell.title" = "配色:";
+"clr-style-original.title" = "標準";
+"clr-style-monochrome.title" = "モノクロ";
+"clr-style-custom.title" = "カスタム";
 "1094.title" = "横型サーモメーター表示";
 "1088.title" = "横列数:";
 "1117.title" = "横幅:";

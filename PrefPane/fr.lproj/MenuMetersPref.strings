@@ -355,7 +355,12 @@
 "954.title" = "Horizontal Width:";
 
 /* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "Yhx-uB-Efv"; */
-"Yhx-uB-Efv.title" = "Display memory pressure";
+"Yhx-uB-Efv.title" = "Afficher la pression mémoire";
+
+"clr-style-label-cell.title" = "Schéma de couleurs :";
+"clr-style-original.title" = "Original";
+"clr-style-monochrome.title" = "Monochrome";
+"clr-style-custom.title" = "Personnalisé";
 "1094.title" = "Thermomètre horizontal";
 "1088.title" = "Lignes horizontales :";
 "1117.title" = "Largeur horizontale :";

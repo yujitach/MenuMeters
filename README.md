@@ -33,3 +33,10 @@ More recently, starting from Catalina, MenuMeters was changed from a preference 
 
 # To hack:
 Clone the git repo, open MenuMeters.xcodeproj, and build the target *MenuMeters*. This will create an independent app which runs outside of System Preferences. 
+
+# Color settings:
+CPU, Memory, and Network each have an independent Color Scheme selection.
+Original uses the original colors; Monochrome uses the saved white/gray palette;
+Custom retains your edited colors when switching between schemes. Editing a preset
+selects Custom for that tab only. Existing app-wide selections are retained until
+each tab is changed.

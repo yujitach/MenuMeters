@@ -52,6 +52,8 @@
 - (void)saveBoolPref:(NSString *)prefName value:(BOOL)value;
 #endif
 - (NSColor *)loadColorPref:(NSString *)prefName defaultValue:(NSColor *)defaultValue;
+- (NSColor *)colorForPref:(NSString *)prefName meter:(NSString *)meter
+			defaultValue:(NSColor *)defaultValue monochromeValue:(NSColor *)monochromeValue;
 - (void)saveColorPref:(NSString *)prefname value:(NSColor *)value;
 - (NSString *)loadStringPref:(NSString *)prefName defaultValue:(NSString *)defaultValue;
 - (void)saveStringPref:(NSString *)prefName value:(NSString *)value;
@@ -102,6 +104,63 @@
     }
     return foo;
 }
+- (int)colorStyleForMeter:(NSString *)meter {
+	// Keep the previous app-wide selection until this meter is changed independently.
+	int legacyStyle = [self loadIntPref:kMenuMeterColorStylePref
+					lowBound:kMenuMeterColorStyleOriginal
+			   highBound:kMenuMeterColorStyleCustom
+				defaultValue:kMenuMeterColorStyleDefault];
+	return [self loadIntPref:[meter stringByAppendingString:@".ColorStyle"]
+				   lowBound:kMenuMeterColorStyleOriginal
+				  highBound:kMenuMeterColorStyleCustom defaultValue:legacyStyle];
+}
+
+- (void)saveColorStyle:(int)style forMeter:(NSString *)meter {
+	[self saveIntPref:[meter stringByAppendingString:@".ColorStyle"] value:style];
+}
+
+- (NSColor *)colorForPref:(NSString *)prefName meter:(NSString *)meter
+			defaultValue:(NSColor *)defaultValue monochromeValue:(NSColor *)monochromeValue {
+	int style = [self colorStyleForMeter:meter];
+	if (style == kMenuMeterColorStyleCustom) {
+		return [self loadColorPref:prefName defaultValue:defaultValue];
+	}
+	return style == kMenuMeterColorStyleMonochrome ? monochromeValue : defaultValue;
+}
+
+- (void)beginCustomColorStyleForMeter:(NSString *)meter {
+	if ([self colorStyleForMeter:meter] == kMenuMeterColorStyleCustom) return;
+
+	if ([meter isEqualToString:kCPUMenuBundleID]) {
+		[self saveCpuUserColor:[self cpuUserColor]];
+		[self saveCpuSystemColor:[self cpuSystemColor]];
+		[self saveCpuTemperatureColor:[self cpuTemperatureColor]];
+		NSColor *borderColor = [self cpuThermometerBorderColor];
+		if (borderColor) {
+			[self saveCpuThermometerBorderColor:borderColor];
+		} else {
+			[[NSUserDefaults standardUserDefaults] removeObjectForKey:kCPUThermometerBorderColorPref];
+		}
+	} else if ([meter isEqualToString:kMemMenuBundleID]) {
+		[self saveMemFreeColor:[self memFreeColor]];
+		[self saveMemUsedColor:[self memUsedColor]];
+		[self saveMemActiveColor:[self memActiveColor]];
+		[self saveMemInactiveColor:[self memInactiveColor]];
+		[self saveMemWireColor:[self memWireColor]];
+		[self saveMemCompressedColor:[self memCompressedColor]];
+		[self saveMemPageInColor:[self memPageInColor]];
+		[self saveMemPageOutColor:[self memPageOutColor]];
+	} else if ([meter isEqualToString:kNetMenuBundleID]) {
+		[self saveNetTransmitColor:[self netTransmitColor]];
+		[self saveNetReceiveColor:[self netReceiveColor]];
+		[self saveNetInactiveColor:[self netInactiveColor]];
+	} else {
+		NSLog(@"Cannot edit color scheme for unknown meter: %@", meter);
+		return;
+	}
+	[self saveColorStyle:kMenuMeterColorStyleCustom forMeter:meter];
+}
+
 - (id)init {
 
 	// Allow super to init
@@ -242,11 +301,12 @@
     [self saveStringPref:kCPUTemperatureSensor value:name];
 }
 - (NSColor *)cpuSystemColor {
-	return [self loadColorPref:kCPUSystemColorPref defaultValue:kCPUSystemColorDefault];
+	return [self colorForPref:kCPUSystemColorPref meter:kCPUMenuBundleID defaultValue:kCPUSystemColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:0.498045 alpha:1.0]];
 } // cpuSystemColor
 
 - (NSColor *)cpuUserColor {
-	return [self loadColorPref:kCPUUserColorPref defaultValue:kCPUUserColorDefault];
+	return [self colorForPref:kCPUUserColorPref meter:kCPUMenuBundleID defaultValue:kCPUUserColorDefault monochromeValue:[NSColor whiteColor]];
 } // cpuUserColor
 
 - (BOOL)cpuShowTemperature {
@@ -254,8 +314,13 @@
 }
 
 - (NSColor *)cpuTemperatureColor {
-    return [self loadColorPref:kCPUTemperatureColor defaultValue:kCPUTemperatureColorDefault];
+	return [self colorForPref:kCPUTemperatureColor meter:kCPUMenuBundleID defaultValue:kCPUTemperatureColorDefault monochromeValue:[NSColor whiteColor]];
 } //cpuTemperatureColor
+
+- (NSColor *)cpuThermometerBorderColor {
+	return [self colorForPref:kCPUThermometerBorderColorPref meter:kCPUMenuBundleID
+			defaultValue:nil monochromeValue:[[NSColor whiteColor] colorWithAlphaComponent:kBorderAlpha]];
+}
 
 - (void)saveCpuInterval:(double)interval {
 	[self saveDoublePref:kCPUIntervalPref value:interval];
@@ -439,35 +504,41 @@
 } // memUnits
 
 - (NSColor *)memFreeColor {
-	return [self loadColorPref:kMemFreeColorPref defaultValue:kMemFreeColorDefault];
+	return [self colorForPref:kMemFreeColorPref meter:kMemMenuBundleID defaultValue:kMemFreeColorDefault monochromeValue:[NSColor whiteColor]];
 } // memFreeColor
 
 - (NSColor *)memUsedColor {
-	return [self loadColorPref:kMemUsedColorPref defaultValue:kMemUsedColorDefault];
+	return [self colorForPref:kMemUsedColorPref meter:kMemMenuBundleID defaultValue:kMemUsedColorDefault monochromeValue:[NSColor whiteColor]];
 } // memUsedColor
 
 - (NSColor *)memActiveColor {
-	return [self loadColorPref:kMemActiveColorPref defaultValue:kMemActiveColorDefault];
+	return [self colorForPref:kMemActiveColorPref meter:kMemMenuBundleID defaultValue:kMemActiveColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:0.812722 alpha:1.0]];
 } // memActiveColor
 
 - (NSColor *)memInactiveColor {
-	return [self loadColorPref:kMemInactiveColorPref defaultValue:kMemInactiveColorDefault];
+	return [self colorForPref:kMemInactiveColorPref meter:kMemMenuBundleID defaultValue:kMemInactiveColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:0.640117 alpha:1.0]];
 } // memInactiveColor
 
 - (NSColor *)memWireColor {
-	return [self loadColorPref:kMemWireColorPref defaultValue:kMemWireColorDefault];
+	return [self colorForPref:kMemWireColorPref meter:kMemMenuBundleID defaultValue:kMemWireColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:0.343334 alpha:1.0]];
 } // memWireColor
 
 - (NSColor *)memCompressedColor {
-	return [self loadColorPref:kMemCompressedColorPref defaultValue:kMemCompressedColorDefault];
+	return [self colorForPref:kMemCompressedColorPref meter:kMemMenuBundleID defaultValue:kMemCompressedColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:0.102822 alpha:1.0]];
 } // memCompressedColor
 
 - (NSColor *)memPageInColor {
-	return [self loadColorPref:kMemPageInColorPref defaultValue:kMemPageInColorDefault];
+	return [self colorForPref:kMemPageInColorPref meter:kMemMenuBundleID defaultValue:kMemPageInColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:0.072070 alpha:1.0]];
 } // memPageinColor
 
 - (NSColor *)memPageOutColor {
-	return [self loadColorPref:kMemPageOutColorPref defaultValue:kMemPageOutColorDefault];
+	return [self colorForPref:kMemPageOutColorPref meter:kMemMenuBundleID defaultValue:kMemPageOutColorDefault
+			 monochromeValue:[NSColor colorWithCalibratedWhite:0.211559 alpha:1.0]];
 } // memPageoutColor
 
 - (void)saveMemInterval:(double)interval {
@@ -608,15 +679,15 @@
 } // netGraphLength
 
 - (NSColor *)netTransmitColor {
-	return [self loadColorPref:kNetTransmitColorPref defaultValue:kNetTransmitColorDefault];
+	return [self colorForPref:kNetTransmitColorPref meter:kNetMenuBundleID defaultValue:kNetTransmitColorDefault monochromeValue:[NSColor whiteColor]];
 } // netTransmitColor
 
 - (NSColor *)netReceiveColor {
-	return [self loadColorPref:kNetReceiveColorPref defaultValue:kNetReceiveColorDefault];
+	return [self colorForPref:kNetReceiveColorPref meter:kNetMenuBundleID defaultValue:kNetReceiveColorDefault monochromeValue:[NSColor whiteColor]];
 } // netReceiveColor
 
 - (NSColor *)netInactiveColor {
-	return [self loadColorPref:kNetInactiveColorPref defaultValue:kNetInactiveColorDefault];
+	return [self colorForPref:kNetInactiveColorPref meter:kNetMenuBundleID defaultValue:kNetInactiveColorDefault monochromeValue:[NSColor whiteColor]];
 } // netInactiveColor
 
 - (NSString *)netPreferInterface {

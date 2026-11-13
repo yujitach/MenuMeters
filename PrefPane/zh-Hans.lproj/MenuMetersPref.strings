@@ -338,6 +338,11 @@
 
 /* Class = "NSTextFieldCell"; title = "Compressed"; ObjectID = "1081"; */
 "1081.title" = "Compressed";
+
+"clr-style-label-cell.title" = "配色方案：";
+"clr-style-original.title" = "原始";
+"clr-style-monochrome.title" = "单色";
+"clr-style-custom.title" = "自定义";
 "1094.title" = "水平温度计显示";
 "1088.title" = "水平行数：";
 "1117.title" = "水平宽度：";

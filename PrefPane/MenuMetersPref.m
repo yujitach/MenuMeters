@@ -352,6 +352,19 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	// On first load switch to the first tab
 	[prefTabs selectFirstTabViewItem:self];
 
+	NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+	NSString *colorStyleLabel = [bundle localizedStringForKey:@"clr-style-label-cell.title" value:@"Color Scheme:" table:@"MenuMetersPref"];
+	NSString *originalColorStyle = [bundle localizedStringForKey:@"clr-style-original.title" value:@"Original" table:@"MenuMetersPref"];
+	NSString *monochromeColorStyle = [bundle localizedStringForKey:@"clr-style-monochrome.title" value:@"Monochrome" table:@"MenuMetersPref"];
+	NSString *customColorStyle = [bundle localizedStringForKey:@"clr-style-custom.title" value:@"Custom" table:@"MenuMetersPref"];
+	[memColorStyleLabel setStringValue:colorStyleLabel];
+	[netColorStyleLabel setStringValue:colorStyleLabel];
+	for (NSPopUpButton *colorStylePopup in @[memColorStyle, netColorStyle]) {
+		[[colorStylePopup itemAtIndex:0] setTitle:originalColorStyle];
+		[[colorStylePopup itemAtIndex:1] setTitle:monochromeColorStyle];
+		[[colorStylePopup itemAtIndex:2] setTitle:customColorStyle];
+	}
+
 	// On first load populate the image set menu
 	NSEnumerator *diskImageSetEnum = [kDiskImageSets objectEnumerator];
 	[diskImageSet removeAllItems];
@@ -589,6 +602,10 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	[cpuMeterToggle setState:([self isExtraWithBundleIDLoaded:kCPUMenuBundleID] ? NSOnState : NSOffState)];
 
+	BOOL colorChanged = sender && (sender == cpuUserColor || sender == cpuSystemColor ||
+		sender == cpuTemperatureColor || sender == cpuThermometerBorderColor);
+	if (colorChanged) [ourPrefs beginCustomColorStyleForMeter:kCPUMenuBundleID];
+
 	// Save changes
     if (sender == cpuPercentage
         || sender == cpuGraph
@@ -616,6 +633,10 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveCpuGraphLength:[cpuGraphWidth intValue]];
     } else if (sender == cpuHorizontalRows) {
         [ourPrefs saveCpuHorizontalRows:[cpuHorizontalRows intValue]];
+    } else if (sender == cpuThermometerWidth) {
+        [ourPrefs saveCpuThermometerWidth:[cpuThermometerWidth intValue]];
+    } else if (sender == cpuThermometerGap) {
+        [ourPrefs saveCpuThermometerGap:[cpuThermometerGap intValue]];
     } else if (sender == cpuMenuWidth) {
         [ourPrefs saveCpuMenuWidth:[cpuMenuWidth intValue]];
     } else if (sender == cpuMultipleCPU) {
@@ -665,8 +686,10 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveCpuUserColor:[cpuUserColor color]];
 	} else if (sender == cpuSystemColor) {
 		[ourPrefs saveCpuSystemColor:[cpuSystemColor color]];
-        } else if (sender == cpuTemperatureColor) {
-                [ourPrefs saveCpuTemperatureColor:[cpuTemperatureColor color]];
+	} else if (sender == cpuTemperatureColor) {
+		[ourPrefs saveCpuTemperatureColor:[cpuTemperatureColor color]];
+	} else if (sender == cpuThermometerBorderColor) {
+		[ourPrefs saveCpuThermometerBorderColor:[cpuThermometerBorderColor color]];
 	} else if (!sender) {
 		// On first load handle multiprocs options
 		if (![self isMultiProcessor]) {
@@ -699,6 +722,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
                                                   (short)[ourPrefs cpuMaxProcessCount]]];
 	[cpuGraphWidth setIntValue:[ourPrefs cpuGraphLength]];
     [cpuHorizontalRows setIntValue:[ourPrefs cpuHorizontalRows]];
+    [cpuThermometerWidth setIntValue:[ourPrefs cpuThermometerWidth]];
+    [cpuThermometerGap setIntValue:[ourPrefs cpuThermometerGap]];
     [cpuMenuWidth setIntValue:[ourPrefs cpuMenuWidth]];
     if([ourPrefs cpuSortByUsage]){
         [cpuMultipleCPU selectItemAtIndex:4];
@@ -716,7 +741,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[cpuPowerMateMode selectItemAtIndex:[ourPrefs cpuPowerMateMode]];
 	[cpuUserColor setColor:[ourPrefs cpuUserColor]];
 	[cpuSystemColor setColor:[ourPrefs cpuSystemColor]];
-        [cpuTemperatureColor setColor:[ourPrefs cpuTemperatureColor]];
+	[cpuTemperatureColor setColor:[ourPrefs cpuTemperatureColor]];
+	[cpuColorStyle selectItemAtIndex:[ourPrefs colorStyleForMeter:kCPUMenuBundleID]];
+	[cpuThermometerBorderColor setColor:([ourPrefs cpuThermometerBorderColor] ?: [[NSColor labelColor] colorWithAlphaComponent:kBorderAlpha])];
 	[cpuIntervalDisplay takeDoubleValueFrom:cpuInterval];
 
 /*	if ([cpuPercentage state]==NSOnState) {
@@ -746,6 +773,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[cpuMenuWidth setEnabled:NO];
 		[cpuMenuWidthLabel setTextColor:[NSColor disabledControlTextColor]];
     }
+    BOOL verticalBarEnabled = ([cpuThermometer state] == NSOnState && [cpuThermometer isEnabled]);
+    NSColor *verticalBarLabelColor = verticalBarEnabled ? [NSColor controlTextColor] : [NSColor disabledControlTextColor];
+    [cpuThermometerWidth setEnabled:verticalBarEnabled];
+    [cpuThermometerWidthLabel setTextColor:verticalBarLabelColor];
+    [cpuThermometerGap setEnabled:verticalBarEnabled];
+    [cpuThermometerGapLabel setTextColor:verticalBarLabelColor];
+    [cpuThermometerBorderColor setEnabled:verticalBarEnabled];
+    [cpuThermometerBorderColorLabel setTextColor:verticalBarLabelColor];
 /*	if ((([cpuDisplayMode indexOfSelectedItem] + 1) & (kCPUDisplayGraph | kCPUDisplayThermometer | kCPUDisplayHorizontalThermometer)) ||
 		((([cpuDisplayMode indexOfSelectedItem] + 1) & kCPUDisplayPercent) &&
 			([cpuPercentMode indexOfSelectedItem] == kCPUPercentDisplaySplit))) {*/
@@ -766,8 +801,23 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 																	   object:kPrefChangeNotification
                  userInfo:nil];
 	}
-
 } // cpuPrefChange
+
+- (IBAction)colorStylePrefChange:(id)sender {
+	int style = (int)[(NSPopUpButton *)sender indexOfSelectedItem];
+	if (sender == cpuColorStyle) {
+		[ourPrefs saveColorStyle:style forMeter:kCPUMenuBundleID];
+		[self cpuPrefChange:nil];
+	} else if (sender == memColorStyle) {
+		[ourPrefs saveColorStyle:style forMeter:kMemMenuBundleID];
+		[self memPrefChange:nil];
+	} else if (sender == netColorStyle) {
+		[ourPrefs saveColorStyle:style forMeter:kNetMenuBundleID];
+		[self netPrefChange:nil];
+	} else {
+		NSLog(@"Unknown color scheme control: %@", sender);
+	}
+}
 
 - (IBAction)diskPrefChange:(id)sender {
 
@@ -815,6 +865,11 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	}
 	[memMeterToggle setState:([self isExtraWithBundleIDLoaded:kMemMenuBundleID] ? NSOnState : NSOffState)];
 
+	BOOL colorChanged = sender && (sender == memActiveColor || sender == memInactiveColor ||
+		sender == memWiredColor || sender == memCompressedColor || sender == memFreeColor ||
+		sender == memUsedColor || sender == memPageinColor || sender == memPageoutColor);
+	if (colorChanged) [ourPrefs beginCustomColorStyleForMeter:kMemMenuBundleID];
+
 	// Save changes
 	if (sender == memDisplayMode) {
 		[ourPrefs saveMemDisplayMode:(int)[memDisplayMode indexOfSelectedItem] + 1];
@@ -849,7 +904,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	} else if (sender == memPageoutColor) {
 		[ourPrefs saveMemPageOutColor:[memPageoutColor color]];
 	}
-	
+
 	// Update controls
 	[memDisplayMode selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[memDisplayMode selectItemAtIndex:[ourPrefs memDisplayMode] - 1];
@@ -858,6 +913,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[memPageIndicator setState:([ourPrefs memPageIndicator] ? NSOnState : NSOffState)];
     [memPressureMode setState:([ourPrefs memPressure] ? NSOnState : NSOffState)];
 	[memGraphWidth setIntValue:[ourPrefs memGraphLength]];
+	[memUnits selectItemAtIndex:[ourPrefs memUnits]];
+	[memDecimals selectItemAtIndex:[ourPrefs memDecimals]];
 	[memActiveColor setColor:[ourPrefs memActiveColor]];
 	[memInactiveColor setColor:[ourPrefs memInactiveColor]];
 	[memWiredColor setColor:[ourPrefs memWireColor]];
@@ -866,6 +923,7 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[memUsedColor setColor:[ourPrefs memUsedColor]];
 	[memPageinColor setColor:[ourPrefs memPageInColor]];
 	[memPageoutColor setColor:[ourPrefs memPageOutColor]];
+	[memColorStyle selectItemAtIndex:[ourPrefs colorStyleForMeter:kMemMenuBundleID]];
 	[memIntervalDisplay takeIntValueFrom:memInterval];
 
 	// Disable controls as needed
@@ -920,6 +978,9 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[self removeExtraWithBundleID:kNetMenuBundleID];
 	}
 	[netMeterToggle setState:([self isExtraWithBundleIDLoaded:kNetMenuBundleID] ? NSOnState : NSOffState)];
+
+	BOOL colorChanged = sender && (sender == netTxColor || sender == netRxColor || sender == netInactiveColor);
+	if (colorChanged) [ourPrefs beginCustomColorStyleForMeter:kNetMenuBundleID];
 
 	// Save changes
 	if (sender == netDisplayMode) {

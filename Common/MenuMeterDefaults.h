@@ -34,6 +34,9 @@
 
 + (void)movePreferencesIfNecessary;
 + (MenuMeterDefaults*)sharedMenuMeterDefaults;
+- (int)colorStyleForMeter:(NSString *)meter;
+- (void)saveColorStyle:(int)style forMeter:(NSString *)meter;
+- (void)beginCustomColorStyleForMeter:(NSString *)meter;
 
 // CPU menu prefs
 - (double)cpuInterval;

@@ -355,7 +355,12 @@
 ".title" = "Horizontal Width:";
 
 /* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "tAx-IV-Wip"; */
-"tAx-IV-Wip.title" = "Display memory pressure";
+"tAx-IV-Wip.title" = "Mostra pressione della memoria";
+
+"clr-style-label-cell.title" = "Schema colori:";
+"clr-style-original.title" = "Originale";
+"clr-style-monochrome.title" = "Monocromatico";
+"clr-style-custom.title" = "Personalizzato";
 "1094.title" = "Termometro orizzontale";
 "1088.title" = "Righe orizzontali:";
 "1117.title" = "Larghezza orizzontale:";

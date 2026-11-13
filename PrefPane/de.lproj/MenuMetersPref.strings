@@ -431,6 +431,11 @@
 
 /* title = "Opens specific  panes"; ObjectID = "phH-yJ-I6O"; */
 "phH-yJ-I6O.title" = "Öffnet entsprechende Kategorien";
+
+"clr-style-label-cell.title" = "Farbschema:";
+"clr-style-original.title" = "Original";
+"clr-style-monochrome.title" = "Monochrom";
+"clr-style-custom.title" = "Benutzerdefiniert";
 "vbr-Hd-Cel.title" = "Vertikale Balken";
 "vbr-WL-Cel.title" = "Balkenbreite:";
 "vbr-GL-Cel.title" = "Balkenabstand:";

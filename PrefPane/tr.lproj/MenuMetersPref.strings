@@ -409,6 +409,10 @@
 
 /* Class = "NSMenuItem"; title = "all cores, including hyperthreaded ones"; ObjectID = "vbH-jV-tUr"; */
 "vbH-jV-tUr.title" = "tüm çekirdekler, hiper iş parçacıklılar dahil";
+
+"clr-style-label-cell.title" = "Renk şeması:";
+"clr-style-original.title" = "Özgün";
+"clr-style-monochrome.title" = "Tek renkli";
 "clr-style-custom.title" = "Özel";
 "vbr-Hd-Cel.title" = "Dikey çubuklar";
 "vbr-WL-Cel.title" = "Çubuk genişliği:";
