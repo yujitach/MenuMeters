@@ -162,8 +162,8 @@
 
 - (NSArray *)diskSpaceMenuItemImages:(NSArray *)driveDetails {
 
-	// Menu item content is rendered into images because it is not possible
-	// to subclass NSMenuItemView across all OS versions.
+    // Menu item content is rendered into images render. We do this because
+    // it is not possible to subclass NSMenuItemView across all OS versions.
 	NSMutableArray *itemImages = [NSMutableArray array];
 	NSDictionary *stringAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
 										fgMenuThemeColor,
@@ -213,23 +213,28 @@
 		widestTotalSpaceText = MAX(widestTotalSpaceText, [renderString size].width);
 	}
 
+    // Round off the text widths
 	widestNameText = ceil(widestNameText);
 	widestDetailsText = ceil(widestDetailsText);
 	widestFreeSpaceText = ceil(widestFreeSpaceText);
 	widestUsedSpaceText = ceil(widestUsedSpaceText);
 	widestTotalSpaceText = ceil(widestTotalSpaceText);
 
+    // Decide which is the biggest text, start with assuming that top line
+    // (name and details) is widest.
 	double finalTextWidth = widestNameText + widestDetailsText + 25;
 	if (widestFreeSpaceText + widestUsedSpaceText + widestTotalSpaceText + 30 > finalTextWidth) {
 		finalTextWidth = widestFreeSpaceText + widestUsedSpaceText + widestTotalSpaceText + 30;
 	}
 
+    // Loop again, rendering the final image
 	for (NSUInteger i = 0; i < [driveDetails count]; i++) {
 		NSImage *volIcon = [[driveDetails objectAtIndex:i] objectForKey:@"icon"];
 		if (!volIcon) {
 			volIcon = [[NSImage alloc] initWithSize:NSMakeSize(32, 32)];
 		}
 
+        // Build the new image
 		NSImage *menuItemImage = [NSImage imageWithSize:NSMakeSize([volIcon size].width + 10 + finalTextWidth,
 																  [volIcon size].height)
 												 flipped:NO
