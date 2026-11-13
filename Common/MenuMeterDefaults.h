@@ -89,6 +89,8 @@
 - (int)memDisplayMode;
 - (BOOL)memUsedFreeLabel;
 - (int)memGraphLength;
+- (int)memDecimals;
+- (int)memUnits;
 - (BOOL)memPageIndicator;
 - (BOOL)memPressure;
 - (NSColor *)memFreeColor;
@@ -105,6 +107,8 @@
 - (void)saveMemUsedFreeLabel:(BOOL)label;
 - (void)saveMemPressure:(BOOL)label;
 - (void)saveMemGraphLength:(int)length;
+- (void)saveMemDecimals:(int)decimals;
+- (void)saveMemUnits:(int)units;
 - (void)saveMemFreeColor:(NSColor *)color;
 - (void)saveMemUsedColor:(NSColor *)color;
 - (void)saveMemActiveColor:(NSColor *)color;
@@ -123,6 +127,7 @@
 - (BOOL)netThroughputLabel;
 - (BOOL)netThroughput1KBound;
 - (BOOL)netThroughputBits;
+- (int)netThroughputDecimals;
 - (int)netGraphStyle;
 - (int)netGraphLength;
 - (NSColor *)netTransmitColor;
@@ -137,6 +142,7 @@
 - (void)saveNetThroughputLabel:(BOOL)label;
 - (void)saveNetThroughput1KBound:(BOOL)bound;
 - (void)saveNetThroughputBits:(BOOL)bits;
+- (void)saveNetThroughputDecimals:(int)decimals;
 - (void)saveNetGraphStyle:(int)style;
 - (void)saveNetGraphLength:(int)length;
 - (void)saveNetTransmitColor:(NSColor *)color;

@@ -392,3 +392,10 @@
 
 /* Class = "NSMenuItem"; title = "all cores, including hyperthreaded ones"; ObjectID = "vbH-jV-tUr"; */
 "vbH-jV-tUr.title" = "kaikki ytimet, myös hypersäikeistetyt";
+"mem-Un-LCl.title" = "Yksiköt:";
+"mem-Un-MB1.title" = "MB";
+"mem-Un-Aut.title" = "Automaattinen (MB, GB, TB)";
+"mem-Dc-LCl.title" = "Desimaalit:";
+"mem-Dc-Ad1.title" = "Mukautuva";
+"nTd-Dc-LCl.title" = "Desimaalit:";
+"nTd-Dc-Ad1.title" = "Mukautuva";

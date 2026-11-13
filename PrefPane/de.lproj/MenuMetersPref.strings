@@ -298,7 +298,7 @@
 "1060.title" = "Durchsatz beschriften (Tx/Rx)";
 
 /* Class = "NSButtonCell"; title = "Werte unter 1KB/Sek. ignorieren"; ObjectID = "1061"; */
-"1061.title" = "Werte unter 1KB/Sek. ignorieren";
+"1061.title" = "Werte unter 1 KB/Sek. ignorieren";
 
 /* Class = "NSTextFieldCell"; title = "Grafikart:"; ObjectID = "1062"; */
 "1062.title" = "Grafikart:";
@@ -431,3 +431,10 @@
 
 /* title = "Opens specific  panes"; ObjectID = "phH-yJ-I6O"; */
 "phH-yJ-I6O.title" = "Öffnet entsprechende Kategorien";
+"mem-Un-LCl.title" = "Einheiten:";
+"mem-Un-MB1.title" = "MB";
+"mem-Un-Aut.title" = "Automatisch (MB, GB, TB)";
+"mem-Dc-LCl.title" = "Dezimalstellen:";
+"mem-Dc-Ad1.title" = "Automatisch";
+"nTd-Dc-LCl.title" = "Dezimalstellen:";
+"nTd-Dc-Ad1.title" = "Automatisch";

@@ -298,7 +298,7 @@
 "1060.title" = "Mostra etichette throughput (Tx/Rx)";
 
 /* Class = "NSButtonCell"; title = "Ignora valori sotto 1KB/s"; ObjectID = "1061"; */
-"1061.title" = "Ignora valori sotto 1KB/s";
+"1061.title" = "Ignora valori sotto 1 KB/s";
 
 /* Class = "NSTextFieldCell"; title = "Stile grafico:"; ObjectID = "1062"; */
 "1062.title" = "Stile grafico:";
@@ -356,3 +356,10 @@
 
 /* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "tAx-IV-Wip"; */
 "tAx-IV-Wip.title" = "Display memory pressure";
+"mem-Un-LCl.title" = "Unità:";
+"mem-Un-MB1.title" = "MB";
+"mem-Un-Aut.title" = "Automatico (MB, GB, TB)";
+"mem-Dc-LCl.title" = "Posizioni decimali:";
+"mem-Dc-Ad1.title" = "Adattivo";
+"nTd-Dc-LCl.title" = "Posizioni decimali:";
+"nTd-Dc-Ad1.title" = "Adattivo";

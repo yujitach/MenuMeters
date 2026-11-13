@@ -298,7 +298,7 @@
 "1060.title" = "显示吞吐量标签(发/收)";
 
 /* Class = "NSButtonCell"; title = "忽略低于 1KB/s 的数值"; ObjectID = "1061"; */
-"1061.title" = "忽略低于 1KB/s 的数值";
+"1061.title" = "忽略低于 1 KB/s 的数值";
 
 /* Class = "NSTextFieldCell"; title = "曲线样式："; ObjectID = "1062"; */
 "1062.title" = "曲线样式：";
@@ -338,3 +338,10 @@
 
 /* Class = "NSTextFieldCell"; title = "Compressed"; ObjectID = "1081"; */
 "1081.title" = "Compressed";
+"mem-Un-LCl.title" = "单位：";
+"mem-Un-MB1.title" = "MB";
+"mem-Un-Aut.title" = "自动（MB、GB、TB）";
+"mem-Dc-LCl.title" = "小数位数：";
+"mem-Dc-Ad1.title" = "自适应";
+"nTd-Dc-LCl.title" = "小数位数：";
+"nTd-Dc-Ad1.title" = "自适应";

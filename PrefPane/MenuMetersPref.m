@@ -828,6 +828,10 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
         [ourPrefs saveMemPressure:(([memPressureMode state] == NSOnState) ? YES : NO)];
 	} else if (sender == memGraphWidth) {
 		[ourPrefs saveMemGraphLength:[memGraphWidth intValue]];
+	} else if (sender == memUnits) {
+		[ourPrefs saveMemUnits:(int)[memUnits indexOfSelectedItem]];
+	} else if (sender == memDecimals) {
+		[ourPrefs saveMemDecimals:(int)[memDecimals indexOfSelectedItem]];
 	} else if (sender == memActiveColor) {
 		[ourPrefs saveMemActiveColor:[memActiveColor color]];
 	} else if (sender == memInactiveColor) {
@@ -934,6 +938,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 		[ourPrefs saveNetThroughput1KBound:(([netThroughput1KBound state] == NSOnState) ? YES : NO)];
 	} else if (sender == netThroughputBits) {
 		[ourPrefs saveNetThroughputBits:(([netThroughputBits state] == NSOnState) ? YES : NO)];
+	} else if (sender == netThroughputDecimals) {
+		[ourPrefs saveNetThroughputDecimals:(int)[netThroughputDecimals indexOfSelectedItem]];
 	} else if (sender == netGraphStyle) {
 		[ourPrefs saveNetGraphStyle:(int)[netGraphStyle indexOfSelectedItem]];
 	} else if (sender == netGraphWidth) {
@@ -968,12 +974,14 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[netThroughputLabeling setState:([ourPrefs netThroughputLabel] ? NSOnState : NSOffState)];
 	[netThroughput1KBound setState:([ourPrefs netThroughput1KBound] ? NSOnState : NSOffState)];
 	[netThroughputBits setState:([ourPrefs netThroughputBits] ? NSOnState : NSOffState)];
+	[netThroughputDecimals selectItemAtIndex:[ourPrefs netThroughputDecimals]];
 	[netGraphStyle selectItemAtIndex:-1]; // Work around multiselects. AppKit problem?
 	[netGraphStyle selectItemAtIndex:[ourPrefs netGraphStyle]];
 	[netGraphWidth setIntValue:[ourPrefs netGraphLength]];
 	[netTxColor setColor:[ourPrefs netTransmitColor]];
 	[netRxColor setColor:[ourPrefs netReceiveColor]];
 	[netInactiveColor setColor:[ourPrefs netInactiveColor]];
+	[netColorStyle selectItemAtIndex:[ourPrefs colorStyleForMeter:kNetMenuBundleID]];
 	[netIntervalDisplay takeDoubleValueFrom:netInterval];
 	if ([[ourPrefs netPreferInterface] isEqualToString:kNetPrimaryInterface]) {
 		[netPreferInterface selectItemAtIndex:0];

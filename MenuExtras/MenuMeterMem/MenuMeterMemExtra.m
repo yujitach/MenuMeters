@@ -73,6 +73,8 @@
 #define kSwapSizeFormat						@"%@ total swap space"
 #define kSwapSizeUsedFormat					@"%@ total swap space (%@ used)"
 #define kMBLabel							@"MB"
+#define kGBLabel							@"GB"
+#define kTBLabel							@"TB"
 
 ///////////////////////////////////////////////////////////////
 //
@@ -186,17 +188,13 @@
 	// (mike.fischer at fi-works.de) for use in MenuMeters.
 	NSNumberFormatter *tempFormat = [[NSNumberFormatter alloc] init];
 	[tempFormat setLocalizesFormat:YES];
-	[tempFormat setFormat:[NSString stringWithFormat:@"#,##0.0%@", [localizedStrings objectForKey:kMBLabel]]];
 	// Go through an archive/unarchive cycle to work around a bug on pre-10.2.2 systems
 	// see http://cocoa.mamasam.com/COCOADEV/2001/12/2/21029.php
-    memFloatMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
-	[tempFormat setFormat:[NSString stringWithFormat:@"#,##0%@", [localizedStrings objectForKey:kMBLabel]]];
-	memIntMBFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	[tempFormat setFormat:@"#,##0"];
 	prettyIntFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
 	[tempFormat setFormat:@"##0.0%"];
 	percentFormatter = [NSUnarchiver unarchiveObjectWithData:[NSArchiver archivedDataWithRootObject:tempFormat]];
-	if (!(memFloatMBFormatter && memIntMBFormatter && prettyIntFormatter && percentFormatter)) {
+	if (!(prettyIntFormatter && percentFormatter)) {
 		return nil;
 	}
 
@@ -306,24 +304,24 @@
 
 	// Usage
 	title = [NSString stringWithFormat:[localizedStrings objectForKey:kUsageFormat],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"usedmb"]],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freemb"]],
-					[memIntMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"totalmb"]]];
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"usedmb"]],
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"freemb"]],
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"totalmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemUsageInfoMenuIndex, title);
 	// Wired
 	title = [NSString stringWithFormat:[localizedStrings objectForKey:kActiveWiredFormat],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"activemb"]],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"wiremb"]]];
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"activemb"]],
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"wiremb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemActiveWiredInfoMenuIndex, title);
 	// Inactive/Free
 	title = [NSString stringWithFormat:[localizedStrings objectForKey:kInactiveFreeFormat],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"inactivemb"]],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"freepagemb"]]];
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"inactivemb"]],
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"freepagemb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemInactiveFreeInfoMenuIndex, title);
 	// Compressed
 	title = [NSString stringWithFormat:[localizedStrings objectForKey:kCompressedFormat],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"compressedmb"]],
-					[memFloatMBFormatter stringForObjectValue:[currentMemStats objectForKey:@"uncompressedmb"]]];
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"compressedmb"]],
+					[self memoryStringForNumber:[currentMemStats objectForKey:@"uncompressedmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemCompressedInfoMenuIndex, title);
 	// VM paging
 	title = [NSString stringWithFormat:[localizedStrings objectForKey:kVMPagingFormat],
@@ -369,11 +367,69 @@
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapMaxCountInfoMenuIndex, title);
 	// Swap size, Tiger swap used path from Michael Nordmeyer (http://goodyworks.com)
 	title = [NSString stringWithFormat:[localizedStrings objectForKey:kSwapSizeUsedFormat],
-			[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapsizemb"]],
-			[memIntMBFormatter stringForObjectValue:[currentSwapStats objectForKey:@"swapusedmb"]]];
+			[self memoryStringForNumber:[currentSwapStats objectForKey:@"swapsizemb"]],
+			[self memoryStringForNumber:[currentSwapStats objectForKey:@"swapusedmb"]]];
 	LiveUpdateMenuItemTitle(extraMenu, kMemSwapSizeInfoMenuIndex, title);
 
 } // updateMenuContent
+
+///////////////////////////////////////////////////////////////
+//
+//	Number formatting
+//
+///////////////////////////////////////////////////////////////
+
+- (NSString *)memoryStringForMB:(double)mb {
+
+	if ([ourPrefs memUnits] == kMemUnitsAutomatic) {
+		NSArray *units = @[[localizedStrings objectForKey:kMBLabel],
+						   [localizedStrings objectForKey:kGBLabel],
+						   [localizedStrings objectForKey:kTBLabel]];
+		return [MenuMeterNumberFormat scaledStringForValue:mb base:1024 units:units mode:[ourPrefs memDecimals]];
+	}
+	return [MenuMeterNumberFormat stringForValue:mb mode:[ourPrefs memDecimals] unit:[localizedStrings objectForKey:kMBLabel]];
+
+} // memoryStringForMB
+
+- (NSString *)memoryStringForNumber:(NSNumber *)mb {
+
+	return [self memoryStringForMB:[mb doubleValue]];
+
+} // memoryStringForNumber
+
+- (NSFont *)numberFont {
+
+	return [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];
+
+} // numberFont
+
+// Widest used/free string the number display can show for this machine's RAM
+- (CGFloat)numberDisplayWidth {
+
+	double totalMB = [[[memStats memStats] objectForKey:@"totalmb"] doubleValue];
+	int maxUnit = 0;
+	if ([ourPrefs memUnits] == kMemUnitsAutomatic) {
+		for (double scaled = totalMB; (scaled >= 1024) && (maxUnit < 2); scaled /= 1024) {
+			maxUnit++;
+		}
+	}
+	NSMutableArray *samples = [NSMutableArray arrayWithObject:[NSNumber numberWithDouble:totalMB]];
+	for (int unit = 0; unit <= maxUnit; unit++) {
+		for (NSNumber *sample in @[@1023.99, @999.99, @99.99, @9.999]) {
+			double mb = [sample doubleValue] * pow(1024, unit);
+			if (mb <= totalMB) {
+				[samples addObject:[NSNumber numberWithDouble:mb]];
+			}
+		}
+	}
+	NSDictionary *attributes = @{NSFontAttributeName: [self numberFont]};
+	CGFloat width = 0;
+	for (NSNumber *mb in samples) {
+		width = MAX(width, [[self memoryStringForNumber:mb] sizeWithAttributes:attributes].width);
+	}
+	return ceil(width);
+
+} // numberDisplayWidth
 
 ///////////////////////////////////////////////////////////////
 //
@@ -487,18 +543,14 @@
 
 	// Construct strings
 	NSAttributedString *renderUString = [[NSAttributedString alloc]
-													initWithString:[NSString stringWithFormat:@"%.0f%@",
-																		usedMB,
-																		[localizedStrings objectForKey:kMBLabel]]
+													initWithString:[self memoryStringForMB:usedMB]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                     [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																		usedColor, NSForegroundColorAttributeName,
 																		nil]];
 	// Construct and draw the free string
 	NSAttributedString *renderFString = [[NSAttributedString alloc]
-													initWithString:[NSString stringWithFormat:@"%.0f%@",
-																		freeMB,
-																		[localizedStrings objectForKey:kMBLabel]]
+													initWithString:[self memoryStringForMB:freeMB]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                     [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
 																		freeColor, NSForegroundColorAttributeName,
@@ -873,16 +925,6 @@
 #endif
 
     [self setupColor:nil];
-	// Figure out the length of "MB" localization
-	float mbLength = 0;
-	if ([ourPrefs memDisplayMode] == kMemDisplayNumber) {
-		NSAttributedString *renderMBString =  [[NSAttributedString alloc]
-													initWithString:[localizedStrings objectForKey:kMBLabel]
-														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                    [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
-																		nil]];
-		mbLength = (float)ceil([renderMBString size].width);
-	}
 
 	// Fix our menu size to match our config
     CGFloat uWidth=self.uLabel.size.width;
@@ -894,21 +936,11 @@
 			menuWidth = kMemPieDisplayWidth;
 			break;
 		case kMemDisplayNumber:
-			// Read in the total RAM, and change length to accomodate those with more RAM
-			if ([[[memStats memStats] objectForKey:@"totalmb"] unsignedLongLongValue] >= 10000) {
-				menuWidth = kMemNumberDisplayExtraLongWidth + mbLength;
-				textWidth = kMemNumberDisplayExtraLongWidth + mbLength;
-			} else if ([[[memStats memStats] objectForKey:@"totalmb"] unsignedLongLongValue] >= 1000) {
-				menuWidth = kMemNumberDisplayLongWidth + mbLength;
-				textWidth = kMemNumberDisplayLongWidth + mbLength;
-			} else {
-				menuWidth = kMemNumberDisplayShortWidth + mbLength;
-				textWidth = kMemNumberDisplayShortWidth + mbLength;
-			}
+			textWidth = [self numberDisplayWidth];
 			if ([ourPrefs memUsedFreeLabel]) {
-				menuWidth += ceil(numberLabelWidth);
 				textWidth += ceil(numberLabelWidth);
 			}
+			menuWidth = textWidth;
 			break;
 		case kMemDisplayBar:
 			menuWidth = kMemThermometerDisplayWidth;

@@ -298,7 +298,7 @@
 "1060.title" = "Afficher les préfixes (Tx/Rx)";
 
 /* Class = "NSButtonCell"; title = "Ignorer les valeurs inférieures à 1Ko/s"; ObjectID = "1061"; */
-"1061.title" = "Ignorer les valeurs inférieures à 1Ko/s";
+"1061.title" = "Ignorer les valeurs inférieures à 1 Ko/s";
 
 /* Class = "NSTextFieldCell"; title = "Style du graphique :"; ObjectID = "1062"; */
 "1062.title" = "Style du graphique :";
@@ -356,3 +356,10 @@
 
 /* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "Yhx-uB-Efv"; */
 "Yhx-uB-Efv.title" = "Display memory pressure";
+"mem-Un-LCl.title" = "Unités :";
+"mem-Un-MB1.title" = "MB";
+"mem-Un-Aut.title" = "Automatique (MB, GB, TB)";
+"mem-Dc-LCl.title" = "Décimales :";
+"mem-Dc-Ad1.title" = "Adaptatif";
+"nTd-Dc-LCl.title" = "Décimales :";
+"nTd-Dc-Ad1.title" = "Adaptatif";

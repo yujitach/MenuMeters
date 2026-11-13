@@ -398,6 +398,20 @@
 				defaultValue:kMemGraphWidthDefault];
 } // memGraphLength
 
+- (int)memDecimals {
+	return [self loadIntPref:kMemDecimalsPref
+					lowBound:kMenuMeterDecimalsAdaptive
+				   highBound:kMenuMeterDecimalsTwo
+				defaultValue:kMemDecimalsDefault];
+} // memDecimals
+
+- (int)memUnits {
+	return [self loadIntPref:kMemUnitsPref
+					lowBound:kMemUnitsMB
+				   highBound:kMemUnitsAutomatic
+				defaultValue:kMemUnitsDefault];
+} // memUnits
+
 - (NSColor *)memFreeColor {
 	return [self loadColorPref:kMemFreeColorPref defaultValue:kMemFreeColorDefault];
 } // memFreeColor
@@ -453,6 +467,14 @@
 - (void)saveMemGraphLength:(int)length {
 	[self saveIntPref:kMemGraphLengthPref value:length];
 } // saveMemGraphLength
+
+- (void)saveMemDecimals:(int)decimals {
+	[self saveIntPref:kMemDecimalsPref value:decimals];
+} // saveMemDecimals
+
+- (void)saveMemUnits:(int)units {
+	[self saveIntPref:kMemUnitsPref value:units];
+} // saveMemUnits
 
 - (void)saveMemFreeColor:(NSColor *)color {
 	[self saveColorPref:kMemFreeColorPref value:color];
@@ -538,6 +560,13 @@
 	return [self loadBoolPref:kNetThroughputBitsPref defaultValue:kNetThroughputBitsDefault];
 } // netThroughputBits
 
+- (int)netThroughputDecimals {
+	return [self loadIntPref:kNetThroughputDecimalsPref
+					lowBound:kMenuMeterDecimalsAdaptive
+				   highBound:kMenuMeterDecimalsTwo
+				defaultValue:kNetThroughputDecimalsDefault];
+} // netThroughputDecimals
+
 - (int)netGraphStyle {
 	return [self loadIntPref:kNetGraphStylePref
 					lowBound:kNetGraphStyleStandard
@@ -599,6 +628,10 @@
 - (void)saveNetThroughputBits:(BOOL)label {
 	[self saveBoolPref:kNetThroughputBitsPref value:label];
 } // saveNetThroughputBits
+
+- (void)saveNetThroughputDecimals:(int)decimals {
+	[self saveIntPref:kNetThroughputDecimalsPref value:decimals];
+} // saveNetThroughputDecimals
 
 - (void)saveNetGraphStyle:(int)style {
 	[self saveIntPref:kNetGraphStylePref value:style];

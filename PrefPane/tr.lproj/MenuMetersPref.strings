@@ -267,7 +267,7 @@
 "1060.title" = "Veri hacmi etiketlerini göster (Tx/Rx)";
 
 /* Class = "NSButtonCell"; title = "Ignore values below 1K/s"; ObjectID = "1061"; */
-"1061.title" = "1K/sn altındaki değerleri yok say";
+"1061.title" = "1 K/sn altındaki değerleri yok say";
 
 /* Class = "NSTextFieldCell"; title = "Graph style:"; ObjectID = "1062"; */
 "1062.title" = "Grafik stili:";
@@ -409,3 +409,10 @@
 
 /* Class = "NSMenuItem"; title = "all cores, including hyperthreaded ones"; ObjectID = "vbH-jV-tUr"; */
 "vbH-jV-tUr.title" = "tüm çekirdekler, hiper iş parçacıklılar dahil";
+"mem-Un-LCl.title" = "Birimler:";
+"mem-Un-MB1.title" = "MB";
+"mem-Un-Aut.title" = "Otomatik (MB, GB, TB)";
+"mem-Dc-LCl.title" = "Ondalık basamak:";
+"mem-Dc-Ad1.title" = "Uyarlanabilir";
+"nTd-Dc-LCl.title" = "Ondalık basamak:";
+"nTd-Dc-Ad1.title" = "Uyarlanabilir";

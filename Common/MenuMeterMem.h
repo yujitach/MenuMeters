@@ -21,6 +21,8 @@
 // 	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
+#import "MenuMeterNumberFormat.h"
+
 ///////////////////////////////////////////////////////////////
 //
 //	Constants
@@ -29,9 +31,6 @@
 
 // Widths of the various displays
 #define kMemPieDisplayWidth					17.0f
-#define kMemNumberDisplayShortWidth			20.0f
-#define kMemNumberDisplayLongWidth			26.0f
-#define kMemNumberDisplayExtraLongWidth		34.0f
 #define kMemThermometerDisplayWidth			11.0f
 #define kMemPagingDisplayWidth				17.0f
 #define kMemPagingDisplayGapWidth			4.0f
@@ -70,7 +69,8 @@
 #define kMemCompressedColorPref				@"MemCompressedColor"
 #define kMemPageInColorPref					@"MemPageInColor"
 #define kMemPageOutColorPref				@"MemPageOutColor"
-
+#define kMemDecimalsPref					@"MemDecimals"
+#define kMemUnitsPref						@"MemUnits"
 // Display modes
 enum {
 	kMemDisplayPie							= 1,
@@ -87,6 +87,14 @@ enum {
 
 // Page indicator
 #define kMemPageIndicatorDefault			NO
+
+// Number formatting
+#define kMemDecimalsDefault					kMenuMeterDecimalsOne
+enum {
+	kMemUnitsMB							= 0,
+	kMemUnitsAutomatic
+};
+#define kMemUnitsDefault					kMemUnitsMB
 
 // Timer
 #define kMemUpdateIntervalMin				1.0

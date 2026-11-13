@@ -44,6 +44,7 @@
                 <outlet property="diskSelectMode" destination="501" id="506"/>
                 <outlet property="memActiveColor" destination="233" id="251"/>
                 <outlet property="memCompressedColor" destination="456" id="1hu-xb-WKb"/>
+                <outlet property="memDecimals" destination="mem-Dc-Pop" id="mem-Dc-Out"/>
                 <outlet property="memDisplayMode" destination="221" id="248"/>
                 <outlet property="memFreeColor" destination="603" id="607"/>
                 <outlet property="memFreeUsedLabeling" destination="361" id="369"/>
@@ -59,6 +60,7 @@
                 <outlet property="memPageoutColor" destination="450" id="468"/>
                 <outlet property="memPageoutColorLabel" destination="451" id="467"/>
                 <outlet property="memPressureMode" destination="kbR-DC-oA2" id="Q6h-hU-Rjz"/>
+                <outlet property="memUnits" destination="mem-Un-Pop" id="mem-Un-Out"/>
                 <outlet property="memUsedColor" destination="600" id="606"/>
                 <outlet property="memWiredColor" destination="232" id="253"/>
                 <outlet property="netDisplayMode" destination="296" id="340"/>
@@ -79,6 +81,7 @@
                 <outlet property="netScaleModeLabel" destination="523" id="549"/>
                 <outlet property="netThroughput1KBound" destination="377" id="379"/>
                 <outlet property="netThroughputBits" destination="evw-vV-J1K" id="IFt-7g-qja"/>
+                <outlet property="netThroughputDecimals" destination="nTd-Dc-Pop" id="nTd-Dc-Out"/>
                 <outlet property="netThroughputLabeling" destination="362" id="370"/>
                 <outlet property="netTxColor" destination="333" id="345"/>
                 <outlet property="prefTabs" destination="99" id="117"/>

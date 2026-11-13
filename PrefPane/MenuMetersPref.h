@@ -107,6 +107,8 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 	IBOutlet NSColorWell			*memPageoutColor;
 	IBOutlet NSTextField			*memPageoutColorLabel;
         IBOutlet NSButton               *memPressureMode;
+	IBOutlet NSPopUpButton			*memUnits;
+	IBOutlet NSPopUpButton			*memDecimals;
 	// Net pane controls
 	IBOutlet NSButton				*netMeterToggle;
 	IBOutlet NSPopUpButton			*netDisplayMode;
@@ -121,6 +123,7 @@ NSWindowController<NSWindowDelegate, NSToolbarDelegate, NSTabViewDelegate>
 	IBOutlet NSButton				*netThroughputLabeling;
 	IBOutlet NSButton				*netThroughput1KBound;
 	IBOutlet NSButton				*netThroughputBits;
+	IBOutlet NSPopUpButton			*netThroughputDecimals;
 	IBOutlet NSPopUpButton			*netGraphStyle;
 	IBOutlet NSTextField			*netGraphStyleLabel;
 	IBOutlet NSSlider				*netGraphWidth;
