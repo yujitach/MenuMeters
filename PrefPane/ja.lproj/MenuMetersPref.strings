@@ -355,6 +355,13 @@
 
 /* Class = "NSButtonCell"; title = "Display memory pressure"; ObjectID = "IdA-68-Ayg"; */
 "IdA-68-Ayg.title" = "Display memory pressure";
+"1094.title" = "横型サーモメーター表示";
+"1088.title" = "横列数:";
+"1117.title" = "横幅:";
+"vbr-Hd-Cel.title" = "縦棒表示";
+"vbr-WL-Cel.title" = "バーの幅:";
+"vbr-GL-Cel.title" = "バー間隔:";
+"vbr-BL-Cel.title" = "枠線の色:";
 "mem-Un-LCl.title" = "単位:";
 "mem-Un-MB1.title" = "MB";
 "mem-Un-Aut.title" = "自動 (MB、GB、TB)";

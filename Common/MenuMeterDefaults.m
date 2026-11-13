@@ -182,6 +182,20 @@
                 defaultValue:kCPUHorizontalRowsDefault];
 } // cpuHorizontalRows
 
+- (int)cpuThermometerWidth {
+    return [self loadIntPref:kCPUThermometerWidthPref
+                    lowBound:kCPUThermometerWidthMin
+                   highBound:kCPUThermometerWidthMax
+                defaultValue:kCPUThermometerWidthDefault];
+} // cpuThermometerWidth
+
+- (int)cpuThermometerGap {
+    return [self loadIntPref:kCPUThermometerGapPref
+                    lowBound:kCPUThermometerGapMin
+                   highBound:kCPUThermometerGapMax
+                defaultValue:kCPUThermometerGapDefault];
+} // cpuThermometerGap
+
 - (int)cpuMenuWidth {
     return [self loadIntPref:kCPUMenuWidthPref
                     lowBound:kCPUMenuWidthMin
@@ -267,6 +281,14 @@
     [self saveIntPref:kCPUHorizontalRowsPref value:rows];
 } // saveCpuHorizontalRows
 
+- (void)saveCpuThermometerWidth:(int)width {
+    [self saveIntPref:kCPUThermometerWidthPref value:width];
+} // saveCpuThermometerWidth
+
+- (void)saveCpuThermometerGap:(int)gap {
+    [self saveIntPref:kCPUThermometerGapPref value:gap];
+} // saveCpuThermometerGap
+
 - (void)saveCpuMenuWidth:(int)rows {
     [self saveIntPref:kCPUMenuWidthPref value:rows];
 } // saveCpuMenuWidth
@@ -305,6 +327,10 @@
 
 - (void)saveCpuTemperatureColor:(NSColor *)color {
     [self saveColorPref:kCPUTemperatureColor value:color];
+}
+
+- (void)saveCpuThermometerBorderColor:(NSColor *)color {
+	[self saveColorPref:kCPUThermometerBorderColorPref value:color];
 }
 
 - (void)saveCpuSystemColor:(NSColor *)color {

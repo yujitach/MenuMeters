@@ -42,6 +42,8 @@
 - (int)cpuMaxProcessCount;
 - (int)cpuGraphLength;
 - (int)cpuHorizontalRows;
+- (int)cpuThermometerWidth;
+- (int)cpuThermometerGap;
 - (int)cpuMenuWidth;
 - (BOOL)cpuAvgAllProcs;
 - (BOOL)cpuSumAllProcsPercent;
@@ -55,12 +57,15 @@
 - (NSColor *)cpuSystemColor;
 - (NSColor *)cpuUserColor;
 - (NSColor *)cpuTemperatureColor;
+- (NSColor *)cpuThermometerBorderColor; // nil keeps the automatic menu bar color.
 - (void)saveCpuInterval:(double)interval;
 - (void)saveCpuDisplayMode:(int)mode;
 - (void)saveCpuPercentDisplay:(int)mode;
 - (void)saveCpuMaxProcessCount:(int)maxCount;
 - (void)saveCpuGraphLength:(int)length;
 - (void)saveCpuHorizontalRows:(int)rows;
+- (void)saveCpuThermometerWidth:(int)width;
+- (void)saveCpuThermometerGap:(int)gap;
 - (void)saveCpuMenuWidth:(int)width;
 - (void)saveCpuAvgAllProcs:(BOOL)average;
 - (void)saveCpuSumAllProcsPercent:(BOOL)sum;
@@ -72,6 +77,7 @@
 - (void)saveCpuSystemColor:(NSColor *)color;
 - (void)saveCpuUserColor:(NSColor *)color;
 - (void)saveCpuTemperatureColor:(NSColor *)color;
+- (void)saveCpuThermometerBorderColor:(NSColor *)color;
 - (void)saveCpuTemperatureUnit:(int)unit;
 - (void)saveCpuTemperatureSensor:(NSString*)name;
 

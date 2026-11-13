@@ -285,10 +285,10 @@
 			}
 			if (cpuDisplayModePrefs & kCPUDisplayThermometer) {
 				[self renderThermometerForProcessor:cpuNum atOffset:renderOffset];
-				renderOffset += kCPUThermometerDisplayWidth;
+				renderOffset += [self thermometerWidth];
 			}
 			// At end of each proc adjust spacing
-			renderOffset += kCPUDisplayMultiProcGapWidth;
+			renderOffset += [self multiProcGapWidth];
 
 			// If we're averaging all we're done on first iteration
 			if ([ourPrefs cpuAvgAllProcs]) break;
@@ -530,18 +530,18 @@
 
 	// Paths
 	float thermometerTotalHeight = (float)self.imageHeight - 3.0f;
-	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kCPUThermometerDisplayWidth - 3,
-																		 thermometerTotalHeight * ((user + system) > 1 ? 1 : (user + system)))];
-	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kCPUThermometerDisplayWidth - 3,
-																		  thermometerTotalHeight * system)];
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, kCPUThermometerDisplayWidth - 3, thermometerTotalHeight)];
-
+	float thermometerWidth = [self thermometerWidth] - 3;
+	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, thermometerWidth,
+																				 thermometerTotalHeight * ((user + system) > 1 ? 1 : (user + system)))];
+	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, thermometerWidth,
+																				  thermometerTotalHeight * system)];
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, thermometerWidth, thermometerTotalHeight)];
 	// Draw
 	[userColor set];
 	[userPath fill];
 	[systemColor set];
 	[systemPath fill];
-        [[fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha] set];
+	[([ourPrefs cpuThermometerBorderColor] ?: [fgMenuThemeColor colorWithAlphaComponent:kBorderAlpha]) set];
 	[framePath stroke];
 
 	// Reset
@@ -686,6 +686,17 @@
     }
     return offset;
 }
+-(float)thermometerWidth
+{
+    return [ourPrefs cpuThermometerWidth];
+}
+-(float)multiProcGapWidth
+{
+    if (!([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer)) {
+        return kCPUDisplayMultiProcGapWidth;
+    }
+    return [ourPrefs cpuThermometerGap];
+}
 -(float)fontSize
 {
     float fontSize=14;
@@ -707,12 +718,7 @@
     systemColor = [self colorByAdjustingForLightDark:[ourPrefs cpuSystemColor]];
     temperatureColor = [self colorByAdjustingForLightDark:[ourPrefs cpuTemperatureColor]];
 }
-- (void)configFromPrefs:(NSNotification *)notification {
-#ifdef ELCAPITAN
-    [super configDisplay:kCPUMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs cpuInterval]];
-#endif
-
-    [self setupColor:nil];
+- (void)updateMenuWidth {
     int numberOfCPUs = [ourPrefs cpuAvgLowerHalfProcs]?[cpuInfo numberOfCores]:[cpuInfo numberOfCPUs];
 
 	if ([ourPrefs cpuDisplayMode] & kCPUDisplayPercent) {
@@ -735,10 +741,10 @@
             menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * [ourPrefs cpuGraphLength]);
         }
         if ([ourPrefs cpuDisplayMode] & kCPUDisplayThermometer) {
-            menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * kCPUThermometerDisplayWidth);
+            menuWidth += (([ourPrefs cpuAvgAllProcs] ? 1 : numberOfCPUs) * [self thermometerWidth]);
         }
         if (![ourPrefs cpuAvgAllProcs] && (numberOfCPUs > 1)) {
-            menuWidth += ((numberOfCPUs - 1) * kCPUDisplayMultiProcGapWidth);
+            menuWidth += ((numberOfCPUs - 1) * [self multiProcGapWidth]);
         }
     }
     if ([ourPrefs cpuShowTemperature]) {
@@ -748,6 +754,15 @@
     if(![ourPrefs cpuShowTemperature] && [ourPrefs cpuDisplayMode]==0){
         menuWidth=kCPULabelOnlyWidth;
     }
+} // updateMenuWidth
+
+- (void)configFromPrefs:(NSNotification *)notification {
+#ifdef ELCAPITAN
+    [super configDisplay:kCPUMenuBundleID fromPrefs:ourPrefs withTimerInterval:[ourPrefs cpuInterval]];
+#endif
+
+    [self setupColor:nil];
+    [self updateMenuWidth];
 	// Handle PowerMate
 	if ([ourPrefs cpuPowerMate]) {
 		// Load PowerMate if needed, this grabs control of the PowerMate

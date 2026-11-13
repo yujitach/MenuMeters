@@ -412,10 +412,10 @@
 "1094.title" = "Thermometeroptionen";
 
 /* title = "Horizontal Rows:"; ObjectID = "1088"; */
-"1088.title" = "Horizontale Reihen";
+"1088.title" = "Horizontale Reihen:";
 
 /* title = "Horizontal Width:"; ObjectID = "1117"; */
-"1117.title" = "Horizontale Breite";
+"1117.title" = "Horizontale Breite:";
 
 /* title = "pure black/white"; ObjectID = "ayz-p2-XC5"; */
 "ayz-p2-XC5.title" = "Schwarz-Weiß";
@@ -431,6 +431,10 @@
 
 /* title = "Opens specific  panes"; ObjectID = "phH-yJ-I6O"; */
 "phH-yJ-I6O.title" = "Öffnet entsprechende Kategorien";
+"vbr-Hd-Cel.title" = "Vertikale Balken";
+"vbr-WL-Cel.title" = "Balkenbreite:";
+"vbr-GL-Cel.title" = "Balkenabstand:";
+"vbr-BL-Cel.title" = "Rahmenfarbe:";
 "mem-Un-LCl.title" = "Einheiten:";
 "mem-Un-MB1.title" = "MB";
 "mem-Un-Aut.title" = "Automatisch (MB, GB, TB)";
