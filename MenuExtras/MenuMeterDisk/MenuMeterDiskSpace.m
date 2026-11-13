@@ -179,8 +179,8 @@ static NSComparisonResult SortDiskEntryByDeviceString(NSDictionary *a, NSDiction
 
 - (NSString *)spaceString:(double)space {
 
-	double base = useBaseTen ? 1000.0 : 1024.0;
-	NSArray *units = @[[localizedStrings objectForKey:kKBLabel],
+	double base = useBaseTen ? kMenuMeterDecimalBase : kMenuMeterBinaryBase;
+	NSArray<NSString *> *units = @[[localizedStrings objectForKey:kKBLabel],
 					   [localizedStrings objectForKey:kMBLabel],
 					   [localizedStrings objectForKey:kGBLabel]];
 	return [MenuMeterNumberFormat scaledStringForValue:space / base

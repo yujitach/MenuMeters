@@ -57,7 +57,7 @@
 // Data formatting
 - (NSString *)throughputStringForBytesPerSecond:(double)bps;
 - (NSString *)throughputStringForBytes:(double)bytes inInterval:(NSTimeInterval)interval;
-- (NSArray *)throughputUnitLabels;
+- (NSArray<NSString *> *)throughputUnitLabels;
 - (NSString *)throughputStringForValue:(double)value withUnitLabel:(NSString *)unitLabel isBaseUnit:(BOOL)baseUnit;
 - (NSString *)trafficStringForNumber:(NSNumber *)throughputNumber withLabel:(NSString *)directionLabel;
 - (NSUInteger)scaleDown:(double *)num usingBase:(NSUInteger)base withLimit:(NSUInteger)limit;
@@ -124,8 +124,8 @@
 #define kPPPConnectedTitle				@"Connected"
 #define kPPPConnectedWithTimeTitle		@"Connected %02d:%02d:%02d"
 #define kPPPDisconnectingTitle			@"Disconnecting..."
-#define kKiloBinary						1024
-#define kKiloDecimal					1000
+#define kKiloBinary						kMenuMeterBinaryBase
+#define kKiloDecimal					kMenuMeterDecimalBase
 
 ///////////////////////////////////////////////////////////////
 //
@@ -1409,18 +1409,21 @@
 		if ([ourPrefs netThroughputLabel]) menuWidth += ceil(throughputLabelWidth);
 		// Widest string over all units and decimal/rounding cases
 		float suffixMaxWidth = 0;
-		NSArray *unitLabels = [self throughputUnitLabels];
+		NSArray<NSString *> *unitLabels = [self throughputUnitLabels];
+		NSArray<NSNumber *> *boundarySamples = [MenuMeterNumberFormat displayWidthSamplesForBase:kKiloBinary];
 		NSDictionary *throughputAttributes = @{NSFontAttributeName: throughputFont};
-		for (NSUInteger labelIndex = 0; labelIndex < [unitLabels count]; labelIndex++) {
-			for (NSNumber *sample in @[@1023.0, @999.99, @99.99, @9.999]) {
+		BOOL isBaseUnit = YES;
+		for (NSString *unitLabel in unitLabels) {
+			for (NSNumber *sample in boundarySamples) {
 				NSString *sampleString = [self throughputStringForValue:[sample doubleValue]
-														  withUnitLabel:[unitLabels objectAtIndex:labelIndex]
-															 isBaseUnit:(labelIndex == 0)];
+														  withUnitLabel:unitLabel
+															 isBaseUnit:isBaseUnit];
 				float sampleWidth = (float)[sampleString sizeWithAttributes:throughputAttributes].width;
 				if (sampleWidth > suffixMaxWidth) {
 					suffixMaxWidth = sampleWidth;
 				}
 			}
+			isBaseUnit = NO;
 		}
             menuWidth += ceilf(suffixMaxWidth); 
 	}
@@ -1441,8 +1444,8 @@
 
 - (NSString *)throughputStringForBytesPerSecond:(double)bps {
 
-	NSArray *labels = [self throughputUnitLabels];
-	int kilo = kKiloBinary;
+	NSArray<NSString *> *labels = [self throughputUnitLabels];
+	NSUInteger kilo = kKiloBinary;
 
 	if ([ourPrefs netThroughputBits]) {
 		kilo = kKiloDecimal;
@@ -1453,9 +1456,16 @@
 		bps = 0;
 	}
 
-	NSUInteger labelIndex = [self scaleDown:&bps usingBase:kilo withLimit:[labels count] - 1];
-
-	return [self throughputStringForValue:bps withUnitLabel:[labels objectAtIndex:labelIndex] isBaseUnit:(labelIndex == 0)];
+	NSEnumerator<NSString *> *unitEnumerator = [labels objectEnumerator];
+	NSString *unitLabel = [unitEnumerator nextObject];
+	NSString *nextUnit = nil;
+	BOOL isBaseUnit = YES;
+	while ((bps >= kilo) && (nextUnit = [unitEnumerator nextObject])) {
+		bps /= kilo;
+		unitLabel = nextUnit;
+		isBaseUnit = NO;
+	}
+	return [self throughputStringForValue:bps withUnitLabel:unitLabel isBaseUnit:isBaseUnit];
 
 } // throughputStringForBytesPerSecond
 
@@ -1466,7 +1476,7 @@
 
 } // throughputStringForBytes:inInterval:
 
-- (NSArray *)throughputUnitLabels {
+- (NSArray<NSString *> *)throughputUnitLabels {
 
 	if ([ourPrefs netThroughputBits]) {
 		return @[kBitPerSecondLabel, kKbPerSecondLabel, kMbPerSecondLabel, kGbPerSecondLabel];
@@ -1486,7 +1496,7 @@
 
 	NSArray *labels = @[kByteLabel, kKBLabel, kMBLabel, kGBLabel, kTBLabel];
 	double throughput = [throughputNumber doubleValue];
-	int kilo = kKiloBinary;
+	NSUInteger kilo = kKiloBinary;
 
 	if ([ourPrefs netThroughputBits]) {
 		labels = @[kBitLabel, kKbLabel, kMbLabel, kGbLabel, kTbLabel];

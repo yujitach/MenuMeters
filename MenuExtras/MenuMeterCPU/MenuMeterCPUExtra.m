@@ -23,6 +23,7 @@
 
 #import "MenuMeterCPUExtra.h"
 
+static const float kCPUThermometerInset = 1.5f;
 ///////////////////////////////////////////////////////////////
 //
 //	Private methods
@@ -529,13 +530,13 @@
     }
 
 	// Paths
-	float thermometerTotalHeight = (float)self.imageHeight - 3.0f;
-	float thermometerWidth = [self thermometerWidth] - 3;
-	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, thermometerWidth,
+	float thermometerTotalHeight = (float)self.imageHeight - 2 * kCPUThermometerInset;
+	float thermometerWidth = [self thermometerWidth] - 2 * kCPUThermometerInset;
+	NSBezierPath *userPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + kCPUThermometerInset, kCPUThermometerInset, thermometerWidth,
 																				 thermometerTotalHeight * ((user + system) > 1 ? 1 : (user + system)))];
-	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, thermometerWidth,
+	NSBezierPath *systemPath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + kCPUThermometerInset, kCPUThermometerInset, thermometerWidth,
 																				  thermometerTotalHeight * system)];
-	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + 1.5f, 1.5f, thermometerWidth, thermometerTotalHeight)];
+	NSBezierPath *framePath = [NSBezierPath bezierPathWithRect:NSMakeRect(offset + kCPUThermometerInset, kCPUThermometerInset, thermometerWidth, thermometerTotalHeight)];
 	// Draw
 	[userColor set];
 	[userPath fill];

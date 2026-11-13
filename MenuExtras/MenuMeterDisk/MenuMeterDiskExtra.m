@@ -23,6 +23,9 @@
 
 #import "MenuMeterDiskExtra.h"
 
+static const CGFloat kDiskMenuIconSize = 32.0;
+static const CGFloat kDiskMenuNameDetailsGap = 15.0;
+static const CGFloat kDiskMenuSpaceColumnGap = 10.0;
 
 ///////////////////////////////////////////////////////////////
 //
@@ -33,7 +36,7 @@
 @interface MenuMeterDiskExtra (PrivateMethods)
 
 // Menu content
-- (NSArray<NSAttributedString *> *)diskSpaceMenuItemTitles:(NSArray<NSDictionary *> *)driveDetails;
+- (void)addDiskSpaceMenuItems:(NSArray<NSDictionary *> *)driveDetails;
 // Menu actions
 - (void)openOrEjectVolume:(id)sender;
 // Prefs
@@ -131,28 +134,13 @@
 - (NSMenu *)menu {
 
 	// Clear out the menu
-	while ([extraMenu numberOfItems]) {
-		[extraMenu removeItemAtIndex:0];
-	}
+	[extraMenu removeAllItems];
 
 	// Get the disk space data
-	NSArray *diskSpaceData = [diskSpaceMonitor diskSpaceData];
+	NSArray<NSDictionary *> *diskSpaceData = [diskSpaceMonitor diskSpaceData];
 	if (!diskSpaceData || ![diskSpaceData count]) return extraMenu;
 
-	NSArray<NSAttributedString *> *titles = [self diskSpaceMenuItemTitles:diskSpaceData];
-	for (NSUInteger i = 0; i < [titles count]; i++) {
-		NSDictionary *driveDetail = [diskSpaceData objectAtIndex:i];
-		NSMenuItem *item = [extraMenu addItemWithTitle:[titles objectAtIndex:i].string
-															  action:@selector(openOrEjectVolume:)
-													   keyEquivalent:@""];
-		[item setAttributedTitle:[titles objectAtIndex:i]];
-		NSImage *volIcon = [[driveDetail objectForKey:@"icon"] copy];
-		[volIcon setSize:NSMakeSize(32, 32)];
-		[item setImage:volIcon];
-		// Set the represented object to the path (for open/eject)
-		[item setRepresentedObject:[driveDetail objectForKey:@"path"]];
-		[item setTarget:self];
-	}
+	[self addDiskSpaceMenuItems:diskSpaceData];
     [extraMenu addItem:[NSMenuItem separatorItem]];
     [self addStandardMenuEntriesTo:extraMenu];
 
@@ -160,7 +148,7 @@
 
 } // menu
 
-- (NSArray<NSAttributedString *> *)diskSpaceMenuItemTitles:(NSArray<NSDictionary *> *)driveDetails {
+- (void)addDiskSpaceMenuItems:(NSArray<NSDictionary *> *)driveDetails {
 	NSDictionary *fontAttributes = @{
 		NSFontAttributeName: [extraMenu font]
 	};
@@ -173,12 +161,12 @@
 
 	NSMutableParagraphStyle *nameStyle = [[NSMutableParagraphStyle alloc] init];
 	[nameStyle setTabStops:@[
-		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestName) + 15 options:@{}]
+		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestName) + kDiskMenuNameDetailsGap options:@{}]
 	]];
 	NSMutableParagraphStyle *spaceStyle = [[NSMutableParagraphStyle alloc] init];
 	[spaceStyle setTabStops:@[
-		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestUsed) + 10 options:@{}],
-		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestUsed) + ceil(widestFree) + 20 options:@{}]
+		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestUsed) + kDiskMenuSpaceColumnGap options:@{}],
+		[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:ceil(widestUsed) + ceil(widestFree) + 2 * kDiskMenuSpaceColumnGap options:@{}]
 	]];
 
 	// Leave foreground colors to NSMenu, including its highlighted and dark appearances.
@@ -187,7 +175,6 @@
 	NSMutableDictionary *spaceAttributes = [fontAttributes mutableCopy];
 	[spaceAttributes setObject:spaceStyle forKey:NSParagraphStyleAttributeName];
 
-	NSMutableArray<NSAttributedString *> *titles = [NSMutableArray array];
 	for (NSDictionary *driveDetail in driveDetails) {
 		NSString *nameLine = [NSString stringWithFormat:@"%@\t(%@, %@)\n",
 							 [driveDetail objectForKey:@"name"],
@@ -199,11 +186,18 @@
 							  [driveDetail objectForKey:@"total"]];
 		NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:nameLine attributes:nameAttributes];
 		[title appendAttributedString:[[NSAttributedString alloc] initWithString:spaceLine attributes:spaceAttributes]];
-		[titles addObject:title];
+		NSMenuItem *item = [extraMenu addItemWithTitle:title.string
+											  action:@selector(openOrEjectVolume:)
+									   keyEquivalent:@""];
+		[item setAttributedTitle:title];
+		NSImage *volIcon = [[driveDetail objectForKey:@"icon"] copy];
+		[volIcon setSize:NSMakeSize(kDiskMenuIconSize, kDiskMenuIconSize)];
+		[item setImage:volIcon];
+		[item setRepresentedObject:[driveDetail objectForKey:@"path"]];
+		[item setTarget:self];
 	}
-	return titles;
 
-} // diskSpaceMenuItemTitles
+} // addDiskSpaceMenuItems
 
 ///////////////////////////////////////////////////////////////
 //

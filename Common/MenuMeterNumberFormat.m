@@ -11,6 +11,15 @@
 //
 
 #import "MenuMeterNumberFormat.h"
+#import <math.h>
+
+const NSUInteger kMenuMeterDecimalBase = 1000;
+const NSUInteger kMenuMeterBinaryBase = 1024;
+
+static const double kAdaptiveIntegerThreshold = 100.0;
+static const double kAdaptiveSingleDecimalThreshold = 10.0;
+static const double kTwoDecimalWidthProbeOffset = 0.01;
+static const double kSingleDigitWidthProbeOffset = 0.001;
 
 @implementation MenuMeterNumberFormat
 
@@ -31,14 +40,14 @@
 
 + (NSUInteger)decimalsForValue:(double)value mode:(int)mode {
 
-	if (value >= 1000) return 0;
+	if (value >= kMenuMeterDecimalBase) return 0;
 	switch (mode) {
 		case kMenuMeterDecimalsZero:
 			return 0;
 		case kMenuMeterDecimalsTwo:
 			return 2;
 		case kMenuMeterDecimalsAdaptive:
-			return (value >= 100) ? 0 : ((value >= 10) ? 1 : 2);
+			return (value >= kAdaptiveIntegerThreshold) ? 0 : ((value >= kAdaptiveSingleDecimalThreshold) ? 1 : 2);
 		default:
 			return 1;
 	}
@@ -63,15 +72,37 @@
 
 } // stringForValue:mode:unit:
 
-+ (NSString *)scaledStringForValue:(double)value base:(double)base units:(NSArray *)units mode:(int)mode {
++ (NSString *)scaledStringForValue:(double)value base:(double)base units:(NSArray<NSString *> *)units mode:(int)mode {
 
-	NSUInteger unitIndex = 0;
-	while ((value >= base) && (unitIndex + 1 < [units count])) {
-		value /= base;
-		unitIndex++;
+	if (!isfinite(value) || value < 0 || !isfinite(base) || base <= 1 || ![units count]) {
+		[NSException raise:NSInvalidArgumentException
+					format:@"Number scaling requires a finite nonnegative value, a finite base > 1, and at least one unit."];
 	}
-	return [self stringForValue:value mode:mode unit:[units objectAtIndex:unitIndex]];
+	NSArray<NSString *> *unitLabels = [units copy];
+	for (id unit in unitLabels) {
+		if (![unit isKindOfClass:[NSString class]] || ![unit length]) {
+			[NSException raise:NSInvalidArgumentException format:@"Number scaling requires nonempty string units."];
+		}
+	}
+	NSEnumerator<NSString *> *unitEnumerator = [unitLabels objectEnumerator];
+	NSString *unit = [unitEnumerator nextObject];
+	NSString *nextUnit = nil;
+	while ((value >= base) && (nextUnit = [unitEnumerator nextObject])) {
+		value /= base;
+		unit = nextUnit;
+	}
+	return [self stringForValue:value mode:mode unit:unit];
 
 } // scaledStringForValue:base:units:mode:
+
++ (NSArray<NSNumber *> *)displayWidthSamplesForBase:(double)base {
+	if (!isfinite(base) || base <= 1) {
+		[NSException raise:NSInvalidArgumentException format:@"Display width sampling requires a finite base > 1."];
+	}
+	return @[@(base - kTwoDecimalWidthProbeOffset),
+			 @(kMenuMeterDecimalBase - kTwoDecimalWidthProbeOffset),
+			 @(kAdaptiveIntegerThreshold - kTwoDecimalWidthProbeOffset),
+			 @(kAdaptiveSingleDecimalThreshold - kSingleDigitWidthProbeOffset)];
+}
 
 @end

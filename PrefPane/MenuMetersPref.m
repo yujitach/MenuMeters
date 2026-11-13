@@ -360,9 +360,8 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	[memColorStyleLabel setStringValue:colorStyleLabel];
 	[netColorStyleLabel setStringValue:colorStyleLabel];
 	for (NSPopUpButton *colorStylePopup in @[memColorStyle, netColorStyle]) {
-		[[colorStylePopup itemAtIndex:0] setTitle:originalColorStyle];
-		[[colorStylePopup itemAtIndex:1] setTitle:monochromeColorStyle];
-		[[colorStylePopup itemAtIndex:2] setTitle:customColorStyle];
+		[colorStylePopup removeAllItems];
+		[colorStylePopup addItemsWithTitles:@[originalColorStyle, monochromeColorStyle, customColorStyle]];
 	}
 
 	// On first load populate the image set menu
@@ -804,7 +803,16 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 } // cpuPrefChange
 
 - (IBAction)colorStylePrefChange:(id)sender {
+	if (![sender isKindOfClass:[NSPopUpButton class]] ||
+		(sender != cpuColorStyle && sender != memColorStyle && sender != netColorStyle)) {
+		NSLog(@"Unknown color scheme control: %@", sender);
+		return;
+	}
 	int style = (int)[(NSPopUpButton *)sender indexOfSelectedItem];
+	if (style < kMenuMeterColorStyleOriginal || style > kMenuMeterColorStyleCustom) {
+		NSLog(@"Invalid color scheme selection: %d", style);
+		return;
+	}
 	if (sender == cpuColorStyle) {
 		[ourPrefs saveColorStyle:style forMeter:kCPUMenuBundleID];
 		[self cpuPrefChange:nil];
@@ -814,8 +822,6 @@ static void scChangeCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, vo
 	} else if (sender == netColorStyle) {
 		[ourPrefs saveColorStyle:style forMeter:kNetMenuBundleID];
 		[self netPrefChange:nil];
-	} else {
-		NSLog(@"Unknown color scheme control: %@", sender);
 	}
 }
 

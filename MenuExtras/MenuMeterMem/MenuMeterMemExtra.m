@@ -23,6 +23,8 @@
 
 #import "MenuMeterMemExtra.h"
 
+static const CGFloat kMemNumberFontSize = 9.5;
+static const NSUInteger kMemLargestAutomaticUnitExponent = 2; // MB -> GB -> TB
 
 ///////////////////////////////////////////////////////////////
 //
@@ -382,10 +384,10 @@
 - (NSString *)memoryStringForMB:(double)mb {
 
 	if ([ourPrefs memUnits] == kMemUnitsAutomatic) {
-		NSArray *units = @[[localizedStrings objectForKey:kMBLabel],
+		NSArray<NSString *> *units = @[[localizedStrings objectForKey:kMBLabel],
 						   [localizedStrings objectForKey:kGBLabel],
 						   [localizedStrings objectForKey:kTBLabel]];
-		return [MenuMeterNumberFormat scaledStringForValue:mb base:1024 units:units mode:[ourPrefs memDecimals]];
+		return [MenuMeterNumberFormat scaledStringForValue:mb base:kMenuMeterBinaryBase units:units mode:[ourPrefs memDecimals]];
 	}
 	return [MenuMeterNumberFormat stringForValue:mb mode:[ourPrefs memDecimals] unit:[localizedStrings objectForKey:kMBLabel]];
 
@@ -399,7 +401,7 @@
 
 - (NSFont *)numberFont {
 
-	return [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular];
+	return [NSFont monospacedDigitSystemFontOfSize:kMemNumberFontSize weight:NSFontWeightRegular];
 
 } // numberFont
 
@@ -407,16 +409,17 @@
 - (CGFloat)numberDisplayWidth {
 
 	double totalMB = [[[memStats memStats] objectForKey:@"totalmb"] doubleValue];
-	int maxUnit = 0;
+	NSUInteger maxUnit = 0;
 	if ([ourPrefs memUnits] == kMemUnitsAutomatic) {
-		for (double scaled = totalMB; (scaled >= 1024) && (maxUnit < 2); scaled /= 1024) {
+		for (double scaled = totalMB; (scaled >= kMenuMeterBinaryBase) && (maxUnit < kMemLargestAutomaticUnitExponent); scaled /= kMenuMeterBinaryBase) {
 			maxUnit++;
 		}
 	}
-	NSMutableArray *samples = [NSMutableArray arrayWithObject:[NSNumber numberWithDouble:totalMB]];
-	for (int unit = 0; unit <= maxUnit; unit++) {
-		for (NSNumber *sample in @[@1023.99, @999.99, @99.99, @9.999]) {
-			double mb = [sample doubleValue] * pow(1024, unit);
+	NSArray<NSNumber *> *boundarySamples = [MenuMeterNumberFormat displayWidthSamplesForBase:kMenuMeterBinaryBase];
+	NSMutableArray<NSNumber *> *samples = [NSMutableArray arrayWithObject:[NSNumber numberWithDouble:totalMB]];
+	for (NSUInteger unit = 0; unit <= maxUnit; unit++) {
+		for (NSNumber *sample in boundarySamples) {
+			double mb = [sample doubleValue] * pow(kMenuMeterBinaryBase, unit);
 			if (mb <= totalMB) {
 				[samples addObject:[NSNumber numberWithDouble:mb]];
 			}
@@ -545,14 +548,14 @@
 	NSAttributedString *renderUString = [[NSAttributedString alloc]
 													initWithString:[self memoryStringForMB:usedMB]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                    [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
+                                                                    [self numberFont], NSFontAttributeName,
 																		usedColor, NSForegroundColorAttributeName,
 																		nil]];
 	// Construct and draw the free string
 	NSAttributedString *renderFString = [[NSAttributedString alloc]
 													initWithString:[self memoryStringForMB:freeMB]
 														attributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                    [NSFont monospacedDigitSystemFontOfSize:9.5f weight:NSFontWeightRegular], NSFontAttributeName,
+                                                                    [self numberFont], NSFontAttributeName,
 																		freeColor, NSForegroundColorAttributeName,
 																		nil]];
 
