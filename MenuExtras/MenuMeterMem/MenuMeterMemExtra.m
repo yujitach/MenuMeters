@@ -301,7 +301,7 @@
 	NSString		*title = nil;
 
 	// Fetch stats
-	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
+	NSDictionary *currentMemStats = [memHistory lastObject];
 	if (!(currentMemStats && currentSwapStats)) return;
 
 	// Usage
@@ -385,7 +385,7 @@
 
 	// Load current stats
 	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
-	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
+	NSDictionary *currentMemStats = [memHistory lastObject];
 	if (currentMemStats) {
 		totalMB = [[currentMemStats objectForKey:@"totalmb"] floatValue];
 		activeMB = [[currentMemStats objectForKey:@"activemb"] floatValue];
@@ -476,7 +476,7 @@
 
 	// Read in the RAM data
 	double freeMB = 0, usedMB = 0;
-	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
+	NSDictionary *currentMemStats = [memHistory lastObject];
 	if (currentMemStats) {
 		freeMB = [[currentMemStats objectForKey:@"freemb"] doubleValue];
 		usedMB = [[currentMemStats objectForKey:@"usedmb"] doubleValue];
@@ -521,7 +521,7 @@
 - (void)renderPressureBar {
   // Load current stats
   float pressure = 0.2f;
-  NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
+  NSDictionary *currentMemStats = [memHistory lastObject];
   if (currentMemStats) {
     pressure = [[currentMemStats objectForKey:@"mempress"] intValue] / 100.0f;
   }
@@ -548,7 +548,7 @@
 
 	// Load current stats
 	float totalMB = 1.0f, activeMB = 0, inactiveMB = 0, wireMB = 0, compressedMB = 0;
-	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
+	NSDictionary *currentMemStats = [memHistory lastObject];
 	if (currentMemStats) {
 		totalMB = [[currentMemStats objectForKey:@"totalmb"] floatValue];
 		activeMB = [[currentMemStats objectForKey:@"activemb"] floatValue];
@@ -710,7 +710,7 @@
 
 	// Read in the paging deltas
 	uint64_t pageIns = 0, pageOuts = 0;
-	NSDictionary *currentMemStats = [memHistory objectAtIndex:0];
+	NSDictionary *currentMemStats = [memHistory lastObject];
 	if (currentMemStats) {
 		pageIns = [[currentMemStats objectForKey:@"deltapageins"] unsignedLongLongValue];
 		pageOuts = [[currentMemStats objectForKey:@"deltapageouts"] unsignedLongLongValue];
